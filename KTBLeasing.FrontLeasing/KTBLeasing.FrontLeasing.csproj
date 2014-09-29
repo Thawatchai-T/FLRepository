@@ -35,18 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="FluentNHibernate">
-      <HintPath>..\KTBLeasing.Report.extjs\bin\FluentNHibernate.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="NHibernate">
-      <HintPath>..\KTBLeasing.Report.extjs\bin\NHibernate.dll</HintPath>
-    </Reference>
-    <Reference Include="NHibernate.ByteCode.Castle">
-      <HintPath>..\KTBLeasing.Report.extjs\bin\NHibernate.ByteCode.Castle.dll</HintPath>
-    </Reference>
-    <Reference Include="Ninject">
-      <HintPath>..\KTBLeasing.Report.extjs\bin\Ninject.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -69,9 +61,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.6\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http">
       <Private>True</Private>
@@ -153,6 +142,30 @@
     <Content Include="app\view\UserInfWindowViewModel.js" />
     <Content Include="bootstrap.js" />
     <Content Include="Global.asax" />
+    <Content Include="lib\Antlr3.Runtime.dll" />
+    <Content Include="lib\AutoMapper.dll" />
+    <Content Include="lib\Castle.Core.dll" />
+    <Content Include="lib\Castle.Core.xml" />
+    <Content Include="lib\Common.Logging.dll" />
+    <Content Include="lib\Common.Logging.Log4Net.dll" />
+    <Content Include="lib\FluentNHibernate.dll" />
+    <Content Include="lib\FluentNHibernate.XML" />
+    <Content Include="lib\HibernatingRhinos.Profiler.Appender.dll" />
+    <Content Include="lib\Iesi.Collections.dll" />
+    <Content Include="lib\Iesi.Collections.xml" />
+    <Content Include="lib\log4mongo-net.dll" />
+    <Content Include="lib\log4net.dll" />
+    <Content Include="lib\log4net.xml" />
+    <Content Include="lib\MongoDB.Bson.dll" />
+    <Content Include="lib\MongoDB.Driver.dll" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\NHibernate.ByteCode.Castle.dll" />
+    <Content Include="lib\NHibernate.ByteCode.Castle.xml" />
+    <Content Include="lib\NHibernate.dll" />
+    <Content Include="lib\NHibernate.xml" />
+    <Content Include="lib\Ninject.dll" />
+    <Content Include="lib\Remotion.Data.Linq.dll" />
+    <Content Include="lib\Spring.Data.NHibernate30.dll" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
