@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.view.index', {
         type: 'index'
     },
     width: '100%',
-    activeTab: 0,
+    activeTab: 2,
 
     items: [
         {

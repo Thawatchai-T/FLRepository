@@ -30,154 +30,154 @@ Ext.define('TabUserInformation.store.customerInformations', {
             model: 'TabUserInformation.model.CustomerInformation',
             data: [
                 {
-                    Code: 'dolorum',
-                    'Name Eng': 'sunt',
-                    'Name Thai': 'eum'
-                },
-                {
-                    Code: 'praesentium',
-                    'Name Eng': 'odit',
-                    'Name Thai': 'sequi'
-                },
-                {
-                    Code: 'veritatis',
-                    'Name Eng': 'sit',
-                    'Name Thai': 'possimus'
-                },
-                {
-                    Code: 'non',
-                    'Name Eng': 'facilis',
-                    'Name Thai': 'beatae'
-                },
-                {
-                    Code: 'est',
-                    'Name Eng': 'praesentium',
-                    'Name Thai': 'ut'
-                },
-                {
-                    Code: 'quia',
-                    'Name Eng': 'vel',
-                    'Name Thai': 'corrupti'
-                },
-                {
-                    Code: 'fuga',
-                    'Name Eng': 'omnis',
-                    'Name Thai': 'deleniti'
-                },
-                {
-                    Code: 'velit',
-                    'Name Eng': 'aut',
-                    'Name Thai': 'sit'
-                },
-                {
-                    Code: 'aut',
-                    'Name Eng': 'sit',
-                    'Name Thai': 'ut'
-                },
-                {
-                    Code: 'officia',
-                    'Name Eng': 'veniam',
-                    'Name Thai': 'velit'
-                },
-                {
-                    Code: 'officia',
-                    'Name Eng': 'nemo',
-                    'Name Thai': 'suscipit'
-                },
-                {
-                    Code: 'et',
-                    'Name Eng': 'nostrum',
-                    'Name Thai': 'adipisci'
-                },
-                {
-                    Code: 'placeat',
-                    'Name Eng': 'qui',
-                    'Name Thai': 'minus'
-                },
-                {
-                    Code: 'ratione',
-                    'Name Eng': 'atque',
-                    'Name Thai': 'error'
-                },
-                {
-                    Code: 'eum',
-                    'Name Eng': 'eos',
-                    'Name Thai': 'quis'
-                },
-                {
                     Code: 'fugiat',
-                    'Name Eng': 'omnis',
-                    'Name Thai': 'et'
-                },
-                {
-                    Code: 'adipisci',
-                    'Name Eng': 'consequatur',
-                    'Name Thai': 'quaerat'
-                },
-                {
-                    Code: 'eaque',
-                    'Name Eng': 'quia',
-                    'Name Thai': 'deserunt'
-                },
-                {
-                    Code: 'qui',
-                    'Name Eng': 'et',
-                    'Name Thai': 'consequatur'
-                },
-                {
-                    Code: 'rerum',
-                    'Name Eng': 'magni',
-                    'Name Thai': 'molestiae'
-                },
-                {
-                    Code: 'labore',
-                    'Name Eng': 'rerum',
+                    'Name Eng': 'provident',
                     'Name Thai': 'maiores'
                 },
                 {
-                    Code: 'sed',
-                    'Name Eng': 'minima',
-                    'Name Thai': 'dolores'
+                    Code: 'rem',
+                    'Name Eng': 'ad',
+                    'Name Thai': 'est'
                 },
                 {
-                    Code: 'qui',
-                    'Name Eng': 'corporis',
-                    'Name Thai': 'qui'
-                },
-                {
-                    Code: 'consequatur',
-                    'Name Eng': 'omnis',
-                    'Name Thai': 'hic'
-                },
-                {
-                    Code: 'quisquam',
-                    'Name Eng': 'ut',
-                    'Name Thai': 'delectus'
+                    Code: 'velit',
+                    'Name Eng': 'aliquid',
+                    'Name Thai': 'laborum'
                 },
                 {
                     Code: 'ullam',
-                    'Name Eng': 'blanditiis',
+                    'Name Eng': 'quam',
+                    'Name Thai': 'at'
+                },
+                {
+                    Code: 'suscipit',
+                    'Name Eng': 'dolor',
+                    'Name Thai': 'qui'
+                },
+                {
+                    Code: 'in',
+                    'Name Eng': 'ratione',
+                    'Name Thai': 'voluptate'
+                },
+                {
+                    Code: 'aut',
+                    'Name Eng': 'sequi',
+                    'Name Thai': 'quod'
+                },
+                {
+                    Code: 'ab',
+                    'Name Eng': 'est',
                     'Name Thai': 'omnis'
+                },
+                {
+                    Code: 'eum',
+                    'Name Eng': 'et',
+                    'Name Thai': 'laboriosam'
+                },
+                {
+                    Code: 'voluptas',
+                    'Name Eng': 'eveniet',
+                    'Name Thai': 'aperiam'
+                },
+                {
+                    Code: 'molestiae',
+                    'Name Eng': 'ad',
+                    'Name Thai': 'optio'
+                },
+                {
+                    Code: 'ullam',
+                    'Name Eng': 'harum',
+                    'Name Thai': 'qui'
+                },
+                {
+                    Code: 'aliquam',
+                    'Name Eng': 'quis',
+                    'Name Thai': 'similique'
+                },
+                {
+                    Code: 'saepe',
+                    'Name Eng': 'et',
+                    'Name Thai': 'id'
+                },
+                {
+                    Code: 'est',
+                    'Name Eng': 'architecto',
+                    'Name Thai': 'enim'
+                },
+                {
+                    Code: 'aliquam',
+                    'Name Eng': 'est',
+                    'Name Thai': 'non'
+                },
+                {
+                    Code: 'sint',
+                    'Name Eng': 'impedit',
+                    'Name Thai': 'nihil'
+                },
+                {
+                    Code: 'aliquam',
+                    'Name Eng': 'qui',
+                    'Name Thai': 'quod'
+                },
+                {
+                    Code: 'provident',
+                    'Name Eng': 'aut',
+                    'Name Thai': 'explicabo'
+                },
+                {
+                    Code: 'aut',
+                    'Name Eng': 'voluptatem',
+                    'Name Thai': 'omnis'
+                },
+                {
+                    Code: 'aperiam',
+                    'Name Eng': 'ullam',
+                    'Name Thai': 'accusamus'
+                },
+                {
+                    Code: 'est',
+                    'Name Eng': 'nesciunt',
+                    'Name Thai': 'tempore'
+                },
+                {
+                    Code: 'sapiente',
+                    'Name Eng': 'est',
+                    'Name Thai': 'consequatur'
+                },
+                {
+                    Code: 'dolore',
+                    'Name Eng': 'facere',
+                    'Name Thai': 'atque'
+                },
+                {
+                    Code: 'accusantium',
+                    'Name Eng': 'omnis',
+                    'Name Thai': 'rerum'
+                },
+                {
+                    Code: 'id',
+                    'Name Eng': 'aliquid',
+                    'Name Thai': 'voluptas'
+                },
+                {
+                    Code: 'eius',
+                    'Name Eng': 'aut',
+                    'Name Thai': 'consequatur'
+                },
+                {
+                    Code: 'et',
+                    'Name Eng': 'doloribus',
+                    'Name Thai': 'nesciunt'
+                },
+                {
+                    Code: 'quia',
+                    'Name Eng': 'sequi',
+                    'Name Thai': 'corrupti'
                 },
                 {
                     Code: 'ea',
                     'Name Eng': 'voluptas',
-                    'Name Thai': 'ipsa'
-                },
-                {
-                    Code: 'architecto',
-                    'Name Eng': 'molestiae',
-                    'Name Thai': 'qui'
-                },
-                {
-                    Code: 'veritatis',
-                    'Name Eng': 'dolorum',
-                    'Name Thai': 'in'
-                },
-                {
-                    Code: 'est',
-                    'Name Eng': 'voluptatem',
-                    'Name Thai': 'aut'
+                    'Name Thai': 'est'
                 }
             ],
             proxy: {

@@ -24,13 +24,19 @@ Ext.application({
         'UserInformation',
         'CustomerInformation',
         'Authorize',
-        'Setup'
+        'Setup',
+        'Address',
+        'Signer',
+        'Affidavit'
     ],
     stores: [
         'userInformations',
         'customerInformations',
         'authorizes',
-        'setups'
+        'setups',
+        'addresses',
+        'signers',
+        'affidavits'
     ],
     views: [
         'UserInfWindow',
@@ -38,7 +44,12 @@ Ext.application({
         'CusInfWindow',
         'CusInfTab',
         'AuthorizeTab',
-        'SetupTab'
+        'SetupTab',
+        'AddressWindow',
+        'SignerWindow',
+        'ContactPersonWindow',
+        'AffidavitWindow',
+        'PowerOfAttorneyWindow'
     ],
     name: 'TabUserInformation',
 

@@ -17,8 +17,34 @@ Ext.define('TabUserInformation.view.CusInfWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.cusinfwindow',
 
-    onButtonExit11: function(button) {
+    onResetClick: function() {
+        console.log(this);
+        this.getView().reset();
+    },
 
+    onButtonAddressClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.addresswindow");
+        popup.show();
+    },
+
+    onButtonSignClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.signerwindow");
+        popup.show();
+    },
+
+    onButtonContactPersonClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.contactpersonwindow");
+        popup.show();
+    },
+
+    onButtonAffidavitClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.affidavitwindow");
+        popup.show();
+    },
+
+    onButtonPowerOfAttorneyClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.powerofattorneywindow");
+        popup.show();
     },
 
     onButtonNewClick1: function(button, e, eOpts) {
@@ -28,11 +54,8 @@ Ext.define('TabUserInformation.view.CusInfWindowViewController', {
         popup.show();
     },
 
-    onButtonEditClick1: function(button, e, eOpts) {
-        // Create new register form window
-        var popup = Ext.create("widget.userinfwindow");
-        // Show window
-        popup.show();
+    onButtonResetClick: function(button, e, eOpts) {
+        this.getView().items.items[0].getForm().reset();
     }
 
 });

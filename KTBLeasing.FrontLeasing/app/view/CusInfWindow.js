@@ -20,9 +20,11 @@ Ext.define('TabUserInformation.view.CusInfWindow', {
     requires: [
         'TabUserInformation.view.CusInfWindowViewModel',
         'TabUserInformation.view.CusInfWindowViewController',
-        'Ext.toolbar.Toolbar',
-        'Ext.button.Button',
+        'Ext.form.Panel',
         'Ext.form.field.ComboBox',
+        'Ext.button.Button',
+        'Ext.toolbar.Toolbar',
+        'Ext.button.Segmented',
         'Ext.form.field.Date',
         'Ext.form.FieldContainer',
         'Ext.form.field.Number',
@@ -38,379 +40,143 @@ Ext.define('TabUserInformation.view.CusInfWindow', {
     viewModel: {
         type: 'cusinfwindow'
     },
+    autoShow: true,
     height: 820,
     layout: 'anchor',
     title: 'Customer Information',
     titleCollapse: false,
+    modal: true,
 
     items: [
         {
-            xtype: 'panel',
-            width: 925,
-            animCollapse: false,
-            bodyPadding: 20,
-            collapsible: true,
-            title: 'Information',
-            titleCollapse: false,
-            layout: {
-                type: 'table',
-                columns: 3
-            },
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    dock: 'bottom',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Address'
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Signer'
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Contact Person'
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Affidavit'
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Power of Attorney'
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Company Seal'
-                        }
-                    ]
-                }
-            ],
+            xtype: 'form',
             items: [
                 {
-                    xtype: 'textfield',
-                    fieldLabel: 'Customer Code',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'container',
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'combobox',
-                            margin: '0 0 0 5',
-                            width: 200,
-                            fieldLabel: 'Type of Customer',
-                            labelWidth: 110
-                        },
-                        {
-                            xtype: 'button',
-                            flex: 1,
-                            margin: '0 0 0 5',
-                            text: 'History'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'combobox',
-                    margin: '0 0 0 5',
-                    fieldLabel: 'Industry Code'
-                },
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Customer Eng Name',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'textfield',
-                    width: 270
-                },
-                {
-                    xtype: 'combobox',
-                    margin: '0 0 0 5',
-                    fieldLabel: 'Nature of Cus'
-                },
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Customer Thai Name',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'textfield',
-                    width: 270
-                },
-                {
-                    xtype: 'combobox',
-                    margin: '0 0 0 5',
-                    fieldLabel: 'Group of Cus'
-                },
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Parent Country',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'textfield',
-                    margin: '0 0 0 5',
-                    width: 270,
-                    fieldLabel: 'Telephone'
-                },
-                {
-                    xtype: 'textfield',
-                    margin: '0 0 0 5',
-                    fieldLabel: 'Fax'
-                },
-                {
-                    xtype: 'combobox',
-                    fieldLabel: 'Email',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'textfield',
-                    margin: '0 0 0 5',
-                    width: 270,
-                    fieldLabel: 'Tax No'
-                },
-                {
-                    xtype: 'textfield',
-                    margin: '0 5 0 5',
-                    fieldLabel: 'VAT %'
-                }
-            ]
-        },
-        {
-            xtype: 'panel',
-            width: 925,
-            animCollapse: false,
-            bodyPadding: 20,
-            collapsible: true,
-            title: 'Background',
-            layout: {
-                type: 'table',
-                columns: 3
-            },
-            items: [
-                {
-                    xtype: 'container',
-                    colspan: 3,
-                    layout: 'hbox',
+                    xtype: 'form',
+                    width: 925,
+                    animCollapse: false,
+                    bodyPadding: 20,
+                    collapsible: true,
+                    title: 'Information',
+                    titleCollapse: false,
+                    layout: {
+                        type: 'table',
+                        columns: 3
+                    },
                     items: [
                         {
                             xtype: 'textfield',
-                            width: 600,
-                            fieldLabel: 'Business',
+                            fieldLabel: 'Customer Code',
                             labelWidth: 150
                         },
-                        {
-                            xtype: 'button',
-                            margin: '0 5 0 5',
-                            text: 'Shareholder\'s'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'datefield',
-                    fieldLabel: 'Establishment',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'fieldcontainer',
-                    width: 400,
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'numberfield',
-                            flex: 1,
-                            margin: '0 0 0 5',
-                            width: 180,
-                            fieldLabel: 'Stock PR'
-                        },
-                        {
-                            xtype: 'datefield',
-                            flex: 1,
-                            margin: '0 0 0 5',
-                            fieldLabel: 'As Of'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'container',
-                    colspan: 2,
-                    layout: 'hbox'
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Register Capital',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'textfield',
-                    colspan: 2,
-                    width: 500,
-                    fieldLabel: ''
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Sales',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'container',
-                    colspan: 2,
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'textfield',
-                            margin: '0 0 0 5',
-                            width: 180,
-                            fieldLabel: 'Year',
-                            labelWidth: 50
-                        },
-                        {
-                            xtype: 'textfield',
-                            flex: 1,
-                            margin: '0 0 0 5'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Profit (Loss)',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'container',
-                    colspan: 2,
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'textfield',
-                            margin: '0 0 0 5',
-                            width: 180,
-                            fieldLabel: 'Year',
-                            labelWidth: 50
-                        },
-                        {
-                            xtype: 'textfield',
-                            flex: 1,
-                            margin: '0 0 0 5'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Shareholder\'s Equity',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'container',
-                    colspan: 2,
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'textfield',
-                            margin: '0 0 0 5',
-                            width: 180,
-                            fieldLabel: 'Year',
-                            labelWidth: 50
-                        },
-                        {
-                            xtype: 'textfield',
-                            flex: 1,
-                            margin: '0 0 0 5'
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Outstanding Amount',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'datefield',
-                    colspan: 2,
-                    margin: '0 0 0 5',
-                    width: 180,
-                    fieldLabel: 'As Of',
-                    labelWidth: 50
-                },
-                {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Exposure Limit',
-                    labelWidth: 150
-                },
-                {
-                    xtype: 'container',
-                    colspan: 2,
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'datefield',
-                            flex: 1,
-                            margin: '0 0 0 5',
-                            fieldLabel: 'As Of',
-                            labelWidth: 50
-                        },
-                        {
-                            xtype: 'combobox',
-                            flex: 1,
-                            margin: '0 0 0 5'
-                        },
-                        {
-                            xtype: 'button',
-                            flex: 1,
-                            margin: '0 0 0 5',
-                            text: 'Background History'
-                        }
-                    ]
-                }
-            ]
-        },
-        {
-            xtype: 'panel',
-            width: 925,
-            layout: {
-                type: 'table',
-                columns: 2
-            },
-            items: [
-                {
-                    xtype: 'panel',
-                    width: 521,
-                    bodyPadding: 20,
-                    items: [
                         {
                             xtype: 'container',
                             layout: 'hbox',
                             items: [
                                 {
-                                    xtype: 'textfield',
-                                    fieldLabel: 'KTIBJ Marketing Officer',
-                                    labelWidth: 150
-                                },
-                                {
-                                    xtype: 'button',
+                                    xtype: 'combobox',
                                     margin: '0 0 0 5',
-                                    text: '...'
+                                    width: 200,
+                                    fieldLabel: 'Type of Customer',
+                                    labelWidth: 110
                                 },
                                 {
                                     xtype: 'button',
+                                    flex: 1,
                                     margin: '0 0 0 5',
                                     text: 'History'
                                 }
                             ]
                         },
                         {
-                            xtype: 'textfield',
-                            fieldLabel: 'Warning',
-                            labelWidth: 150
+                            xtype: 'combobox',
+                            margin: '0 0 0 5',
+                            fieldLabel: 'Industry Code'
+                        },
+                        {
+                            xtype: 'container',
+                            colspan: 2,
+                            layout: 'hbox',
+                            items: [
+                                {
+                                    xtype: 'combobox',
+                                    width: 240,
+                                    fieldLabel: 'Customer Eng Name',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    width: 180
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    width: 180
+                                }
+                            ]
                         },
                         {
                             xtype: 'combobox',
-                            fieldLabel: 'Status',
+                            margin: '0 0 0 5',
+                            fieldLabel: 'Nature of Cus'
+                        },
+                        {
+                            xtype: 'container',
+                            colspan: 2,
+                            margin: '5 0 5 0',
+                            layout: 'hbox',
+                            items: [
+                                {
+                                    xtype: 'combobox',
+                                    width: 240,
+                                    fieldLabel: 'Customer Thai Name',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    width: 180
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    width: 180
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'combobox',
+                            margin: '0 0 0 5',
+                            fieldLabel: 'Group of Cus'
+                        },
+                        {
+                            xtype: 'combobox',
+                            fieldLabel: 'Parent Country',
                             labelWidth: 150
+                        },
+                        {
+                            xtype: 'textfield',
+                            margin: '0 0 0 5',
+                            width: 270,
+                            fieldLabel: 'Telephone'
+                        },
+                        {
+                            xtype: 'textfield',
+                            margin: '0 0 0 5',
+                            fieldLabel: 'Fax'
+                        },
+                        {
+                            xtype: 'combobox',
+                            fieldLabel: 'Email',
+                            labelWidth: 150
+                        },
+                        {
+                            xtype: 'textfield',
+                            margin: '0 0 0 5',
+                            width: 270,
+                            fieldLabel: 'Tax No'
+                        },
+                        {
+                            xtype: 'textfield',
+                            margin: '0 5 0 5',
+                            fieldLabel: 'VAT %'
                         }
                     ],
                     dockedItems: [
@@ -419,58 +185,353 @@ Ext.define('TabUserInformation.view.CusInfWindow', {
                             dock: 'bottom',
                             items: [
                                 {
-                                    xtype: 'button',
-                                    text: 'Credit Analysis Report'
+                                    xtype: 'container'
                                 },
                                 {
-                                    xtype: 'button',
-                                    text: 'Others Report'
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Business Online'
-                                },
-                                {
-                                    xtype: 'button',
-                                    text: 'Method of Payment'
+                                    xtype: 'segmentedbutton',
+                                    items: [
+                                        {
+                                            text: 'Address',
+                                            listeners: {
+                                                click: 'onButtonAddressClick'
+                                            }
+                                        },
+                                        {
+                                            text: 'Signer',
+                                            listeners: {
+                                                click: 'onButtonSignClick'
+                                            }
+                                        },
+                                        {
+                                            text: 'Contact Person',
+                                            listeners: {
+                                                click: 'onButtonContactPersonClick'
+                                            }
+                                        },
+                                        {
+                                            text: 'Affidavit',
+                                            listeners: {
+                                                click: 'onButtonAffidavitClick'
+                                            }
+                                        },
+                                        {
+                                            text: 'Power of Attorney',
+                                            listeners: {
+                                                click: 'onButtonPowerOfAttorneyClick'
+                                            }
+                                        },
+                                        {
+                                            text: 'Company Seal'
+                                        }
+                                    ]
                                 }
                             ]
                         }
                     ]
                 },
                 {
-                    xtype: 'fieldset',
-                    height: 144,
-                    margin: '0 0 0 10',
-                    width: 300,
-                    anchorSize: 50,
-                    layout: 'auto',
-                    title: 'Due Day',
+                    xtype: 'form',
+                    collapsible: true,
+                    title: 'Background',
                     items: [
                         {
-                            xtype: 'gridpanel',
-                            height: '100%',
-                            width: '100%',
-                            columns: [
+                            xtype: 'panel',
+                            width: 925,
+                            bodyPadding: 20,
+                            layout: {
+                                type: 'table',
+                                columns: 3
+                            },
+                            items: [
                                 {
-                                    xtype: 'gridcolumn',
-                                    dataIndex: 'string',
-                                    text: 'String'
+                                    xtype: 'container',
+                                    colspan: 3,
+                                    margin: '0 0 5 0',
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'textfield',
+                                            width: 600,
+                                            fieldLabel: 'Business',
+                                            labelWidth: 150
+                                        },
+                                        {
+                                            xtype: 'button',
+                                            margin: '0 5 0 5',
+                                            text: 'Shareholder\'s'
+                                        }
+                                    ]
                                 },
                                 {
-                                    xtype: 'numbercolumn',
-                                    dataIndex: 'number',
-                                    text: 'Number'
+                                    xtype: 'datefield',
+                                    fieldLabel: 'Establishment',
+                                    labelWidth: 150
                                 },
                                 {
-                                    xtype: 'datecolumn',
-                                    dataIndex: 'date',
-                                    text: 'Date'
+                                    xtype: 'fieldcontainer',
+                                    width: 400,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'numberfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            width: 180,
+                                            fieldLabel: 'Stock PR'
+                                        },
+                                        {
+                                            xtype: 'datefield',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            fieldLabel: 'As Of'
+                                        }
+                                    ]
                                 },
                                 {
-                                    xtype: 'booleancolumn',
-                                    dataIndex: 'bool',
-                                    text: 'Boolean'
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    layout: 'hbox'
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Register Capital',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    colspan: 2,
+                                    width: 500,
+                                    fieldLabel: ''
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Sales',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'textfield',
+                                            margin: '0 0 0 5',
+                                            width: 180,
+                                            fieldLabel: 'Year',
+                                            labelWidth: 50
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Profit (Loss)',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'textfield',
+                                            margin: '0 0 0 5',
+                                            width: 180,
+                                            fieldLabel: 'Year',
+                                            labelWidth: 50
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Shareholder\'s Equity',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'textfield',
+                                            margin: '0 0 0 5',
+                                            width: 180,
+                                            fieldLabel: 'Year',
+                                            labelWidth: 50
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Outstanding Amount',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'datefield',
+                                    colspan: 2,
+                                    margin: '0 0 0 5',
+                                    width: 180,
+                                    fieldLabel: 'As Of',
+                                    labelWidth: 50
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Exposure Limit',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    rtl: false,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'datefield',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            width: 161,
+                                            fieldLabel: 'As Of',
+                                            labelWidth: 50
+                                        },
+                                        {
+                                            xtype: 'combobox',
+                                            flex: 1,
+                                            margin: '0 0 0 5'
+                                        },
+                                        {
+                                            xtype: 'button',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            width: 162,
+                                            text: 'Background History'
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            width: 925,
+                            layout: {
+                                type: 'table',
+                                columns: 2
+                            },
+                            items: [
+                                {
+                                    xtype: 'panel',
+                                    width: 521,
+                                    bodyPadding: 20,
+                                    items: [
+                                        {
+                                            xtype: 'container',
+                                            margin: '0 0 5 0',
+                                            layout: 'hbox',
+                                            items: [
+                                                {
+                                                    xtype: 'textfield',
+                                                    fieldLabel: 'KTIBJ Marketing Officer',
+                                                    labelWidth: 150
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    margin: '0 0 0 5',
+                                                    text: '...'
+                                                },
+                                                {
+                                                    xtype: 'button',
+                                                    margin: '0 0 0 5',
+                                                    text: 'History'
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'textfield',
+                                            fieldLabel: 'Warning',
+                                            labelWidth: 150
+                                        },
+                                        {
+                                            xtype: 'combobox',
+                                            fieldLabel: 'Status',
+                                            labelWidth: 150
+                                        }
+                                    ],
+                                    dockedItems: [
+                                        {
+                                            xtype: 'toolbar',
+                                            dock: 'bottom',
+                                            items: [
+                                                {
+                                                    xtype: 'segmentedbutton',
+                                                    items: [
+                                                        {
+                                                            text: 'Credit Analysis Report'
+                                                        },
+                                                        {
+                                                            text: 'Business Online'
+                                                        },
+                                                        {
+                                                            text: 'Method of Payment'
+                                                        },
+                                                        {
+                                                            text: 'Others Report'
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'fieldset',
+                                    height: 144,
+                                    margin: '0 0 0 10',
+                                    width: 300,
+                                    anchorSize: 50,
+                                    layout: 'auto',
+                                    title: 'Due Day',
+                                    items: [
+                                        {
+                                            xtype: 'gridpanel',
+                                            height: '100%',
+                                            width: '100%',
+                                            columns: [
+                                                {
+                                                    xtype: 'gridcolumn',
+                                                    dataIndex: 'string',
+                                                    text: 'String'
+                                                },
+                                                {
+                                                    xtype: 'numbercolumn',
+                                                    dataIndex: 'number',
+                                                    text: 'Number'
+                                                },
+                                                {
+                                                    xtype: 'datecolumn',
+                                                    dataIndex: 'date',
+                                                    text: 'Date'
+                                                },
+                                                {
+                                                    xtype: 'booleancolumn',
+                                                    dataIndex: 'bool',
+                                                    text: 'Boolean'
+                                                }
+                                            ]
+                                        }
+                                    ]
                                 }
                             ]
                         }
@@ -487,13 +548,6 @@ Ext.define('TabUserInformation.view.CusInfWindow', {
             items: [
                 {
                     xtype: 'button',
-                    text: 'Exit',
-                    listeners: {
-                        exit: 'onButtonExit11'
-                    }
-                },
-                {
-                    xtype: 'button',
                     text: 'Save',
                     listeners: {
                         click: 'onButtonNewClick1'
@@ -501,9 +555,9 @@ Ext.define('TabUserInformation.view.CusInfWindow', {
                 },
                 {
                     xtype: 'button',
-                    text: 'Cancel',
+                    text: 'Reset',
                     listeners: {
-                        click: 'onButtonEditClick1'
+                        click: 'onButtonResetClick'
                     }
                 }
             ]

@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.view.SetupTabViewController', {
     },
 
     onButtonDeleteClick1: function(button, e, eOpts) {
-
+        Ext.MessageBox.confirm('Confirm','Confirm Delete?',this.showResult,this);
     }
 
 });

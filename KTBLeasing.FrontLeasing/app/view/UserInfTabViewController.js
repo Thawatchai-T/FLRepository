@@ -21,10 +21,6 @@ Ext.define('TabUserInformation.view.UserInfTabViewController', {
 
     },
 
-    onButtonExit1: function(button) {
-
-    },
-
     onButtonNewClick: function(button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.userinfwindow");

@@ -63,6 +63,7 @@ Ext.define('TabUserInformation.view.AuthorizeTab', {
         },
         {
             xtype: 'gridpanel',
+            height: 500,
             title: 'Data',
             store: 'authorizes',
             columns: [
@@ -94,6 +95,12 @@ Ext.define('TabUserInformation.view.AuthorizeTab', {
             ],
             dockedItems: [
                 {
+                    xtype: 'pagingtoolbar',
+                    dock: 'bottom',
+                    width: 360,
+                    displayInfo: true
+                },
+                {
                     xtype: 'toolbar',
                     dock: 'top',
                     items: [
@@ -119,12 +126,6 @@ Ext.define('TabUserInformation.view.AuthorizeTab', {
                             }
                         }
                     ]
-                },
-                {
-                    xtype: 'pagingtoolbar',
-                    dock: 'bottom',
-                    width: 360,
-                    displayInfo: true
                 }
             ]
         }

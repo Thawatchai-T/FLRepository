@@ -26,9 +26,8 @@ Ext.define('TabUserInformation.view.UserInfTab', {
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Column',
-        'Ext.grid.plugin.RowEditing',
         'Ext.toolbar.Paging',
+        'Ext.grid.column.Column',
         'Ext.form.Panel'
     ],
 
@@ -90,6 +89,15 @@ Ext.define('TabUserInformation.view.UserInfTab', {
             height: 500,
             title: 'User Information',
             store: 'userInformations',
+            dockedItems: [
+                {
+                    xtype: 'pagingtoolbar',
+                    dock: 'bottom',
+                    width: 360,
+                    displayInfo: true,
+                    store: 'userInformations'
+                }
+            ],
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -131,20 +139,6 @@ Ext.define('TabUserInformation.view.UserInfTab', {
                     dataIndex: 'Department',
                     text: 'Department'
                 }
-            ],
-            plugins: [
-                {
-                    ptype: 'rowediting'
-                }
-            ],
-            dockedItems: [
-                {
-                    xtype: 'pagingtoolbar',
-                    dock: 'bottom',
-                    width: 360,
-                    displayInfo: true,
-                    store: 'userInformations'
-                }
             ]
         },
         {
@@ -173,34 +167,27 @@ Ext.define('TabUserInformation.view.UserInfTab', {
                     fieldLabel: 'Email',
                     inputType: 'email'
                 }
-            ],
-            dockedItems: [
+            ]
+        }
+    ],
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'bottom',
+            items: [
                 {
-                    xtype: 'toolbar',
-                    dock: 'bottom',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Exit',
-                            listeners: {
-                                exit: 'onButtonExit1'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'New',
-                            listeners: {
-                                click: 'onButtonNewClick'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Edit',
-                            listeners: {
-                                click: 'onButtonEditClick'
-                            }
-                        }
-                    ]
+                    xtype: 'button',
+                    text: 'New',
+                    listeners: {
+                        click: 'onButtonNewClick'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    text: 'Edit',
+                    listeners: {
+                        click: 'onButtonEditClick'
+                    }
                 }
             ]
         }

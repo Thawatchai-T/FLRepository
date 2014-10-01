@@ -185,13 +185,6 @@ Ext.define('TabUserInformation.view.CusInfTab', {
                     items: [
                         {
                             xtype: 'button',
-                            text: 'Exit',
-                            listeners: {
-                                exit: 'onButtonExit11'
-                            }
-                        },
-                        {
-                            xtype: 'button',
                             text: 'Edit',
                             listeners: {
                                 click: 'onButtonEditClick1'

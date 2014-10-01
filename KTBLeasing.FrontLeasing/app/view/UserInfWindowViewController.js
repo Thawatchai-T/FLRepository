@@ -17,16 +17,12 @@ Ext.define('TabUserInformation.view.UserInfWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.userinfwindow',
 
-    onButtonExit11: function(button) {
+    onButtonSaveClick: function(button, e, eOpts) {
 
     },
 
-    onButtonClick21: function(button, e, eOpts) {
-
-    },
-
-    onButtonClick31: function(button, e, eOpts) {
-
+    onButtonResetClick: function(button, e, eOpts) {
+        this.getView().items.items[0].getForm().reset();
     }
 
 });

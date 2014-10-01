@@ -20,7 +20,9 @@ Ext.define('TabUserInformation.view.UserInfWindow', {
     requires: [
         'TabUserInformation.view.UserInfWindowViewModel',
         'TabUserInformation.view.UserInfWindowViewController',
+        'Ext.form.Panel',
         'Ext.form.field.ComboBox',
+        'Ext.form.field.TextArea',
         'Ext.form.FieldSet',
         'Ext.form.field.Date',
         'Ext.form.field.Checkbox',
@@ -32,6 +34,7 @@ Ext.define('TabUserInformation.view.UserInfWindow', {
     viewModel: {
         type: 'userinfwindow'
     },
+    height: 689,
     modelValidation: false,
     shrinkWrap: 3,
     anchorSize: 100,
@@ -41,151 +44,164 @@ Ext.define('TabUserInformation.view.UserInfWindow', {
 
     items: [
         {
-            xtype: 'combobox',
-            width: 200,
-            fieldLabel: 'Marketing Group',
-            labelWidth: 110
-        },
-        {
-            xtype: 'textfield',
-            width: 200,
-            fieldLabel: 'Marketing Code',
-            labelWidth: 110
-        },
-        {
-            xtype: 'textfield',
-            width: 200,
-            fieldLabel: 'User Code',
-            labelWidth: 110
-        },
-        {
-            xtype: 'container',
-            height: 30,
-            layout: 'column',
+            xtype: 'form',
             items: [
                 {
                     xtype: 'combobox',
                     width: 200,
-                    fieldLabel: 'Name Eng',
+                    fieldLabel: 'Marketing Group',
                     labelWidth: 110
                 },
                 {
                     xtype: 'textfield',
-                    width: 250
-                }
-            ]
-        },
-        {
-            xtype: 'container',
-            height: 30,
-            layout: 'column',
-            items: [
-                {
-                    xtype: 'combobox',
                     width: 200,
-                    fieldLabel: 'Name Thai',
+                    fieldLabel: 'Marketing Code',
                     labelWidth: 110
                 },
                 {
                     xtype: 'textfield',
-                    width: 250
-                }
-            ]
-        },
-        {
-            xtype: 'combobox',
-            width: 450,
-            fieldLabel: 'Position',
-            labelWidth: 110
-        },
-        {
-            xtype: 'combobox',
-            width: 450,
-            fieldLabel: 'Department',
-            labelWidth: 110
-        },
-        {
-            xtype: 'textfield',
-            width: 600,
-            fieldLabel: 'Address',
-            labelWidth: 110
-        },
-        {
-            xtype: 'fieldset',
-            title: 'ID Card',
-            items: [
+                    width: 200,
+                    fieldLabel: 'User Code',
+                    labelWidth: 110
+                },
                 {
                     xtype: 'container',
                     height: 30,
                     layout: 'column',
                     items: [
                         {
-                            xtype: 'textfield',
-                            width: 300,
-                            fieldLabel: 'ID Number'
-                        },
-                        {
                             xtype: 'combobox',
                             width: 200,
-                            fieldLabel: 'Type',
-                            labelAlign: 'right',
-                            labelWidth: 50
+                            fieldLabel: 'Name Eng',
+                            labelWidth: 110
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 180
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 180
                         }
                     ]
                 },
                 {
-                    xtype: 'datefield',
-                    fieldLabel: 'Expire Date'
+                    xtype: 'container',
+                    height: 30,
+                    layout: 'column',
+                    items: [
+                        {
+                            xtype: 'combobox',
+                            width: 200,
+                            fieldLabel: 'Name Thai',
+                            labelWidth: 110
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 180
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 180
+                        }
+                    ]
                 },
                 {
-                    xtype: 'datefield',
-                    fieldLabel: 'Receive Date'
-                }
-            ]
-        },
-        {
-            xtype: 'textfield',
-            width: 400,
-            fieldLabel: 'Telephone',
-            labelWidth: 110
-        },
-        {
-            xtype: 'textfield',
-            width: 400,
-            fieldLabel: 'Fax',
-            labelWidth: 110
-        },
-        {
-            xtype: 'textfield',
-            width: 400,
-            fieldLabel: 'Email',
-            labelWidth: 110
-        },
-        {
-            xtype: 'datefield',
-            fieldLabel: 'Hire Date',
-            labelWidth: 110
-        },
-        {
-            xtype: 'datefield',
-            fieldLabel: 'Birth Date',
-            labelWidth: 110
-        },
-        {
-            xtype: 'container',
-            layout: 'column',
-            items: [
-                {
                     xtype: 'combobox',
-                    width: 200,
-                    fieldLabel: 'Status',
+                    width: 450,
+                    fieldLabel: 'Position',
                     labelWidth: 110
                 },
                 {
-                    xtype: 'checkboxfield',
-                    margin: '0 0 0 5',
-                    fieldLabel: '',
-                    boxLabel: 'Clear Password (Set Password to default)'
+                    xtype: 'combobox',
+                    width: 450,
+                    fieldLabel: 'Department',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'textareafield',
+                    width: 450,
+                    fieldLabel: 'Address',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'fieldset',
+                    title: 'ID Card',
+                    items: [
+                        {
+                            xtype: 'container',
+                            height: 30,
+                            layout: 'column',
+                            items: [
+                                {
+                                    xtype: 'textfield',
+                                    width: 300,
+                                    fieldLabel: 'ID Number'
+                                },
+                                {
+                                    xtype: 'combobox',
+                                    width: 200,
+                                    fieldLabel: 'Type',
+                                    labelAlign: 'right',
+                                    labelWidth: 50
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'datefield',
+                            fieldLabel: 'Expire Date'
+                        },
+                        {
+                            xtype: 'datefield',
+                            fieldLabel: 'Receive Date'
+                        }
+                    ]
+                },
+                {
+                    xtype: 'textfield',
+                    width: 400,
+                    fieldLabel: 'Telephone',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'textfield',
+                    width: 400,
+                    fieldLabel: 'Fax',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'textfield',
+                    width: 400,
+                    fieldLabel: 'Email',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'datefield',
+                    fieldLabel: 'Hire Date',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'datefield',
+                    fieldLabel: 'Birth Date',
+                    labelWidth: 110
+                },
+                {
+                    xtype: 'container',
+                    layout: 'column',
+                    items: [
+                        {
+                            xtype: 'combobox',
+                            width: 200,
+                            fieldLabel: 'Status',
+                            labelWidth: 110
+                        },
+                        {
+                            xtype: 'checkboxfield',
+                            margin: '0 0 0 5',
+                            fieldLabel: '',
+                            boxLabel: 'Clear Password (Set Password to default)'
+                        }
+                    ]
                 }
             ]
         }
@@ -197,23 +213,16 @@ Ext.define('TabUserInformation.view.UserInfWindow', {
             items: [
                 {
                     xtype: 'button',
-                    text: 'Exit',
-                    listeners: {
-                        exit: 'onButtonExit11'
-                    }
-                },
-                {
-                    xtype: 'button',
                     text: 'Save',
                     listeners: {
-                        click: 'onButtonClick21'
+                        click: 'onButtonSaveClick'
                     }
                 },
                 {
                     xtype: 'button',
-                    text: 'Cancel',
+                    text: 'Reset',
                     listeners: {
-                        click: 'onButtonClick31'
+                        click: 'onButtonResetClick'
                     }
                 }
             ]
