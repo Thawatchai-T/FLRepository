@@ -39,22 +39,33 @@ Ext.application({
         'affidavits'
     ],
     views: [
-        'UserInfWindow',
+        'Window.UserInfWindow',
+        'Window.CusInfWindow',
+        'Tab.CusInfTab',
+        'Tab.AuthorizeTab',
+        'Tab.SetupTab',
+        'Window.AddressWindow',
+        'Window.SignerWindow',
+        'Window.ContactPersonWindow',
+        'Window.AffidavitWindow',
+        'Window.PowerOfAttorneyWindow',
+        'Tab.VisitCallingTab',
+        'Window.VistiCallingWindow',
         'index',
-        'CusInfWindow',
-        'CusInfTab',
-        'AuthorizeTab',
-        'SetupTab',
-        'AddressWindow',
-        'SignerWindow',
-        'ContactPersonWindow',
-        'AffidavitWindow',
-        'PowerOfAttorneyWindow'
+        'ViewWindow.CusInfViewWindow',
+        'ViewWindow.UserInfViewWindow',
+        'ViewWindow.ContactPersonViewWindow',
+        'Tab.JobTab',
+        'Window.JobWindow',
+        'Window.InformationForIndicationWindow',
+        'MainTab',
+        'ViewWindow.VisitCallingViewWindow',
+        'Window.IndicationForEquipmentWindow'
     ],
     name: 'TabUserInformation',
 
     launch: function() {
-        Ext.create('TabUserInformation.view.index', {renderTo: Ext.getBody()});
+        Ext.create('TabUserInformation.view.index');
     }
 
 });

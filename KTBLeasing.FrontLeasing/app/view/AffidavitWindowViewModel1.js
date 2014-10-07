@@ -15,6 +15,6 @@
 
 Ext.define('TabUserInformation.view.AffidavitWindowViewModel1', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.powerofattorneywindow'
+    alias: 'viewmodel.windowpowerofattorneywindow'
 
 });

@@ -22,6 +22,10 @@ Ext.define('TabUserInformation.store.authorizes', {
         'Ext.data.proxy.Memory'
     ],
 
+    config: {
+        id: 'authorizes'
+    },
+
     constructor: function(cfg) {
         var me = this;
         cfg = cfg || {};
