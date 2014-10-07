@@ -19,7 +19,8 @@ Ext.define('TabUserInformation.view.Window.IndicationForEquipmentWindow', {
 
     requires: [
         'TabUserInformation.view.Window.IndicationForEquipmentWindowViewModel',
-        'Ext.form.Panel'
+        'Ext.form.Panel',
+        'Ext.form.field.Text'
     ],
 
     viewModel: {
@@ -35,10 +36,52 @@ Ext.define('TabUserInformation.view.Window.IndicationForEquipmentWindow', {
             title: 'My Form',
             items: [
                 {
-                    xtype: 'container'
+                    xtype: 'container',
+                    layout: {
+                        type: 'table',
+                        columns: 3
+                    },
+                    items: [
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        },
+                        {
+                            xtype: 'textfield',
+                            fieldLabel: 'Label'
+                        }
+                    ]
                 },
                 {
-                    xtype: 'container'
+                    xtype: 'container',
+                    layout: {
+                        type: 'table',
+                        columns: 2
+                    }
                 }
             ]
         }

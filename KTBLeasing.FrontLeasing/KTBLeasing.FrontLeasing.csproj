@@ -116,6 +116,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="app.js" />
+    <Content Include="app\controller\MyController.js" />
     <Content Include="app\model\Address.js" />
     <Content Include="app\model\Affidavit.js" />
     <Content Include="app\model\Authority.js" />
@@ -193,6 +194,9 @@
     <Content Include="app\view\Window\JobWindow.js" />
     <Content Include="app\view\Window\JobWindowViewController.js" />
     <Content Include="app\view\Window\JobWindowViewModel.js" />
+    <Content Include="app\view\Window\LoginWindow.js" />
+    <Content Include="app\view\Window\LoginWindowViewController.js" />
+    <Content Include="app\view\Window\LoginWindowViewModel.js" />
     <Content Include="app\view\Window\PowerOfAttorneyWindow.js" />
     <Content Include="app\view\Window\SignerWindow.js" />
     <Content Include="app\view\Window\SignerWindowViewController.js" />

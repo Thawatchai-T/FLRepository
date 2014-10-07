@@ -60,7 +60,11 @@ Ext.application({
         'Window.InformationForIndicationWindow',
         'MainTab',
         'ViewWindow.VisitCallingViewWindow',
-        'Window.IndicationForEquipmentWindow'
+        'Window.IndicationForEquipmentWindow',
+        'Window.LoginWindow'
+    ],
+    controllers: [
+        'MyController'
     ],
     name: 'TabUserInformation',
 
