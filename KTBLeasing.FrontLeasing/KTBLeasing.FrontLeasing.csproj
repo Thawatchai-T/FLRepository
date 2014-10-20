@@ -49,6 +49,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Program Files (x86)\Microsoft ASP.NET\ASP.NET MVC 4\Packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -83,10 +87,6 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
@@ -116,6 +116,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="app.js" />
+    <Content Include="app\controller\HomeController.js" />
     <Content Include="app\controller\MyController.js" />
     <Content Include="app\model\Address.js" />
     <Content Include="app\model\Affidavit.js" />
@@ -135,6 +136,12 @@
     <Content Include="app\store\userInformations.js" />
     <Content Include="app\view\AffidavitWindowViewController1.js" />
     <Content Include="app\view\AffidavitWindowViewModel1.js" />
+    <Content Include="app\view\CalculatorGadget.js" />
+    <Content Include="app\view\CalculatorGadgetViewController.js" />
+    <Content Include="app\view\CalculatorGadgetViewModel.js" />
+    <Content Include="app\view\CalculatorTool.js" />
+    <Content Include="app\view\CalculatorToolViewController.js" />
+    <Content Include="app\view\CalculatorToolViewModel.js" />
     <Content Include="app\view\ContachPersonController.js" />
     <Content Include="app\view\ContachPersonViewWindowViewModel.js" />
     <Content Include="app\view\ContachPersonWindowViewModel.js" />
@@ -144,6 +151,21 @@
     <Content Include="app\view\MainTab.js" />
     <Content Include="app\view\MainTabViewController.js" />
     <Content Include="app\view\MainTabViewModel.js" />
+    <Content Include="app\view\MyPanel12.js" />
+    <Content Include="app\view\MyPanel12ViewController.js" />
+    <Content Include="app\view\MyPanel12ViewModel.js" />
+    <Content Include="app\view\Popup\ContactPersonPopup.js" />
+    <Content Include="app\view\Popup\ContactPersonPopupViewController.js" />
+    <Content Include="app\view\Popup\ContactPersonPopupViewModel.js" />
+    <Content Include="app\view\Popup\CusInfPopup.js" />
+    <Content Include="app\view\Popup\CusInfPopupViewController.js" />
+    <Content Include="app\view\Popup\CusInfPopupViewModel.js" />
+    <Content Include="app\view\Popup\UserInfPopup.js" />
+    <Content Include="app\view\Popup\UserInfPopupViewController.js" />
+    <Content Include="app\view\Popup\UserInfPopupViewModel.js" />
+    <Content Include="app\view\Popup\VisitCallingPopup.js" />
+    <Content Include="app\view\Popup\VisitCallingPopupViewController.js" />
+    <Content Include="app\view\Popup\VisitCallingPopupViewModel.js" />
     <Content Include="app\view\Tab\AuthorizeTab.js" />
     <Content Include="app\view\Tab\AuthorizeTabViewController.js" />
     <Content Include="app\view\Tab\AuthorizeTabViewModel.js" />
@@ -181,6 +203,9 @@
     <Content Include="app\view\Window\AffidavitWindow.js" />
     <Content Include="app\view\Window\AffidavitWindowViewController.js" />
     <Content Include="app\view\Window\AffidavitWindowViewModel.js" />
+    <Content Include="app\view\Window\ApplicationWindow.js" />
+    <Content Include="app\view\Window\ApplicationWindowViewController.js" />
+    <Content Include="app\view\Window\ApplicationWindowViewModel.js" />
     <Content Include="app\view\Window\ContactPersonWindow.js" />
     <Content Include="app\view\Window\CusInfWindow.js" />
     <Content Include="app\view\Window\CusInfWindowViewController.js" />

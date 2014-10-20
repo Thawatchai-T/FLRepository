@@ -36,6 +36,10 @@ Ext.define('TabUserInformation.view.Window.JobWindowViewController', {
             }
         }
         popup.show();
+    },
+
+    onViewItemContextMenu: function(dataview, record, item, index, e, eOpts) {
+        console.log(record);
     }
 
 });

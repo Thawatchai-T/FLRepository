@@ -48,10 +48,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindowViewController', {
     },
 
     onButtonNewClick1: function(button, e, eOpts) {
-        // Create new register form window
-        var popup = Ext.create("widget.windowuserinfwindow");
-        // Show window
-        popup.show();
+
     },
 
     onButtonResetClick: function(button, e, eOpts) {

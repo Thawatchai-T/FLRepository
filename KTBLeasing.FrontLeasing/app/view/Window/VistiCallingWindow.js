@@ -39,7 +39,6 @@ Ext.define('TabUserInformation.view.Window.VistiCallingWindow', {
     autoShow: true,
     bodyPadding: 10,
     title: 'Visit/Calling Information',
-    maximized: true,
     modal: true,
     defaultListenerScope: true,
 

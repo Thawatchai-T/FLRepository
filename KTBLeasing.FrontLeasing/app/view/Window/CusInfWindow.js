@@ -41,7 +41,6 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
         type: 'windowcusinfwindow'
     },
     autoShow: true,
-    height: 820,
     layout: 'anchor',
     title: 'Customer Information',
     titleCollapse: false,
@@ -303,7 +302,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                 {
                                     xtype: 'textfield',
                                     colspan: 2,
-                                    width: 500,
+                                    width: 550,
                                     fieldLabel: ''
                                 },
                                 {
@@ -317,10 +316,10 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     layout: 'hbox',
                                     items: [
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'datefield',
                                             margin: '0 0 0 5',
                                             width: 180,
-                                            fieldLabel: 'Year',
+                                            fieldLabel: 'As Of',
                                             labelWidth: 50
                                         },
                                         {
@@ -341,10 +340,10 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     layout: 'hbox',
                                     items: [
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'datefield',
                                             margin: '0 0 0 5',
                                             width: 180,
-                                            fieldLabel: 'Year',
+                                            fieldLabel: 'As Of',
                                             labelWidth: 50
                                         },
                                         {
@@ -365,10 +364,10 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     layout: 'hbox',
                                     items: [
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'datefield',
                                             margin: '0 0 0 5',
                                             width: 180,
-                                            fieldLabel: 'Year',
+                                            fieldLabel: 'As Of',
                                             labelWidth: 50
                                         },
                                         {
@@ -406,7 +405,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                             xtype: 'datefield',
                                             flex: 1,
                                             margin: '0 0 0 5',
-                                            width: 161,
+                                            width: 180,
                                             fieldLabel: 'As Of',
                                             labelWidth: 50
                                         },
@@ -419,8 +418,35 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                             xtype: 'button',
                                             flex: 1,
                                             margin: '0 0 0 5',
-                                            width: 162,
                                             text: 'Background History'
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Total Asset',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'container',
+                                    colspan: 2,
+                                    rtl: false,
+                                    layout: 'hbox',
+                                    items: [
+                                        {
+                                            xtype: 'numberfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            maxWidth: 200,
+                                            fieldLabel: 'Equity Ratio (%)'
+                                        },
+                                        {
+                                            xtype: 'numberfield',
+                                            flex: 1,
+                                            margin: '0 0 0 5',
+                                            maxWidth: 200,
+                                            fieldLabel: 'OPE Period (mths)',
+                                            labelWidth: 120
                                         }
                                     ]
                                 }
@@ -436,7 +462,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             items: [
                                 {
                                     xtype: 'panel',
-                                    width: 521,
+                                    width: 575,
                                     bodyPadding: 20,
                                     items: [
                                         {
@@ -468,6 +494,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                         },
                                         {
                                             xtype: 'combobox',
+                                            width: 250,
                                             fieldLabel: 'Status',
                                             labelWidth: 150
                                         }

@@ -18,12 +18,12 @@ Ext.define('TabUserInformation.view.Window.VistiCallingWindowViewController', {
     alias: 'controller.windowvisticallingwindow',
 
     onButtonCusInfClick: function(button, e, eOpts) {
-        var popup = Ext.createByAlias('widget.viewwindowcusinfviewwindow');
+        var popup = Ext.createByAlias('widget.popupcusinfpopup');
         popup.show();
     },
 
     onButtonUserInfClick: function(button, e, eOpts) {
-        var popup = Ext.createByAlias('widget.viewwindowuserinfviewwindow');
+        var popup = Ext.createByAlias('widget.popupuserinfpopup');
         popup.show();
     },
 
@@ -37,7 +37,7 @@ Ext.define('TabUserInformation.view.Window.VistiCallingWindowViewController', {
     },
 
     onButtonContactPersonClick: function(button, e, eOpts) {
-        var popup = Ext.create('widget.viewwindowcontactpersonviewwindow');
+        var popup = Ext.create('widget.popupcontactpersonpopup');
         popup.show();
 
     }

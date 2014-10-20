@@ -113,7 +113,7 @@ Ext.define('TabUserInformation.view.Window.JobWindow', {
                                 ]
                             },
                             {
-                                text: 'Information for Equipment',
+                                text: 'Indication for Equipment',
                                 children: [
                                     {
                                         text: '2014',
@@ -144,7 +144,8 @@ Ext.define('TabUserInformation.view.Window.JobWindow', {
                     },
                     viewConfig: {
                         listeners: {
-                            itemdblclick: 'onViewItemDblClick'
+                            itemdblclick: 'onViewItemDblClick',
+                            itemcontextmenu: 'onViewItemContextMenu'
                         }
                     }
                 },

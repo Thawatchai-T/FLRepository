@@ -52,19 +52,20 @@ Ext.application({
         'Tab.VisitCallingTab',
         'Window.VistiCallingWindow',
         'index',
-        'ViewWindow.CusInfViewWindow',
-        'ViewWindow.UserInfViewWindow',
-        'ViewWindow.ContactPersonViewWindow',
+        'Popup.CusInfPopup',
+        'Popup.UserInfPopup',
+        'Popup.ContactPersonPopup',
         'Tab.JobTab',
         'Window.JobWindow',
         'Window.InformationForIndicationWindow',
         'MainTab',
-        'ViewWindow.VisitCallingViewWindow',
+        'Popup.VisitCallingPopup',
         'Window.IndicationForEquipmentWindow',
-        'Window.LoginWindow'
+        'Window.LoginWindow',
+        'Window.ApplicationWindow'
     ],
     controllers: [
-        'MyController'
+        'HomeController'
     ],
     name: 'TabUserInformation',
 
