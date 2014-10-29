@@ -1,0 +1,32 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "windowcusinfwindow",
+        "designer|userClassName": "Window.CusInfWindowViewController"
+    },
+    "designerId": "1b025bef-0d0d-4525-98de-945803ce61f9",
+    "cn": [
+        {
+            "type": "basicfunction",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "fn": "onResetClick",
+                "implHandler": [
+                    "console.log(this);",
+                    "this.getView().reset();"
+                ]
+            },
+            "name": "onResetClick",
+            "designerId": "55edd203-f63b-46ba-aed2-362d1734af9f"
+        }
+    ]
+}

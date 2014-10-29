@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabjobtab",
+        "designer|userClassName": "Tab.JobTabViewModel"
+    },
+    "name": "AuthorizeTabViewModel1",
+    "designerId": "f8ac0905-3603-4237-8cbf-951a797a175b"
+}

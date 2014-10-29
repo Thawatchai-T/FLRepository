@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "popupuserinfpopup",
+        "designer|userClassName": "Popup.UserInfPopupViewController"
+    },
+    "name": "UserInfTabViewController2",
+    "designerId": "0b899f7c-10f2-432a-bd12-e36ffd988108"
+}

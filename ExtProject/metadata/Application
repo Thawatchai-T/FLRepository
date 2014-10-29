@@ -1,0 +1,60 @@
+{
+    "type": "Ext.app.Application",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "controllers": [
+            "HomeController"
+        ],
+        "models": [
+            "UserInformation",
+            "CustomerInformation",
+            "Authorize",
+            "Setup",
+            "Address",
+            "Signer",
+            "Affidavit"
+        ],
+        "name": "TabUserInformation",
+        "stores": [
+            "userInformations",
+            "customerInformations",
+            "authorizes",
+            "setups",
+            "addresses",
+            "signers",
+            "affidavits"
+        ],
+        "views": [
+            "Window.UserInfWindow",
+            "Window.CusInfWindow",
+            "Tab.CusInfTab",
+            "Tab.AuthorizeTab",
+            "Tab.SetupTab",
+            "Window.AddressWindow",
+            "Window.SignerWindow",
+            "Window.ContactPersonWindow",
+            "Window.AffidavitWindow",
+            "Window.PowerOfAttorneyWindow",
+            "Tab.VisitCallingTab",
+            "Window.VistiCallingWindow",
+            "index",
+            "Popup.CusInfPopup",
+            "Popup.UserInfPopup",
+            "Popup.ContactPersonPopup",
+            "Tab.JobTab",
+            "Window.JobWindow",
+            "Window.InformationForIndicationWindow",
+            "MainTab",
+            "Popup.VisitCallingPopup",
+            "Window.IndicationForEquipmentWindow",
+            "Window.LoginWindow",
+            "Window.ApplicationWindow"
+        ]
+    },
+    "name": "Application",
+    "designerId": "application"
+}

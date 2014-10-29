@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabcusinftab",
+        "designer|userClassName": "Tab.CusInfTabViewController"
+    },
+    "designerId": "8eeeeed2-5f71-40e4-8616-73289b44878a"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "windowsignerwindow",
+        "designer|userClassName": "Window.SignerWindowViewController"
+    },
+    "designerId": "77795aaa-9fde-4902-b9d2-c590ce50a43d"
+}

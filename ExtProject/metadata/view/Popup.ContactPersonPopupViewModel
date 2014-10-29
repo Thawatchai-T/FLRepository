@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "popupcontactpersonpopup",
+        "designer|userClassName": "Popup.ContactPersonPopupViewModel"
+    },
+    "name": "ContachPersonWindowViewModel1",
+    "designerId": "7a3563c2-3982-482e-91fe-283c88e2f1bb"
+}

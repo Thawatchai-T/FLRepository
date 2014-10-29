@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "popupvisitcallingpopup",
+        "designer|userClassName": "Popup.VisitCallingPopupViewModel"
+    },
+    "name": "UserInfTabViewModel",
+    "designerId": "accd1d38-8406-449d-97b3-a42abd04fb76"
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabsetuptab",
+        "designer|userClassName": "Tab.SetupTabViewController"
+    },
+    "designerId": "9ac88fdb-28d5-484e-a5c5-3da222fee248"
+}

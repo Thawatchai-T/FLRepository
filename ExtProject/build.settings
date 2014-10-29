@@ -1,0 +1,7 @@
+{
+    "webBuild": {
+        "environment": "production",
+        "clean": "on",
+        "publishPath": "C:/Users/phutip_pr/Documents/Ext_Deploy"
+    }
+}

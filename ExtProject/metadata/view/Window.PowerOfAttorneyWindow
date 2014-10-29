@@ -1,0 +1,278 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "windowpowerofattorneywindow",
+        "designer|userClassName": "Window.PowerOfAttorneyWindow",
+        "height": null,
+        "modal": true,
+        "title": "Power of Attorney",
+        "width": 762
+    },
+    "name": "AffidavitWindow1",
+    "designerId": "5710d218-d6fd-4ea5-87b0-97f1b678609b",
+    "viewControllerInstanceId": "18bffcca-9ab5-4304-b89d-d79e20c7f8db",
+    "viewModelInstanceId": "36c77b0f-edf4-4abd-b4ac-ea4786e20dff",
+    "cn": [
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "height": 400,
+                "store": "affidavits",
+                "title": null
+            },
+            "name": "MyGridPanel5",
+            "designerId": "e129a870-b52c-487a-a4d2-f2cb36fab6f8",
+            "cn": [
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView4",
+                    "designerId": "d8f9434e-c79c-441d-9807-7e6ed533746d"
+                },
+                {
+                    "type": "Ext.grid.plugin.RowEditing",
+                    "reference": {
+                        "name": "plugins",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "name": "MyRowEditingPlugin",
+                    "designerId": "a9d5a47c-543e-46f4-ac56-5be199100824"
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "footer",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "store": "affidavits",
+                        "ui": "footer",
+                        "width": 360
+                    },
+                    "name": "MyPagingToolbar4",
+                    "designerId": "dea9b8f8-64ab-4d89-9268-1df55de9fbf2"
+                },
+                {
+                    "type": "Ext.grid.column.RowNumberer",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "text": "No",
+                        "width": 51
+                    },
+                    "name": "MyRowNumberer4",
+                    "designerId": "21e70926-7811-469e-a3e6-19871e81b05c"
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "DocumentDate",
+                        "text": "DocumentDate"
+                    },
+                    "name": "MyColumn21",
+                    "designerId": "f6b2893f-b250-452d-abf1-fe8682fc45d7",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyDateField7",
+                            "designerId": "4e88f518-fb0c-450c-a515-e4dad1e82305"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "ExpireDate",
+                        "text": "ExpireDate"
+                    },
+                    "name": "MyColumn28",
+                    "designerId": "dff73dd4-a035-4273-947a-4599a75bd1b2",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyDateField8",
+                            "designerId": "c250b360-e0eb-407d-829d-098018ead61c"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "ReceivedDate",
+                        "text": "ReceivedDate"
+                    },
+                    "name": "MyColumn29",
+                    "designerId": "63ef0342-a1de-45c7-a1f2-62b8d1df235a",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Date",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyDateField9",
+                            "designerId": "91a053b1-c82c-4af7-8536-924fa1f88c2d"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "Remark",
+                        "flex": 1,
+                        "text": "Remark"
+                    },
+                    "name": "MyColumn30",
+                    "designerId": "7216a589-ce1a-4676-9fd6-53306f75da13",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.TextArea",
+                            "reference": {
+                                "name": "editor",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "MyTextArea2",
+                            "designerId": "1c486c44-6f3e-4978-87ea-fe2aa9b1b374"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.toolbar.Toolbar",
+            "reference": {
+                "name": "dockedItems",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "footer",
+                "dock": "bottom",
+                "ui": "footer"
+            },
+            "name": "MyToolbar7",
+            "designerId": "e9b22096-92f3-40a4-9a88-09e84a0b537b",
+            "cn": [
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "new",
+                        "layout|flex": null,
+                        "text": "New"
+                    },
+                    "name": "MyButton7",
+                    "designerId": "cd467e2e-caa4-4000-8dec-e764a2bf6ccf"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "delete",
+                        "layout|flex": null,
+                        "text": "Delete"
+                    },
+                    "name": "MyButton8",
+                    "designerId": "a28ddeba-0fe9-4726-9724-3541194a3db5",
+                    "cn": [
+                        {
+                            "type": "viewcontrollereventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onButtonDeleteClick1",
+                                "implHandler": [
+                                    "Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.showResult, this);"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onButtonDeleteClick1",
+                            "designerId": "ef6388de-33e3-4197-8277-dedc1a88d3b1"
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|displayName": "viewdocument",
+                        "layout|flex": null,
+                        "text": "View Document"
+                    },
+                    "name": "MyButton19",
+                    "designerId": "476bbdc4-58f4-4527-9d5d-3367a45cb10c"
+                }
+            ]
+        }
+    ]
+}

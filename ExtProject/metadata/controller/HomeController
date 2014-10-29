@@ -1,0 +1,36 @@
+{
+    "type": "Ext.app.Controller",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userClassName": "HomeController"
+    },
+    "name": "MyController",
+    "designerId": "afa80da0-e612-4f51-861b-c7f76c236116",
+    "cn": [
+        {
+            "type": "controlleraction",
+            "reference": {
+                "name": "listeners",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|controlQuery": "#myviewport",
+                "designer|targetType": "index",
+                "fn": "doLogin",
+                "implHandler": [
+                    "var popup = Ext.create('widget.windowloginwindow');",
+                    "popup.show();"
+                ],
+                "name": "beforerender",
+                "scope": "me"
+            },
+            "name": "doLogin",
+            "designerId": "880846d7-d59c-488b-9e0d-f173858696d8"
+        }
+    ]
+}

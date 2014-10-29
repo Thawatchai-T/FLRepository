@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabvisitcallingtab",
+        "designer|userClassName": "Tab.VisitCallingTabViewController"
+    },
+    "name": "UserInfTabViewController1",
+    "designerId": "54042432-e105-4a72-988b-fbdb07c7ecaa"
+}

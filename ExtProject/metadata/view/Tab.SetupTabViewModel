@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabsetuptab",
+        "designer|userClassName": "Tab.SetupTabViewModel"
+    },
+    "designerId": "91a397fa-27f7-4153-967e-3ac83f18f5af"
+}

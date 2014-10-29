@@ -1,0 +1,14 @@
+{
+    "type": "Ext.app.ViewController",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "windowpowerofattorneywindow",
+        "designer|userClassName": "AffidavitWindowViewController1"
+    },
+    "name": "AffidavitWindowViewController1",
+    "designerId": "18bffcca-9ab5-4304-b89d-d79e20c7f8db"
+}

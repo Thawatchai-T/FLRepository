@@ -1,0 +1,129 @@
+{
+    "type": "Ext.window.Window",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "bodyPadding": 30,
+        "closable": false,
+        "designer|userAlias": "windowloginwindow",
+        "designer|userClassName": "Window.LoginWindow",
+        "height": null,
+        "id": "loginwindow",
+        "modal": true,
+        "title": "Commercial System Log-in",
+        "width": 400
+    },
+    "name": "MyWindow",
+    "designerId": "a0df8da4-8aee-4265-a822-43d49c0ed8cd",
+    "viewControllerInstanceId": "01f82689-c453-42e6-8360-6e3ffb8c3a3b",
+    "viewModelInstanceId": "d5d0b27c-e0fa-4db8-b2a6-60ea43187db0",
+    "cn": [
+        {
+            "type": "Ext.form.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": null,
+                "container|align": "center",
+                "container|pack": "center",
+                "layout": "vbox",
+                "title": null
+            },
+            "name": "MyForm5",
+            "designerId": "9605a04b-43f9-4e8a-ab6e-54516c803795",
+            "cn": [
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "blankText": null,
+                        "emptyText": null,
+                        "fieldLabel": "Username",
+                        "id": "username",
+                        "layout|flex": 1
+                    },
+                    "name": "MyTextField52",
+                    "designerId": "184b8727-4929-40c1-8857-a1fda6581fef"
+                },
+                {
+                    "type": "Ext.form.field.Text",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "fieldLabel": "Password",
+                        "id": "password",
+                        "inputType": "password"
+                    },
+                    "name": "MyTextField53",
+                    "designerId": "c00f3a43-db09-4e20-8a33-bbcef437632b"
+                },
+                {
+                    "type": "Ext.button.Button",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "id": "login",
+                        "text": "Log-in"
+                    },
+                    "name": "MyButton27",
+                    "designerId": "3391f99f-1c49-4960-a105-aedc79e54967",
+                    "cn": [
+                        {
+                            "type": "basiceventbinding",
+                            "reference": {
+                                "name": "listeners",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fn": "onLoginClick",
+                                "implHandler": [
+                                    "var username = this.getComponent('username').getData();",
+                                    "var password = this.getComponent('password').getData();",
+                                    "console.log(username);",
+                                    "",
+                                    "var form = Ext.getCmp('loginwindow').getForm();",
+                                    "if (form.isValid())",
+                                    "{",
+                                    "    form.submit({",
+                                    "        url: url,",
+                                    "        success: function (form, action) {",
+                                    "            window.location.href = \"@Url.Action(\"Index\", \"Home\")\";",
+                                    "        },",
+                                    "        failure: function (form, action) {",
+                                    "            Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');",
+                                    "        }",
+                                    "    });",
+                                    "}",
+                                    "else {",
+                                    "    Ext.Msg.alert('Data is not valid!', 'กรุณาเลือกข้อมูลให้ครบถ้วน');",
+                                    "}"
+                                ],
+                                "name": "click",
+                                "scope": "me"
+                            },
+                            "name": "onLoginClick",
+                            "designerId": "d86eab73-3a03-45ac-9972-8488e3d43281"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,13 @@
+{
+    "type": "Ext.app.ViewModel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "designer|userAlias": "tabcusinftab",
+        "designer|userClassName": "Tab.CusInfTabViewModel"
+    },
+    "designerId": "59c8b673-3bf6-47fe-82c6-68ff059d5b98"
+}

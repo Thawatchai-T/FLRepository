@@ -1,0 +1,998 @@
+{
+    "type": "Ext.panel.Panel",
+    "reference": {
+        "name": "items",
+        "type": "array"
+    },
+    "codeClass": null,
+    "userConfig": {
+        "anchorSize": null,
+        "bodyPadding": null,
+        "designer|userAlias": "tabvisitcallingtab",
+        "designer|userClassName": "Tab.VisitCallingTab",
+        "height": 900,
+        "layout": "border",
+        "maxHeight": null,
+        "title": "Visit/Calling Information",
+        "width": "100%"
+    },
+    "name": "UserInfTab1",
+    "designerId": "be611f72-75fd-4d7e-ac4b-f1793f9bd55e",
+    "viewControllerInstanceId": "54042432-e105-4a72-988b-fbdb07c7ecaa",
+    "viewModelInstanceId": "e41dd634-943d-4ffc-acd6-b8fa9d085abc",
+    "cn": [
+        {
+            "type": "Ext.panel.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "bodyPadding": 10,
+                "height": null,
+                "layout|region": "north",
+                "title": null
+            },
+            "name": "MyPanel3",
+            "designerId": "2585c7b9-9f18-4239-a11f-3b80093e3e6c",
+            "cn": [
+                {
+                    "type": "Ext.container.Container",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "layout": "hbox"
+                    },
+                    "name": "MyContainer",
+                    "designerId": "3de3d995-08fc-44e1-a860-efe0e8bbe84f",
+                    "cn": [
+                        {
+                            "type": "Ext.form.field.Text",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "fieldLabel": "Search Text",
+                                "inputType": "search",
+                                "labelAlign": "right"
+                            },
+                            "name": "MyTextField",
+                            "designerId": "cb3ad8ec-3285-4cf8-930b-845c99220dda"
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|margins": null,
+                                "margin": "0 0 0 5",
+                                "text": "Search"
+                            },
+                            "name": "MyButton",
+                            "designerId": "09df0d9c-126c-4f4f-9336-5e162d3b232f",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonSearchClick",
+                                        "implHandler": [
+                                            ""
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonSearchClick",
+                                    "designerId": "143f722a-124d-4a50-9337-6aa061ab25ca"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.container.Container",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout": "hbox",
+                                "layout|flex": 1
+                            },
+                            "name": "MyContainer1",
+                            "designerId": "8b0f8b39-994e-4945-9f0c-21a7b8b34fc2",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Search Date",
+                                        "labelAlign": "right",
+                                        "layout|flex": null,
+                                        "width": 200
+                                    },
+                                    "name": "MyDateField",
+                                    "designerId": "779cadba-ebbe-4968-99ab-4ab7a27909fa"
+                                },
+                                {
+                                    "type": "Ext.form.field.Date",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": null,
+                                        "layout|flex": null,
+                                        "width": 100
+                                    },
+                                    "name": "MyDateField1",
+                                    "designerId": "756bf941-e5a1-4449-80e9-a8860be6f30b"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Ext.grid.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "designer|uiInterfaceName": "default",
+                "layout|region": "center",
+                "title": null
+            },
+            "name": "MyGridPanel2",
+            "designerId": "c6ae3163-dda2-44c2-a4ee-cd28275557cc",
+            "cn": [
+                {
+                    "type": "Ext.grid.column.Column",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "string",
+                        "text": "String"
+                    },
+                    "name": "MyColumn1",
+                    "designerId": "13ebc082-0630-4951-920e-c77d1bdf31d4"
+                },
+                {
+                    "type": "Ext.grid.column.Number",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "number",
+                        "text": "Number"
+                    },
+                    "name": "MyNumberColumn",
+                    "designerId": "fecb9bac-065a-42cd-b535-0891f9eb1e93"
+                },
+                {
+                    "type": "Ext.grid.column.Date",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "date",
+                        "text": "Date"
+                    },
+                    "name": "MyDateColumn",
+                    "designerId": "f9db85d7-da81-432e-883c-ad94bae1542c"
+                },
+                {
+                    "type": "Ext.grid.column.Boolean",
+                    "reference": {
+                        "name": "columns",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dataIndex": "bool",
+                        "text": "Boolean"
+                    },
+                    "name": "MyBooleanColumn",
+                    "designerId": "56c87604-52b6-49bc-b858-0f3a2ae4f42d"
+                },
+                {
+                    "type": "Ext.grid.View",
+                    "reference": {
+                        "name": "viewConfig",
+                        "type": "object"
+                    },
+                    "codeClass": null,
+                    "name": "MyGridView3",
+                    "designerId": "418776f1-cec3-4b04-847f-09f5bfecd4e9"
+                },
+                {
+                    "type": "Ext.toolbar.Toolbar",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "dock": "top"
+                    },
+                    "name": "MyToolbar",
+                    "designerId": "05a948f6-bf2d-459c-9395-f0b3f0ff7fd4",
+                    "cn": [
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "text": "New"
+                            },
+                            "name": "MyButton2",
+                            "designerId": "471f23c7-62f2-44f8-b97c-265c8a00fb7e",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonNewClick",
+                                        "implHandler": [
+                                            "// Create new register form window",
+                                            "var popup = Ext.create(\"widget.windowvisticallingwindow\");",
+                                            "// Show window",
+                                            "popup.show();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonNewClick",
+                                    "designerId": "87dcdb2f-a04d-451c-bf2f-bc0e4b7ee70a"
+                                }
+                            ]
+                        },
+                        {
+                            "type": "Ext.button.Button",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "layout|flex": null,
+                                "text": "Edit"
+                            },
+                            "name": "MyButton3",
+                            "designerId": "81eb9ebb-2dda-4479-913c-e5260a780498",
+                            "cn": [
+                                {
+                                    "type": "viewcontrollereventbinding",
+                                    "reference": {
+                                        "name": "listeners",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fn": "onButtonEditClick",
+                                        "implHandler": [
+                                            "// Create new register form window",
+                                            "var popup = Ext.create(\"widget.windowvisticallingwindow\");",
+                                            "// Show window",
+                                            "popup.show();"
+                                        ],
+                                        "name": "click",
+                                        "scope": "me"
+                                    },
+                                    "name": "onButtonEditClick",
+                                    "designerId": "34f16910-b701-403e-8a9b-48f5267f47d6"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.toolbar.Paging",
+                    "reference": {
+                        "name": "dockedItems",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "designer|uiInterfaceName": "footer",
+                        "displayInfo": true,
+                        "dock": "bottom",
+                        "ui": "footer",
+                        "width": 360
+                    },
+                    "name": "MyPagingToolbar1",
+                    "designerId": "337e772d-1e55-4582-a411-47346c513726"
+                }
+            ]
+        },
+        {
+            "type": "Ext.tab.Panel",
+            "reference": {
+                "name": "items",
+                "type": "array"
+            },
+            "codeClass": null,
+            "userConfig": {
+                "activeTab": 0,
+                "designer|uiInterfaceName": "default",
+                "dock": null,
+                "height": 350,
+                "layout|region": "south",
+                "tabPosition": "left"
+            },
+            "name": "MyTabPanel",
+            "designerId": "fe6ca1fd-c615-4ba0-a03e-1ec75085b790",
+            "cn": [
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "title": "Address"
+                    },
+                    "name": "MyPanel4",
+                    "designerId": "15bf2a00-4475-455f-9476-c2666a6adbc4",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig",
+                            "designerId": "c6f600c8-b551-4bd1-9983-0ff4b0b5bb2c"
+                        },
+                        {
+                            "type": "Ext.form.Panel",
+                            "reference": {
+                                "name": "dockedItems",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "bodyPadding": 10,
+                                "dock": "top",
+                                "height": 214,
+                                "title": null,
+                                "waitTitle": ""
+                            },
+                            "name": "MyForm",
+                            "designerId": "77239641-ad7a-407b-a8ac-f7d0821fc8de",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.TextArea",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Address",
+                                        "labelWidth": 150,
+                                        "layout|anchor": null,
+                                        "width": 500
+                                    },
+                                    "name": "MyTextArea2",
+                                    "designerId": "1b13e835-5e7a-4f79-b5c0-00b04bf0380b"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Business",
+                                        "labelWidth": 150,
+                                        "layout|anchor": "100%"
+                                    },
+                                    "name": "MyTextField7",
+                                    "designerId": "a819a674-3435-4a5f-8c09-654f46f57ffb"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Contact Person",
+                                        "labelWidth": 150,
+                                        "layout|anchor": "100%"
+                                    },
+                                    "name": "MyTextField8",
+                                    "designerId": "5aced735-5941-41bc-a3ad-eb22588429a6"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Telephone",
+                                        "inputType": "tel",
+                                        "labelWidth": 150,
+                                        "layout|anchor": null,
+                                        "width": null
+                                    },
+                                    "name": "MyTextField2",
+                                    "designerId": "17d48918-56c0-40aa-a421-a11f0f60d081"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Source of Information",
+                                        "labelWidth": 150,
+                                        "layout|anchor": "100%"
+                                    },
+                                    "name": "MyTextField9",
+                                    "designerId": "0a93d87d-3ac2-41e7-8b24-0e9b2d3c3a33"
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyPadding": 10,
+                        "title": "Financial Policy"
+                    },
+                    "name": "MyPanel5",
+                    "designerId": "7eaab3f1-3872-44bb-a9c5-97cc1db7f509",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig1",
+                            "designerId": "1280b4b6-bb56-40a7-9f5d-be224a00aedf"
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapsible": true,
+                                "id": "financialpolicy1",
+                                "title": "Financial Policy",
+                                "width": null
+                            },
+                            "name": "MyFieldSet4",
+                            "designerId": "557aa676-ea03-43e6-94f0-cf0d99326812",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.CheckboxGroup",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "container|autoFlex": false,
+                                        "fieldLabel": null,
+                                        "frame": false,
+                                        "margin": null
+                                    },
+                                    "name": "MyCheckboxGroup",
+                                    "designerId": "fb23fcef-dc69-4ff5-8aad-959b50bcce54",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Cash",
+                                                "fieldLabel": null,
+                                                "id": "chk3",
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox2",
+                                            "designerId": "7ac8fbe7-986c-4656-9546-ad2b1ffa0717",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange6",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('detail');",
+                                                            "this.Shows(textBox,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange6",
+                                                    "designerId": "33e510fe-bf40-4934-ad9d-37b524883fac"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Loan",
+                                                "fieldLabel": null,
+                                                "id": "chk4",
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox3",
+                                            "designerId": "3cd4a765-c67b-4c6a-a728-74c43ce94a09",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange11",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('detail');",
+                                                            "this.Shows(textBox,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange11",
+                                                    "designerId": "854d82f6-d6c7-4087-9482-0f36d5163549"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Lease",
+                                                "fieldLabel": null,
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox7",
+                                            "designerId": "144c83c9-2fd9-4f8d-9dfa-15968d15076c",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange21",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('type-of-lease-equipment');",
+                                                            "var textBox2 = this.getComponent('financialpolicy').getComponent('leasing-company');",
+                                                            "var textBox3 = this.getComponent('financialpolicy').getComponent('term-and-condition');",
+                                                            "this.ShowsDefault(textBox,newValue);",
+                                                            "this.ShowsDefault(textBox2,newValue);",
+                                                            "this.ShowsDefault(textBox3,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange21",
+                                                    "designerId": "0c83fcce-5ab8-413f-b2c2-a1aaf8d4cb70"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Hire Purschase",
+                                                "fieldLabel": null,
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox5",
+                                            "designerId": "ade5ac07-de94-41e9-b416-b6e58b1241d0",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange51",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('type-of-hp-equipment');",
+                                                            "var textBox2 = this.getComponent('financialpolicy').getComponent('hp-company');",
+                                                            "var textBox3 = this.getComponent('financialpolicy').getComponent('hp-term-and-condition');",
+                                                            "this.ShowsDefault(textBox,newValue);",
+                                                            "this.ShowsDefault(textBox2,newValue);",
+                                                            "this.ShowsDefault(textBox3,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange51",
+                                                    "designerId": "7c1f60fe-31da-40f7-a411-0fc2aa1e7349"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Loan Affiliated",
+                                                "fieldLabel": null,
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox6",
+                                            "designerId": "dc643dad-f36b-4c23-9352-79a16530af0d",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange31",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('detail');",
+                                                            "this.Shows(textBox,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange31",
+                                                    "designerId": "cdf40b40-1d01-4691-bd29-f43073886904"
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Checkbox",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "boxLabel": "Other",
+                                                "fieldLabel": null,
+                                                "margin": "0 0 0 5"
+                                            },
+                                            "name": "MyCheckbox4",
+                                            "designerId": "2af9c77f-0b7b-4b9f-a12e-6a511f38b69c",
+                                            "cn": [
+                                                {
+                                                    "type": "basiceventbinding",
+                                                    "reference": {
+                                                        "name": "listeners",
+                                                        "type": "array"
+                                                    },
+                                                    "codeClass": null,
+                                                    "userConfig": {
+                                                        "fn": "onCheckboxfieldChange41",
+                                                        "implHandler": [
+                                                            "var textBox = this.getComponent('financialpolicy').getComponent('detail');",
+                                                            "this.Shows(textBox,newValue);"
+                                                        ],
+                                                        "name": "change",
+                                                        "scope": "me"
+                                                    },
+                                                    "name": "onCheckboxfieldChange41",
+                                                    "designerId": "bb098f73-0e88-4e88-9ca8-a4f6683d65a9"
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                },
+                                {
+                                    "type": "Ext.form.FieldContainer",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "cls": "tpl-rw013k88",
+                                        "fieldLabel": "Detail when Lease or Hire Purchase",
+                                        "height": null,
+                                        "labelAlign": "top",
+                                        "labelWidth": 250
+                                    },
+                                    "name": "MyFieldContainer",
+                                    "designerId": "37023e84-6eb8-4b0d-b345-208a06539e58",
+                                    "cn": [
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "Type of Lease Equipment",
+                                                "id": "type-of-lease-equipment1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField19",
+                                            "designerId": "228c4d4f-83bc-415b-8d33-0cb27a87e8ef"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "Leasing Company",
+                                                "id": "leasing-company1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField24",
+                                            "designerId": "499c4205-0610-46e6-aa54-a3c017e5746f"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "Term and Condition",
+                                                "id": "term-and-condition1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField28",
+                                            "designerId": "23b1fa9e-1cf7-421a-8ea1-03f7cc75c251"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "Type of HP Equipment",
+                                                "id": "type-of-hp-equipment1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField29",
+                                            "designerId": "7838839c-11a3-4b19-9353-2e7db7a17272"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "HP Company",
+                                                "id": "hp-company1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField30",
+                                            "designerId": "14abc1a2-dad9-4f16-a1ab-6627ecb3d5e8"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.Text",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "HP Term and Condition",
+                                                "id": "hp-term-and-condition1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextField32",
+                                            "designerId": "09d7a3ad-ae23-4e91-a810-18913dbf9a91"
+                                        },
+                                        {
+                                            "type": "Ext.form.field.TextArea",
+                                            "reference": {
+                                                "name": "items",
+                                                "type": "array"
+                                            },
+                                            "codeClass": null,
+                                            "userConfig": {
+                                                "fieldLabel": "Detail",
+                                                "id": "detail1",
+                                                "labelWidth": 160,
+                                                "width": 800
+                                            },
+                                            "name": "MyTextArea",
+                                            "designerId": "f87cbe5c-5f3d-4fb8-bf4c-0485f46be676"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type": "Ext.panel.Panel",
+                    "reference": {
+                        "name": "items",
+                        "type": "array"
+                    },
+                    "codeClass": null,
+                    "userConfig": {
+                        "bodyPadding": 10,
+                        "title": "Project Plan"
+                    },
+                    "name": "MyPanel6",
+                    "designerId": "0e8911b0-35ce-4c0e-98ec-cd2cb050318d",
+                    "cn": [
+                        {
+                            "type": "Ext.tab.Tab",
+                            "reference": {
+                                "name": "tabConfig",
+                                "type": "object"
+                            },
+                            "codeClass": null,
+                            "name": "TabConfig2",
+                            "designerId": "a734b08d-9a8a-4114-bea1-46861c52f10d"
+                        },
+                        {
+                            "type": "Ext.form.FieldSet",
+                            "reference": {
+                                "name": "items",
+                                "type": "array"
+                            },
+                            "codeClass": null,
+                            "userConfig": {
+                                "collapsible": true,
+                                "title": "Project Plan",
+                                "width": null
+                            },
+                            "name": "MyFieldSet5",
+                            "designerId": "9b4ac7db-5bbc-4eb1-ba68-78201771cc87",
+                            "cn": [
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Type of Equipment",
+                                        "labelWidth": 120,
+                                        "layout|anchor": "100%"
+                                    },
+                                    "name": "MyTextField1",
+                                    "designerId": "73094fd0-ceab-49c4-8569-bd833d66c758"
+                                },
+                                {
+                                    "type": "Ext.form.field.Number",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Amount",
+                                        "hideTrigger": true,
+                                        "labelWidth": 120,
+                                        "layout|anchor": "100%",
+                                        "maxWidth": 270
+                                    },
+                                    "name": "MyNumberField",
+                                    "designerId": "ebd97668-7cb7-477d-85fb-8eddfc9050ad"
+                                },
+                                {
+                                    "type": "Ext.form.field.Text",
+                                    "reference": {
+                                        "name": "items",
+                                        "type": "array"
+                                    },
+                                    "codeClass": null,
+                                    "userConfig": {
+                                        "fieldLabel": "Schedule",
+                                        "inputType": "month",
+                                        "labelWidth": 120,
+                                        "layout|anchor": "100%",
+                                        "maxWidth": 220,
+                                        "width": null
+                                    },
+                                    "name": "MyTextField18",
+                                    "designerId": "3e1749b7-f028-43f7-8a83-10a9fe3c8f5d"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
