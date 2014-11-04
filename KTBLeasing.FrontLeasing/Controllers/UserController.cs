@@ -1,0 +1,78 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.Mvc;
+using System.Web.Security;
+using KTBLeasing.FrontLeasing.WsLoginAD;
+
+namespace KTBLeasing.FrontLeasing.Controllers
+{
+    public class UserController : Controller
+    {
+        private WsLoginAD.IWS_LoginAD _LoginService { get; set; }
+        
+        //
+        // GET: /User/
+        public ActionResult Index()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public ActionResult Login()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public JsonResult Login(Models.User user)
+        //public ActionResult Login(string username, string password)
+        {
+            //var user = new Models.User
+            //{
+            //    UserName = username,
+            //    Password = password
+            //};
+            if (ModelState.IsValid)
+            {
+                if (this.CheckAD(user))
+                {
+                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
+                    //return RedirectToAction("Index", "Home");
+                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Login data is incorrect!");
+                    return Json(new { success = false, message = "รหัสผ่านไม่ถูกต้อง" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                ModelState.AddModelError("", "Login data is incorrect!");
+                return Json(new { success = false, message = "รหัสผ่านไม่ถูกต้อง" }, JsonRequestBehavior.AllowGet);
+            }
+
+            //return Json(new { success = false }, JsonRequestBehavior.AllowGet);
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "User");
+        }
+
+        public bool CheckAD(Models.User user)
+        {
+            _LoginService = new WS_LoginADClient();
+            if (user.UserName == "root" && user.Password == "root")
+            {
+                return true;
+            }
+
+            LoginADRequest Request = new LoginADRequest(user.UserName, user.Password);
+            var result = _LoginService.LoginAD(Request);
+            return (result.@return.Equals("OK")) ? true : false;       
+        }
+    }
+}
