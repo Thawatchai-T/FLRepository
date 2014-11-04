@@ -19,7 +19,8 @@ Ext.define('TabUserInformation.store.authorizes', {
 
     requires: [
         'TabUserInformation.model.Authorize',
-        'Ext.data.proxy.Memory'
+        'Ext.data.proxy.Ajax',
+        'Ext.data.reader.Json'
     ],
 
     config: {
@@ -32,131 +33,17 @@ Ext.define('TabUserInformation.store.authorizes', {
         me.callParent([Ext.apply({
             storeId: 'authorizes',
             model: 'TabUserInformation.model.Authorize',
-            data: [
-                {
-                    id: 450,
-                    myField: 'eius'
-                },
-                {
-                    id: 623,
-                    myField: 'odit'
-                },
-                {
-                    id: 946,
-                    myField: 'molestiae'
-                },
-                {
-                    id: 604,
-                    myField: 'vel'
-                },
-                {
-                    id: 673,
-                    myField: 'eos'
-                },
-                {
-                    id: 118,
-                    myField: 'soluta'
-                },
-                {
-                    id: 718,
-                    myField: 'enim'
-                },
-                {
-                    id: 208,
-                    myField: 'aut'
-                },
-                {
-                    id: 683,
-                    myField: 'quisquam'
-                },
-                {
-                    id: 729,
-                    myField: 'veniam'
-                },
-                {
-                    id: 557,
-                    myField: 'repudiandae'
-                },
-                {
-                    id: 799,
-                    myField: 'iusto'
-                },
-                {
-                    id: 278,
-                    myField: 'reprehenderit'
-                },
-                {
-                    id: 800,
-                    myField: 'ut'
-                },
-                {
-                    id: 413,
-                    myField: 'et'
-                },
-                {
-                    id: 636,
-                    myField: 'id'
-                },
-                {
-                    id: 936,
-                    myField: 'eos'
-                },
-                {
-                    id: 689,
-                    myField: 'repellendus'
-                },
-                {
-                    id: 88,
-                    myField: 'et'
-                },
-                {
-                    id: 859,
-                    myField: 'consequuntur'
-                },
-                {
-                    id: 701,
-                    myField: 'magnam'
-                },
-                {
-                    id: 711,
-                    myField: 'quam'
-                },
-                {
-                    id: 600,
-                    myField: 'accusamus'
-                },
-                {
-                    id: 873,
-                    myField: 'rerum'
-                },
-                {
-                    id: 123,
-                    myField: 'ipsa'
-                },
-                {
-                    id: 530,
-                    myField: 'nulla'
-                },
-                {
-                    id: 837,
-                    myField: 'quam'
-                },
-                {
-                    id: 495,
-                    myField: 'nulla'
-                },
-                {
-                    id: 914,
-                    myField: 'tenetur'
-                },
-                {
-                    id: 594,
-                    myField: 'aut'
-                }
-            ],
+            autoLoad: true,
+            pageSize:16,
             proxy: {
-                type: 'memory'
+                type: 'ajax',
+                url: 'api/user',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }
 });
+
+
