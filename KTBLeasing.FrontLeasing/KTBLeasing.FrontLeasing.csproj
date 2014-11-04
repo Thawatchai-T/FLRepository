@@ -8341,16 +8341,6 @@
     <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
-      <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
-      <Name>KTBLeasing.FrontLeasing.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
-      <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>
-      <Name>KTBLeasing.FrontLeasing.Mapping.Orcl</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="app.json" />
     <Content Include="bootstrap.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -9156,6 +9146,16 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\WsLoginAD\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
+      <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
+      <Name>KTBLeasing.FrontLeasing.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
+      <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>
+      <Name>KTBLeasing.FrontLeasing.Mapping.Orcl</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
