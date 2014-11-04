@@ -1,78 +1,71 @@
-﻿using System;
+﻿using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using KTBLeasing.FrontLeasing.Domain;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-using System.Web.Security;
-using KTBLeasing.FrontLeasing.WsLoginAD;
+using System;   
+ 
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
-    public class UserController : Controller
+    public class UserController : ApiController
     {
-        private WsLoginAD.IWS_LoginAD _LoginService { get; set; }
+        private UsersAuthorizeRepository UsersAuthorizeRepository { get; set; }
         
-        //
-        // GET: /User/
-        public ActionResult Index()
+        // GET api/user
+        //page=2&start=16&limit=16
+        public IEnumerable<UsersAuthorize> Get(int page,int start, int limit)
         {
-            return View();
-        }
-
-        [HttpGet]
-        public ActionResult Login()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        public JsonResult Login(Models.User user)
-        //public ActionResult Login(string username, string password)
-        {
-            //var user = new Models.User
-            //{
-            //    UserName = username,
-            //    Password = password
-            //};
-            if (ModelState.IsValid)
+            try
             {
-                if (this.CheckAD(user))
-                {
-                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
-                    //return RedirectToAction("Index", "Home");
-                    return Json(new { success = true }, JsonRequestBehavior.AllowGet);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Login data is incorrect!");
-                    return Json(new { success = false, message = "รหัสผ่านไม่ถูกต้อง" }, JsonRequestBehavior.AllowGet);
-                }
-            }
-            else
-            {
-                ModelState.AddModelError("", "Login data is incorrect!");
-                return Json(new { success = false, message = "รหัสผ่านไม่ถูกต้อง" }, JsonRequestBehavior.AllowGet);
-            }
+                UsersAuthorizeRepository = new UsersAuthorizeRepository();
+                UsersAuthorizeRepository.SessionFactory = NHHelpers.CreateSessionFactory();
+                //var result = UsersAuthorizeRepository.GetAll();
+                var result = UsersAuthorizeRepository.GetAll(start, limit);
+                
+                return  result;
 
-            //return Json(new { success = false }, JsonRequestBehavior.AllowGet);
-        }
-        public ActionResult Logout()
-        {
-            FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "User");
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            //return new string[] { "value1", "value2" };
         }
 
-        public bool CheckAD(Models.User user)
+        public IEnumerable<UsersAuthorize> Get()
         {
-            _LoginService = new WS_LoginADClient();
-            if (user.UserName == "root" && user.Password == "root")
+            try
             {
-                return true;
+                return this.Get(1,0,25);
             }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            //return new string[] { "value1", "value2" };
+        }
 
-            LoginADRequest Request = new LoginADRequest(user.UserName, user.Password);
-            var result = _LoginService.LoginAD(Request);
-            return (result.@return.Equals("OK")) ? true : false;       
+        // GET api/user/5
+        public string Get(int id)
+        {
+            return "value";
+        }
+
+        // POST api/user
+        public void Post([FromBody]string value)
+        {
+        }
+
+        // PUT api/user/5
+        public void Put(int id, [FromBody]string value)
+        {
+        }
+
+        // DELETE api/user/5
+        public void Delete(int id)
+        {
         }
     }
 }

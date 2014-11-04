@@ -19,17 +19,23 @@ Ext.define('TabUserInformation.model.Authorize', {
 
     requires: [
         'Ext.data.field.Integer',
-        'Ext.data.field.String'
+        'Ext.data.field.String',
+        'Ext.data.field.Boolean'
     ],
 
     fields: [
         {
-            type: 'int',
-            name: 'id'
+            type: 'string',
+            name: 'UserId'
+        },
+        {
+            type: 'boolean',
+            name: 'Active'
         },
         {
             type: 'string',
-            name: 'myField'
+            name: 'DepCode'
         }
+
     ]
 });

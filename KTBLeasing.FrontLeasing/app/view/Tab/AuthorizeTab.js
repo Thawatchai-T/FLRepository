@@ -77,6 +77,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                     dock: 'bottom',
                     ui: 'footer',
                     width: 360,
+                    store: 'authorizes',
                     displayInfo: true
                 },
                 {
@@ -110,16 +111,26 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'id',
-                    text: 'Id'
+                    dataIndex: 'UserId',
+                    flex: -1,
+                    text: 'User'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'myField',
-                    text: 'MyField',
-                    flex: 1,
+                    dataIndex: 'DepCode',
+                    text: 'DepCode',
+                    flex: -1,
                     editor: {
                         xtype: 'textfield'
+                    }
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Active',
+                    text: 'Active',
+                    flex: -1,
+                    editor: {
+                        xtype: 'checkboxfield'
                     }
                 }
             ]
