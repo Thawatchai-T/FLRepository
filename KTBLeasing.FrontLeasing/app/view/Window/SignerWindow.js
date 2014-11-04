@@ -139,19 +139,14 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
             xtype: 'panel',
             items: [
                 {
-                    xtype: 'container',
-                    layout: 'hbox',
-                    items: [
-                        {
-                            xtype: 'textfield',
-                            width: 180,
-                            fieldLabel: '#',
-                            labelWidth: 140
-                        }
-                    ]
+                    xtype: 'textfield',
+                    width: 180,
+                    fieldLabel: '#',
+                    labelWidth: 140
                 },
                 {
                     xtype: 'container',
+                    margin: '0 0 5 0 ',
                     layout: 'hbox',
                     items: [
                         {
@@ -172,6 +167,7 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
                 },
                 {
                     xtype: 'container',
+                    margin: '0 0 5 0 ',
                     layout: 'hbox',
                     items: [
                         {
@@ -203,6 +199,7 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
                     items: [
                         {
                             xtype: 'combobox',
+                            margin: '0 0 5 0 ',
                             width: 220,
                             fieldLabel: 'Name Thai',
                             labelWidth: 140
@@ -223,6 +220,7 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
                     items: [
                         {
                             xtype: 'textfield',
+                            margin: '0 0 5 0 ',
                             width: 320,
                             fieldLabel: 'Position Thai',
                             labelWidth: 140
@@ -250,18 +248,24 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
                     items: [
                         {
                             xtype: 'combobox',
-                            width: 250,
+                            margin: '0 0 5 0 ',
+                            width: 220,
                             fieldLabel: 'Spouse Name Eng',
                             labelWidth: 140
                         },
                         {
                             xtype: 'textfield',
-                            width: 250
+                            width: 140
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 140
                         }
                     ]
                 },
                 {
                     xtype: 'textareafield',
+                    margin: '0 0 5 0 ',
                     width: 500,
                     fieldLabel: 'Spouse Address Eng',
                     labelWidth: 140
@@ -277,13 +281,18 @@ Ext.define('TabUserInformation.view.Window.SignerWindow', {
                     items: [
                         {
                             xtype: 'combobox',
-                            width: 250,
+                            margin: '0 0 5 0 ',
+                            width: 220,
                             fieldLabel: 'Spouse Name Thai',
                             labelWidth: 140
                         },
                         {
                             xtype: 'textfield',
-                            width: 250
+                            width: 140
+                        },
+                        {
+                            xtype: 'textfield',
+                            width: 140
                         }
                     ]
                 },

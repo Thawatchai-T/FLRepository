@@ -3,8 +3,8 @@
     "settings": {
         "cmd": {
             "license": "commercial",
-            "cmdVersion": "5.0.2.250",
-            "frameworkVersion": "5.0.1"
+            "cmdVersion": "5.0.2.270",
+            "frameworkVersion": "5.0.1.1189"
         },
         "canvasControls": {
             "viewportSize": {
@@ -32,7 +32,7 @@
         "installStatus": "Not Installed"
     },
     "xdsVersion": "3.1.0",
-    "xdsBuild": 1851,
+    "xdsBuild": 1934,
     "schemaVersion": 1,
     "upgradeVersion": 300000000007,
     "framework": "ext50",

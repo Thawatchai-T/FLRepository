@@ -1,6 +1,5 @@
 // @tag core
 // @define Ext.Boot
-// @define Ext
 
 var Ext = Ext || {};
 

@@ -70,7 +70,7 @@ Ext.application({
     name: 'TabUserInformation',
 
     launch: function() {
-        Ext.create('TabUserInformation.view.index');
+        Ext.create('TabUserInformation.view.Tab.UserInfTab', {renderTo: Ext.getBody()});
     }
 
 });

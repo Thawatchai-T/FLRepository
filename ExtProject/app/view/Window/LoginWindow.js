@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     viewModel: {
         type: 'windowloginwindow'
     },
+    autoShow: true,
     id: 'loginwindow',
     width: 400,
     bodyPadding: 30,
