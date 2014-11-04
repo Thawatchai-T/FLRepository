@@ -184,6 +184,15 @@
         <dirname property="build.bootstrap.manifest.dir" file="${build.bootstrap.manifest.path}"/>
         <dirname property="build.bootstrap.metadata.dir" file="${build.bootstrap.metadata.path}"/>
 
+        <if>
+            <x-is-true value="${app.output.microloader.enable}"/>
+            <then>
+                <property name="build.output.markuponly" value="false"/>
+            </then>
+            <else>
+                <property name="build.output.markuponly" value="true"/>
+            </else>
+        </if>
     </target>
     <target name="-after-init-defaults"/>
 
@@ -220,11 +229,27 @@
             ]]>
         </property>
 
+        <property name="exclude.boot.command">
+            <![CDATA[
+                exclude
+                    -class=Ext.Boot
+                and
+            ]]>
+        </property>
+
         <condition property="include.versions.file" value="${include.versions.file.command}">
             <x-is-false value="${build.skip.versions.file}"/>
         </condition>
 
         <property name="include.versions.file" value="#skip"/>
+
+        <condition property="exclude.boot" value="${exclude.boot.command}">
+            <not>
+                <x-is-true value="${build.output.markuponly}"/>
+            </not>
+        </condition>
+
+        <property name="exclude.boot" value="#skip"/>
 
         <x-compile refid="${compiler.ref.id}"
                    dir="${app.dir}"
@@ -256,6 +281,7 @@
                 and
                 ${build.operations}
                 and
+                ${exclude.boot}
                 save
                     page
             ]]>
@@ -274,6 +300,7 @@
                 and
                 ${build.operations}
                 and
+                ${exclude.boot}
                 save
                     page
             ]]>

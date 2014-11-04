@@ -36,7 +36,8 @@ Ext.application({
         'setups',
         'addresses',
         'signers',
-        'affidavits'
+        'affidavits',
+        'MyJsonStore'
     ],
     views: [
         'Window.UserInfWindow',

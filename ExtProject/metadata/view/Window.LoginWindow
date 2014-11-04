@@ -6,6 +6,7 @@
     },
     "codeClass": null,
     "userConfig": {
+        "autoShow": true,
         "bodyPadding": 30,
         "closable": false,
         "designer|userAlias": "windowloginwindow",

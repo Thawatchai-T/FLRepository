@@ -110,15 +110,31 @@ Ext.Boot.loadSync([
         <condition property="manifest.root.excludes" value="${app.bootstrap.manifest.exclude}">
             <isset property="app.bootstrap.manifest.exclude"/>
         </condition>
-        <condition property="manifest.root.excludes" value="loadOrder">
-            <isset property="app.has.js.sdk"/>
-        </condition>
         <property name="manifest.root.excludes" value=""/>
+
+        <if>
+            <x-is-true value="${app.has.js.sdk}"/>
+            <then>
+                <property name="manifest.bootstrap.js.exclude">
+                    exclude
+                    -tag=framework,package-sencha-core
+                </property>
+                <x-compile refid="${compiler.ref.id}">
+                    <![CDATA[
+                        restore
+                            page
+                        and
+                        ${manifest.bootstrap.js.exclude}
+                    ]]>
+                </x-compile>
+            </then>
+        </if>
 
         <x-compile refid="${compiler.ref.id}">
             <![CDATA[
                 slicer-manifest
                     -exclude=${manifest.root.excludes}
+                    +ignoreDisabled
                     -basePath=${bootstrap.base.path}
                     -cssFile=${app.example.css.file}
                     -out=${bootstrap.example.json}

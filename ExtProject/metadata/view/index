@@ -6,7 +6,6 @@
     },
     "codeClass": null,
     "userConfig": {
-        "designer|initialView": true,
         "designer|userAlias": "index",
         "designer|userClassName": "index",
         "id": "myviewport",

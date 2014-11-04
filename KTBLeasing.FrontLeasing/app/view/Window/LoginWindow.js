@@ -19,6 +19,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 
     requires: [
         'TabUserInformation.view.Window.LoginWindowViewModel',
+        'Ext.form.Panel',
         'Ext.form.field.Text',
         'Ext.button.Button'
     ],
@@ -34,27 +35,36 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     modal: true,
     defaultListenerScope: true,
 
-    layout: {
-        type: 'vbox',
-        align: 'center'
-    },
     items: [
         {
-            xtype: 'textfield',
-            fieldLabel: 'Username'
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: 'Password',
-            inputType: 'password'
-        },
-        {
-            xtype: 'button',
-            id: 'login',
-            text: 'Log-in',
-            listeners: {
-                click: 'onLoginClick'
-            }
+            xtype: 'form',
+            layout: {
+                type: 'vbox',
+                align: 'center',
+                pack: 'center'
+            },
+            items: [
+                {
+                    xtype: 'textfield',
+                    flex: 1,
+                    id: 'username',
+                    fieldLabel: 'Username'
+                },
+                {
+                    xtype: 'textfield',
+                    id: 'password',
+                    fieldLabel: 'Password',
+                    inputType: 'password'
+                },
+                {
+                    xtype: 'button',
+                    id: 'login',
+                    text: 'Log-in',
+                    listeners: {
+                        click: 'onLoginClick'
+                    }
+                }
+            ]
         }
     ],
 

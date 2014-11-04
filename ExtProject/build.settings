@@ -2,6 +2,6 @@
     "webBuild": {
         "environment": "production",
         "clean": "on",
-        "publishPath": "C:/Users/phutip_pr/Documents/Ext_Deploy"
+        "publishPath": "D:/_Repository/FLRepository/KTBLeasing.FrontLeasing"
     }
 }
