@@ -17,31 +17,78 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabauthorizetab',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    rec: {
+        UserId: 'UserId',
+        Active: false,
+        DepCode: '999'
+    },
+
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onButtonAddClick: function(button, e, eOpts) {
+    onButtonAddClick: function (button, e, eOpts) {
         var rowEditing = this.getView().getComponent('grid').getPlugin('rowediting');
         rowEditing.cancelEdit();
 
-        // Create a model instance
-        var r = {
-            id:0,
-            myField:'Yeah'
+        //dummy data 
+        var rec = {
+            UserId: 'UserId',
+            Active: false,
+            DepCode: '999'
         };
 
-        var store = Ext.create('store.authorizes');
-        store.insert(0, r);
-        rowEditing.startEdit(0, 0);
+        var store = this.getView().getComponent('grid').getStore();
+
+        console.log(this.checkInsertRecord(rec, store.data.items[0].data));
+        if (!this.checkInsertRecord(rec, store.data.items[0].data)) {
+            store.insert(0, rec);
+            rowEditing.startEdit(0, 0);
+        } else {
+            store.removeAt(0, 1);
+        }
+
     },
 
-    onButtonSaveClick: function(button, e, eOpts) {
+    onButtonSaveClick: function (button, e, eOpts) {
 
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
-        Ext.MessageBox.confirm('Confirm','Confirm Delete?',this.showResult,this);
+    onButtonDeleteClick: function (button, e, eOpts) {
+        Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.showResult, this);
+    },
+
+    onBeforeEditGrid: function (button, e, eOpts) {
+
+
+    },
+
+    onEditGrid: function (button, e, eOpts) {
+
+        Ext.MessageBox.confirm('Confirm', 'Confirm Insert or Update?', this.showResult, this.onDeleteClick(button, e, eOpts));
+
+    },
+
+    onCancelEdit: function () {
+        //remove dummy
+        var grid = this.getView().getComponent('grid');
+        if (this.checkInsertRecord(this.rec, grid.store.data.items[0].data)) {
+            grid.store.removeAt(0, 1);
+            grid.view.refresh();
+        }
+    },
+
+    onDeleteClick: function (button, e, eOpts) {
+
+        console.log('onDeleteClick');
+
+    },
+
+    //Check insert dummy
+    checkInsertRecord: function (rec, record) {
+
+        return ((rec.UserId === record.UserId) && (rec.Active === record.Active) && (rec.DepCode === record.DepCode));
+
     }
 
 });

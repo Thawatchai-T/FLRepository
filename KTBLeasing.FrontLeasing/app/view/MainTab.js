@@ -33,7 +33,7 @@ Ext.define('TabUserInformation.view.MainTab', {
         type: 'maintab'
     },
     width: '100%',
-    activeTab: 5,
+    activeTab: 0,
 
     items: [
         {

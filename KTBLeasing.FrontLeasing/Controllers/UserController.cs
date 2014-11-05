@@ -4,7 +4,8 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using System.Collections.Generic;
-using System;   
+using System;
+using KTBLeasing.FrontLeasing.Models;   
  
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -66,6 +67,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // DELETE api/user/5
         public void Delete(int id)
         {
+        }
+
+        // POST api/user/logon
+        public void LogOn([FromBody] User user)
+        {
+            var a = user.UserName;
+            var b = user.Password;
         }
     }
 }

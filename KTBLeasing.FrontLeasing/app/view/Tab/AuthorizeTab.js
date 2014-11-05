@@ -64,6 +64,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
             height: 500,
             id: 'grid',
             store: 'authorizes',
+            selModel: Ext.create('Ext.selection.CheckboxModel'),
             plugins: [
                 {
                     ptype: 'rowediting',
@@ -86,6 +87,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                     items: [
                         {
                             xtype: 'button',
+                            id: 'btnadd',
                             text: 'Add',
                             listeners: {
                                 click: 'onButtonAddClick'
@@ -113,7 +115,11 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                     xtype: 'gridcolumn',
                     dataIndex: 'UserId',
                     flex: -1,
-                    text: 'User'
+                    text: 'User',
+                    editor: {
+                        xtype: 'textfield',
+                        allowBlank: false
+                    }
                 },
                 {
                     xtype: 'gridcolumn',
@@ -121,7 +127,8 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                     text: 'DepCode',
                     flex: -1,
                     editor: {
-                        xtype: 'textfield'
+                        xtype: 'textfield',
+                        allowBlank: false
                     }
                 },
                 {
@@ -133,7 +140,12 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                         xtype: 'checkboxfield'
                     }
                 }
-            ]
+            ],
+            listeners: {
+                beforeedit: 'onBeforeEditGrid',
+                edit:'onEditGrid',
+                cancelEdit: 'onCancelEdit'
+            }
         }
     ]
 

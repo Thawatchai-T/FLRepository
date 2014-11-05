@@ -21,7 +21,8 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         'TabUserInformation.view.Window.LoginWindowViewModel',
         'Ext.form.Panel',
         'Ext.form.field.Text',
-        'Ext.button.Button'
+        'Ext.button.Button',
+        'Ext.util.KeyNav'
     ],
 
     viewModel: {
@@ -33,6 +34,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     closable: false,
     title: 'Commercial System Log-in',
     modal: true,
+    enableKeyEvents: true,
     defaultListenerScope: true,
 
     items: [
@@ -48,13 +50,17 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                     xtype: 'textfield',
                     flex: 1,
                     id: 'username',
-                    fieldLabel: 'Username'
+                    name: 'User.UserName',
+                    fieldLabel: 'Username',
+                    allowBlank: false
                 },
                 {
                     xtype: 'textfield',
                     id: 'password',
+                    name: 'User.Password',
                     fieldLabel: 'Password',
-                    inputType: 'password'
+                    inputType: 'password',
+                    allowBlank: false
                 },
                 {
                     xtype: 'button',
@@ -68,8 +74,26 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         }
     ],
 
-    onLoginClick: function(button, e, eOpts) {
+    onLoginClick: function (button, e, eOpts) {
+
+        //var form = ext.getCmp('loginwindow').down('form').getForm();
+        //console.log(form);
+        //if (form.isValid()) {
+        //    form.submit({
+        //        url: 'api/user/logon',
+        //        success: function (formPanel, action) {
+        //            var data = Ext.decode(action.response.responseText);
+        //            alert("Success: " + data.msg);
+        //        },
+        //        failure: function (formPanel, action) {
+        //            var data = Ext.decode(action.response.responseText);
+        //            alert("Failure: " + data.msg);
+        //        }
+        //    });
+        //    this.close();
+        //}
+
         this.close();
     }
 
-});
+}); 
