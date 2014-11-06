@@ -40,6 +40,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     items: [
         {
             xtype: 'form',
+            id: 'loginform',
             layout: {
                 type: 'vbox',
                 align: 'center',
@@ -76,24 +77,24 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 
     onLoginClick: function (button, e, eOpts) {
 
-        //var form = ext.getCmp('loginwindow').down('form').getForm();
-        //console.log(form);
-        //if (form.isValid()) {
-        //    form.submit({
-        //        url: 'api/user/logon',
-        //        success: function (formPanel, action) {
-        //            var data = Ext.decode(action.response.responseText);
-        //            alert("Success: " + data.msg);
-        //        },
-        //        failure: function (formPanel, action) {
-        //            var data = Ext.decode(action.response.responseText);
-        //            alert("Failure: " + data.msg);
-        //        }
-        //    });
-        //    this.close();
-        //}
+        var form = this.down('form').getForm();
+        console.log(form.submit);
+        if (form.isValid()) {
+            form.submit({
+                url: 'api/user',
+                type: 'POST',
+                success: function (form, action) {
+                    var data = Ext.decode(action.response.responseText);
+                    alert("Success: " + data.msg);
+                },
+                failure: function (form, action) {
+                    var data = Ext.decode(action.response.responseText);
+                    alert("Failure: " + data.msg);
+                }
 
-        this.close();
+            });
+            //this.close();
+        }
     }
 
 }); 

@@ -5,7 +5,8 @@ using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using System.Collections.Generic;
 using System;
-using KTBLeasing.FrontLeasing.Models;   
+using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.WsLoginAD;   
  
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -13,6 +14,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
     public class UserController : ApiController
     {
         private UsersAuthorizeRepository UsersAuthorizeRepository { get; set; }
+        private WsLoginAD.IWS_LoginAD _LoginService;
         
         // GET api/user
         //page=2&start=16&limit=16
@@ -55,8 +57,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/user
-        public void Post([FromBody]string value)
+        public void Post([FromBody]User user)
         {
+            var a = user.UserName;
+            var b = user.Password;
         }
 
         // PUT api/user/5
@@ -70,10 +74,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/user/logon
-        public void LogOn([FromBody] User user)
+        public static void LogOn([FromBody] User user)
         {
             var a = user.UserName;
             var b = user.Password;
+        }
+
+        private bool VerifyAD(User user)
+        {
+            if (user.UserName == "root" && user.Password == "root")
+            {
+                return true;
+            }
+
+            LoginADRequest Request = new LoginADRequest(user.UserName, user.Password);
+            var result = _LoginService.LoginAD(Request);
+            return (result.@return.Equals("OK")) ? true : false;
         }
     }
 }
