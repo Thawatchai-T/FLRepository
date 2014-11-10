@@ -22,7 +22,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         'Ext.form.Panel',
         'Ext.form.field.Text',
         'Ext.button.Button',
-        'Ext.util.KeyNav'
+        "Ext.require([' * '])"
     ],
 
     viewModel: {
@@ -53,7 +53,10 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                     id: 'username',
                     name: 'User.UserName',
                     fieldLabel: 'Username',
-                    allowBlank: false
+                    allowBlank: false,
+                    msgTarget: 'under',
+                    regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/,
+                    invalidText: 'FisrtName_Lastname 2 digit'
                 },
                 {
                     xtype: 'textfield',
@@ -61,7 +64,8 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                     name: 'User.Password',
                     fieldLabel: 'Password',
                     inputType: 'password',
-                    allowBlank: false
+                    allowBlank: false,
+                    msgTarget: 'under'
                 },
                 {
                     xtype: 'button',
@@ -77,8 +81,29 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 
     onLoginClick: function (button, e, eOpts) {
 
+        console.log(button);
+        console.log(e);
+        //var form = this.Ext.getCmp('tsetform').down('form').getForm();
+        var form = this.down('form').getForm();
+        console.log(form);
+        if (form.isValid()) {
+            form.submit({
+                url: 'api/user',
+                type: 'POST',
+                success: function (formPanel, action) {
+                    //var data = Ext.decode(action.response.responseText);
+                    console.log("Success: " + action);
+                },
+                failure: function (formPanel, action) {
+                   // var data = Ext.decode(action.response.responseText);
+                    console.log("Failure: " + action);
+                }
+            });
+            // this.close();
+        }
         var form = this.down('form').getForm();
 
+        //this.close();
         if (form.isValid()) {
             form.submit({
                 url: 'api/user',
