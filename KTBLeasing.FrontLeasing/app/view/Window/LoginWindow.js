@@ -65,9 +65,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                     fieldLabel: 'Password',
                     inputType: 'password',
                     allowBlank: false,
-                    msgTarget: 'under',
-                    regex: /^[a-zA-Z]*.[_].[{2,}a-zA-A]$/,
-                    invalidText: 'xxxxxxxxx'
+                    msgTarget: 'under'
                 },
                 {
                     xtype: 'button',
