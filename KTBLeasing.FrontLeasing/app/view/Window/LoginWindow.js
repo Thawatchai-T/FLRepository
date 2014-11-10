@@ -78,17 +78,17 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     onLoginClick: function (button, e, eOpts) {
 
         var form = this.down('form').getForm();
-        console.log(form.submit);
+
         if (form.isValid()) {
             form.submit({
                 url: 'api/user',
                 type: 'POST',
                 success: function (form, action) {
-                    var data = Ext.decode(action.response.responseText);
+                    var data = '1'; //Ext.decode(action.response.responseText);
                     alert("Success: " + data.msg);
                 },
                 failure: function (form, action) {
-                    var data = Ext.decode(action.response.responseText);
+                    var data = '2'; // Ext.decode(action.response.responseText);
                     alert("Failure: " + data.msg);
                 }
 
