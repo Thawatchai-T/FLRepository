@@ -70,7 +70,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/user
-        public void Post(FormDataCollection formData)
+        public HttpResponseMessage Post(FormDataCollection formData)
         {
             NameValueCollection form = formData.ReadAsNameValueCollection();
             user = new User();
@@ -80,11 +80,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
             if (VerifyAD(user))
             {
-
+                return Request.CreateResponse(HttpStatusCode.OK, "role");
+                
             }
             else
             {
-
+                return Request.CreateResponse(HttpStatusCode.OK, "");
             }
         }
 
@@ -107,7 +108,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //var result = _LoginService.LoginAD(user.UserName, user.Password);
             LoginADRequest Request = new LoginADRequest(user.UserName, user.Password);
             var result = _LoginService.LoginAD(Request);
-            return (result.Equals("OK")) ? true : false;
+            return (result.@return.Equals("OK")) ? true : false;
         }
     }
 }

@@ -68,6 +68,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Data.Linq, Version=1.13.41.2, Culture=neutral, PublicKeyToken=cab60358ab4081ea, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Remotion.Data.Linq.dll</HintPath>
@@ -139,12 +143,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Infrastucture\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastucture\DI.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

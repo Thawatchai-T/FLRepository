@@ -41,6 +41,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         {
             xtype: 'form',
             id: 'loginform',
+            id: 'loginform',
             layout: {
                 type: 'vbox',
                 align: 'center',
@@ -80,45 +81,30 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     ],
 
     onLoginClick: function (button, e, eOpts) {
-
-        console.log(button);
-        console.log(e);
-        //var form = this.Ext.getCmp('tsetform').down('form').getForm();
+        var Me = this;
         var form = this.down('form').getForm();
-        console.log(form);
-        if (form.isValid()) {
-            form.submit({
-                url: 'api/user',
-                type: 'POST',
-                success: function (formPanel, action) {
-                    //var data = Ext.decode(action.response.responseText);
-                    console.log("Success: " + action);
-                },
-                failure: function (formPanel, action) {
-                   // var data = Ext.decode(action.response.responseText);
-                    console.log("Failure: " + action);
-                }
-            });
-            // this.close();
-        }
-        var form = this.down('form').getForm();
-
-        //this.close();
         if (form.isValid()) {
             form.submit({
                 url: 'api/user',
                 type: 'POST',
                 success: function (form, action) {
-                    var data = '1'; //Ext.decode(action.response.responseText);
-                    alert("Success: " + data.msg);
+
+                    console.log(form);
+                    console.log(action);
+                    //Me.close();
+                    if (action.statusText === "OK" && action.responseText !== "") {
+                        Ext.Msg(action.responseText).show();
+                    } else if (action.responseText === "OK" && action.responseText === "") {
+                        Ext.Msg(action.responseText).show();
+                    }
                 },
                 failure: function (form, action) {
-                    var data = '2'; // Ext.decode(action.response.responseText);
-                    alert("Failure: " + data.msg);
+                    console.log(form);
+                    console.log(action);
+                    alert("Failure: ");
                 }
 
             });
-            //this.close();
         }
     }
 
