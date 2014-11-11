@@ -11,6 +11,7 @@ using Newtonsoft.Json.Serialization;
 =======
 using KTBLeasing.FrontLeasing.Infrastucture;
 >>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
+using KTBLeasing.FrontLeasing.Infrastucture;
 
 namespace KTBLeasing.FrontLeasing
 {
@@ -29,6 +30,7 @@ namespace KTBLeasing.FrontLeasing
 
             //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             //json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            DI.Initialize();
         }
 
         protected override System.Web.Http.Dependencies.IDependencyResolver BuildWebApiDependencyResolver()

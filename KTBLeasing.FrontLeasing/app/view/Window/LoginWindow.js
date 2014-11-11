@@ -81,33 +81,9 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     ],
 
     onLoginClick: function (button, e, eOpts) {
-<<<<<<< HEAD
-
-        //var form = this.Ext.getCmp('tsetform').down('form').getForm();
-=======
         var Me = this;
->>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
         var form = this.down('form').getForm();
         if (form.isValid()) {
-<<<<<<< HEAD
-//            form.submit({
-//                url: 'api/user',
-//                type: 'POST',
-//                cache: false,
-//                contentType: 'application/json; charset=utf-8',
-//                success: function (formPanel, action) {
-//                    //var data = Ext.decode(action.response.responseText);
-//                    console.log("Success: ");
-//                    console.log(action);
-//                },
-//                failure: function (formPanel, action) {
-//                    // var data = Ext.decode(action.response.responseText);
-//                    console.log("failure");
-//                    console.log(action);
-//                }
-//            });
-            this.close();
-=======
             form.submit({
                 url: 'api/user',
                 type: 'POST',
@@ -122,7 +98,6 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                 }
 
             });
->>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
         }
     }
 
