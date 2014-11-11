@@ -87,21 +87,14 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
             form.submit({
                 url: 'api/user',
                 type: 'POST',
+                timeout: 99999,
                 success: function (form, action) {
-
-                    console.log(form);
-                    console.log(action);
-                    //Me.close();
-                    if (action.statusText === "OK" && action.responseText !== "") {
-                        Ext.Msg(action.responseText).show();
-                    } else if (action.responseText === "OK" && action.responseText === "") {
-                        Ext.Msg(action.responseText).show();
+                    if (action.response.statusText === "OK" && action.response.statusText !== "") {
+                        Me.close();
                     }
                 },
                 failure: function (form, action) {
-                    console.log(form);
-                    console.log(action);
-                    alert("Failure: ");
+                    Ext.Msg.alert('Status', action.response.responseText);
                 }
 
             });

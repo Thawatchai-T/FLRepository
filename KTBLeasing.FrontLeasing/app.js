@@ -63,7 +63,8 @@ Ext.application({
         'Popup.VisitCallingPopup',
         'Window.IndicationForEquipmentWindow',
         'Window.LoginWindow',
-        'Window.ApplicationWindow'
+        'Window.ApplicationWindow',
+        'Tab.RoleTab'
     ],
     controllers: [
         'HomeController'
