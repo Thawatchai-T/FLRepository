@@ -71,6 +71,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.0.0.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="Remotion.Data.Linq, Version=1.13.41.2, Culture=neutral, PublicKeyToken=cab60358ab4081ea, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Remotion.Data.Linq.dll</HintPath>
@@ -99,7 +103,11 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll</HintPath>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.20710.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
     </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
@@ -135,10 +143,6 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
-    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <Private>True</Private>
-      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.20710.0\lib\net40\System.Web.Razor.dll</HintPath>
-    </Reference>
     <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.20710.0\lib\net40\System.Web.WebPages.dll</HintPath>
@@ -156,13 +160,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\Default1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+<<<<<<< HEAD
     <Compile Include="Models\Authorize.cs" />
+=======
+    <Compile Include="Infrastucture\NinjectDependencyResolver.cs" />
+    <Compile Include="Infrastucture\DI.cs" />
+>>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -8091,6 +8099,30 @@
     <Content Include="ext\src\window\Window.js" />
     <Content Include="ext\src\ZIndexManager.js" />
     <Content Include="Global.asax" />
+    <Content Include="lib\Antlr3.Runtime.dll" />
+    <Content Include="lib\AutoMapper.dll" />
+    <Content Include="lib\Castle.Core.dll" />
+    <Content Include="lib\Castle.Core.xml" />
+    <Content Include="lib\Common.Logging.dll" />
+    <Content Include="lib\Common.Logging.Log4Net.dll" />
+    <Content Include="lib\FluentNHibernate.dll" />
+    <Content Include="lib\FluentNHibernate.XML" />
+    <Content Include="lib\HibernatingRhinos.Profiler.Appender.dll" />
+    <Content Include="lib\Iesi.Collections.dll" />
+    <Content Include="lib\Iesi.Collections.xml" />
+    <Content Include="lib\log4mongo-net.dll" />
+    <Content Include="lib\log4net.dll" />
+    <Content Include="lib\log4net.xml" />
+    <Content Include="lib\MongoDB.Bson.dll" />
+    <Content Include="lib\MongoDB.Driver.dll" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\NHibernate.ByteCode.Castle.dll" />
+    <Content Include="lib\NHibernate.ByteCode.Castle.xml" />
+    <Content Include="lib\NHibernate.dll" />
+    <Content Include="lib\NHibernate.xml" />
+    <Content Include="lib\Ninject.dll" />
+    <Content Include="lib\Remotion.Data.Linq.dll" />
+    <Content Include="lib\Spring.Data.NHibernate30.dll" />
     <Content Include="resources\.arch-internal-preview.css" />
     <Content Include="resources\images\breadcrumb\default-arrow-open-rtl.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-open.png" />

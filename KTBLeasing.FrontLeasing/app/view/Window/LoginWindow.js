@@ -41,6 +41,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         {
             xtype: 'form',
             id: 'loginform',
+            id: 'loginform',
             layout: {
                 type: 'vbox',
                 align: 'center',
@@ -80,11 +81,15 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
     ],
 
     onLoginClick: function (button, e, eOpts) {
+<<<<<<< HEAD
 
         //var form = this.Ext.getCmp('tsetform').down('form').getForm();
+=======
+        var Me = this;
+>>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
         var form = this.down('form').getForm();
-        console.log(form);
         if (form.isValid()) {
+<<<<<<< HEAD
 //            form.submit({
 //                url: 'api/user',
 //                type: 'POST',
@@ -102,9 +107,23 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 //                }
 //            });
             this.close();
-        }
+=======
+            form.submit({
+                url: 'api/user',
+                type: 'POST',
+                timeout: 99999,
+                success: function (form, action) {
+                    if (action.response.statusText === "OK" && action.response.statusText !== "") {
+                        Me.close();
+                    }
+                },
+                failure: function (form, action) {
+                    Ext.Msg.alert('Status', action.response.responseText);
+                }
 
-        //this.close();
+            });
+>>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
+        }
     }
 
 }); 
