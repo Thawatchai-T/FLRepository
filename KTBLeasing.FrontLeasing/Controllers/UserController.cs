@@ -4,8 +4,9 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using System.Collections.Generic;
+using KTBLeasing.FrontLeasing.Models;            
 using System;
-using KTBLeasing.FrontLeasing.Models;   
+using System.Web.Mvc;   
  
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -13,33 +14,51 @@ namespace KTBLeasing.FrontLeasing.Controllers
     public class UserController : ApiController
     {
         private UsersAuthorizeRepository UsersAuthorizeRepository { get; set; }
+
+        private string Message { get; set; }
         
+        // btn search click
         // GET api/user
-        //page=2&start=16&limit=16
-        public IEnumerable<UsersAuthorize> Get(int page,int start, int limit)
+        public Authorize Get(string text, int page, int start, int limit)
         {
+            Authorize view = new Authorize();
             try
             {
-                UsersAuthorizeRepository = new UsersAuthorizeRepository();
-                UsersAuthorizeRepository.SessionFactory = NHHelpers.CreateSessionFactory();
-                //var result = UsersAuthorizeRepository.GetAll();
-                var result = UsersAuthorizeRepository.GetAll(start, limit);
-                
-                return  result;
-
+                var result = UsersAuthorizeRepository.Find(start, limit, text);
+                view.tiems = result;
+                view.totalProperty = UsersAuthorizeRepository.Count(text);
+                return view;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            //return new string[] { "value1", "value2" };
+        }
+
+        //frist page load
+        public Authorize Get(int page, int start, int limit)
+        {
+            Authorize view = new Authorize();
+            try
+            {
+                var result = UsersAuthorizeRepository.GetAll(start, limit);
+                view.tiems = result;
+                view.totalProperty = UsersAuthorizeRepository.Count();
+                return view;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
         }
 
         public IEnumerable<UsersAuthorize> Get()
         {
             try
             {
-                return this.Get(1,0,25);
+                //return this.Get(1,0,25);
+
+                return null;
             }
             catch (Exception ex)
             {
@@ -51,29 +70,40 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // GET api/user/5
         public string Get(int id)
         {
-            return "value";
+            return Message;
         }
 
         // POST api/user
-        public void Post([FromBody]string value)
+        //[ResponseType(typeof(UsersAuthorize))]
+        public UsersAuthorize Post(UsersAuthorize formmodel)
         {
+            this.UsersAuthorizeRepository.Insert(formmodel);
+            return formmodel;
+        }
+
+        //Post api/user
+
+        public UsersAuthorize Post(string text)
+        {
+            //this.UsersAuthorizeRepository.Find(text);
+
+            return null;
         }
 
         // PUT api/user/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(string id, UsersAuthorize formmodel)
         {
+            formmodel.UserId = id;
+            this.UsersAuthorizeRepository.SaveOrUpdate(formmodel);
+           
         }
 
         // DELETE api/user/5
-        public void Delete(int id)
+        public void Delete(string id)
         {
+            var idss = id;
+            //this.UsersAuthorizeRepository.Delete(form);
         }
 
-        // POST api/user/logon
-        public void LogOn([FromBody] User user)
-        {
-            var a = user.UserName;
-            var b = user.Password;
-        }
     }
 }

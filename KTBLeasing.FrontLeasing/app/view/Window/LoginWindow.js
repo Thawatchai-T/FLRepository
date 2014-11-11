@@ -81,25 +81,27 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 
     onLoginClick: function (button, e, eOpts) {
 
-        console.log(button);
-        console.log(e);
         //var form = this.Ext.getCmp('tsetform').down('form').getForm();
         var form = this.down('form').getForm();
         console.log(form);
         if (form.isValid()) {
-            form.submit({
-                url: 'api/user',
-                type: 'POST',
-                success: function (formPanel, action) {
-                    //var data = Ext.decode(action.response.responseText);
-                    console.log("Success: " + action);
-                },
-                failure: function (formPanel, action) {
-                   // var data = Ext.decode(action.response.responseText);
-                    console.log("Failure: " + action);
-                }
-            });
-            // this.close();
+//            form.submit({
+//                url: 'api/user',
+//                type: 'POST',
+//                cache: false,
+//                contentType: 'application/json; charset=utf-8',
+//                success: function (formPanel, action) {
+//                    //var data = Ext.decode(action.response.responseText);
+//                    console.log("Success: ");
+//                    console.log(action);
+//                },
+//                failure: function (formPanel, action) {
+//                    // var data = Ext.decode(action.response.responseText);
+//                    console.log("failure");
+//                    console.log(action);
+//                }
+//            });
+            this.close();
         }
 
         //this.close();

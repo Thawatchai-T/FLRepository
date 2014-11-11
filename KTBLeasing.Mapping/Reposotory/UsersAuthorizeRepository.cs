@@ -46,5 +46,27 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return result;
             }
         }
+
+        public List<UsersAuthorize> Find(int start, int limit, string text)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = (from x in session.QueryOver<UsersAuthorize>().List<UsersAuthorize>() where x.UserId.Contains(text) select x).Skip(start).Take(limit);
+                session.Close();
+                return result.ToList<UsersAuthorize>();
+                
+            }
+        }
+
+        public int Count(string text)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = (from x in session.QueryOver<UsersAuthorize>().List<UsersAuthorize>() where x.UserId.Contains(text) select x);
+                session.Close();
+                return result.ToList<UsersAuthorize>().Count;
+            }
+        }
+           
     }
 }

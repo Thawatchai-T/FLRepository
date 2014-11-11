@@ -13,18 +13,18 @@
  * Do NOT hand edit this file.
  */
 
-Ext.define('TabUserInformation.store.authorizes', {
+Ext.define('TabUserInformation.store.login', {
     extend: 'Ext.data.Store',
-    alias: 'store.authorizes',
+    alias: 'store.login',
 
     requires: [
         'TabUserInformation.model.Authorize',
-        'Ext.data.proxy.Rest',
+        'Ext.data.proxy.Ajax',
         'Ext.data.reader.Json'
     ],
 
     config: {
-        id: 'authorizes'
+        id: 'login'
     },
 
     constructor: function(cfg) {
@@ -32,17 +32,14 @@ Ext.define('TabUserInformation.store.authorizes', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'authorizes',
-            model: 'TabUserInformation.model.Authorize',
+            model: 'TabUserInformation.model.Login',
             autoLoad: true,
-            autoSync: true,
             pageSize:16,
             proxy: {
-                type: 'rest',
+                type: 'ajax',
                 url: 'api/user',
                 reader: {
-                    type: 'json',
-                    root: 'tiems',
-                    totalProperty: 'totalProperty'
+                    type: 'json'
                 }
             }
         }, cfg)]);

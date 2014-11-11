@@ -46,6 +46,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
             items: [
                 {
                     xtype: 'textfield',
+                    id: 'search-text',
                     fieldLabel: 'Search Text',
                     labelAlign: 'right'
                 },
@@ -76,6 +77,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                 {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
+                    id: 'authorizes-pagingtoolbar',
                     ui: 'footer',
                     width: 360,
                     store: 'authorizes',
@@ -118,7 +120,8 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                     text: 'User',
                     editor: {
                         xtype: 'textfield',
-                        allowBlank: false
+                        allowBlank: false,
+                        regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/
                     }
                 },
                 {
@@ -142,9 +145,9 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                 }
             ],
             listeners: {
-                beforeedit: 'onBeforeEditGrid',
-                edit:'onEditGrid',
-                cancelEdit: 'onCancelEdit'
+                //beforeedit: 'onBeforeEditGrid',
+                //edit:'onEditGrid',
+                //cancelEdit: 'onCancelEdit'
             }
         }
     ]

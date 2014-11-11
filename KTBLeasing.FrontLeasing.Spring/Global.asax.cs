@@ -6,9 +6,8 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Spring.Web.Mvc;
-using Newtonsoft.Json.Serialization;
 
-namespace KTBLeasing.FrontLeasing
+namespace KTBLeasing.FrontLeasing.Spring
 {
     // Note: For instructions on enabling IIS6 or IIS7 classic mode, 
     // visit http://go.microsoft.com/?LinkId=9394801
@@ -21,16 +20,13 @@ namespace KTBLeasing.FrontLeasing
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
-            //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
-            //json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
 
         protected override System.Web.Http.Dependencies.IDependencyResolver BuildWebApiDependencyResolver()
         {
             //get the 'default' resolver, populated from the 'main' config metadata
             var resolver = base.BuildWebApiDependencyResolver();
-            
+
             //check if its castable to a SpringWebApiDependencyResolver
             var springResolver = resolver as SpringWebApiDependencyResolver;
 
@@ -43,5 +39,6 @@ namespace KTBLeasing.FrontLeasing
             //return the fully-configured resolver
             return resolver;
         }
+
     }
 }

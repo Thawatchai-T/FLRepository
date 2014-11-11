@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTBLeasing.FrontLeasing", "KTBLeasing.FrontLeasing\KTBLeasing.FrontLeasing.csproj", "{1279D923-12A6-4B51-8710-1B3F012A24DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTBLeasing.FrontLeasing.Domain", "KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj", "{19924ED2-CB69-4593-B217-4DE8403D2AD0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTBLeasing.FrontLeasing.Mapping.Orcl", "KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj", "{D2A10E1F-6FFE-47BD-B199-F0430772C21A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTBLeasing.FrontLeasing.Mapping.DB2", "KTBLeasing.FrontLeasing.Mapping.DB2\KTBLeasing.FrontLeasing.Mapping.DB2.csproj", "{57217910-A5EC-4816-9F40-D2493BF92004}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test.Repository.Orcl", "Test.Repository.Orcl\Test.Repository.Orcl.csproj", "{C9306AE0-903C-424E-8E10-93164C115DC8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{40484DEF-5CB3-460E-B591-1AC62D29FC4D}"
+	ProjectSection(SolutionItems) = preProject
+		KTBLeasing.FrontLeasing.vsmdi = KTBLeasing.FrontLeasing.vsmdi
+		Local.testsettings = Local.testsettings
+		TraceAndTestImpact.testsettings = TraceAndTestImpact.testsettings
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KTBLeasing.FrontLeasing.Spring.Aop", "KTBLeasing.FrontLeasing.Spring.Aop\KTBLeasing.FrontLeasing.Spring.Aop.csproj", "{F64F2D3A-88C0-4C21-8E36-1BF803324AF4}"
+EndProject
+Global
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = KTBLeasing.FrontLeasing.vsmdi
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1279D923-12A6-4B51-8710-1B3F012A24DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1279D923-12A6-4B51-8710-1B3F012A24DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1279D923-12A6-4B51-8710-1B3F012A24DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1279D923-12A6-4B51-8710-1B3F012A24DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19924ED2-CB69-4593-B217-4DE8403D2AD0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19924ED2-CB69-4593-B217-4DE8403D2AD0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19924ED2-CB69-4593-B217-4DE8403D2AD0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19924ED2-CB69-4593-B217-4DE8403D2AD0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2A10E1F-6FFE-47BD-B199-F0430772C21A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2A10E1F-6FFE-47BD-B199-F0430772C21A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2A10E1F-6FFE-47BD-B199-F0430772C21A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2A10E1F-6FFE-47BD-B199-F0430772C21A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{57217910-A5EC-4816-9F40-D2493BF92004}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{57217910-A5EC-4816-9F40-D2493BF92004}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{57217910-A5EC-4816-9F40-D2493BF92004}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{57217910-A5EC-4816-9F40-D2493BF92004}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9306AE0-903C-424E-8E10-93164C115DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9306AE0-903C-424E-8E10-93164C115DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9306AE0-903C-424E-8E10-93164C115DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9306AE0-903C-424E-8E10-93164C115DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F64F2D3A-88C0-4C21-8E36-1BF803324AF4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F64F2D3A-88C0-4C21-8E36-1BF803324AF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F64F2D3A-88C0-4C21-8E36-1BF803324AF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F64F2D3A-88C0-4C21-8E36-1BF803324AF4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
