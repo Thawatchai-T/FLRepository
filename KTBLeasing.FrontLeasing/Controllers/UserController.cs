@@ -9,7 +9,8 @@ using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.WsLoginAD;
 using System.Collections.Specialized;
 using System.Net.Http.Formatting;
-using System.Web.Mvc;   
+using System.Web.Mvc;
+using System.Web.Security;   
  
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -79,10 +80,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
             user.Password = form["User.Password"];
 
             string ADstatus = VerifyAD(user);
+            
             HttpResponseMessage ResponseMsg = new HttpResponseMessage();
             switch (ADstatus)
             {
                 case "OK":
+                    FormsAuthentication.SetAuthCookie(user.UserName, user.RememberMe);
                     ResponseMsg = Request.CreateResponse(HttpStatusCode.OK);
                     break;
                 case "Unauthorized":

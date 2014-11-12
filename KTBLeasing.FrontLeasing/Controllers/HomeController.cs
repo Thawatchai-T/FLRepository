@@ -5,43 +5,35 @@ using System.Web;
 using System.Web.Mvc;
 using KTBLeasing.FrontLeasing.WsLoginAD;
 using KTBLeasing.FrontLeasing.Models;
+using System.Web.Security;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class HomeController : Controller
     {
-        //private IWS_LoginAD _LoginService;
-        //public IWS_LoginAD LoginService(IWS_LoginAD loginservice)
-        //{
-        //    return this._LoginService = loginservice;
-        //}
-        
         //
         // GET: /Home/
 
         public ActionResult Index()
         {
-            
+            //if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
+            //{
+            //    var value = FormsAuthentication.Decrypt(Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+
+            //    if (value.Expired)
+            //    {
+            //        return View();
+            //    }
+            //}
+            //FormsAuthentication.SignOut();
             return View();
         }
 
-        public JsonResult LoginWindow()
+        public ActionResult Login()
         {
             //var values = _objDefault1Controller.Get();
 
-            return null;// Json(values, JsonRequestBehavior.AllowGet);
+            return View("Login");// Json(values, JsonRequestBehavior.AllowGet);
         }
-
-        //public bool VerifyAD(User user)
-        //{
-        //    if (user.UserName == "root" && user.Password == "root")
-        //    {
-        //        return true;
-        //    }
-        //    LoginADRequest Request = new LoginADRequest(user.UserName, user.Password);
-        //    var result = _LoginService.LoginAD(Request);
-        //    return (result.Equals("OK")) ? true : false;
-        //}
-
     }
 }
