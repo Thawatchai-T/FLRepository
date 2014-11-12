@@ -85,7 +85,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         var form = this.down('form').getForm();
         if (form.isValid()) {
             form.submit({
-                url: 'api/user',
+                url: 'api/login',
                 type: 'POST',
                 timeout: 99999,
                 success: function (form, action) {
