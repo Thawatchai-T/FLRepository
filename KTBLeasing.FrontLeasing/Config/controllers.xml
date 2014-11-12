@@ -4,5 +4,10 @@
   <object type="KTBLeasing.FrontLeasing.Controllers.UserController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="UsersAuthorizeRepository" ref="usersAuthorizeRepository" />
   </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.LoginController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="_LoginService" ref="wsad"/>
+    <property name="User" ref="user"/>
+  </object>
   
 </objects>
