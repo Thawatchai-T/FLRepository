@@ -52,13 +52,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public IEnumerable<UsersAuthorize> Get()
+        public Authorize Get()
         {
             try
             {
-                //return this.Get(1,0,25);
+                return this.Get(1,0,25);
 
-                return null;
+                //return null;
             }
             catch (Exception ex)
             {
