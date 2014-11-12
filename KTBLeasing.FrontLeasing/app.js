@@ -14,9 +14,9 @@
  */
 
 // @require @packageOverrides
-Ext.Loader.setConfig({
+//Ext.Loader.setConfig({
 
-});
+//});
 
 
 Ext.application({

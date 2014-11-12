@@ -25,6 +25,25 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
 
     onButtonSearchClick: function (button, e, eOpts) {
 
+        var text = Ext.getCmp('search-text').getValue();
+        var store = this.getGridStore();
+
+        console.log(text);
+
+        store.getProxy().extraParams.text = text;
+        Ext.getCmp('authorizes-pagingtoolbar').moveFirst();
+
+        //store.clear();
+        //store.load();
+        /*
+        var prefix = 'ColorForm-';
+        var quickStore = Ext.getStore(prefix + 'gridStore');
+        quickStore.proxy.url = url;
+        quickStore.getProxy().extraParams.Name = name;    
+        var pagingToolbar = Ext.getCmp(prefix + 'PagingToolbar');
+        pagingToolbar.moveFirst();
+
+        */
     },
 
     onButtonAddClick: function (button, e, eOpts) {
@@ -40,7 +59,8 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
 
         var store = this.getView().getComponent('grid').getStore();
 
-        console.log(this.checkInsertRecord(rec, store.data.items[0].data));
+        //  console.log(this.checkInsertRecord(rec, store.data.items[0].data));
+
         if (!this.checkInsertRecord(rec, store.data.items[0].data)) {
             store.insert(0, rec);
             rowEditing.startEdit(0, 0);
@@ -51,22 +71,19 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
     },
 
     onButtonSaveClick: function (button, e, eOpts) {
-
+        var store = this.getView().getComponent('grid').getStore();
+        store.save();
     },
 
     onButtonDeleteClick: function (button, e, eOpts) {
-        Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.showResult, this);
-    },
-
-    onBeforeEditGrid: function (button, e, eOpts) {
-
-
+        Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.onDeleteClick(button, e, eOpts), this);
     },
 
     onEditGrid: function (button, e, eOpts) {
 
-        Ext.MessageBox.confirm('Confirm', 'Confirm Insert or Update?', this.showResult, this.onDeleteClick(button, e, eOpts));
-
+        var store = this.getView().getComponent('grid').getStore();
+        Ext.MessageBox.confirm('Confirm', 'Confirm Insert or Update?', this.showResult, this); //, this.onDeleteClick(button, e, eOpts));
+        //store.save();
     },
 
     onCancelEdit: function () {
@@ -79,8 +96,11 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
     },
 
     onDeleteClick: function (button, e, eOpts) {
-
         console.log('onDeleteClick');
+        var records = this.getView().getComponent('grid').getSelectionModel().getSelection();
+        var sotre = this.getView().getComponent('grid').getStore();
+        sotre.remove(records);
+        console.log(records);
 
     },
 
@@ -89,6 +109,11 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
 
         return ((rec.UserId === record.UserId) && (rec.Active === record.Active) && (rec.DepCode === record.DepCode));
 
+    },
+
+    getGridStore: function () {
+
+        return this.getView().getComponent('grid').getStore();
     }
 
 });

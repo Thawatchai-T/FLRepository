@@ -10,9 +10,9 @@ using KTBLeasing.FrontLeasing.Mapping.Orcl;
 
 namespace KTBLeasing.FrontLeasing
 {
-    public static class NHHelpers
+    public class NHHelpers
     {
-        public static ISessionFactory CreateSessionFactory()
+        public ISessionFactory CreateSessionFactory()
         {
             try
             {
