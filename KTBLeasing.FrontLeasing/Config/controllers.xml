@@ -2,7 +2,6 @@
 <objects xmlns="http://www.springframework.net" default-autowire="constructor">
 
   <object type="KTBLeasing.FrontLeasing.Controllers.UserController, KTBLeasing.FrontLeasing" singleton="false" >
-    <property name="Message" value="Welcome to ASP.NET MVC4 powered by Spring.NET!" />
     <property name="UsersAuthorizeRepository" ref="usersAuthorizeRepository" />
   </object>
   

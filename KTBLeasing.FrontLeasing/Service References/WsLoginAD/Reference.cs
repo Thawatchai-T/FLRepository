@@ -21,7 +21,7 @@ namespace KTBLeasing.FrontLeasing.WsLoginAD {
         KTBLeasing.FrontLeasing.WsLoginAD.LoginADResponse LoginAD(KTBLeasing.FrontLeasing.WsLoginAD.LoginADRequest request);
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="LoginAD", WrapperNamespace="urn:WS_LoginADIntf-IWS_LoginAD", IsWrapped=true)]
@@ -42,7 +42,7 @@ namespace KTBLeasing.FrontLeasing.WsLoginAD {
         }
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
     [System.ServiceModel.MessageContractAttribute(WrapperName="LoginADResponse", WrapperNamespace="urn:WS_LoginADIntf-IWS_LoginAD", IsWrapped=true)]
@@ -63,7 +63,7 @@ namespace KTBLeasing.FrontLeasing.WsLoginAD {
     public interface IWS_LoginADChannel : KTBLeasing.FrontLeasing.WsLoginAD.IWS_LoginAD, System.ServiceModel.IClientChannel {
     }
     
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     public partial class WS_LoginADClient : System.ServiceModel.ClientBase<KTBLeasing.FrontLeasing.WsLoginAD.IWS_LoginAD>, KTBLeasing.FrontLeasing.WsLoginAD.IWS_LoginAD {
         

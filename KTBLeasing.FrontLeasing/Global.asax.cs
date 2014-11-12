@@ -5,13 +5,9 @@ using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-<<<<<<< HEAD
 using Spring.Web.Mvc;
-using Newtonsoft.Json.Serialization;
-=======
-using KTBLeasing.FrontLeasing.Infrastucture;
->>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
-using KTBLeasing.FrontLeasing.Infrastucture;
+//using Newtonsoft.Json.Serialization;
+
 
 namespace KTBLeasing.FrontLeasing
 {
@@ -26,11 +22,10 @@ namespace KTBLeasing.FrontLeasing
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-<<<<<<< HEAD
 
             //var json = GlobalConfiguration.Configuration.Formatters.JsonFormatter;
             //json.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-            DI.Initialize();
+
         }
 
         protected override System.Web.Http.Dependencies.IDependencyResolver BuildWebApiDependencyResolver()
@@ -49,9 +44,7 @@ namespace KTBLeasing.FrontLeasing
 
             //return the fully-configured resolver
             return resolver;
-=======
-            DI.Initialize();
->>>>>>> 3fb9ef84a38df9e0e9b729d65660aa776e3b5d78
+
         }
     }
 }
