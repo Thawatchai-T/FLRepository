@@ -25,7 +25,7 @@ Ext.define('TabUserInformation.view.MainTab', {
         'TabUserInformation.view.Tab.CusInfTab',
         'TabUserInformation.view.Tab.VisitCallingTab',
         'TabUserInformation.view.Tab.JobTab',
-        'TabUserInformation.view.Tab.RoleTab',
+        'TabUserInformation.view.Tab.UserInRoleTab',
         'Ext.panel.Panel',
         'Ext.tab.Tab'
     ],
@@ -56,7 +56,7 @@ Ext.define('TabUserInformation.view.MainTab', {
             xtype: 'tabjobtab'
         },
         {
-            xtype: 'tabroletab'
+            xtype: 'tabuserinroletab'
         }
     ]
 

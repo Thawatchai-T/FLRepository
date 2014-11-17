@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace KTBLeasing.FrontLeasing.Domain {
     
     public class Role {
-        public Role() { }
+        //public Role() { }
         public virtual long Id { get; set; }
         public virtual string RoleName { get; set; }
         public virtual DateTime Createdate { get; set; }

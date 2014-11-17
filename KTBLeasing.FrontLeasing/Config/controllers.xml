@@ -9,5 +9,16 @@
     <property name="_LoginService" ref="wsad"/>
     <property name="User" ref="user"/>
   </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.RoleController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--inject value in property-->
+    <property name="UserInRoleRepository" ref="userInRoleRepository"/>
+    <property name="RoleRepository" ref="roleRepository"/>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.Role2Controller, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--inject value in property-->
+    <property name="RoleRepository" ref="roleRepository"/>
+  </object>
   
 </objects>

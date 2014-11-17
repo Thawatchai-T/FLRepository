@@ -9,5 +9,15 @@
               type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.UsersAuthorizeRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
+
+  <object id="userInRoleRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.UserInRoleRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="roleRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.RoleRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
   
 </objects>

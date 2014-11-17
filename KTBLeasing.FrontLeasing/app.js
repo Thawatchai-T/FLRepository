@@ -27,7 +27,9 @@ Ext.application({
         'Setup',
         'Address',
         'Signer',
-        'Affidavit'
+        'Affidavit',
+        'UserInRole',
+        'Role'
     ],
     stores: [
         'userInformations',
@@ -37,7 +39,9 @@ Ext.application({
         'addresses',
         'signers',
         'affidavits',
-        'MyJsonStore'
+        'MyJsonStore',
+        'userInRoles',
+        'roles'
     ],
     views: [
         'Window.UserInfWindow',
@@ -63,7 +67,8 @@ Ext.application({
         'Popup.VisitCallingPopup',
         'Window.IndicationForEquipmentWindow',
         'Window.LoginWindow',
-        'Window.ApplicationWindow'
+        'Window.ApplicationWindow',
+        'Tab.UserInRoleTab'
     ],
     controllers: [
         'HomeController'
