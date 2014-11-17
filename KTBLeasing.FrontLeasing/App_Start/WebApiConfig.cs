@@ -9,10 +9,20 @@ namespace KTBLeasing.FrontLeasing
     {
         public static void Register(HttpConfiguration config)
         {
+           /** [20141117] woody add config for custom function in webapi */ 
+            
+            // Route for POST method
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional}
+            name: "DefaultApi2",
+            routeTemplate: "api/{controller}/{action}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+            );
+
+            //   Route  GET method
+            config.Routes.MapHttpRoute(
+               name: "DefaultApi1",
+               routeTemplate: "api/{controller}/{action}/{id}",
+               defaults: new { action = "get", id = RouteParameter.Optional }
             );
         }
     }
