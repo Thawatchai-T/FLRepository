@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.WebHost;
 
 namespace KTBLeasing.FrontLeasing
 {
@@ -9,21 +10,28 @@ namespace KTBLeasing.FrontLeasing
     {
         public static void Register(HttpConfiguration config)
         {
-           /** [20141117] woody add config for custom function in webapi */ 
-            
-            // Route for POST method
+           /** [20141118] woody add config for custom function in webapi */
             config.Routes.MapHttpRoute(
-            name: "DefaultApi2",
-            routeTemplate: "api/{controller}/{action}/{id}",
-            defaults: new { id = RouteParameter.Optional }
+                name: "ApiById",
+                routeTemplate: "api/{controller}/{id}",
+                defaults: new { id = RouteParameter.Optional },
+                constraints: new { id = @"^[0-9]+$" }
             );
 
-            //   Route  GET method
             config.Routes.MapHttpRoute(
-               name: "DefaultApi1",
-               routeTemplate: "api/{controller}/{action}/{id}",
-               defaults: new { action = "get", id = RouteParameter.Optional }
+                name: "ApiByName",
+                routeTemplate: "api/{controller}/{action}/{name}",
+                defaults: null,
+                constraints: new { name = @"^[a-z]+$" }
             );
+
+            config.Routes.MapHttpRoute(
+                name: "ApiByAction",
+                routeTemplate: "api/{controller}/{action}",
+                defaults: new { action = "Get" }
+            );
+            //config.Routes.MapHttpRoute("API Default", "api/{controller}/{id}",
+            //new { id = RouteParameter.Optional });
         }
     }
 }
