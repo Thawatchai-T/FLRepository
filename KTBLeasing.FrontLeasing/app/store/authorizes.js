@@ -40,7 +40,7 @@ Ext.define('TabUserInformation.store.authorizes', {
                 url: 'api/user',
                 reader: {
                     type: 'json',
-					root: 'tiems',
+                    rootProperty: 'tiems',
 					totalProperty:'totalProperty'
                 }
             }

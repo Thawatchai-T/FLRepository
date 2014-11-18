@@ -110,5 +110,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //this.UserInRoleRepository.Delete(form);
         }
 
+        public IEnumerable<Role> GetRole()
+        {
+            return this.Get();
+        }
+
     }
 }

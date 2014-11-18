@@ -50,6 +50,7 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTabViewController', {
 
     onButtonSaveClick: function (button, e, eOpts) {
         var store = this.getView().getComponent('userinrole-grid').getStore();
+        console.log(store);
         store.save();
     },
 

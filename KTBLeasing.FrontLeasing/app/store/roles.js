@@ -33,15 +33,13 @@ Ext.define('TabUserInformation.store.roles', {
         me.callParent([Ext.apply({
             storeId: 'roles',
             model: 'TabUserInformation.model.Role',
-            autoLoad: true,
+            autoLoad: true, 
             proxy: {
                 type: 'rest',
-                url: 'api/role/5',
-                reader: {
-                    type: 'json',
-                    root: 'items',
-                    totalProperty: 'totalProperty'
-                }
+                url: 'api/role/getrole',
+//                reader: {
+//                    type: 'json'
+//                }
             }
         }, cfg)]);
     }
