@@ -7,6 +7,7 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Models;
+using Newtonsoft.Json;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -96,10 +97,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/user/5
-        public void Put(string id, UserInRole formmodel)
+        public void Put(long Id, Role role)
         {
-            formmodel.UsersAuthorize.UserId = id;
-            this.UserInRoleRepository.SaveOrUpdate(formmodel);
+            UserInRole formmodel = new UserInRole();
+            formmodel.Id = Id;
+            formmodel.Role.RoleName = role.RoleName;
+
+            //this.UserInRoleRepository.SaveOrUpdate(formmodel);
 
         }
 

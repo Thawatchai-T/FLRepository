@@ -32,13 +32,11 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTabViewController', {
         //dummy data
         var rec = {
             Id: 2,
-            ROLEID: '',
-            USER_ID: 'aa_aa'
+            ROLEID: '2',
+            USER_ID: ''
         };
 
         var store = this.getView().getComponent('userinrole-grid').getStore();
-        //console.log(store);
-        console.log(store.data.items[0]);
 
         if (!this.checkInsertRecord(rec, store.data.items[0].data)) {
             store.insert(0, rec);
@@ -50,7 +48,6 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTabViewController', {
 
     onButtonSaveClick: function (button, e, eOpts) {
         var store = this.getView().getComponent('userinrole-grid').getStore();
-        console.log(store);
         store.save();
     },
 
@@ -58,9 +55,9 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTabViewController', {
         Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.showResult, this);
     },
 
-    onRowEditingBeforeEdit: function (combo) {
-        var store = combo;
-        console.log(store);
+    //Check insert dummy
+    checkInsertRecord: function (rec, record) {
+        return ((rec.UserId === record.UserId) && (rec.Active === record.Active) && (rec.DepCode === record.DepCode));
     },
 
     getGridStore: function () {
