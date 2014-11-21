@@ -29,6 +29,18 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
+        public List<UserInRole> Get(long id)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                return session.QueryOver<UserInRole>()
+                    .Fetch(x => x.Role).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Where(x => x.Id == id)
+                    .List<UserInRole>() as List<UserInRole>;
+            }
+        }
+
         public List<UserInRole> GetAll(int start, int limit)
         {
             using (var session = SessionFactory.OpenStatelessSession())

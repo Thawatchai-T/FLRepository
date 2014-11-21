@@ -37,9 +37,6 @@ Ext.define('TabUserInformation.store.roles', {
             proxy: {
                 type: 'rest',
                 url: 'api/role/getrole',
-//                reader: {
-//                    type: 'json'
-//                }
             }
         }, cfg)]);
     }

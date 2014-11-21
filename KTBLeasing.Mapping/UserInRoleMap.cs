@@ -12,8 +12,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
         public UserInRoleMap() {
 			Table("USER_IN_ROLE");
 			LazyLoad();
-			Id(x => x.Id).GeneratedBy.Assigned().Column("ID");
-			References(x => x.Role).Column("ROLEID");
+            //Id(x => x.Id).GeneratedBy.Identity().Column("ID");
+            Id(x => x.Id, "ID").GeneratedBy.Increment();
+            References(x => x.Role).Column("ROLEID");
 			References(x => x.UsersAuthorize).Column("USER_ID");
         }
     }

@@ -20,6 +20,7 @@ namespace KTBLeasing.FrontLeasing
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
         }
 
         protected override System.Web.Http.Dependencies.IDependencyResolver BuildWebApiDependencyResolver()

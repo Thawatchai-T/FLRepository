@@ -12,7 +12,6 @@
  *
  * Do NOT hand edit this file.
  */
-
 Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
     extend: 'Ext.panel.Panel',
     alias: 'widget.tabuserinroletab',
@@ -62,6 +61,7 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
         },
         {
             xtype: 'gridpanel',
+            height: 500,
             id: 'userinrole-grid',
             forceFit: true,
             store: 'userInRoles',
@@ -107,12 +107,13 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Id',
-                    text: 'ID'
+                    text: 'ID',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'RoleName',
-                    text: 'ROLEID',
+                    text: 'Role Name',
                     allowBlank: false,
                     editor: {
                         xtype: 'combobox',
@@ -121,13 +122,22 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
                         //queryMode: 'local',
                         // autoLoad: true,
                         valueField: 'Id',
-                        displayField: 'RoleName'
-                    }
+                        displayField: 'RoleName',
+                        listeners: {
+                            select:'onComboBoxSelect'
+                        }
+                    },
+                    renderer: 'fn'
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'UserId',
-                    text: 'USER_ID'
+                    text: 'User ID',
+                    editor: {
+                        xtype: 'textfield',
+                        //disabled: true,
+                        id: 'userid-editor-textfield'
+                    }
                 }
             ],
             plugins: [
@@ -135,15 +145,6 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
                     ptype: 'rowediting',
                     pluginId: 'rowediting',
                     clicksToMoveEditor: 1
-                }
-            ],
-            listeners: {
-                //                afterrender: function (r,combo) {
-                //                    console.log(r);
-                //                    combo.store.Load();
-                //                }
-            }
-        }
-    ]
-
+                }]
+        }]
 });
