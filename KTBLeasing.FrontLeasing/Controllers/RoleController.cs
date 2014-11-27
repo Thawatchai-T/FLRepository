@@ -7,6 +7,7 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Models;
+using Newtonsoft.Json;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -23,9 +24,17 @@ namespace KTBLeasing.FrontLeasing.Controllers
             UserInRoleModel view = new UserInRoleModel();
             try
             {
-                var result = UserInRoleRepository.Find(start, limit, text);
-                view.items = result;
-                view.totalProperty = UserInRoleRepository.Count(text);
+                if (!string.IsNullOrEmpty(text))
+                {
+                    var result = UserInRoleRepository.Find(start, limit, text);
+                    view.items = result;
+                    view.totalProperty = UserInRoleRepository.Count(text);
+                }
+                else
+                {
+                    view = this.Get(page, start, limit);
+                }
+
                 return view;//result.Select(x => new { x.Id, x.Role.RoleName, RoleID = x.Role.Id, x.UsersAuthorize.UserId }).ToList();
             }
             catch (Exception ex)
@@ -67,11 +76,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/user/5
-        public List<Role> Get(int id)
+        public List<UserInRole> Get(long id)
         {
             try
             {
-                return RoleRepository.Get();
+                return UserInRoleRepository.Get(id);
             }
             catch (Exception ex)
             {
@@ -96,18 +105,32 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/user/5
-        public void Put(string id, UserInRole formmodel)
+        public void Put(long Id, UserInRoleViewModel modified)
         {
-            formmodel.UsersAuthorize.UserId = id;
-            this.UserInRoleRepository.SaveOrUpdate(formmodel);
-
+            var oldRecord = this.Get(Id);
+            var entity = new object();
+            //if count >0 update data else insert data
+            if (oldRecord.Count > 0)
+            {
+                oldRecord[0].Role.Id = modified.RoleName;
+                entity = oldRecord.FirstOrDefault() as UserInRole;
+            }
+            else
+            {
+                UserInRole newRecord = new UserInRole();
+                newRecord.Role.Id = modified.RoleName;
+                newRecord.UsersAuthorize.UserId = modified.UserId;
+                entity = newRecord;
+            }
+            this.UserInRoleRepository.SaveOrUpdate(entity);
         }
 
         // DELETE api/user/5
-        public void Delete(string id)
+        public void Delete(int Id, UserInRoleViewModel modified)
         {
-            var idss = id;
-            //this.UserInRoleRepository.Delete(form);
+            var oldRecord = this.Get(Id);
+            var entity = oldRecord.FirstOrDefault() as UserInRole;
+            this.UserInRoleRepository.Delete<UserInRole>(entity);
         }
 
         public IEnumerable<Role> GetRole()
@@ -115,5 +138,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return this.Get();
         }
 
+    }
+
+    public partial class UserInRoleViewModel
+    {
+        public int Id { get; set; }
+        public int RoleName { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -43,12 +43,6 @@ Ext.define('TabUserInformation.store.userInRoles', {
                     rootProperty: 'items',
 					totalProperty:'totalProperty'
                 }
-            },
-            api: {
-                create: undefined,
-                read: undefined,
-                update: 'api/role/put/1',
-                destroy: undefined
             }
         }, cfg)]);
     }
