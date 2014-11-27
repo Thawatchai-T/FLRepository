@@ -134,5 +134,103 @@ namespace Test.Repository.Orcl
             Assert.AreEqual(true, !CreateSessionFactory().IsClosed);
         }
 
+
+        /// <summary>
+        ///A test for UsersAuthorizeRepository Constructor
+        ///</summary>
+        [TestMethod()]
+        public void UsersAuthorizeRepositoryConstructorTest()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository();
+            Assert.Inconclusive("TODO: Implement code to verify target");
+        }
+
+        /// <summary>
+        ///A test for Count
+        ///</summary>
+        [TestMethod()]
+        public void CountTest()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            int expected = 0; // TODO: Initialize to an appropriate value
+            int actual;
+            actual = target.Count();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for Count
+        ///</summary>
+        [TestMethod()]
+        public void CountTest1()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            string text = string.Empty; // TODO: Initialize to an appropriate value
+            int expected = 0; // TODO: Initialize to an appropriate value
+            int actual;
+            actual = target.Count(text);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for Find
+        ///</summary>
+        [TestMethod()]
+        public void FindTest()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            int start = 0; // TODO: Initialize to an appropriate value
+            int limit = 0; // TODO: Initialize to an appropriate value
+            string text = string.Empty; // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> expected = null; // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> actual;
+            actual = target.Find(start, limit, text);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for GetAll
+        ///</summary>
+        [TestMethod()]
+        public void GetAllTest1()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> expected = null; // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> actual;
+            actual = target.GetAll();
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for GetAll
+        ///</summary>
+        [TestMethod()]
+        public void GetAllTest2()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            int start = 0; // TODO: Initialize to an appropriate value
+            int limit = 0; // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> expected = null; // TODO: Initialize to an appropriate value
+            List<UsersAuthorize> actual;
+            actual = target.GetAll(start, limit);
+            Assert.AreEqual(expected, actual);
+            Assert.Inconclusive("Verify the correctness of this test method.");
+        }
+
+        /// <summary>
+        ///A test for Insert
+        ///</summary>
+        [TestMethod()]
+        public void InsertTest1()
+        {
+            UsersAuthorizeRepository target = new UsersAuthorizeRepository(); // TODO: Initialize to an appropriate value
+            UsersAuthorize entity = null; // TODO: Initialize to an appropriate value
+            target.Insert(entity);
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
     }
 }
