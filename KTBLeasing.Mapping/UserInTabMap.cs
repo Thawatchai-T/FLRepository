@@ -16,6 +16,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
 			//Id(x => x.RoleId).GeneratedBy.Assigned().Column("ROLE_ID");
             CompositeId().KeyProperty(x => x.RoleId, "ROLE_ID")
                          .KeyProperty(x => x.TabId, "TAB_ID");
+            References(x => x.Role).Column("ROLE_ID");
+            References(x => x.Tab).Column("TAB_ID");
             Map(x => x.Description).Column("DESCRIPTION");
 			Map(x => x.CreateBy).Column("CREATE_BY");
 			Map(x => x.UpdateBy).Column("UPDATE_BY");

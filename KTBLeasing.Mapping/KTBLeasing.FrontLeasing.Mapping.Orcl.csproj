@@ -61,11 +61,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressMap.cs" />
+    <Compile Include="CommonAddressMap.cs" />
     <Compile Include="NhRepository.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reposotory\CommonAddressRepository.cs" />
     <Compile Include="Reposotory\RoleRepository.cs" />
+    <Compile Include="Reposotory\TabRepository.cs" />
     <Compile Include="Reposotory\UserInRoleRepository.cs" />
     <Compile Include="Reposotory\UserInTabRepository.cs" />
     <Compile Include="Reposotory\UsersAuthorizeRepository.cs" />

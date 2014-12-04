@@ -7,7 +7,7 @@ using KTBLeasing.FrontLeasing.Domain;
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     
     
-    public class TabManamentMap : ClassMap<TabManament> {
+    public class TabManamentMap : ClassMap<Tab> {
         
         public TabManamentMap() {
 			Table("TAB_MANAMENT");
