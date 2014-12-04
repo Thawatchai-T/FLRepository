@@ -48,6 +48,7 @@
     <Compile Include="MasterProvince.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinceTree.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="TabManament.cs" />
     <Compile Include="UserInRole.cs" />
