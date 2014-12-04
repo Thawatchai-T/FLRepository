@@ -16,6 +16,9 @@
     <property name="RoleRepository" ref="roleRepository"/>
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.JsonController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="UsersAuthorizeRepository" ref="usersAuthorizeRepository" />
+  </object>
   <!--<object type="KTBLeasing.FrontLeasing.Controllers.Role2Controller, KTBLeasing.FrontLeasing" singleton="false" >
     --><!--inject value in property--><!--
     <property name="RoleRepository" ref="roleRepository"/>
