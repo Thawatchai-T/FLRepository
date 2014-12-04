@@ -15,5 +15,10 @@
 
 Ext.define('TabUserInformation.view.MainTabViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.maintab'
+    alias: 'controller.maintab',
+
+    onCreateTab: function (button, e, eOpts) {
+        console.log('Hi');
+    }
+
 });

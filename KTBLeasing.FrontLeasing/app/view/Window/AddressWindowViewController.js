@@ -17,8 +17,53 @@ Ext.define('TabUserInformation.view.Window.AddressWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.windowaddresswindow',
 
-    onButtonDeleteClick: function(button, e, eOpts) {
-        Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', this.showResult, this);
+    getGrid: function () {
+        return this.getView().getComponent('addressgrid');
+    },
+
+    getThisRecord: function () {
+        return this.getGrid().getSelectionModel().getSelection()[0];
+    },
+
+    checkInsertRecord: function (rec, record) {
+        return ((rec.id === record.id));
+    },
+
+    onButtonNewClick: function (button, e, eOpts) {
+        var rowEditing = this.getGrid().getPlugin('rowediting');
+        rowEditing.cancelEdit();
+
+        rec = {
+            AddressEng: "",
+            AddressThai: "",
+            CustCode: "",
+            Fax: "(000) 000-0000",
+            Province: "",
+            Telephone: "(000) 000-0000",
+            Zip: "",
+            id: ""
+        }
+
+        var store = this.getGrid().getStore();
+        if (!this.checkInsertRecord(rec, store.getData())) {
+            store.insert(0, rec);
+            rowEditing.startEdit(0, 0);
+        } else {
+            store.removeAt(0, 1);
+        }
+    },
+
+    onButtonDeleteClick: function (button, e, eOpts) {
+        Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', function (btn) {
+            var store = this.getGrid().getStore();
+            var record = this.getRecord();
+            console.log(record);
+            var index = store.indexOf(record);
+            if (btn == 'yes') {
+                store.removeAt(index, 1);
+                store.erase();
+            }
+        }, this);
     }
 
 });

@@ -20,4 +20,19 @@
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
   
+  <object id="userInTabRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.UserInTabRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
+  <object id="tabRepository"
+            type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.TabRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="commonAddressRepository"
+            type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CommonAddressRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
 </objects>

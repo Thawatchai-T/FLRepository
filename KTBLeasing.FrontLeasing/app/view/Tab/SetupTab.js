@@ -22,11 +22,9 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
         'TabUserInformation.view.Tab.SetupTabViewController',
         'Ext.form.field.Text',
         'Ext.button.Button',
-        'Ext.grid.Panel',
-        'Ext.grid.column.RowNumberer',
-        'Ext.grid.View',
-        'Ext.grid.feature.Grouping',
-        'Ext.toolbar.Paging'
+        'Ext.tree.Panel',
+        'Ext.tree.View',
+        'Ext.tree.Column'
     ],
 
     controller: 'tabsetuptab',
@@ -60,73 +58,28 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
             ]
         },
         {
-            xtype: 'gridpanel',
-            height: 400,
-            store: 'setups',
+            xtype: 'treepanel',
+            title: 'My Tree Panel',
+            store: 'commonAddresses',
+            viewConfig: {
+
+            },
             columns: [
                 {
-                    xtype: 'rownumberer',
-                    width: 64,
-                    text: 'Row',
-                    flex: 0
+                    xtype: 'treecolumn',
+                    dataIndex: 'Name',
+                    text: 'Name',
+                    flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'id',
-                    text: 'Id'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'myField',
-                    text: 'MyField',
-                    flex: -1,
-                    editor: {
-                        xtype: 'textfield'
-                    }
+                    dataIndex: 'Id',
+                    text: 'MyColumn2'
                 }
             ],
-            features: [
-                {
-                    ftype: 'grouping'
-                }
-            ],
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    dock: 'top',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Add',
-                            listeners: {
-                                click: 'onButtonAddClick1'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Save',
-                            listeners: {
-                                click: 'onButtonSaveClick1'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Delete',
-                            listeners: {
-                                click: 'onButtonDeleteClick1'
-                            }
-                        }
-                    ]
-                },
-                {
-                    xtype: 'pagingtoolbar',
-                    dock: 'bottom',
-                    ui: 'footer',
-                    width: 360,
-                    displayInfo: true,
-                    store: 'setups'
-                }
-            ]
+            listeners: {
+                itemexpand: 'onTreepanelItemExpand'
+            }
         }
     ]
 

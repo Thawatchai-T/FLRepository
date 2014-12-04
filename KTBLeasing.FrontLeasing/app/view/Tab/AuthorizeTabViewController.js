@@ -18,9 +18,9 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
     alias: 'controller.tabauthorizetab',
 
     rec: {
-        UserId: 'UserId',
+        UserId: '',
         Active: false,
-        DepCode: '999'
+        DepCode: ''
     },
 
     onButtonSearchClick: function (button, e, eOpts) {
@@ -52,9 +52,9 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
 
         //dummy data 
         var rec = {
-            UserId: 'UserId',
+            UserId: '',
             Active: false,
-            DepCode: '999'
+            DepCode: ''
         };
 
         var store = this.getView().getComponent('grid').getStore();
@@ -72,6 +72,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTabViewController', {
 
     onButtonSaveClick: function (button, e, eOpts) {
         var store = this.getView().getComponent('grid').getStore();
+
         store.save();
     },
 

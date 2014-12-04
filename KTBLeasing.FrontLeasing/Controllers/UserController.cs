@@ -9,7 +9,7 @@ using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.WsLoginAD;
 using System.Collections.Specialized;
 using System.Net.Http.Formatting;
-using System.Web.Mvc;
+//using System.Web.Mvc;
 
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -90,10 +90,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/user/5
-        public void Put(string id, UsersAuthorize formmodel)
+        public void Put(string name, UsersAuthorize formmodel)
         {
-            formmodel.UserId = id;
-            this.UsersAuthorizeRepository.SaveOrUpdate(formmodel);
+            formmodel.UserId = name;
+            //this.UsersAuthorizeRepository.SaveOrUpdate(formmodel);
 
         }
 

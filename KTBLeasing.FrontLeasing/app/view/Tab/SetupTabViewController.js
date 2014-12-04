@@ -21,16 +21,14 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
 
     },
 
-    onButtonAddClick1: function(button, e, eOpts) {
-
-    },
-
-    onButtonSaveClick1: function(button, e, eOpts) {
-
-    },
-
-    onButtonDeleteClick1: function(button, e, eOpts) {
-        Ext.MessageBox.confirm('Confirm','Confirm Delete?',this.showResult,this);
+    onTreepanelItemExpand: function(nodeinterface, eOpts) {
+        var childNodes = nodeinterface.childNodes;
+        if(childNodes.length > 0){
+            for(i=0;i < childNodes.length;i++){
+                if(childNodes[i].childNodes.length === 0){
+                    childNodes[i].set('leaf',true);
+                }
+            }
+        }
     }
-
 });

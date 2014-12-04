@@ -29,7 +29,10 @@ Ext.application({
         'Signer',
         'Affidavit',
         'UserInRole',
-        'Role'
+        'Role',
+        'UserInTab',
+        'Tab',
+        'CommonAddress'
     ],
     stores: [
         'userInformations',
@@ -41,7 +44,10 @@ Ext.application({
         'affidavits',
         'MyJsonStore',
         'userInRoles',
-        'roles'
+        'roles',
+        'userInTabs',
+        'tabs',
+        'commonAddresses'
     ],
     views: [
         'Window.UserInfWindow',

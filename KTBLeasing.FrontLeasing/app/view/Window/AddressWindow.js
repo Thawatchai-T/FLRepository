@@ -119,7 +119,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
             plugins: [
                 {
                     ptype: 'rowediting',
-                    pluginId: 'rowedit'
+                    pluginId: 'rowediting'
                 }
             ],
             dockedItems: [
@@ -144,7 +144,10 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 {
                     xtype: 'button',
                     id: 'new',
-                    text: 'New'
+                    text: 'New',
+                    listeners: {
+                        click: 'onButtonNewClick'
+                    }
                 },
                 {
                     xtype: 'button',

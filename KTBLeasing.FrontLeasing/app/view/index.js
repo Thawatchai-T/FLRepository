@@ -19,7 +19,7 @@ Ext.define('TabUserInformation.view.index', {
 
     requires: [
         'TabUserInformation.view.indexViewModel',
-        'TabUserInformation.view.MainTab',
+        //'TabUserInformation.view.MainTab',
         'Ext.tab.Panel'
     ],
 
