@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KTBLeasing.FrontLeasing.Domain {
     
-    public class TabManament {
+    public class Tab {
         public virtual long Id { get; set; }
         public virtual string Name { get; set; }
         public virtual short Active { get; set; }
