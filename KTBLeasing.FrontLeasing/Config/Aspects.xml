@@ -2,36 +2,41 @@
 <objects xmlns="http://www.springframework.net"
          xmlns:aop="http://www.springframework.net/aop">
 
-  <!--<object id="serviceOperation" type="Spring.Aop.Support.SdkRegularExpressionMethodPointcut, Spring.Aop">
-    <property name="pattern" value="^Spring.WcfQuickStart.*"/>
-  </object>
+ 
+    <description>An example that demonstrates use of a poincut.</description>
 
-  <object id="perfAdvice" type="Spring.WcfQuickStart.SimplePerformanceInterceptor, Spring.WcfQuickStart.Aspects">
-    <property name="Prefix" value="Service Layer Performance"/>
-  </object>
+  <object id="myServiceCommand" type="KTBLeasing.FrontLeasing.Controllers.UserController, KTBLeasing.FrontLeasing"/>
 
-  <aop:config>
-    <aop:advisor pointcut-ref="serviceOperation" advice-ref="perfAdvice"/>
-  </aop:config>-->
+  <!--<object id="myAnotherServiceCommand" type="Spring.AopQuickStart.Commands.AnotherServiceCommand, Spring.AopQuickStart.Step7"/>-->
 
+  <!-- The rest of the config file is common no matter how many objects you add -->
 
-  <!-- Or using new TypeNameAutoProxyCreator -->
-  <object id="performanceAdvice" type="CarPass.Aspects.SimplePerformanceInterceptor, CarPass.Aspects">
-    <property name="Prefix" value="Service Layer Performance"/>
-    <property name="MongoDBConnection" value="mongodb://localhost"/>
-  </object>
-
-  <object type="Spring.Aop.Framework.AutoProxy.TypeNameAutoProxyCreator, Spring.Aop">
-    <property name="TypeNames">
+  <object id="aroundAdvisor" type="Spring.Aop.Support.NameMatchMethodPointcutAdvisor, Spring.Aop">
+    <property name="Advice">
+      <object type=" KTBLeasing.FrontLeasing.Spring.Aop.Aspects.ConsoleLoggingAroundAdvice,  KTBLeasing.FrontLeasing.Spring.Aop"/>
+    </property>
+    <property name="MappedNames">
       <list>
-        <value>DeviceAgentServer.Services.*</value>
+        <value>*Get</value>
+      </list>
+    </property>
+  </object>
+
+  <!-- Using ObjectNameAutoProxyCreator -->
+  <!-- Apply 'aroundAdvisor' on all objects with id that ends by 'Command' -->
+  <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    <property name="ObjectNames">
+      <list>
+        <value>*Controller#*</value>
       </list>
     </property>
     <property name="InterceptorNames">
       <list>
-        <value>performanceAdvice</value>
+        <value>aroundAdvisor</value>
       </list>
     </property>
   </object>
+
+  <!--<object type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop" />-->
 
 </objects>

@@ -8,6 +8,10 @@ using NHibernate.ByteCode.Castle;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using KTBLeasing.FrontLeasing.Mapping.Orcl;
+using KTBLeasing.Domain;
+using System.Collections.Generic;
+using System.Linq;
+using Newtonsoft.Json;
 
 namespace Test.Repository.Orcl
 {
@@ -110,7 +114,7 @@ namespace Test.Repository.Orcl
                 var sessionf = Fluently.Configure()
                     .ProxyFactoryFactory<ProxyFactoryFactory>()
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
-                        x.Server("221.23.0.170")
+                        x.Server("221.23.0.70")
                         .Port(1521)
                         .Username("fluser")
                         .Password("ktblitadmin")
@@ -217,6 +221,7 @@ namespace Test.Repository.Orcl
             List<UsersAuthorize> expected = null; // TODO: Initialize to an appropriate value
             List<UsersAuthorize> actual;
             actual = target.GetAll(start, limit);
+            
             Assert.AreEqual(expected, actual);
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
@@ -231,6 +236,25 @@ namespace Test.Repository.Orcl
             UsersAuthorize entity = null; // TODO: Initialize to an appropriate value
             target.Insert(entity);
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
+
+
+        [TestMethod()]
+        public void GetTreeTest()
+        {
+            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            CommonRepository target = new CommonRepository(); // TODO: Initialize to an appropriate value
+            target.SessionFactory = CreateSessionFactory();
+
+            List<ProvinceTree> abc = target.GetProvinceTree();
+
+            //var root = abc.Where(x => x.Levels == 0);
+
+            var json = JsonConvert.SerializeObject(abc);
+            
+            //Assert.AreEqual(true, actual.Count > 0);
+            //  Assert.Inconclusive("Verify the correctness of this test method.");
         }
     }
 }
