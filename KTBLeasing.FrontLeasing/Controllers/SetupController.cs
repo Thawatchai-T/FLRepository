@@ -60,12 +60,27 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        // GET api/user/5
-        public List<CommonAddress> Get()
+        
+        /** [20141208] Thawatchai.T edit data and add parameter string support grid tree **/
+        /// <summary>
+        ///  edit to blind data to grid tree 
+        ///  TODO: change IsLeaf to leaf
+        /// </summary>
+        /// <param name="node"></param>
+        /// <returns></returns>
+         // GET api/user/5
+        public List<object> Get(string node)
         {
             try
             {
-                return commonAddressRepository.Get();
+                if (node.Equals("root"))
+                    return commonAddressRepository.Get().Where(w => w.Parent_Id == 0).Distinct().ToList<Object>();
+                else
+                {
+                    var list = commonAddressRepository.Get().Where(w => w.Parent_Id == int.Parse(node)).ToList<CommonAddress>();
+                    return list.Select(x => new {x.Id,leaf = x.IsLeaf,x.Levels,x.Name,x.Parent_Id }).ToList<Object>();
+                }
+                    
             }
             catch (Exception ex)
             {

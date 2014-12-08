@@ -24,12 +24,19 @@ Ext.define('TabUserInformation.model.Setup', {
 
     fields: [
         {
-            type: 'int',
-            name: 'id'
+            name: 'Id'
         },
         {
-            type: 'string',
-            name: 'myField'
+            name: 'ParentId'
+        },
+        {
+            name: 'Levels'
+        },
+        {
+            name: 'IsLeaf'
+        },
+        {
+            name: 'Leaf'
         }
     ]
 });

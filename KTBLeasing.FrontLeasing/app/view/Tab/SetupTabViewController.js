@@ -17,18 +17,19 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabsetuptab',
 
-    onButtonSearchClick11: function(button, e, eOpts) {
+    onButtonSearchClick11: function (button, e, eOpts) {
 
     },
 
-    onTreepanelItemExpand: function(nodeinterface, eOpts) {
-        var childNodes = nodeinterface.childNodes;
-        if(childNodes.length > 0){
-            for(i=0;i < childNodes.length;i++){
-                if(childNodes[i].childNodes.length === 0){
-                    childNodes[i].set('leaf',true);
-                }
-            }
-        }
+    onTreepanelItemExpand: function (nodeinterface, eOpts) {
+        //var childNodes = nodeinterface.childNodes;
+        //console.log(childNodes);
+        //if (childNodes.length > 0) {
+        //    for (i = 0; i < childNodes.length; i++) {
+        //        if (childNodes[i].data.IsLeaf) {
+        //            childNodes[i].set('leaf', true);
+        //        }
+        //    }
+        //}
     }
 });

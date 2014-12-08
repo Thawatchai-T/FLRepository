@@ -61,6 +61,14 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
             xtype: 'treepanel',
             title: 'My Tree Panel',
             store: 'commonAddresses',
+            reserveScrollbar: true,
+            collapsible: true,
+            loadMask: true,
+            useArrows: true,
+            rootVisible: false,
+            //store: store,
+            animate: false,
+            height: 750,
             viewConfig: {
 
             },
@@ -69,6 +77,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
                     xtype: 'treecolumn',
                     dataIndex: 'Name',
                     text: 'Name',
+                    sortable: true,
                     flex: -1
                 },
                 {

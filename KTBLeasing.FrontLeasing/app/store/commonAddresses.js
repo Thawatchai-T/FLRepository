@@ -29,15 +29,18 @@ Ext.define('TabUserInformation.store.commonAddresses', {
             storeId: 'commonAddresses',
             model: 'TabUserInformation.model.CommonAddress',
             autoLoad: true,
+            root:'Parent_Id',
             proxy: {
                 type: 'ajax',
                 url: 'api/setup',
                 reader: {
                     type: 'json',
-                    typeProperty: 'LEVELS'
+                    typeProperty: 'Id'
                 }
             },
-            parentIdProperty: 'PARENT_ID'
+            lazyFill: true,
+            //typeProperty:'Name'
+            //parentIdProperty: 'Parent_Id'
         }, cfg)]);
     }
 });

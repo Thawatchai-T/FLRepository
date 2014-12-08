@@ -26,26 +26,31 @@ Ext.define('TabUserInformation.model.CommonAddress', {
     fields: [
         {
             type: 'int',
-            name: 'ID'
+            name: 'Id',
+            convert: undefined
         },
         {
             type: 'int',
-            name: 'PARENT_ID'
+            name: 'Parent_Id',
+            convert: undefined
         },
         {
             type: 'int',
-            name: 'LEVELS'
+            name: 'Levels',
+            convert: undefined
         },
         {
             type: 'string',
-            name: 'NAME'
+            name: 'Name',
+            convert: undefined
         },
 
         {
             type: 'bool',
-            name: 'ISLEAF'
+            name: 'IsLeaf',
+            convert: undefined
         }
     ]
     
-    //,idProperty: 'ID'
+    ,idProperty: 'Id'
 });
