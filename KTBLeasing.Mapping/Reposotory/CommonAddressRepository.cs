@@ -24,9 +24,32 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             using (var session = SessionFactory.OpenSession())
             {
-                return session.QueryOver<CommonAddress>().Skip(0).Take(1000).List<CommonAddress>() as List<CommonAddress>;
+                return session.QueryOver<CommonAddress>().List<CommonAddress>() as List<CommonAddress>;
             }
         }
+//[20141211] Thawatchai.t Sample sql to bean entity with use function Transformers.AliasToBeanConstructor
+        public void getsql()
+        {
+            
+
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = session.CreateSQLQuery("SELECT  "+
+                                                    "  ID AS Id, "+
+                                                    "  PARENT_ID AS Parent_id, " +
+                                                    "  level AS Levels, " +
+                                                    "  name Name, CONNECT_BY_ISLEAF AS ISLEAF " +
+                                                    "FROM COMMON_DATA "+
+                                                    "  CONNECT BY prior id = PARENT_ID "+
+                                                    "  START WITH name_eng     = 'address' ");
+                var aa = result.List();
+                var tra = result.SetResultTransformer(Transformers.AliasToBeanConstructor( typeof(CommonAddress).GetConstructors().First())).List<CommonAddress>();
+                var c = tra.Count;
+
+            }
+        }
+
+
 
         public int Count()
         {
@@ -37,5 +60,14 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return result;
             }
         }
+    }
+
+    partial class CommonAddress11
+    {
+        public virtual Decimal ID { get; set; }
+        public virtual int PARENT_ID { get; set; }
+        public virtual int LEVELS { get; set; }
+        public virtual string NAME { get; set; }
+        public virtual bool ISLEAF { get; set; }
     }
 }
