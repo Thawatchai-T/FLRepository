@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class TreeController : Controller
     {
-        private CommonDataRepository commonDataRepository { get; set; }
+        private ICommonDataRepository commonDataRepository { get; set; }
 
 
         private static List<CommonData> CommonDataList { get; set; }
@@ -87,7 +87,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             try
             {
-                this.commonDataRepository.Insert<CommonData>(new CommonData {
+                this.commonDataRepository.Insert(new CommonData {
                     Parent_Id = commonAddress.Parent_Id,
                     Name = commonAddress.Name,
                     Name_Eng = commonAddress.Name_Eng,
@@ -113,7 +113,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             try
             {
-                this.commonDataRepository.Update<CommonData>(commonAddress);
+                this.commonDataRepository.Update(commonAddress);
 
                 var status = true;
                 if (status)

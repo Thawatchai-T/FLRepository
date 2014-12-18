@@ -12,8 +12,8 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class TabController : ApiController
     {
-        private TabRepository tabRepository { get; set; }
-        private UserInTabRepository userInTabRepository { get; set; }
+        private ITabRepository tabRepository { get; set; }
+        private IUserInTabRepository userInTabRepository { get; set; }
         // GET api/tab
         public UserInTabModel Get()
         {

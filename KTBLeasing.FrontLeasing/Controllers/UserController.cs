@@ -16,7 +16,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class UserController : ApiController
     {
-        private UsersAuthorizeRepository UsersAuthorizeRepository { get; set; }
+        private IUsersAuthorizeRepository UsersAuthorizeRepository { get; set; }
 
         // GET api/user
         public Authorize Get(string text, int page, int start, int limit)

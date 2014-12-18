@@ -13,8 +13,8 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class RoleController : ApiController
     {
-        private UserInRoleRepository UserInRoleRepository { get; set; }
-        private RoleRepository RoleRepository { get; set; }
+        private IUserInRoleRepository UserInRoleRepository { get; set; }
+        private IRoleRepository RoleRepository { get; set; }
 
         // GET api/user
 
@@ -108,7 +108,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Put(long Id, UserInRoleViewModel modified)
         {
             var oldRecord = this.Get(Id);
-            var entity = new object();
+            
+            //[20141218] thawatchai.t fix ojb to userinrole ojb
+            UserInRole entity = new UserInRole();
+            //var entity = new object();
+            
             //if count >0 update data else insert data
             if (oldRecord.Count > 0)
             {
@@ -130,7 +134,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             var oldRecord = this.Get(Id);
             var entity = oldRecord.FirstOrDefault() as UserInRole;
-            this.UserInRoleRepository.Delete<UserInRole>(entity);
+            this.UserInRoleRepository.Delete(entity);
         }
 
         public IEnumerable<Role> GetRole()
