@@ -15,7 +15,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                          .KeyProperty(x => x.ParentId, "Parent_Id");
             Map(x => x.Levels).Column("LEVELS").Not.Nullable();
             Map(x => x.Name).Column("NAME").Not.Nullable();
-            Map(x => x.IsLeaf).Column("ISLEAF").Not.Nullable();
+            Map(x => x.Leaf).Column("ISLEAF").Not.Nullable();
         }
     }
 }

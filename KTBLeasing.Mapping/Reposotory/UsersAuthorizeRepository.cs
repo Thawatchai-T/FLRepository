@@ -7,7 +7,17 @@ using System.Collections;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class UsersAuthorizeRepository:NhRepository
+    public interface IUsersAuthorizeRepository
+    {
+        void Insert(UsersAuthorize entity);
+        List<UsersAuthorize> GetAll();
+        List<UsersAuthorize> GetAll(int start, int limit);
+        int Count();
+        List<UsersAuthorize> Find(int start, int limit, string text);
+        int Count(string text);
+    }
+
+    public class UsersAuthorizeRepository : NhRepository, IUsersAuthorizeRepository
     {
         public void Insert(UsersAuthorize entity)
         {

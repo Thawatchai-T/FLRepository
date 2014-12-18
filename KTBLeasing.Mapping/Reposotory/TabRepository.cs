@@ -9,7 +9,13 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class TabRepository : NhRepository
+    public interface ITabRepository
+    {
+        void Insert(Tab entity);
+        List<Tab> Get();
+        int Count();
+    }
+    public class TabRepository : NhRepository, ITabRepository
     {
         public void Insert(Tab entity)
         {

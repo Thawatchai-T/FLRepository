@@ -8,7 +8,17 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class UserInTabRepository : NhRepository
+    public interface IUserInTabRepository
+    {
+        void Insert(UserInTab entity);
+        List<UserInTab> GetAll();
+        List<UserInTab> Get(long id);
+        List<UserInTab> GetAll(int start, int limit);
+        int Count();
+        List<UserInTab> Find(int start, int limit, string text);
+        int Count(string text);
+    }
+    public class UserInTabRepository : NhRepository, IUserInTabRepository
     {
         public void Insert(UserInTab entity)
         {

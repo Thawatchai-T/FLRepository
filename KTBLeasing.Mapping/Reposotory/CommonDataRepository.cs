@@ -8,7 +8,18 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class CommonDataRepository : NhRepository
+    public interface ICommonDataRepository
+    {
+        void Insert(CommonData entity);
+        List<CommonData> Get();
+        List<CommonData> Get(string Type);
+        int Count();
+        void SaveOrUpdate(CommonData entity);
+        bool Delete(CommonData entity);
+
+        bool Update(CommonData commonAddress);
+    }
+    public class CommonDataRepository : NhRepository, ICommonDataRepository
     {
         public void Insert(CommonData entity)
         {
@@ -117,6 +128,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 {
                     ts.Rollback();
                     ts.Dispose();
+                    return false;
+                }
+            }
+        }
+
+        public bool Update(CommonData commonAddress)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    session.Update(commonAddress);
+                    ts.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    ts.Rollback();
                     return false;
                 }
             }

@@ -8,7 +8,13 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class RoleRepository : NhRepository
+    public interface IRoleRepository
+    {
+        void Insert(Role entity);
+        List<Role> Get();
+        int Count();
+    }
+    public class RoleRepository : NhRepository, IRoleRepository
     {
         public void Insert(Role entity)
         {

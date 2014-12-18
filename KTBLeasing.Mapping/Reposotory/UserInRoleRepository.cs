@@ -8,7 +8,20 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class UserInRoleRepository : NhRepository
+
+    public interface IUserInRoleRepository
+    {
+        void Insert(UserInRole entity);
+        List<UserInRole> GetAll();
+        List<UserInRole> Get(long id);
+        List<UserInRole> GetAll(int start, int limit);
+        int Count();
+        List<UserInRole> Find(int start, int limit, string text);
+        int Count(string text);
+        bool SaveOrUpdate(UserInRole entity);
+        bool Delete(UserInRole entity);
+    }
+    public class UserInRoleRepository : NhRepository, IUserInRoleRepository
     {
         public void Insert(UserInRole entity)
         {
@@ -88,6 +101,38 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var result = (from x in session.QueryOver<UserInRole>().List<UserInRole>() where x.UsersAuthorize.UserId.Contains(text) select x);
                 session.Close();
                 return result.ToList<UserInRole>().Count;
+            }
+        }
+
+        public bool SaveOrUpdate(UserInRole entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var tx = session.BeginTransaction())
+            {
+                try
+                {
+                    session.SaveOrUpdate(entity);
+                    tx.Commit();
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    tx.Rollback();
+                    return true;
+                }
+            }
+        }
+
+        public bool Delete(UserInRole entity)
+        {
+            try
+            {
+                this.Delete<UserInRole>(entity);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
             }
         }
     }
