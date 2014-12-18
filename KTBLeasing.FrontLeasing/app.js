@@ -32,7 +32,7 @@ Ext.application({
         'Role',
         'UserInTab',
         'Tab',
-        'CommonAddress'
+        'CommonData'
     ],
     stores: [
         'userInformations',
@@ -47,7 +47,7 @@ Ext.application({
         'roles',
         'userInTabs',
         'tabs',
-        'commonAddresses'
+        'commonDatas'
     ],
     views: [
         'Window.UserInfWindow',

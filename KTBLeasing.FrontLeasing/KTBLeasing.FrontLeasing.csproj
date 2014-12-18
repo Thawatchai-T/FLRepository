@@ -164,12 +164,12 @@
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
     <Compile Include="Controllers\TabController.cs" />
+    <Compile Include="Controllers\TreeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Authorize.cs" />
-    <Compile Include="Models\CommonAddressModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
     <Compile Include="Models\TabModel.cs" />
     <Compile Include="Models\UserInRole.cs" />
@@ -194,7 +194,7 @@
     <Content Include="app\model\Affidavit.js" />
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
-    <Content Include="app\model\CommonAddress.js" />
+    <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\Login.js" />
     <Content Include="app\model\Role.js" />
     <Content Include="app\model\Tab.js" />
@@ -208,7 +208,7 @@
     <Content Include="app\store\affidavits.js" />
     <Content Include="app\store\authorities.js" />
     <Content Include="app\store\authorizes.js" />
-    <Content Include="app\store\commonAddresses.js" />
+    <Content Include="app\store\commonDatas.js" />
     <Content Include="app\store\login.js" />
     <Content Include="app\store\roles.js" />
     <Content Include="app\store\tabs.js" />
@@ -276,17 +276,6 @@
     <Content Include="app\view\Tab\VisitCallingTabViewModel.js" />
     <Content Include="app\view\UserInfTabViewController1.js" />
     <Content Include="app\view\UserInfTabViewModel1.js" />
-    <Content Include="app\view\ViewWindow\ContachPersonViewController.js" />
-    <Content Include="app\view\ViewWindow\ContactPersonViewWindow.js" />
-    <Content Include="app\view\ViewWindow\CusInfViewWindow.js" />
-    <Content Include="app\view\ViewWindow\CusInfViewWindowViewController.js" />
-    <Content Include="app\view\ViewWindow\CusInfViewWindowViewModel.js" />
-    <Content Include="app\view\ViewWindow\UserInfViewWindow.js" />
-    <Content Include="app\view\ViewWindow\UserInfViewWindowController.js" />
-    <Content Include="app\view\ViewWindow\UserInfViewWindowViewModel.js" />
-    <Content Include="app\view\ViewWindow\VisitCallingViewWindow.js" />
-    <Content Include="app\view\ViewWindow\VisitCallingViewWindowViewController.js" />
-    <Content Include="app\view\ViewWindow\VisitCallingViewWindowViewModel.js" />
     <Content Include="app\view\Window\AddressWindow.js" />
     <Content Include="app\view\Window\AddressWindowViewController.js" />
     <Content Include="app\view\Window\AddressWindowViewModel.js" />
@@ -325,7 +314,9 @@
     <Content Include="bootstrap.css" />
     <Content Include="bootstrap.js" />
     <Content Include="Config\Aspects.xml" />
-    <Content Include="Config\controllers.xml" />
+    <Content Include="Config\controllers.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Config\objects.xml" />
     <Content Include="Config\repository.xml" />
     <Content Include="ext\.sencha\package\Boot.js" />
@@ -8143,6 +8134,8 @@
     <Content Include="lib\Remotion.Data.Linq.dll" />
     <Content Include="lib\Spring.Data.NHibernate30.dll" />
     <Content Include="resources\.arch-internal-preview.css" />
+    <Content Include="resources\icons\delete.png" />
+    <Content Include="resources\icons\page_white_edit.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-open-rtl.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-open.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-rtl.png" />

@@ -61,21 +61,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommonAddressMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CompanyMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ContractMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="CustomerMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="DocumentMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="CommonData.cs" />
     <Compile Include="NhRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -83,9 +72,7 @@
     <Compile Include="ProvinceTreeMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Reposotory\CommonAddressRepository.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="Reposotory\CommonDataRepository.cs" />
     <Compile Include="Reposotory\RoleRepository.cs">
       <SubType>Code</SubType>
     </Compile>

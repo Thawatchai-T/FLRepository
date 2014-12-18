@@ -24,7 +24,14 @@
 
   <object type="KTBLeasing.FrontLeasing.Controllers.SetupController, KTBLeasing.FrontLeasing" singleton="false" >
     <!--inject value in property-->
-    <property name="CommonAddressRepository" ref="commonAddressRepository"/>
+    <!--<property name="CommonAddressRepository" ref="commonAddressRepository"/>-->
+    <!--<property name="CommonDataRepository" ref="commonDataRepository"/>-->
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.TreeController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--inject value in property-->
+    <!--<property name="CommonAddressRepository" ref="commonAddressRepository"/>-->
+    <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
   
 </objects>
