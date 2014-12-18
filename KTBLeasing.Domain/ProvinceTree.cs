@@ -11,7 +11,7 @@ namespace KTBLeasing.Domain
         public virtual decimal ParentId { get; set; }
         public virtual decimal Levels { get; set; }
         public virtual string Name { get; set; }
-        public virtual short IsLeaf { get; set; }
+        public virtual short Leaf { get; set; }
         
            
         #region NHibernate Composite Key Requirements

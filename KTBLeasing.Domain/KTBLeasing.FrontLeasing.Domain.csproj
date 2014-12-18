@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="BaseDomain.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="CommonData.cs" />
