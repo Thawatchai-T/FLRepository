@@ -35,7 +35,7 @@
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
 
-  <object id="ComboboxRepository"
+  <object id="comboboxRepository"
             type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ComboboxRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>

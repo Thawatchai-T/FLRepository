@@ -4,5 +4,16 @@
   <object id="nhHelpersFactory" type="KTBLeasing.FrontLeasing.NHHelpers, KTBLeasing.FrontLeasing"/>
   <object id="wsad" type="KTBLeasing.FrontLeasing.WsLoginAD.WS_LoginADClient, KTBLeasing.FrontLeasing"/>
   <object id="user" type="KTBLeasing.FrontLeasing.Models.User, KTBLeasing.FrontLeasing"/>
-  
+  <object id="provincedomain" type="KTBLeasing.FrontLeasing.Domain.Province, KTBLeasing.Domain"/>
+
+
+  <!--<object id="MyMovieLister" type="Spring.Examples.MovieFinder.MovieLister, Spring.Examples.MovieFinder">
+    --><!-- using setter injection... --><!--
+    <property name="movieFinder" ref="MyMovieFinder"/>
+    
+  </object>-->
+
+  <object id="listOfProvince" type="System.Collections.Generic.Dictionary&lt;string,string&gt;"
+        factory-object="nhHelpersFactory"
+        factory-method="CreateSessionFactory" singleton="true"/>
 </objects>

@@ -17,19 +17,34 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabuserinftab',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onButtonNewClick: function(button, e, eOpts) {
+    onButtonNewClick: function (button, e, eOpts) {
         // Create new register form window
-        var popup = Ext.create("widget.windowuserinfwindow");
-        console.log(popup);
+        //        var popup = Ext.create("widget.windowuserinfwindow");
+        //        console.log(popup);
         // Show window
-        popup.show();
+        //        popup.show();
+        
+        var win = Ext.create('widget.window', {
+            title: 'Layout Window with title <em>after</em> tools',
+            width: 600,
+            height: 400,
+            loader: {
+                url: 'http://221.23.0.70/cgi-bin/fastreport.exe?report=1.Basic%20reports\03.Nested%20groups.fr3',
+                noCache: false,
+                contentType: 'html',
+                loadMask: true
+            }
+        });
+        win.loader.load();
+        win.show();
     },
 
-    onButtonEditClick: function(button, e, eOpts) {
+
+    onButtonEditClick: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.windowuserinfwindow");
         // Show window
