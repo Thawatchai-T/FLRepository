@@ -8,7 +8,12 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public class ComboboxRepository : NhRepository
+    public interface IComboboxRepository
+    {
+        List<Province> GetProvince();
+        int Count();
+    }
+    public class ComboboxRepository : NhRepository, IComboboxRepository
     {
         public List<Province> GetProvince()
         {
@@ -16,9 +21,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             using (var ts = session.BeginTransaction())
             {
                 var result = session.QueryOver<Province>().List();
-                result.Select(x => new { x.ProvinceId, x.ProvinceName }).GroupBy(x => new { x.ProvinceId, x.ProvinceName });
-                //result.Select(x => new { x.DistrictId, x.DistrictName }).GroupBy(x => new { x.DistrictId, x.DistrictName }).AsEnumerable();
-                //result.Select(x => new { x.SubdistrictId, x.SubdistrictName, x.Zipcode }).GroupBy(x => new { x.SubdistrictId, x.SubdistrictName, x.Zipcode }).AsEnumerable();
                 
                 return result as List<Province>;
             }
