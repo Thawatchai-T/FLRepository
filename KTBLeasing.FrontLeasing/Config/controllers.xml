@@ -33,5 +33,11 @@
     <!--<property name="CommonAddressRepository" ref="commonAddressRepository"/>-->
     <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.AddressController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--inject value in property-->
+    <!--<property name="CommonAddressRepository" ref="commonAddressRepository"/>-->
+    <property name="ComboboxRepository" ref="comboboxRepository"/>
+  </object>
   
 </objects>

@@ -159,6 +159,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
@@ -196,6 +197,7 @@
     <Content Include="app\model\Authorize.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\Login.js" />
+    <Content Include="app\model\Province.js" />
     <Content Include="app\model\Role.js" />
     <Content Include="app\model\Tab.js" />
     <Content Include="app\model\UserInRole.js" />
@@ -210,6 +212,7 @@
     <Content Include="app\store\authorizes.js" />
     <Content Include="app\store\commonDatas.js" />
     <Content Include="app\store\login.js" />
+    <Content Include="app\store\provinces.js" />
     <Content Include="app\store\roles.js" />
     <Content Include="app\store\tabs.js" />
     <Content Include="app\store\userInRoles.js" />
@@ -318,7 +321,9 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Config\objects.xml" />
-    <Content Include="Config\repository.xml" />
+    <Content Include="Config\repository.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="ext\.sencha\package\Boot.js" />
     <Content Include="ext\.sencha\package\bootstrap-impl.xml" />
     <Content Include="ext\.sencha\package\build-impl.xml" />

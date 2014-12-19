@@ -32,7 +32,8 @@ Ext.application({
         'Role',
         'UserInTab',
         'Tab',
-        'CommonData'
+        'CommonData',
+		'Province'
     ],
     stores: [
         'userInformations',
@@ -47,7 +48,8 @@ Ext.application({
         'roles',
         'userInTabs',
         'tabs',
-        'commonDatas'
+        'commonDatas',
+		'provinces'
     ],
     views: [
         'Window.UserInfWindow',
