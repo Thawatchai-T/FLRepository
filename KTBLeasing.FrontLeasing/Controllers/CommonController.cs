@@ -20,14 +20,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
         #endregion
 
         #region Province District and SubDistrict
+
+        public IEnumerable<Province> GetAll(string q)
+        {
+            SetProvince();
+            return Province.Where(x => x.Zipcode.ToString().Contains(q));
+        }
+        
+        
         /// <summary>
         /// Get Provinct 
         /// </summary>
         /// <returns>List of ProvinceModel</returns>
-        public IEnumerable<ProvinceModel> GetProvice()
+        public IEnumerable<ProvinceModel> GetProvince(string q)
         {
             SetProvince();
-            return Province.GroupBy(g => new { g.ProvinceId, g.ProvinceName }).Select(x => new ProvinceModel { ProvinceId = x.Key.ProvinceId, ProvinceName = x.Key.ProvinceName }).ToList<ProvinceModel>();
+            if (!string.IsNullOrEmpty(q))
+                return Province.Where(x => x.DistrictName.Contains(q)).GroupBy(g => new { g.ProvinceId, g.ProvinceName }).Select(x => new ProvinceModel { ProvinceId = x.Key.ProvinceId, ProvinceName = x.Key.ProvinceName }).ToList<ProvinceModel>();
+            else
+                return Province.GroupBy(g => new { g.ProvinceId, g.ProvinceName }).Select(x => new ProvinceModel { ProvinceId = x.Key.ProvinceId, ProvinceName = x.Key.ProvinceName }).ToList<ProvinceModel>();
         }
 
         /// <summary>

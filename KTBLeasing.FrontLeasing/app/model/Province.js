@@ -21,32 +21,32 @@ Ext.define('TabUserInformation.model.Province', {
         'Ext.data.field.String'
     ],
 
-    idProperty: 'Subdistrict_Id',
+    idProperty: 'SubdistrictId',
 
     fields: [
         {
-            type: 'string',
-            name: 'Province_Id'
+            type: 'integer',
+            name: 'ProvinceId'
+        },
+        {
+            type: 'integer',
+            name: 'DistrictId'
+        },
+        {
+            type: 'integer',
+            name: 'SubdistrictId'
         },
         {
             type: 'string',
-            name: 'District_Id'
+            name: 'ProvinceName'
         },
         {
             type: 'string',
-            name: 'Subdistrict_Id'
+            name: 'DistrictName'
         },
         {
             type: 'string',
-            name: 'Province_Name'
-        },
-        {
-            type: 'string',
-            name: 'District_Name'
-        },
-        {
-            type: 'string',
-            name: 'Subdistrict_Name'
+            name: 'SubdistrictName'
         },
         {
             type: 'string',

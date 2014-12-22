@@ -81,7 +81,7 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTabViewController', {
         return this.getView().getComponent('userinrole-grid').getStore();
     },
     fn: function (value, metaData, record, rowIndex, colIndex, store, view) {
-        if (typeof value === 'number') {
+        if (typeof parseInt(value, 10) === 'number') {
             return this.rolename;
         } else {
             return value;

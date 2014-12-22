@@ -36,8 +36,8 @@ Ext.define('TabUserInformation.store.login', {
             autoLoad: true,
             pageSize:16,
             proxy: {
-                type: 'ajax',
-                url: 'api/user',
+                type: 'rest',
+                url: 'api/login',
                 reader: {
                     type: 'json'
                 }

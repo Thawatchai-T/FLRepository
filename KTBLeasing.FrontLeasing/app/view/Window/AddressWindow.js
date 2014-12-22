@@ -29,7 +29,6 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
         'Ext.toolbar.Paging',
         'Ext.button.Button'
     ],
-
     controller: 'windowaddresswindow',
     viewModel: {
         type: 'windowaddresswindow'
@@ -63,21 +62,51 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'ProvinceName',
+                    dataIndex: 'Province',
+                    flex: -1,
                     text: 'Province',
                     editor: {
                         xtype: 'combobox',
+                        minChars: 3,
+                        queryParam: 'q',
+                        queryMode: 'remote',
                         //id: 'userinrole-role-combobox',
                         store: 'provinces',
                         //queryMode: 'local',
                         // autoLoad: true,
-                        valueField: 'ProvinceName',
-                        displayField: 'ProvinceName',
-//                        listeners: {
-//                            select:'onComboBoxSelect'
-//                        }
-                    }
+                        valueField: 'SubdistrictId',
+//                        displayField: 'SubdistrictName',
+                        displayTpl: Ext.create('Ext.XTemplate',
+                            '<tpl for=".">',
+                                '{ProvinceName} {DistrictName} {SubdistrictName} {Zipcode}',
+                            '</tpl>'
+                        ),
+                        listConfig: {
+                            itemTpl: [
+                                '<div data-qtip="{ProvinceName}: {DistrictName}">{ProvinceName} {DistrictName} {SubdistrictName} {Zipcode}</div>'
+                            ]
+                        },
+                        listeners: {
+                            select : 'onSelect'
+                        }
+                    },   
+                    renderer: 'fn'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: '{DistrictName}',
+                    text: 'DistrictName',
                 }
+            //                ,
+            //                {
+            //                    xtype: 'gridcolumn',
+            //                    dataIndex: 'ProvinceName',
+            //                    text: 'Province',
+            //                    editor: {
+            //                        xtype: 'textfield',
+            //                        store: 'provinces'
+            //                    }
+            //                }
             //                {
             //                    xtype: 'gridcolumn',
             //                    width: 250,

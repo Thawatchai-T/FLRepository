@@ -17,6 +17,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.windowaddresswindow',
 
+    comboDisplay:'',
     getGrid: function () {
         return this.getView().getComponent('addressgrid');
     },
@@ -64,6 +65,20 @@ Ext.define('TabUserInformation.view.Window.AddressWindowViewController', {
                 store.erase();
             }
         }, this);
+    },
+
+    fn: function (value, metaData, record, rowIndex, colIndex, store, view) {
+        console.log(value);
+        console.log(this.comboDisplay);
+        if (typeof value === 'number') {
+            return this.comboDisplay;
+        } else {
+            return value;
+        }
+    },
+
+    onSelect: function (combo, records, eOpts) {
+        this.comboDisplay = combo.rawValue;
     }
 
 });
