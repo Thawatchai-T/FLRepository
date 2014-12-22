@@ -7,7 +7,7 @@
 
   <object type="KTBLeasing.FrontLeasing.Controllers.LoginController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="_LoginService" ref="wsad"/>
-    <property name="User" ref="user"/>
+    <property name="_User" ref="user"/>
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.RoleController, KTBLeasing.FrontLeasing" singleton="false" >

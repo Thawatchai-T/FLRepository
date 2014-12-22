@@ -26,7 +26,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
             SetProvince();
             return Province.Where(x => x.Zipcode.ToString().Contains(q));
         }
-        
+
+        public IEnumerable<Province> GetAllProvince()
+        {
+            SetProvince();
+            return Province;
+        }
         
         /// <summary>
         /// Get Provinct 

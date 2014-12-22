@@ -34,7 +34,7 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
         type: 'tabauthorizetab'
     },
     title: 'Authorize',
-
+   
     items: [
         {
             xtype: 'panel',
@@ -47,8 +47,10 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                 {
                     xtype: 'textfield',
                     id: 'search-text',
-                    fieldLabel: 'Search Text',
-                    labelAlign: 'right'
+                    fieldLabel: 'Search by UserID',
+                    labelAlign: 'right',
+                    labelWidth: 150,
+                    width: 500,
                 },
                 {
                     xtype: 'button',
@@ -62,10 +64,11 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
         },
         {
             xtype: 'gridpanel',
-            height: 500,
+            height: 768,
             id: 'grid',
             store: 'authorizes',
             selModel: Ext.create('Ext.selection.CheckboxModel'),
+            autoScroll: true,
             plugins: [
                 {
                     ptype: 'rowediting',
@@ -113,6 +116,9 @@ Ext.define('TabUserInformation.view.Tab.AuthorizeTab', {
                 }
             ],
             columns: [
+                {
+                    xtype: 'rownumberer'
+                },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'UserId',

@@ -39,5 +39,5 @@ Ext.define('TabUserInformation.model.Authorize', {
 
     ]
     //case have id
-    ,idProperty: 'UserId'
+    , idProperty: 'UserId'
 });
