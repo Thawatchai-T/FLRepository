@@ -34,7 +34,7 @@ Ext.define('TabUserInformation.store.authorizes', {
             storeId: 'authorizes',
             model: 'TabUserInformation.model.Authorize',
             autoLoad: true,
-            pageSize: 16,
+            pageSize: 30,
             proxy: {
                 type: 'rest',
                 url: 'api/user',

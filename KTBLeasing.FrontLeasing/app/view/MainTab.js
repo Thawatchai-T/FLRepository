@@ -42,6 +42,9 @@ var tab = Ext.define('TabUserInformation.view.MainTab', {
             xtype: 'tabauthorizetab'
         },
         {
+            xtype: 'tabuserinroletab'
+        },
+        {
             id: 'tabsetuptab',
             xtype: 'tabsetuptab'
         },
@@ -56,9 +59,6 @@ var tab = Ext.define('TabUserInformation.view.MainTab', {
         },
         {
             xtype: 'tabjobtab'
-        },
-        {
-            xtype: 'tabuserinroletab'
         }
     ]
 //    ,

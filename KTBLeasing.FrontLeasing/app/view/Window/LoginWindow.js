@@ -52,7 +52,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                     xtype: 'textfield',
                     flex: 1,
                     id: 'username',
-                    name: 'User.UserName',
+                    name: 'UserName',
                     fieldLabel: 'Username',
                     allowBlank: false,
                     msgTarget: 'under',
@@ -62,7 +62,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                 {
                     xtype: 'textfield',
                     id: 'password',
-                    name: 'User.Password',
+                    name: 'Password',
                     fieldLabel: 'Password',
                     inputType: 'password',
                     allowBlank: false,
@@ -85,7 +85,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
         var form = this.down('form').getForm();
         if (form.isValid()) {
             form.submit({
-                url: 'api/login',
+                url: 'api/login/dologin',
                 type: 'POST',
                 timeout: 99999,
                 success: function (form, action) {

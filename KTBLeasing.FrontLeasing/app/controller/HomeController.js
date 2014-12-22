@@ -28,7 +28,8 @@ Ext.define('TabUserInformation.controller.HomeController', {
 
     doLogin: function (component, eOpts) {
         var popup = Ext.create('widget.windowloginwindow');
-        //popup.show();
+        //Show login windows
+        popup.show();
     },
 
     tabManagement: function (container, component, eOpts) {

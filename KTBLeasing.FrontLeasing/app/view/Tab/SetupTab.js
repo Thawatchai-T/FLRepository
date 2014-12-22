@@ -60,7 +60,8 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
         },
         {
             xtype: 'treepanel',
-            title: 'My Tree Panel',
+            title: 'Common data management',
+            //hideHeaders: true,
             store: 'commonDatas',
             id: 'tree-setup',
             reserveScrollbar: true,

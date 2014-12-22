@@ -61,7 +61,7 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
         },
         {
             xtype: 'gridpanel',
-            height: 500,
+            height: 768,
             id: 'userinrole-grid',
             forceFit: true,
             store: 'userInRoles',

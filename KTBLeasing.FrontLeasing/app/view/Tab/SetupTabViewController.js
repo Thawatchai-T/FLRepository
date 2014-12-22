@@ -45,7 +45,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
             nameeng.setValue(selected[0].get('Name_Eng'));
             var levels = selected[0].get('Levels');
             switch (levels + radiogroup.getChecked()[0].inputValue) {
-                case 1: addbutton.setText('Add Province');
+                case 1: addbutton.setText('Main Catalog');
                     addbutton.enable();
                     nameeng.show();
                     break;

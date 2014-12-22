@@ -20,6 +20,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
         #endregion
 
         #region Province District and SubDistrict
+
+        public IEnumerable<Province> GetAllProvince()
+        {
+            SetProvince();
+            return Province;
+        }
+
+        
+        
         /// <summary>
         /// Get Provinct 
         /// </summary>

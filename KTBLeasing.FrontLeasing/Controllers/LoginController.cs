@@ -13,20 +13,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class LoginController : ApiController
     {
-        private User user { get; set; }
+        private User _User { get; set; }
         private IWS_LoginAD _LoginService {get; set;}
 
         
         // POST api/login
         //add by pom use login
-        public HttpResponseMessage Post(FormDataCollection formData)
+        public HttpResponseMessage DoLogin(User formData)
         {
-            NameValueCollection form = formData.ReadAsNameValueCollection();
-            
-            user.UserName = form["User.UserName"];
-            user.Password = form["User.Password"];
+           
+            //[20141222] thawatchai.t change to model 
+            this._User.UserName = formData.UserName;
+            this._User.Password = formData.Password;
 
-            string ADstatus = VerifyAD(user);
+            //old
+            //NameValueCollection form = formData.ReadAsNameValueCollection();
+            //user.UserName = form["User.UserName"];
+            //user.Password = form["User.Password"];
+            
+            string ADstatus = VerifyAD(_User);
             HttpResponseMessage ResponseMsg = new HttpResponseMessage();
             switch (ADstatus)
             {
@@ -44,6 +49,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
                     break;
             }
             return ResponseMsg;
+            
+        }
+
+        // GET api/user/5
+        public string Get(int id)
+        {
+            return null;
         }
 
         private string VerifyAD(User user)
