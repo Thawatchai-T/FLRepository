@@ -61,6 +61,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddressMap.cs" />
+    <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonDataMapView\MarketingCodeMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonDataMapView\MarketingGroupMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonDataMapView\PositonMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonDataMapView\TitleEngMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="CommonDataMapView\TitleThMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CompanyMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -73,8 +92,10 @@
     <Compile Include="ProvinceTreeMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Reposotory\AddressRepository.cs" />
     <Compile Include="Reposotory\CommonDataRepository.cs" />
     <Compile Include="Reposotory\ComboboxRepository.cs" />
+    <Compile Include="Reposotory\UserInfomationRepository.cs" />
     <Compile Include="Reposotory\RoleRepository.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +117,7 @@
     <Compile Include="TabManamentMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="UserInformationMap.cs" />
     <Compile Include="UserInRoleMap.cs">
       <SubType>Code</SubType>
     </Compile>
