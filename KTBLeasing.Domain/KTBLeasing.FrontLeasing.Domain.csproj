@@ -41,19 +41,26 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Address.cs" />
+    <Compile Include="BaseCommonData.cs" />
     <Compile Include="BaseDomain.cs" />
     <Compile Include="Company.cs" />
     <Compile Include="Contract.cs" />
     <Compile Include="CommonData.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="ViewCommonData\DeparmentCode.cs" />
     <Compile Include="Document.cs" />
+    <Compile Include="ViewCommonData\MarketingCode.cs" />
     <Compile Include="MasterProvince.cs" />
-    <Compile Include="Position.cs" />
+    <Compile Include="ViewCommonData\Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs" />
     <Compile Include="ProvinceTree.cs" />
     <Compile Include="Role.cs" />
     <Compile Include="Tab.cs" />
+    <Compile Include="ViewCommonData\MarketingGroup.cs" />
+    <Compile Include="ViewCommonData\TitleEng.cs" />
+    <Compile Include="ViewCommonData\TitleTh.cs" />
+    <Compile Include="UserInformation.cs" />
     <Compile Include="UserInRole.cs" />
     <Compile Include="UserInTab.cs" />
     <Compile Include="UsersAuthorize.cs" />
