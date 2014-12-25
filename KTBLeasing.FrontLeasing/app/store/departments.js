@@ -27,22 +27,12 @@ Ext.define('TabUserInformation.store.departments', {
         me.callParent([Ext.apply({
             storeId: 'departments',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'TNE01',
-                    Name: 'Mr.',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'TNE02',
-                    Name: 'Mrs.',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getdepartment',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

@@ -27,22 +27,12 @@ Ext.define('TabUserInformation.store.positions', {
         me.callParent([Ext.apply({
             storeId: 'positions',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'TNE01',
-                    Name: 'Mr.',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'TNE02',
-                    Name: 'Mrs.',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getposition',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

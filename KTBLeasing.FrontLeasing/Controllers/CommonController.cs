@@ -85,6 +85,26 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return this.CommonRepository.GetTitleNameTh();
         }
 
+        public IEnumerable<TitleEng> GetTitleNameEn()
+        {
+            return this.CommonRepository.GetTitleNameEn();
+        }
+
+        public IEnumerable<DeparmentCode> GetDepartment()
+        {
+            return this.CommonRepository.GetDeparment();
+        }
+
+        public IEnumerable<Position> GetPosition()
+        {
+            return this.CommonRepository.GetPosition();
+        }
+
+        public IEnumerable<MarketingCode> GetMarketingGroup()
+        {
+            return this.CommonRepository.GetMarketingGroup();
+        }
+
         #endregion
 
         private List<Province> SetProvince()

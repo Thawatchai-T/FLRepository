@@ -27,22 +27,12 @@ Ext.define('TabUserInformation.store.marketingGroups', {
         me.callParent([Ext.apply({
             storeId: 'marketingGroups',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'MKT01',
-                    Name: 'Marketing',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'MKT02',
-                    Name: 'Co-Marketing',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getmarketinggroup',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

@@ -36,7 +36,7 @@ Ext.define('TabUserInformation.view.Tab.JobTab', {
     viewModel: {
         type: 'tabjobtab'
     },
-    title: 'Job',
+    title: 'กขคง',
 
     items: [
         {
@@ -149,7 +149,7 @@ Ext.define('TabUserInformation.view.Tab.JobTab', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'id',
+                    dataIndex: 'UserId',
                     text: 'Id'
                 },
                 {

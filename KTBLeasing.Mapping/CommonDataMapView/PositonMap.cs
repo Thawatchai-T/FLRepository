@@ -4,14 +4,15 @@ using System.Linq;
 using System.Text;
 using KTBLeasing.Domain;
 using FluentNHibernate.Mapping;
+using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.CommonDataMapView
 {
-    public class PositionMap : ClassMap<DeparmentCode>
+    public class PositionMap : ClassMap<Position>
     {
         public PositionMap()
         {
-            Table("V_Position");
+            Table("V_POSITION");
             ReadOnly();
 			//LazyLoad();
             //Id(x => x.Id).GeneratedBy.Identity().Column("ID");

@@ -32,7 +32,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
     viewModel: {
         type: 'tabsetuptab'
     },
-    title: 'Setup',
+    title: '¡¢¤',
 
     items: [
         {

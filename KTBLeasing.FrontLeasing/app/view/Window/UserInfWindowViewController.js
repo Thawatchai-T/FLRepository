@@ -48,7 +48,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindowViewController', {
             url: 'UserInfo/depost',
             method: 'post',
             params: {
-             id:'test'
+                id: 'test'
             },
             contentType: "text/plain; charset=UTF-8",
             success: function (response) {

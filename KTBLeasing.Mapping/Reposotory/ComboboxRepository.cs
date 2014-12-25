@@ -13,6 +13,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     {
         List<Province> GetProvince();
         List<TitleTh> GetTitleNameTh();
+        List<TitleEng> GetTitleNameEn();
+        List<DeparmentCode> GetDeparment();
+        List<Position> GetPosition();
+        List<MarketingCode> GetMarketingGroup();
         int Count();
     }
     public class ComboboxRepository : NhRepository, IComboboxRepository
@@ -36,6 +40,50 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var result = session.QueryOver<TitleTh>().List();
 
                 return result as List<TitleTh>;
+            }
+        }
+
+        public List<DeparmentCode> GetDeparment()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<DeparmentCode>().List();
+
+                return result as List<DeparmentCode>;
+            }
+        }
+
+        public List<TitleEng> GetTitleNameEn()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<TitleEng>().List();
+
+                return result as List<TitleEng>;
+            }
+        }
+
+        public List<Position> GetPosition()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<Position>().List();
+
+                return result as List<Position>;
+            }
+        }
+
+        public List<MarketingCode> GetMarketingGroup()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<MarketingCode>().List();
+
+                return result as List<MarketingCode>;
             }
         }
 
