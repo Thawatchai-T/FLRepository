@@ -7,6 +7,7 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -27,7 +28,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return Province;
         }
 
-        
+        public IEnumerable<Province> GetAll(string q)
+        {
+            SetProvince();
+            return Province.Where(x => x.Zipcode.ToString().Contains(q));
+        }
         
         /// <summary>
         /// Get Provinct 
@@ -73,6 +78,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 }).ToList<SubDistrictModel>();
 
             return result;
+        }
+
+        public IEnumerable<TitleTh> GetTitleNameTh()
+        {
+            return this.CommonRepository.GetTitleNameTh();
         }
 
         #endregion

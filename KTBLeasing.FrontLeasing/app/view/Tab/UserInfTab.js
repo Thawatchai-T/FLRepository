@@ -21,21 +21,24 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
         'TabUserInformation.view.Tab.UserInfTabViewModel',
         'TabUserInformation.view.Tab.UserInfTabViewController',
         'Ext.form.field.Text',
-        'Ext.button.Button',
+        'Ext.form.trigger.Trigger',
         'Ext.form.RadioGroup',
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.View',
         'Ext.toolbar.Paging',
         'Ext.grid.column.Column',
-        'Ext.form.Panel'
+        'Ext.form.Panel',
+        'Ext.button.Button'
     ],
 
     controller: 'tabuserinftab',
     viewModel: {
         type: 'tabuserinftab'
     },
+    resizable: false,
     width: '100%',
+    manageHeight: false,
     title: 'User Information',
 
     items: [
@@ -49,20 +52,26 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
             items: [
                 {
                     xtype: 'textfield',
-                    fieldLabel: 'Search Text',
-                    labelAlign: 'right'
-                },
-                {
-                    xtype: 'button',
-                    margin: '0 0 0 5',
-                    text: 'Search',
+                    fieldLabel: 'ค้นหา',
+                    labelAlign: 'right',
+                    enableKeyEvents: true,
+                    triggers: {
+                        mytrigger: {
+                            cls: 'x-form-search-trigger'
+                        }
+                    },
                     listeners: {
-                        click: 'onButtonSearchClick'
+                        keyup: {
+                            fn: 'onTextfieldKeyup',
+                            buffer: 500
+                        }
                     }
                 },
                 {
                     xtype: 'radiogroup',
-                    width: '100%',
+                    flex: -1,
+                    width: 400,
+                    hideLabel: true,
                     layout: {
                         type: 'checkboxgroup',
                         autoFlex: false
@@ -70,12 +79,17 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
                     items: [
                         {
                             xtype: 'radiofield',
-                            boxLabel: 'Order By Code'
+                            name: 'orderby',
+                            boxLabel: 'Order by Code',
+                            inputValue: 'code'
                         },
                         {
                             xtype: 'radiofield',
                             margin: '0 0 0 5',
-                            boxLabel: 'Order by Name'
+                            name: 'orderby',
+                            boxLabel: 'Order by Name',
+                            checked: true,
+                            inputValue: 'name'
                         }
                     ]
                 }
@@ -84,8 +98,11 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
         {
             xtype: 'gridpanel',
             autoScroll: true,
-            height: 500,
+            height: 768,
             store: 'userInformations',
+            bind: {
+                reference: 'userinf'
+            },
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
@@ -99,23 +116,38 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'id',
-                    text: 'Id'
+                    dataIndex: 'UserId',
+                    text: 'UserId'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Code',
-                    text: 'Code'
+                    dataIndex: 'TitleNameTh',
+                    text: 'TitleNameTh'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Title',
-                    text: 'Title'
+                    dataIndex: 'TitleNameEng',
+                    text: 'TitleNameEng'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name',
-                    text: 'Name'
+                    dataIndex: 'FirstNameTh',
+                    text: 'FirstNameTh'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'LastNameTh',
+                    text: 'LastNameTh'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'FirstNameEng',
+                    text: 'FirstNameEng'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'LastNameEng',
+                    text: 'LastNameEng'
                 },
                 {
                     xtype: 'gridcolumn',
@@ -134,21 +166,52 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Department',
-                    text: 'Department'
+                    dataIndex: 'CreateDate',
+                    text: 'CreateDate'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'UpdateDate',
+                    text: 'UpdateDate'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CreateBy',
+                    text: 'CreateBy'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'UpdateBy',
+                    text: 'UpdateBy'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Id',
+                    text: 'Id'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'DepartmentCode',
+                    text: 'DepartmentCode'
                 }
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'onGridpanelItemDblClick',
+                selectionchange: 'onGridpanelSelectionChange'
+            }
         },
         {
             xtype: 'form',
             height: 214,
+            hidden: true,
             bodyPadding: 10,
             waitTitle: '',
             items: [
                 {
                     xtype: 'textfield',
                     width: 500,
-                    fieldLabel: 'Address'
+                    fieldLabel: 'Address',
+                    name: 'Position'
                 },
                 {
                     xtype: 'textfield',

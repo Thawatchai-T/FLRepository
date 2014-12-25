@@ -18,36 +18,76 @@ Ext.define('TabUserInformation.model.UserInformation', {
     alias: 'model.userinformation',
 
     requires: [
-        'Ext.data.field.Integer',
         'Ext.data.field.String'
     ],
 
+    idProperty: 'UserId',
+
     fields: [
         {
-            type: 'int',
-            name: 'id'
-        },
-        {
-            name: 'Code'
+            type: 'string',
+            name: 'UserId',
+            mapping: 'UsersAuthorize.UserId'
         },
         {
             type: 'string',
-            name: 'Title'
+            name: 'TitleNameTh'
         },
         {
-            name: 'Name'
+            type: 'string',
+            name: 'TitleNameEng'
         },
         {
+            type: 'string',
+            name: 'FirstNameTh'
+        },
+        {
+            type: 'string',
+            name: 'LastNameTh'
+        },
+        {
+            type: 'string',
+            name: 'FirstNameEng'
+        },
+        {
+            type: 'string',
+            name: 'LastNameEng'
+        },
+        {
+            type: 'string',
             name: 'Position'
         },
         {
+            type: 'string',
             name: 'MarketingGroup'
         },
         {
+            type: 'string',
             name: 'MarketingCode'
         },
         {
-            name: 'Department'
+            type: 'string',
+            name: 'CreateDate'
+        },
+        {
+            type: 'string',
+            name: 'UpdateDate'
+        },
+        {
+            type: 'string',
+            name: 'CreateBy'
+        },
+        {
+            type: 'string',
+            name: 'UpdateBy'
+        },
+        {
+            type: 'string',
+            name: 'Id'
+        },
+        {
+            type: 'string',
+            name: 'DepartmentCode'
         }
     ]
 });

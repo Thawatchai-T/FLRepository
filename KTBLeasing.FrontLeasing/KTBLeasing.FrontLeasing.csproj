@@ -168,6 +168,7 @@
     <Compile Include="Controllers\TabController.cs" />
     <Compile Include="Controllers\TreeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -199,6 +200,7 @@
     <Content Include="app\model\Affidavit.js" />
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
+    <Content Include="app\model\BaseCommonData.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\Login.js" />
     <Content Include="app\model\Province.js" />
@@ -215,10 +217,15 @@
     <Content Include="app\store\authorities.js" />
     <Content Include="app\store\authorizes.js" />
     <Content Include="app\store\commonDatas.js" />
+    <Content Include="app\store\departments.js" />
     <Content Include="app\store\login.js" />
+    <Content Include="app\store\marketingGroups.js" />
+    <Content Include="app\store\positions.js" />
     <Content Include="app\store\provinces.js" />
     <Content Include="app\store\roles.js" />
     <Content Include="app\store\tabs.js" />
+    <Content Include="app\store\titleNameEns.js" />
+    <Content Include="app\store\titleNameThs.js" />
     <Content Include="app\store\userInRoles.js" />
     <Content Include="app\store\customerInformations.js" />
     <Content Include="app\store\setups.js" />

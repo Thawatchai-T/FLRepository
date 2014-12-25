@@ -17,38 +17,61 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabuserinftab',
 
-    onButtonSearchClick: function (button, e, eOpts) {
+    onTextfieldKeyup: function(textfield, e, eOpts) {
+        var grid = this.getView().down('gridpanel'),
+            filters = grid.store.getFilters(),
+            radiogroup = this.getView().down('radiogroup'),
+            property = null;
 
+        switch(radiogroup.getChecked()[0].inputValue){
+            case 'name':
+            property = 'FristNameTh';
+            break;
+            case 'code':
+            property = 'UserId';
+            break;
+        }
+
+        if(textfield.value){
+            this.nameFilter = filters.add({ id            : 'nameFilter',
+                property      : property,
+                value         : textfield.value,
+                anyMatch      : true,
+            caseSensitive : false});
+        }else if (this.nameFilter) {
+            filters.remove(this.nameFilter);
+            this.nameFilter = null;
+        }
     },
 
-    onButtonNewClick: function (button, e, eOpts) {
-        // Create new register form window
-        //        var popup = Ext.create("widget.windowuserinfwindow");
-        //        console.log(popup);
-        // Show window
-        //        popup.show();
-        
-        var win = Ext.create('widget.window', {
-            title: 'Layout Window with title <em>after</em> tools',
-            width: 600,
-            height: 400,
-            loader: {
-                url: 'http://221.23.0.70/cgi-bin/fastreport.exe?report=1.Basic%20reports\03.Nested%20groups.fr3',
-                noCache: false,
-                contentType: 'html',
-                loadMask: true
-            }
-        });
-        win.loader.load();
-        win.show();
-    },
-
-
-    onButtonEditClick: function (button, e, eOpts) {
-        // Create new register form window
-        var popup = Ext.create("widget.windowuserinfwindow");
-        // Show window
+    onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        var popup = Ext.create('widget.windowuserinfwindow');
+        var form = popup.down('form');
+        form.loadRecord(record);
         popup.show();
+    },
+
+    onGridpanelSelectionChange: function(model, selected, eOpts) {
+        if(selected.length){
+            var record = selected[0];
+            var form = this.getView().down('form');
+            form.loadRecord(record);
+        }
+    },
+
+    onButtonNewClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.windowuserinfwindow");
+        popup.show();
+    },
+
+    onButtonEditClick: function(button, e, eOpts) {
+        var record = this.getView().down('gridpanel').getSelection()[0];
+        if(this.getView().down('gridpanel').getSelection().length){
+            var popup = Ext.create('widget.windowuserinfwindow');
+            var form = popup.down('form');
+            form.loadRecord(record);
+            popup.show();
+        }
     }
 
 });

@@ -60,7 +60,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
         },
         {
             xtype: 'treepanel',
-            title: 'Common data management',
+            title: '‰µ‡µ‘È≈',
             //hideHeaders: true,
             store: 'commonDatas',
             id: 'tree-setup',
@@ -180,6 +180,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
                     }, {
                         xtype: 'radiogroup',
                         columns: 2,
+                        hidden: true,
                         items: [
                                 { boxLabel: 'parent', name: 'parent', inputValue: 0, checked: true },
                                 { boxLabel: 'child', name: 'parent', inputValue: 1 }

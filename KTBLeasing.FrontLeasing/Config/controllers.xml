@@ -40,15 +40,27 @@
     <property name="ComboboxRepository" ref="comboboxRepository"/>
   </object>
 
-  <!--[20141219] Thawatchai.T add CommonColler--> 
+  <!--[20141219] Thawatchai.T add CommonColler-->
   <object type="KTBLeasing.FrontLeasing.Controllers.CommonController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="CommonRepository" ref="comboboxRepository"/>
     <property name="Province">
       <list element-type="KTBLeasing.FrontLeasing.Domain.Province, KTBLeasing.Domain">
-        
       </list>
     </property>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.UserInfoController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="UserInfomationRepository" ref="userInfomationRepository"/>
     
   </object>
 
+
+  <!--<object type="KTBLeasing.FrontLeasing.Controllers.CustomerController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CustomerRepository" ref="CustomerRepository"/>
+    <property name="Customer">
+      <list element-type="KTBLeasing.FrontLeasing.Domain.Customer, KTBLeasing.Domain">
+      </list>
+    </property>
+  </object>-->
+  
 </objects>

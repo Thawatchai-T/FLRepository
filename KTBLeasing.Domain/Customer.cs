@@ -9,6 +9,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public Customer() { }
         public virtual long Guid2 { get; set; }
         public virtual long PositionId { get; set; }
-        public virtual long Positionguid { get; set; }
+        public virtual long PositionGuid { get; set; }
     }
 }

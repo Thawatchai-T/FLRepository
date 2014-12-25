@@ -39,5 +39,16 @@
             type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ComboboxRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
+
+  <object id="userInfomationRepository"
+            type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.UserInfomationRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
   
+  <!--<object id="CustomerRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CustomerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>-->
+
+
 </objects>

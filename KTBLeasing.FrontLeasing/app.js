@@ -33,7 +33,9 @@ Ext.application({
         'UserInTab',
         'Tab',
         'CommonData',
-		'Province'
+		'Province',
+        'BaseCommonData'
+//        'Company'
     ],
     stores: [
         'userInformations',
@@ -49,7 +51,13 @@ Ext.application({
         'userInTabs',
         'tabs',
         'commonDatas',
-		'provinces'
+		'provinces',
+        'titleNameThs',
+        'titleNameEns',
+        'marketingGroups',
+        'positions',
+        'departments'
+//        'companies'
     ],
     views: [
         'Window.UserInfWindow',

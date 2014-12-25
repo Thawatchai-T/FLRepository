@@ -4,10 +4,23 @@ using System.Linq;
 using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
+using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    class UserInfomationRepository : NhRepository
+    public interface IUserInfomationRepository
+    {
+        int Count();
+        int Count(string text);
+        System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> Find(int start, int limit, string text);
+        System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAll();
+        System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAll(int start, int limit);
+        System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAllWithOrderBy(string orderby);
+        void Insert(KTBLeasing.Domain.UserInformation entity);
+        void SaveOrUpdate(KTBLeasing.Domain.UserInformation entity);
+    }
+
+    class UserInfomationRepository : NhRepository, IUserInfomationRepository
     {
         
         public void Insert(UserInformation entity)
@@ -21,12 +34,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
         }
 
+        public void SaveOrUpdate(UserInformation entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                session.SaveOrUpdate(entity);
+                ts.Commit();
+            }
+
+        }
+
         public List<UserInformation> GetAll()
         {
             using (var session = SessionFactory.OpenSession())
             {
-                //return session.QueryOver<UserInformation>().List<UserInformation>() as List<Address>;
-                return this.ExecuteICriteria<UserInformation>() as List<UserInformation>;
+                return session.QueryOver<UserInformation>()
+                    .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .List<UserInformation>() as List<UserInformation>;
+                //return this.ExecuteICriteria<UserInformation>() as List<UserInformation>;
             }
         }
 

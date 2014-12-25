@@ -40,7 +40,6 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
         var nameeng = this.getView().down('#eng-name');
         addbutton.show();
         editbutton.hide();
-
         if (selected[0] != undefined) {
             nameeng.setValue(selected[0].get('Name_Eng'));
             var levels = selected[0].get('Levels');
@@ -66,6 +65,11 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
                     nameeng.hide();
                     break;
             }
+
+            if (levels == 1)
+                radiogroup.hide();
+            else
+                radiogroup.show();
         }
     },
 

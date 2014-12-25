@@ -94,23 +94,24 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
         {
             xtype: 'gridpanel',
             autoScroll: true,
+            forceFit: true,
             height: 500,
             store: 'customerInformations',
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Code',
-                    text: 'Code'
+                    dataIndex: 'Guid2',
+                    text: 'Guid2'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Eng',
-                    text: 'Name Eng'
+                    dataIndex: 'PositionId',
+                    text: 'PositionId'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Thai',
-                    text: 'Name Thai'
+                    dataIndex: 'PositionGuid',
+                    text: 'PositionGuid'
                 }
             ],
             dockedItems: [

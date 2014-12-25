@@ -17,12 +17,61 @@ Ext.define('TabUserInformation.view.Window.UserInfWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.windowuserinfwindow',
 
-    onButtonSaveClick: function(button, e, eOpts) {
+    onButtonSaveClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm();
+        var record = this.getView().down('form').getRecord();
+        var store = this.getView().down('form').getRecord().store;
+        var model = {
+            UserId: record.get('UserId')
+        }
+        //console.log(form.getValues());
+        record.set(form.getValues());
+        //        store.save();
+        this.onPost(record);
+        //        var model = Ext.create('model.userinformation');
+        //        model.add(this.getView().down('form').items);
+        //        model.save();
 
+
+        //        if (form.isValid()) {
+        //            this.onPost(this.getView().down('form').items);
+        //        }
+        //        store.save();
     },
 
-    onButtonResetClick: function(button, e, eOpts) {
+    onButtonResetClick: function (button, e, eOpts) {
         this.getView().getComponent('userinfform').getForm().reset();
+    },
+
+    onPost: function (data) {
+        Ext.Ajax.request({
+            url: 'UserInfo/depost',
+            method: 'post',
+            params: {
+             id:'test'
+            },
+            contentType: "text/plain; charset=UTF-8",
+            success: function (response) {
+                console.log(response);
+                //                var jsonResp = Ext.util.JSON.decode(response.responseText);
+                //                if (jsonResp.success == true) {
+                //                    //                    if (action == "insert")
+                //                    //                        Ext.Msg.alert("Info", "ทำการเพิ่มข้อมูลเรียบร้อยแล้ว");
+                //                    //                    else if (action == "update")
+                //                    //                        Ext.Msg.alert("Info", "ทำการแก้ไขข้อมูลเรียบร้อยแล้ว");
+                //                    Ext.Msg.alert("Info", "ทำการแก้ไขข้อมูลเรียบร้อยแล้ว");
+                //                    //Ext.getCmp('tree-setup').getStore().load();
+                //                } else {
+                //                    Ext.Msg.alert("Info", "notsave");
+
+                //                }
+            },
+            failure: function (response) {
+                console.log(response);
+                //                var jsonResp = Ext.util.JSON.decode(response.responseText);
+                //                Ext.Msg.alert("Error", jsonResp.error);
+            }
+        });
     }
 
 });

@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.store.provinces', {
             model: 'TabUserInformation.model.Province',
             proxy: {
                 type: 'rest',
-                url: 'api/address/getprovince',
+                url: 'common/getprovince',
                 reader: {
                     type: 'json'
                 }

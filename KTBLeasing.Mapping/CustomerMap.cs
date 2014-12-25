@@ -14,7 +14,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
 			LazyLoad();
 			Id(x => x.Guid2).GeneratedBy.Assigned().Column("GUID2");
 			Map(x => x.PositionId).Column("POSITION_ID").Not.Nullable();
-			Map(x => x.Positionguid).Column("POSITIONGUID").Not.Nullable();
+			Map(x => x.PositionGuid).Column("POSITIONGUID").Not.Nullable();
         }
     }
 }

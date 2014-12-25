@@ -21,16 +21,20 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
         'Ext.data.field.String'
     ],
 
+    idProperty: 'Guid2',
+
     fields: [
         {
-            type: 'string',
-            name: 'Code'
+            type: 'integer',
+            name: 'Guid2'
         },
         {
-            name: 'Name Eng'
+            type: 'integer',
+            name: 'PositionId'
         },
         {
-            name: 'Name Thai'
+            type: 'integer',
+            name: 'PositionGuid'
         }
     ]
 });

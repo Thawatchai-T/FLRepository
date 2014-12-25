@@ -5,12 +5,14 @@ using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
 using System.Collections;
 using NHibernate.Transform;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IComboboxRepository
     {
         List<Province> GetProvince();
+        List<TitleTh> GetTitleNameTh();
         int Count();
     }
     public class ComboboxRepository : NhRepository, IComboboxRepository
@@ -23,6 +25,17 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var result = session.QueryOver<Province>().List();
                 
                 return result as List<Province>;
+            }
+        }
+
+        public List<TitleTh> GetTitleNameTh()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<TitleTh>().List();
+
+                return result as List<TitleTh>;
             }
         }
 
