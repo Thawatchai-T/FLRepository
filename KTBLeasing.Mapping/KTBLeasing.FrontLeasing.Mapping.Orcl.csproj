@@ -65,9 +65,6 @@
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CommonDataMapView\MarketingCodeMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="CommonDataMapView\MarketingGroupMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -84,6 +81,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonData.cs" />
+    <Compile Include="UserInformationViewMap.cs" />
     <Compile Include="ProvinceMap.cs" />
     <Compile Include="NhRepository.cs">
       <SubType>Code</SubType>

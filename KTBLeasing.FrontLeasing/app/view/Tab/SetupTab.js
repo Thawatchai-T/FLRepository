@@ -32,7 +32,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
     viewModel: {
         type: 'tabsetuptab'
     },
-    title: '°¢§',
+    title: 'Setup Tab',
 
     items: [
         {
@@ -60,7 +60,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
         },
         {
             xtype: 'treepanel',
-            title: '‰µ‡µ‘È≈',
+            title: '‡πÑ‡∏ï‡πÄ‡∏ï‡∏¥‡πâ‡∏•',
             //hideHeaders: true,
             store: 'commonDatas',
             id: 'tree-setup',
@@ -205,7 +205,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
                         var jsonResp = Ext.util.JSON.decode(response.responseText);
                         //console.log(jsonResp.success);
                         if (jsonResp.success == true) {
-                            Ext.Msg.alert("Info", "∑”°“√≈∫¢ÈÕ¡Ÿ≈‡√’¬∫√ÈÕ¬·≈È«");
+                            Ext.Msg.alert("Info", "‡∏ó‡∏≥‡∏Å‡∏≤‡∏£‡∏•‡∏ö‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡πÄ‡∏£‡∏µ‡∏¢‡∏ö‡∏£‡πâ‡∏≠‡∏¢‡πÅ‡∏•‡πâ‡∏ß");
                             Ext.getCmp('tree-setup').getStore().load();
                         } else {
                             Ext.Msg.alert("Info", "notsave");

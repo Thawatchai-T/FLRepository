@@ -48,6 +48,10 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
             id: 'userinfform',
             items: [
                 {
+                    xtype: 'hiddenfield',
+                    name: 'UserId'
+                },
+                {
                     xtype: 'combobox',
                     width: 200,
                     fieldLabel: 'Marketing Group',
@@ -57,7 +61,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     allowBlank: false,
                     displayField: 'Name',
                     store: 'marketingGroups',
-                    valueField: 'Code'
+                    valueField: 'Id'
                 },
                 {
                     xtype: 'textfield',
@@ -90,7 +94,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                             allowBlank: false,
                             displayField: 'Name',
                             store: 'titleNameEns',
-                            valueField: 'Code'
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'textfield',
@@ -125,11 +129,12 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                             fieldLabel: 'Name Thai',
                             labelAlign: 'right',
                             labelWidth: 110,
-                            name: 'TitleNameTh',
+                            name: 'IdTitleName',
                             allowBlank: false,
+                            queryMode:'local',
                             displayField: 'Name',
                             store: 'titleNameThs',
-                            valueField: 'Code'
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'textfield',
@@ -163,7 +168,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     allowBlank: false,
                     displayField: 'Name',
                     store: 'positions',
-                    valueField: 'Code'
+                    valueField: 'Id'
                 },
                 {
                     xtype: 'combobox',
@@ -175,7 +180,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     allowBlank: false,
                     displayField: 'Name',
                     store: 'departments',
-                    valueField: 'Code'
+                    valueField: 'Id'
                 },
                 {
                     xtype: 'container',

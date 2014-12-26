@@ -22,6 +22,8 @@ Ext.define('TabUserInformation.model.BaseCommonData', {
         'Ext.data.field.Boolean'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
             type: 'int',

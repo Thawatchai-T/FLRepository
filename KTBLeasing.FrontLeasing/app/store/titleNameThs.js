@@ -28,6 +28,7 @@ Ext.define('TabUserInformation.store.titleNameThs', {
         me.callParent([Ext.apply({
             storeId: 'titleNameThs',
             model: 'TabUserInformation.model.BaseCommonData',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/gettitlenameth',

@@ -7,6 +7,7 @@ using System.Web.Http;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
+using KTBLeasing.FrontLeasing.Models;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -14,9 +15,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
     {
         private IUserInfomationRepository UserInfomationRepository { get; set; }
         // GET api/userinfo
-        public IEnumerable<UserInformation> Get()
+        public IEnumerable<UserInformationView> Get()
         {
-            return UserInfomationRepository.GetAll();
+            var view = UserInfomationRepository.GetAllView();
+            return view;
         }
 
         // GET api/userinfo/5
@@ -32,10 +34,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //}
 
         // POST api/userinfo
-        public string DoPost([FromBody]string value)
+        //public string DoPost(UserInformation value)
+        public string DoPost(UserInfoModel userinfomodel)
         {
-            value += value;
-            return value.ToString();
+            return userinfomodel.ToString();
         }
 
         // PUT api/userinfo/5

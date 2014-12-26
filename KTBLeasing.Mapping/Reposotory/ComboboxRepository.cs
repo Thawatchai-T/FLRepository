@@ -6,6 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 using System.Collections;
 using NHibernate.Transform;
 using KTBLeasing.Domain;
+using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -16,7 +17,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<TitleEng> GetTitleNameEn();
         List<DeparmentCode> GetDeparment();
         List<Position> GetPosition();
-        List<MarketingCode> GetMarketingGroup();
+        List<MarketingGroup> GetMarketingGroup();
         int Count();
     }
     public class ComboboxRepository : NhRepository, IComboboxRepository
@@ -76,14 +77,14 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public List<MarketingCode> GetMarketingGroup()
+        public List<MarketingGroup> GetMarketingGroup()
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                var result = session.QueryOver<MarketingCode>().List();
+                var result = session.QueryOver<MarketingGroup>().List();
 
-                return result as List<MarketingCode>;
+                return result as List<MarketingGroup>;
             }
         }
 

@@ -18,6 +18,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAllWithOrderBy(string orderby);
         void Insert(KTBLeasing.Domain.UserInformation entity);
         void SaveOrUpdate(KTBLeasing.Domain.UserInformation entity);
+
+        List<UserInformationView> GetAllView();
     }
 
     class UserInfomationRepository : NhRepository, IUserInfomationRepository
@@ -52,6 +54,23 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return session.QueryOver<UserInformation>()
                     .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
                     .List<UserInformation>() as List<UserInformation>;
+                //return this.ExecuteICriteria<UserInformation>() as List<UserInformation>;
+            }
+        }
+
+        public List<UserInformationView> GetAllView()
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = session.QueryOver<UserInformationView>()
+                    .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.TitleNameEng).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.TitleNameTh).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.MarketingGroup).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.Position).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .Fetch(x => x.DepartmentCode).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    .List<UserInformationView>() as List<UserInformationView>;
+                return result;
                 //return this.ExecuteICriteria<UserInformation>() as List<UserInformation>;
             }
         }
