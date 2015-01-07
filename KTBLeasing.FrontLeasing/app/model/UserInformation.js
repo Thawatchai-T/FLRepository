@@ -31,6 +31,11 @@ Ext.define('TabUserInformation.model.UserInformation', {
         },
         {
             type: 'int',
+            name: 'DepartmentCode',
+            mapping: 'DepartmentCode.Id'
+        },
+        {
+            type: 'int',
             name: 'IdTitleName',
             mapping: 'TitleNameTh.Id'
         },
@@ -40,7 +45,7 @@ Ext.define('TabUserInformation.model.UserInformation', {
             mapping: 'TitleNameTh.Name'
         },
         {
-            type: 'string',
+            type: 'int',
             name: 'TitleNameEng',
             mapping: 'TitleNameEng.Id'
         },
@@ -61,17 +66,24 @@ Ext.define('TabUserInformation.model.UserInformation', {
             name: 'LastNameEng'
         },
         {
-            type: 'string',
-            name: 'Position',
+            name: 'PositionId',
             mapping: 'Position.Id'
         },
         {
             type: 'string',
-            name: 'MarketingGroup',
+            name: 'Position',
+            mapping: 'Position.Name'
+        },
+        {
+            name: 'MarketingGroupId',
             mapping: 'MarketingGroup.Id'
         },
         {
-            type: 'int',
+            type: 'string',
+            name: 'MarketingGroup',
+            mapping: 'MarketingGroup.Name'
+        },
+        {
             name: 'MarketingCode'
         },
         {
@@ -93,11 +105,6 @@ Ext.define('TabUserInformation.model.UserInformation', {
         {
             type: 'string',
             name: 'Id'
-        },
-        {
-            type: 'string',
-            name: 'DepartmentCode',
-            mapping: 'DepartmentCode.Id'
         }
     ]
-});
+    });

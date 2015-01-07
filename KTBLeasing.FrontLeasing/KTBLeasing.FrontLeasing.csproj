@@ -176,6 +176,7 @@
     <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />
     <Compile Include="Models\RoleModel.cs" />
+    <Compile Include="Models\SetupViewModel.cs" />
     <Compile Include="Models\SubDistrictModel.cs" />
     <Compile Include="Models\TabModel.cs" />
     <Compile Include="Models\UserInfoModel.cs" />
@@ -301,6 +302,9 @@
     <Content Include="app\view\Window\ApplicationWindowViewController.js" />
     <Content Include="app\view\Window\ApplicationWindowViewModel.js" />
     <Content Include="app\view\Window\ContactPersonWindow.js" />
+    <Content Include="app\view\Window\SetupWindow.js" />
+    <Content Include="app\view\Window\SetupWindowViewController.js" />
+    <Content Include="app\view\Window\SetupWindowViewModel.js" />
     <Content Include="app\view\Window\CusInfWindow.js" />
     <Content Include="app\view\Window\CusInfWindowViewController.js" />
     <Content Include="app\view\Window\CusInfWindowViewModel.js" />

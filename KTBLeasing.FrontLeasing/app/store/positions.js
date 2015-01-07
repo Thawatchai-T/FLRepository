@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.store.positions', {
         me.callParent([Ext.apply({
             storeId: 'positions',
             model: 'TabUserInformation.model.BaseCommonData',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getposition',

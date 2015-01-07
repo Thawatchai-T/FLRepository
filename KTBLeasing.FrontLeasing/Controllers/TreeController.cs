@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Models;
 
 
 namespace KTBLeasing.FrontLeasing.Controllers
@@ -83,21 +84,46 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //    return Json(new { sms = comadd }, JsonRequestBehavior.AllowGet);
         //}
 
-        public JsonResult Insert(CommonData commonAddress)
+        public JsonResult Insert(SetupViewModel commonAddress)
         {
             try
             {
-                this.commonDataRepository.Insert(new CommonData {
-                    Parent_Id = commonAddress.Parent_Id,
-                    Name = commonAddress.Name,
-                    Name_Eng = commonAddress.Name_Eng,
-                    Active = true,
-                    Update_By ="admin",
-                    Create_By = "admin",
-                    Create_Date = DateTime.Now,
-                    Update_Date = DateTime.Now
-                });
-                var status =  true;
+                var status = false;
+                if (commonAddress.Type.Equals("insert"))
+                {
+                    this.commonDataRepository.Insert(new CommonData
+                    {
+                        Parent_Id = commonAddress.Parent_Id,
+                        Name = commonAddress.Name,
+                        Name_Eng = commonAddress.Name_Eng,
+                        Active = true,
+                        Code = "NA",
+                        Remark = commonAddress.Remark + "NA",
+                        Update_By = "admin",
+                        Create_By = "admin",
+                        Create_Date = DateTime.Now,
+                        Update_Date = DateTime.Now
+                    });
+
+                    status = true;
+                }
+                else if(commonAddress.Type.Equals("update"))
+                {
+                    var entity = this.commonDataRepository.GetById(commonAddress.Id);
+                    
+                    entity.Name = commonAddress.Name;
+                    entity.Name_Eng = commonAddress.Name_Eng;
+                    entity.Code = (string.IsNullOrEmpty(entity.Code)) ? "NA" : entity.Code;
+                    entity.Remark = (string.IsNullOrEmpty(entity.Remark)) ? "update" : entity.Remark;
+                    entity.Active = commonAddress.Active;
+                    entity.Update_Date = DateTime.Now;
+                    entity.Update_By = "admin";
+                    
+                    this.commonDataRepository.Update(entity);
+                    
+                    status = true;
+                }
+                
                 if (status)
                     this.SetCommonAddressData("insert");
 
@@ -126,16 +152,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public JsonResult Delete(CommonData commonData)
+        public JsonResult Delete(int id)
         {
             try
             {
-                this.commonDataRepository.Delete(commonData);
+                this.commonDataRepository.Delete(id);
 
                 var status = true;
-                if (status)
-                    this.SetCommonAddressData("insert");
-                return Json(new { success = status, message = (status) ? "บันทึกข้อมูลสำเร็จ" : "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
+                
+                return Json(new { success = status}, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {

@@ -8,7 +8,6 @@ using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.Domain;
-using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -91,7 +90,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return this.CommonRepository.GetTitleNameEn();
         }
 
-        public IEnumerable<DeparmentCode> GetDepartment()
+        public IEnumerable<DepartmentCode> GetDepartment()
         {
             return this.CommonRepository.GetDeparment();
         }

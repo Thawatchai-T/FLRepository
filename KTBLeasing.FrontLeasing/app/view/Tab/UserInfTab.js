@@ -106,6 +106,7 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
+                    id: 'pagingtoolbar-userinf',
                     dock: 'bottom',
                     ui: 'footer',
                     width: 360,
@@ -115,6 +116,11 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
             ],
             columns: [
                 {
+                     xtype: 'rownumberer',
+                    text: 'No.',
+                    width: 55
+                },
+                {
                     xtype: 'gridcolumn',
                     dataIndex: 'UserId',
                     text: 'UserId'
@@ -123,47 +129,68 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
                     xtype: 'gridcolumn',
                     dataIndex: 'IdTitleName',
                     text: 'TitleNameTh',
+                    enableColumnHide: false,
+                    hidden: true,
+                    //Maybe not use
+                    /*
                     renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
                         console.log(record);
                         console.log(value);
                         return record.get('TitleNameTh');
                     }
+                    */
 
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'TitleNameEng',
-                    text: 'TitleNameEng'
+                    text: 'TitleNameEng',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'FirstNameTh',
-                    text: 'FirstNameTh'
+                    text: 'FirstNameTh',
+                    flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'LastNameTh',
-                    text: 'LastNameTh'
+                    text: 'LastNameTh',
+                    flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'FirstNameEng',
-                    text: 'FirstNameEng'
+                    text: 'FirstNameEng',
+                    flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'LastNameEng',
-                    text: 'LastNameEng'
+                    text: 'LastNameEng',
+                    flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Position',
-                    text: 'Position'
+                    dataIndex: 'PositionId',
+                    text: 'Position',
+                    renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+                        console.log(record);
+                        return record.get('Position');
+
+                    }
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'MarketingGroup',
                     text: 'MarketingGroup'
+                    //,
+                    //renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+                    //    console.log(record);
+                    //    return record.get('TitleNameTh');
+                    //}
                 },
                 {
                     xtype: 'gridcolumn',
@@ -173,32 +200,48 @@ Ext.define('TabUserInformation.view.Tab.UserInfTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'CreateDate',
-                    text: 'CreateDate'
+                    text: 'CreateDate',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'UpdateDate',
-                    text: 'UpdateDate'
+                    text: 'UpdateDate',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'CreateBy',
-                    text: 'CreateBy'
+                    text: 'CreateBy',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'UpdateBy',
-                    text: 'UpdateBy'
+                    text: 'UpdateBy',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Id',
-                    text: 'Id'
+                    text: 'Id',
+                    enableColumnHide: false,
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'DepartmentCode',
-                    text: 'DepartmentCode'
+                    dataIndex: 'Department',
+                    text: 'DepartmentCode',
+                    renderer: function (value, metaData, record, rowIndex, colIndex, store, view) {
+                        console.log(record);
+                        return record.get('DepartmentCode');
+                    },
+                    enableColumnHide: false,
+                    hidden: true
                 }
             ],
             listeners: {

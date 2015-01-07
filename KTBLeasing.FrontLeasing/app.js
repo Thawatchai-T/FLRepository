@@ -84,7 +84,8 @@ Ext.application({
         'Window.IndicationForEquipmentWindow',
         'Window.LoginWindow',
         'Window.ApplicationWindow',
-        'Tab.UserInRoleTab'
+        'Tab.UserInRoleTab',
+        'Window.SetupWindow',
     ],
     controllers: [
         'HomeController'

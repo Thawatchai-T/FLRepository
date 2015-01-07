@@ -60,7 +60,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
         },
         {
             xtype: 'treepanel',
-            title: 'ไตเติ้ล',
+            title: 'บริหารจัดการข้อมูล',
             //hideHeaders: true,
             store: 'commonDatas',
             id: 'tree-setup',
@@ -87,6 +87,8 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
                     xtype: 'actioncolumn',
                     icon: 'resources/icons/page_white_edit.png',
                     width: 50,
+                    enableColumnHide: false,
+                    hidden: true,
                     handler: function (view, rowIndex, colIndex, item, e, record, row) {
                         var editbutton = Ext.getCmp('commondata-edit-button');
                         var addbutton = Ext.getCmp('commondata-add-button');
@@ -117,6 +119,8 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
                     xtype: 'actioncolumn',
                     icon: 'resources/icons/delete.png',
                     width: 50,
+                    enableColumnHide: false,
+                    hidden: true,
                     handler: function (view, rowIndex, colIndex, item, e, record, row) {
                         Ext.MessageBox.confirm('Confirm', 'Confirm Delete?', function (btn) {
                             if (btn == 'yes' && record.get('leaf')) {
@@ -143,55 +147,66 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
             ],
             listeners: {
                 itemexpand: 'onTreepanelItemExpand',
-                selectionchange: 'onTreepanelSelectionChange'
-            },
-            dockedItems: [
-            {
-                xtype: 'toolbar',
-                dock: 'top',
-                items: [
-                    {
-                        xtype: 'textfield',
-                        itemId: 'new-name'
-                    },
-                    {
-                        xtype: 'textfield',
-                        itemId: 'eng-name',
-                        hidden: true
-                    },
-                    {
-                        xtype: 'button',
-                        disabled: true,
-                        id: 'commondata-add-button',
-                        text: 'Add',
-                        listeners: {
-                            click: 'addClick'
-                        }
-                    },
-                    {
-                        xtype: 'button',
-                        disabled: true,
-                        hidden: true,
-                        id: 'commondata-edit-button',
-                        text: 'Edit',
-                        listeners: {
-                            click: 'editClick'
-                        }
-                    }, {
-                        xtype: 'radiogroup',
-                        columns: 2,
-                        hidden: true,
-                        items: [
-                                { boxLabel: 'parent', name: 'parent', inputValue: 0, checked: true },
-                                { boxLabel: 'child', name: 'parent', inputValue: 1 }
-                            ]
-                    }
-                ]
-            },
-            {
-                xtype: 'toolbar',
-                dock: 'top'
-            }]
+                //selectionchange: 'onTreepanelSelectionChange',
+                itemcontextmenu:{
+        		    fn:'onTreepanelItemContextMenu',
+        		    scope: 'controller'
+        	    },
+                //itemclick: {
+                //    fn: 'onTreepanelItemClick',
+                //    scope: 'controller'
+                //},
+                itemdblclick: 'onTreepanelItemDblClick'
+
+            }
+            //,
+            //dockedItems: [
+            //{
+            //    xtype: 'toolbar',
+            //    dock: 'top',
+            //    items: [
+            //        {
+            //            xtype: 'textfield',
+            //            itemId: 'new-name'
+            //        },
+            //        {
+            //            xtype: 'textfield',
+            //            itemId: 'eng-name',
+            //            hidden: true
+            //        },
+            //        {
+            //            xtype: 'button',
+            //            disabled: true,
+            //            id: 'commondata-add-button',
+            //            text: 'Add',
+            //            listeners: {
+            //                click: 'addClick'
+            //            }
+            //        },
+            //        {
+            //            xtype: 'button',
+            //            disabled: true,
+            //            hidden: true,
+            //            id: 'commondata-edit-button',
+            //            text: 'Edit',
+            //            listeners: {
+            //                click: 'editClick'
+            //            }
+            //        }, {
+            //            xtype: 'radiogroup',
+            //            columns: 2,
+            //            hidden: true,
+            //            items: [
+            //                    { boxLabel: 'parent', name: 'parent', inputValue: 0, checked: true },
+            //                    { boxLabel: 'child', name: 'parent', inputValue: 1 }
+            //                ]
+            //        }
+            //    ]
+            //},
+            //{
+            //    xtype: 'toolbar',
+            //    dock: 'top'
+            //}]
             ,
             onPost: function (data, action) {
                 var url = 'tree/' + action;
