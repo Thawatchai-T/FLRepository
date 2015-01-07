@@ -21,13 +21,14 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
         'TabUserInformation.view.Tab.CusInfTabViewModel',
         'TabUserInformation.view.Tab.CusInfTabViewController',
         'Ext.form.field.Text',
+        'Ext.form.trigger.Trigger',
         'Ext.button.Button',
         'Ext.form.RadioGroup',
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Column',
-        'Ext.toolbar.Paging'
+        'Ext.toolbar.Paging',
+        'Ext.grid.column.Column'
     ],
 
     controller: 'tabcusinftab',
@@ -37,6 +38,7 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
     id: 'cusinftab',
     title: 'Customer Information',
     titleCollapse: false,
+    defaultListenerScope: true,
 
     items: [
         {
@@ -50,14 +52,28 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                 {
                     xtype: 'textfield',
                     fieldLabel: 'Search Text',
-                    labelAlign: 'right'
+                    labelAlign: 'right',
+                    triggers: {
+                        mytrigger: {
+                            handler: function(field, trigger, e) {
+                                console.log(e.getKey());
+                            },
+                            cls: 'x-form-search-trigger'
+                        }
+                    },
+                    listeners: {
+                        render: 'onTextfieldRender'
+                    }
                 },
                 {
                     xtype: 'button',
                     margin: '0 0 0 5',
                     text: 'Search',
                     listeners: {
-                        click: 'onButtonSearchClick'
+                        click: {
+                            fn: 'onButtonSearchClick',
+                            scope: 'controller'
+                        }
                     }
                 },
                 {
@@ -94,26 +110,9 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
         {
             xtype: 'gridpanel',
             autoScroll: true,
-            forceFit: true,
             height: 500,
+            forceFit: true,
             store: 'customerInformations',
-            columns: [
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'Guid2',
-                    text: 'Guid2'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'PositionId',
-                    text: 'PositionId'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'PositionGuid',
-                    text: 'PositionGuid'
-                }
-            ],
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
@@ -123,10 +122,34 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     displayInfo: true,
                     store: 'customerInformations'
                 }
-            ]
+            ],
+            columns: [
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'GUID2',
+                    text: 'GUID2'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'POSITION_ID',
+                    text: 'POSITION_ID'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'POSITIONGUID',
+                    text: 'POSITIONGUID'
+                }
+            ],
+            listeners: {
+                itemdblclick: {
+                    fn: 'onGridpanelItemDblClick',
+                    scope: 'controller'
+                }
+            }
         },
         {
             xtype: 'panel',
+            hidden: true,
             id: 'cusformdetail',
             bodyPadding: 20,
             manageHeight: false,
@@ -186,13 +209,34 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
             items: [
                 {
                     xtype: 'button',
+                    text: 'New',
+                    listeners: {
+                        click: {
+                            fn: 'onButtonClick',
+                            scope: 'controller'
+                        }
+                    }
+                },
+                {
+                    xtype: 'button',
                     text: 'Edit',
                     listeners: {
-                        click: 'onButtonEditClick1'
+                        click: {
+                            fn: 'onButtonEditClick1',
+                            scope: 'controller'
+                        }
                     }
                 }
             ]
         }
-    ]
+    ],
+
+    onTextfieldRender: function(component, eOpts) {
+        component.getEl().on('keypress', function(e) {
+            if (e.getKey() == e.ENTER) {
+                //
+            }
+        });
+    }
 
 });

@@ -17,41 +17,100 @@ Ext.define('TabUserInformation.view.Window.CusInfWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.windowcusinfwindow',
 
-    onResetClick: function() {
+    onResetClick: function () {
         console.log(this);
         this.getView().reset();
     },
 
-    onButtonAddressClick: function(button, e, eOpts) {
+    onButtonAddressClick: function (button, e, eOpts) {
+        var record = this.getView().down('form').getRecord();
         var popup = Ext.create("widget.windowaddresswindow");
+        var form = popup.down('form');
+        form.loadRecord(record);
         popup.show();
     },
 
-    onButtonSignClick: function(button, e, eOpts) {
+    onButtonSignClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowsignerwindow");
         popup.show();
     },
 
-    onButtonContactPersonClick: function(button, e, eOpts) {
+    onButtonContactPersonClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowcontactpersonwindow");
         popup.show();
     },
 
-    onButtonAffidavitClick: function(button, e, eOpts) {
+    onButtonAffidavitClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowaffidavitwindow");
         popup.show();
     },
 
-    onButtonPowerOfAttorneyClick: function(button, e, eOpts) {
+    onButtonPowerOfAttorneyClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowpowerofattorneywindow");
         popup.show();
     },
 
-    onButtonNewClick1: function(button, e, eOpts) {
+    onUploadClick: function (button, e, eOpts) {
+        var filefield = this.getView().down('filefield'),
+            store = this.getView().down('grid').getStore(),
+            form = this.lookupReference('cusinfform').getForm();
+
+        if (form.isValid()) {
+            form.submit({
+                url: 'Home/Upload',
+                method: 'post',
+                success: function (form, action) {
+                    Ext.Msg.alert('Success', action.result.message);
+                    //             me.intend = "save-success";
+                    //             me.close();
+                },
+                failure: function (form, action) {
+                    Ext.Msg.alert('Failed', action.result ? action.result.message : 'No response');
+                }
+            });
+        } else {
+            Ext.Msg.alert('Data is not valid!', 'กรุณาเลือกข้อมูลให้ครบถ้วน');
+        }
+
+
+
+        // console.log(store);
+
+        // store.insert(0,{
+        //     Type:'1',
+        //     Desc:filefield.getValue()
+        // });
+    },
+
+    onRadiogroupChange: function (field, newValue, oldValue, eOpts) {
+        var filefield = this.getView().down('filefield'),
+            uploadbutton = this.getView().down('#upload');
+
+        filefield.enable();
+        uploadbutton.enable();
+
+        switch (newValue.rdoupload) {
+            case 'credit':
+                filefield.setFieldLabel('Credit Analysis Report');
+                break;
+            case 'other':
+                filefield.setFieldLabel('Other reports');
+                break;
+            case 'business':
+                filefield.setFieldLabel('Business online');
+                break;
+            default:
+                filefield.disable();
+                uploadbutton.disable();
+                break;
+        }
+    },
+
+    onButtonNewClick1: function (button, e, eOpts) {
 
     },
 
-    onButtonResetClick: function(button, e, eOpts) {
+    onButtonResetClick: function (button, e, eOpts) {
         this.getView().getComponent('cusinfform').getForm().reset();
     }
 
