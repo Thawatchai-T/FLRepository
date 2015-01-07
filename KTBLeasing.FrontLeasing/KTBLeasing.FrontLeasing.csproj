@@ -203,7 +203,6 @@
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
     <Content Include="app\model\BaseCommonData.js" />
-    <Content Include="app\model\BrowseFiles.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\Login.js" />
     <Content Include="app\model\Province.js" />

@@ -34,8 +34,9 @@ Ext.application({
         'Tab',
         'CommonData',
 		'Province',
-        'BaseCommonData',
-		'BrowseFiles'
+        'BaseCommonData'
+  //      ,
+		//'BrowseFiles'
     ],
     stores: [
         'userInformations',
