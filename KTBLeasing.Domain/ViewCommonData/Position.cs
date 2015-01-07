@@ -4,7 +4,8 @@ using System.Collections.Generic;
 using KTBLeasing.Domain;
 
 
-namespace KTBLeasing.FrontLeasing.Domain {
+namespace KTBLeasing.Domain
+{
 
     public class Position : BaseCommonData
     {

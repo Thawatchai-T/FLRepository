@@ -5,7 +5,7 @@ using System.Text;
 
 namespace KTBLeasing.Domain
 {
-    public class DeparmentCode: BaseCommonData
+    public class DepartmentCode : BaseCommonData
     {
     }
 }

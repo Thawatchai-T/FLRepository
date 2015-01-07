@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
-using KTBLeasing.Domain.ViewCommonData;
+
 
 namespace KTBLeasing.Domain
 {
@@ -29,7 +29,7 @@ namespace KTBLeasing.Domain
             //public virtual string UpdateDate { get; set; }
             //public virtual string CreateBy { get; set; }
             //public virtual string UpdateBy { get; set; }
-            public virtual DeparmentCode DepartmentCode { get; set; }
+            public virtual DepartmentCode DepartmentCode { get; set; }
         
         
     }
