@@ -5,6 +5,7 @@ using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
 using NHibernate.Transform;
+using NHibernate.Criterion;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -18,6 +19,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAllWithOrderBy(string orderby);
         void Insert(KTBLeasing.Domain.UserInformation entity);
         void SaveOrUpdate(KTBLeasing.Domain.UserInformation entity);
+        void Update(UserInformation entity);
+        void Save(UserInformation entity);
+
+        UserInformation Get(string userid);
 
         List<UserInformationView> GetAllView();
     }
@@ -120,6 +125,36 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 //var result = session.QueryOver<UserInformation>().List<UserInformation>().Where(w => w.AddressTh.Contains(text) || w.AddressEng.Contains(text));
                 session.Close();
                 return 0; // result.ToList<UserInformation>().Count;
+            }
+        }
+
+        public UserInformation Get(string userid)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = session.QueryOver<UserInformation>().Where(x => x.UsersAuthorize.UserId == userid).List<UserInformation>(); //session.CreateCriteria(typeof(UserInformation)).Add(Expression.Eq( "UserId", userid )).List<UserInformation>();
+                   
+                return result.FirstOrDefault(); // result.ToList<UserInformation>().Count;
+            }
+        }
+
+        public void Update(UserInformation entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                session.Update(entity);
+                ts.Commit();
+            }
+        }
+
+        public void Save(UserInformation entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                session.Save(entity);
+                ts.Commit();
             }
         }
     }

@@ -6,7 +6,6 @@ using KTBLeasing.FrontLeasing.Domain;
 using System.Collections;
 using NHibernate.Transform;
 using KTBLeasing.Domain;
-using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -15,7 +14,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<Province> GetProvince();
         List<TitleTh> GetTitleNameTh();
         List<TitleEng> GetTitleNameEn();
-        List<DeparmentCode> GetDeparment();
+        List<DepartmentCode> GetDeparment();
         List<Position> GetPosition();
         List<MarketingGroup> GetMarketingGroup();
         int Count();
@@ -44,14 +43,14 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public List<DeparmentCode> GetDeparment()
+        public List<DepartmentCode> GetDeparment()
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                var result = session.QueryOver<DeparmentCode>().List();
+                var result = session.QueryOver<DepartmentCode>().List();
 
-                return result as List<DeparmentCode>;
+                return result as List<DepartmentCode>;
             }
         }
 

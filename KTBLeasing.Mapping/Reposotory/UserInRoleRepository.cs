@@ -28,8 +28,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                session.Save(entity);
+               var obj =  session.Save(entity);
                 ts.Commit();
+                
             }
 
         }

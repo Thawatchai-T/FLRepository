@@ -15,9 +15,11 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<CommonData> Get(string Type);
         int Count();
         void SaveOrUpdate(CommonData entity);
-        bool Delete(CommonData entity);
+        bool Delete(int entity);
+        CommonData GetById(long id);
 
         bool Update(CommonData commonAddress);
+
     }
     public class CommonDataRepository : NhRepository, ICommonDataRepository
     {
@@ -119,8 +121,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     //    .SetParameter(0, entity.Id)
                     //    .ExecuteUpdate();
                     //session.Delete(entity);
-                    var sql = string.Format("delete common_data where id = {0}", entity.Id);
+                    var sql = string.Format("delete common_data where parent_id = {0}", entity.Id);
                     session.CreateSQLQuery(sql).ExecuteUpdate();
+                    
                     ts.Commit();
                     return true;
                 }
@@ -150,6 +153,48 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     return false;
                 }
             }
+        }
+
+        public CommonData GetById(long id)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<CommonData>().Where(x => x.Id == id).List<CommonData>().FirstOrDefault<CommonData>();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    return null;
+                }
+            }
+        }
+
+        public bool Delete(int id)
+        {
+             var sql = string.Format("DELETE COMMON_DATA a WHERE EXISTS (SELECT * FROM (SELECT b.ID FROM COMMON_DATA b CONNECT BY prior b.id  = b.PARENT_ID START WITH b.Parent_id = {0} )tmp " +
+                                    "WHERE tmp.id = a.id ) OR a.id = {1}", id, id);
+
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    session.CreateSQLQuery(sql).ExecuteUpdate();
+                    ts.Commit();
+
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    ts.Rollback();
+                    ts.Dispose();
+                    return false;
+                }
+            }
+            
         }
     }
 }

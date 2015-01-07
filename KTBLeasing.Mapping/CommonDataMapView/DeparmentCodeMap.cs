@@ -7,7 +7,7 @@ using FluentNHibernate.Mapping;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.CommonDataMapView
 {
-    public class DeparmentCodeMap : ClassMap<DeparmentCode>
+    public class DeparmentCodeMap : ClassMap<DepartmentCode>
     {
         public DeparmentCodeMap()
         {
