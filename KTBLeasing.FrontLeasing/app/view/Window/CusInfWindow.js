@@ -26,14 +26,16 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
         'Ext.toolbar.Toolbar',
         'Ext.button.Segmented',
         'Ext.form.field.Date',
-        'Ext.form.FieldContainer',
         'Ext.form.field.Number',
         'Ext.form.FieldSet',
         'Ext.grid.Panel',
         'Ext.grid.column.Number',
         'Ext.grid.column.Date',
         'Ext.grid.column.Boolean',
-        'Ext.grid.View'
+        'Ext.grid.View',
+        'Ext.form.field.File',
+        'Ext.form.RadioGroup',
+        'Ext.form.field.Radio'
     ],
 
     controller: 'windowcusinfwindow',
@@ -41,7 +43,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
         type: 'windowcusinfwindow'
     },
     autoShow: true,
-    layout: 'anchor',
+    id: 'cusinfwindow',
+    width: 930,
+    layout: 'table',
     title: 'Customer Information',
     titleCollapse: false,
     modal: true,
@@ -66,8 +70,10 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                     items: [
                         {
                             xtype: 'textfield',
+                            formBind: false,
                             fieldLabel: 'Customer Code',
-                            labelWidth: 150
+                            labelWidth: 150,
+                            name: 'GUID2'
                         },
                         {
                             xtype: 'container',
@@ -233,6 +239,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                 },
                 {
                     xtype: 'form',
+                    hidden: true,
                     collapsible: true,
                     title: 'Background',
                     items: [
@@ -451,119 +458,202 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     ]
                                 }
                             ]
-                        },
+                        }
+                    ]
+                },
+                {
+                    xtype: 'panel',
+                    width: 925,
+                    layout: {
+                        type: 'table',
+                        columns: 2
+                    },
+                    items: [
                         {
                             xtype: 'panel',
-                            width: 925,
-                            layout: {
-                                type: 'table',
-                                columns: 2
-                            },
+                            width: 575,
+                            bodyPadding: 20,
                             items: [
                                 {
-                                    xtype: 'panel',
-                                    width: 575,
-                                    bodyPadding: 20,
+                                    xtype: 'container',
+                                    margin: '0 0 5 0',
+                                    layout: 'hbox',
                                     items: [
                                         {
-                                            xtype: 'container',
-                                            margin: '0 0 5 0',
-                                            layout: 'hbox',
-                                            items: [
-                                                {
-                                                    xtype: 'textfield',
-                                                    fieldLabel: 'KTIBJ Marketing Officer',
-                                                    labelWidth: 150
-                                                },
-                                                {
-                                                    xtype: 'button',
-                                                    margin: '0 0 0 5',
-                                                    iconCls: 'x-form-search-trigger'
-                                                },
-                                                {
-                                                    xtype: 'button',
-                                                    margin: '0 0 0 5',
-                                                    text: 'History'
-                                                }
-                                            ]
-                                        },
-                                        {
                                             xtype: 'textfield',
-                                            fieldLabel: 'Warning',
+                                            fieldLabel: 'KTIBJ Marketing Officer',
                                             labelWidth: 150
                                         },
                                         {
-                                            xtype: 'combobox',
-                                            width: 250,
-                                            fieldLabel: 'Status',
-                                            labelWidth: 150
-                                        }
-                                    ],
-                                    dockedItems: [
+                                            xtype: 'button',
+                                            margin: '0 0 0 5',
+                                            iconCls: 'x-form-search-trigger'
+                                        },
                                         {
-                                            xtype: 'toolbar',
-                                            dock: 'bottom',
-                                            items: [
-                                                {
-                                                    xtype: 'segmentedbutton',
-                                                    items: [
-                                                        {
-                                                            ui: 'default-small',
-                                                            text: 'Credit Analysis Report'
-                                                        },
-                                                        {
-                                                            ui: 'default-small',
-                                                            text: 'Business Online'
-                                                        },
-                                                        {
-                                                            ui: 'default-small',
-                                                            text: 'Method of Payment'
-                                                        },
-                                                        {
-                                                            ui: 'default-small',
-                                                            text: 'Others Report'
-                                                        }
-                                                    ]
-                                                }
-                                            ]
+                                            xtype: 'button',
+                                            margin: '0 0 0 5',
+                                            text: 'History'
                                         }
                                     ]
                                 },
                                 {
-                                    xtype: 'fieldset',
-                                    height: 144,
-                                    margin: '0 0 0 10',
-                                    width: 300,
-                                    anchorSize: 50,
-                                    layout: 'auto',
-                                    title: 'Due Day',
+                                    xtype: 'textfield',
+                                    fieldLabel: 'Warning',
+                                    labelWidth: 150
+                                },
+                                {
+                                    xtype: 'combobox',
+                                    width: 250,
+                                    fieldLabel: 'Status',
+                                    labelWidth: 150
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'fieldset',
+                            height: 144,
+                            margin: '0 0 0 10',
+                            width: 315,
+                            anchorSize: 50,
+                            layout: 'auto',
+                            title: 'Due Day',
+                            items: [
+                                {
+                                    xtype: 'gridpanel',
+                                    height: '100%',
+                                    width: '100%',
+                                    columns: [
+                                        {
+                                            xtype: 'gridcolumn',
+                                            dataIndex: 'string',
+                                            text: 'String'
+                                        },
+                                        {
+                                            xtype: 'numbercolumn',
+                                            dataIndex: 'number',
+                                            text: 'Number'
+                                        },
+                                        {
+                                            xtype: 'datecolumn',
+                                            dataIndex: 'date',
+                                            text: 'Date'
+                                        },
+                                        {
+                                            xtype: 'booleancolumn',
+                                            dataIndex: 'bool',
+                                            text: 'Boolean'
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    xtype: 'panel',
+                    //margin: '10 10 10 10',
+                    width: 890,
+                    layout: 'auto',
+                    title: 'Upload File',
+                    items: [
+                        //{
+//                            xtype: 'container',
+////                            layout: 'anchor',
+//                            items: [
+                                {
+                                    xtype: 'filefield',
+                                    id: 'file1',
+                                    width: 500,
+                                    fieldLabel: 'Credit Analysis Report',
+                                    labelWidth: 150,
+                                    name: 'files',
+                                    buttonText: 'เลือกไฟล์'
+                                },
+                                {
+                                    xtype: 'filefield',
+                                    id: 'file2',
+                                    width: 500,
+                                    fieldLabel: 'Other reports',
+                                    labelWidth: 150,
+                                    name: 'files',
+                                    buttonText: 'เลือกไฟล์'
+                                },
+                                {
+                                    xtype: 'filefield',
+                                    id: 'file3',
+                                    width: 500,
+                                    fieldLabel: 'Business online',
+                                    labelWidth: 150,
+                                    name: 'files',
+                                    buttonText: 'เลือกไฟล์'
+                                },
+                                {
+                                    xtype: 'button',
+                                    itemId: 'upload',
+                                    margin: '0 0 0 5',
+                                    text: 'Upload',
+                                    listeners: {
+                                        click: 'onUploadClick'
+                                    }
+                                },
+                           // ]
+                        //},
+                        {
+                            xtype: 'radiogroup',
+                            hidden: true,
+                            fieldLabel: 'Label',
+                            hideLabel: true,
+                            layout: {
+                                type: 'checkboxgroup',
+                                autoFlex: false
+                            },
+                            items: [
+                                {
+                                    xtype: 'radiofield',
+                                    name: 'rdoupload',
+                                    boxLabel: 'Credit analysis report',
+                                    inputValue: 'credit'
+                                },
+                                {
+                                    xtype: 'radiofield',
+                                    name: 'rdoupload',
+                                    boxLabel: 'Other reports',
+                                    inputValue: 'other'
+                                },
+                                {
+                                    xtype: 'radiofield',
+                                    name: 'rdoupload',
+                                    boxLabel: 'Business online',
+                                    inputValue: 'business'
+                                }
+                            ],
+                            listeners: {
+                                change: 'onRadiogroupChange'
+                            }
+                        },
+                        {
+                            xtype: 'toolbar',
+                            hidden: true,
+                            items: [
+                                {
+                                    xtype: 'segmentedbutton',
                                     items: [
                                         {
-                                            xtype: 'gridpanel',
-                                            height: '100%',
-                                            width: '100%',
-                                            columns: [
-                                                {
-                                                    xtype: 'gridcolumn',
-                                                    dataIndex: 'string',
-                                                    text: 'String'
-                                                },
-                                                {
-                                                    xtype: 'numbercolumn',
-                                                    dataIndex: 'number',
-                                                    text: 'Number'
-                                                },
-                                                {
-                                                    xtype: 'datecolumn',
-                                                    dataIndex: 'date',
-                                                    text: 'Date'
-                                                },
-                                                {
-                                                    xtype: 'booleancolumn',
-                                                    dataIndex: 'bool',
-                                                    text: 'Boolean'
-                                                }
-                                            ]
+                                            ui: 'default-small',
+                                            text: 'Credit Analysis Report'
+                                        },
+                                        {
+                                            ui: 'default-small',
+                                            text: 'Others Report'
+                                        },
+                                        {
+                                            ui: 'default-small',
+                                            text: 'Business Online'
+                                        },
+                                        {
+                                            hidden: true,
+                                            ui: 'default-small',
+                                            text: 'Method of Payment'
                                         }
                                     ]
                                 }

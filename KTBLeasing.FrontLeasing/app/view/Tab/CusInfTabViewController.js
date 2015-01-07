@@ -18,7 +18,24 @@ Ext.define('TabUserInformation.view.Tab.CusInfTabViewController', {
     alias: 'controller.tabcusinftab',
 
     onButtonSearchClick: function(button, e, eOpts) {
+        // var text = Ext.getCmp('search-text').getValue();
+        // var store = this.getGridStore();
 
+        // store.getProxy().extraParams.text = text;
+        // this.down('pagingtoolbar').moveFirst();
+
+    },
+
+    onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+        var popup = Ext.create('widget.windowcusinfwindow');
+        var form = popup.down('form');
+        form.loadRecord(record);
+        popup.show();
+    },
+
+    onButtonClick: function(button, e, eOpts) {
+        var popup = Ext.create("widget.windowcusinfwindow");
+        popup.show();
     },
 
     onButtonEditClick1: function(button, e, eOpts) {

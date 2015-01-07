@@ -203,6 +203,7 @@
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
     <Content Include="app\model\BaseCommonData.js" />
+    <Content Include="app\model\BrowseFiles.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\Login.js" />
     <Content Include="app\model\Province.js" />
@@ -8400,7 +8401,7 @@
     <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Data\" />
+    <Folder Include="App_Data\Uploads\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
