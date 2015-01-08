@@ -169,6 +169,7 @@
     <Compile Include="Controllers\TreeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Controllers\VisitCallingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -182,6 +183,7 @@
     <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserInTabModel.cs" />
+    <Compile Include="Models\VisistCallModel.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -204,6 +206,7 @@
     <Content Include="app\model\Authorize.js" />
     <Content Include="app\model\BaseCommonData.js" />
     <Content Include="app\model\CommonData.js" />
+    <Content Include="app\model\VisitCallingModel.js" />
     <Content Include="app\model\Login.js" />
     <Content Include="app\model\Province.js" />
     <Content Include="app\model\Role.js" />
@@ -219,6 +222,7 @@
     <Content Include="app\store\authorities.js" />
     <Content Include="app\store\authorizes.js" />
     <Content Include="app\store\commonDatas.js" />
+    <Content Include="app\store\VisitCallingStore.js" />
     <Content Include="app\store\departments.js" />
     <Content Include="app\store\login.js" />
     <Content Include="app\store\marketingGroups.js" />

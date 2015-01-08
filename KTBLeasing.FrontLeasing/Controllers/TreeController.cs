@@ -159,8 +159,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 this.commonDataRepository.Delete(id);
 
                 var status = true;
-                
-                return Json(new { success = status}, JsonRequestBehavior.AllowGet);
+                if (status)
+                    this.SetCommonAddressData("insert"); 
+                return Json(new { success = status }, JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {

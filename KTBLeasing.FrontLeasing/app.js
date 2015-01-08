@@ -34,9 +34,8 @@ Ext.application({
         'Tab',
         'CommonData',
 		'Province',
-        'BaseCommonData'
-  //      ,
-		//'BrowseFiles'
+        'BaseCommonData',
+        'VisitCallingModel'
     ],
     stores: [
         'userInformations',
@@ -57,8 +56,9 @@ Ext.application({
         'titleNameEns',
         'marketingGroups',
         'positions',
-        'departments'
-//        'companies'
+        'departments',
+        'visitCallingStore'
+        
     ],
     views: [
         'Window.UserInfWindow',

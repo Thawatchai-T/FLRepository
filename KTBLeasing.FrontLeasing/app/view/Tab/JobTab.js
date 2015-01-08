@@ -36,7 +36,7 @@ Ext.define('TabUserInformation.view.Tab.JobTab', {
     viewModel: {
         type: 'tabjobtab'
     },
-    title: 'กขคง',
+    title: 'Job Management',
 
     items: [
         {

@@ -44,7 +44,7 @@ Ext.define('TabUserInformation.view.Tab.VisitCallingTab', {
     height: 900,
     width: '100%',
     layout: 'border',
-    title: 'กพพพ Visit/Calling Information',
+    title: 'Visit/Calling Information',
     defaultListenerScope: true,
 
     items: [
@@ -98,26 +98,35 @@ Ext.define('TabUserInformation.view.Tab.VisitCallingTab', {
         {
             xtype: 'gridpanel',
             region: 'center',
+            store: 'visitCallingStore',
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'string',
-                    text: 'String'
+                    dataIndex: 'Id',
+                    text: 'VisitNo.'
                 },
                 {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'number',
-                    text: 'Number'
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CreateDate',
+                    text: 'Visit Date'
                 },
                 {
-                    xtype: 'datecolumn',
-                    dataIndex: 'date',
-                    text: 'Date'
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CustomerName',
+                    flex: -1,
+                    text: 'Customer Name'
                 },
                 {
-                    xtype: 'booleancolumn',
-                    dataIndex: 'bool',
-                    text: 'Boolean'
+                    xtype: 'gridcolumn',
+                    dataIndex: 'MarketingOfficer',
+                    text: 'Marketing Officer',
+                    flex: -1
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'RefNo',
+                    text: 'Ref Information No',
+                    flex: -1
                 }
             ],
             dockedItems: [
@@ -151,6 +160,7 @@ Ext.define('TabUserInformation.view.Tab.VisitCallingTab', {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
                     ui: 'footer',
+                    store: 'visitCallingStore',
                     width: 360,
                     displayInfo: true
                 }
