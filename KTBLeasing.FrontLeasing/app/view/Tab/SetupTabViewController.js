@@ -211,20 +211,16 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
                         var setup = Ext.create('widget.windowsetupwindow', {
                             listeners: {
                                 close: function (panel, eOpts) {
-                                    //console.log('close');
-                                    var refreshNode = store.getNodeById(selModel.id);
 
+                                    var refreshNode = store.getNodeById(selModel.get('Parent_Id'));
                                     //refreshNode.removeAll(false);
-                                    //console.log(refreshNode.isExpanded());
-                                    //console.log(refreshNode);
 
-                                    store.load({
-                                        node: selModel.id
-                                    });
+                                    store.load();
                                 }
                             }
 
                         });
+
                         setup.down('form').loadRecord(selModel);
                         setup.down('form').getComponent('type').hide();
                         setup.down('form').getComponent('id').hide();
