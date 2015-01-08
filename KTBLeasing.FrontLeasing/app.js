@@ -34,8 +34,7 @@ Ext.application({
         'Tab',
         'CommonData',
 		'Province',
-        'BaseCommonData',
-		'BrowseFiles'
+        'BaseCommonData'
     ],
     stores: [
         'userInformations',
@@ -56,8 +55,17 @@ Ext.application({
         'titleNameEns',
         'marketingGroups',
         'positions',
-        'departments'
-//        'companies'
+        'departments',
+		'typeCustomers',
+        'IndustryCodes',
+        'CustEngType',
+        'CustThaiType',
+        'ParentCompanies',
+        'NatureCusts',
+        'GroupCusts',
+        'TypeCusts',
+        'KTBIsics',
+        'KTBCustTypes'
     ],
     views: [
         'Window.UserInfWindow',
