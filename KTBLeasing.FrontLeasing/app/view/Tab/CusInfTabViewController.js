@@ -17,20 +17,44 @@ Ext.define('TabUserInformation.view.Tab.CusInfTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabcusinftab',
 
-    onButtonSearchClick: function(button, e, eOpts) {
-        // var text = Ext.getCmp('search-text').getValue();
-        // var store = this.getGridStore();
+    onTextfieldKeyup: function (textfield, e, eOpts) {
+        var grid = this.getView().down('gridpanel'),
+            filters = grid.store.getFilters(),
+            radiogroup = this.getView().down('radiogroup'),
+            property = null;
 
-        // store.getProxy().extraParams.text = text;
-        // this.down('pagingtoolbar').moveFirst();
+        switch (radiogroup.getChecked()[0].inputValue) {
+            case 'code':
+                property = 'CustomerCode';
+                break;
+            case 'eng':
+                property = 'CustomerEngName';
+                break;
+            case 'thai':
+                property = 'CustomerThaiName';
+                break;
+        }
 
+        if (textfield.value) {
+            this.nameFilter = filters.add({ id: 'nameFilter',
+                property: property,
+                value: textfield.value,
+                anyMatch: true,
+                caseSensitive: false
+            });
+        } else if (this.nameFilter) {
+            filters.remove(this.nameFilter);
+            this.nameFilter = null;
+        }
     },
 
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.windowcusinfwindow');
-        var form = popup.down('form');
-        form.loadRecord(record);
-        popup.show();
+        if (this.getView().down('gridpanel').getSelection().length) {
+            var popup = Ext.create('widget.windowcusinfwindow');
+            var form = popup.down('form');
+            form.loadRecord(record);
+            popup.show();
+        }
     },
 
     onButtonClick: function(button, e, eOpts) {
@@ -39,10 +63,13 @@ Ext.define('TabUserInformation.view.Tab.CusInfTabViewController', {
     },
 
     onButtonEditClick1: function(button, e, eOpts) {
-        // Create new register form window
-        var popup = Ext.create("widget.windowcusinfwindow");
-        // Show window
-        popup.show();
+        var record = this.getView().down('gridpanel').getSelection()[0];
+        if (this.getView().down('gridpanel').getSelection().length) {
+            var popup = Ext.create('widget.windowcusinfwindow');
+            var form = popup.down('form');
+            form.loadRecord(record);
+            popup.show();
+        }
     }
 
 });

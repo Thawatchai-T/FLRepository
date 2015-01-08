@@ -18,23 +18,65 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
     alias: 'model.customerinformation',
 
     requires: [
-        'Ext.data.field.String'
+        'Ext.data.field.Integer'
     ],
 
-    idProperty: 'Guid2',
+    idProperty: 'CustomerCode',
 
     fields: [
         {
-            type: 'integer',
-            name: 'Guid2'
+            name: 'CustomerCode'
         },
         {
-            type: 'integer',
-            name: 'PositionId'
+            name: 'CustomerEngType'
         },
         {
-            type: 'integer',
-            name: 'PositionGuid'
+            name: 'CustomerThaiType'
+        },
+        {
+            name: 'CustomerEngName'
+        },
+        {
+            name: 'CustomerThaiName'
+        },
+        {
+            name: 'TypeCustomer'
+        },
+        {
+            name: 'ParentCompany'
+        },
+        {
+            name: 'Telephone'
+        },
+        {
+            name: 'Email'
+        },
+        {
+            name: 'TaxNo'
+        },
+        {
+            name: 'Fax'
+        },
+        {
+            name: 'KTBIsicCode'
+        },
+        {
+            name: 'KTBCustType'
+        },
+        {
+            name: 'VAT'
+        },
+        {
+            name: 'IndustryCode'
+        },
+        {
+            name: 'NatureCust'
+        },
+        {
+            name: 'GroupCust'
+        },
+        {
+            name: 'TypeCust'
         }
     ]
 });

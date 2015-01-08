@@ -105,6 +105,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return this.CommonRepository.GetMarketingGroup();
         }
 
+        public IEnumerable<CommonData> GetCommonByNameEng(string NameEng)
+        {
+            return this.CommonRepository.GetCommonByNameEng(NameEng);
+        }
+
         #endregion
 
         private List<Province> SetProvince()

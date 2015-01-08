@@ -22,21 +22,17 @@ Ext.define('TabUserInformation.store.customerInformations', {
         'Ext.data.proxy.Rest'
     ],
 
-    constructor: function (cfg) {
+    constructor: function(cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'customerInformations',
             model: 'TabUserInformation.model.CustomerInformation',
-//            autoLoad: true,
+            autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/customer',
-                reader: {
-                    type: 'json'
-                }
-            },
-            lazyFill: true
+                url: 'api/cusinfo'
+            }
         }, cfg)]);
     }
 });

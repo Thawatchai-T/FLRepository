@@ -15,38 +15,6 @@
 
 Ext.define('TabUserInformation.view.Window.CusInfWindowViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.windowcusinfwindow',
-
-    requires: [
-        'Ext.data.Store',
-        'Ext.data.field.Field'
-    ],
-
-    stores: {
-        browse: {
-            autoLoad: false,
-            model: 'TabUserInformation.model.BrowseFiles',
-            data: [
-                {
-                    Id: 'in',
-                    Type: 'omnis',
-                    Desc: 'eum'
-                },
-                {
-                    Id: 'quo',
-                    Type: 'illo',
-                    Desc: 'error'
-                }
-            ],
-            fields: [
-                {
-                    name: 'Type'
-                },
-                {
-                    name: 'Desc'
-                }
-            ]
-        }
-    }
+    alias: 'viewmodel.windowcusinfwindow'
 
 });

@@ -170,6 +170,7 @@
     <Compile Include="Controllers\TreeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
+    <Compile Include="Controllers\VisitCallingController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,6 +185,7 @@
     <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserInTabModel.cs" />
+    <Compile Include="Models\VisistCallModel.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -216,6 +218,7 @@
     <Content Include="app\model\Signer.js" />
     <Content Include="app\model\UserInformation.js" />
     <Content Include="app\model\UserInTab.js" />
+    <Content Include="app\model\VisitCallingModel.js" />
     <Content Include="app\store\addresses.js" />
     <Content Include="app\store\affidavits.js" />
     <Content Include="app\store\authorities.js" />
@@ -246,6 +249,7 @@
     <Content Include="app\store\signers.js" />
     <Content Include="app\store\userInformations.js" />
     <Content Include="app\store\userInTabs.js" />
+    <Content Include="app\store\VisitCallingStore.js" />
     <Content Include="app\view\AffidavitWindowViewController1.js" />
     <Content Include="app\view\AffidavitWindowViewModel1.js" />
     <Content Include="app\view\CalculatorGadget.js" />

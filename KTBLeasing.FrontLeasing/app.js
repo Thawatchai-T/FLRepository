@@ -34,7 +34,8 @@ Ext.application({
         'Tab',
         'CommonData',
 		'Province',
-        'BaseCommonData'
+        'BaseCommonData',
+        'VisitCallingModel'
     ],
     stores: [
         'userInformations',
@@ -65,7 +66,8 @@ Ext.application({
         'GroupCusts',
         'TypeCusts',
         'KTBIsics',
-        'KTBCustTypes'
+        'KTBCustTypes',
+        'visitCallingStore'
     ],
     views: [
         'Window.UserInfWindow',

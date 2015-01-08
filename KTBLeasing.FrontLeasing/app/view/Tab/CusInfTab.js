@@ -22,13 +22,13 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
         'TabUserInformation.view.Tab.CusInfTabViewController',
         'Ext.form.field.Text',
         'Ext.form.trigger.Trigger',
-        'Ext.button.Button',
         'Ext.form.RadioGroup',
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.View',
         'Ext.toolbar.Paging',
-        'Ext.grid.column.Column'
+        'Ext.grid.column.Column',
+        'Ext.button.Button'
     ],
 
     controller: 'tabcusinftab',
@@ -38,7 +38,6 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
     id: 'cusinftab',
     title: 'Customer Information',
     titleCollapse: false,
-    defaultListenerScope: true,
 
     items: [
         {
@@ -53,27 +52,14 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     xtype: 'textfield',
                     fieldLabel: 'Search Text',
                     labelAlign: 'right',
+                    enableKeyEvents: true,
                     triggers: {
                         mytrigger: {
-                            handler: function(field, trigger, e) {
-                                console.log(e.getKey());
-                            },
                             cls: 'x-form-search-trigger'
                         }
                     },
                     listeners: {
-                        render: 'onTextfieldRender'
-                    }
-                },
-                {
-                    xtype: 'button',
-                    margin: '0 0 0 5',
-                    text: 'Search',
-                    listeners: {
-                        click: {
-                            fn: 'onButtonSearchClick',
-                            scope: 'controller'
-                        }
+                        keyup: 'onTextfieldKeyup'
                     }
                 },
                 {
@@ -86,17 +72,24 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     items: [
                         {
                             xtype: 'radiofield',
-                            boxLabel: 'Code'
+                            name: 'searchby',
+                            boxLabel: 'Code',
+                            checked: true,
+                            inputValue: 'code'
                         },
                         {
                             xtype: 'radiofield',
                             margin: '0 0 0 5',
-                            boxLabel: 'English Name'
+                            name: 'searchby',
+                            boxLabel: 'English Name',
+                            inputValue: 'eng'
                         },
                         {
                             xtype: 'radiofield',
                             margin: '0 0 0 5',
-                            boxLabel: 'Thai Name'
+                            name: 'searchby',
+                            boxLabel: 'Thai Name',
+                            inputValue: 'thai'
                         }
                     ]
                 },
@@ -123,29 +116,101 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     store: 'customerInformations'
                 }
             ],
+            listeners: {
+                itemdblclick: 'onGridpanelItemDblClick'
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'GUID2',
-                    text: 'GUID2'
+                    dataIndex: 'CustomerCode',
+                    text: 'CustomerCode'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'POSITION_ID',
-                    text: 'POSITION_ID'
+                    dataIndex: 'CustomerEngType',
+                    text: 'CustomerEngType'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'POSITIONGUID',
-                    text: 'POSITIONGUID'
+                    dataIndex: 'CustomerThaiType',
+                    text: 'CustomerThaiType'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CustomerEngName',
+                    text: 'CustomerEngName'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CustomerThaiName',
+                    text: 'CustomerThaiName'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'TypeCustomer',
+                    text: 'TypeCustomer'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'ParentCompany',
+                    text: 'ParentCompany'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Telephone',
+                    text: 'Telephone'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Email',
+                    text: 'Email'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'TaxNo',
+                    text: 'TaxNo'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Fax',
+                    text: 'Fax'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'KTBIsicCode',
+                    text: 'KTBIsicCode'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'KTBCustType',
+                    text: 'KTBCustType'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'VAT',
+                    text: 'VAT'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'IndustryCode',
+                    text: 'IndustryCode'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'NatureCust',
+                    text: 'NatureCust'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'GroupCust',
+                    text: 'GroupCust'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'TypeCust',
+                    text: 'TypeCust'
                 }
-            ],
-            listeners: {
-                itemdblclick: {
-                    fn: 'onGridpanelItemDblClick',
-                    scope: 'controller'
-                }
-            }
+            ]
         },
         {
             xtype: 'panel',
@@ -211,32 +276,18 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     xtype: 'button',
                     text: 'New',
                     listeners: {
-                        click: {
-                            fn: 'onButtonClick',
-                            scope: 'controller'
-                        }
+                        click: 'onButtonClick'
                     }
                 },
                 {
                     xtype: 'button',
                     text: 'Edit',
                     listeners: {
-                        click: {
-                            fn: 'onButtonEditClick1',
-                            scope: 'controller'
-                        }
+                        click: 'onButtonEditClick1'
                     }
                 }
             ]
         }
-    ],
-
-    onTextfieldRender: function(component, eOpts) {
-        component.getEl().on('keypress', function(e) {
-            if (e.getKey() == e.ENTER) {
-                //
-            }
-        });
-    }
+    ]
 
 });

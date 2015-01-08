@@ -17,6 +17,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<DepartmentCode> GetDeparment();
         List<Position> GetPosition();
         List<MarketingGroup> GetMarketingGroup();
+        List<CommonData> GetCommonByNameEng(string nameeng);
         int Count();
     }
     public class ComboboxRepository : NhRepository, IComboboxRepository
@@ -84,6 +85,22 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var result = session.QueryOver<MarketingGroup>().List();
 
                 return result as List<MarketingGroup>;
+            }
+        }
+
+        public List<CommonData> GetCommonByNameEng(string nameeng)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng == nameeng).List<CommonData>();
+                    return result as List<CommonData>;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
             }
         }
 

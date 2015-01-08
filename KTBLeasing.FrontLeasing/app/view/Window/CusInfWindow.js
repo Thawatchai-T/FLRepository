@@ -45,7 +45,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
     autoShow: true,
     id: 'cusinfwindow',
     width: 930,
-    layout: 'table',
+    layout: 'anchor',
     title: 'Customer Information',
     titleCollapse: false,
     modal: true,
@@ -73,7 +73,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             formBind: false,
                             fieldLabel: 'Customer Code',
                             labelWidth: 150,
-                            name: 'GUID2'
+                            name: 'CustomerCode'
                         },
                         {
                             xtype: 'container',
@@ -84,7 +84,11 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     margin: '0 0 0 5',
                                     width: 200,
                                     fieldLabel: 'Type of Customer',
-                                    labelWidth: 110
+                                    labelWidth: 110,
+                                    name: 'TypeCustomer',
+                                    displayField: 'Name',
+                                    store: 'typeCustomers',
+                                    valueField: 'Id'
                                 },
                                 {
                                     xtype: 'button',
@@ -97,7 +101,11 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                         {
                             xtype: 'combobox',
                             margin: '0 0 0 5',
-                            fieldLabel: 'Industry Code'
+                            fieldLabel: 'Industry Code',
+                            name: 'IndustryCode',
+                            displayField: 'Name',
+                            store: 'IndustryCodes',
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'container',
@@ -108,22 +116,27 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     xtype: 'combobox',
                                     width: 240,
                                     fieldLabel: 'Customer Eng Name',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    name: 'CustomerEngType',
+                                    displayField: 'Name',
+                                    store: 'CustEngType',
+                                    valueField: 'Id'
                                 },
                                 {
                                     xtype: 'textfield',
-                                    width: 180
-                                },
-                                {
-                                    xtype: 'textfield',
-                                    width: 180
+                                    width: 360,
+                                    name: 'CustomerEngName'
                                 }
                             ]
                         },
                         {
                             xtype: 'combobox',
                             margin: '0 0 0 5',
-                            fieldLabel: 'Nature of Cus'
+                            fieldLabel: 'Nature of Cus',
+                            name: 'NatureCust',
+                            displayField: 'Name',
+                            store: 'NatureCusts',
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'container',
@@ -135,54 +148,87 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     xtype: 'combobox',
                                     width: 240,
                                     fieldLabel: 'Customer Thai Name',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    name: 'CustomerThaiType',
+                                    displayField: 'Name',
+                                    store: 'CustThaiType',
+                                    valueField: 'Id'
                                 },
                                 {
                                     xtype: 'textfield',
-                                    width: 180
-                                },
-                                {
-                                    xtype: 'textfield',
-                                    width: 180
+                                    width: 360,
+                                    name: 'CustomerThaiName'
                                 }
                             ]
                         },
                         {
                             xtype: 'combobox',
                             margin: '0 0 0 5',
-                            fieldLabel: 'Group of Cus'
+                            fieldLabel: 'Group of Cus',
+                            name: 'GroupCust',
+                            displayField: 'Name',
+                            store: 'GroupCusts',
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'combobox',
                             fieldLabel: 'Parent Country',
-                            labelWidth: 150
+                            labelWidth: 150,
+                            name: 'ParentCompany',
+                            displayField: 'Name',
+                            store: 'ParentCompanies',
+                            valueField: 'Id'
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 0 0 5',
                             width: 270,
-                            fieldLabel: 'Telephone'
+                            fieldLabel: 'Telephone',
+                            name: 'Telephone'
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 0 0 5',
-                            fieldLabel: 'Fax'
+                            fieldLabel: 'Fax',
+                            name: 'Fax'
                         },
                         {
-                            xtype: 'combobox',
+                            xtype: 'textfield',
                             fieldLabel: 'Email',
-                            labelWidth: 150
+                            labelWidth: 150,
+                            name: 'Email'
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 0 0 5',
                             width: 270,
-                            fieldLabel: 'Tax No'
+                            fieldLabel: 'Tax No',
+                            name: 'TaxNo'
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 5 0 5',
-                            fieldLabel: 'VAT %'
+                            fieldLabel: 'VAT %',
+                            name: 'VAT'
+                        },
+                        {
+                            xtype: 'combobox',
+                            fieldLabel: 'KTB Isic Code',
+                            labelWidth: 150,
+                            name: 'KTBIsicCode',
+                            displayField: 'Name',
+                            store: 'KTBIsics',
+                            valueField: 'Id'
+                        },
+                        {
+                            xtype: 'combobox',
+                            margin: '0 0 0 5',
+                            width: 270,
+                            fieldLabel: 'KTB CustType',
+                            name: 'KTBCustType',
+                            displayField: 'Name',
+                            store: 'KTBCustTypes',
+                            valueField: 'Id'
                         }
                     ],
                     dockedItems: [
@@ -550,16 +596,16 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                     ]
                 },
                 {
-                    xtype: 'panel',
-                    //margin: '10 10 10 10',
+                    xtype: 'fieldset',
+                    margin: '10 10 10 10',
                     width: 890,
                     layout: 'auto',
                     title: 'Upload File',
                     items: [
-                        //{
-//                            xtype: 'container',
-////                            layout: 'anchor',
-//                            items: [
+                        {
+                            xtype: 'container',
+                            layout: 'anchor',
+                            items: [
                                 {
                                     xtype: 'filefield',
                                     id: 'file1',
@@ -595,9 +641,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     listeners: {
                                         click: 'onUploadClick'
                                     }
-                                },
-                           // ]
-                        //},
+                                }
+                            ]
+                        },
                         {
                             xtype: 'radiogroup',
                             hidden: true,
