@@ -19,6 +19,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         CommonData GetById(long id);
 
         bool Update(CommonData commonAddress);
+        List<CommonData> GetCommonByNameEng(string nameeng);
 
     }
     public class CommonDataRepository : NhRepository, ICommonDataRepository
@@ -195,6 +196,22 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
             }
             
+        }
+
+        public List<CommonData> GetCommonByNameEng(string nameeng)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng.Equals(nameeng)).List<CommonData>();
+                    return result as List<CommonData>;
+                }
+                catch (Exception e)
+                {
+                    return null;
+                }
+            }
         }
     }
 }
