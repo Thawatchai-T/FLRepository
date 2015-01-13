@@ -78,6 +78,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonData.cs" />
+    <Compile Include="CustomerMap.cs" />
     <Compile Include="UserInformationViewMap.cs" />
     <Compile Include="ProvinceMap.cs" />
     <Compile Include="NhRepository.cs">

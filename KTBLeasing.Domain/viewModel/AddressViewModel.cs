@@ -24,6 +24,8 @@ namespace KTBLeasing.Domain
         public virtual string SubdistrictName { get; set; }
         public virtual int Zipcode { get; set; }
         public virtual string Remark { get; set; }
+        public virtual long AddressType { get; set; }
+
 
         public virtual string DisplayProvince { get; set; }
     }

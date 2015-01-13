@@ -8,13 +8,38 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     
     
     public class CustomerMap : ClassMap<Customer> {
-        
-        public CustomerMap() {
-			Table("CUSTOMER");
-			LazyLoad();
-			Id(x => x.Guid2).GeneratedBy.Assigned().Column("GUID2");
-			Map(x => x.PositionId).Column("POSITION_ID").Not.Nullable();
-			Map(x => x.PositionGuid).Column("POSITIONGUID").Not.Nullable();
+        public CustomerMap()
+        {
+            Table("CUSTOMER");
+            LazyLoad();
+            //Id(x => x.Id).Column(x => x.ID).GeneratedBy.Sequence("DBOBJECTID_SEQUENCE")
+            Id(x => x.Id, "ID").GeneratedBy.Increment();
+            Map(x => x.PositionId).Column("POSITION_ID");
+            Map(x => x.Positionguid).Column("POSITIONGUID");
+            Map(x => x.TypeCustomer).Column("TYPE_CUSTOMER");
+            Map(x => x.IndustryCode).Column("INDUSTRY_CODE");
+            Map(x => x.NatureCust).Column("NATURE_CUST");
+            Map(x => x.TypeCust).Column("TYPE_CUST");
+            Map(x => x.TitleCustNameEng).Column("TITLE_CUST_NAME_ENG");
+            Map(x => x.TitleCustNameTh).Column("TITLE_CUST_NAME_TH");
+            Map(x => x.TsicCode).Column("TSIC_CODE");
+            Map(x => x.CustType).Column("CUST_TYPE");
+            Map(x => x.NameTh).Column("NAME_TH");
+            Map(x => x.NameEng).Column("NAME_ENG");
+            Map(x => x.ParentId).Column("PARENT_ID").Not.Nullable();
+            Map(x => x.VsAreaProvince).Column("VS_AREA_PROVINCE");
+            Map(x => x.VsAreaIndEstate).Column("VS_AREA_IND_ESTATE");
+            Map(x => x.TaxNo).Column("TAX_NO");
+            Map(x => x.Vat).Column("VAT");
+            Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER");
+            Map(x => x.Remark).Column("REMARK");
+            Map(x => x.Active).Column("ACTIVE");
+            Map(x => x.CreateBy).Column("CREATE_BY");
+            Map(x => x.UpdateBy).Column("UPDATE_BY");
+            Map(x => x.CreateDate).Column("CREATE_DATE");
+            Map(x => x.UpdateDate).Column("UPDATE_DATE");
         }
+    
+        
     }
 }

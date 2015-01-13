@@ -19,7 +19,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual long Zipcode { get; set; }
         public virtual long SubdistrictId { get; set; }
         public virtual string Remark { get; set; }
-        public virtual decimal? AddressType { get; set; }
+        public virtual long AddressType { get; set; }
         public virtual short? Active { get; set; }
         //public virtual DateTime? CreateDate { get; set; }
         //public virtual string UpdateDate { get; set; }

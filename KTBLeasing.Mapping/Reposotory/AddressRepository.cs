@@ -86,7 +86,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                                   SubdistrictId = y.SubdistrictId,
                                   SubdistrictName = y.SubdistrictName,
                                   Zipcode = y.Zipcode,
-                                  DisplayProvince = string.Format("{0} {1} {2} {3}",y.ProvinceName,y.DistrictName,y.SubdistrictName,y.Zipcode)
+                                  DisplayProvince = string.Format("{0} {1} {2} {3}",y.ProvinceName,y.DistrictName,y.SubdistrictName,y.Zipcode),
+                                  AddressType = x.AddressType
 
                               })
                              ).Skip(start).Take(limit).ToList<AddressViewModel>();
