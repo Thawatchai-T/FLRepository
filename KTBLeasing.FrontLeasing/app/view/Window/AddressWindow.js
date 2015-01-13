@@ -20,6 +20,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
     requires: [
         'TabUserInformation.view.Window.AddressWindowViewModel',
         'TabUserInformation.view.Window.AddressWindowViewController',
+        'Ext.form.Panel',
         'Ext.grid.Panel',
         'Ext.grid.column.RowNumberer',
         'Ext.grid.View',
@@ -34,21 +35,34 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
     viewModel: {
         type: 'windowaddresswindow'
     },
+    autoShow: true,
     width: 1025,
     title: 'Address',
     modal: true,
 
     items: [
         {
-            xtype: 'textfield',
-            margin: '5 0 5 20',
-            fieldLabel: 'Customer Code'
-        },
-        {
-            xtype: 'textfield',
-            margin: '0 0 5 20',
-            width: 639,
-            fieldLabel: 'Customer Name'
+            xtype: 'form',
+            id: 'address-form',
+            bodyPadding: 10,
+            items: [
+                {
+                    xtype: 'textfield',
+                    margin: '5 0 5 20',
+                    fieldLabel: 'Customer Code',
+                    readOnly: true,
+                    name: 'CustomerCode'
+                },
+                {
+                    xtype: 'textfield',
+                    id: 'address-customername-textfield',
+                    margin: '0 0 5 20',
+                    width: 639,
+                    fieldLabel: 'Customer Name',
+                    readOnly: true,
+                    name: 'CustomerThaiName'
+                }
+            ]
         },
         {
             xtype: 'gridpanel',
@@ -63,47 +77,38 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'ProvinceName',
+                    width: 250,
+                    dataIndex: 'AddressEng',
+                    text: 'AddressEng',
+                    editor: {
+                        xtype: 'textareafield'
+                    }
+                },
+                {
+                    xtype: 'gridcolumn',
+                    width: 250,
+                    dataIndex: 'AddressThai',
+                    text: 'AddressThai',
+                    editor: {
+                        xtype: 'textareafield'
+                    }
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Province',
                     text: 'Province',
+                    flex: -1,
                     editor: {
                         xtype: 'combobox',
-                        //id: 'userinrole-role-combobox',
-                        store: 'provinces',
-                        //queryMode: 'local',
-                        // autoLoad: true,
-                        valueField: 'ProvinceName',
-                        displayField: 'ProvinceName',
-//                        listeners: {
-//                            select:'onComboBoxSelect'
-//                        }
+                        autoShow: true,
+                        displayField: 'Name',
+                        store: 'CommonData.provinces',
+                        valueField: 'Id',
+                        autoLoadOnValue: true
+
                     }
                 }
-            //                {
-            //                    xtype: 'gridcolumn',
-            //                    width: 250,
-            //                    dataIndex: 'AddressEng',
-            //                    text: 'AddressEng',
-            //                    editor: {
-            //                        xtype: 'textareafield'
-            //                    }
-            //                },
-            //                {
-            //                    xtype: 'gridcolumn',
-            //                    width: 250,
-            //                    dataIndex: 'AddressThai',
-            //                    text: 'AddressThai',
-            //                    editor: {
-            //                        xtype: 'textareafield'
-            //                    }
-            //                },
-            //                {
-            //                    xtype: 'gridcolumn',
-            //                    dataIndex: 'Province',
-            //                    text: 'Province',
-            //                    editor: {
-            //                        xtype: 'combobox'
-            //                    }
-            //                },
+            //                ,
             //                {
             //                    xtype: 'gridcolumn',
             //                    width: 74,
@@ -164,6 +169,13 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                     text: 'New',
                     listeners: {
                         click: 'onButtonNewClick'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    text: 'Edit',
+                    listeners: {
+                        click: 'onButtonEditClick'
                     }
                 },
                 {

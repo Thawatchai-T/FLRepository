@@ -37,7 +37,9 @@ namespace KTBLeasing.FrontLeasing.Models
                     CustomerEngType = i,
                      CustomerThaiType = i,
                     CustomerEngName = "Company A"+i,
-                    CustomerThaiName = "บริษัท ก"+i
+                    CustomerThaiName = "บริษัท ก"+i,
+                    TypeCustomer = 99,
+                    NatureCust = 67
                 };
                 list.Add(en);
             }

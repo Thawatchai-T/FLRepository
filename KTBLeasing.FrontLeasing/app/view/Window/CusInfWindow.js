@@ -87,8 +87,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     labelWidth: 110,
                                     name: 'TypeCustomer',
                                     displayField: 'Name',
-                                    store: 'typeCustomers',
-                                    valueField: 'Id'
+                                    store: 'CommonData.typeCustomers',
+                                    valueField: 'Id',
+                                    autoLoadOnValue: true
                                 },
                                 {
                                     xtype: 'button',
@@ -104,8 +105,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             fieldLabel: 'Industry Code',
                             name: 'IndustryCode',
                             displayField: 'Name',
-                            store: 'IndustryCodes',
-                            valueField: 'Id'
+                            store: 'CommonData.industryCodes',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'container',
@@ -119,8 +121,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     labelWidth: 150,
                                     name: 'CustomerEngType',
                                     displayField: 'Name',
-                                    store: 'CustEngType',
-                                    valueField: 'Id'
+                                    store: 'CommonData.custEngType',
+                                    valueField: 'Id',
+                                    autoLoadOnValue: true
                                 },
                                 {
                                     xtype: 'textfield',
@@ -132,11 +135,12 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                         {
                             xtype: 'combobox',
                             margin: '0 0 0 5',
-                            fieldLabel: 'Nature of Cus',
+                            fieldLabel: 'Nationality',
                             name: 'NatureCust',
                             displayField: 'Name',
-                            store: 'NatureCusts',
-                            valueField: 'Id'
+                            store: 'CommonData.natureCusts',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'container',
@@ -151,8 +155,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                                     labelWidth: 150,
                                     name: 'CustomerThaiType',
                                     displayField: 'Name',
-                                    store: 'CustThaiType',
-                                    valueField: 'Id'
+                                    store: 'CommonData.custThaiType',
+                                    valueField: 'Id',
+                                    autoLoadOnValue: true
                                 },
                                 {
                                     xtype: 'textfield',
@@ -167,8 +172,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             fieldLabel: 'Group of Cus',
                             name: 'GroupCust',
                             displayField: 'Name',
-                            store: 'GroupCusts',
-                            valueField: 'Id'
+                            store: 'CommonData.groupCusts',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'combobox',
@@ -176,8 +182,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             labelWidth: 150,
                             name: 'ParentCompany',
                             displayField: 'Name',
-                            store: 'ParentCompanies',
-                            valueField: 'Id'
+                            store: 'CommonData.parentCompanies',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'textfield',
@@ -215,10 +222,11 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             xtype: 'combobox',
                             fieldLabel: 'KTB Isic Code',
                             labelWidth: 150,
-                            name: 'KTBIsicCode',
+                            name: 'KTBIsacCode',
                             displayField: 'Name',
-                            store: 'KTBIsics',
-                            valueField: 'Id'
+                            store: 'CommonData.KTBIsics',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'combobox',
@@ -227,8 +235,9 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                             fieldLabel: 'KTB CustType',
                             name: 'KTBCustType',
                             displayField: 'Name',
-                            store: 'KTBCustTypes',
-                            valueField: 'Id'
+                            store: 'CommonData.KTBCustTypes',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         }
                     ],
                     dockedItems: [
@@ -726,6 +735,7 @@ Ext.define('TabUserInformation.view.Window.CusInfWindow', {
                 },
                 {
                     xtype: 'button',
+                    reference: 'btnreset',
                     text: 'Reset',
                     listeners: {
                         click: 'onButtonResetClick'

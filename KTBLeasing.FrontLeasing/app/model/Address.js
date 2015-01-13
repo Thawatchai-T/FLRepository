@@ -21,33 +21,41 @@ Ext.define('TabUserInformation.model.Address', {
         'Ext.data.field.String'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
-            name: 'CustCode'
+            name: 'Id'
         },
         {
-            type: 'string',
+            name: 'CustomerId'
+        },
+        {
             name: 'AddressEng'
         },
         {
-            type: 'string',
-            name: 'AddressThai'
+            name: 'AddressTh'
         },
         {
-            type: 'string',
-            name: 'Province'
+            name: 'SubdistrictId'
         },
         {
-            type: 'string',
-            name: 'Zip'
+            name: 'Zipcode'
         },
         {
-            type: 'string',
-            name: 'Telephone'
+            name: 'CreateDate'
         },
         {
-            type: 'string',
-            name: 'Fax'
+            name: 'UpdateDate'
+        },
+        {
+            name: 'Remark'
+        },
+        {
+            name: 'AddressType'
+        },
+        {
+            name: 'Active'
         }
     ]
 });

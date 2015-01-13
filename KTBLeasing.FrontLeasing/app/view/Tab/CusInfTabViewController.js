@@ -48,25 +48,29 @@ Ext.define('TabUserInformation.view.Tab.CusInfTabViewController', {
         }
     },
 
-    onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         if (this.getView().down('gridpanel').getSelection().length) {
-            var popup = Ext.create('widget.windowcusinfwindow');
-            var form = popup.down('form');
+            var popup = Ext.create('widget.windowcusinfwindow'),
+                form = popup.down('form'),
+                btnreset = popup.lookupReference('btnreset');
+            btnreset.hide();
             form.loadRecord(record);
             popup.show();
         }
     },
 
-    onButtonClick: function(button, e, eOpts) {
+    onButtonClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowcusinfwindow");
         popup.show();
     },
 
-    onButtonEditClick1: function(button, e, eOpts) {
+    onButtonEditClick1: function (button, e, eOpts) {
         var record = this.getView().down('gridpanel').getSelection()[0];
         if (this.getView().down('gridpanel').getSelection().length) {
-            var popup = Ext.create('widget.windowcusinfwindow');
-            var form = popup.down('form');
+            var popup = Ext.create('widget.windowcusinfwindow'),
+                form = popup.down('form'),
+                btnreset = popup.lookupReference('btnreset');
+            btnreset.hide();
             form.loadRecord(record);
             popup.show();
         }

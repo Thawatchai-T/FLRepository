@@ -44,11 +44,11 @@
             type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.UserInfomationRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
-  
-  <!--<object id="CustomerRepository"
-              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CustomerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+
+  <object id="addressRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.AddressRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
-  </object>-->
+  </object>
 
 
 </objects>

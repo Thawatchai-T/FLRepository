@@ -28,17 +28,20 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return Province;
         }
 
-        public IEnumerable<Province> GetAll(string q)
+        public IEnumerable<Province> GetAll(string text)
         {
             SetProvince();
-            return Province.Where(x => x.Zipcode.ToString().Contains(q));
+            if (!string.IsNullOrEmpty(text))
+                return Province.Where(x => x.Zipcode.ToString().Contains(text) || x.SubdistrictName.Contains(text) || x.DistrictName.Contains(text) || x.ProvinceName.Contains(text));
+            else
+                return Province;
         }
         
         /// <summary>
         /// Get Provinct 
         /// </summary>
         /// <returns>List of ProvinceModel</returns>
-        public IEnumerable<ProvinceModel> GetProvice()
+        public IEnumerable<ProvinceModel> GetProvince()
         {
             SetProvince();
             return Province.GroupBy(g => new { g.ProvinceId, g.ProvinceName }).Select(x => new ProvinceModel { ProvinceId = x.Key.ProvinceId, ProvinceName = x.Key.ProvinceName }).ToList<ProvinceModel>();

@@ -128,12 +128,14 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'CustomerEngType',
-                    text: 'CustomerEngType'
+                    text: 'CustomerEngType',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'CustomerThaiType',
-                    text: 'CustomerThaiType'
+                    text: 'CustomerThaiType',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
@@ -148,67 +150,80 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'TypeCustomer',
-                    text: 'TypeCustomer'
+                    text: 'TypeCustomer',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'ParentCompany',
-                    text: 'ParentCompany'
+                    text: 'ParentCompany',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Telephone',
-                    text: 'Telephone'
+                    text: 'Telephone',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Email',
-                    text: 'Email'
+                    text: 'Email',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'TaxNo',
-                    text: 'TaxNo'
+                    text: 'TaxNo',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Fax',
-                    text: 'Fax'
+                    text: 'Fax',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'KTBIsicCode',
-                    text: 'KTBIsicCode'
+                    text: 'KTBIsicCode',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'KTBCustType',
-                    text: 'KTBCustType'
+                    text: 'KTBCustType',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'VAT',
-                    text: 'VAT'
+                    text: 'VAT',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'IndustryCode',
-                    text: 'IndustryCode'
+                    text: 'IndustryCode',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'NatureCust',
-                    text: 'NatureCust'
+                    text: 'NatureCust',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'GroupCust',
-                    text: 'GroupCust'
+                    text: 'GroupCust',
+                    hidden: true
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'TypeCust',
-                    text: 'TypeCust'
+                    text: 'TypeCust',
+                    hidden: true
                 }
             ]
         },
@@ -277,7 +292,8 @@ Ext.define('TabUserInformation.view.Tab.CusInfTab', {
                     text: 'New',
                     listeners: {
                         click: 'onButtonClick'
-                    }
+                    },
+                    hidden: true
                 },
                 {
                     xtype: 'button',

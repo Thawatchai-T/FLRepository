@@ -94,7 +94,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 try
                 {
-                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng == nameeng).List<CommonData>();
+                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng == nameeng && x.Parent_Id != 0).List<CommonData>();
                     return result as List<CommonData>;
                 }
                 catch (Exception e)

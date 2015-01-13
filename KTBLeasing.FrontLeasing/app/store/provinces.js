@@ -29,6 +29,7 @@ Ext.define('TabUserInformation.store.provinces', {
         me.callParent([Ext.apply({
             storeId: 'provinces',
             model: 'TabUserInformation.model.Province',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'common/getprovince',

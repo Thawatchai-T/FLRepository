@@ -6,16 +6,26 @@ using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class AddressController : ApiController
     {
         private ComboboxRepository comboboxRepository { get; set; }
+        private IAddressRepository AddressRepository { get; set; }
         // GET api/address
-        public IEnumerable<string> Get()
+        public List<AddressViewModel> Get(int page, int start, int limit)
         {
-            return new string[] { "value1", "value2" };
+            try
+            {
+                return AddressRepository.GetAll(start,limit,999);
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
         }
 
         // GET api/address/5

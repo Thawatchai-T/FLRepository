@@ -12,15 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         void Insert(Address entity);
         List<Address> GetAll();
         List<Address> GetAllWithOrderBy(string orderby);
-        /// <summary>
-        /// [20150113] Thawatchai.t 
-        /// Get Addresss view tab customer
-        ///
-        /// </summary>
-        /// <param name="start"></param>
-        /// <param name="limit"></param>
-        /// <returns></returns>
-        List<AddressViewModel> GetAll(int start, int limit);
+        List<AddressViewModel> GetAll(int start, int limit, int custid);
         int Count();
         List<Address> Find(int start, int limit, string text);
         int Count(string text);
@@ -70,13 +62,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         /// <param name="start"></param>
         /// <param name="limit"></param>
         /// <returns></returns>
-        public List<AddressViewModel> GetAll(int start, int limit)
+        public List<AddressViewModel> GetAll(int start, int limit,int custid)
         {
+            //bypass 
+            custid = 999;
             using (var session = SessionFactory.OpenSession())
             {
                 var result = (from x in session.QueryOver<Address>().List()
                               join y in session.QueryOver<Province>().List()
                               on x.SubdistrictId equals y.SubdistrictId
+                              where x.CustomerId == custid
                               select (new AddressViewModel
                               {
                                   AddressEng = x.AddressEng,
@@ -94,7 +89,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                                   DisplayProvince = string.Format("{0} {1} {2} {3}",y.ProvinceName,y.DistrictName,y.SubdistrictName,y.Zipcode)
 
                               })
-                             ).ToList<AddressViewModel>();
+                             ).Skip(start).Take(limit).ToList<AddressViewModel>();
 
                 return result as List<AddressViewModel>;
 
