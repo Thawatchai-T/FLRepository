@@ -45,15 +45,19 @@ Ext.define('TabUserInformation.view.Tab.SetupTab', {
             items: [
                 {
                     xtype: 'textfield',
-                    fieldLabel: 'Search Text',
-                    labelAlign: 'right'
-                },
-                {
-                    xtype: 'button',
-                    margin: '0 0 0 5',
-                    text: 'Search',
+                    fieldLabel: 'ค้นหา',
+                    labelAlign: 'right',
+                    enableKeyEvents: true,
+                    triggers: {
+                        mytrigger: {
+                            cls: 'x-form-search-trigger'
+                        }
+                    },
                     listeners: {
-                        click: 'onButtonSearchClick11'
+                        keyup: {
+                            fn: 'onTextfieldKeyup',
+                            buffer: 500
+                        }
                     }
                 }
             ]

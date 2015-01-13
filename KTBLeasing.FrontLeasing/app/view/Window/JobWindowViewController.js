@@ -31,7 +31,8 @@ Ext.define('TabUserInformation.view.Window.JobWindowViewController', {
                 case 'ID':
                 popup = Ext.create('widget.windowindicationforequipmentwindow');
                 break;
-                default:
+            default:
+                popup = Ext.create('widget.windowindicationforequipmentwindow');
                 break;
             }
         }

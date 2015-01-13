@@ -23,7 +23,7 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
             filters = grid.store.getFilters(),
             radiogroup = this.getView().down('radiogroup'),
             property = null;
-        
+
         //เลือก radiobox
         switch (radiogroup.getChecked()[0].inputValue) {
             case 'name':
@@ -33,7 +33,7 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
                 property = 'UserId';
                 break;
         }
-        
+
         //filter
         if (textfield.value) {
             this.nameFilter = filters.add({ id: 'nameFilter',
@@ -49,8 +49,10 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
     },
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.windowuserinfwindow');
-        var form = popup.down('form');
+        var popup = Ext.create('widget.windowuserinfwindow'),
+            form = popup.down('form'),
+            btnreset = popup.lookupReference('btnreset');
+        btnreset.hide();
         form.loadRecord(record);
         popup.show();
     },
@@ -72,8 +74,10 @@ Ext.define('TabUserInformation.view.Tab.UserInfTabViewController', {
     onButtonEditClick: function (button, e, eOpts) {
         var record = this.getView().down('gridpanel').getSelection()[0];
         if (this.getView().down('gridpanel').getSelection().length) {
-            var popup = Ext.create('widget.windowuserinfwindow');
-            var form = popup.down('form');
+            var popup = Ext.create('widget.windowuserinfwindow'),
+                form = popup.down('form'),
+                btnreset = popup.lookupReference('btnreset');
+            btnreset.hide();
             form.loadRecord(record);
             popup.show();
         }

@@ -60,7 +60,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     name: 'MarketingGroupId',
                     allowBlank: false,
                     displayField: 'Name',
-                    store: 'marketingGroups',
+                    store: 'CommonData.marketingGroups',
                     valueField: 'Id',
                     autoLoadOnValue: true
 
@@ -96,7 +96,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                             name: 'TitleNameEng',
                             allowBlank: false,
                             displayField: 'Name',
-                            store: 'titleNameEns',
+                            store: 'CommonData.titleNameEns',
                             valueField: 'Id',
                             autoLoadOnValue: true
                         },
@@ -137,7 +137,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                             allowBlank: false,
                             queryMode:'local',
                             displayField: 'Name',
-                            store: 'titleNameThs',
+                            store: 'CommonData.titleNameThs',
                             valueField: 'Id'
                         },
                         {
@@ -171,7 +171,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     name: 'PositionId',
                     allowBlank: false,
                     displayField: 'Name',
-                    store: 'positions',
+                    store: 'CommonData.positions',
                     valueField: 'Id',
                     autoLoadOnValue: true
                 },
@@ -184,7 +184,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                     name: 'DepartmentCode',
                     allowBlank: false,
                     displayField: 'Name',
-                    store: 'departments',
+                    store: 'CommonData.departments',
                     valueField: 'Id',
                     autoLoadOnValue: true
                 },
@@ -297,6 +297,7 @@ Ext.define('TabUserInformation.view.Window.UserInfWindow', {
                 },
                 {
                     xtype: 'button',
+                    reference: 'btnreset',
                     text: 'Reset',
                     listeners: {
                         click: 'onButtonResetClick'

@@ -28,7 +28,8 @@ Ext.define('TabUserInformation.model.Address', {
             name: 'Id'
         },
         {
-            name: 'CustomerId'
+            name: 'CustomerId',
+            mapping: 'CompanyId'
         },
         {
             name: 'AddressEng'

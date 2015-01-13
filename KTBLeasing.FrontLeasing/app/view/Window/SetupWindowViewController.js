@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.view.Window.SetupWindowViewController', {
                         url: 'api/UserInfo/DoPost',
                         success: function (form, action) {
                             console.log(action);
-                            Ext.Msg.alert('Success', "บันทึกข้อมูลเรียบร้อย");
+                            Ext.Msg.alert('Success', "บันทึกข้อมูลเรียบร้อย!");
 
                             Ext.getCmp('pagingtoolbar-userinf').moveFirst();
 

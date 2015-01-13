@@ -17,8 +17,34 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabsetuptab',
 
-    onButtonSearchClick11: function (button, e, eOpts) {
+    onTextfieldKeyup: function (textfield, e, eOpts) {
+        var tree = this.getView().getComponent('tree-setup'),
+            filters = tree.store.getFilters(),
+        //radiogroup = this.getView().down('radiogroup'),
+            property = null;
 
+        //เลือก radiobox
+        //        switch (radiogroup.getChecked()[0].inputValue) {
+        //            case 'name':
+        //                property = 'FirstNameTh';
+        //                break;
+        //            case 'code':
+        //                property = 'UserId';
+        //                break;
+        //        }
+
+        //filter
+        if (textfield.value) {
+            this.nameFilter = filters.add({ id: 'nameFilter',
+                property: 'Name',
+                value: textfield.value,
+                anyMatch: true,
+                caseSensitive: true
+            });
+        } else if (this.nameFilter) {
+            filters.remove(this.nameFilter);
+            this.nameFilter = null;
+        }
     },
 
     onTreepanelItemExpand: function (nodeinterface, eOpts) {
@@ -280,7 +306,7 @@ Ext.define('TabUserInformation.view.Tab.SetupTabViewController', {
                         var setup = Ext.create('widget.windowsetupwindow', {
                             listeners: {
                                 close: function (panel, eOpts) {
-                                    
+
                                     var refreshNode = store.getNodeById(selModel.get('Parent_Id'));
                                     refreshNode.removeAll(false);
 

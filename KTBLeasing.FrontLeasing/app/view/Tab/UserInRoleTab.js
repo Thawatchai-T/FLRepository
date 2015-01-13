@@ -118,7 +118,7 @@ Ext.define('TabUserInformation.view.Tab.UserInRoleTab', {
                     editor: {
                         xtype: 'combobox',
                         id: 'userinrole-role-combobox',
-                        store: 'roles',
+                        store: 'CommonData.roles',
                         //queryMode: 'local',
                         // autoLoad: true,
                         valueField: 'Id',

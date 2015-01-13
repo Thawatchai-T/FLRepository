@@ -78,7 +78,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 {
                     xtype: 'gridcolumn',
                     width: 250,
-                    dataIndex: 'AddressEng',
+                    dataIndex: 'AddressEn',
                     text: 'AddressEng',
                     editor: {
                         xtype: 'textareafield'
@@ -87,7 +87,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 {
                     xtype: 'gridcolumn',
                     width: 250,
-                    dataIndex: 'AddressThai',
+                    dataIndex: 'AddressTh',
                     text: 'AddressThai',
                     editor: {
                         xtype: 'textareafield'
