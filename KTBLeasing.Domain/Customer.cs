@@ -7,7 +7,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     
     public class Customer {
         public Customer() { }
-        public virtual long Guid2 { get; set; }
+        public virtual long Id { get; set; }
         public virtual long PositionId { get; set; }
         public virtual long PositionGuid { get; set; }
     }
