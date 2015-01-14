@@ -5,6 +5,8 @@ using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
 using System.Collections;
 using NHibernate.Transform;
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -24,13 +26,23 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     }
     public class CommonDataRepository : NhRepository, ICommonDataRepository
     {
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public void Insert(CommonData entity)
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                session.Save(entity);
-                ts.Commit();
+                try
+                {
+                    session.Save(entity);
+                    ts.Commit();
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    ts.Rollback();
+                }
             }
         }
 
@@ -41,6 +53,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var sql = string.Format("select name Nname, ID Id, PARENT_ID ParentId, level Levels, CONNECT_BY_ISLEAF leaf from COMMON_DATA where active = 1 connect by prior id = PARENT_ID start with parent_id = 0 ");
                 var result = session.CreateSQLQuery(sql).List();
 
+                Logger.Debug(sql);
                 return result as List<CommonData>;
             }
         }
@@ -79,7 +92,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                                                                 "FROM COMMON_DATA " +
                                                                 "  CONNECT BY prior id = PARENT_ID " +
                                                                 "  START WITH Parent_id     = 0 ", Type));
-
                 return result.SetResultTransformer(Transformers.AliasToBeanConstructor(typeof(CommonData).GetConstructors().First())).List<CommonData>() as List<CommonData>;
             }
         }
@@ -107,6 +119,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 catch (Exception ex)
                 {
                     ts.Dispose();
+                    Logger.Error(ex);
                 }
             }
         }
@@ -132,7 +145,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 {
                     ts.Rollback();
                     ts.Dispose();
+                    Logger.Error(ex);
+                        
                     return false;
+
                 }
             }
         }
@@ -151,6 +167,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 catch (Exception ex)
                 {
                     ts.Rollback();
+                    Logger.Error(ex);
                     return false;
                 }
             }
@@ -168,6 +185,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error(ex);
                     return null;
                 }
             }
@@ -192,6 +210,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 {
                     ts.Rollback();
                     ts.Dispose();
+                    Logger.Error(ex);
                     return false;
                 }
             }
@@ -209,6 +228,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
                 catch (Exception e)
                 {
+                    Logger.Error(e);
                     return null;
                 }
             }
