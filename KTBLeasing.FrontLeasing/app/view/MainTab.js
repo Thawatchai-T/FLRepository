@@ -61,10 +61,10 @@ var tab = Ext.define('TabUserInformation.view.MainTab', {
             xtype: 'tabjobtab'
         }
     ]
-//    ,
-//    listeners: {
-//        beforerender: 'onCreateTab'
-//    }
+    //,
+    //listeners: {
+    //    beforerender: 'onCreateTab'
+    //}
 
 });
 
