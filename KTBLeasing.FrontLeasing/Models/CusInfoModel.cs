@@ -7,7 +7,7 @@ namespace KTBLeasing.FrontLeasing.Models
 {
     public class CusInfoModel
     {
-        public int CustomerCode { get; set; }
+        public int CustomerId { get; set; }
         public int CustomerEngType { get; set; }
         public int CustomerThaiType { get; set; }
         public string CustomerEngName { get; set; }
@@ -33,7 +33,7 @@ namespace KTBLeasing.FrontLeasing.Models
             {
                 var en = new CusInfoModel
                 {
-                    CustomerCode = i,
+                    CustomerId = i,
                     CustomerEngType = i,
                      CustomerThaiType = i,
                     CustomerEngName = "Company A"+i,

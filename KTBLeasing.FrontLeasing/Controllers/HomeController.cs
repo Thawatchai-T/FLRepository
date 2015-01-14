@@ -38,28 +38,24 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         [HttpPost]
-        public ActionResult Upload(IEnumerable<HttpPostedFileBase> files)
+        public JsonResult Upload(IEnumerable<HttpPostedFileBase> files)
         {
             try
             {
-                // Verify that the user selected a file
                 foreach(var file in files)
                 {
                     if (file != null && file.ContentLength > 0)
                     {
-                        // extract only the fielname
                         var fileName = Path.GetFileName(file.FileName);
-                        // store the file inside ~/App_Data/uploads folder
                         var path = Path.Combine(Server.MapPath("~/App_Data/Uploads"), fileName);
                         file.SaveAs(path);
                     }
                 }
-                // redirect back to the index action to show the form once again
-                return RedirectToAction("Index");
+                return Json(new { success = true , message = "อัพโหลดไฟล์เรียบร้อยแล้ว"}, JsonRequestBehavior.AllowGet);
             }
             catch (Exception ex)
             {
-                return null;
+                return Json(new { success = false , message = "ไม่สามารถอัพโหลดไฟล์" }, JsonRequestBehavior.AllowGet);
             }
         }
     }

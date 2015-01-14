@@ -51,7 +51,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                     margin: '5 0 5 20',
                     fieldLabel: 'Customer Code',
                     readOnly: true,
-                    name: 'CustomerCode'
+                    name: 'CustomerId'
                 },
                 {
                     xtype: 'textfield',
@@ -67,7 +67,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
         {
             xtype: 'gridpanel',
             height: 400,
-            id: 'addressgrid',
+            reference: 'addressgrid',
             store: 'addresses',
             columns: [
                 {
@@ -78,7 +78,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 {
                     xtype: 'gridcolumn',
                     width: 250,
-                    dataIndex: 'AddressEn',
+                    dataIndex: 'AddressEng',
                     text: 'AddressEng',
                     editor: {
                         xtype: 'textareafield'
@@ -95,7 +95,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Province',
+                    dataIndex: 'DisplayProvince',
                     text: 'Province',
                     flex: -1,
                     editor: {
@@ -138,15 +138,19 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
             //                    }
             //                }
             ],
-            plugins: [
-                {
-                    ptype: 'rowediting',
-                    pluginId: 'rowediting'
-                }
-            ],
+//            plugins: [
+//                {
+//                    ptype: 'rowediting',
+//                    pluginId: 'rowediting'
+//                }
+                //            ],
+            listeners: {
+                itemdblclick: 'onItemDblClick'
+            },
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
+                    id: 'pagingtoolbar-address',
                     dock: 'bottom',
                     ui: 'footer',
                     width: 360,
@@ -182,6 +186,7 @@ Ext.define('TabUserInformation.view.Window.AddressWindow', {
                     xtype: 'button',
                     id: 'delete',
                     text: 'Delete',
+                    hidden: true,
                     listeners: {
                         click: 'onButtonDeleteClick'
                     }

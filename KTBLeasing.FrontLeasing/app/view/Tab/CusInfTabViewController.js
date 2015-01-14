@@ -25,7 +25,7 @@ Ext.define('TabUserInformation.view.Tab.CusInfTabViewController', {
 
         switch (radiogroup.getChecked()[0].inputValue) {
             case 'code':
-                property = 'CustomerCode';
+                property = 'CustomerId';
                 break;
             case 'eng':
                 property = 'CustomerEngName';

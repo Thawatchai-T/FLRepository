@@ -10,6 +10,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     public interface IAddressRepository
     {
         void Insert(Address entity);
+        void SaveOrUpdate(Address entity);
         List<Address> GetAll();
         List<Address> GetAllWithOrderBy(string orderby);
         List<AddressViewModel> GetAll(int start, int limit, int custid);
@@ -26,6 +27,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             using (var ts = session.BeginTransaction())
             {
                 session.Save(entity);
+                ts.Commit();
+            }
+        }
+
+        public void SaveOrUpdate(Address entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                session.SaveOrUpdate(entity);
                 ts.Commit();
             }
 
@@ -64,8 +75,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         /// <returns></returns>
         public List<AddressViewModel> GetAll(int start, int limit,int custid)
         {
-            //bypass 
-            custid = 999;
             using (var session = SessionFactory.OpenSession())
             {
                 var result = (from x in session.QueryOver<Address>().List()
@@ -87,7 +96,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                                   SubdistrictName = y.SubdistrictName,
                                   Zipcode = y.Zipcode,
                                   DisplayProvince = string.Format("{0} {1} {2} {3}",y.ProvinceName,y.DistrictName,y.SubdistrictName,y.Zipcode),
-                                  AddressType = x.AddressType
+                                  AddressType = x.AddressType,
+                                  Active = x.Active
 
                               })
                              ).Skip(start).Take(limit).ToList<AddressViewModel>();

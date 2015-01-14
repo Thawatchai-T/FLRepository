@@ -16,11 +16,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private ComboboxRepository comboboxRepository { get; set; }
         private IAddressRepository AddressRepository { get; set; }
         // GET api/address
-        public List<AddressViewModel> Get(int page, int start, int limit)
+        public List<AddressViewModel> Get(string text, int page, int start, int limit)
         {
             try
             {
-                return AddressRepository.GetAll(start,limit,999);
+                return AddressRepository.GetAll(start, limit, int.Parse(text));
             }
             catch (Exception e)
             {
@@ -35,8 +35,19 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/address
-        public void Post([FromBody]string value)
+        public void Post(Address form)
         {
+        }
+
+        public void DoPost(Address form)
+        {
+            try
+            {
+                AddressRepository.SaveOrUpdate(form);
+            }
+            catch (Exception e)
+            {
+            }
         }
 
         // PUT api/address/5
@@ -47,6 +58,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // DELETE api/address/5
         public void Delete(int id)
         {
+
         }
 
         public List<Province> GetProvince()

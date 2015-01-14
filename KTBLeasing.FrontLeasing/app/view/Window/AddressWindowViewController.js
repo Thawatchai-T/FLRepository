@@ -30,28 +30,6 @@ Ext.define('TabUserInformation.view.Window.AddressWindowViewController', {
     },
 
     onButtonNewClick: function (button, e, eOpts) {
-        //        var rowEditing = this.getGrid().getPlugin('rowediting');
-        //        rowEditing.cancelEdit();
-
-        //        rec = {
-        //            AddressEng: "",
-        //            AddressThai: "",
-        //            CustCode: "",
-        //            Fax: "(000) 000-0000",
-        //            Province: "",
-        //            Telephone: "(000) 000-0000",
-        //            Zip: "",
-        //            id: ""
-        //        }
-
-        //        var store = this.getGrid().getStore();
-        //        if (!this.checkInsertRecord(rec, store.getData())) {
-        //            store.insert(0, rec);
-        //            rowEditing.startEdit(0, 0);
-        //        } else {
-        //            store.removeAt(0, 1);
-        //        }
-
         var popup = Ext.create('widget.popupaddresspopup'),
             form = popup.down('form'),
             record = this.getView().down('form').getRecord();
@@ -61,11 +39,29 @@ Ext.define('TabUserInformation.view.Window.AddressWindowViewController', {
     },
 
     onButtonEditClick: function (button, e, eOpts) {
+        if (this.getView().down('gridpanel').getSelection().length > 0) {
+            var popup = Ext.create('widget.popupaddresspopup'),
+                form = popup.down('form'),
+                record = this.getView().down('form').getRecord(),
+                recordgrid = this.getView().down('gridpanel').getSelection()[0],
+                store = popup.lookupReference('province').getStore();
+
+            store.getProxy().extraParams.text = record.get('SubdistrictId');
+            form.loadRecord(record);
+            form.loadRecord(recordgrid);
+            popup.show();
+        }
+    },
+
+    onItemDblClick: function (button, record, item, index, e, eOpts) {
         var popup = Ext.create('widget.popupaddresspopup'),
             form = popup.down('form'),
-            record = this.getView().down('form').getRecord();
+            recordgrid = this.getView().down('form').getRecord(),
+            store = popup.lookupReference('province').getStore();
 
+        store.getProxy().extraParams.text = record.get('SubdistrictId');
         form.loadRecord(record);
+        form.loadRecord(recordgrid);
         popup.show();
     },
 

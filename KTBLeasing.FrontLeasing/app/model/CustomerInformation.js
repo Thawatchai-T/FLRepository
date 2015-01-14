@@ -25,7 +25,7 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
 
     fields: [
         {
-            name: 'CustomerCode'
+            name: 'CustomerId'
         },
         {
             name: 'CustomerEngType'

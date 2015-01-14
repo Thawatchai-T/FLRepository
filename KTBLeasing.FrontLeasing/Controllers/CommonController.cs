@@ -32,7 +32,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             SetProvince();
             if (!string.IsNullOrEmpty(text))
-                return Province.Where(x => x.Zipcode.ToString().Contains(text) || x.SubdistrictName.Contains(text) || x.DistrictName.Contains(text) || x.ProvinceName.Contains(text));
+                return Province.Where(x => x.Zipcode.ToString().Contains(text) || x.SubdistrictName.Contains(text) || x.DistrictName.Contains(text) || x.ProvinceName.Contains(text) || x.SubdistrictId.ToString() == text);
             else
                 return Province;
         }

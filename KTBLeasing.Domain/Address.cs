@@ -20,7 +20,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual long SubdistrictId { get; set; }
         public virtual string Remark { get; set; }
         public virtual long AddressType { get; set; }
-        public virtual short? Active { get; set; }
+        public virtual short Active { get; set; }
         //public virtual DateTime? CreateDate { get; set; }
         //public virtual string UpdateDate { get; set; }
         //public virtual string CreateBy { get; set; }
