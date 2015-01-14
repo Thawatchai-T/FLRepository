@@ -44,7 +44,7 @@ Ext.define('TabUserInformation.view.Tab.VisitCallingTab', {
     height: 900,
     width: '100%',
     layout: 'border',
-    title: 'Visit/Calling Information',
+    title: 'Lead Information',
     defaultListenerScope: true,
 
     items: [

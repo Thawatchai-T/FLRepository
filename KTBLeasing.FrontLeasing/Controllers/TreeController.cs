@@ -7,7 +7,8 @@ using Newtonsoft.Json;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Models;
-
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -15,13 +16,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
     {
         private ICommonDataRepository commonDataRepository { get; set; }
 
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         private static List<CommonData> CommonDataList { get; set; }
-        enum Flag
-        {
-            none,insert
-        }
-
+        
         public TreeController()
         {
             if (CommonDataList == null)
@@ -67,15 +65,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
         private void SetCommonAddressData(string type)
         {
-            if (type == "insert")
+            try
             {
-                //CommonAddressList.Union<CommonAddress>(commonAddressRepository.Get());
-                CommonDataList = commonDataRepository.Get("");
-                //CommonAddressList.Concat(commonAddressRepository.GetRootNode());
+                if (type == "insert")
+                {
+                    //CommonAddressList.Union<CommonAddress>(commonAddressRepository.Get());
+                    CommonDataList = commonDataRepository.Get("");
+                    //CommonAddressList.Concat(commonAddressRepository.GetRootNode());
+                }
+                else if (string.IsNullOrEmpty(type) && CommonDataList.Count <= 0)
+                {
+                    CommonDataList = commonDataRepository.Get("");
+                }
             }
-            else if (string.IsNullOrEmpty(type) && CommonDataList.Count <=0)
+            catch (Exception ex)
             {
-                CommonDataList = commonDataRepository.Get("");
+                Logger.Error(ex);
             }
         }
 
@@ -126,11 +131,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 
                 if (status)
                     this.SetCommonAddressData("insert");
-
+                Logger.Info("info"+DateTime.Now);
                 return Json(new { success = status, message = (status) ? "บันทึกข้อมูลสำเร็จ" : "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 return Json(new { success = false, message = "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -146,8 +152,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
                     this.SetCommonAddressData("insert");
                 return Json(new { success = status, message = (status) ? "บันทึกข้อมูลสำเร็จ" : "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 return Json(new { success = false, message = "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
         }
@@ -163,8 +170,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
                     this.SetCommonAddressData("insert"); 
                 return Json(new { success = status }, JsonRequestBehavior.AllowGet);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 return Json(new { success = false, message = "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
         }

@@ -29,7 +29,17 @@ Ext.define('TabUserInformation.controller.HomeController', {
     doLogin: function (component, eOpts) {
         var popup = Ext.create('widget.windowloginwindow');
         //Show login windows
-        //popup.show();
+
+        var supportsLocalStorage = Ext.supports.LocalStorage,
+            loggedIn;
+        if (supportsLocalStorage) {
+            //Ext.Msg.alert('supports');
+            loggedIn = localStorage.getItem("bar");
+            console.log(loggedIn);
+           // if (!loggedIn) popup.show();
+        }
+
+
     },
 
     tabManagement: function (container, component, eOpts) {
@@ -46,8 +56,8 @@ Ext.define('TabUserInformation.controller.HomeController', {
             });
         }, this);
 
-//                container.items.removeAt(2);
-//                container.getTabBar().items.removeAt(2);
+        //                container.items.removeAt(2);
+        //                container.getTabBar().items.removeAt(2);
         //container.doLayout();
         console.log('before');
     }

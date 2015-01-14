@@ -81,7 +81,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 else
                 {
                     //update
-                    var result = UserInfomationRepository.Get("phutip_pr");
+                    var result = UserInfomationRepository.Get(userinfomodel.UserId);
 
                     result.UpdateDate = DateTime.Now;
                     //Note: get by current session 

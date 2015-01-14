@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -20,14 +22,23 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     }
     public class AddressRepository : NhRepository, IAddressRepository
     {
-        
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         public void Insert(Address entity)
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                session.Save(entity);
-                ts.Commit();
+                try
+                {
+                    session.Save(entity);
+                    ts.Commit();
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    ts.Rollback();
+                }
             }
         }
 
@@ -36,8 +47,15 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
             {
-                session.SaveOrUpdate(entity);
-                ts.Commit();
+                try
+                {
+                    session.SaveOrUpdate(entity);
+                    ts.Commit();
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                }
             }
 
         }

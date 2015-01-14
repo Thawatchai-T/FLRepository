@@ -82,6 +82,7 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
 
     onLoginClick: function (button, e, eOpts) {
         var Me = this;
+        localStorage.setItem("TutorialLoggedIn", false);
         var form = this.down('form').getForm();
         if (form.isValid()) {
             form.submit({
@@ -90,6 +91,21 @@ Ext.define('TabUserInformation.view.Window.LoginWindow', {
                 timeout: 99999,
                 success: function (form, action) {
                     if (action.response.statusText === "OK" && action.response.statusText !== "") {
+
+                        localStorage.setItem("TutorialLoggedIn", true);
+
+                        var store = new Ext.util.LocalStorage({
+                            id: 'foo'
+                        });
+
+
+                        store.setItem('bar', 'stuff');
+
+                        var keys = store.getKeys();
+
+                        console.log(keys.length);
+                        console.log(store.key(0));
+
                         Me.close();
                     }
                 },

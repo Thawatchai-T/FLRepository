@@ -22,7 +22,7 @@ Ext.define('TabUserInformation.model.Authorize', {
         'Ext.data.field.String',
         'Ext.data.field.Boolean'
     ],
-
+    idProperty: 'UserId',
     fields: [
         {
             type: 'string',

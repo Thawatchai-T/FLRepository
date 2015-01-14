@@ -8,6 +8,7 @@ using System.Net.Http.Formatting;
 using KTBLeasing.FrontLeasing.WsLoginAD;
 using KTBLeasing.FrontLeasing.Models;
 using System.Collections.Specialized;
+using System.Web.Security;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -37,6 +38,8 @@ namespace KTBLeasing.FrontLeasing.Controllers
             {
                 case "OK":
                     ResponseMsg = Request.CreateResponse(HttpStatusCode.OK);
+                    //Set Cookie 
+                    FormsAuthentication.SetAuthCookie(formData.UserName, formData.RememberMe);
                     break;
                 case "Unauthorized":
                     ResponseMsg = Request.CreateResponse(HttpStatusCode.Unauthorized, "ชื่อผู้ใช้หรือรหัสผ่านไม่ถูกต้อง");
