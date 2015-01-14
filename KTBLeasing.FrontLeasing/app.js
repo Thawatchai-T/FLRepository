@@ -69,7 +69,8 @@ Ext.application({
         'CommonData.typeCusts',
         'CommonData.KTBIsics',
         'CommonData.KTBCustTypes',
-        'CommonData.addressTypes'
+        'CommonData.addressTypes',
+        'CommonData.cardTypes'
     ],
     views: [
         'Window.UserInfWindow',

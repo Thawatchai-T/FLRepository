@@ -166,6 +166,7 @@
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\SetupController.cs" />
+    <Compile Include="Controllers\SignerController.cs" />
     <Compile Include="Controllers\TabController.cs" />
     <Compile Include="Controllers\TreeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -176,6 +177,7 @@
     </Compile>
     <Compile Include="Models\Authorize.cs" />
     <Compile Include="Models\AddressModel.cs" />
+    <Compile Include="Models\SignerModel.cs" />
     <Compile Include="Models\CusInfoModel.cs" />
     <Compile Include="Models\DistrictModel.cs" />
     <Compile Include="Models\ProvinceModel.cs" />

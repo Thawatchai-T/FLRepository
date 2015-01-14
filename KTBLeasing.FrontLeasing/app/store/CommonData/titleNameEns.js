@@ -29,7 +29,7 @@ Ext.define('TabUserInformation.store.CommonData.titleNameEns', {
             model: 'TabUserInformation.model.BaseCommonData',
             proxy: {
                 type: 'rest',
-                url: 'api/common/gettitlenameen',
+                url: 'api/common/getcommonbynameeng?nameeng=title_eng',
                 reader: {
                     type: 'json'
                 }

@@ -49,6 +49,10 @@
               type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.AddressRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
-
+  
+  <object id="customerSignerRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CustomerSignerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
 
 </objects>

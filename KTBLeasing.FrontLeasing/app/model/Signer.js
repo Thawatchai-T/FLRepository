@@ -22,17 +22,83 @@ Ext.define('TabUserInformation.model.Signer', {
         'Ext.data.field.String'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
-            type: 'int',
-            name: 'id'
+            name: 'Id'
         },
         {
-            type: 'string',
-            name: 'Title'
+            name: 'CustId'
         },
         {
-            name: 'Name Eng'
+            name: 'TitleTh'
+        },
+        {
+            name: 'TitleEng'
+        },
+        {
+            name: 'FirstNameTh'
+        },
+        {
+            name: 'LastNameTh'
+        },
+        {
+            name: 'FirstNameEng'
+        },
+        {
+            name: 'LastNameEng'
+        },
+        {
+            name: 'AddressTh'
+        },
+        {
+            name: 'AddressEng'
+        },
+        {
+            name: 'PassportType'
+        },
+        {
+            name: 'IdCardNo'
+        },
+        {
+            name: 'ExpireDate'
+        },
+        {
+            name: 'IssuedDate'
+        },
+        {
+            name: 'Active'
+        },
+        {
+            name: 'SpouseTitleEng'
+        },
+        {
+            name: 'SpouseTitleTh'
+        },
+        {
+            name: 'SpouseFirstNameTh'
+        },
+        {
+            name: 'SpouseFirstNameEng'
+        },
+        {
+            name: 'SpouseLastNameTh'
+        },
+        {
+            name: 'SpouseLastNameEng'
+        },
+        {
+            name: 'SpouseAddressTh'
+        },
+        {
+            name: 'SpouseAddressEng'
+        },
+        {
+            name: 'SpouseSubDistrictId'
+        },
+        {
+            name: 'SubDistrictId'
         }
     ]
 });
