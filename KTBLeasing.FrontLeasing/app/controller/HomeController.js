@@ -20,10 +20,10 @@ Ext.define('TabUserInformation.controller.HomeController', {
         "#myviewport": {
             beforerender: 'doLogin'
         }
-        ,
-        "#tabManagement": {
-            beforerender: 'tabManagement'
-        }
+//        ,
+//        "#tabManagement": {
+//            beforerender: 'tabManagement'
+//        }
     },
 
     doLogin: function (component, eOpts) {

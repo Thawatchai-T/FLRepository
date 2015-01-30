@@ -60,7 +60,7 @@ Ext.Boot = Ext.Boot || (function (emptyFn) {
              * @cfg {String} charset
              * Optional charset to specify encoding of dynamic content.
              */
-            charset: 'utf-8'
+            charset: undefined
         },
 
         cssRe = /\.css(?:\?|$)/i,

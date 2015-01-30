@@ -11,7 +11,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
     public class CusInfoController : ApiController
     {
         // GET api/cusinfo
-        public IEnumerable<CusInfoModel> Get()
+        public List<CusInfoModel> Get()
         {
             return new CusInfoModel().Dummy();
         }
@@ -36,5 +36,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Delete(int id)
         {
         }
+
+        //public List<CusInfoModel> Get()
+        //{
+        //    //return new CusInfoModel().Dummy();
+        //}
     }
 }

@@ -8,14 +8,17 @@ using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
 using KTBLeasing.FrontLeasing.Models;
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class UserInfoController : ApiController
     {
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private IUserInfomationRepository UserInfomationRepository { get; set; }
         // GET api/userinfo
-        public IEnumerable<UserInformationView> Get()
+        public List<UserInformationView> Get()
         {
             var view = UserInfomationRepository.GetAllView();
 
@@ -147,6 +150,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
         }
 
-
+        public List<UserInformationView> Get(string text, string property)
+        {
+            try
+            {
+                var view = UserInfomationRepository.Find(text, property, 0, 25);
+                return view;
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return null;
+            }
+        }
     }
 }

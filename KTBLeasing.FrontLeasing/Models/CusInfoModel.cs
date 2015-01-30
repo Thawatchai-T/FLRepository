@@ -29,7 +29,7 @@ namespace KTBLeasing.FrontLeasing.Models
         public List<CusInfoModel> Dummy()
         {
             List<CusInfoModel> list = new List<CusInfoModel>();
-            for (int i = 0; i <= 30; i++)
+            for (int i = 0; i < 100; i++)
             {
                 var en = new CusInfoModel
                 {

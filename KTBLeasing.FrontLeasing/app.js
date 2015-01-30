@@ -14,9 +14,9 @@
  */
 
 // @require @packageOverrides
-//Ext.Loader.setConfig({
+Ext.Loader.setConfig({
 
-//});
+});
 
 
 Ext.application({
@@ -28,32 +28,32 @@ Ext.application({
         'Address',
         'Signer',
         'Affidavit',
-        'UserInRole',
         'Role',
-        'UserInTab',
+        'UserInRole',
         'Tab',
+        'UserInTab',
+        'Province',
+    //'CommonAddress',
         'CommonData',
-		'Province',
         'BaseCommonData',
-        'VisitCallingModel'
+        'Job',
+        'InformationForIndication',
+        'Lead',
+        'IndicationForEquipment',
+        'Background',
+        'Equipment'
     ],
     stores: [
         'userInformations',
-        'customerInformations',
         'authorizes',
         'setups',
         'addresses',
         'signers',
         'affidavits',
-        'MyJsonStore',
-        'userInRoles',
         'CommonData.roles',
-        'userInTabs',
-        'tabs',
+        'userInRoles',
+        'CommonData.provinces',
         'commonDatas',
-        'visitCallingStore',
-        //CommonData
-		'CommonData.provinces',
         'CommonData.titleNameThs',
         'CommonData.titleNameEns',
         'CommonData.marketingGroups',
@@ -69,45 +69,72 @@ Ext.application({
         'CommonData.typeCusts',
         'CommonData.KTBIsics',
         'CommonData.KTBCustTypes',
+        'customerInformations',
+        'leads',
+        'informationForIndications',
+        'indicationForEquipments',
+        'applications',
+        'CommonData.sourceInformations',
+        'backgrounds',
+        'CommonData.specialPrograms',
+        'CommonData.currency',
+        'CommonData.typeFinances',
+        'CommonData.typeBusiness',
+        'equipment',
+        'CommonData.payment',
+        'CommonData.advanceArrear',
+        'CommonData.InsuranceBorne',
+        'CommonData.conditionLease',
+        'CommonData.InsTerritory',
+        'CommonData.committed',
         'CommonData.addressTypes',
-        'CommonData.cardTypes'
+        'CommonData.cardTypes',
+        'contactPersons'
     ],
     views: [
-        'Window.UserInfWindow',
-        'Window.CusInfWindow',
-        'Tab.CusInfTab',
-        'Tab.AuthorizeTab',
-        'Tab.SetupTab',
-        'Window.AddressWindow',
-        'Window.SignerWindow',
-        'Window.ContactPersonWindow',
-        'Window.AffidavitWindow',
-        'Window.PowerOfAttorneyWindow',
-        'Tab.VisitCallingTab',
-        'Window.VistiCallingWindow',
-        'index',
-        'Popup.CusInfPopup',
-        'Popup.UserInfPopup',
-        'Popup.ContactPersonPopup',
-        'Tab.JobTab',
-        'Window.JobWindow',
-        'Window.InformationForIndicationWindow',
-        'MainTab',
-        'Popup.VisitCallingPopup',
-        'Window.IndicationForEquipmentWindow',
-        'Window.LoginWindow',
-        'Window.ApplicationWindow',
-        'Tab.UserInRoleTab',
-        'Window.SetupWindow',
-        'Popup.AddressPopup'
+        'User.UserInfWindow',
+        'Customer.CusInfWindow',
+        'Customer.CusInfTab',
+        'Authorize.AuthorizeTab',
+        'Setup.SetupTab',
+        'Setup.SetupWindow',
+        'Common.AddressWindow',
+        'Common.SignerWindow',
+        'Common.ContactPersonWindow',
+        'Common.AffidavitWindow',
+    //'Tab.RoleTab',
+        'VisitCalling.VisitCallingTab',
+        'VisitCalling.VisitCallingWindow',
+        'Home.index',
+        'Customer.CusInfPopup',
+        'User.UserInfPopup',
+        'Common.ContactPersonPopup',
+        'Job.JobTab',
+        'Job.JobWindow',
+        'Job.Information.InformationForIndicationWindow',
+        'Home.MainTab',
+        'VisitCalling.VisitCallingPopup',
+        'Job.Indication.IndicationForEquipmentWindow',
+        'Home.LoginWindow',
+        'Job.Application.ApplicationWindow',
+        'Role.UserInRoleTab',
+        'ThirdParty.ThirdPartyInfTab',
+        'ThirdParty.ThirdPartyInfWindow',
+    //'Common.JobMenuAdd',
+        'Common.AddressPopup',
+        'Job.Lead.LeadTab',
+        'Job.Information.InformationForIndicationTab',
+        'Job.Indication.IndicationDetail',
+        'ThirdParty.ThirdPartyInfPopup'
     ],
     controllers: [
         'HomeController'
     ],
     name: 'TabUserInformation',
 
-    launch: function() {
-        Ext.create('TabUserInformation.view.index');
+    launch: function () {
+        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+//        Ext.create('TabUserInformation.view.VisitCalling.VisitCallingTab');
     }
 
 });

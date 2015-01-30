@@ -62,9 +62,11 @@ Ext.define('TabUserInformation.model.Signer', {
             name: 'IdCardNo'
         },
         {
+            type: 'date',
             name: 'ExpireDate'
         },
         {
+            type: 'date',
             name: 'IssuedDate'
         },
         {
