@@ -8,7 +8,7 @@ namespace KTBLeasing.Domain
     public class CustomerSignerDomain
     {
         public virtual long Id { get; set; }
-        public virtual long CustId { get; set; }
+        public virtual long CustomerId { get; set; }
         public virtual long TitleTh { get; set; }
         public virtual long TitleEng { get; set; }
         public virtual string FirstNameTh { get; set; }
@@ -17,6 +17,9 @@ namespace KTBLeasing.Domain
         public virtual string LastNameEng { get; set; }
         public virtual string AddressTh { get; set; }
         public virtual string AddressEng { get; set; }
+        public virtual string PositionTh { get; set; }
+        public virtual string PositionEng { get; set; }
+        public virtual string Remark { get; set; }
 
         public virtual long PassportType { get; set; }
         public virtual string IdCardNo { get; set; }
