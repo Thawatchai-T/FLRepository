@@ -83,6 +83,7 @@
     <Compile Include="CommonData.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerSignerMap.cs" />
+    <Compile Include="Reposotory\CustomerSignerRepository.cs" />
     <Compile Include="UserInformationViewMap.cs" />
     <Compile Include="ProvinceMap.cs" />
     <Compile Include="NhRepository.cs">

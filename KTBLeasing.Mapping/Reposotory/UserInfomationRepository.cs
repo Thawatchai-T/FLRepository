@@ -13,7 +13,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     {
         int Count();
         int Count(string text);
-        System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> Find(int start, int limit, string text);
+        //System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> Find(int start, int limit, string text);
+        List<UserInformationView> Find(string text, string property, int start, int limit);
         System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAll();
         System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAll(int start, int limit);
         System.Collections.Generic.List<KTBLeasing.Domain.UserInformation> GetAllWithOrderBy(string orderby);
@@ -105,16 +106,54 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         }
 
         //find searech
-        public List<UserInformation> Find(int start, int limit, string text)
+        public List<UserInformationView> Find(string text, string property, int start, int limit)
         {
             using (var session = SessionFactory.OpenSession())
             {
                 //var result = (from x in session.QueryOver<Address>().List<Address>() where x.AddressTh.Contains(text) select x).Skip(start).Take(limit);
-                //var result = session.QueryOver<UserInformation>().List<UserInformation>().Where(w => w.AddressTh.Contains(text) || w.AddressEng.Contains(text)).Skip(start).Take(limit);
-                
-                session.Close();
-                return null;//result.ToList<UserInformation>();
+                List<UserInformationView> result = null;
+                switch (property)
+                {
+                    case "UserId":
+                        //result = session.QueryOver<UserInformation>().Where(x => x.UsersAuthorize.UserId.ToLower().Contains(text.ToLower())).Skip(start).Take(limit).List<UserInformation>() as List<UserInformation>;
+                        result = session.QueryOver<UserInformationView>()
+                                .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.TitleNameEng).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.TitleNameTh).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.MarketingGroup).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.Position).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.DepartmentCode).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Where(Restrictions.Like("UsersAuthorize.UserId", text, MatchMode.Anywhere).IgnoreCase())
+                                .Skip(start).Take(limit)
+                                .List<UserInformationView>() as List<UserInformationView>;
+                        
+                        break;
+                    case "FirstNameTh":
 
+                        //result = session.QueryOver<UserInformation>()
+                        //    .Where(x => x.FirstNameTh.ToLower().Contains(text.ToLower()) ||
+                        //        x.LastNameTh.ToLower().Contains(text.ToLower()) ||
+                        //        x.FirstNameEng.ToLower().Contains(text.ToLower()) ||
+                        //        x.LastNameEng.ToLower().Contains(text.ToLower()))
+                        //    .Skip(start).Take(limit)
+                        //    .List<UserInformation>() as List<UserInformation>;
+                        result = session.QueryOver<UserInformationView>()
+                                .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.TitleNameEng).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.TitleNameTh).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.MarketingGroup).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.Position).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                .Fetch(x => x.DepartmentCode).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                            .Where(Restrictions.Like("FirstNameTh", text, MatchMode.Anywhere).IgnoreCase() ||
+                            Restrictions.Like("LastNameTh", text, MatchMode.Anywhere).IgnoreCase() ||
+                            Restrictions.Like("FirstNameEng", text, MatchMode.Anywhere).IgnoreCase() ||
+                            Restrictions.Like("LastNameEng", text, MatchMode.Anywhere).IgnoreCase())
+                            .Skip(start).Take(limit)
+                            .List<UserInformationView>() as List<UserInformationView>;
+                        break;
+                }
+                session.Close();
+                return result;
             }
         }
 

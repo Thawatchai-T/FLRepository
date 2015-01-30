@@ -25,7 +25,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             Map(x => x.ExpireDate).Column("EXPIRE_DATE");
             Map(x => x.IssuedDate).Column("ISSUED_DATE");
             Map(x => x.Active).Column("ACTIVE");
-            Map(x => x.CustId).Column("CUST_ID");
+            Map(x => x.CustomerId).Column("CUST_ID");
             Map(x => x.SpouseTitleEng).Column("SP_TITLE_ENG");
             Map(x => x.SpouseTitleTh).Column("SP_TITLE_TH");
             Map(x => x.SpouseFirstNameTh).Column("SP_FIRST_NAME_TH");
@@ -38,6 +38,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             Map(x => x.AddressEng).Column("ADDRESS_ENG");
             Map(x => x.SpouseSubDistrictId).Column("SP_SUBDISTRICT_ID");
             Map(x => x.SubDistrictId).Column("SUBDISTRICT_ID");
+            Map(x => x.PositionTh).Column("POSITION_TH");
+            Map(x => x.PositionEng).Column("POSITION_ENG");
+            Map(x => x.Remark).Column("REMARK");
         }
     }
 }
