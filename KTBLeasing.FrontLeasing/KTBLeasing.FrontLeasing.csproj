@@ -192,7 +192,7 @@
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CommonCustomerModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
-    <Compile Include="Models\FinalcialProlicyModel.cs" />
+    <Compile Include="Models\FinancialPolicyModel.cs" />
     <Compile Include="Models\SignerModel.cs" />
     <Compile Include="Models\CusInfoModel.cs" />
     <Compile Include="Models\DistrictModel.cs" />
@@ -227,6 +227,7 @@
     <Content Include="app\model\BaseCommonData.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
+    <Content Include="app\model\FinalcialProlicyModel.js" />
     <Content Include="app\model\CustomerInformationPopup.js" />
     <Content Include="app\model\CustomerInformation.js" />
     <Content Include="app\model\Equipment.js" />
