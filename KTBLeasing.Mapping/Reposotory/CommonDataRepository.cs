@@ -7,6 +7,7 @@ using System.Collections;
 using NHibernate.Transform;
 using log4net;
 using System.Reflection;
+using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -23,6 +24,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         bool Update(CommonData commonAddress);
         List<CommonData> GetCommonByNameEng(string nameeng);
 
+        List<CommonCustomerDomain> GetCustomerInfoPopup(int start, int limit);
+        int CountCommonCustomerPopup();
     }
     public class CommonDataRepository : NhRepository, ICommonDataRepository
     {
@@ -233,5 +236,31 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
             }
         }
+
+        #region CmonmonCustomerPopup [20150217] WOODY
+        /// <summary>
+        /// CommonCustomer popup in V_Customer_Popup
+        /// </summary>
+        /// <returns></returns>
+        public List<CommonCustomerDomain> GetCustomerInfoPopup(int start, int limit)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<CommonCustomerDomain>().Skip(start).Take(limit).List();
+                return result as List<CommonCustomerDomain>;
+            }
+        }
+
+        public int CountCommonCustomerPopup()
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<CommonCustomerDomain>().List();
+                return result.Count;
+            }
+        }
+        #endregion
     }
 }

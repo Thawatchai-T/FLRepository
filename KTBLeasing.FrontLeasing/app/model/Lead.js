@@ -15,7 +15,7 @@
 
 Ext.define('TabUserInformation.model.Lead', {
     extend: 'Ext.data.Model',
-
+    alias: 'model.lead',
     requires: [
         'Ext.data.field.Integer',
         'Ext.data.field.Date'

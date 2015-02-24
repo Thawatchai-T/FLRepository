@@ -13,7 +13,7 @@
     
   </object>-->
 
-  <object id="listOfProvince" type="System.Collections.Generic.Dictionary&lt;string,string&gt;"
+  <!--<object id="listOfProvince" type="System.Collections.Generic.Dictionary&lt;string,string&gt;"
         factory-object="nhHelpersFactory"
-        factory-method="CreateSessionFactory" singleton="true"/>
+        factory-method="CreateSessionFactory" singleton="true"/>-->
 </objects>

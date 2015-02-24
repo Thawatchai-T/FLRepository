@@ -10,7 +10,8 @@ namespace KTBLeasing.Domain
 
         public BaseDomain()
         {
-            this._createDate = DateTime.Now;
+            //this._createDate = DateTime.Now;
+            this._udpateDate = DateTime.Now;
         }
 
         private DateTime _createDate;

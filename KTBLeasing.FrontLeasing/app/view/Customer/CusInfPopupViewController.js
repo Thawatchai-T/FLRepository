@@ -17,15 +17,26 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopupViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.popupcusinfpopup',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onButtonEditClick1: function(button, e, eOpts) {
+    onButtonEditClick1: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.cusinfwindow");
         // Show window
         popup.show();
-    }
+    },
+
+    onCusinftabBeforeRender: function (component, eOpts) {
+
+        console.log();
+        this.getView().setWidth(Ext.getBody().getWidth() * 0.97);
+
+    },
+
+    onItemDblClick: function (button, record, item, index, e, eOpts) {
+        this.getView().close();
+    },
 
 });

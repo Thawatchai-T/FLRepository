@@ -5,15 +5,26 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class ContactController : ApiController
     {
+        private IContactRepository ContactRepository { get; set; }
+
         // GET api/contact
-        public IEnumerable<ContactPersonModel> Get()
+        public IEnumerable<Contact> Get(int custId, int page, int start, int limit)
         {
-            return new ContactPersonModel().Dummy();
+            try
+            {
+                return ContactRepository.GetByPage(custId, start, limit);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         // GET api/contact/5
@@ -35,6 +46,23 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // DELETE api/contact/5
         public void Delete(int id)
         {
+        }
+        public bool DoPost(Contact form)
+        {
+            try
+            {
+                this.ContactRepository.SaveOrUpdate(form);
+                //this.ContactRepository.Insert(form);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
+                
+                     
+            }
+            
         }
     }
 }

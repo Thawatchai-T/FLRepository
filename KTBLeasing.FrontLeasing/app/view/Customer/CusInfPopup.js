@@ -26,19 +26,52 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.View',
+        'Ext.toolbar.Paging',
         'Ext.grid.column.Column',
-        'Ext.toolbar.Paging'
+        'Ext.grid.plugin.RowExpander',
+        'Ext.XTemplate'
+    ],
+
+    controller: 'customercusinfpopup',
+    viewModel: {
+        type: 'customercusinfpopup'
+    },
+    //width: 800,
+    layout: 'anchor',
+    title: 'Customer Information',
+    modal: true,
+
+    requires: [
+        'TabUserInformation.view.Customer.CusInfPopupViewModel',
+        'TabUserInformation.view.Customer.CusInfPopupViewController',
+        'Ext.form.field.Date',
+        'Ext.grid.Panel',
+        'Ext.grid.column.Number',
+        'Ext.grid.column.Date',
+        'Ext.grid.column.Boolean',
+        'Ext.grid.View',
+        'Ext.toolbar.Paging',
+        'Ext.grid.plugin.RowExpander',
+        'Ext.XTemplate',
+        'Ext.tab.Panel',
+        'Ext.tab.Tab',
+        'Ext.form.Panel',
+        'Ext.form.field.TextArea',
+        'Ext.form.FieldSet',
+        'Ext.form.CheckboxGroup',
+        'Ext.form.field.Checkbox',
+        'Ext.form.field.Number'
     ],
 
     controller: 'popupcusinfpopup',
     viewModel: {
         type: 'popupcusinfpopup'
     },
-    width: 800,
+    //width: Ext.getBody().getViewSize().width*0.8,
     layout: 'anchor',
     title: 'Customer Information',
     modal: true,
-
+    resizable: false,
     items: [
         {
             xtype: 'panel',
@@ -101,22 +134,84 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                     xtype: 'gridpanel',
                     autoScroll: true,
                     height: 500,
-                    store: 'customerInformations',
+                    width: '100%',
+                    store: 'CommonData.cusinfopopup',
+                    columnLines: true,
                     columns: [
                         {
                             xtype: 'gridcolumn',
-                            dataIndex: 'Code',
-                            text: 'Code'
+                            dataIndex: 'CustomerCode',
+                            locked   : true,
+                            text: 'Code',
+                            width: 50
+
                         },
                         {
                             xtype: 'gridcolumn',
-                            dataIndex: 'Name Eng',
-                            text: 'Name Eng'
+                            dataIndex: 'TitleNameTh',
+                            locked   : true,
+                            text: 'Title name',
+                            width: 100
+                        }, 
+                        {
+                            xtype: 'gridcolumn',
+                            dataIndex: 'NameEng',
+                            locked   : true,
+                            text: 'Name Eng',
+                            width: 150
                         },
                         {
                             xtype: 'gridcolumn',
-                            dataIndex: 'Name Thai',
-                            text: 'Name Thai'
+                            dataIndex: 'NameTh',
+                            locked   : true,
+                            text: 'Name Thai',
+                            width: 150
+                        },
+                        {
+                            xtype: 'gridcolumn',
+                            dataIndex: 'MarketingOfficer',
+                            locked   : true,
+                            text: 'Marketing Officer',
+                            width: 100
+                        },
+                        {
+                            xtype: 'gridcolumn',
+                            text: 'Contact infomation',
+                            columns: [
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'SubdistrictId',
+                                    text: 'CustomerEngType',
+                                    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                        return record.get('AddressTh') +' '+record.get('ProvinceName') +' '+record.get('DistrictName') +' '+record.get('SubdistrictName') +' '+record.get('Zipcode');
+                                    },
+                                    width:250
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'ContactTitleTh',
+                                    text: 'Contact Person',
+                                    renderer: function(value, metaData, record, rowIndex, colIndex, store, view) {
+                                        return record.get('ContactTitleTh') +record.get('ContactPersonFirstName') +' '+record.get('ContactPersonLastName') ;
+                                    },
+                                    width: 200
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'Telephone',
+                                    text: 'PhoneNo'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'FaxNo',
+                                    text: 'Fax'
+                                },
+                                {
+                                    xtype: 'gridcolumn',
+                                    dataIndex: 'Email',
+                                    text: 'E-Mail',
+                                }
+                            ]
                         }
                     ],
                     dockedItems: [
@@ -128,7 +223,10 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                             displayInfo: true,
                             store: 'customerInformations'
                         }
-                    ]
+                    ],
+                    listeners: {
+                        itemdblclick: 'onItemDblClick'
+                    }
                 },
                 {
                     xtype: 'toolbar',
@@ -145,6 +243,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforerender: 'onCusinftabBeforeRender'
+    }
 
 });

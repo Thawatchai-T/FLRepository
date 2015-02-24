@@ -36,5 +36,35 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Delete(int id)
         {
         }
+
+        public bool DoPost(VisistCallModel form)
+        {
+            try
+            {
+                var model = form;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                return false;
+                //throw;
+            }
+        }
+
+
+        private void GetMapAddress(int id)
+        {
+                     
+        }
+
+        private void GetMapContactPerson(int id)
+        {
+
+        }
+
+        private void FinancialPolicyModel(string final)
+        {
+
+        }
     }
 }

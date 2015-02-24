@@ -19,6 +19,11 @@ namespace KTBLeasing.FrontLeasing.Models
         public string Md5 { get; set; }
         public string CustomerName { get; set; }
 
+        //object 
+        public AddressModel Address { get; set; }
+        public ContactPersonModel ContactPerson { get; set; }
+        public FinancialPolicyModel FinalcialProlicy { get; set; }
+
         public List<VisistCallModel> GenDummyData()
         {
             List<VisistCallModel> list = new List<VisistCallModel>();
@@ -38,6 +43,26 @@ namespace KTBLeasing.FrontLeasing.Models
             }
             return list;
         }
+
+        public FinancialPolicyModel FinalcialPolicyFunction(string fl)
+        {
+            var finalcialpolicy = new FinancialPolicyModel();
+            finalcialpolicy.Cash = (fl.Substring(0,1).Equals("1"))?true:false;
+            finalcialpolicy.Loan = (fl.Substring(1, 1).Equals("1")) ? true : false;
+            finalcialpolicy.Lease = (fl.Substring(2, 1).Equals("1")) ? true : false;
+            finalcialpolicy.HirePurchase = (fl.Substring(3, 1).Equals("1")) ? true : false;
+            finalcialpolicy.LoadAffiliated = (fl.Substring(4, 1).Equals("1")) ? true : false;
+            finalcialpolicy.Other = (fl.Substring(5, 1).Equals("1")) ? true : false;
+
+            return finalcialpolicy;
+        }
+
+        public AddressModel AddressFunction(int id)
+        {
+            return new AddressModel();
+        }
+
+        
     }
 }
  

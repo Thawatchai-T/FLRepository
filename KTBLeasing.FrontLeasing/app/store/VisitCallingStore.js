@@ -28,7 +28,7 @@ Ext.define('TabUserInformation.store.visitCallingStore', {
         me.callParent([Ext.apply({
             storeId: 'visitCallingStore',
             autoLoad: true,
-            model: 'TabUserInformation.model.VisitCallingModel',
+            model: 'TabUserInformation.model.4',
             proxy: {
                 type: 'rest',
                 url: 'api/VisitCalling'

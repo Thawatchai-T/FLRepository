@@ -6,6 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
 using log4net;
 using System.Reflection;
+using NHibernate.Criterion;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -95,33 +96,43 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var result = (from x in session.QueryOver<Address>().List()
-                              join y in session.QueryOver<Province>().List()
-                              on x.SubdistrictId equals y.SubdistrictId
-                              where x.CustomerId == custid
-                              select (new AddressViewModel
-                              {
-                                  AddressEng = x.AddressEng,
-                                  AddressTh = x.AddressTh,
-                                  CompanyId = x.CustomerId,
-                                  DistrictId = y.DistrictId,
-                                  DistrictName = y.DistrictName,
-                                  Id = x.Id,
-                                  ProvinceId = y.ProvinceId,
-                                  ProvinceName = y.ProvinceName,
-                                  Remark = x.Remark,
-                                  SubdistrictId = y.SubdistrictId,
-                                  SubdistrictName = y.SubdistrictName,
-                                  Zipcode = y.Zipcode,
-                                  DisplayProvince = string.Format("{0} {1} {2} {3}",y.ProvinceName,y.DistrictName,y.SubdistrictName,y.Zipcode),
-                                  AddressType = x.AddressType,
-                                  Active = x.Active
+                var tProvince= session.CreateCriteria<Address>();
+                var rProvince = tProvince.Add(Restrictions.Eq("CustomerId", (long)custid)).List<Address>();
 
-                              })
-                             ).Skip(start).Take(limit).ToList<AddressViewModel>();
+                if (rProvince.Count == 0) return new List<AddressViewModel>();
+                else
+                {
+                    var result2 = session.QueryOver<Province>()
+                                      .WhereRestrictionOn(val => val.SubdistrictId)
+                                      .IsIn(rProvince.Select(x=>x.SubdistrictId).ToArray())
+                                      .List<Province>();
+                    
+                    var result = (from x in rProvince
+                                  join y in result2 
+                                  on x.SubdistrictId equals y.SubdistrictId
+                                  select (new AddressViewModel
+                                  {
+                                      AddressEng = x.AddressEng,
+                                      AddressTh = x.AddressTh,
+                                      CompanyId = x.CustomerId,
+                                      DistrictId = y.DistrictId,
+                                      DistrictName = y.DistrictName,
+                                      Id = x.Id,
+                                      ProvinceId = y.ProvinceId,
+                                      ProvinceName = y.ProvinceName,
+                                      Remark = x.Remark,
+                                      SubdistrictId = y.SubdistrictId,
+                                      SubdistrictName = y.SubdistrictName,
+                                      Zipcode = y.Zipcode,
+                                      DisplayProvince = string.Format("{0} {1} {2} {3}", y.ProvinceName, y.DistrictName, y.SubdistrictName, y.Zipcode),
+                                      AddressType = x.AddressType,
+                                      Active = x.Active
 
-                return result as List<AddressViewModel>;
+                                  })
+                                 ).Skip(start).Take(limit).ToList<AddressViewModel>();
 
+                    return result as List<AddressViewModel>;
+                }
                 
             }
         }

@@ -22,8 +22,10 @@ Ext.define('TabUserInformation.view.Common.SignerWindowViewController', {
     },
 
     onButtonNewClick: function (button, e, eOpts) {
+        var custId = this.getView().lookupReference('CustomerId').getValue();
         this.getView().down('form').getForm().reset();
         this.getView().lookupReference('Id').setValue(0);
+        this.getView().lookupReference('CustomerId').setValue(custId);
     },
 
     onButtonSaveClick: function (button, e, eOpts) {

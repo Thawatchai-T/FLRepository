@@ -1,11 +1,12 @@
 ﻿using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using KTBLeasing.FrontLeasing.Domain;
-using FluentNHibernate.Cfg;
+using KTBLeasing.Domain.ViewCommonData;
+using System.Collections.Generic;
 using NHibernate;
-using FluentNHibernate.Cfg.Db;
+using FluentNHibernate.Cfg;
 using NHibernate.ByteCode.Castle;
+using FluentNHibernate.Cfg.Db;
 using KTBLeasing.FrontLeasing.Mapping.Orcl;
 
 namespace Test.Repository.Orcl
@@ -13,11 +14,11 @@ namespace Test.Repository.Orcl
     
     
     /// <summary>
-    ///This is a test class for UserInTabRepositoryTest and is intended
-    ///to contain all UserInTabRepositoryTest Unit Tests
+    ///This is a test class for CustomerRepositoryTest and is intended
+    ///to contain all CustomerRepositoryTest Unit Tests
     ///</summary>
     [TestClass()]
-    public class UserInTabRepositoryTest
+    public class CustomerRepositoryTest
     {
 
 
@@ -71,62 +72,21 @@ namespace Test.Repository.Orcl
 
 
         /// <summary>
-        ///A test for UserInTabRepository Constructor
+        ///A test for GetCustomerInfoPopup
         ///</summary>
         [TestMethod()]
-        public void UserInTabRepositoryConstructorTest()
+        public void GetCustomerInfoPopupTest()
         {
-            UserInTabRepository target = new UserInTabRepository();
-            Assert.Inconclusive("TODO: Implement code to verify target");
-        }
-
-        /// <summary>
-        ///A test for Insert
-        ///</summary>
-        [TestMethod()]
-        public void InsertTest()
-        {
-            //UserInTabRepository target = new UserInTabRepository(); // TODO: Initialize to an appropriate value
-            //target.SessionFactory = CreateSessionFactory();
-            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-
-            //var s = target.Get();
-            //
-            //UserInTab entity = new UserInTab
-            //{
-            //    TabId = 2,
-            //    RoleId = 2,
-            //    
-            //    Description   = "testInsert",
-            //    CreateBy = "woody",
-            //    UpdateBy = "woody",
-            //    UpdateDate   = DateTime.Now,
-            //    CreateDate = DateTime.Now
-
-            //};//null; // TODO: Initialize to an appropriate value
-            //target.Insert(entity);
-            //Assert.Inconclusive("A method that does not return a value cannot be verified.");
-
-        }
-
-        [TestMethod()]
-        public void TestMap()
-        {
-            var session = CreateSessionFactory();
-            Assert.Equals(true, !session.IsClosed);
-        }
-
-        [TestMethod]
-        public void TestJoinUserInfo()
-        {
-            UserInfomationRepository target = new UserInfomationRepository();
+            CustomerRepository target = new CustomerRepository(); // TODO: Initialize to an appropriate value
             target.SessionFactory = CreateSessionFactory();
-
-          //  var result = target.GetGridView();
+            
+            List<CommonCustomerDomain> actual;
+          //  actual = target.GetCustomerInfoPopup();
+            //Assert.AreEqual(2, actual.Count);
+            
         }
 
-
-        private static ISessionFactory CreateSessionFactory()
+        private  ISessionFactory CreateSessionFactory()
         {
             try
             {

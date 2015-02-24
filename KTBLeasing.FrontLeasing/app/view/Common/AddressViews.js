@@ -13,13 +13,12 @@
 * Do NOT hand edit this file.
 */
 
-Ext.define('TabUserInformation.view.Common.AddressWindow', {
+Ext.define('TabUserInformation.view.Common.AddressViews', {
     extend: 'Ext.window.Window',
-    alias: 'widget.windowaddresswindow',
+    alias: 'widget.windowaddressviews',
 
     requires: [
-        'TabUserInformation.view.Common.AddressWindowViewModel',
-        'TabUserInformation.view.Common.AddressWindowViewController',
+        'TabUserInformation.view.Common.AddressViewsViewController',
         'Ext.form.Panel',
         'Ext.grid.Panel',
         'Ext.grid.column.RowNumberer',
@@ -31,10 +30,10 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
         'Ext.button.Button'
     ],
 
-    controller: 'windowaddresswindow',
-    viewModel: {
-        type: 'windowaddresswindow'
-    },
+    controller: 'windowaddressviews',
+    //viewModel: {
+    //    type: 'windowaddresswindow'
+    //},
     autoShow: true,
     width: 1025,
     title: 'Address',
@@ -47,14 +46,14 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
             bodyPadding: 10,
             items: [
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     margin: '5 0 5 20',
                     fieldLabel: 'Customer Code',
                     readOnly: true,
                     name: 'CustomerId'
                 },
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     id: 'address-customername-textfield',
                     margin: '0 0 5 20',
                     width: 639,

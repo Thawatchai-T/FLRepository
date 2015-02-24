@@ -28,22 +28,10 @@ Ext.define('TabUserInformation.store.CommonData.KTBCustTypes', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.KTBCustTypes',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'TNT01',
-                    Name: 'นาย',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'TTN02',
-                    Name: 'นาง',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getcommonbynameeng?nameeng=ktb_cust_type',
+                type: 'rest'
             }
         }, cfg)]);
     }

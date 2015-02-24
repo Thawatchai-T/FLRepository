@@ -41,7 +41,8 @@ Ext.application({
         'Lead',
         'IndicationForEquipment',
         'Background',
-        'Equipment'
+        'Equipment',
+        'CustomerInformationPopup'
     ],
     stores: [
         'userInformations',
@@ -52,6 +53,14 @@ Ext.application({
         'affidavits',
         'CommonData.roles',
         'userInRoles',
+        'customerInformations',
+        'leads',
+        'informationForIndications',
+        'indicationForEquipments',
+        'applications',
+        'contactPersons',
+        'equipment',
+        'backgrounds',
         'CommonData.provinces',
         'commonDatas',
         'CommonData.titleNameThs',
@@ -69,18 +78,11 @@ Ext.application({
         'CommonData.typeCusts',
         'CommonData.KTBIsics',
         'CommonData.KTBCustTypes',
-        'customerInformations',
-        'leads',
-        'informationForIndications',
-        'indicationForEquipments',
-        'applications',
         'CommonData.sourceInformations',
-        'backgrounds',
         'CommonData.specialPrograms',
         'CommonData.currency',
         'CommonData.typeFinances',
         'CommonData.typeBusiness',
-        'equipment',
         'CommonData.payment',
         'CommonData.advanceArrear',
         'CommonData.InsuranceBorne',
@@ -89,7 +91,9 @@ Ext.application({
         'CommonData.committed',
         'CommonData.addressTypes',
         'CommonData.cardTypes',
-        'contactPersons'
+        'CommonData.typeofcust',
+        'CommonData.cusinfopopup'
+         
     ],
     views: [
         'User.UserInfWindow',
@@ -102,6 +106,8 @@ Ext.application({
         'Common.SignerWindow',
         'Common.ContactPersonWindow',
         'Common.AffidavitWindow',
+        //common address views use for all
+        'Common.AddressViews',
     //'Tab.RoleTab',
         'VisitCalling.VisitCallingTab',
         'VisitCalling.VisitCallingWindow',
@@ -126,6 +132,7 @@ Ext.application({
         'Job.Information.InformationForIndicationTab',
         'Job.Indication.IndicationDetail',
         'ThirdParty.ThirdPartyInfPopup'
+    
     ],
     controllers: [
         'HomeController'

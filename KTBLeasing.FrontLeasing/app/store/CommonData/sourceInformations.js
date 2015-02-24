@@ -27,22 +27,10 @@ Ext.define('TabUserInformation.store.CommonData.sourceInformations', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.sourceInformations',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'TNT01',
-                    Name: 'นาย',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'TTN02',
-                    Name: 'นาง',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+               type: 'rest',
+               url: 'api/common/getcommonbynameeng?nameeng=source_information',
+               type: 'rest'
             }
         }, cfg)]);
     }

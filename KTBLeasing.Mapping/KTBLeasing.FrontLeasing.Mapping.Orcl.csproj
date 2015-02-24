@@ -65,6 +65,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressMap.cs" />
+    <Compile Include="CommonDataMapView\CommonCustomerMap.cs" />
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -81,8 +82,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="CommonData.cs" />
+    <Compile Include="ContactPersonMap.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerSignerMap.cs" />
+    <Compile Include="Reposotory\ContactRepository.cs" />
+    <Compile Include="Reposotory\CustomerRepository.cs" />
     <Compile Include="Reposotory\CustomerSignerRepository.cs" />
     <Compile Include="UserInformationViewMap.cs" />
     <Compile Include="ProvinceMap.cs" />

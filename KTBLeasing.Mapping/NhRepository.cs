@@ -105,16 +105,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             using (var Session = SessionFactory.OpenSession())
             using (var tran = Session.BeginTransaction())
             {
-                try
-                {
-                    Session.SaveOrUpdate(entity);
-                    tran.Commit();
-                }
-                catch (Exception ex)
-                {
-                    tran.Rollback();
-                    throw;
-                }
+                Session.SaveOrUpdate(entity);
+                tran.Commit();
+                
 
             }
 

@@ -29,10 +29,14 @@ Ext.define('TabUserInformation.store.CommonData.provinces', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.provinces',
             model: 'TabUserInformation.model.Province',
-//            autoLoad: true,
+            autoLoad: true,
+            useLocalStorage: true,
+            //proxy: {
+            //    type: 'localstorage'
+            //}  
             proxy: {
                 type: 'rest',
-                url: 'api/common/getall',
+                url: 'api/common/GetAllProvince',
                 reader: {
                     type: 'json'
                 }

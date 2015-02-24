@@ -32,6 +32,7 @@ namespace KTBLeasing.FrontLeasing.Models
                 var en = new ContactPersonModel
                 {
                     Id = i,
+                    CustomerId = 5,
                     TitleTh = 46,
                     TitleEng = 110,
                     FirstNameTh = "ชาริล" + i,

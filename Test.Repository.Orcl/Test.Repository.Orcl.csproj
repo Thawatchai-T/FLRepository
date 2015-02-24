@@ -33,32 +33,36 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Castle.Core">
-      <HintPath>..\KTBLeasing.Mapping\lib\Castle.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\KTBLeasing.Mapping\lib\FluentNHibernate.dll</HintPath>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="HibernatingRhinos.Profiler.Appender">
       <HintPath>..\KTBLeasing.FrontLeasing\lib\HibernatingRhinos.Profiler.Appender.dll</HintPath>
     </Reference>
-    <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="Iesi.Collections, Version=1.0.1.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\KTBLeasing.Mapping\lib\Iesi.Collections.dll</HintPath>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\Iesi.Collections.dll</HintPath>
+    </Reference>
+    <Reference Include="log4net">
+      <HintPath>..\KTBLeasing.Mapping\lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\KTBLeasing.FrontLeasing\bin\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\KTBLeasing.Mapping\lib\NHibernate.dll</HintPath>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\KTBLeasing.Mapping\lib\NHibernate.ByteCode.Castle.dll</HintPath>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\NHibernate.ByteCode.Castle.dll</HintPath>
     </Reference>
     <Reference Include="Remotion.Data.Linq">
       <HintPath>..\KTBLeasing.Mapping\lib\Remotion.Data.Linq.dll</HintPath>
@@ -78,6 +82,7 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CustomerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserInTabRepositoryTest.cs" />
     <Compile Include="UsersAuthorizeRepositoryTest.cs" />
@@ -87,10 +92,17 @@
       <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
       <Name>KTBLeasing.FrontLeasing.Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\KTBLeasing.Helpers\KTBLeasing.Helpers.csproj">
+      <Project>{756AFE3E-8693-420F-81A6-6B9998F1FBD2}</Project>
+      <Name>KTBLeasing.Helpers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
       <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>
       <Name>KTBLeasing.FrontLeasing.Mapping.Orcl</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Test References\" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

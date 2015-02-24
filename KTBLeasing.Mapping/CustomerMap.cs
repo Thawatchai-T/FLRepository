@@ -38,6 +38,11 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.UpdateBy).Column("UPDATE_BY");
             Map(x => x.CreateDate).Column("CREATE_DATE");
             Map(x => x.UpdateDate).Column("UPDATE_DATE");
+            Map(x => x.GroupCust).Column("GROUP_CUST_ID");
+            Map(x => x.PhoneNo).Column("PHONE_NO");
+            Map(x => x.FaxNo).Column("FAX_NO");
+            Map(x => x.KTBCustType).Column("KTB_CUST_TYPE");
+            Map(x => x.Email).Column("E_MAIL");
         }
     
         

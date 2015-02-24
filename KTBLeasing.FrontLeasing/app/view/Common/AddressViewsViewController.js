@@ -13,9 +13,9 @@
 * Do NOT hand edit this file.
 */
 
-Ext.define('TabUserInformation.view.Common.AddressWindowViewController', {
+Ext.define('TabUserInformation.view.Common.AddressViewsViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.windowaddresswindow',
+    alias: 'controller.windowaddressviews',
 
     getGrid: function () {
         return this.getView().getComponent('addressgrid');
@@ -45,8 +45,8 @@ Ext.define('TabUserInformation.view.Common.AddressWindowViewController', {
                 record = this.getView().down('form').getRecord(),
                 recordgrid = this.getView().down('gridpanel').getSelection()[0],
                 store = popup.lookupReference('province').getStore();
-            
-         
+
+
             store.getProxy().extraParams.text = record.get('SubdistrictId');
             form.loadRecord(record);
             form.loadRecord(recordgrid);
@@ -55,16 +55,17 @@ Ext.define('TabUserInformation.view.Common.AddressWindowViewController', {
     },
 
     onItemDblClick: function (button, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.popupaddresspopup'),
-            form = popup.down('form'),
-            recordgrid = this.getView().down('form').getRecord(),
-            store = popup.lookupReference('province').getStore();
+        //var popup = Ext.create('widget.popupaddresspopup'),
+        //    form = popup.down('form'),
+        //    recordgrid = this.getView().down('form').getRecord(),
+        //    store = popup.lookupReference('province').getStore();
 
-        store.getProxy().extraParams.text = record.get('SubdistrictId');
+        //store.getProxy().extraParams.text = record.get('SubdistrictId');
 
-        form.loadRecord(record);
-        form.loadRecord(recordgrid);
-        popup.show();
+        //form.loadRecord(record);
+        //form.loadRecord(recordgrid);
+        //popup.show();
+        this.getView().close();
     },
 
     onButtonDeleteClick: function (button, e, eOpts) {
