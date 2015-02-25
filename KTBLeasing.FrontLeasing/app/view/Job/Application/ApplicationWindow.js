@@ -35,6 +35,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationWindow', {
     viewModel: {
         type: 'jobapplicationapplicationwindow'
     },
+    autoShow: true,
     title: 'Application',
     maximized: true,
 

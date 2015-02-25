@@ -18,7 +18,37 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
     alias: 'controller.jobapplicationapplicationtab',
 
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.jobapplicationapplicationwindow');
+        var popup = Ext.create('widget.jobapplicationapplicationdetail'),
+            form = popup.down('form').getForm();
+
+        var recordGuarantor = Ext.create('TabUserInformation.model.Guarantor',record.get('Guarantor')),
+            recordFunding = Ext.create('TabUserInformation.model.Funding',record.get('Funding')),
+            recordStipulateLoss = Ext.create('TabUserInformation.model.StipulateLoss',record.get('StipulateLoss')),
+            recordOptionEndLeaseTerm = Ext.create('TabUserInformation.model.OptionEndLeaseTerm',record.get('OptionEndLeaseTerm')),
+            recordCommission = Ext.create('TabUserInformation.model.Commission',record.get('Commission')),
+            recordMaintenance = Ext.create('TabUserInformation.model.Maintenance',record.get('Maintenance')),
+            recordInsurance = Ext.create('TabUserInformation.model.Insurance',record.get('Insurance')),
+            recordCollectionSchedule = Ext.create('TabUserInformation.model.CollectionSchedule',record.get('CollectionSchedule')),
+            recordWaiveDocument = Ext.create('TabUserInformation.model.WaiveDocument',record.get('WaiveDocument')),
+            recordStampDuty = Ext.create('TabUserInformation.model.StampDuty',record.get('StampDuty')),
+            recordMethodPayment = Ext.create('TabUserInformation.model.MethodPayment',record.get('MethodPayment'));
+
+        form.loadRecord(record);
+        Ext.getCmp('jobappguarantor').loadRecord(recordGuarantor);
+        Ext.getCmp('jobappfunding').loadRecord(recordFunding);
+        Ext.getCmp('jobappstipulateloss').loadRecord(recordStipulateLoss);
+        Ext.getCmp('jobappoptionatend').loadRecord(recordOptionEndLeaseTerm);
+        Ext.getCmp('jopappcommission').loadRecord(recordCommission);
+        Ext.getCmp('jobappmaintenance').loadRecord(recordMaintenance);
+        Ext.getCmp('jobappinsurance').loadRecord(recordInsurance);
+        Ext.getCmp('jobappcollectionschedule').loadRecord(recordCollectionSchedule);
+        Ext.getCmp('jobappwaivedocument').loadRecord(recordWaiveDocument);
+        Ext.getCmp('jobappstampduty').loadRecord(recordStampDuty);
+        Ext.getCmp('jobappmethodpayment').loadRecord(recordMethodPayment);
+
+        // form.setValues(record.get('Guarantor'));
+
+
         popup.show();
     },
 

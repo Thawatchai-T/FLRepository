@@ -32,6 +32,7 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfWindow', {
         type: 'thirdpartythirdpartyinfwindow'
     },
     autoScroll: true,
+    autoShow: true,
     id: 'thirdpartyinf',
     title: 'ThirdParty Window',
 

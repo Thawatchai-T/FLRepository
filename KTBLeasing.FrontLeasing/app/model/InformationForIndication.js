@@ -26,7 +26,6 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
 
     fields: [
         {
-            type: 'int',
             name: 'Id'
         },
         {

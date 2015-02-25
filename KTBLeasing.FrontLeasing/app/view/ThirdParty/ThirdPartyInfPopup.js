@@ -31,8 +31,8 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopup', {
     viewModel: {
         type: 'thirdpartythirdpartyinfpopup'
     },
+    autoShow: true,
     height: 600,
-    id: 'thirdpartyinftab1',
     width: 800,
     layout: 'anchor',
     title: 'ThirdParty Information',
@@ -55,21 +55,29 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopup', {
             xtype: 'gridpanel',
             autoScroll: true,
             forceFit: true,
+            store: 'thirdParties',
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Code',
-                    text: 'Code'
+                    dataIndex: 'ThirdPartyCode',
+                    text: 'ThirdPartyCode'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Eng',
-                    text: 'Name Eng'
+                    dataIndex: 'TitleNameEn',
+                    text: 'TitleNameEn'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Thai',
-                    text: 'Name Thai'
+                    dataIndex: 'NameEn',
+                    text: 'NameEn',
+                    flex: -1
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'NameTh',
+                    text: 'NameTh',
+                    flex: -1
                 }
             ],
             listeners: {
@@ -84,7 +92,7 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopup', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'customerInformations'
+            store: 'thirdParties'
         }
     ]
 

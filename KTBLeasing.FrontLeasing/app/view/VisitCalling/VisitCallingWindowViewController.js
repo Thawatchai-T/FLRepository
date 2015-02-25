@@ -41,7 +41,18 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
     },
 
     onButtonCusInfClick: function (button, e, eOpts) {
-        var popup = Ext.createByAlias('widget.customercusinfpopup');
+        var form = this.getView().down('form').getForm();
+
+        var popup = Ext.createByAlias('widget.customercusinfpopup', {
+            listeners: {
+                close: function (panel, eOpts) {
+                    var record = panel.down('gridpanel').getSelection()[0];
+                    if (record) {
+                        form.loadRecord(record);
+                    }
+                }
+            }
+        });
         popup.show();
     },
 
@@ -89,7 +100,6 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
                     var record = panel.down('gridpanel').getSelection()[0];
                     if (record) {
                         //                        form.loadRecord(record);
-//                        console.log(view.down('#ContactPersonTitleNameTh'));
                         view.down('#ContactPersonTitleNameTh').setValue(record.get('TitleTh'));
                         view.down('#ContactPersonFirstNameTh').setValue(record.get('FirstNameTh'));
                         view.down('#ContactPersonLastNameTh').setValue(record.get('LastNameTh'));

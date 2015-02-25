@@ -49,21 +49,24 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
                     width: 200,
                     fieldLabel: 'Job #',
                     labelAlign: 'right',
-                    labelWidth: 120
+                    labelWidth: 120,
+                    name: 'CustomerId'
                 },
                 {
                     xtype: 'textfield',
                     width: 500,
                     fieldLabel: 'Customer Name',
                     labelAlign: 'right',
-                    labelWidth: 120
+                    labelWidth: 120,
+                    name: 'CustomerEngName'
                 },
                 {
                     xtype: 'textfield',
                     width: 500,
                     fieldLabel: 'Marketing Officer',
                     labelAlign: 'right',
-                    labelWidth: 120
+                    labelWidth: 120,
+                    hidden: true
                 },
                 {
                     xtype: 'tabpanel',

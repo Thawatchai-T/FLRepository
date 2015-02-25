@@ -373,25 +373,29 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                                     xtype: 'textfield',
                                     anchor: '100%',
                                     fieldLabel: 'Rating',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    name: 'Rating'
                                 },
                                 {
                                     xtype: 'textfield',
                                     anchor: '100%',
                                     fieldLabel: 'Exposure Limit',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    name: 'ExposureRate'
                                 },
                                 {
                                     xtype: 'textfield',
                                     anchor: '100%',
                                     fieldLabel: 'Rating detail',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    name: 'ExposureLimit'
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'datefield',
                                     anchor: '100%',
                                     fieldLabel: 'As Of Date',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    name: 'RatingDate'
                                 }
                             ]
                         }

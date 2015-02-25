@@ -21,7 +21,7 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
         'Ext.data.field.Integer'
     ],
 
-    idProperty: 'CustomerCode',
+    idProperty: 'CustomerId',
 
     fields: [
         {

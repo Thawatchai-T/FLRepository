@@ -64,6 +64,77 @@
 
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.InformationIndicationController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.IndicationEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.ApplicationDetailController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.AnnualTaxController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.ApprovalController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.DefineAddressController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentListController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.GuarantorListController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.InsuranceEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.InsurancePolicyController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.PurchaseOrderController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.SellerController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.ThirdPartyController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
+
+
 
   <!--<object type="KTBLeasing.FrontLeasing.Controllers.CustomerController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="CustomerRepository" ref="CustomerRepository"/>

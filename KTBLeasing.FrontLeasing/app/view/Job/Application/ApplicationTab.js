@@ -40,7 +40,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
             autoScroll: true,
             height: 768,
             hideHeaders: true,
-            store: 'applications',
+            store: 'applicationDetails',
             viewConfig: {
                 autoScroll: false
             },

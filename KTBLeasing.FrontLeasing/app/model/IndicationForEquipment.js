@@ -20,6 +20,8 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
         'Ext.data.field.Field'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
             name: 'Id'
@@ -80,6 +82,18 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
         },
         {
             name: 'ExchangeRate'
+        },
+        {
+            name: 'Rating'
+        },
+        {
+            name: 'ExposureLimit'
+        },
+        {
+            name: 'RatingDetail'
+        },
+        {
+            name: 'RatingDate'
         }
     ]
 });

@@ -23,6 +23,8 @@ Ext.define('TabUserInformation.model.Background', {
         'Ext.data.field.Number'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
             type: 'int',

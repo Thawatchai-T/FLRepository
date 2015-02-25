@@ -128,15 +128,7 @@ Ext.define('TabUserInformation.view.Job.JobTab', {
         {
             xtype: 'gridpanel',
             height: 500,
-            id: 'grid1',
-            store: 'authorizes',
-            plugins: [
-                {
-                    ptype: 'rowediting',
-                    pluginId: 'rowediting',
-                    clicksToMoveEditor: 1
-                }
-            ],
+            store: 'customerInformations',
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
@@ -149,19 +141,19 @@ Ext.define('TabUserInformation.view.Job.JobTab', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'UserId',
-                    text: 'Id'
+                    dataIndex: 'CustomerId',
+                    text: 'CustomerId'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'myField',
-                    text: 'MyField',
-                    flex: 1,
-                    editor: {
-                        xtype: 'textfield'
-                    }
+                    dataIndex: 'CustomerEngName',
+                    text: 'CustomerEngName',
+                    flex: 1
                 }
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'onItemDblClick'
+            }
         }
     ],
     dockedItems: [

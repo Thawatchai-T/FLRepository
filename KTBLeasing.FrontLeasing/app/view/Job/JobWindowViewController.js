@@ -16,4 +16,5 @@
 Ext.define('TabUserInformation.view.Job.JobWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobjobwindow'
+
 });

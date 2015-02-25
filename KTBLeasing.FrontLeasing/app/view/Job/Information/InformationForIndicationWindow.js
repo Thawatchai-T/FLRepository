@@ -64,7 +64,8 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                                     xtype: 'textfield',
                                     width: 200,
                                     fieldLabel: 'Information #',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    name: 'Id'
                                 },
                                 {
                                     xtype: 'datefield',

@@ -35,7 +35,6 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfTab', {
     viewModel: {
         type: 'thirdpartythirdpartyinftab'
     },
-    id: 'thirdpartyinftab',
     layout: 'anchor',
     title: 'ThirdParty Information',
     titleCollapse: false,
