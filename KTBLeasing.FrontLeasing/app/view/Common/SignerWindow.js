@@ -161,7 +161,8 @@ Ext.define('TabUserInformation.view.Common.SignerWindow', {
                     items: [
                         {
                             xtype: 'hiddenfield',
-                            name: 'CustomerId'
+                            name: 'CustomerId',
+                            reference: 'CustomerId'
                         },
                         {
                             xtype: 'textfield',
@@ -315,9 +316,30 @@ Ext.define('TabUserInformation.view.Common.SignerWindow', {
                                     '</tpl>',
                             ],
                             minChars: 3,
-                            queryParam: 'text',
                             store: 'CommonData.provinces',
-                            valueField: 'SubdistrictId'
+                            valueField: 'SubdistrictId',
+                            queryMode: 'local',
+                            doQuery: function (queryString, forceAll) {
+                                if(queryString.length>2){
+                                    this.expand();
+                                    this.store.clearFilter(!forceAll);
+                                    if (!forceAll) {
+
+                                        var filters = [
+                                             new Ext.util.Filter({
+                                                 filterFn: function (item) {
+                                                     //allmatch
+                                                     //return item.get('ProvinceName') == queryString || item.get('DistrictName') == queryString || item.get('SubdistrictName') == queryString || item.get('Zipcode') == queryString;
+                                                     //anymatch
+                                                        return  new RegExp(queryString, "i").test(item.get('ProvinceName')) || new RegExp(queryString, "i").test(item.get('DistrictName')) || new RegExp(queryString, "i").test(item.get('SubdistrictName')) || new RegExp(queryString, "i").test(item.get('Zipcode'));
+                                                 }
+                                             })
+                                        ];
+                                        this.store.filter(filters);
+                                    }  
+                                }
+                                
+                            }
                         }
                     ]
                 },
@@ -433,9 +455,31 @@ Ext.define('TabUserInformation.view.Common.SignerWindow', {
                                     '</tpl>',
                             ],
                             minChars: 3,
-                            queryParam: 'text',
+                            //queryParam: 'text',
                             store: 'CommonData.provinces',
-                            valueField: 'SubdistrictId'
+                            valueField: 'SubdistrictId',
+                            queryMode: 'local',
+                            doQuery: function (queryString, forceAll) {
+                                if(queryString.length>2){
+                                    this.expand();
+                                    this.store.clearFilter(!forceAll);
+                                    if (!forceAll) {
+
+                                        var filters = [
+                                             new Ext.util.Filter({
+                                                 filterFn: function (item) {
+                                                     //allmatch
+                                                     //return item.get('ProvinceName') == queryString || item.get('DistrictName') == queryString || item.get('SubdistrictName') == queryString || item.get('Zipcode') == queryString;
+                                                     //anymatch
+                                                        return  new RegExp(queryString, "i").test(item.get('ProvinceName')) || new RegExp(queryString, "i").test(item.get('DistrictName')) || new RegExp(queryString, "i").test(item.get('SubdistrictName')) || new RegExp(queryString, "i").test(item.get('Zipcode'));
+                                                 }
+                                             })
+                                        ];
+                                        this.store.filter(filters);
+                                    }  
+                                }
+                                
+                            }
                         }
                     ]
                 },

@@ -45,7 +45,8 @@ Ext.define('TabUserInformation.view.Common.AddressWindowViewController', {
                 record = this.getView().down('form').getRecord(),
                 recordgrid = this.getView().down('gridpanel').getSelection()[0],
                 store = popup.lookupReference('province').getStore();
-
+            
+         
             store.getProxy().extraParams.text = record.get('SubdistrictId');
             form.loadRecord(record);
             form.loadRecord(recordgrid);
@@ -60,7 +61,7 @@ Ext.define('TabUserInformation.view.Common.AddressWindowViewController', {
             store = popup.lookupReference('province').getStore();
 
         store.getProxy().extraParams.text = record.get('SubdistrictId');
-        
+
         form.loadRecord(record);
         form.loadRecord(recordgrid);
         popup.show();

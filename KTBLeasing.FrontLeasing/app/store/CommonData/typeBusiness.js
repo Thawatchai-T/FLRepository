@@ -27,22 +27,13 @@ Ext.define('TabUserInformation.store.CommonData.typeBusiness', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.typeBusiness',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 550,
-                    Code: 'asperiores',
-                    Name: 'optio',
-                    Active: false
-                },
-                {
-                    Id: 806,
-                    Code: 'cupiditate',
-                    Name: 'sit',
-                    Active: true
-                }
-            ],
+            autoLoad: true,
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getcommonbynameeng?nameeng=type_business',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

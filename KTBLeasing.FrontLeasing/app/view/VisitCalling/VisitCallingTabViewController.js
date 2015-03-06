@@ -17,20 +17,23 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
     extend: 'Ext.app.ViewController',
     alias: 'controller.visitcallingvisitcallingtab',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onButtonNewClick: function(button, e, eOpts) {
+    onButtonNewClick: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.visitcallingvisitcallingwindow");
+        popup.down('#LeadId').setValue('V' + Date.now());
+        console.log(Date.now());
         // Show window
         popup.show();
     },
 
-    onButtonEditClick: function(button, e, eOpts) {
+    onButtonEditClick: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.visitcallingvisitcallingwindow");
+        console.log((63 & 45));
         // Show window
         popup.show();
     }

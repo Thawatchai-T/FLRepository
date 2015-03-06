@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Security.Cryptography;//[20131202] Thawatchai.T
+using System.Security.Cryptography;
+using Newtonsoft.Json;//[20131202] Thawatchai.T
 //CR118
 //Generate MD5
 
@@ -22,5 +23,11 @@ namespace KTBLeasing.Helpers
             byte[] data = md5Hasher.ComputeHash(Encoding.Default.GetBytes(input));
             return BitConverter.ToString(data);
         }
+
+        public static string ConvertOjbToString<T>(T ojb)
+        {
+            return  JsonConvert.SerializeObject(ojb);
+        }
+
     }
 }

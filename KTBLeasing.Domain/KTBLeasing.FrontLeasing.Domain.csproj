@@ -31,6 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=1b44e1d426115821, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -44,10 +48,36 @@
     <Compile Include="BaseCommonData.cs" />
     <Compile Include="BaseDomain.cs" />
     <Compile Include="Company.cs" />
-    <Compile Include="Contract.cs" />
+    <Compile Include="Contact.cs" />
     <Compile Include="CommonData.cs" />
+    <Compile Include="ApplicationDetail.cs" />
+    <Compile Include="Commission.cs" />
+    <Compile Include="CollectionSchedule.cs" />
+    <Compile Include="AnnualTax.cs" />
+    <Compile Include="Approval.cs" />
+    <Compile Include="BG.cs" />
+    <Compile Include="PurchaseOrder.cs" />
+    <Compile Include="DefineAddress.cs" />
+    <Compile Include="Seller.cs" />
+    <Compile Include="MaintenanceList.cs" />
+    <Compile Include="InsurancePolicy.cs" />
+    <Compile Include="InsuranceEquipment.cs" />
+    <Compile Include="GuarantorList.cs" />
+    <Compile Include="EquipmentList.cs" />
+    <Compile Include="EquipmentDetail.cs" />
+    <Compile Include="StipulateLoss.cs" />
+    <Compile Include="StampDuty.cs" />
+    <Compile Include="OptionEndLeaseTerm.cs" />
+    <Compile Include="MethodPayment.cs" />
+    <Compile Include="Maintenance.cs" />
+    <Compile Include="Insurance.cs" />
+    <Compile Include="Funding.cs" />
+    <Compile Include="Guarantor.cs" />
+    <Compile Include="ViewModel\ApplicationDetailViewModel.cs" />
+    <Compile Include="WaiveDocument.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerSignerDomain.cs" />
+    <Compile Include="ViewCommonData\CommonCustomerDomain.cs" />
     <Compile Include="ViewCommonData\DeparmentCode.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="MasterProvince.cs" />
@@ -65,8 +95,10 @@
     <Compile Include="UserInTab.cs" />
     <Compile Include="UsersAuthorize.cs" />
     <Compile Include="ViewModel\AddressViewModel.cs" />
+    <Compile Include="ViewModel\CustomerInformationViewModel.cs" />
     <Compile Include="ViewModel\UserInformationView.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -77,12 +77,12 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTab', {
                     dataIndex: 'Year',
                     text: 'Year'
                 },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'LeadId',
-                    text: 'Name',
-                    flex: -1
-                },
+//                {
+//                    xtype: 'gridcolumn',
+//                    dataIndex: 'LeadId',
+//                    text: 'Name',
+//                    flex: -1
+//                },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Status',

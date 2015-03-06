@@ -44,7 +44,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
     },
     autoShow: true,
     id: 'cusinfwindow',
-    width: 930,
+    width: 995,
     layout: 'anchor',
     title: 'Customer Information',
     titleCollapse: false,
@@ -57,7 +57,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
             items: [
                 {
                     xtype: 'form',
-                    width: 925,
+                    width: 990,
                     animCollapse: false,
                     bodyPadding: 20,
                     collapsible: true,
@@ -128,7 +128,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'textfield',
                                     width: 360,
-                                    name: 'CustomerEngName'
+                                    name: 'CustomerEngName',
+                                    //regex: /^[a-zA-Zก-๙เ]{1,}$/
+
                                 }
                             ]
                         },
@@ -178,7 +180,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                         },
                         {
                             xtype: 'combobox',
-                            fieldLabel: 'Parent Country',
+                            fieldLabel: 'Parent Company',
                             labelWidth: 150,
                             name: 'ParentCompany',
                             displayField: 'Name',
@@ -191,38 +193,59 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                             margin: '0 0 0 5',
                             width: 270,
                             fieldLabel: 'Telephone',
-                            name: 'Telephone'
+                            name: 'Telephone',
+                            emptyText: 'xxx-xxx-xxxx',
+                            //maskRe: /[\d\-]/,
+                            //regex: /^\[0-9]d{10}$/,
+                            hideTrigger: true,
+                            regexText: 'Must be in the format xxx-xxx-xxxx'
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'combobox',
+                            margin: '0 0 0 5',
+                            fieldLabel: 'Type of Cust',
+                            name: 'TypeCust',
+                            displayField: 'Name',
+                            store: 'CommonData.typeofcust',
+                            valueField: 'Id',
+                            autoLoadOnValue: true
+                        },
+                        {
+                            xtype: 'numberfield',
                             margin: '0 0 0 5',
                             fieldLabel: 'Fax',
-                            name: 'Fax'
+                            name: 'Fax',
+                            hideTrigger: true
                         },
                         {
                             xtype: 'textfield',
                             fieldLabel: 'Email',
                             labelWidth: 150,
-                            name: 'Email'
+                            name: 'Email',
+                            vtype: 'email'
                         },
                         {
                             xtype: 'textfield',
                             margin: '0 0 0 5',
                             width: 270,
                             fieldLabel: 'Tax No',
-                            name: 'TaxNo'
+                            name: 'TaxNo',
+                            
                         },
                         {
-                            xtype: 'textfield',
+                            xtype: 'numberfield',
                             margin: '0 5 0 5',
                             fieldLabel: 'VAT %',
-                            name: 'VAT'
+                            name: 'VAT',
+                            minValue: 0,
+                            maxValue: 100,
+                            emptyText: '0-100%'
                         },
                         {
                             xtype: 'combobox',
                             fieldLabel: 'KTB Isic Code',
                             labelWidth: 150,
-                            name: 'KTBIsacCode',
+                            name: 'KTBIsicCode',
                             displayField: 'Name',
                             store: 'CommonData.KTBIsics',
                             valueField: 'Id',
@@ -318,6 +341,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             xtype: 'textfield',
                                             width: 600,
                                             fieldLabel: 'Business',
+                                            name:'Business',
                                             labelWidth: 150
                                         },
                                         {
@@ -330,7 +354,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'datefield',
                                     fieldLabel: 'Establishment',
+                                    name: 'Establishment',
                                     labelWidth: 150
+                                    
                                 },
                                 {
                                     xtype: 'fieldcontainer',
@@ -342,12 +368,14 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             flex: 1,
                                             margin: '0 0 0 5',
                                             width: 180,
+                                            name:'StockPR',
                                             fieldLabel: 'Stock PR'
                                         },
                                         {
                                             xtype: 'datefield',
                                             flex: 1,
                                             margin: '0 0 0 5',
+                                            name:'AsOf',
                                             fieldLabel: 'As Of'
                                         }
                                     ]
@@ -360,17 +388,20 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Register Capital',
+                                    name:'RegisterCapital',
                                     labelWidth: 150
                                 },
                                 {
                                     xtype: 'textfield',
                                     colspan: 2,
                                     width: 550,
+                                    name:'temp',
                                     fieldLabel: ''
                                 },
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Sales',
+                                    name:'Sales',
                                     labelWidth: 150
                                 },
                                 {
@@ -383,11 +414,13 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             margin: '0 0 0 5',
                                             width: 180,
                                             fieldLabel: 'As Of',
+                                            name:'AsOf1',
                                             labelWidth: 50
                                         },
                                         {
                                             xtype: 'textfield',
                                             flex: 1,
+                                            name:'temp2',
                                             margin: '0 0 0 5'
                                         }
                                     ]
@@ -395,6 +428,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Profit (Loss)',
+                                    name:'Profit',
                                     labelWidth: 150
                                 },
                                 {
@@ -407,11 +441,13 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             margin: '0 0 0 5',
                                             width: 180,
                                             fieldLabel: 'As Of',
+                                            name:'AsOf2',
                                             labelWidth: 50
                                         },
                                         {
                                             xtype: 'textfield',
                                             flex: 1,
+                                            name: 'temp3',
                                             margin: '0 0 0 5'
                                         }
                                     ]
@@ -419,6 +455,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Shareholder\'s Equity',
+                                    name: 'Shareholder',
                                     labelWidth: 150
                                 },
                                 {
@@ -430,12 +467,14 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             xtype: 'datefield',
                                             margin: '0 0 0 5',
                                             width: 180,
+                                            name:'AsOf3',
                                             fieldLabel: 'As Of',
                                             labelWidth: 50
                                         },
                                         {
                                             xtype: 'textfield',
                                             flex: 1,
+                                            name:'temp4',
                                             margin: '0 0 0 5'
                                         }
                                     ]
@@ -443,6 +482,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Outstanding Amount',
+                                    name: 'OutstandingAmount',
                                     labelWidth: 150
                                 },
                                 {
@@ -451,12 +491,14 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                     margin: '0 0 0 5',
                                     width: 180,
                                     fieldLabel: 'As Of',
+                                    name:'AsOf5',
                                     labelWidth: 50
                                 },
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Exposure Limit',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    name: 'ExposureLimit'
                                 },
                                 {
                                     xtype: 'container',
@@ -470,25 +512,30 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             margin: '0 0 0 5',
                                             width: 180,
                                             fieldLabel: 'As Of',
+                                            name:'AsOf6',
                                             labelWidth: 50
                                         },
                                         {
                                             xtype: 'combobox',
                                             flex: 1,
-                                            margin: '0 0 0 5'
+                                            margin: '0 0 0 5',
+                                            name:'temp6'
                                         },
                                         {
                                             xtype: 'button',
                                             flex: 1,
                                             margin: '0 0 0 5',
-                                            text: 'Background History'
+                                            text: 'Background History',
+                                            name: 'BackgroundHistory'
                                         }
                                     ]
                                 },
                                 {
                                     xtype: 'numberfield',
                                     fieldLabel: 'Total Asset',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    name:'TotalAsset'
+
                                 },
                                 {
                                     xtype: 'container',
@@ -501,7 +548,8 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             flex: 1,
                                             margin: '0 0 0 5',
                                             maxWidth: 200,
-                                            fieldLabel: 'Equity Ratio (%)'
+                                            fieldLabel: 'Equity Ratio (%)',
+                                            name:'EquityRatio'
                                         },
                                         {
                                             xtype: 'numberfield',
@@ -509,7 +557,8 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                             margin: '0 0 0 5',
                                             maxWidth: 200,
                                             fieldLabel: 'OPE Period (mths)',
-                                            labelWidth: 120
+                                            labelWidth: 120,
+                                            name: 'OPEPeriod'
                                         }
                                     ]
                                 }
@@ -537,7 +586,8 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                     items: [
                                         {
                                             xtype: 'textfield',
-                                            fieldLabel: 'KTIBJ Marketing Officer',
+                                            fieldLabel: 'Marketing Officer',
+                                            name: 'MarketingOfficer',
                                             labelWidth: 150
                                         },
                                         {
@@ -555,14 +605,23 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 {
                                     xtype: 'textfield',
                                     fieldLabel: 'Warning',
+                                    name:'Warning',
                                     labelWidth: 150
                                 },
                                 {
                                     xtype: 'combobox',
                                     width: 250,
                                     fieldLabel: 'Status',
+                                    name:'Status',
                                     labelWidth: 150
-                                }
+                                },
+                                {
+                                    xtype: 'textfield',
+                                    fieldLabel: 'Inactive reason',
+                                    name:'Warning',
+                                    labelWidth: 150,
+                                    hidden:true
+                                },
                             ]
                         },
                         {

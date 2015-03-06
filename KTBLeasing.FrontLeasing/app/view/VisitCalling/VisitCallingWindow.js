@@ -58,7 +58,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     width: 200,
                                     fieldLabel: 'Visit #',
                                     labelAlign: 'right',
-                                    name: 'LeadId'
+                                    name: 'LeadId',
+                                    itemId: 'LeadId',
                                 },
                                 {
                                     xtype: 'datefield',
@@ -105,6 +106,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     margin: '0 0 0 5',
                                     ui: 'default-small',
                                     iconCls: 'x-form-search-trigger',
+                                    tooltip: 'Customer',
                                     listeners: {
                                         click: 'onButtonCusInfClick'
                                     }
@@ -113,6 +115,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     xtype: 'button',
                                     margin: '0 0 0 5',
                                     iconCls: 'x-form-search-trigger',
+                                    tooltip: 'Visit/Calling Information',
                                     listeners: {
                                         click: 'onButtonVisitCallingClick'
                                     }
@@ -150,12 +153,12 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                 {
                                     xtype: 'textfield',
                                     width: 175,
-                                    name: 'FirstNameTh'
+                                    name: 'NameTh'
                                 },
                                 {
                                     xtype: 'textfield',
                                     width: 175,
-                                    name: 'LastNameTh'
+                                    name: 'NameEng'
                                 }
                             ]
                         },
@@ -174,13 +177,14 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     width: 550,
                                     fieldLabel: 'Address',
                                     labelAlign: 'right',
-                                    name: 'Address'
+                                    name: 'AddressTh'
                                 },
                                 {
                                     xtype: 'button',
                                     colspan: 2,
                                     margin: '0 0 0 5',
                                     iconCls: 'x-form-search-trigger',
+                                    tooltip: 'Address',
                                     listeners: {
                                         click: 'onButtonAddressClick'
                                     }
@@ -194,7 +198,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     labelAlign: 'right',
                                     labelWidth: 80,
                                     name: 'Telephone',
-                                    inputType: 'tel'
+                                    inputType: 'tel',
+                                    itemId: 'Telephone'
                                 },
                                 {
                                     xtype: 'textfield',
@@ -204,8 +209,9 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     fieldLabel: 'Fax',
                                     labelAlign: 'right',
                                     labelWidth: 80,
-                                    name: 'Fax',
-                                    inputType: 'tel'
+                                    name: 'FaxNo',
+                                    inputType: 'tel',
+                                    itemId: 'FaxNo'
                                 },
                                 {
                                     xtype: 'textfield',
@@ -216,7 +222,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     labelAlign: 'right',
                                     labelWidth: 80,
                                     name: 'Email',
-                                    inputType: 'email'
+                                    inputType: 'email',
+                                    itemId: 'Email'
                                 }
                             ]
                         },
@@ -230,7 +237,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     width: 500,
                                     fieldLabel: 'Sub District',
                                     labelAlign: 'right',
-                                    name: 'SubDistrict',
+                                    name: 'SubdistrictId',
                                     allowBlank: false,
                                     autoLoadOnValue: true,
                                     tpl: [
@@ -250,7 +257,30 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     minChars: 3,
                                     queryParam: 'text',
                                     store: 'CommonData.provinces',
-                                    valueField: 'SubdistrictId'
+                                    valueField: 'SubdistrictId',
+                                    minChars: 3,
+                                    queryMode: 'local',
+                                    doQuery: function (queryString, forceAll) {
+                                        if (queryString.length > 2) {
+                                            this.expand();
+                                            this.store.clearFilter(!forceAll);
+                                            if (!forceAll) {
+
+                                                var filters = [
+                                                new Ext.util.Filter({
+                                                        filterFn: function (item) {
+                                                            //allmatch
+                                                            //return item.get('ProvinceName') == queryString || item.get('DistrictName') == queryString || item.get('SubdistrictName') == queryString || item.get('Zipcode') == queryString;
+                                                            //anymatch
+                                                            return new RegExp(queryString, "i").test(item.get('ProvinceName')) || new RegExp(queryString, "i").test(item.get('DistrictName')) || new RegExp(queryString, "i").test(item.get('SubdistrictName')) || new RegExp(queryString, "i").test(item.get('Zipcode'));
+                                                        }
+                                                    })
+                                                ];
+                                                this.store.filter(filters);
+                                            }
+                                        }
+
+                                    }
                                 }
                             ]
                         },
@@ -287,6 +317,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     margin: '0 0 0 05',
                                     maxWidth: 28,
                                     iconCls: 'x-form-search-trigger',
+                                    tooltip: 'Contact information',
                                     listeners: {
                                         click: 'onButtonContactPersonClick'
                                     }
@@ -552,7 +583,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                     xtype: 'button',
                     text: 'Save',
                     listeners: {
-                        click: 'onButtonClick'
+                        click: 'onSaveClick'
                     }
                 },
                 {

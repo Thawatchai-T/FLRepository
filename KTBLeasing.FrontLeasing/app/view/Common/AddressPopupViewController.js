@@ -39,6 +39,7 @@ Ext.define('TabUserInformation.view.Common.AddressPopupViewController', {
                                 console.log(action);
                                 Ext.Msg.alert('Success', "บันทึกข้อมูลเรียบร้อย");
                                 Ext.getCmp('pagingtoolbar-address').moveFirst();
+                                //button.up('window').destroy();
                                 button.up('window').close();
                             },
                             failure: function (form, action) {
@@ -60,13 +61,32 @@ Ext.define('TabUserInformation.view.Common.AddressPopupViewController', {
     },
 
     onTextchange: function (text, oldText, newText, eOpts) {
-        if (text != null) {
-            store.getProxy().extraParams.text = text;
-        } else {
-            store.getProxy().extraParams.text = 0;
-        }
+        var filters = this.getView().getReference('#province').getStore().getFilters();
+        console.log(eOpts);
+        console.log(newText);
+        console.log(text);
+        console.log(filters);
 
-        store.load();
+        //filters = grid.store.getFilters(),
+        //if (text != null) {
+        //    store.getProxy().extraParams.text = text;
+        //} else {
+        //    store.getProxy().extraParams.text = 0;
+        //}
+        //store.load();
+
+        //filter
+        //if (textfield.value) {
+        //    this.nameFilter = filters.add({ id: 'nameFilter',
+        //        property: property,
+        //        value: textfield.value,
+        //        anyMatch: true,
+        //        caseSensitive: true
+        //    });
+        //} else if (this.nameFilter) {
+        //    filters.remove(this.nameFilter);
+        //    this.nameFilter = null;
+        //}
     }
 
 });

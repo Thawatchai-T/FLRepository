@@ -28,7 +28,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return Province;
         }
 
-        public IEnumerable<Province> GetAll(string text)
+        public IEnumerable<Province> GetAll(string text, int page, int start, int limit)
         {
             SetProvince();
             if (!string.IsNullOrEmpty(text))
@@ -110,10 +110,21 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
         public IEnumerable<CommonData> GetCommonByNameEng(string NameEng)
         {
-            return this.CommonRepository.GetCommonByNameEng(NameEng);
+            return this.CommonRepository.GetCommonByNameEng(NameEng).OrderBy(x=>x.Name);
         }
 
         #endregion
+
+        #region Customer information popup
+        public IEnumerable<Position> GetCustomerInformation()
+        {
+
+            return null;
+        }
+
+        #endregion
+
+
 
         private List<Province> SetProvince()
         {

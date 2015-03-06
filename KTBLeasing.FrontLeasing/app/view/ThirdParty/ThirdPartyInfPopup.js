@@ -59,25 +59,35 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopup', {
             columns: [
                 {
                     xtype: 'gridcolumn',
+                    itemId: 'ThirdPartyCode',
                     dataIndex: 'ThirdPartyCode',
                     text: 'ThirdPartyCode'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'TitleNameEn',
-                    text: 'TitleNameEn'
-                },
-                {
-                    xtype: 'gridcolumn',
+                    itemId: 'NameEn',
                     dataIndex: 'NameEn',
-                    text: 'NameEn',
-                    flex: -1
+                    text: 'NameEn'
                 },
                 {
                     xtype: 'gridcolumn',
+                    itemId: 'NameTh',
                     dataIndex: 'NameTh',
-                    text: 'NameTh',
-                    flex: -1
+                    text: 'NameTh'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    hidden: true,
+                    itemId: 'AddressEng1',
+                    dataIndex: 'AddressEng1',
+                    text: 'AddressEng1'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    hidden: true,
+                    itemId: 'AddressEng2',
+                    dataIndex: 'AddressEng2',
+                    text: 'AddressEng2'
                 }
             ],
             listeners: {

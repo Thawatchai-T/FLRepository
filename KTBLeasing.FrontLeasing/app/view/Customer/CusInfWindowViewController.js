@@ -26,9 +26,11 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
         var record = this.getView().down('form').getRecord();
         var popup = Ext.create("widget.commonaddresswindow");
         var form = popup.down('form');
+
         var store = popup.lookupReference('addressgrid').getStore();
         store.getProxy().extraParams.text = record.get('CustomerId');
         store.load();
+
         form.loadRecord(record);
         popup.show();
     },
@@ -36,15 +38,13 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
     onButtonSignClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.windowsignerwindow"),
             store = popup.down('gridpanel').getStore(),
-            record = this.getView().down('form').getRecord(),
-            store_province = popup.lookupReference('province').getStore(),
-            store_sp_province = popup.lookupReference('sp_province').getStore();
+            record = this.getView().down('form').getRecord();
 
-        store_province.getProxy().extraParams.text = record.get('SubdistrictId');
-        store_sp_province.getProxy().extraParams.text = record.get('SubdistrictId');
+        popup.lookupReference('CustomerId').setValue(record.get('CustomerId'));
         store.getProxy().extraParams.custId = record.get('CustomerId');
         store.load();
         popup.show();
+
     },
 
     onButtonContactPersonClick: function (button, e, eOpts) {
@@ -52,6 +52,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
             store = popup.down('gridpanel').getStore(),
             record = this.getView().down('form').getRecord();
 
+        popup.lookupReference('CustomerId').setValue(record.get('CustomerId'));
         store.getProxy().extraParams.custId = record.get('CustomerId');
         store.load();
         popup.show();
@@ -119,6 +120,38 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
 
     onButtonNewClick1: function (button, e, eOpts) {
 
+        var form = this.getView().down('form').getForm();
+        console.log(form.getValues());
+        var data = form.getValues();
+        if (form.isValid()) {
+            Ext.MessageBox.confirm('Confirm', 'คุณต้องการที่บันทึกหรือเปลื่ยนแปลงข้อมูล?',
+                function (cbtn, bool) {
+                    if (cbtn == 'yes') {
+
+                        Ext.Ajax.request({
+                            method: 'post',
+                            cache: false,
+                            url: 'api/cusinfo/dopost',
+                            params: data,
+                            contentType: "application/json",
+                            success: function (form, action) {
+                                Ext.Msg.alert('Success', "บันทึกข้อมูลเรียบร้อย");
+                                Ext.getCmp('pagingtoolbar-custinfo').moveFirst();
+                                button.up('window').close();
+                            },
+                            failure: function (form, action) {
+                                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
+                            }
+                        });
+
+                    }
+
+                }
+            );
+
+        } else {
+            Ext.Msg.alert('Data is not valid!', 'กรุณาเลือกข้อมูลให้ครบถ้วน');
+        }
     },
 
     onButtonResetClick: function (button, e, eOpts) {

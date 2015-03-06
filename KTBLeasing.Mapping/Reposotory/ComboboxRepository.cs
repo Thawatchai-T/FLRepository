@@ -6,6 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 using System.Collections;
 using NHibernate.Transform;
 using KTBLeasing.Domain;
+using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -113,5 +114,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return result;
             }
         }
+        
+        
     }
 }

@@ -68,7 +68,10 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
             xtype: 'gridpanel',
             height: 400,
             reference: 'addressgrid',
-            store: 'addresses',
+            store: 'addresses', 
+            viewConfig: {
+                emptyText: '<span class="emptyText">No rows found.</span>'
+            },
             columns: [
                 {
                     xtype: 'rownumberer',

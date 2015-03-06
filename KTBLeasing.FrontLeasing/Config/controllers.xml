@@ -56,12 +56,16 @@
 
   <object type="KTBLeasing.FrontLeasing.Controllers.SignerController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="CustomerSignerRepository" ref="customerSignerRepository"/>
-
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.ContactController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="ContactRepository" ref="contactRepository"/>
 
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.CusInfoController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CustomerRepository" ref="customerRepository"/>
+    <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.InformationIndicationController, KTBLeasing.FrontLeasing" singleton="false" >
@@ -80,7 +84,7 @@
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.ApplicationDetailController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="ApplicationDetailRepository" ref="applicationDetailRepository"/>
 
   </object>
 
@@ -100,7 +104,7 @@
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentListController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="EquipmentListRepository" ref="equipmentListRepository"/>
 
   </object>
 
@@ -134,7 +138,15 @@
 
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.MaintenanceListController, KTBLeasing.FrontLeasing" singleton="false" >
+  <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
 
+</object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentDetailController, KTBLeasing.FrontLeasing" singleton="false" >
+    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+
+  </object>
 
   <!--<object type="KTBLeasing.FrontLeasing.Controllers.CustomerController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="CustomerRepository" ref="CustomerRepository"/>

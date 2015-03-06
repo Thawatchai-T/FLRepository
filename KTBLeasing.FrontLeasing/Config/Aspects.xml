@@ -10,10 +10,18 @@
   <!--<object id="myAnotherServiceCommand" type="Spring.AopQuickStart.Commands.AnotherServiceCommand, Spring.AopQuickStart.Step7"/>-->
 
   <!-- The rest of the config file is common no matter how many objects you add -->
+  <object id="serviceOperation" type="Spring.Aop.Support.SdkRegularExpressionMethodPointcut, Spring.Aop">
+    <property name="pattern" value="^KTBLeasing.FrontLeasing.Mapping.Orcl.*"/>
+  </object>
 
+  <object id="performanceAdvice" type="KTBL.NCRS.Aspects.SimplePerformanceInterceptor, KTBL.NCRS.Aspects">
+    <property name="Prefix" value="Service Layer Performance"/>
+    <property name="MongoDBConnection" value="mongodb://localhost"/>
+  </object>
+  
   <object id="aroundAdvisor" type="Spring.Aop.Support.NameMatchMethodPointcutAdvisor, Spring.Aop">
     <property name="Advice">
-      <object type=" KTBLeasing.FrontLeasing.Spring.Aop.Aspects.ConsoleLoggingAroundAdvice,  KTBLeasing.FrontLeasing.Spring.Aop"/>
+      <object type="KTBL.NCRS.Aspects.ConsoleLoggingAroundAdvice,  KTBL.NCRS.Aspects"/>
     </property>
     <property name="MappedNames">
       <list>
@@ -24,19 +32,19 @@
 
   <!-- Using ObjectNameAutoProxyCreator -->
   <!-- Apply 'aroundAdvisor' on all objects with id that ends by 'Command' -->
-  <object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
-    <property name="ObjectNames">
+  <!--<object type="Spring.Aop.Framework.AutoProxy.ObjectNameAutoProxyCreator, Spring.Aop">
+    --><!--<property name="ObjectNames">
       <list>
         <value>*Controller#*</value>
       </list>
-    </property>
+    </property>--><!--
     <property name="InterceptorNames">
       <list>
         <value>aroundAdvisor</value>
       </list>
     </property>
-  </object>
+  </object>-->
 
-  <!--<object type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop" />-->
+  <object type="Spring.Aop.Framework.AutoProxy.DefaultAdvisorAutoProxyCreator, Spring.Aop" />
 
 </objects>

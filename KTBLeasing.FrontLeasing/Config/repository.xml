@@ -55,4 +55,24 @@
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
 
+  <object id="contactRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ContactRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="customerRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CustomerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="applicationDetailRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ApplicationDetailRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
+  <object id="equipmentListRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.EquipmentListRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
 </objects>

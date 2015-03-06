@@ -21,7 +21,7 @@ namespace KTBLeasing.FrontLeasing
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
                         x.Server("221.23.0.70")
                         .Port(1521)
-                        .Username("fluser")
+                        .Username("FrontLeasing")
                         .Password("ktblitadmin")
                         .Instance("ktbl"))
                         )

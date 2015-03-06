@@ -86,27 +86,45 @@ namespace Test.Repository.Orcl
         [TestMethod()]
         public void InsertTest()
         {
-            UserInTabRepository target = new UserInTabRepository(); // TODO: Initialize to an appropriate value
-            target.SessionFactory = CreateSessionFactory();
-            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            //UserInTabRepository target = new UserInTabRepository(); // TODO: Initialize to an appropriate value
+            //target.SessionFactory = CreateSessionFactory();
+            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
 
-            var s = target.Get();
-            
-            UserInTab entity = new UserInTab
-            {
-                TabId = 2,
-                RoleId = 2,
-                
-                Description   = "testInsert",
-                CreateBy = "woody",
-                UpdateBy = "woody",
-                UpdateDate   = DateTime.Now,
-                CreateDate = DateTime.Now
+            //var s = target.Get();
+            //
+            //UserInTab entity = new UserInTab
+            //{
+            //    TabId = 2,
+            //    RoleId = 2,
+            //    
+            //    Description   = "testInsert",
+            //    CreateBy = "woody",
+            //    UpdateBy = "woody",
+            //    UpdateDate   = DateTime.Now,
+            //    CreateDate = DateTime.Now
 
-            };//null; // TODO: Initialize to an appropriate value
-            target.Insert(entity);
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            //};//null; // TODO: Initialize to an appropriate value
+            //target.Insert(entity);
+            //Assert.Inconclusive("A method that does not return a value cannot be verified.");
+
         }
+
+        [TestMethod()]
+        public void TestMap()
+        {
+            var session = CreateSessionFactory();
+            Assert.Equals(true, !session.IsClosed);
+        }
+
+        [TestMethod]
+        public void TestJoinUserInfo()
+        {
+            UserInfomationRepository target = new UserInfomationRepository();
+            target.SessionFactory = CreateSessionFactory();
+
+          //  var result = target.GetGridView();
+        }
+
 
         private static ISessionFactory CreateSessionFactory()
         {

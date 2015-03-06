@@ -107,7 +107,7 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
                     labelAlign: 'right',
                     name: 'SubdistrictId',
                     allowBlank: false,
-                    autoLoadOnValue: true,
+                    //autoLoadOnValue: true,
                     tpl: [
                         '<ul class="x-list-plain">',
                             '<tpl for=".">',
@@ -123,11 +123,46 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
                             '</tpl>',
                     ],
                     minChars: 3,
-                    queryParam: 'text',
+                    //queryParam: 'text',
+                    queryMode: 'local',
                     store: 'CommonData.provinces',
                     valueField: 'SubdistrictId',
-                    listeners: {
-                        textchange: 'onTextchange'
+                    //                    listeners: {
+                    //                        textchange: 'onTextchange'
+                    //                    }
+                    doQuery: function (queryString, forceAll) {
+                        console.log(queryString);
+                        this.expand();
+                        this.store.clearFilter();
+                        if (!forceAll) {
+                            
+                            var filters = [
+                                         new Ext.util.Filter({
+                                             filterFn: function (item) {
+                                                 //allmatch
+                                                 //return item.get('ProvinceName') == queryString || item.get('DistrictName') == queryString || item.get('SubdistrictName') == queryString || item.get('Zipcode') == queryString;
+                                                 //anymatch
+                                                 //return new RegExp(queryString, "i").test(item.get('ProvinceName')) || new RegExp(queryString, "i").test(item.get('DistrictName')) || new RegExp(queryString, "i").test(item.get('SubdistrictName')) || new RegExp(queryString, "i").test(item.get('Zipcode'));
+
+                                                 if(new RegExp(queryString, "i").test(item.get('Zipcode'))){
+                                                    return true;
+                                                 }else if(new RegExp(queryString, "i").test(item.get('SubdistrictName'))){
+                                                    return true;
+                                                 }else if(new RegExp(queryString, "i").test(item.get('DistrictName'))){
+                                                    return true;
+                                                 }else if(new RegExp(queryString, "i").test(item.get('ProvinceName'))){
+                                                    return true;
+                                                 }else{
+                                                    false;
+                                                 }
+
+
+                                             }
+                                         })
+                                    ];
+                            this.store.filter(filters);
+
+                        }
                     }
                 },
                 {
@@ -136,7 +171,7 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
                     fieldLabel: 'Other Zipcode',
                     labelAlign: 'right',
                     name: 'OtherZipcode',
-                    emptyText : '[รหัสไปรษณีย์อื่นๆ]'
+                    emptyText: '[รหัสไปรษณีย์อื่นๆ]'
                 },
                 {
                     xtype: 'checkboxfield',

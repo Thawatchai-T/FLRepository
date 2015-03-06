@@ -9,6 +9,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     public class Customer : BaseDomain
     {
         public Customer() { }
+
         public virtual long Id { get; set; }
         public virtual long? PositionId { get; set; }
         public virtual long? Positionguid { get; set; }
@@ -33,5 +34,15 @@ namespace KTBLeasing.FrontLeasing.Domain {
         //public virtual string CrateBy { get; set; }
         //public virtual string UpdateBy { get; set; }
         //public virtual DateTime CreateDate { get; set; }
+
+        public virtual long GroupCust { get; set; }
+
+        public virtual string PhoneNo { get; set; }
+
+        public virtual string FaxNo { get; set; }
+
+        public virtual long KTBCustType { get; set; }
+
+        public virtual string Email { get; set; }
     }
 }

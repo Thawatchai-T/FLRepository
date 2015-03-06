@@ -17,6 +17,23 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopupViewController'
     extend: 'Ext.app.ViewController',
     alias: 'controller.thirdpartythirdpartyinfpopup',
 
+    HideAndShow: function(value) {
+        var view = this.getView(),
+            grid = view.down('grid');
+
+        for(var i in grid.columns){
+            grid.columns[i].hide();
+        }
+
+        switch(value){
+            case 'AddressEqp':
+                grid.down('#ThirdPartyCode').show();
+                grid.down('#AddressEng1').show();
+                grid.down('#AddressEng2').show();
+                break;
+        }
+    },
+
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
         this.getView().close();
     }

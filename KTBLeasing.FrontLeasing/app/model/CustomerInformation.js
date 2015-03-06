@@ -21,11 +21,10 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
         'Ext.data.field.Integer'
     ],
 
-    idProperty: 'CustomerId',
-
     fields: [
         {
-            name: 'CustomerId'
+            type: 'int',
+            name: 'CustomerCode'
         },
         {
             name: 'CustomerEngType'
@@ -77,6 +76,18 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
         },
         {
             name: 'TypeCust'
+        },
+        {
+            name: 'Position1'
+        },
+        {
+            name: 'Position2'
+        },
+        {
+            name: 'Address1'
+        },
+        {
+            name: 'Address2'
         }
     ]
 });

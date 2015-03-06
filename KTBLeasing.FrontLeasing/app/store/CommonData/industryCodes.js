@@ -19,7 +19,7 @@ Ext.define('TabUserInformation.store.CommonData.industryCodes', {
 
     requires: [
         'TabUserInformation.model.BaseCommonData',
-        'Ext.data.proxy.Memory'
+         'Ext.data.proxy.Ajax'
     ],
 
     constructor: function(cfg) {
@@ -28,22 +28,12 @@ Ext.define('TabUserInformation.store.CommonData.industryCodes', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.industryCodes',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 550,
-                    Code: 'asperiores',
-                    Name: 'optio',
-                    Active: false
-                },
-                {
-                    Id: 806,
-                    Code: 'cupiditate',
-                    Name: 'sit',
-                    Active: true
-                }
-            ],
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getcommonbynameeng?nameeng=industry_code',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

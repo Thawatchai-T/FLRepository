@@ -107,6 +107,32 @@ namespace Test.Repository.Orcl
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
         }
 
+        [TestMethod()]
+        public void TransformsTest()
+        {
+            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+
+            //CommonAddressRepository target = new CommonAddressRepository(); // TODO: Initialize to an appropriate value
+            //UsersAuthorize entity = new UsersAuthorize(); // TODO: Initialize to an appropriate value
+
+            //target.SessionFactory = CreateSessionFactory();
+            //target.getsql();
+            
+
+            
+            //Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
+        [TestMethod()]
+        public void TestGetAddressTOViewAddress()
+        {
+            AddressRepository target = new AddressRepository();
+            target.SessionFactory = CreateSessionFactory();
+            var result = target.GetAll(0,10,999);
+
+            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+        }
+
         private static ISessionFactory CreateSessionFactory()
         {
             try
@@ -135,6 +161,7 @@ namespace Test.Repository.Orcl
         [TestMethod]
         public void Testmaping()
         {
+
             Assert.AreEqual(true, !CreateSessionFactory().IsClosed);
         }
 
@@ -243,18 +270,27 @@ namespace Test.Repository.Orcl
         [TestMethod()]
         public void GetTreeTest()
         {
-            HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
-            CommonRepository target = new CommonRepository(); // TODO: Initialize to an appropriate value
-            target.SessionFactory = CreateSessionFactory();
+            //HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            //CommonRepository target = new CommonRepository(); // TODO: Initialize to an appropriate value
+            //target.SessionFactory = CreateSessionFactory();
 
-            List<ProvinceTree> abc = target.GetProvinceTree();
+            //List<ProvinceTree> abc = target.GetProvinceTree();
 
-            //var root = abc.Where(x => x.Levels == 0);
+            ////var root = abc.Where(x => x.Levels == 0);
 
-            var json = JsonConvert.SerializeObject(abc);
+            //var json = JsonConvert.SerializeObject(abc);
             
             //Assert.AreEqual(true, actual.Count > 0);
             //  Assert.Inconclusive("Verify the correctness of this test method.");
         }
+    }
+
+    public class CommonAddress1
+    {
+        public long Id { get; set; }
+        public int Parent_Id { get; set; }
+        public int Levels { get; set; }
+        public string Name { get; set; }
+        public bool IsLeaf { get; set; }
     }
 }

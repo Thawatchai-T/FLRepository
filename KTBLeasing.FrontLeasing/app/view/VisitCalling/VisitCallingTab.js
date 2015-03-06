@@ -43,7 +43,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
     },
     height: 900,
     width: '100%',
-    layout: 'border',
+    //layout: 'border',
+    layout: 'anchor',
     title: 'Visit/Calling Information',
     defaultListenerScope: true,
 
@@ -83,11 +84,17 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     xtype: 'datefield',
                                     width: 200,
                                     fieldLabel: 'Search Date',
-                                    labelAlign: 'right'
+                                    labelAlign: 'right',
+                                    listeners: {
+                                        render: 'onDatefieldRender'
+                                    }
+
+
                                 },
                                 {
                                     xtype: 'datefield',
                                     width: 100
+
                                 }
                             ]
                         }
@@ -98,26 +105,40 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
         {
             xtype: 'gridpanel',
             region: 'center',
+            height: 445,
+            width: '100%',
+            minHeigth: 400,
+            flex: 1,
             columns: [
                 {
+                    xtype: 'rownumberer',
+                    widht: 75
+                },
+                {
                     xtype: 'gridcolumn',
-                    dataIndex: 'string',
-                    text: 'String'
+                    text: 'VistitNo',
+                    widht: 100
                 },
                 {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'number',
-                    text: 'Number'
+                    xtype: 'gridcolumn',
+                    text: 'VisitDate',
+                    widht: 100
                 },
                 {
-                    xtype: 'datecolumn',
-                    dataIndex: 'date',
-                    text: 'Date'
+                    xtype: 'gridcolumn',
+                    text: 'Customer name',
+                    flex: -1
                 },
                 {
-                    xtype: 'booleancolumn',
-                    dataIndex: 'bool',
-                    text: 'Boolean'
+                    xtype: 'gridcolumn',
+                    text: 'Marketing name',
+                    widht: 150
+
+                },
+                {
+                    xtype: 'gridcolumn',
+                    text: 'Ref Information No',
+                    widht: 150
                 }
             ],
             dockedItems: [
@@ -175,31 +196,31 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                             waitTitle: '',
                             items: [
                                 {
-                                    xtype: 'textareafield',
+                                    xtype: 'displayfield',
                                     width: 500,
                                     fieldLabel: 'Address',
                                     labelWidth: 150
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Business',
                                     labelWidth: 150
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Contact Person',
                                     labelWidth: 150
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     fieldLabel: 'Telephone',
                                     labelWidth: 150,
                                     inputType: 'tel'
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Source of Information',
                                     labelWidth: 150
@@ -287,42 +308,42 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     labelWidth: 250,
                                     items: [
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'type-of-lease-equipment1',
                                             width: 800,
                                             fieldLabel: 'Type of Lease Equipment',
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'leasing-company1',
                                             width: 800,
                                             fieldLabel: 'Leasing Company',
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'term-and-condition1',
                                             width: 800,
                                             fieldLabel: 'Term and Condition',
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'type-of-hp-equipment1',
                                             width: 800,
                                             fieldLabel: 'Type of HP Equipment',
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'hp-company1',
                                             width: 800,
                                             fieldLabel: 'HP Company',
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textfield',
+                                            xtype: 'displayfield',
                                             id: 'hp-term-and-condition1',
                                             width: 800,
                                             fieldLabel: 'HP Term and Condition',
@@ -352,13 +373,14 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                             title: 'Project Plan',
                             items: [
                                 {
-                                    xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Type of Equipment',
                                     labelWidth: 120
                                 },
                                 {
-                                    xtype: 'numberfield',
+                                    //xtype: 'numberfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     maxWidth: 270,
                                     fieldLabel: 'Amount',
@@ -366,7 +388,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     hideTrigger: true
                                 },
                                 {
-                                    xtype: 'textfield',
+                                    //xtype: 'textfield',
+                                    xtype: 'displayfield',
                                     anchor: '100%',
                                     maxWidth: 220,
                                     fieldLabel: 'Schedule',
@@ -381,42 +404,47 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
         }
     ],
 
-    onCheckboxfieldChange6: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange6: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox,newValue);
+        this.Shows(textBox, newValue);
     },
 
-    onCheckboxfieldChange11: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange11: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox,newValue);
+        this.Shows(textBox, newValue);
     },
 
-    onCheckboxfieldChange21: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange21: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('type-of-lease-equipment');
         var textBox2 = this.getComponent('financialpolicy').getComponent('leasing-company');
         var textBox3 = this.getComponent('financialpolicy').getComponent('term-and-condition');
-        this.ShowsDefault(textBox,newValue);
-        this.ShowsDefault(textBox2,newValue);
-        this.ShowsDefault(textBox3,newValue);
+        this.ShowsDefault(textBox, newValue);
+        this.ShowsDefault(textBox2, newValue);
+        this.ShowsDefault(textBox3, newValue);
     },
 
-    onCheckboxfieldChange51: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange51: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('type-of-hp-equipment');
         var textBox2 = this.getComponent('financialpolicy').getComponent('hp-company');
         var textBox3 = this.getComponent('financialpolicy').getComponent('hp-term-and-condition');
-        this.ShowsDefault(textBox,newValue);
-        this.ShowsDefault(textBox2,newValue);
-        this.ShowsDefault(textBox3,newValue);
+        this.ShowsDefault(textBox, newValue);
+        this.ShowsDefault(textBox2, newValue);
+        this.ShowsDefault(textBox3, newValue);
     },
 
-    onCheckboxfieldChange31: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange31: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox,newValue);
+        this.Shows(textBox, newValue);
     },
 
-    onCheckboxfieldChange41: function(field, newValue, oldValue, eOpts) {
+    onCheckboxfieldChange41: function (field, newValue, oldValue, eOpts) {
         var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox,newValue);
+        this.Shows(textBox, newValue);
+    },
+
+    onDatefieldRender: function (component, eOpts) {
+        console.log(eOpts);
+        console.log(component);
     }
 
 });

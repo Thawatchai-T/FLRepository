@@ -20,23 +20,67 @@ Ext.define('TabUserInformation.controller.HomeController', {
         "#myviewport": {
             beforerender: 'doLogin'
         }
-//        ,
-//        "#tabManagement": {
-//            beforerender: 'tabManagement'
-//        }
+        //        ,
+        //        "#tabManagement": {
+        //            beforerender: 'tabManagement'
+        //        }
     },
 
     doLogin: function (component, eOpts) {
         var popup = Ext.create('widget.windowloginwindow');
         //Show login windows
-
         var supportsLocalStorage = Ext.supports.LocalStorage,
             loggedIn;
+        // debugger;
+       // var provStore = Ext.create('store.provinces');
+
+        //provStore.load();
+
+    //    Ext.Ajax.request({
+    //        url: 'api/common/GetAllProvince',
+    //        success: function (response) {
+    //            console.log(response);
+    //            // provStore.add(response.responseText);
+    //            //for (var i=0;i<datas.sessionTags.length;i++) {
+    //            //  tagStore.add({ ..datas.sessionTags[i]..});
+    //            //}
+    //            //console.log(response.responseText.length);
+    //            //for (var i = 0; i < response.responseText.length; i++) {
+    //            //    //provStore.add(response.responseText[i]);
+    //            //}
+    //            //response.responseText.each(function (e) { console.log(e); });
+    //            Ext.Array.each(response.responseText, function (name, index, countriesItSelf) {
+    //                console.log(name);
+    //               // provStore.add(name)
+
+    //            });
+    ////            provStore.load(record);
+    //            //provstore.sync();
+    //        },
+    //        failure: function (response) {
+    //            console.log(response);
+    //        }
+    //    });
+
+
+
+       // debugger;
+        console.log('debug');
+       // console.log(provStore);
+        //get
+
+        var sessionId;
+        sessionId = localStorage.sessionID;
+        sessionId = localStorage.getItem('sessionId');
+
+        localStorage.sessionId = undefined;
+        localStorage.removeItem('sessionId');
+
         if (supportsLocalStorage) {
             //Ext.Msg.alert('supports');
             loggedIn = localStorage.getItem("bar");
             console.log(loggedIn);
-           // if (!loggedIn) popup.show();
+            // if (!loggedIn) popup.show();
         }
 
 

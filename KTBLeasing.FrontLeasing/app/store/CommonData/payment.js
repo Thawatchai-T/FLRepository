@@ -27,22 +27,13 @@ Ext.define('TabUserInformation.store.CommonData.payment', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.payment',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 550,
-                    Code: 'asperiores',
-                    Name: 'optio',
-                    Active: false
-                },
-                {
-                    Id: 806,
-                    Code: 'cupiditate',
-                    Name: 'sit',
-                    Active: true
-                }
-            ],
+            autoLoad: true,
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getcommonbynameeng?nameeng=payment',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

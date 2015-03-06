@@ -19,29 +19,22 @@ Ext.define('TabUserInformation.model.Signer', {
 
     requires: [
         'Ext.data.field.Integer',
-        'Ext.data.field.String'
+        'Ext.data.field.String',
+        'Ext.data.field.Date',
+        'Ext.data.field.Boolean'
     ],
-
-    idProperty: 'Id',
 
     fields: [
         {
+            type: 'int',
             name: 'Id'
         },
         {
-            name: 'CustId'
+            name: 'CustomerCode'
         },
         {
-            name: 'TitleTh'
-        },
-        {
-            name: 'TitleEng'
-        },
-        {
-            name: 'FirstNameTh'
-        },
-        {
-            name: 'LastNameTh'
+            type: 'string',
+            name: 'TitleNameEng'
         },
         {
             name: 'FirstNameEng'
@@ -50,15 +43,36 @@ Ext.define('TabUserInformation.model.Signer', {
             name: 'LastNameEng'
         },
         {
+            type: 'string',
+            name: 'TitleNameTh'
+        },
+        {
+            name: 'FirstNameTh'
+        },
+        {
+            name: 'LastNameTh'
+        },
+        {
             name: 'AddressTh'
         },
         {
             name: 'AddressEng'
         },
         {
+            name: 'PositionTh'
+        },
+        {
+            name: 'PositionEng'
+        },
+        {
+            name: 'Remark'
+        },
+        {
+            type: 'int',
             name: 'PassportType'
         },
         {
+            type: 'int',
             name: 'IdCardNo'
         },
         {
@@ -70,25 +84,28 @@ Ext.define('TabUserInformation.model.Signer', {
             name: 'IssuedDate'
         },
         {
+            type: 'boolean',
             name: 'Active'
         },
         {
+            type: 'string',
             name: 'SpouseTitleEng'
         },
         {
+            type: 'string',
             name: 'SpouseTitleTh'
-        },
-        {
-            name: 'SpouseFirstNameTh'
         },
         {
             name: 'SpouseFirstNameEng'
         },
         {
-            name: 'SpouseLastNameTh'
+            name: 'SpouseLastNameEng'
         },
         {
-            name: 'SpouseLastNameEng'
+            name: 'SpouseFirstNameTh'
+        },
+        {
+            name: 'SpouseLastNameTh'
         },
         {
             name: 'SpouseAddressTh'
@@ -101,6 +118,10 @@ Ext.define('TabUserInformation.model.Signer', {
         },
         {
             name: 'SubDistrictId'
+        },
+        {
+            type: 'int',
+            name: 'DepartmentId'
         }
     ]
 });

@@ -41,7 +41,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
     },
 
     onButtonCusInfClick: function (button, e, eOpts) {
-        var form = this.getView().down('form').getForm();
+        var form = this.getView().down('form').getForm(),
+        view = this.getView();
 
         var popup = Ext.createByAlias('widget.customercusinfpopup', {
             listeners: {
@@ -49,10 +50,48 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
                     var record = panel.down('gridpanel').getSelection()[0];
                     if (record) {
                         form.loadRecord(record);
+                        form.findField('CustomerId').setValue(record.get('CustomerCode'));
+                        form.findField('SubdistrictId').setValue(record.get('SubdistrictId'));
+                        form.findField('ContactPersonTitleNameTh').setValue(record.get('ContactTitleTh'));
+                        form.findField('ContactPersonFirstNameTh').setValue(record.get('ContactPersonFirstName'));
+                        form.findField('ContactPersonLastNameTh').setValue(record.get('ContactPersonLastName'));
+                        form.findField('Position').setValue(record.get('PositionTh'));
                     }
                 }
             }
+
         });
+        var store = popup.down('gridpanel').getStore();
+        store.load();
+        popup.show();
+    },
+
+    onButtonAddressClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+        custid = form.findField('CustomerId').getValue(),
+        
+        popup = Ext.create('widget.windowaddressviews', {
+            listeners: {
+                beforeshow: function (panel, eOpts) {
+                    Ext.getCmp('addresstoolbar').hide();
+                },
+                close: function (panel, eOpts) {
+                    var record = panel.down('gridpanel').getSelection()[0];
+                    if (record) {
+                        form.findField('AddressTh').setValue(record.get('AddressTh'));
+                        form.findField('SubdistrictId').setValue(record.get('SubdistrictId'));
+                    }
+                }
+            }
+        }),
+        
+        windowStore = popup.down('gridpanel').getStore();
+
+        popup.down('form').getForm().findField('CustomerId').setValue('<b style="color:green;">' + custid + '</b>');
+        popup.down('form').getForm().findField('CustomerThaiName').setValue('<b style="color:green;">' + form.findField('NameTh').getValue() + '</b>');
+        windowStore.getProxy().extraParams.text = custid;
+        windowStore.load();
+
         popup.show();
     },
 
@@ -72,41 +111,35 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
         popup.show();
     },
 
-    onButtonAddressClick: function (button, e, eOpts) {
-        var form = this.getView().down('form').getForm();
-
-        var popup = Ext.create('widget.commonaddresswindow', {
-            listeners: {
-                beforeshow: function (panel, eOpts) {
-                    Ext.getCmp('addresstoolbar').hide();
-                },
-                close: function (panel, eOpts) {
-                    var record = panel.down('gridpanel').getSelection()[0];
-                    if (record) {
-                        form.loadRecord(record);
-                    }
-                }
-            }
-        });
-        popup.show();
-    },
-
     onButtonContactPersonClick: function (button, e, eOpts) {
-        var view = this.getView().down('form');
-
-        var popup = Ext.create('widget.commoncontactpersonpopup', {
+        
+        var form = this.getView().down('form').getForm(),
+        view = this.getView(),
+        popup = Ext.create('widget.commoncontactpersonpopup', {
             listeners: {
                 close: function (panel, eOpts) {
                     var record = panel.down('gridpanel').getSelection()[0];
                     if (record) {
                         //                        form.loadRecord(record);
+                        //                        console.log(view.down('#ContactPersonTitleNameTh'));
+                        
                         view.down('#ContactPersonTitleNameTh').setValue(record.get('TitleTh'));
                         view.down('#ContactPersonFirstNameTh').setValue(record.get('FirstNameTh'));
                         view.down('#ContactPersonLastNameTh').setValue(record.get('LastNameTh'));
+                        view.down('#Telephone').setValue(record.get('Telephone'));
+                        view.down('#FaxNo').setValue(record.get('Fax'));
+                        view.down('#Email').setValue(record.get('Email'));
                     }
                 }
             }
         });
+
+        var store = popup.down('gridpanel').getStore();
+        store.getProxy().extraParams.custId = form.findField('CustomerId').getValue();
+        store.load();
+
+
+
         popup.show();
     },
 
@@ -148,8 +181,15 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
         this.Shows(textBox, newValue);
     },
 
-    onButtonClick: function (button, e, eOpts) {
+    onSaveClick: function (button, e, eOpts) {
         console.log(this.getView().down('form').getForm().getRecord());
+    },
+
+
+    onSetAddressCustomer: function (form, record) {
+        form.loadRecord(record);
+        form.findField('CustomerId').setValue(record.get('CustomerCode'));
+        form.findField('SubdistrictId').setValue(record.get('SubdistrictId'));
     }
 
 });
