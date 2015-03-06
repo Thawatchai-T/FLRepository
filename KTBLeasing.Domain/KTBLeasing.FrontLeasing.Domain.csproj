@@ -72,6 +72,7 @@
     <Compile Include="ViewModel\AddressViewModel.cs" />
     <Compile Include="ViewModel\CustomerInformationViewModel.cs" />
     <Compile Include="ViewModel\UserInformationView.cs" />
+    <Compile Include="VisitInformationDomain.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
