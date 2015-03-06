@@ -5,20 +5,28 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class VisitCallingController : ApiController
     {
+        public IVisitInformationRepository VisitInformationRepository { get; set; }
+        public ICommonDataRepository CommonDataRepository { get; set; }
+
         // GET api/visitcalling
         public IEnumerable<VisistCallModel> Get()
         {
+           //VisitInformationRepository
             return new VisistCallModel().GenDummyData();
         }
 
         // GET api/visitcalling/5
         public string Get(int id)
         {
+            VisitInformationDomain result = VisitInformationRepository.GetBYID(id);
+            
             return "value";
         }
 
@@ -49,6 +57,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 return false;
                 //throw;
             }
+        }
+
+        public List<VisistCallModel> getVisitCallingPage(int page,int start, int limit)
+        {
+            VisistCallModel en = new VisistCallModel();
+
+            return en.GenDummyData();
         }
 
 

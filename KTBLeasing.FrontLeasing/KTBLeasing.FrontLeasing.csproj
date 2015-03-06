@@ -212,6 +212,8 @@
     <Compile Include="Models\CommissionModel.cs" />
     <Compile Include="Models\CommonCustomerModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
+    <Compile Include="Models\FinancialPolicyModel.cs" />
+    <Compile Include="Models\ProjectPlanModel.cs" />
     <Compile Include="Models\BackgroundModel.cs" />
     <Compile Include="Models\ApplicationDetailModel.cs" />
     <Compile Include="Models\AnnualTaxModel.cs" />
@@ -252,6 +254,7 @@
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserInTabModel.cs" />
     <Compile Include="Models\VisistCallModel.cs" />
+    <Compile Include="Models\VisitAddressModel.cs" />
     <Compile Include="Models\WaiveDocumentModel.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
@@ -282,6 +285,7 @@
     <Content Include="app\model\Commission.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
+    <Content Include="app\model\FinalcialProlicyModel.js" />
     <Content Include="app\model\CustomerInformation.js" />
     <Content Include="app\model\CustomerInformationPopup.js" />
     <Content Include="app\model\DefineAddress.js" />

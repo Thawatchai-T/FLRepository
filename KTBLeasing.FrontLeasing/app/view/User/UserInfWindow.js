@@ -135,10 +135,11 @@ Ext.define('TabUserInformation.view.User.UserInfWindow', {
                             labelWidth: 110,
                             name: 'IdTitleName',
                             allowBlank: false,
-                            queryMode:'local',
+                            //queryMode:'local',
                             displayField: 'Name',
                             store: 'CommonData.titleNameThs',
-                            valueField: 'Id'
+                            valueField: 'Id',
+                            autoLoadOnValue: true
                         },
                         {
                             xtype: 'textfield',

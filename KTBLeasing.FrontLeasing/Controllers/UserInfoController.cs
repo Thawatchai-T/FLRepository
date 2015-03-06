@@ -46,7 +46,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 if (string.IsNullOrEmpty(userinfomodel.UserId))
                 {
                     //new
-                    string userId = string.Format("{0}_{1}", userinfomodel.FirstNameEng, userinfomodel.LastNameEng.Substring(0, 2));
+                    string userId = string.Format("{0}_{1}", userinfomodel.FirstNameEng, userinfomodel.LastNameEng.Substring(0, 2)).ToLower();
                     var entity = new UserInformation
                     {
 

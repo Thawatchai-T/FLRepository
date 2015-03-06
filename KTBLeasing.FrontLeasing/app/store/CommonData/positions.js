@@ -30,7 +30,8 @@ Ext.define('TabUserInformation.store.CommonData.positions', {
             autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/common/getposition',
+                //url: 'api/common/getposition',
+                url: 'api/common/getcommonbynameeng?nameeng=position',
                 reader: {
                     type: 'json'
                 }

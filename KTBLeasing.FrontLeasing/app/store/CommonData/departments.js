@@ -29,7 +29,8 @@ Ext.define('TabUserInformation.store.CommonData.departments', {
             model: 'TabUserInformation.model.BaseCommonData',
             proxy: {
                 type: 'rest',
-                url: 'api/common/getdepartment',
+                //url: 'api/common/getdepartment',
+                url: 'api/common/getcommonbynameeng?nameeng=deparment_code',
                 reader: {
                     type: 'json'
                 }

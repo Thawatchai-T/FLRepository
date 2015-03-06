@@ -68,9 +68,10 @@
     <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
 
-  <object type="KTBLeasing.FrontLeasing.Controllers.InformationIndicationController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
-
+  <object type="KTBLeasing.FrontLeasing.Controllers.VisitCallingController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="VisitInformationRepository" ref="visitInformationRepository"/>
+    <property name="CommonDataRepository" ref="commonDataRepository"/>
+  </object>
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.IndicationEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
