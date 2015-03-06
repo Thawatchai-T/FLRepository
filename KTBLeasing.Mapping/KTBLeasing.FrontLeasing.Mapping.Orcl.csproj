@@ -31,9 +31,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper">
-      <HintPath>..\packages\AutoMapper.4.0.0-ci1032\lib\net40\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Castle.Core.dll</HintPath>
@@ -68,18 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressMap.cs" />
-    <Compile Include="CommonData.cs" />
-    <Compile Include="CommonDataMapView\CommonCustomerMap.cs">
-    <Compile Include="ApplicationDetailMap.cs" />
-    <Compile Include="CommissionMap.cs" />
-    <Compile Include="CollectionScheduleMap.cs" />
     <Compile Include="AnnualTaxMap.cs" />
+    <Compile Include="ApplicationDetailMap.cs" />
     <Compile Include="ApprovalMap.cs" />
     <Compile Include="BGMap.cs" />
-    <Compile Include="CommonData.cs" />
-    <Compile Include="CommonDataMapView\CommonCustomerMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="CollectionScheduleMap.cs" />
+    <Compile Include="CommissionMap.cs" />
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -95,55 +86,40 @@
     <Compile Include="CommonDataMapView\TitleThMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CompanyMap.cs" />
+    <Compile Include="CommonData.cs" />
     <Compile Include="ContactPersonMap.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerSignerMap.cs" />
+    <Compile Include="DefineAddressMap.cs" />
+    <Compile Include="EquipmentDetailMap.cs" />
+    <Compile Include="EquipmentListMap.cs" />
+    <Compile Include="FundingMap.cs" />
+    <Compile Include="GuarantorListMap.cs" />
+    <Compile Include="GuarantorMap.cs" />
+    <Compile Include="InsuranceEquipmentMap.cs" />
+    <Compile Include="InsuranceMap.cs" />
+    <Compile Include="InsurancePolicyMap.cs" />
+    <Compile Include="MaintenanceListMap.cs" />
+    <Compile Include="MaintenanceMap.cs" />
     <Compile Include="MasterProvinceMap.cs" />
+    <Compile Include="MethodPaymentMap.cs" />
+    <Compile Include="OptionEndLeaseTermMap.cs" />
+    <Compile Include="PurchaseOrderMap.cs" />
+    <Compile Include="Reposotory\ApplicationDetailRepository.cs" />
+    <Compile Include="Reposotory\CommonRepository.cs" />
     <Compile Include="Reposotory\ContactRepository.cs" />
     <Compile Include="Reposotory\CustomerRepository.cs" />
     <Compile Include="Reposotory\CustomerSignerRepository.cs" />
+    <Compile Include="Reposotory\EquipmentListRepository.cs" />
     <Compile Include="Reposotory\VisitInformationRepository.cs" />
+    <Compile Include="SellerMap.cs" />
+    <Compile Include="StampDutyMap.cs" />
+    <Compile Include="StipulateLossMap.cs" />
+    <Compile Include="UserInformationViewMap.cs" />
     <Compile Include="ProvinceMap.cs" />
-    <Compile Include="PurchaseOrderMap.cs" />
-    <Compile Include="DefineAddressMap.cs" />
-    <Compile Include="EquipmentDetailMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="GuarantorListMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="MaintenanceListMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="NhRepository.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Reposotory\EquipmentListRepository.cs" />
-    <Compile Include="RoleMap.cs" />
-    <Compile Include="SellerMap.cs" />
-    <Compile Include="InsurancePolicyMap.cs" />
-    <Compile Include="InsuranceEquipmentMap.cs" />
-    <Compile Include="EquipmentListMap.cs" />
-    <Compile Include="StipulateLossMap.cs" />
-    <Compile Include="StampDutyMap.cs" />
-    <Compile Include="OptionEndLeaseTermMap.cs" />
-    <Compile Include="MethodPaymentMap.cs" />
-    <Compile Include="MaintenanceMap.cs" />
-    <Compile Include="InsuranceMap.cs" />
-    <Compile Include="FundingMap.cs" />
-    <Compile Include="GuarantorMap.cs" />
-    <Compile Include="TabManamentMap.cs" />
-    <Compile Include="UserInformationMap.cs" />
-    <Compile Include="UserInformationViewMap.cs" />
-    <Compile Include="UserInRoleMap.cs" />
-    <Compile Include="UserInTabMap.cs" />
-    <Compile Include="UsersAuthorizeMap.cs" />
-    <Compile Include="WaiveDocumentMap.cs" />
-    <Compile Include="Reposotory\ContactRepository.cs" />
-    <Compile Include="Reposotory\ApplicationDetailRepository.cs" />
-    <Compile Include="Reposotory\CustomerRepository.cs" />
-    <Compile Include="Reposotory\CustomerSignerRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposotory\AddressRepository.cs" />
     <Compile Include="Reposotory\CommonDataRepository.cs" />
@@ -171,9 +147,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInformationMap.cs" />
-    <Compile Include="UserInformationViewMap.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="UserInRoleMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -184,6 +157,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="VisitInformationMap.cs" />
+    <Compile Include="WaiveDocumentMap.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

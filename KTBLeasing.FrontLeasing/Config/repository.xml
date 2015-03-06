@@ -64,13 +64,14 @@
                 type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CustomerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
+  
   <object id="visitInformationRepository"
                 type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.VisitInformationRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
 
-	<object id="visitInformationRepository"
-                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.VisitInformationRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+	<object id="applicationDetailRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ApplicationDetailRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
   

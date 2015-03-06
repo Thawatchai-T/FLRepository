@@ -72,7 +72,6 @@
     <property name="VisitInformationRepository" ref="visitInformationRepository"/>
     <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
-  </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.IndicationEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
     <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->

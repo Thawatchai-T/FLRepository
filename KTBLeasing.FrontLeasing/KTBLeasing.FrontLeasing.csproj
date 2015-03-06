@@ -221,7 +221,6 @@
     <Compile Include="Models\BGModel.cs" />
     <Compile Include="Models\EquipmentDetailModel.cs" />
     <Compile Include="Models\MaintenanceListModel.cs" />
-    <Compile Include="Models\FinancialPolicyModel.cs" />
     <Compile Include="Models\ThirdPartyModel.cs" />
     <Compile Include="Models\SellerModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />

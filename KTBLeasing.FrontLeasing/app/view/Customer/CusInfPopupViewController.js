@@ -23,7 +23,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopupViewController', {
 
     onButtonEditClick1: function (button, e, eOpts) {
         // Create new register form window
-        var popup = Ext.create("widget.customercusinfpopup");
+        var popup = Ext.create("widget.cusinfwindow");
         // Show window
         popup.show();
     },

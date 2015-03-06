@@ -19,6 +19,14 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private IEquipmentListRepository EquipmentListRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/contact
+
+        public List<EquipmentListModel> Get()
+        {
+            return new EquipmentListModel().Dummy();
+            //return EquipmentListRepository.GetAll(0, 5, id);
+            //return EquipmentListRepository.GetAll();
+        }
+
         public List<EquipmentListModel> Get(int page, int start, int limit, long id)
         {
             return new EquipmentListModel().Dummy();

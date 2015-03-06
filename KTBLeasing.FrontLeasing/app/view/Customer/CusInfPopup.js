@@ -15,7 +15,7 @@
 
 Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
     extend: 'Ext.window.Window',
-    alias: 'widget.customercusinfpopup',
+    alias: 'widget.popupcusinfpopup',
 
     requires: [
         'TabUserInformation.view.Customer.CusInfPopupViewModel',
