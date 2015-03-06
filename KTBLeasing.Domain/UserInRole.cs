@@ -14,5 +14,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual long Id { get; set; }
         public virtual Role Role { get; set; }
         public virtual UsersAuthorize UsersAuthorize { get; set; }
+
     }
 }
