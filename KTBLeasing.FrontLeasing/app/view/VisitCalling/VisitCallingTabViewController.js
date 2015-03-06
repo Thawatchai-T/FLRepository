@@ -18,7 +18,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
     alias: 'controller.visitcallingvisitcallingtab',
 
     onButtonSearchClick: function (button, e, eOpts) {
-
+        this.getView();
+        
     },
 
     onButtonNewClick: function (button, e, eOpts) {
@@ -36,6 +37,67 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
         console.log((63 & 45));
         // Show window
         popup.show();
+    },
+
+    onGridSelectionChange: function (model, selected, eOpts) {
+
+        //        debugger;
+
+        //console.log(selected[0].get('Address'));
+
+        var address = Ext.create('TabUserInformation.model.Address', selected[0].get('Address'));
+
+        this.onMappingAddressTab(selected[0]);
+        this.onMappingFinancialPolicy(selected[0]);
+        this.onMappingProjectPlan(selected[0]);
+
+        this.getView().down('#addressForm').loadRecord(address);
+
+    },
+
+    onMappingAddressTab: function (record) {
+
+        //debugger;
+        var contactperson = record.get('ContactPersonTitleNameTh') + record.get('ContactPersonFirstNameTh') + "  " + record.get('ContactPersonLastNameTh');
+
+        this.getView().down("#addressThTab").setValue('<b>' + record.get('Address').AddressTh + '</b>');
+        this.getView().down("#businessTab").setValue('<b>' + record.get('Business') + '</b>');
+        this.getView().down("#contactPersonTab").setValue('<b>' + contactperson + '</b>');
+//        this.getView().down("#telephoneTab").setValue('<b>' + record.get('Telephone') + '</b>');
+        this.getView().down("#telephoneTab").setValue("025502549");
+//        this.getView().down("#sourceofInformationTab").setValue('<b>' + record.get('SourceInformation') + '</b>');
+        this.getView().down("#sourceofInformationTab").setValue("KTB recommendation");
+
+    },
+
+    onMappingFinancialPolicy: function (record) {
+
+        var financialPolicy = record.get('FinalcialProlicy');
+
+        Ext.getCmp('type-of-lease-equipment1').setValue('<b>' + financialPolicy.TypeOfLeaseEquipment + '</b>');
+        Ext.getCmp('leasing-company1').setValue('<b>' + financialPolicy.LeasingCompany + '</b>');
+        Ext.getCmp('term-and-condition1').setValue('<b>' + financialPolicy.TermCondition + '</b>');
+        Ext.getCmp('type-of-hp-equipment1').setValue('<b>' + financialPolicy.TypeOfHPEquipment + '</b>');
+        Ext.getCmp('hp-company1').setValue('<b>' + financialPolicy.HPCompany + '</b>');
+        Ext.getCmp('hp-term-and-condition1').setValue('<b>' + financialPolicy.HPTermCondition + '</b>');
+        Ext.getCmp('detail1').setValue('<b>' + financialPolicy.Detail + '</b>');
+        //set Value chk
+        Ext.getCmp('chk-cash').setValue(financialPolicy.Cash);
+        Ext.getCmp('chk-loan').setValue(financialPolicy.Loan);
+        Ext.getCmp('chk-lease').setValue(financialPolicy.Lease);
+        Ext.getCmp('chk-hire-purschase').setValue(financialPolicy.HirePurchase);
+        Ext.getCmp('chk-loan-affiliated').setValue(financialPolicy.LoadAffiliated);
+        Ext.getCmp('chk-other').setValue(financialPolicy.Other);
+    },
+
+    onMappingProjectPlan: function (record) {
+        var projectPlan = record.get('ProjectPlan');
+
+        this.getView().down("#ProjectPlanTypeOfEquipment").setValue('<b>' + projectPlan.TypeOfEquipment + '</b>');
+        this.getView().down("#ProjectPlanAmount").setValue('<b>' + projectPlan.Amount + '</b>');
+        this.getView().down("#ProjectPlanSchedule").setValue('<b>' + projectPlan.Schedule + '</b>');
+
     }
 
 });
+

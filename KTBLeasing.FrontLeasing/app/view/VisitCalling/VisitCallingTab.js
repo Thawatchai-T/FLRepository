@@ -82,7 +82,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                             items: [
                                 {
                                     xtype: 'datefield',
-                                    width: 200,
+                                    width: 300,
                                     fieldLabel: 'Search Date',
                                     labelAlign: 'right',
                                     listeners: {
@@ -93,7 +93,10 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                 },
                                 {
                                     xtype: 'datefield',
-                                    width: 100
+                                    width: 250,
+                                    listeners: {
+                                        render: 'onDatefieldRender'
+                                    }
 
                                 }
                             ]
@@ -108,6 +111,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
             height: 445,
             width: '100%',
             minHeigth: 400,
+            store: 'leads',
             flex: 1,
             columns: [
                 {
@@ -117,27 +121,33 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                 {
                     xtype: 'gridcolumn',
                     text: 'VistitNo',
+                    dataIndex:'VisitNo',
                     widht: 100
                 },
                 {
                     xtype: 'gridcolumn',
                     text: 'VisitDate',
+                    dataIndex:'CreateDate',
                     widht: 100
                 },
                 {
                     xtype: 'gridcolumn',
                     text: 'Customer name',
+                    dataIndex:'CustomerName',
                     flex: -1
                 },
                 {
                     xtype: 'gridcolumn',
                     text: 'Marketing name',
+                    dataIndex: 'MarketingOfficer',
                     widht: 150
+
 
                 },
                 {
                     xtype: 'gridcolumn',
                     text: 'Ref Information No',
+                    dataIndex:'RefNo',
                     widht: 150
                 }
             ],
@@ -172,10 +182,17 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
                     ui: 'footer',
+                    store:'leads',
                     width: 360,
                     displayInfo: true
                 }
-            ]
+            ],
+            listeners: {
+                selectionchange: {
+                    fn: 'onGridSelectionChange',
+                    scope: 'controller'
+                }
+            }
         },
         {
             xtype: 'tabpanel',
@@ -191,6 +208,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                         {
                             xtype: 'form',
                             dock: 'top',
+                            itemId: 'addressForm',
                             height: 214,
                             bodyPadding: 10,
                             waitTitle: '',
@@ -199,31 +217,36 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     xtype: 'displayfield',
                                     width: 500,
                                     fieldLabel: 'Address',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    itemId:'addressThTab'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Business',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    itemId: 'businessTab'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Contact Person',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    itemId: 'contactPersonTab'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     fieldLabel: 'Telephone',
                                     labelWidth: 150,
-                                    inputType: 'tel'
+                                    inputType: 'tel',
+                                    itemId: 'telephoneTab'
                                 },
                                 {
                                     xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Source of Information',
-                                    labelWidth: 150
+                                    labelWidth: 150,
+                                    itemId: 'sourceofInformationTab'
                                 }
                             ]
                         }
@@ -250,53 +273,45 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     items: [
                                         {
                                             xtype: 'checkboxfield',
-                                            id: 'chk3',
+                                            id: 'chk-cash',
                                             margin: '0 0 0 5',
                                             boxLabel: 'Cash',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange6'
-                                            }
+                                            readOnly: true
                                         },
                                         {
                                             xtype: 'checkboxfield',
-                                            id: 'chk4',
+                                            id: 'chk-loan',
                                             margin: '0 0 0 5',
                                             boxLabel: 'Loan',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange11'
-                                            }
+                                            readOnly: true
                                         },
                                         {
                                             xtype: 'checkboxfield',
                                             margin: '0 0 0 5',
+                                            id: 'chk-lease',
                                             boxLabel: 'Lease',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange21'
-                                            }
+                                            readOnly: true
                                         },
                                         {
                                             xtype: 'checkboxfield',
                                             margin: '0 0 0 5',
+                                            id: 'chk-hire-purschase',
                                             boxLabel: 'Hire Purschase',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange51'
-                                            }
+                                            readOnly: true
                                         },
                                         {
                                             xtype: 'checkboxfield',
                                             margin: '0 0 0 5',
+                                            id: 'chk-loan-affiliated',
                                             boxLabel: 'Loan Affiliated',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange31'
-                                            }
+                                            readOnly: true
                                         },
                                         {
                                             xtype: 'checkboxfield',
                                             margin: '0 0 0 5',
+                                            id: 'chk-other',
                                             boxLabel: 'Other',
-                                            listeners: {
-                                                change: 'onCheckboxfieldChange41'
-                                            }
+                                            readOnly: true
                                         }
                                     ]
                                 },
@@ -350,7 +365,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                             labelWidth: 160
                                         },
                                         {
-                                            xtype: 'textareafield',
+                                            xtype: 'displayfield',
+                                            //xtype:'textareafield',
                                             id: 'detail1',
                                             width: 800,
                                             fieldLabel: 'Detail',
@@ -376,6 +392,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     xtype: 'displayfield',
                                     anchor: '100%',
                                     fieldLabel: 'Type of Equipment',
+                                    itemId: 'ProjectPlanTypeOfEquipment',
                                     labelWidth: 120
                                 },
                                 {
@@ -384,6 +401,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     anchor: '100%',
                                     maxWidth: 270,
                                     fieldLabel: 'Amount',
+                                    itemId: 'ProjectPlanAmount',
                                     labelWidth: 120,
                                     hideTrigger: true
                                 },
@@ -393,6 +411,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                                     anchor: '100%',
                                     maxWidth: 220,
                                     fieldLabel: 'Schedule',
+                                    itemId: 'ProjectPlanSchedule',
                                     labelWidth: 120,
                                     inputType: 'month'
                                 }
@@ -442,9 +461,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
         this.Shows(textBox, newValue);
     },
 
-    onDatefieldRender: function (component, eOpts) {
-        console.log(eOpts);
-        console.log(component);
+    onDatefieldRender: function(component, eOpts) {
+        component.setValue(new Date());
     }
-
 });

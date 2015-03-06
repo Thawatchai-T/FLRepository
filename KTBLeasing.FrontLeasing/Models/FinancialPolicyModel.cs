@@ -18,5 +18,19 @@ namespace KTBLeasing.FrontLeasing.Models
         public bool LoadAffiliated { get; set; }
 
         public bool Other { get; set; }
+
+        public string TypeOfLeaseEquipment { get; set; }
+
+        public string LeasingCompany { get; set; }
+
+        public string TermCondition { get; set; }
+
+        public string TypeOfHPEquipment { get; set; }
+
+        public string HPCompany { get; set; }
+
+        public string HPTermCondition { get; set; }
+
+        public string Detail { get; set; }
     }
 }

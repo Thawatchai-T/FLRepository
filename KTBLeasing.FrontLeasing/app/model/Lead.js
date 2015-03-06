@@ -32,7 +32,7 @@ Ext.define('TabUserInformation.model.Lead', {
             name: 'Year'
         },
         {
-            name: 'LeadId'
+            name: 'VSCode'
         },
         {
             name: 'Status'

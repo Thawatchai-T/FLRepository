@@ -33,7 +33,7 @@ Ext.define('TabUserInformation.model.Province', {
             name: 'District_Id'
         },
         {
-            type: 'string',
+            type: 'int',
             name: 'Subdistrict_Id'
         },
         {

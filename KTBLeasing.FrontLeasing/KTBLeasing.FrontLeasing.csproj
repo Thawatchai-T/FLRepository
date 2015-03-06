@@ -193,6 +193,7 @@
     <Compile Include="Models\CommonCustomerModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\FinancialPolicyModel.cs" />
+    <Compile Include="Models\ProjectPlanModel.cs" />
     <Compile Include="Models\SignerModel.cs" />
     <Compile Include="Models\CusInfoModel.cs" />
     <Compile Include="Models\DistrictModel.cs" />
@@ -205,6 +206,7 @@
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserInTabModel.cs" />
     <Compile Include="Models\VisistCallModel.cs" />
+    <Compile Include="Models\VisitAddressModel.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
