@@ -5,11 +5,14 @@ using System.Text;
 using NHibernate;
 using NHibernate.AdoNet.Util;
 using NHibernate.Criterion;
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl
 {
     public class NhRepository : IDisposable
     {
+        public static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public void Dispose()
         {
             Dispose(true);
@@ -58,6 +61,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                 }
                 catch (Exception ex)
                 {
+                    Logger.Error(ex);
                     throw;
                 }
             }
@@ -76,6 +80,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                 catch (Exception executeICriteria)
                 {
                     tran.Rollback();
+                    Logger.Error(executeICriteria);
                     throw executeICriteria;
 
                 }
@@ -95,6 +100,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                 catch (Exception ex)
                 {
                     tran.Rollback();
+                    Logger.Error(ex);
                     throw;
                 }
             }
@@ -105,8 +111,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             using (var Session = SessionFactory.OpenSession())
             using (var tran = Session.BeginTransaction())
             {
-                Session.SaveOrUpdate(entity);
-                tran.Commit();
+                try
+                {
+                    Session.SaveOrUpdate(entity);
+                    tran.Commit();
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    Logger.Error(ex);
+                }
                 
 
             }
@@ -126,6 +140,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                 catch (Exception ex)
                 {
                     ts.Rollback();
+                    Logger.Error(ex);
                     throw;
                 }
             }
@@ -147,6 +162,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                 catch (Exception ex)
                 {
                     transaction.Rollback();
+                    Logger.Error(ex);
                     throw;
                 }
             }

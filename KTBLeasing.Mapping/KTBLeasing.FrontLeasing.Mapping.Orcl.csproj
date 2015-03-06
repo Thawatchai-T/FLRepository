@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper">
+      <HintPath>..\packages\AutoMapper.4.0.0-ci1032\lib\net40\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="Castle.Core, Version=2.5.1.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Castle.Core.dll</HintPath>
@@ -65,7 +68,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddressMap.cs" />
-    <Compile Include="CommonDataMapView\CommonCustomerMap.cs" />
+    <Compile Include="CommonData.cs" />
+    <Compile Include="CommonDataMapView\CommonCustomerMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -81,14 +87,14 @@
     <Compile Include="CommonDataMapView\TitleThMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CommonData.cs" />
+    <Compile Include="CompanyMap.cs" />
     <Compile Include="ContactPersonMap.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerSignerMap.cs" />
     <Compile Include="Reposotory\ContactRepository.cs" />
     <Compile Include="Reposotory\CustomerRepository.cs" />
     <Compile Include="Reposotory\CustomerSignerRepository.cs" />
-    <Compile Include="UserInformationViewMap.cs" />
+    <Compile Include="Reposotory\VisitInformationRepository.cs" />
     <Compile Include="ProvinceMap.cs" />
     <Compile Include="NhRepository.cs">
       <SubType>Code</SubType>
@@ -123,6 +129,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="UserInformationMap.cs" />
+    <Compile Include="UserInformationViewMap.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="UserInRoleMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -132,6 +141,7 @@
     <Compile Include="UsersAuthorizeMap.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="VisitInformationMap.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
