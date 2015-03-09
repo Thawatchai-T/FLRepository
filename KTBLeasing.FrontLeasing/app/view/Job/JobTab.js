@@ -152,7 +152,7 @@ Ext.define('TabUserInformation.view.Job.JobTab', {
                 }
             ],
             listeners: {
-                itemdblclick: 'onItemDblClick'
+                itemdblclick: 'onGridpanelItemDblClick'
             }
         }
     ],

@@ -17,22 +17,22 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobjobtab',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onNewjobClick: function(button, e, eOpts) {
+    onNewjobClick: function (button, e, eOpts) {
         Ext.Msg.show({
-            title:'Select Job',
+            title: 'Select Job',
             msg: 'Create New Job or Old Job',
             buttons: Ext.MessageBox.YESNOCANCEL,
-            buttonText:{ yes: 'New Job', no: 'Old Customer', cancel: 'Cancel'},
+            buttonText: { yes: 'New Job', no: 'Old Customer', cancel: 'Cancel' },
             icon: Ext.MessageBox.INFO,
-            fn: function(btn) {
-                if(btn == 'yes'){
+            fn: function (btn) {
+                if (btn == 'yes') {
                     var popup = Ext.create('widget.jobjobwindow');
                     popup.show();
-                }else if(btn == 'no'){
+                } else if (btn == 'no') {
                     var popup2 = Ext.create('widget.customercusinfpopup');
                     popup2.show();
                 }
@@ -40,7 +40,12 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
         });
     },
 
-    onSelectjobClick: function(button, e, eOpts) {
+    onSelectjobClick: function (button, e, eOpts) {
+        var popup = Ext.create('widget.jobjobwindow');
+        popup.show();
+    },
+
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var popup = Ext.create('widget.jobjobwindow');
         popup.show();
     }
