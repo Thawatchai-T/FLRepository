@@ -76,6 +76,12 @@ Ext.define('TabUserInformation.view.Setup.SetupTab', {
             animate: false,
             height: 750,
             margin: '10 10 10 10',
+            tools: [{
+                type: 'refresh',
+                tooltip: 'Reset example',
+                //scope: this,
+                handler: 'onResetClick'
+            }],
             viewConfig: {
 
             },

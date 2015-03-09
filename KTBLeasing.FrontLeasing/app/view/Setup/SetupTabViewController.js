@@ -59,124 +59,6 @@ Ext.define('TabUserInformation.view.Setup.SetupTabViewController', {
         //}
     },
 
-    //onTreepanelSelectionChange: function (model, selected, eOpts) {
-    //    var editbutton = Ext.getCmp('commondata-edit-button');
-    //    var addbutton = Ext.getCmp('commondata-add-button');
-    //    var radiogroup = this.getView().down('radiogroup');
-    //    var nameeng = this.getView().down('#eng-name');
-    //    addbutton.show();
-    //    editbutton.hide();
-    //    if (selected[0] != undefined) {
-    //        nameeng.setValue(selected[0].get('Name_Eng'));
-    //        var levels = selected[0].get('Levels');
-    //        switch (levels + radiogroup.getChecked()[0].inputValue) {
-    //            case 1: addbutton.setText('Main Catalog');
-    //                addbutton.enable();
-    //                nameeng.show();
-    //                break;
-    //            case 2: addbutton.setText('Add District');
-    //                addbutton.enable();
-    //                nameeng.hide();
-    //                break;
-    //            case 3: addbutton.setText('Add Sub District');
-    //                addbutton.enable();
-    //                nameeng.hide();
-    //                break;
-    //            case 4: addbutton.setText('Add Sub Sub District');
-    //                addbutton.enable();
-    //                nameeng.hide();
-    //                break;
-    //            default: addbutton.setText('Add');
-    //                addbutton.disable();
-    //                nameeng.hide();
-    //                break;
-    //        }
-
-    //        if (levels == 1)
-    //            radiogroup.hide();
-    //        else
-    //            radiogroup.show();
-    //    }
-    //},
-
-    //addClick: function (button, e, eOpts) {
-    //    var treepanel = this.getView().down('treepanel');
-    //    var selModel = treepanel.getSelection()[0];
-    //    var target = treepanel.getSelection()[0] || treepanel.getRootNode();
-    //    var inputField = this.getView().down('#new-name');
-    //    var radiogroup = this.getView().down('radiogroup');
-    //    var node = {
-    //        Id: 9999,
-    //        Name: inputField.getValue(),
-    //        Levels: selModel.get('Levels') + radiogroup.getChecked()[0].inputValue,
-    //        Parent_Id: null,
-    //        IsLeaf: true
-    //    }
-
-    //    if (radiogroup.getChecked()[0].inputValue == 0)
-    //        node.Parent_Id = selModel.get('Parent_Id');
-    //    else
-    //        node.Parent_Id = selModel.get('Id');
-
-    //    var store = treepanel.store;
-    //    store.insert(selModel.get('index') + 1, node);
-    //    store.sync();
-    //    this.onPost(node, "insert");
-    //},
-
-    //editClick: function (button, e, eOpts) {
-    //    var store = this.getView().down('treepanel').getStore();
-    //    var inputField = this.getView().down('#new-name').getValue();
-    //    var selModel = this.getView().down('treepanel').getSelection()[0];
-    //    selModel.set('Name', inputField);
-    //    console.log(selModel);
-    //    var data = {
-    //        Id: selModel.get('Id'),
-    //        Code: selModel.get('Code'),
-    //        Name: inputField,
-    //        Levels: selModel.get('Levels'),
-    //        Parent_Id: selModel.get('Parent_Id'),
-    //        IsLeaf: selModel.get('IsLeaf'),
-    //        Create_Date: selModel.get('Create_Date'),
-    //        Create_By: selModel.get('Create_By'),
-    //        Update_Date: selModel.get('Update_Date'),
-    //        Update_By: selModel.get('Update_By')
-    //    }
-    //    this.onPost(data, "update");
-    //    //store.save();
-    //    //store.sync();
-    //},
-
-    //onPost: function (data, action) {
-    //    var url = 'tree/' + action;
-    //    Ext.Ajax.request({
-    //        url: url,
-    //        method: 'post',
-    //        params: data,
-    //        contentType: "text/plain; charset=UTF-8",
-    //        success: function (response) {
-    //            //console.log(response.success);
-    //            var jsonResp = Ext.util.JSON.decode(response.responseText);
-    //            //console.log(jsonResp.success);
-    //            if (jsonResp.success == true) {
-    //                if (action == "insert")
-    //                    Ext.Msg.alert("Info", "ทำการเพิ่มข้อมูลเรียบร้อยแล้ว");
-    //                else if (action == "update")
-    //                    Ext.Msg.alert("Info", "ทำการแก้ไขข้อมูลเรียบร้อยแล้ว");
-    //                Ext.getCmp('tree-setup').getStore().load();
-    //            } else {
-    //                Ext.Msg.alert("Info", "notsave");
-
-    //            }
-    //        },
-    //        failure: function (response) {
-    //            console.log(response);
-    //            var jsonResp = Ext.util.JSON.decode(response.responseText);
-    //            Ext.Msg.alert("Error", jsonResp.error);
-    //        }
-    //    });
-    //},
-
     onTreepanelItemContextMenu: function (dataview, record, item,
 					index, e, eOpts) {
         var tree = this.getView().down('treepanel');
@@ -419,5 +301,9 @@ Ext.define('TabUserInformation.view.Setup.SetupTabViewController', {
         this.getCountriesStore().load({
             node: refreshNode
         });
+    },
+
+    onResetClick: function () {
+        this.getView().down('treepanel').getStore().load();
     }
 });
