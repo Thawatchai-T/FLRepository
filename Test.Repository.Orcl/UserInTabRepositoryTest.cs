@@ -7,26 +7,27 @@ using NHibernate;
 using FluentNHibernate.Cfg.Db;
 using NHibernate.ByteCode.Castle;
 using KTBLeasing.FrontLeasing.Mapping.Orcl;
+using NHibernate.Tool.hbm2ddl;
+using NHibernate.Cfg;
+using NHibernate.Context;
+using System.IO;
+using System.Collections.Generic;
 
 namespace Test.Repository.Orcl
 {
-    
-    
     /// <summary>
-    ///This is a test class for UserInTabRepositoryTest and is intended
-    ///to contain all UserInTabRepositoryTest Unit Tests
-    ///</summary>
-    [TestClass()]
+    /// This is a test class for UserInTabRepositoryTest and is intended
+    /// to contain all UserInTabRepositoryTest Unit Tests
+    /// </summary>
+    [TestClass]
     public class UserInTabRepositoryTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
-        ///Gets or sets the test context which provides
-        ///information about and functionality for the current test run.
-        ///</summary>
+        /// Gets or sets the test context which provides
+        /// information about and functionality for the current test run.
+        /// </summary>
         public TestContext TestContext
         {
             get
@@ -40,6 +41,7 @@ namespace Test.Repository.Orcl
         }
 
         #region Additional test attributes
+
         // 
         //You can use the following additional attributes as you write your tests:
         //
@@ -67,13 +69,14 @@ namespace Test.Repository.Orcl
         //{
         //}
         //
+
         #endregion
 
 
         /// <summary>
-        ///A test for UserInTabRepository Constructor
-        ///</summary>
-        [TestMethod()]
+        /// A test for UserInTabRepository Constructor
+        /// </summary>
+        [TestMethod]
         public void UserInTabRepositoryConstructorTest()
         {
             UserInTabRepository target = new UserInTabRepository();
@@ -81,9 +84,9 @@ namespace Test.Repository.Orcl
         }
 
         /// <summary>
-        ///A test for Insert
-        ///</summary>
-        [TestMethod()]
+        /// A test for Insert
+        /// </summary>
+        [TestMethod]
         public void InsertTest()
         {
             //UserInTabRepository target = new UserInTabRepository(); // TODO: Initialize to an appropriate value
@@ -109,7 +112,7 @@ namespace Test.Repository.Orcl
 
         }
 
-        [TestMethod()]
+        [TestMethod]
         public void TestMap()
         {
             var session = CreateSessionFactory();
@@ -122,7 +125,7 @@ namespace Test.Repository.Orcl
             UserInfomationRepository target = new UserInfomationRepository();
             target.SessionFactory = CreateSessionFactory();
 
-          //  var result = target.GetGridView();
+            //  var result = target.GetGridView();
         }
 
 
@@ -130,12 +133,18 @@ namespace Test.Repository.Orcl
         {
             try
             {
+                //        Configuration config = Fluently.Configure().
+                //Database(MsSqlConfiguration.MsSql2008.ConnectionString(c => c.Is(connectionString))).
+                //Mappings(m => m.FluentMappings.AddFromAssembly(Assembly.GetExecutingAssembly())).
+                //CurrentSessionContext<ThreadStaticSessionContext>().
+                //BuildConfiguration();
                 var sessionf = Fluently.Configure()
                     .ProxyFactoryFactory<ProxyFactoryFactory>()
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
                         x.Server("221.23.0.70")
                         .Port(1521)
-                        .Username("fluser")
+                        //.Username("fluser")
+                        .Username("frontleasing")
                         .Password("ktblitadmin")
                         .Instance("ktbl"))
                         )
@@ -148,6 +157,92 @@ namespace Test.Repository.Orcl
             {
                 throw new Exception(ex.Message); //ex.Message;
                 //  return null;
+            }
+        }
+
+        [TestMethod]
+        public void ExportScheme()
+        {
+            try
+            {
+                Configuration config = Fluently.Configure()
+                .ProxyFactoryFactory<ProxyFactoryFactory>()
+                .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
+                x.Server("221.23.0.70")
+                .Port(1521)
+                .Username("frontleasing")
+                .Password("ktblitadmin")
+                .Instance("ktbl"))
+                )
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RoleMap>()).
+                CurrentSessionContext<ThreadStaticSessionContext>().
+                BuildConfiguration();
+
+                var schemaExport = new SchemaExport(config).SetDelimiter(";");
+                
+                //schemaExport.Execute(true, true, true);
+                //schemaExport.Drop(false, true);
+                schemaExport.Create(false, true);
+                Action<string> updateExport = x =>
+           {
+                    using (var file = new FileStream("c:/text.text", FileMode.Append))
+                    using (var sw = new StreamWriter(file))
+                    {
+                        sw.Write(x);
+                     }
+                };
+                new SchemaUpdate(config).Execute(updateExport, true);
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message); 
+             
+            }
+        }
+
+
+        [TestMethod]
+        public void InsertCommonData()
+        {
+            try
+            {
+                CommonDataRepository repo = new CommonDataRepository();
+                repo.SessionFactory = CreateSessionFactory();
+                //
+                CommonData entity = new CommonData();
+
+                List<CommonData> lEntity = new List<CommonData>();
+                //name th 
+                lEntity.Add(new CommonData
+                {
+                    Active = true,
+                    Code = "NA",
+                    Create_By = "Admin",
+                    Create_Date = DateTime.Now,
+                    Update_By = "Admin",
+                    Update_Date = DateTime.Now,
+                    Name ="Title name th",
+                    Name_Eng ="tilte_th",
+                    Parent_Id =0,
+                    Remark = "Initial data master"
+                });
+
+                foreach (var item in lEntity)
+                {
+                    repo.Insert(item);
+                }
+
+
+
+                
+
+
+            }
+            catch (Exception ex)
+            {
+                
+                throw;
             }
         }
     }

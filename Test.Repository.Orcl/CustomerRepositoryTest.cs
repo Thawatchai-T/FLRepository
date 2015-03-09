@@ -95,7 +95,7 @@ namespace Test.Repository.Orcl
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
                         x.Server("221.23.0.70")
                         .Port(1521)
-                        .Username("fluser")
+                        .Username("frontleasing")
                         .Password("ktblitadmin")
                         .Instance("ktbl"))
                         )
