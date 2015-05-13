@@ -15,7 +15,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("AD_MAINTENANCE_LIST");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.Maintenance).Column("MAINTENANCE_ID");
+            References(x => x.ApplicationDetail).Column("APP_ID");
             Map(x => x.Yearly).Column("YEARLY");
             Map(x => x.Month).Column("MONTH");
             Map(x => x.Amount).Column("AMOUNT");

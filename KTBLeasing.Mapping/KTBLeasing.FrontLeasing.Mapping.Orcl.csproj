@@ -44,6 +44,10 @@
     <Reference Include="log4net">
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="NHibernate">
       <HintPath>..\packages\NHibernate.4.0.1.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
@@ -71,6 +75,7 @@
     <Compile Include="BGMap.cs" />
     <Compile Include="CollectionScheduleMap.cs" />
     <Compile Include="CommissionMap.cs" />
+    <Compile Include="CommonDataMapView\CommonCustomerMap.cs" />
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -88,6 +93,13 @@
     </Compile>
     <Compile Include="CommonData.cs" />
     <Compile Include="ContactPersonMap.cs" />
+    <Compile Include="InstallmentMap.cs" />
+    <Compile Include="Reposotory\InstallmentRepository.cs" />
+    <Compile Include="Reposotory\RestructureRepository.cs" />
+    <Compile Include="RestructureMap.cs" />
+    <Compile Include="Reposotory\PurchaseOrderRepository.cs" />
+    <Compile Include="Reposotory\SellerRepository.cs" />
+    <Compile Include="TermConditionMap.cs" />
     <Compile Include="CustomerMap.cs" />
     <Compile Include="CustomerSignerMap.cs" />
     <Compile Include="DefineAddressMap.cs" />
@@ -108,6 +120,7 @@
     <Compile Include="Reposotory\ApplicationDetailRepository.cs" />
     <Compile Include="Reposotory\CommonRepository.cs" />
     <Compile Include="Reposotory\ContactRepository.cs" />
+    <Compile Include="Reposotory\EquipmentDetailRepository.cs" />
     <Compile Include="Reposotory\CustomerRepository.cs" />
     <Compile Include="Reposotory\CustomerSignerRepository.cs" />
     <Compile Include="Reposotory\EquipmentListRepository.cs" />
@@ -161,6 +174,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="lib\Required_Bins\nhibernate-configuration.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -185,6 +199,7 @@
     <Content Include="lib\Iesi.Collections.dll" />
     <Content Include="lib\Iesi.Collections.pdb" />
     <Content Include="lib\Iesi.Collections.xml" />
+    <Content Include="lib\Newtonsoft.Json.dll" />
     <Content Include="lib\NHibernate.ByteCode.Castle.dll" />
     <Content Include="lib\NHibernate.ByteCode.Castle.pdb" />
     <Content Include="lib\NHibernate.ByteCode.Castle.xml" />

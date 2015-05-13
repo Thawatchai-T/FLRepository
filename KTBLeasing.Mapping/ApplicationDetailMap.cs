@@ -4,6 +4,7 @@ using System.Text;
 using FluentNHibernate.Mapping;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
 
@@ -56,4 +57,5 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.RatingDate).Column("RATING_DATE").CustomSqlType("date");
         }
     }
+
 }

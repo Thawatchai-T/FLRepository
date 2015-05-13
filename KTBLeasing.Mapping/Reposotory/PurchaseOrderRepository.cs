@@ -11,25 +11,24 @@ using NHibernate.Transform;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
-    public interface IEquipmentListRepository
+    public interface IPurchaseOrderRepository
     {
         int Count();
         int Count(string text);
-        List<EquipmentList> Find(int start, int limit, string text);
-        List<EquipmentList> GetAll();
-        List<EquipmentList> GetAllWithOrderBy(string orderby);
-        List<EquipmentList> GetAll(int start, int limit, long id);
-        void Insert(EquipmentList entity);
-        void Update(EquipmentList entity);
+        List<PurchaseOrder> Find(int start, int limit, string text);
+        List<PurchaseOrder> GetAll();
+        List<PurchaseOrder> GetAllWithOrderBy(string orderby);
+        List<PurchaseOrder> GetAll(int start, int limit, long id);
+        void Insert(PurchaseOrder entity);
+        void SaveOrUpdate(PurchaseOrder entity);
         void Delete(long id);
-        void SaveOrUpdate(EquipmentList entity);
     }
 
-    public class EquipmentListRepository : NhRepository, IEquipmentListRepository
+    public class PurchaseOrderRepository : NhRepository, IPurchaseOrderRepository
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void Insert(EquipmentList entity)
+        public void Insert(PurchaseOrder entity)
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
@@ -47,25 +46,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public void Update(EquipmentList entity)
-        {
-            using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
-            {
-                try
-                {
-                    session.Update(entity);
-                    ts.Commit();
-                }
-                catch (Exception e)
-                {
-                    Logger.Error(e);
-                    ts.Rollback();
-                }
-            }
-        }
-
-        public void SaveOrUpdate(EquipmentList entity)
+        public void SaveOrUpdate(PurchaseOrder entity)
         {
             using (var session = SessionFactory.OpenSession())
             using (var ts = session.BeginTransaction())
@@ -89,7 +70,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 try
                 {
-                    session.Delete(id);
+                    session.SaveOrUpdate(id);
                     ts.Commit();
                 }
                 catch (Exception e)
@@ -99,53 +80,53 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public List<EquipmentList> GetAll()
+        public List<PurchaseOrder> GetAll()
         {
             using (var session = SessionFactory.OpenSession())
             {
-                return session.QueryOver<EquipmentList>().List<EquipmentList>() as List<EquipmentList>;
+                return session.QueryOver<PurchaseOrder>().List<PurchaseOrder>() as List<PurchaseOrder>;
 
-                //return this.ExecuteICriteria<EquipmentList>() as List<EquipmentList>;
+                //return this.ExecuteICriteria<PurchaseOrder>() as List<PurchaseOrder>;
             }
         }
 
-        public List<EquipmentList> GetAllWithOrderBy(string orderby)
+        public List<PurchaseOrder> GetAllWithOrderBy(string orderby)
         {
-            return this.ExecuteICriteriaOrderBy<EquipmentList>(new EquipmentList(), orderby) as List<EquipmentList>;
+            return this.ExecuteICriteriaOrderBy<PurchaseOrder>(new PurchaseOrder(), orderby) as List<PurchaseOrder>;
         }
         
-        public List<EquipmentList> GetAll(int start, int limit, long id)
+        public List<PurchaseOrder> GetAll(int start, int limit, long id)
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var list = session.QueryOver<EquipmentList>().Where(x => x.ApplicationDetail.Id == id)
+                var list = session.QueryOver<PurchaseOrder>().Where(x => x.ApplicationDetail.Id == id)
                     .Fetch(x => x.ApplicationDetail).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                    .List<EquipmentList>() as List<EquipmentList>;
+                    .List<PurchaseOrder>() as List<PurchaseOrder>;
 
                 return list;
             }
         }
-             
+ 
         public int Count()
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var result = session.QueryOver<EquipmentList>().RowCount();
+                var result = session.QueryOver<PurchaseOrder>().RowCount();
                 session.Close();
                 return result;
             }
         }
 
         //find searech
-        public List<EquipmentList> Find(int start, int limit, string text)
+        public List<PurchaseOrder> Find(int start, int limit, string text)
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var result = (from x in session.QueryOver<EquipmentList>().List<EquipmentList>() where x.EquipmentName.Contains(text) select x).Skip(start).Take(limit);
-                //var result = session.QueryOver<EquipmentList>().List<EquipmentList>().Where(w => w.EquipmentListTh.Contains(text) || w.EquipmentListEng.Contains(text)).Skip(start).Take(limit);
+                //var result = (from x in session.QueryOver<PurchaseOrder>().List<PurchaseOrder>() where x.EquipmentName.Contains(text) select x).Skip(start).Take(limit);
+                //var result = session.QueryOver<PurchaseOrder>().List<PurchaseOrder>().Where(w => w.PurchaseOrderTh.Contains(text) || w.PurchaseOrderEng.Contains(text)).Skip(start).Take(limit);
                 //session.Close();
-                return result.ToList<EquipmentList>();
-
+                //return result.ToList<PurchaseOrder>();
+                return null;
             }
         }
 
@@ -153,9 +134,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var result = session.QueryOver<EquipmentList>().List<EquipmentList>().Where(w => w.EquipmentName.Contains(text));
-                session.Close();
-                return result.ToList<EquipmentList>().Count;
+                //var result = session.QueryOver<PurchaseOrder>().List<PurchaseOrder>().Where(w => w.EquipmentName.Contains(text));
+                //session.Close();
+                //return result.ToList<PurchaseOrder>().Count;
+                return 0;
             }
         }
     }
