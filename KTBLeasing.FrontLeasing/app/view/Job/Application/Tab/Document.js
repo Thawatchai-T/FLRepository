@@ -34,6 +34,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Document', {
 
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'filefield',
             width: 500,
             fieldLabel: 'Detail Attachment',

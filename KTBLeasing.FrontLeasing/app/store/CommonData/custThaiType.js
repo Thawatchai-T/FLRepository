@@ -28,10 +28,13 @@ Ext.define('TabUserInformation.store.CommonData.custThaiType', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.custThaiType',
             model: 'TabUserInformation.model.BaseCommonData',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=cust_th_type',
-                type: 'rest'
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

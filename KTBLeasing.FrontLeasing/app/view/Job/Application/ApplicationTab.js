@@ -61,6 +61,11 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
                     dataIndex: 'Name',
                     text: 'Name',
                     flex: -1
+                }, {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Id',
+                    text: 'Name',
+                    flex: -1
                 }
             ],
             listeners: {
@@ -69,6 +74,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
             dockedItems: [
                 {
                     xtype: 'toolbar',
+                    hidden: true,
                     dock: 'top',
                     items: [
                         {
@@ -91,7 +97,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'applications'
+            store: 'applicationDetails'
         }
     ]
 

@@ -5,11 +5,15 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class SellerController : ApiController
     {
+        private ISellerRepository SellerRepository { get; set; }
+
         // GET api/contact
         public IEnumerable<SellerModel> Get()
         {
@@ -17,9 +21,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/contact/5
-        public string Get(int id)
+        public List<Seller> Get(int page, int start, int limit, long id)
         {
-            return "value";
+            return SellerRepository.GetAll(0, 30, id);
         }
 
         public List<SellerModel> DoPost(SellerModel form)
@@ -28,18 +32,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/contact
-        public void Post([FromBody]string value)
+        public void Post(Seller entity)
         {
+            entity.ApplicationDetail.Id = entity.AppId;
+            SellerRepository.SaveOrUpdate(entity);
         }
 
         // PUT api/contact/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(long id, Seller entity)
         {
+            SellerRepository.SaveOrUpdate(entity);
         }
 
         // DELETE api/contact/5
-        public void Delete(int id)
+        public void Delete(long id)
         {
+            //SellerRepository.Delete(id);
         }
     }
 }

@@ -45,6 +45,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Maintenances', {
             height: 120,
             items: [
                 {
+                    xtype: 'hiddenfield',
+                    name: 'Id'
+                },
+                {
                     xtype: 'container',
                     margin: '10 0 0 0 ',
                     layout: 'table',
@@ -128,7 +132,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Maintenances', {
             xtype: 'gridpanel',
             height: 300,
             itemId: 'pattern2',
-            store: 'maintenanceLists',
+            //store: 'maintenanceLists',
+            bind: {
+                store: '{maintenanceLists}'
+            },
             dockedItems: [
                 {
                     xtype: 'toolbar',

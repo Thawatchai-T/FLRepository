@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabseller'
+    alias: 'viewmodel.jobapplicationtabseller',
 
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        sellers: {
+            model: 'TabUserInformation.model.Seller',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/Seller',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/Seller/Post',
+                    read: 'api/ApplicationDetail'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 });

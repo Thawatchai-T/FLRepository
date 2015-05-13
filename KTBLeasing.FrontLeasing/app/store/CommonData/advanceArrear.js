@@ -27,22 +27,13 @@ Ext.define('TabUserInformation.store.CommonData.advanceArrear', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.advanceArrear',
             model: 'TabUserInformation.model.BaseCommonData',
-            data: [
-                {
-                    Id: 1,
-                    Code: 'TNT01',
-                    Name: 'นาย',
-                    Active: true
-                },
-                {
-                    Id: 2,
-                    Code: 'TTN02',
-                    Name: 'นาง',
-                    Active: true
-                }
-            ],
+            autoLoad: true,
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/common/getcommonbynameeng?nameeng=advance_arrear',
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

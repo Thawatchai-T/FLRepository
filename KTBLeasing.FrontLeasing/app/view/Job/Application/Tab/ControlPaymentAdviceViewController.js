@@ -42,6 +42,12 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdviceView
             }
         }
 
+    },
+
+    onStoreBeforeLoad: function (store, operation, eOpts) {
+        var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;
+        store.getProxy().extraParams.id = Id;
+        store.getProxy().extraParams.name = 'EquipmentList';
     }
 
 });

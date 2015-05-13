@@ -37,6 +37,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.StampDuty', {
             height: 120,
             items: [
                 {
+                    xtype: 'hiddenfield',
+                    name: 'Id'
+                },
+                {
                     xtype: 'combobox',
                     fieldLabel: 'Borne By',
                     labelAlign: 'right',

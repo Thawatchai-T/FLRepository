@@ -30,6 +30,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobappseller',
     controller: 'jobapplicationtabseller',
     viewModel: {
         type: 'jobapplicationtabseller'
@@ -72,7 +73,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             xtype: 'gridpanel',
             dock: 'left',
             width: 300,
-            store: 'sellers',
+            bind: {
+                store: '{sellers}'
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -82,7 +85,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             ],
             listeners: {
                 itemdblclick: 'onGridpanelItemDblClick',
-                selectionchange: 'onGridpanelSelectionChange'
+                selectionchange: 'onGridpanelSelectionChange',
+                deselect: 'onGridpanelDeselect'
             }
         },
         {
@@ -91,7 +95,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'sellers'
+            bind: {
+                store: '{sellers}'
+            }
         }
     ],
     items: [
@@ -101,6 +107,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             width: 500,
             bodyPadding: 10,
             items: [
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Id'
+                },
                 {
                     xtype: 'textareafield',
                     reference: 'address',

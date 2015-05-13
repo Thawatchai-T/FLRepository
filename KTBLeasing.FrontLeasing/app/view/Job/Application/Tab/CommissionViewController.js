@@ -17,7 +17,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CommissionViewController
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobapplicationtabcommission',
 
-    onButtonThirdPartyClick: function(button, e, eOpts) {
+    onButtonThirdPartyClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -25,7 +25,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CommissionViewController
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('PayCompanyName').setValue(record2.get('NameEn'));
                         form.findField('PayPaymentCondition').setValue(record2.get('PaymentCondition'));
                     }
@@ -35,7 +35,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CommissionViewController
         popup.show();
     },
 
-    onButtonThirdPartyClick2: function(button, e, eOpts) {
+    onButtonThirdPartyClick2: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -43,7 +43,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CommissionViewController
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('ReceiveCompanyName').setValue(record2.get('NameEn'));
                         form.findField('ReceivePaymentCondition').setValue(record2.get('PaymentCondition'));
                     }

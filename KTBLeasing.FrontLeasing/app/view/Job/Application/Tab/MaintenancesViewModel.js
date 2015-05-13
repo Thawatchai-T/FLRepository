@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.MaintenancesViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabmaintenances'
+    alias: 'viewmodel.jobapplicationtabmaintenances',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        maintenanceLists: {
+            model: 'TabUserInformation.model.MaintenanceList',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

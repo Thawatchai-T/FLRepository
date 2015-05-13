@@ -35,7 +35,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        //frist page load
+        //first page load
         public Authorize Get(int page, int start, int limit)
         {
             Authorize view = new Authorize();
@@ -73,35 +73,30 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return null;
         }
 
-        //add by woody
         // POST api/user
-        public UsersAuthorize Post(UsersAuthorize formmodel)
+        public void Post(UsersAuthorize entity)
         {
-            this.UsersAuthorizeRepository.Insert(formmodel);
-            return formmodel;
-        }
-
-        //Post api/user
-        public UsersAuthorize Post(string text)
-        {
-            //this.UsersAuthorizeRepository.Find(text);
-
-            return null;
+            try
+            {
+               this.UsersAuthorizeRepository.SaveOrUpdate(entity);
+            }
+            catch (Exception ex)
+            {
+                //Logger.Error(ex);
+                throw new Exception(ex.Message);
+            }
         }
 
         // PUT api/user/5
-        public void Put(string name, UsersAuthorize formmodel)
+        public void Put(int id, UsersAuthorize formmodel)
         {
-            formmodel.UserId = name;
-            //this.UsersAuthorizeRepository.SaveOrUpdate(formmodel);
-
+            this.UsersAuthorizeRepository.SaveOrUpdate(formmodel);
         }
 
         // DELETE api/user/5
-        public void Delete(string id)
+        public void Delete(long id)
         {
-            var idss = id;
-            //this.UsersAuthorizeRepository.Delete(form);
+            this.UsersAuthorizeRepository.Delete(id);
         }
 
     }

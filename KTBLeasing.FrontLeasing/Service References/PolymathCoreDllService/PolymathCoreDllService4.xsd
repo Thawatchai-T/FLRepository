@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Response" />
+  <xs:complexType name="ResponseBuildCardServices">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="BuildCard" nillable="true" type="tns:ResultBuildCard" />
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TotalTime" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseBuildCardServices" nillable="true" type="tns:ResponseBuildCardServices" />
+  <xs:complexType name="ResultBuildCard">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="act_ar2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_ar_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_ar_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_ar_non_cur1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_ar_non_cur2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_ar_non_cur3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_no_paid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_pob" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_pob_c" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_unearned" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="act_unearned_c" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_0" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_10" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_11" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_12" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_13" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_4" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_5" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_6" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_7" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_8" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="aging_9" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="agr_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="agrcode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bot_cls" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="bot_stop" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="collect" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="com_balance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="com_balance_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="com_balance_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="com_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="com_this_month" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cost" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cost_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="cuscode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dateend" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dd_outs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dd_vat_outs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="depo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="depo_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="discount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="discount2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dn_outs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="dn_vat_outs" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="down" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="down_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="due_date" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="due_day" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="due_inst_no" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="eff1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="first" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="freei_balance" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="freei_balance_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="freei_balance_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="freei_this_month" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="inst_paid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="inst_paid_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="inst_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="install" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_acr" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_life" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_ly" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_non" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_quo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_rcv" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_un" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_wo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="int_ytd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="last_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="last_paid_amt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="last_paid_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="last_paid_prin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="late_max" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="lease" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="met_pay" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mkt_exe" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mtd_paid_amt" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="mtd_paid_prin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ncb_sts" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="next_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="next_due" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="next_inst" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="next_int" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="next_prin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="no_odue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="odue_fm" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="odue_fm_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="odue_to" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="odue_to_dd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ori_ar" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ori_ar_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ori_unearned" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ori_unearned_c" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="os_ar" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="os_ar_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="overdue" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="overdue_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pen" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pen_life" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pen_ly" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pen_ytd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="penalty" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="precode" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prin_avg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prin_pd" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="prin_wo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="pur_op" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="remain" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar_non_cur1" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar_non_cur2" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_ar_non_cur3" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_pob" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_a" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_a_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_a_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_c" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_c_a" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_c_a_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="sch_unearned_c_a_non_cur" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="subs_non" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="terms" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="typefin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="unpaid_pre_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="unpaid_vat" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vat4close" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="vat_pen" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultBuildCard" nillable="true" type="tns:ResultBuildCard" />
+  <xs:complexType name="ResponseReadCardsServices">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="EndDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Response" minOccurs="0" name="ReadCards" nillable="true" type="q1:ResultReadCards" />
+      <xs:element minOccurs="0" name="StartDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TotalTime" type="xs:double" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResponseReadCardsServices" nillable="true" type="tns:ResponseReadCardsServices" />
+</xs:schema>

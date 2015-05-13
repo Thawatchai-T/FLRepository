@@ -7,6 +7,16 @@
   <object id="provincedomain" type="KTBLeasing.FrontLeasing.Domain.Province, KTBLeasing.Domain"/>
 
 
+
+  <object id="db2util" type="DbAuth, Com.Ktbl.Database.DB2" >
+    <property name="_Provider" value="IBMDADB2.DB2COPY1"/>
+    <property name="_Password" value="JUNEJULY"/>
+    <property name="_UserID" value="KEMADIST"/>
+    <property name="_DATABASE" value="UAT64"/>
+    <property name="_SERVER" value="221.23.4.78"/>
+  </object>
+
+
   <!--<object id="MyMovieLister" type="Spring.Examples.MovieFinder.MovieLister, Spring.Examples.MovieFinder">
     --><!-- using setter injection... --><!--
     <property name="movieFinder" ref="MyMovieFinder"/>

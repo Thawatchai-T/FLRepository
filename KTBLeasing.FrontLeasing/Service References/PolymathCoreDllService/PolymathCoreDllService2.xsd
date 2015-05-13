@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Response" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Response" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ResultReadCards">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Items" nillable="true" type="tns:ArrayOfReadCardsROWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ResultReadCards" nillable="true" type="tns:ResultReadCards" />
+  <xs:complexType name="ArrayOfReadCardsROWS">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ReadCardsROWS" nillable="true" type="tns:ReadCardsROWS" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfReadCardsROWS" nillable="true" type="tns:ArrayOfReadCardsROWS" />
+  <xs:complexType name="ReadCardsROWS">
+    <xs:sequence>
+      <xs:element name="catField" nillable="true" type="xs:string" />
+      <xs:element name="discountField" nillable="true" type="xs:string" />
+      <xs:element name="dn_refField" nillable="true" type="xs:string" />
+      <xs:element name="downdepoField" nillable="true" type="xs:string" />
+      <xs:element name="due_ddField" nillable="true" type="xs:string" />
+      <xs:element name="entryField" nillable="true" type="xs:string" />
+      <xs:element name="gen_ordField" nillable="true" type="xs:string" />
+      <xs:element name="inst_dueField" nillable="true" type="xs:string" />
+      <xs:element name="inst_noField" nillable="true" type="xs:string" />
+      <xs:element name="inst_paidField" nillable="true" type="xs:string" />
+      <xs:element name="late_amtField" nillable="true" type="xs:string" />
+      <xs:element name="late_dayField" nillable="true" type="xs:string" />
+      <xs:element name="latedescField" nillable="true" type="xs:string" />
+      <xs:element name="laterateField" nillable="true" type="xs:string" />
+      <xs:element name="manyrateField" nillable="true" type="xs:string" />
+      <xs:element name="otherField" nillable="true" type="xs:string" />
+      <xs:element name="penaltyField" nillable="true" type="xs:string" />
+      <xs:element name="receiptField" nillable="true" type="xs:string" />
+      <xs:element name="recpt_ddField" nillable="true" type="xs:string" />
+      <xs:element name="type_payField" nillable="true" type="xs:string" />
+      <xs:element name="vatField" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ReadCardsROWS" nillable="true" type="tns:ReadCardsROWS" />
+</xs:schema>

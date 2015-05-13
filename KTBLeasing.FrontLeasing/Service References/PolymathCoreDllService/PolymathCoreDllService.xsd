@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://localhost" elementFormDefault="qualified" targetNamespace="http://localhost" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" />
+  <xs:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" />
+  <xs:element name="GetName">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgrProfrec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q1:AgrProfrecRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgrProfrecResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBuildCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="requestDto" nillable="true" type="q2:BuildCardRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetBuildCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" minOccurs="0" name="GetBuildCardResult" nillable="true" type="q3:ResponseBuildCardServices" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeriveEffRates">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q4:DeriveEffRatesRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetDeriveEffRatesResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFillProfrec">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q5:FillProfreRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetFillProfrecResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgrcode">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q6:GetAgrcodeRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAgrcodeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetAgrcodeResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIncome">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q7:IncomeRequests" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetIncomeResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaylist">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q8:PaylistRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPaylistResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReadCards">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" minOccurs="0" name="request" nillable="true" type="q9:ReadCardsRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetReadCardsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" minOccurs="0" name="GetReadCardsResult" nillable="true" type="q10:ResponseReadCardsServices" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

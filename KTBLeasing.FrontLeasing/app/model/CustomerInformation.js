@@ -27,9 +27,11 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
             name: 'CustomerCode'
         },
         {
+            type: 'int',
             name: 'CustomerEngType'
         },
         {
+            type: 'int',
             name: 'CustomerThaiType'
         },
         {

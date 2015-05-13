@@ -31,6 +31,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobappcontrolpaymentadvice',
     controller: 'jobapplicationtabcontrolpaymentadvice',
     viewModel: {
         type: 'jobapplicationtabcontrolpaymentadvice'
@@ -39,8 +40,15 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
 
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'gridpanel',
-            store: 'equipmentLists',
+            //            store: 'equipmentLists',
+            bind: {
+                store: '{equipmentLists}'
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -156,7 +164,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'equipmentLists'
+            bind: {
+                store: '{equipmentLists}'
+            }
         }
     ]
 

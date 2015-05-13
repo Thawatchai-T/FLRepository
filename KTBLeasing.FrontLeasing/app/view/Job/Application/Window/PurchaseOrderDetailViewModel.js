@@ -15,6 +15,29 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetailViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationwindowpurchaseorderdetail'
+    alias: 'viewmodel.jobapplicationwindowpurchaseorderdetail',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        equipmentLists: {
+            model: 'TabUserInformation.model.EquipmentList',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

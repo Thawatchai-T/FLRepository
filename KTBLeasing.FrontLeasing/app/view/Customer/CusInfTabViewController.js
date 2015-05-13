@@ -48,15 +48,15 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
             this.nameFilter = null;
         }
 
-//        if (textfield.value) {
-//            store.getProxy().extraParams.text = textfield.value;
-//            store.getProxy().extraParams.property = property;
+        //        if (textfield.value) {
+        //            store.getProxy().extraParams.text = textfield.value;
+        //            store.getProxy().extraParams.property = property;
         //            Ext.getCmp('pagingtoolbar-custinfo').moveFirst();
-//        }
-//        else {
-//            store.getProxy().setExtraParams({});
-//            store.load();
-//        }
+        //        }
+        //        else {
+        //            store.getProxy().setExtraParams({});
+        //            store.load();
+        //        }
     },
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
@@ -66,6 +66,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
                 btnreset = popup.lookupReference('btnreset');
             btnreset.hide();
             form.loadRecord(record);
+            console.log(record);
             popup.show();
         }
     },

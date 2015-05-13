@@ -46,6 +46,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Commission', {
                     layout: 'table',
                     items: [
                         {
+                            xtype: 'hiddenfield',
+                            name: 'Id'
+                        },
+                        {
                             xtype: 'textfield',
                             fieldLabel: 'Company Name',
                             labelAlign: 'right',

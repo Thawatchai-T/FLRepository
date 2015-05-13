@@ -50,7 +50,7 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
                     fieldLabel: 'Search by UserID',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    width: 500,
+                    width: 500
                 },
                 {
                     xtype: 'button',
@@ -127,7 +127,8 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
                     editor: {
                         xtype: 'textfield',
                         allowBlank: false,
-                        regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/
+                        regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/,
+                        emptyText: '[กรอกข้อมูล]'
                     }
                 },
                 {
@@ -137,7 +138,8 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
                     flex: -1,
                     editor: {
                         xtype: 'textfield',
-                        allowBlank: false
+                        allowBlank: false,
+                        emptyText: '[กรอกข้อมูล]'
                     }
                 },
                 {

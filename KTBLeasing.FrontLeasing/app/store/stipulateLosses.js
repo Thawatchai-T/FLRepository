@@ -30,18 +30,18 @@ Ext.define('TabUserInformation.store.stipulateLosses', {
             model: 'TabUserInformation.model.StipulateLoss',
             data: [
                 {
-                    Id: 'rerum',
-                    CustomerCode: 'excepturi',
-                    CommencementLeasePerUnit: 167,
-                    CommencementLeaseTotal: 736,
-                    MonthlyDiminishingAmountFrom: 765,
-                    MonthlyDiminishingAmountTo: 871.97,
-                    MonthlyDiminishingPerUnit: 595.14,
-                    MonthlyDiminishingTotal: 996.28,
-                    MonthlyDiminishingAmountFrom2: 412.85,
-                    MonthlyDiminishingAmountTo2: 153.23,
-                    MonthlyDiminishingPerUnit2: 737,
-                    MonthlyDiminishingTotal2: 513
+                    Id: 1,
+                    AppId: 1,
+                    CLPerUnit: 167,
+                    CLTotal: 736,
+                    MDAmountFrom: 765,
+                    MDAmountTo: 871.97,
+                    MDPerUnit: 595.14,
+                    MDTotal: 996.28,
+                    MDAmountFrom2: 412.85,
+                    MDAmountTo2: 153.23,
+                    MDPerUnit2: 737,
+                    MDTotal2: 513
                 }
             ],
             proxy: {

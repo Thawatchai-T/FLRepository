@@ -5,5 +5,8 @@
  * to the most recently built CSS file for the application to allow index.html
  * in the development directory to load properly (i.e., "dev mode").
  */
-@import 'resources/TabUserInformation-all.css';
 
+/*@import 'resources/TabUserInformation-all.css';*/
+
+/* generated file */
+@import 'resources/preview-ext-theme-neptune-2bd37ae3-2314-49b1-abe3-90e18757ac19.css'

@@ -69,6 +69,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentTab', {
             dockedItems: [
                 {
                     xtype: 'toolbar',
+                    hidden: true,
                     dock: 'top',
                     items: [
                         {

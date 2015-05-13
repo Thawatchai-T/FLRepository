@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdviceViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabcontrolpaymentadvice'
+    alias: 'viewmodel.jobapplicationtabcontrolpaymentadvice',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        equipmentLists: {
+            model: 'TabUserInformation.model.EquipmentList',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

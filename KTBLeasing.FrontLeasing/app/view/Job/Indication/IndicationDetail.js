@@ -336,6 +336,14 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
                     listeners: {
                         click: 'onButtonSaveClick'
                     }
+                },
+                '->',
+                {
+                    xtype: 'button',
+                    text: 'New Application',
+                    listeners: {
+                        click: 'onButtonNewClick'
+                    }
                 }
             ]
         }

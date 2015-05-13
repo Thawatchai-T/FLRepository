@@ -41,6 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.OptionAtEnd', {
     },
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'checkboxfield',
             colspan: 3,
             name: 'PurchaseOption',

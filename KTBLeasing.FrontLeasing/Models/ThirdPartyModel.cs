@@ -34,6 +34,10 @@ namespace KTBLeasing.FrontLeasing.Models
         public int PaymentCondition { get; set; }
         public string OtherRemark { get; set; }
         public string Status { get; set; }
+        public string AddressEng1 { get; set; }
+        public string AddressTh1 { get; set; }
+        public string AddressEng2 { get; set; }
+        public string AddressTh2 { get; set; }
 
         public List<ThirdPartyModel> Dummy()
         {
@@ -69,7 +73,11 @@ namespace KTBLeasing.FrontLeasing.Models
                     BankChargeBy= "exercitationem",
                     PaymentCondition= 649,
                     OtherRemark= "et",
-                    Status= "voluptatem"
+                    Status= "voluptatem",
+                    AddressEng1="108/57 England",
+                    AddressTh1 = "108/57 อังกฤษ",
+                    AddressEng2="109 England",
+                    AddressTh2 = "109 อังกฤษ"
                 };
                 list.Add(en);
             }

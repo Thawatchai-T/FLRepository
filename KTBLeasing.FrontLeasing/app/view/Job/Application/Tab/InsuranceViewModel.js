@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.InsuranceViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabinsurance'
+    alias: 'viewmodel.jobapplicationtabinsurance',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        insuranceEquipments: {
+            model: 'TabUserInformation.model.InsuranceEquipment',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

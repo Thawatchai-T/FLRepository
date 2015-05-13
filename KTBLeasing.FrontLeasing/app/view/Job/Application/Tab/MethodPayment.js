@@ -33,6 +33,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.MethodPayment', {
 
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'fieldcontainer',
             height: 120,
             items: [
@@ -41,7 +45,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.MethodPayment', {
                     fieldLabel: 'Method of Payment',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'MethodPayment',
+                    name: 'MethodPayments',
                     autoLoadOnValue: true,
                     displayField: 'Name',
                     store: 'CommonData.methodPayment',

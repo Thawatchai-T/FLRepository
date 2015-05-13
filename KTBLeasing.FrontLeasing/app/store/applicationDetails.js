@@ -22,7 +22,7 @@ Ext.define('TabUserInformation.store.applicationDetails', {
         'Ext.data.proxy.Memory'
     ],
 
-    constructor: function(cfg) {
+    constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
@@ -34,8 +34,15 @@ Ext.define('TabUserInformation.store.applicationDetails', {
                 type: 'rest',
                 url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/DoPost'
+                }
             }
         }, cfg)]);
     }

@@ -38,7 +38,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
     viewModel: {
         type: 'jobapplicationwindowequipmentdetail'
     },
-    autoShow: true,
+
     layout: 'anchor',
     title: 'Equipment Detail',
     modal: true,
@@ -46,12 +46,16 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
     dockedItems: [
         {
             xtype: 'gridpanel',
+            itemId: 'equipmentDetails-grid',
             dock: 'left',
             width: 200,
-            store: 'equipmentDetails',
+            //store: 'equipmentDetails',
+            bind: {
+                store: '{equipmentDetails}'
+            },
             listeners: {
-                itemdblclick: 'onGridpanelItemDblClick',
-                selectionchange: 'onGridpanelSelectionChange'
+                selectionchange: 'onGridpanelSelectionChange',
+                deselect: 'onGridpanelDeselect',
             },
             columns: [
                 {
@@ -79,7 +83,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
                     hidden: true,
                     itemId: 'FrameNo',
                     dataIndex: 'FrameChassisSerialNo',
-                    text: 'FrameChassisSerialNo',
+                    text: 'FrameNo',
                     flex: -1
                 }
             ]
@@ -112,6 +116,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
         {
             xtype: 'form',
             reference: 'eqpdetail',
+            id: 'jobwindoweqpdetail',
             margin: '0  0 5 0',
             bodyPadding: 5,
             title: 'Office Automation Equipment',
@@ -122,12 +127,17 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
                     padding: 5,
                     items: [
                         {
+                            xtype: 'hiddenfield',
+                            name: 'Id'
+                        },
+                        {
                             xtype: 'textfield',
                             width: 220,
                             fieldLabel: '#',
                             labelAlign: 'right',
                             labelWidth: 170,
-                            name: 'RowNumber'
+                            name: 'RowNumber',
+                            readOnly: true
                         },
                         {
                             xtype: 'combobox',
@@ -199,7 +209,9 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
                             fieldLabel: 'Date of Invoice',
                             labelAlign: 'right',
                             labelWidth: 170,
-                            name: 'DateInvoice'
+                            name: 'DateInvoice',
+                            useStrict: true
+                            //altFormats: 'm/d/Y|n/j/Y|n/j/y|m/j/y|n/d/y|m/j/Y|n/d/Y|m-d-y|m-d-Y|m/d|m-d|md|mdy|mdY|d|Y-m-d'
                         },
                         {
                             xtype: 'datefield',
@@ -207,7 +219,8 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetail', {
                             fieldLabel: 'Due Date',
                             labelAlign: 'right',
                             labelWidth: 170,
-                            name: 'DueDate'
+                            name: 'DueDate',
+                            useStrict: true
                         }
                     ]
                 },

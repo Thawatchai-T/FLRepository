@@ -30,7 +30,7 @@ namespace KTBLeasing.FrontLeasing.Models
             CultureInfo eng = new CultureInfo("en-US");
 
             List<ApprovalModel> list = new List<ApprovalModel>();
-            for (int i = 0; i < 1; i++)
+            for (int i = 0; i < 3; i++)
             {
                 var en = new ApprovalModel
                 {

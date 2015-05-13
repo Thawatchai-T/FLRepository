@@ -62,6 +62,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             },
                             items: [
                                 {
+                                    xtype: 'hiddenfield',
+                                    name: 'Id'
+                                },
+                                {
                                     xtype: 'combobox',
                                     width: 500,
                                     fieldLabel: 'Insurance Company',
@@ -116,7 +120,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid1',
                             height: 250,
-                            store: 'insuranceEquipments',
+                            //                            store: 'insuranceEquipments',
+                            bind: {
+                                store: '{insuranceEquipments}'
+                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
@@ -425,7 +432,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid2',
                             height: 250,
-                            store: 'insuranceEquipments2',
+                            //store: 'insuranceEquipments2',
+                            bind: {
+                                store: '{insuranceEquipments}'
+                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
@@ -714,7 +724,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid3',
                             height: 250,
-                            store: 'insuranceEquipments2',
+                            //store: 'insuranceEquipments3',
+                            bind: {
+                                store: '{insuranceEquipments}'
+                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
