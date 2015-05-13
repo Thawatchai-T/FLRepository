@@ -15,16 +15,16 @@ namespace KTBLeasing.FrontLeasing.Domain {
 
         public virtual long Id { get; set; }
         public virtual long AppId { get; set; }
-        public virtual decimal CommencementLeasePerUnit { get; set; }
-        public virtual decimal CommencementLeaseTotal { get; set; }
-        public virtual int MonthlyDiminishingAmountFrom { get; set; }
-        public virtual int MonthlyDiminishingAmountTo { get; set; }
-        public virtual decimal MonthlyDiminishingPerUnit { get; set; }
-        public virtual decimal MonthlyDiminishingTotal { get; set; }
-        public virtual int MonthlyDiminishingAmountFrom2 { get; set; }
-        public virtual int MonthlyDiminishingAmountTo2 { get; set; }
-        public virtual decimal MonthlyDiminishingPerUnit2 { get; set; }
-        public virtual decimal MonthlyDiminishingTotal2 { get; set; }
+        public virtual decimal CLPerUnit { get; set; }
+        public virtual decimal CLTotal { get; set; }
+        public virtual int MDAmountFrom { get; set; }
+        public virtual int MDAmountTo { get; set; }
+        public virtual decimal MDPerUnit { get; set; }
+        public virtual decimal MDTotal { get; set; }
+        public virtual int MDAmountFrom2 { get; set; }
+        public virtual int MDAmountTo2 { get; set; }
+        public virtual decimal MDPerUnit2 { get; set; }
+        public virtual decimal MDTotal2 { get; set; }
 
         public virtual ApplicationDetail ApplicationDetail { get; set; }
     }

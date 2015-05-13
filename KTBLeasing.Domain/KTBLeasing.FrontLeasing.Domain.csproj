@@ -56,6 +56,9 @@
     <Compile Include="AnnualTax.cs" />
     <Compile Include="Approval.cs" />
     <Compile Include="BG.cs" />
+    <Compile Include="Installment.cs" />
+    <Compile Include="Restructure.cs" />
+    <Compile Include="TermCondition.cs" />
     <Compile Include="PurchaseOrder.cs" />
     <Compile Include="DefineAddress.cs" />
     <Compile Include="Seller.cs" />
@@ -74,6 +77,7 @@
     <Compile Include="Funding.cs" />
     <Compile Include="Guarantor.cs" />
     <Compile Include="ViewModel\ApplicationDetailViewModel.cs" />
+    <Compile Include="ViewModel\TestApplicationDetailViewModel.cs" />
     <Compile Include="WaiveDocument.cs" />
     <Compile Include="Customer.cs" />
     <Compile Include="CustomerSignerDomain.cs" />
@@ -99,7 +103,12 @@
     <Compile Include="ViewModel\UserInformationView.cs" />
     <Compile Include="VisitInformationDomain.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Ktbl.Database.DB2\Com.Ktbl.Database.DB2.csproj">
+      <Project>{A01C9E7D-AD0E-46DB-9D56-C44C828AD45C}</Project>
+      <Name>Com.Ktbl.Database.DB2</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

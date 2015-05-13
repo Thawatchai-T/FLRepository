@@ -10,11 +10,11 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public InsuranceEquipment()
         {
-            Insurance = new Insurance();
+            ApplicationDetail = new ApplicationDetail();
         }
 
         public virtual long Id { get; set; }
-        public virtual long InsuranceId { get; set; }
+        public virtual long AppId { get; set; }
         public virtual string EquipmentType { get; set; }
         public virtual int Chassis { get; set; }
         public virtual string Licens { get; set; }
@@ -35,8 +35,8 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual string PolicyNo { get; set; }
         public virtual DateTime ReceivedDate { get; set; }
         public virtual DateTime PayDate { get; set; }
-        public virtual string Remark { get; set; } 
+        public virtual string Remark { get; set; }
 
-        public virtual Insurance Insurance { get; set; }
+        public virtual ApplicationDetail ApplicationDetail { get; set; }
     }
 }

@@ -10,15 +10,15 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public MaintenanceList()
         {
-            Maintenance = new Maintenance();
+            ApplicationDetail = new ApplicationDetail();
         }
 
         public virtual long Id { get; set; }
-        public virtual long MaintenanceId { get; set; }
+        public virtual long AppId { get; set; }
         public virtual int Yearly { get; set; }
         public virtual int Month { get; set; }
-        public virtual decimal Amount { get; set; } 
+        public virtual decimal Amount { get; set; }
 
-        public virtual Maintenance Maintenance { get; set; }
+        public virtual ApplicationDetail ApplicationDetail { get; set; }
     }
 }

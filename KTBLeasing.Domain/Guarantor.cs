@@ -18,9 +18,9 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual int ConditionLease { get; set; }
         public virtual string BGNo { get; set; }
         public virtual DateTime BGReceivedDate { get; set; }
-        public virtual string ConfirmPrintedDate { get; set; }
+        public virtual DateTime ConfirmPrintedDate { get; set; }
         public virtual DateTime ReturnDate { get; set; }
-        public virtual string Bank { get; set; }
+        public virtual int Bank { get; set; }
         public virtual string Branch { get; set; }
         public virtual decimal BGAmount { get; set; }
         public virtual DateTime BGDate { get; set; }
