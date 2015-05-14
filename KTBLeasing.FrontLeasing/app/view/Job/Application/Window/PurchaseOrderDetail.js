@@ -189,7 +189,10 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetail',
             xtype: 'gridpanel',
             dock: 'bottom',
             height: 250,
-            store: 'equipmentLists',
+            //store: 'equipmentLists',
+            bind: {
+                store: '{equipmentLists}'
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',

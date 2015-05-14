@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionScheduleViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabcollectionschedule'
+    alias: 'viewmodel.jobapplicationtabcollectionschedule',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        collectionScheldules: {
+            model: 'TabUserInformation.model.CollectionSchedule',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

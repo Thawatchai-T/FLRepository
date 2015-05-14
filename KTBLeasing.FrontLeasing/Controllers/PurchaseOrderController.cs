@@ -5,11 +5,14 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class PurchaseOrderController : ApiController
     {
+        public IPurchaseOrderRepository PurchaseOrderRepository { get; set; }
         // GET api/contact
         public IEnumerable<PurchaseOrderModel> Get()
         {
@@ -28,18 +31,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/contact
-        public void Post([FromBody]string value)
+        public void Post(PurchaseOrder entity)
         {
+            entity.ApplicationDetail.Id = entity.AppId;
+            PurchaseOrderRepository.SaveOrUpdate(entity);
         }
 
         // PUT api/contact/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(long id, PurchaseOrder entity)
         {
+            PurchaseOrderRepository.SaveOrUpdate(entity);
         }
 
         // DELETE api/contact/5
-        public void Delete(int id)
+        public void Delete(long id)
         {
+            //PurchaseOrderRepository.Delete(id);
         }
     }
 }

@@ -28,21 +28,13 @@ Ext.define('TabUserInformation.store.commissions', {
         me.callParent([Ext.apply({
             storeId: 'commissions',
             model: 'TabUserInformation.model.Commission',
-            data: [
-                {
-                    Id: 635,
-                    PayCompanyName: 'magnam',
-                    PayAmount: 398.13,
-                    PayDetail: 'et',
-                    PayPaymentCondition: 544.27,
-                    ReceiveCompanyName: 'iusto',
-                    ReceiveAmount: 357.36,
-                    ReceiveDetail: 'consequatur',
-                    ReceivePaymentCondition: 162
-                }
-            ],
+//            autoLoad: true,
             proxy: {
-                type: 'memory'
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                        type: 'json'
+                },
             }
         }, cfg)]);
     }

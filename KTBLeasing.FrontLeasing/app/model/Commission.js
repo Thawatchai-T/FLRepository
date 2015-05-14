@@ -30,6 +30,7 @@ Ext.define('TabUserInformation.model.Commission', {
             name: 'Id'
         },
         {
+            type: 'int',
             name: 'AppId'
         },
         {

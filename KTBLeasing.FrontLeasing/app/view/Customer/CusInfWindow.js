@@ -352,7 +352,6 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                 },
                 {
                     xtype: 'form',
-                    //hidden: true,
                     collapsible: true,
                     collapsed: true,
                     title: 'Background',

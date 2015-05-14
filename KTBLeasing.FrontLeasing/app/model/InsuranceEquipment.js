@@ -32,7 +32,7 @@ Ext.define('TabUserInformation.model.InsuranceEquipment', {
         },
         {
             type: 'int',
-            name: 'InsuranceId'
+            name: 'AppId'
         },
         {
             name: 'EquipmentType'

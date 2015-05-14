@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.model.MaintenanceList', {
         },
         {
             type: 'int',
-            name: 'MaintenanceId'
+            name: 'AppId'
         },
         {
             type: 'int',

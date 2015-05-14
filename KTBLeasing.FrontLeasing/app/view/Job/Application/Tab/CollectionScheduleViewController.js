@@ -15,5 +15,11 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionScheduleViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.jobapplicationtabcollectionschedule'
+    alias: 'controller.jobapplicationtabcollectionschedule',
+
+    onStoreBeforeLoad: function (store, operation, eOpts) {
+        var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;
+        store.getProxy().extraParams.id = Id;
+        store.getProxy().extraParams.name = 'CollectionSchedule';
+    }
 });

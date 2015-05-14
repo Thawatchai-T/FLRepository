@@ -59,5 +59,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 return Json(new { success = false , message = "ไม่สามารถอัพโหลดไฟล์" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        [HttpPost]
+        public string DoPost(string data)
+        {
+            try
+            {
+                //ApplicationDetailRepository.Update(entity);
+                //ApplicationDetailRepository.Insert(entity);
+                //ApplicationDetailViewModel datform = JsonConvert.DeserializeObject<ApplicationDetailViewModel>(data);
+                var a = 1;
+            }
+            catch (Exception e)
+            {
+                //Logger.Error(e);
+            }
+            return "string";
+        }
     }
 }

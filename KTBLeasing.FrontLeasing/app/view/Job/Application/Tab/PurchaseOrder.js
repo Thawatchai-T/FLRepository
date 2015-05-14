@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobapppurchaseorder',
     controller: 'jobapplicationtabpurchaseorder',
     viewModel: {
         type: 'jobapplicationtabpurchaseorder'
@@ -35,8 +36,15 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
 
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'gridpanel',
-            store: 'purchaseOrders',
+            //store: 'purchaseOrders',
+            bind: {
+                store: '{purchaseOrders}'
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -115,7 +123,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'purchaseOrders'
+            //store: 'purchaseOrders'
+            bind: {
+                store: '{purchaseOrders}'
+            }
         }
     ]
 

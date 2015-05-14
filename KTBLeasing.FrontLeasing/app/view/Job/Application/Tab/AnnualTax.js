@@ -29,6 +29,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobappannualtax',
     controller: 'jobapplicationtabannualtax',
     viewModel: {
         type: 'jobapplicationtabannualtax'
@@ -37,9 +38,13 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
     title: 'Annual Tax',
 
     items: [
+        
         {
             xtype: 'gridpanel',
-            store: 'annualTaxes',
+            //            store: 'annualTaxes',
+            bind: {
+                store: '{annualTaxes}'
+            },
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -77,12 +82,17 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
                             autoLoadOnValue: true,
                             displayField: 'Name',
                             store: 'CommonData.borneBy',
-                            valueField: 'Id'
+                            valueField: 'Id',
+                            name: 'BornBy'
                         }
                     ]
                 }
             ],
             columns: [
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Id'
+                },
                 {
                     xtype: 'rownumberer',
                     width: 115,
@@ -131,7 +141,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'annualTaxes'
+            bind: {
+                store: '{annualTaxes}'
+            },
         }
     ]
 

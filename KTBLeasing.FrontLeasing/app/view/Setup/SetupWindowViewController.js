@@ -49,9 +49,6 @@ Ext.define('TabUserInformation.view.Setup.SetupWindowViewController', {
         } else {
             Ext.Msg.alert('Data is not valid!', 'กรุณาเลือกข้อมูลให้ครบถ้วน');
         }
-
-        
-
     },
 
     onButtonCancelClick: function (button, e, eOpts) {

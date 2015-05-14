@@ -19,6 +19,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
 
     requires: [
         'TabUserInformation.view.Job.Application.Tab.CollectionScheduleViewModel',
+        'TabUserInformation.view.Job.Application.Tab.CollectionScheduleViewController',
         'Ext.form.field.Date',
         'Ext.grid.Panel',
         'Ext.grid.View',
@@ -29,6 +30,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
         'Ext.toolbar.Paging'
     ],
 
+    controller: 'jobapplicationtabcollectionschedule',
     viewModel: {
         type: 'jobapplicationtabcollectionschedule'
     },
@@ -39,6 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
 
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'datefield',
             fieldLabel: 'As Date',
             labelAlign: 'right',
@@ -46,7 +52,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
         },
         {
             xtype: 'gridpanel',
-            store: 'collectionScheldules',
+            //store: 'collectionScheldules',
+            bind: {
+                store: '{collectionScheldules}'
+            },
             features: [
                 {
                     ftype: 'summary'
@@ -95,7 +104,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'collectionScheldules'
+//            store: 'collectionScheldules'
+            bind: {
+                store: '{collectionScheldules}'
+            }
         }
     ]
 

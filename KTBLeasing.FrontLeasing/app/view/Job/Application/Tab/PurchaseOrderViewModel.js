@@ -15,6 +15,37 @@
 
 Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrderViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobapplicationtabpurchaseorder'
+    alias: 'viewmodel.jobapplicationtabpurchaseorder',
+
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        purchaseOrders: {
+            model: 'TabUserInformation.model.PurchaseOrder',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/PurchaseOrder',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/PurchaseOrder/Post',
+                    read: 'api/ApplicationDetail'
+                }
+            },
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        }
+    }
 
 });

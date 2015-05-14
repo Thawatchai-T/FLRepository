@@ -16,7 +16,7 @@
 
   <object id="performanceAdvice" type="KTBL.NCRS.Aspects.SimplePerformanceInterceptor, KTBL.NCRS.Aspects">
     <property name="Prefix" value="Service Layer Performance"/>
-    <property name="MongoDBConnection" value="mongodb://localhost"/>
+    <property name="MongoDBConnection" value="mongodb://221.23.21.46"/>
   </object>
   
   <object id="aroundAdvisor" type="Spring.Aop.Support.NameMatchMethodPointcutAdvisor, Spring.Aop">

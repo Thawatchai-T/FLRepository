@@ -15,7 +15,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("AD_GUARANTOR_LIST");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.Guarantor).Column("GUARANTOR_ID");
+            References(x => x.ApplicationDetail).Column("APP_ID");
             Map(x => x.GuarantorType).Column("GUARANTOR_TYPE");
             Map(x => x.Name).Column("NAME").Length(100);
             Map(x => x.Address).Column("ADDRESS").Length(255);

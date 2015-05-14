@@ -161,31 +161,31 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
             type: 'date',
             name: 'RatingDate'
         }
-//        ,
-//        {
-//            name: 'DepositDownPayment'
-//        },
-//        {
-//            name: 'EquipmentCost'
-//        },
-//        {
-//            name: 'DepositDownVat'
-//        },
-//        {
-//            name: 'EquipmentVAT'
-//        },
-//        {
-//            name: 'DepositDownTotal'
-//        },
-//        {
-//            name: 'EquipmentTotal'
-//        },
-//        {
-//            name: 'DepositEquivalent'
-//        },
-//        {
-//            name: 'CostEquivalent'
-//        }
+    //        ,
+    //        {
+    //            name: 'DepositDownPayment'
+    //        },
+    //        {
+    //            name: 'EquipmentCost'
+    //        },
+    //        {
+    //            name: 'DepositDownVat'
+    //        },
+    //        {
+    //            name: 'EquipmentVAT'
+    //        },
+    //        {
+    //            name: 'DepositDownTotal'
+    //        },
+    //        {
+    //            name: 'EquipmentTotal'
+    //        },
+    //        {
+    //            name: 'DepositEquivalent'
+    //        },
+    //        {
+    //            name: 'CostEquivalent'
+    //        }
 
     ]
 });

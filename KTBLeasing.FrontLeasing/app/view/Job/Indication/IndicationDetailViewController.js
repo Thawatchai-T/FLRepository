@@ -19,6 +19,11 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetailViewControlle
 
     onButtonSaveClick: function(button, e, eOpts) {
 
-    }
+    },
+    
+    onButtonNewClick: function(button, e, eOpts) {
+        var popup = Ext.create('widget.jobapplicationapplicationdetail');
+        popup.show();
+    },
 
 });

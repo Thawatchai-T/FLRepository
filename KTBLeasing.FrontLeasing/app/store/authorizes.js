@@ -41,7 +41,20 @@ Ext.define('TabUserInformation.store.authorizes', {
                 reader: {
                     type: 'json',
                     rootProperty: 'tiems',
-					totalProperty:'totalProperty'
+                    totalProperty: 'totalProperty'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+//                actionMethods: {
+//                    create: 'POST',
+//                    update: 'PUT',
+//                    read: 'GET',
+//                    destroy: 'DELETE'
+//                },
+                api: {
+                    create: 'api/User/Post'
                 }
             }
         }, cfg)]);

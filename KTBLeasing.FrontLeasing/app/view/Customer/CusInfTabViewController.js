@@ -17,9 +17,6 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabcusinftab',
 
-    config:{
-        test: 123
-    },
     onTextfieldKeyup: function (textfield, e, eOpts) {
         var grid = this.getView().down('gridpanel'),
             filters = grid.store.getFilters(),
@@ -67,9 +64,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
             var popup = Ext.create('widget.customercusinfwindow'),
                 form = popup.down('form'),
                 btnreset = popup.lookupReference('btnreset');
-            form.loadRecord(record);
             btnreset.hide();
-            //debugger;
+            form.loadRecord(record);
+            console.log(record);
             popup.show();
         }
     },
@@ -86,10 +83,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
                 form = popup.down('form'),
                 btnreset = popup.lookupReference('btnreset');
             btnreset.hide();
-
             form.loadRecord(record);
-            form.findField('TypeCustomer').setValue(record.get('TypeCustomer'));
-            form.doLayout();
             popup.show();
         }
     }

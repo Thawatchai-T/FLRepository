@@ -21,7 +21,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.BGReceivedDate).Column("BG_RECEIVED_DATE").CustomSqlType("date");
             Map(x => x.ConfirmPrintedDate).Column("CONFIRM_PRINTED_DATE").CustomSqlType("date");
             Map(x => x.ReturnDate).Column("RETURN_DATE").CustomSqlType("date");
-            Map(x => x.Bank).Column("BANK").Length(100);
+            Map(x => x.Bank).Column("BANK");
             Map(x => x.Branch).Column("BRANCH").Length(100);
             Map(x => x.BGAmount).Column("BG_AMOUNT");
             Map(x => x.BGDate).Column("BG_DATE").CustomSqlType("date");

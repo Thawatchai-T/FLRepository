@@ -31,9 +31,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
                     if(record2){
-                        var name = record2.get('TitleNameEng')+' '+
-                        record2.get('FirstNameEng')+' '+
-                        record2.get('LastNameEng');
+                        var name = record2.get('TitleNameEn')+' '+
+//                        record2.get('FirstNameEn')+' '+
+                        record2.get('NameEn');
 
                         form.findField('Signer1EquipmentSales').setValue(name);
                     }
@@ -52,9 +52,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
                     if(record2){
-                        var name = record2.get('TitleNameEng')+' '+
-                        record2.get('FirstNameEng')+' '+
-                        record2.get('LastNameEng');
+                        var name = record2.get('TitleNameEn')+' '+
+//                        record2.get('FirstNameEn')+' '+
+                        record2.get('NameEn');
 
                         form.findField('Signer2EquipmentSales').setValue(name);
                     }
@@ -73,9 +73,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
                     if(record2){
-                        var name = record2.get('TitleNameEng')+' '+
-                        record2.get('FirstNameEng')+' '+
-                        record2.get('LastNameEng');
+                        var name = record2.get('TitleNameEn')+' '+
+//                        record2.get('FirstNameEn')+' '+
+                        record2.get('NameEn');
 
                         form.findField('WithnessEquipmentSales').setValue(name);
                     }
@@ -224,6 +224,12 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
 
     onButtonDeleteClick: function(button, e, eOpts) {
 
+    },
+
+    onStoreBeforeLoad: function (store, operation, eOpts) {
+        var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;
+        store.getProxy().extraParams.id = Id;
+        store.getProxy().extraParams.name = 'GuarantorList';
     }
 
 });

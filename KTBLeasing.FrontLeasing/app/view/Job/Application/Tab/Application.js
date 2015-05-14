@@ -42,7 +42,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         type: 'jobapplicationtabapplication'
     },
 
-    id: 'jobapplicationapplicationdetail',
+    id: 'jobappapplication',
     autoScroll: true,
     bodyPadding: 10,
     title: 'Application',
@@ -474,7 +474,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                     labelAlign: 'right',
                     labelWidth: 40,
                     name: 'VAT',
-                    hideTrigger: true
+                    hideTrigger: true,
+                    listeners: {
+                        change: 'onNumberfieldVatChange'
+                    }
                 },
                 {
                     xtype: 'combobox',
@@ -498,13 +501,22 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'gridpanel',
-            itemId: 'equipmentLists-grid',
+            //            id: 'equipmentLists-grid',
             colspan: 4,
-            store: 'equipmentLists',
+            bind: {
+                store: '{equipmentLists}'
+            },
+//            store: 'equipmentLists',
             columns: [
                 {
                     xtype: 'gridcolumn',
+                    dataIndex: 'Id',
+                    hidden: true
+                },
+                {
+                    xtype: 'gridcolumn',
                     dataIndex: 'SellerName',
+                    flex: -1,
                     text: 'SellerName'
                 },
                 {
@@ -526,39 +538,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                         triggers: {
                             mytrigger1: {
                                 handler: function (field, trigger, e) {
-                                    var grid = field.up('grid'),
-                                        record = grid.getSelection()[0],
-                                        rowedit = grid.getPlugin('rowedit'),
-                                        value = grid.ownerCt.down('#TypeEquipment').getRawValue();
-
-                                    if (value) {
-                                        if (e.type == 'click') {
-                                            var popup = Ext.create('widget.jobapplicationwindowequipmentdetail', {
-                                                listeners: {
-                                                    beforerender: function (panel, eOpts) {
-                                                        panel.getController().HideAndShow(value);
-                                                    },
-                                                    close: function (panel, eOpts) {
-                                                        //                 var record2 = panel.down('grid').getSelection()[0];
-                                                        if (record) {
-                                                            //                     for(var recordname in record2.data){
-                                                            //                         if(recordname != 'Id'){
-                                                            //                             record.set(recordname,record2.get(recordname));
-                                                            //                         }
-                                                            //                         if(recordname == 'PolicyNo'){
-
-                                                            //                         }
-                                                            //                     }
-                                                            grid.view.refresh();
-                                                            rowedit.cancelEdit();
-                                                        }
-                                                    }
-                                                }
-                                            });
-                                            popup.center();
-                                            popup.show();
-                                        }
-                                    }
+                                    Ext.getCmp('jobappapplication').getController().onEquipmentListTriggerClick(field, trigger, e);
                                 }
                             }
                         }

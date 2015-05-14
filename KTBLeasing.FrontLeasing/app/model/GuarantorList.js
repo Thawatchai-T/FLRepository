@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.model.GuarantorList', {
         },
         {
             type: 'int',
-            name: 'GuarantorId'
+            name: 'AppId'
         },
         {
             name: 'GuarantorType'

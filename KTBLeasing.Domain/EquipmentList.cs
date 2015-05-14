@@ -12,7 +12,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         {
             ApplicationDetail = new ApplicationDetail();
         }
-
         public virtual long Id { get; set; }
         public virtual long AppId { get; set; }
         public virtual long SellerId { get; set; }
@@ -24,7 +23,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal Total { get; set; }
         public virtual decimal VAT { get; set; }
         public virtual decimal Net { get; set; }
-        public virtual DateTime ChequeDate { get; set; } 
+        public virtual DateTime? ChequeDate { get; set; } 
 
         public virtual ApplicationDetail ApplicationDetail { get; set; }
     }

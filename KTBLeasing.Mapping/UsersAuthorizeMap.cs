@@ -12,7 +12,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
         public UsersAuthorizeMap() {
 			Table("USERS_AUTHORIZE");
 			LazyLoad();
-			Id(x => x.UserId).GeneratedBy.Assigned().Column("USER_ID");
+            Id(x => x.UserId).Column("USER_ID").GeneratedBy.Assigned();
+            Map(x => x.Id).Column("ID").Unique();
 			Map(x => x.Active).Column("ACTIVE");
 			Map(x => x.DepCode).Column("DEP_CODE");
         }

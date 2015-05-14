@@ -59,11 +59,13 @@ Ext.define('TabUserInformation.model.EquipmentDetail', {
         },
         {
             type: 'date',
-            name: 'DateInvoice'
+            name: 'DateInvoice',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'DueDate'
+            name: 'DueDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'ChassisNo'
@@ -78,6 +80,7 @@ Ext.define('TabUserInformation.model.EquipmentDetail', {
             name: 'LicenseNo'
         },
         {
+            type: 'int',
             name: 'PriceCar'
         },
         {
@@ -90,11 +93,13 @@ Ext.define('TabUserInformation.model.EquipmentDetail', {
         },
         {
             type: 'date',
-            name: 'BookReceivedDate'
+            name: 'BookReceivedDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'BookReturnDate'
+            name: 'BookReturnDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'PowNo'
@@ -109,11 +114,13 @@ Ext.define('TabUserInformation.model.EquipmentDetail', {
         },
         {
             type: 'date',
-            name: 'SpareReceivedDate'
+            name: 'SpareReceivedDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'SpareReturnDate'
+            name: 'SpareReturnDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'Remark'

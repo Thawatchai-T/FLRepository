@@ -64,10 +64,14 @@
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+<Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <Private>True</Private>
     </Reference>
-    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+    <Reference Include="Microsoft.VisualBasic">
+      <Private>True</Private>
+    </Reference><Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
@@ -179,16 +183,22 @@
   <ItemGroup>
     <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="Controllers\AddressController.cs" />
+    <Compile Include="Controllers\AgreementController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\BackgroundController.cs" />
     <Compile Include="Controllers\ApplicationDetailController.cs" />
     <Compile Include="Controllers\AnnualTaxController.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
+    <Compile Include="Controllers\ARCardController.cs" />
     <Compile Include="Controllers\EquipmentDetailController.cs" />
+    <Compile Include="Controllers\InstallmentController.cs" />
     <Compile Include="Controllers\MaintenanceListController.cs" />
     <Compile Include="Controllers\InsuranceEquipmentController.cs" />
     <Compile Include="Controllers\PurchaseOrderController.cs" />
+    <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\RestructureController.cs" />
+    <Compile Include="Controllers\TestController.cs" />
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\InsurancePolicyController.cs" />
@@ -214,13 +224,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ReportingCredential.cs" />
+    <Compile Include="Models\ApplicationDetailChildEnum.cs" />
     <Compile Include="Models\Authorize.cs" />
     <Compile Include="Models\AddressModel.cs" />
     <Compile Include="Models\CollectionScheduleModel.cs" />
     <Compile Include="Models\CommissionModel.cs" />
     <Compile Include="Models\CommonCustomerModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
+    <Compile Include="Models\ARCardModel.cs" />
     <Compile Include="Models\DummyModel.cs" />
+    <Compile Include="Models\RestructureModel.cs" />
+    <Compile Include="Models\InstallmentModel.cs" />
     <Compile Include="Models\FinancialPolicyModel.cs" />
     <Compile Include="Models\ProjectPlanModel.cs" />
     <Compile Include="Models\BackgroundModel.cs" />
@@ -269,7 +284,24 @@
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
+    <Compile Include="Service References\WsLoginAD\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\ReportViewer.aspx.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reports\ReportViewer.aspx.designer.cs">
+      <DependentUpon>ReportViewer.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\PolymathCoreDllService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WsLoginAD\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
@@ -287,12 +319,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="app.js" />
+    <Content Include="app_main.js" />
     <Content Include="app\controller\HomeController.js" />
     <Content Include="app\model\Address.js" />
     <Content Include="app\model\Affidavit.js" />
     <Content Include="app\model\AnnualTax.js" />
+    <Content Include="app\model\AppDetail.js" />
     <Content Include="app\model\ApplicationDetail.js" />
+    <Content Include="app\model\ApplicationDetailView.js" />
     <Content Include="app\model\Approval.js" />
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
@@ -303,6 +337,8 @@
     <Content Include="app\model\Commission.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
+    <Content Include="app\model\Agreement.js" />
+    <Content Include="app\model\DueDay.js" />
     <Content Include="app\model\RoleInTabs.js" />
     <Content Include="app\model\MainCommon.js" />
     <Content Include="app\model\FinalcialProlicyModel.js" />
@@ -318,6 +354,7 @@
     <Content Include="app\model\GuarantorList.js" />
     <Content Include="app\model\IndicationForEquipment.js" />
     <Content Include="app\model\InformationForIndication.js" />
+    <Content Include="app\model\Installment.js" />
     <Content Include="app\model\Insurance.js" />
     <Content Include="app\model\InsuranceEquipment.js" />
     <Content Include="app\model\InsurancePolicy.js" />
@@ -330,6 +367,8 @@
     <Content Include="app\model\OptionEndLeaseTerm.js" />
     <Content Include="app\model\Province.js" />
     <Content Include="app\model\PurchaseOrder.js" />
+    <Content Include="app\model\Restructure.js" />
+    <Content Include="app\model\RestructureList.js" />
     <Content Include="app\model\Role.js" />
     <Content Include="app\model\Roles.js" />
     <Content Include="app\model\Seller.js" />
@@ -338,6 +377,7 @@
     <Content Include="app\model\StampDuty.js" />
     <Content Include="app\model\StipulateLoss.js" />
     <Content Include="app\model\Tab.js" />
+    <Content Include="app\model\TermCondition.js" />
     <Content Include="app\model\ThirdParty.js" />
     <Content Include="app\model\UserInformation.js" />
     <Content Include="app\model\UserInRole.js" />
@@ -347,8 +387,8 @@
     <Content Include="app\store\addresses.js" />
     <Content Include="app\store\affidavits.js" />
     <Content Include="app\store\annualTaxes.js" />
+    <Content Include="app\store\appDetails.js" />
     <Content Include="app\store\applicationDetails.js" />
-    <Content Include="app\store\applicationDetails_bak.js" />
     <Content Include="app\store\applications.js" />
     <Content Include="app\store\approvals.js" />
     <Content Include="app\store\authorities.js" />
@@ -374,6 +414,7 @@
     <Content Include="app\store\CommonData\collaterals.js" />
     <Content Include="app\store\CommonData\committed.js" />
     <Content Include="app\store\CommonData\conditionLease.js" />
+    <Content Include="app\store\CommonData\paymentPeriods.js" />
     <Content Include="app\store\CommonData\methodPayment.js" />
     <Content Include="app\store\CommonData\currency.js" />
     <Content Include="app\store\CommonData\cusinfopopup.js" />
@@ -394,9 +435,11 @@
     <Content Include="app\store\CommonData\payment.js" />
     <Content Include="app\store\CommonData\paymentCondition.js" />
     <Content Include="app\store\CommonData\paymentMethod.js" />
+    <Content Include="app\store\CommonData\percentEquipmentCostTypes.js" />
     <Content Include="app\store\CommonData\positions.js" />
     <Content Include="app\store\CommonData\provinces.js" />
     <Content Include="app\store\CommonData\purchaseOrders.js" />
+    <Content Include="app\store\CommonData\rateTypes.js" />
     <Content Include="app\store\CommonData\residualValues.js" />
     <Content Include="app\store\CommonData\roles.js" />
     <Content Include="app\store\CommonData\sellers.js" />
@@ -420,9 +463,15 @@
     <Content Include="app\store\CommonData\typeFinances.js" />
     <Content Include="app\store\CommonData\typeLease.js" />
     <Content Include="app\store\CommonData\typeofcust.js" />
+    <Content Include="app\store\CommonData\types.js" />
+    <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
+    <Content Include="app\store\applicationDetails2.js" />
+    <Content Include="app\store\agreements.js" />
+    <Content Include="app\store\restructureLists.js" />
     <Content Include="app\store\customerInformations.js" />
     <Content Include="app\store\defineAddresses.js" />
+    <Content Include="app\store\dueDays.js" />
     <Content Include="app\store\equipment.js" />
     <Content Include="app\store\equipmentDetails.js" />
     <Content Include="app\store\equipmentLists.js" />
@@ -445,6 +494,7 @@
     <Content Include="app\store\optionEndLeaseTerms.js" />
     <Content Include="app\store\provinces.js" />
     <Content Include="app\store\purchaseOrders.js" />
+    <Content Include="app\store\restructures.js" />
     <Content Include="app\store\roleInTabs.js" />
     <Content Include="app\store\sellers.js" />
     <Content Include="app\store\setups.js" />
@@ -452,6 +502,7 @@
     <Content Include="app\store\stampDuties.js" />
     <Content Include="app\store\stipulateLosses.js" />
     <Content Include="app\store\tabs.js" />
+    <Content Include="app\store\termConditions.js" />
     <Content Include="app\store\thirdParties.js" />
     <Content Include="app\store\userInformations.js" />
     <Content Include="app\store\userInRoles.js" />
@@ -529,9 +580,6 @@
     <Content Include="app\view\Job\Application\Tab\ControlPaymentAdvice.js" />
     <Content Include="app\view\Job\Application\Tab\ControlPaymentAdviceViewController.js" />
     <Content Include="app\view\Job\Application\Tab\ControlPaymentAdviceViewModel.js" />
-    <Content Include="app\view\Job\Application\Tab\ControlPaymentInvite.js" />
-    <Content Include="app\view\Job\Application\Tab\ControlPaymentInviteViewController.js" />
-    <Content Include="app\view\Job\Application\Tab\ControlPaymentInviteViewModel.js" />
     <Content Include="app\view\Job\Application\Tab\Document.js" />
     <Content Include="app\view\Job\Application\Tab\DocumentViewController.js" />
     <Content Include="app\view\Job\Application\Tab\DocumentViewModel.js" />
@@ -565,9 +613,15 @@
     <Content Include="app\view\Job\Application\Tab\StipulateLoss.js" />
     <Content Include="app\view\Job\Application\Tab\StipulateLossViewController.js" />
     <Content Include="app\view\Job\Application\Tab\StipulateLossViewModel.js" />
+    <Content Include="app\view\Job\Application\Tab\TermAndCondition.js" />
+    <Content Include="app\view\Job\Application\Tab\TermAndConditionViewController.js" />
+    <Content Include="app\view\Job\Application\Tab\TermAndConditionViewModel.js" />
     <Content Include="app\view\Job\Application\Tab\WaiveDocument.js" />
     <Content Include="app\view\Job\Application\Tab\WaiveDocumentViewController.js" />
     <Content Include="app\view\Job\Application\Tab\WaiveDocumentViewModel.js" />
+    <Content Include="app\view\Job\Application\Window\AdditionEquipmentDetail.js" />
+    <Content Include="app\view\Job\Application\Window\AdditionEquipmentDetailViewController.js" />
+    <Content Include="app\view\Job\Application\Window\AdditionEquipmentDetailViewModel.js" />
     <Content Include="app\view\Job\Application\Window\AdditionSalePrice.js" />
     <Content Include="app\view\Job\Application\Window\AdditionSalePriceViewController.js" />
     <Content Include="app\view\Job\Application\Window\AdditionSalePriceViewModel.js" />
@@ -580,6 +634,9 @@
     <Content Include="app\view\Job\Application\Window\DefineAddress.js" />
     <Content Include="app\view\Job\Application\Window\DefineAddressViewController.js" />
     <Content Include="app\view\Job\Application\Window\DefineAddressViewModel.js" />
+    <Content Include="app\view\Job\Application\Window\DueDay.js" />
+    <Content Include="app\view\Job\Application\Window\DueDayViewController.js" />
+    <Content Include="app\view\Job\Application\Window\DueDayViewModel.js" />
     <Content Include="app\view\Job\Application\Window\EquipmentDetail.js" />
     <Content Include="app\view\Job\Application\Window\EquipmentDetailViewController.js" />
     <Content Include="app\view\Job\Application\Window\EquipmentDetailViewModel.js" />
@@ -613,6 +670,15 @@
     <Content Include="app\view\Job\Lead\LeadTab.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewController.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewModel.js" />
+    <Content Include="app\view\Restructure\ARCard.js" />
+    <Content Include="app\view\Restructure\ARCardViewController.js" />
+    <Content Include="app\view\Restructure\ARCardViewModel.js" />
+    <Content Include="app\view\Restructure\RestructureList.js" />
+    <Content Include="app\view\Restructure\RestructureListViewController.js" />
+    <Content Include="app\view\Restructure\RestructureListViewModel.js" />
+    <Content Include="app\view\Restructure\RestructureWindow.js" />
+    <Content Include="app\view\Restructure\RestructureWindowViewController.js" />
+    <Content Include="app\view\Restructure\RestructureWindowViewModel.js" />
     <Content Include="app\view\Role\RoleTab.js" />
     <Content Include="app\view\Role\RoleTabViewController.js" />
     <Content Include="app\view\Role\RoleTabViewModel.js" />
@@ -664,6 +730,7 @@
     <Content Include="Config\repository.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="app.js" />
     <Content Include="ext\.sencha\package\Boot.js" />
     <Content Include="ext\.sencha\package\bootstrap-impl.xml" />
     <Content Include="ext\.sencha\package\build-impl.xml" />
@@ -8527,6 +8594,7 @@
     <Content Include="lib\Ninject.dll" />
     <Content Include="lib\Remotion.Data.Linq.dll" />
     <Content Include="lib\Spring.Data.NHibernate30.dll" />
+    <Content Include="Reports\ReportViewer.aspx" />
     <Content Include="lib\springlib\Common.Logging.dll" />
     <Content Include="lib\springlib\Common.Logging.xml" />
     <Content Include="lib\springlib\HibernatingRhinos.Profiler.Appender.dll" />
@@ -8776,6 +8844,7 @@
     <Content Include="resources\preview-ext-theme-crisp-8b648485-41c0-4690-809a-f08a216dfbd3.css" />
     <Content Include="resources\preview-ext-theme-neptune-2bd37ae3-2314-49b1-abe3-90e18757ac19.css" />
     <Content Include="resources\TabUserInformation-all.css" />
+    <Content Include="scripts\jquery-1.5.1.js" />
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
@@ -8788,7 +8857,41 @@
     <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.disco" />
     <None Include="Service References\WS_ActiveDirectory\configuration91.svcinfo" />
     <None Include="Service References\WS_ActiveDirectory\configuration.svcinfo" />
-    <None Include="Service References\WS_ActiveDirectory\Reference.svcmap">
+    <None Include="Service References\WS_ActiveDirectory\Reference.svcmap"><None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\KTBLeasing.FrontLeasing.PolymathCoreDllService.ResponseBuildCardServices.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\KTBLeasing.FrontLeasing.PolymathCoreDllService.ResponseReadCardsServices.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\polymathcoredll.wsdl" />
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService.wsdl" />
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\WsLoginAD\configuration91.svcinfo" />
+    <None Include="Service References\WsLoginAD\configuration.svcinfo" />
+    <None Include="Service References\WsLoginAD\Reference.svcmap">      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\PolymathCoreDllService\configuration91.svcinfo" />
+    <None Include="Service References\PolymathCoreDllService\configuration.svcinfo" />
+    <None Include="Service References\PolymathCoreDllService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -9619,12 +9722,19 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WS_ActiveDirectory\" />
-  </ItemGroup>
+    <WCFMetadataStorage Include="Service References\PolymathCoreDllService\" />  </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Ktbl.Database.DB2\Com.Ktbl.Database.DB2.csproj">
+      <Project>{A01C9E7D-AD0E-46DB-9D56-C44C828AD45C}</Project>
+      <Name>Com.Ktbl.Database.DB2</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
       <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
       <Name>KTBLeasing.FrontLeasing.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTBLeasing.FrontLeasing.Report\KTBLeasing.FrontLeasing.Report.csproj">
+      <Project>{C10E9CFB-06B6-4294-B68F-CA8FC2BBC701}</Project>
+      <Name>KTBLeasing.FrontLeasing.Report</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
       <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>
@@ -9636,7 +9746,10 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Include="Reports\Installment.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+	<EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
@@ -9657,7 +9770,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>34010</DevelopmentServerPort>
+          <DevelopmentServerPort>3842</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

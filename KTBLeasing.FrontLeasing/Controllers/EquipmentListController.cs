@@ -27,11 +27,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //return EquipmentListRepository.GetAll();
         }
 
-        public List<EquipmentListModel> Get(int page, int start, int limit, long id)
+        public List<EquipmentList> Get(int page, int start, int limit, long id)
         {
-            return new EquipmentListModel().Dummy();
-            //return EquipmentListRepository.GetAll(0, 5, id);
-            //return EquipmentListRepository.GetAll();
+            //return new EquipmentListModel().Dummy();
+            return EquipmentListRepository.GetAll(0, 5, id);
         }
 
         // GET api/contact/5
@@ -40,24 +39,23 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return "value";
         }
 
-        public List<EquipmentListModel> DoPost(EquipmentListModel form)
-        {
-            return null;
-        }
-
         // POST api/contact
-        public void Post([FromBody]string value)
+        public void Post(EquipmentList entity)
         {
+            entity.ApplicationDetail.Id = entity.AppId;
+            EquipmentListRepository.Insert(entity);
         }
 
         // PUT api/contact/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(long id, EquipmentList entity)
         {
+            EquipmentListRepository.Update(entity);
         }
 
         // DELETE api/contact/5
-        public void Delete(int id)
+        public void Delete(long id)
         {
+            //EquipmentListRepository.Delete(id);
         }
     }
 }

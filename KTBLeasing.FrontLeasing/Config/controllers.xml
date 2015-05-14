@@ -135,12 +135,12 @@
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.PurchaseOrderController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="PurchaseOrderRepository" ref="purchaseOrderRepository"/>
 
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.SellerController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="SellerRepository" ref="sellerRepository"/>
 
   </object>
   
@@ -155,8 +155,16 @@
 </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentDetailController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
-
+    <property name="EquipmentDetailRepository" ref="equipmentDetailRepository"/>
+    <property name="ApplicationDetailRepository" ref="applicationDetailRepository"/>
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.RestructureController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="RestructureRepository" ref="restructureRepository"/>
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.InstallmentController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="InstallmentRepository" ref="installmentRepository"/>
   </object>
 
   <!--<object type="KTBLeasing.FrontLeasing.Controllers.CustomerController, KTBLeasing.FrontLeasing" singleton="false" >
@@ -166,5 +174,25 @@
       </list>
     </property>
   </object>-->
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.ARCardController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="DB2Repository" ref="repositorydb2"/>
+  </object>
+  
+  <!--db2-->
+  <object id="repositorydb2" type="Com.Ktbl.Database.DB2.Repository.Repository, Com.Ktbl.Database.DB2" >
+    <constructor-arg index="0" value="IBMDADB2.DB2COPY1"/>
+    <constructor-arg index="1" value="JUNEJULY"/>
+    <constructor-arg index="2" value="KEMADIST"/>
+    <constructor-arg index="3" value="UAT64"/>
+    <constructor-arg index="4" value="221.23.4.78"/>
+    <property name="DbAuth" ref="db2util"/>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.AgreementController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="DB2Repository" ref="repositorydb2"/>
+
+  </object>
+    
   
 </objects>

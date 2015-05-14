@@ -38,6 +38,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Funding', {
     },
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'combobox',
             fieldLabel: 'Source',
             labelAlign: 'right',

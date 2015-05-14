@@ -58,6 +58,7 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTab', {
             dockedItems: [
                 {
                     xtype: 'toolbar',
+                    hidden: true,
                     dock: 'top',
                     items: [
                         {

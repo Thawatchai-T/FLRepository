@@ -80,4 +80,28 @@
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
   
+  <object id="equipmentDetailRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.EquipmentDetailRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="sellerRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.SellerRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
+  <object id="purchaseOrderRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.PurchaseOrderRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="installmentRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.InstallmentRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="restructureRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.RestructureRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
 </objects>

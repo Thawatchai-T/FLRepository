@@ -28,7 +28,7 @@ Ext.define('TabUserInformation.store.sellers', {
         me.callParent([Ext.apply({
             storeId: 'sellers',
             model: 'TabUserInformation.model.Seller',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/Seller',

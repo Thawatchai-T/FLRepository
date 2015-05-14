@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c80f456e-0052-4bcd-90be-d97e441cbf29" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings>
+      <CollectionMapping TypeName="System.Collections.Generic.List`1" Category="List" />
+    </CollectionMappings>
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="PolymathCoreDllService.xsd" MetadataType="Schema" ID="0c409a92-9aa5-4692-b474-a473cc226af2" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd0" />
+    <MetadataFile FileName="PolymathCoreDllService1.xsd" MetadataType="Schema" ID="be49b778-5292-45c5-86fb-699c39175a28" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd1" />
+    <MetadataFile FileName="PolymathCoreDllService.wsdl" MetadataType="Wsdl" ID="8b015a11-4a1f-43bf-8edf-95c1dad4b048" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="PolymathCoreDllService2.xsd" MetadataType="Schema" ID="990ba85f-8931-46b4-883c-5b2863a77065" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd4" />
+    <MetadataFile FileName="polymathcoredll.wsdl" MetadataType="Wsdl" ID="7fd4fcf4-29e4-4123-9d12-fe3298698dec" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?wsdl" />
+    <MetadataFile FileName="PolymathCoreDllService3.xsd" MetadataType="Schema" ID="3133b248-cd93-4c33-b729-f73572e780ee" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd2" />
+    <MetadataFile FileName="PolymathCoreDllService4.xsd" MetadataType="Schema" ID="cca91148-98e6-41c8-b25a-b1170888f295" SourceId="1" SourceUrl="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd3" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

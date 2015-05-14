@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://localhost" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="http://localhost" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://localhost/Imports">
+      <xsd:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd0" namespace="http://localhost" />
+      <xsd:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Request" />
+      <xsd:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Domain.Response" />
+      <xsd:import schemaLocation="http://thawatchai_it.ktbleasing.com/PolymathCoreDllService/PolymathCoreDllService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Com.Ktbl.Service.Contracts.Response" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IPolymathCoreDllService_GetName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetName" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetAgrProfrec_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgrProfrec" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetAgrProfrec_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgrProfrecResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetBuildCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildCard" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetBuildCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetBuildCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetDeriveEffRates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeriveEffRates" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetDeriveEffRates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetDeriveEffRatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetFillProfrec_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetFillProfrec" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetFillProfrec_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetFillProfrecResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetAgrcode_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgrcode" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetAgrcode_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAgrcodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetIncome_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetIncome" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetIncome_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetIncomeResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetPaylist_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaylist" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetPaylist_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetPaylistResponse" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetReadCards_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetReadCards" />
+  </wsdl:message>
+  <wsdl:message name="IPolymathCoreDllService_GetReadCards_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetReadCardsResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IPolymathCoreDllService">
+    <wsdl:operation name="GetName">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetName" message="tns:IPolymathCoreDllService_GetName_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetNameResponse" message="tns:IPolymathCoreDllService_GetName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgrProfrec">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetAgrProfrec" message="tns:IPolymathCoreDllService_GetAgrProfrec_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetAgrProfrecResponse" message="tns:IPolymathCoreDllService_GetAgrProfrec_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBuildCard">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetBuildCard" message="tns:IPolymathCoreDllService_GetBuildCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetBuildCardResponse" message="tns:IPolymathCoreDllService_GetBuildCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDeriveEffRates">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetDeriveEffRates" message="tns:IPolymathCoreDllService_GetDeriveEffRates_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetDeriveEffRatesResponse" message="tns:IPolymathCoreDllService_GetDeriveEffRates_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFillProfrec">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetFillProfrec" message="tns:IPolymathCoreDllService_GetFillProfrec_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetFillProfrecResponse" message="tns:IPolymathCoreDllService_GetFillProfrec_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAgrcode">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetAgrcode" message="tns:IPolymathCoreDllService_GetAgrcode_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetAgrcodeResponse" message="tns:IPolymathCoreDllService_GetAgrcode_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIncome">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetIncome" message="tns:IPolymathCoreDllService_GetIncome_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetIncomeResponse" message="tns:IPolymathCoreDllService_GetIncome_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetPaylist">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetPaylist" message="tns:IPolymathCoreDllService_GetPaylist_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetPaylistResponse" message="tns:IPolymathCoreDllService_GetPaylist_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetReadCards">
+      <wsdl:input wsaw:Action="http://localhost/IPolymathCoreDllService/GetReadCards" message="tns:IPolymathCoreDllService_GetReadCards_InputMessage" />
+      <wsdl:output wsaw:Action="http://localhost/IPolymathCoreDllService/GetReadCardsResponse" message="tns:IPolymathCoreDllService_GetReadCards_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>
