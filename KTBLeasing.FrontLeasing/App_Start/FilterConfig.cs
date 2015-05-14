@@ -1,6 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
-using Thinktecture.IdentityModel.Authorization.WebApi;
+//using Thinktecture.IdentityModel.Authorization.WebApi;
 using System;
 
 namespace KTBLeasing.FrontLeasing
@@ -19,7 +19,7 @@ namespace KTBLeasing.FrontLeasing
             //    throw e;
             //}
 
-            filters.Add(new AuthorizeAttribute());
+           // filters.Add(new AuthorizeAttribute());
 
         }
     }

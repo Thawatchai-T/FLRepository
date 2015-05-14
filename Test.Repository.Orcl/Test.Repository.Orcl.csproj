@@ -82,7 +82,6 @@
     </CodeAnalysisDependentAssemblyPaths>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CustomerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabRepositoryTest.cs" />
     <Compile Include="UserInTabRepositoryTest.cs" />

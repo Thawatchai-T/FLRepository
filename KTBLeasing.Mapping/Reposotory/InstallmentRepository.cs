@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using KTBLeasing.FrontLeasing.Domain;
+
 using KTBLeasing.Domain;
 using System.Reflection;
-using NHibernate.Criterion;
+using KTBLeasing.FrontLeasing.Domain;
+
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {

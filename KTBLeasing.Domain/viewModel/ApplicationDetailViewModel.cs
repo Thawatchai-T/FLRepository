@@ -6,7 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.Domain
 {
-    public class ApplicationDetailViewModel: ApplicationDetail
+    public class ApplicationDetailViewModel : ApplicationDetail
     {
         public List<ApplicationDetail> ApplicationDetail { get; set; }
         public ApplicationDetailViewModel()
@@ -44,7 +44,10 @@ namespace KTBLeasing.Domain
             this.ApplicationDetail = list;
         }
 
-		public List<MethodPayment> MethodPayment { get; set; }
+        public List<WaiveDocument> WaiveDocument { get; set; }
+        public List<Guarantor> Guarantor { get; set; }
+        public List<OptionEndLeaseTerm> OptionEndLeaseTerm { get; set; }
+        public List<MethodPayment> MethodPayment { get; set; }
         public List<Maintenance> Maintenance { get; set; }
         public List<Insurance> Insurance { get; set; }
         public List<Commission> Commission { get; set; }
@@ -61,5 +64,6 @@ namespace KTBLeasing.Domain
         //public List<PurchaseOrder> PurchaseOrder { get; set; }
         //public List<InsuranceEquipment> InsuranceEquipment { get; set; }
         //public List<MaintenanceList> MaintenanceList { get; set; }
-        #endregion    }
+        #endregion
+    }
 }

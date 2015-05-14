@@ -19,16 +19,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
     {
         private IApplicationDetailRepository ApplicationDetailRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+
 
         // GET api/contact
-        public List<ApplicationDetailModel> Get()
         public List<ApplicationDetail> Get()
         {
             try
             {
-                return new ApplicationDetailModel().Dummy();
-                //return ApplicationDetailRepository.GetAll(0, 30, 1);
                 //return new ApplicationDetailModel().Dummy();
                 return ApplicationDetailRepository.GetAll();
             }
@@ -39,8 +36,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        // GET api/contact/5
-        public string Get(int id)
         //// GET api/contact/5
         //public List<ApplicationDetail> Get(long id)
         //{
@@ -52,7 +47,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
         public JArray Get(long id, ApplicationDetailChildEnum name)
         {
-            return "value";
             try
             {
                 string json = string.Empty;
@@ -66,7 +60,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public void DoPost(ApplicationDetail entity)
         private JArray ApplicationDetailModule(long id, ApplicationDetailChildEnum name, ref string json)
         {
             switch (name)
@@ -169,24 +162,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             try
             {
-                ApplicationDetailRepository.SaveOrUpdate(entity);
-
-
-
                 var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
                 var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
 
                 //ApplicationDetailRepository.SaveOrUpdate<object>(entity);
-
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Error(e);
             }
         }
 
         // POST api/contact
-        public void Post([FromBody]string value)
         public void Post(object obj, ApplicationDetailChildEnum name)
         {
             var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
@@ -196,7 +183,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/contact/5
-        public void Put(int id, [FromBody]string value)
         public void Put(int id, object obj, ApplicationDetailChildEnum name)
         {
             var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
@@ -210,6 +196,4 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
         }
     }
-    }    
-
 }

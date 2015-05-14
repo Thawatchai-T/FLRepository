@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="fa3cc5d9-7539-4bfc-8965-d73a37f375e9" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="8888563e-3a03-4a09-b0ff-c220618cf5b2" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <EnableDataBinding>true</EnableDataBinding>
@@ -21,8 +21,8 @@
     <MetadataSource Address="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="WS_ActiveDirectory.disco" MetadataType="Disco" ID="d23ab416-2d5e-4f8b-a1ea-574391f2be98" SourceId="1" SourceUrl="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx?disco" />
-    <MetadataFile FileName="WS_ActiveDirectory.wsdl" MetadataType="Wsdl" ID="0edea77b-1986-4174-b747-ac1ed6aaade5" SourceId="1" SourceUrl="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx?wsdl" />
+    <MetadataFile FileName="WS_ActiveDirectory.disco" MetadataType="Disco" ID="5a5a9e42-1fe1-4a16-81b4-3792d283cbe2" SourceId="1" SourceUrl="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx?disco" />
+    <MetadataFile FileName="WS_ActiveDirectory.wsdl" MetadataType="Wsdl" ID="6887ad23-6db6-465d-86b8-134570cb59be" SourceId="1" SourceUrl="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

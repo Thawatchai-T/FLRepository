@@ -7,6 +7,7 @@ using KTBLeasing.Domain;
 using NHibernate.Transform;
 using NHibernate.Criterion;
 
+
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IUserInfomationRepository
