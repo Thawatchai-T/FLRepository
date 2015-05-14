@@ -19,7 +19,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
     {
         private IApplicationDetailRepository ApplicationDetailRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-        
+
 
         // GET api/contact
         public List<ApplicationDetail> Get()
@@ -167,7 +167,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
                 //ApplicationDetailRepository.SaveOrUpdate<object>(entity);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Logger.Error(e);
             }
@@ -195,5 +195,5 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Delete(int id)
         {
         }
-    }    
+    }
 }

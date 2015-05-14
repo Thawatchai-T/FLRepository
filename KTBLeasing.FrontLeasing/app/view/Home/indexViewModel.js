@@ -15,6 +15,26 @@
 
 Ext.define('TabUserInformation.view.Home.indexViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.homeindex'
+    alias: 'viewmodel.homeindex',
+    requires: [
+        'TabUserInformation.model.RoleInTabs',
+        'Ext.data.proxy.Rest'
+    ],
+
+    stores: {
+        userinfoStore: {
+            model: 'TabUserInformation.model.RoleInTabs',
+            //fields: ['UserId', 'RoleName'],
+            proxy: {
+                type: 'rest',
+                
+                url: 'api/login/GetLogingProperties'
+            },
+            reader: {
+                type: 'json',
+                rootProperty: 'data',
+            }
+        }
+    }
 
 });

@@ -8,12 +8,23 @@
   <object type="KTBLeasing.FrontLeasing.Controllers.LoginController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="_LoginService" ref="wsad"/>
     <property name="_User" ref="user"/>
+    <!--[20150326] woody-->
+    <property name="UserInformationRepository" ref="userInfomationRepository"/>
+    <property name="UserInRoleRepository" ref="userInRoleRepository"/>
+    <property name="TabRepository" ref="tabRepository"/>
+    <property name="_UserViewModel" ref="usermodel"/>
+    <property name="_DomainName" value="ktbleasing.com"/>
+    
+    
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.RoleController, KTBLeasing.FrontLeasing" singleton="false" >
     <!--inject value in property-->
     <property name="UserInRoleRepository" ref="userInRoleRepository"/>
     <property name="RoleRepository" ref="roleRepository"/>
+ <!--[20150324] Add by Woody-->
+    <property name="TabRepository" ref="tabRepository"/>
+ 
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.TabController, KTBLeasing.FrontLeasing" singleton="false" >

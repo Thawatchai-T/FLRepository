@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using KTBLeasing.FrontLeasing.WsLoginAD;
 using KTBLeasing.FrontLeasing.Models;
 using System.Web.Security;
 using System.IO;
@@ -27,13 +26,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //    }
             //}
             //FormsAuthentication.SignOut();
+
+
             return View();
         }
 
         public ActionResult Login()
         {
             //var values = _objDefault1Controller.Get();
-
+            FormsAuthentication.SetAuthCookie("thawatchai_ti", false);
             return View("Login");// Json(values, JsonRequestBehavior.AllowGet);
         }
 

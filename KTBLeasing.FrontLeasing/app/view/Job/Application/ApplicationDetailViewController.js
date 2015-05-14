@@ -119,3 +119,4 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
 
 
 });
+

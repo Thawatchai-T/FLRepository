@@ -8,6 +8,9 @@ using FluentNHibernate.Cfg;
 using NHibernate.ByteCode.Castle;
 using FluentNHibernate.Cfg.Db;
 using KTBLeasing.FrontLeasing.Mapping.Orcl;
+using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.Domain;
+using System.Data;
 
 namespace Test.Repository.Orcl
 {
@@ -86,6 +89,61 @@ namespace Test.Repository.Orcl
             
         }
 
+
+        [TestMethod]
+        public void TestInsertWaiveDocument()
+        {
+            try
+            {
+                CustomerRepository target = new CustomerRepository();
+                target.SessionFactory = CreateSessionFactory();
+                ApplicationDetailViewModel entity = new ApplicationDetailViewModel();
+                
+                //WaiveDocument entity = new WaiveDocument();
+                //appdetail.ApplicationDetail =(entity.ApplicationDetail ==null)?new ApplicationDetail():entity.ApplicationDetail;
+
+                //entity.AppId = 1;
+                //entity.ApplicationDetail.Id = 1;
+                //entity.Document ="test";
+                //entity.Reason = "tset:";
+                entity.WaiveDocument = (entity.WaiveDocument == null) ? new WaiveDocument() : entity.WaiveDocument;
+                entity.WaiveDocument.AppId = 1;
+                entity.WaiveDocument.ApplicationDetail.Id = 1;
+                entity.WaiveDocument.Document = "test2";
+                entity.WaiveDocument.Reason = "test2";
+                entity.WaiveDocument.AppId = 1;
+                
+
+
+                target.Insert<WaiveDocument>(entity.WaiveDocument); 
+
+
+                List<CommonCustomerDomain> actual;
+                //  actual = target.GetCustomerInfoPopup();
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
+        [TestMethod]
+        public void TestTab()
+        {
+            try
+            {
+               var repo = new CustomerRepository();
+               repo.SessionFactory = CreateSessionFactory();
+
+               var result = repo.ExecuteICriteria<Tab>();
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         private  ISessionFactory CreateSessionFactory()
         {
             try
@@ -110,5 +168,64 @@ namespace Test.Repository.Orcl
                 //  return null;
             }
         }
+
+
+        //public static T ConvertToEntity<T>(this DataRow tableRow) where T : new()
+        //{
+        //    // Create a new type of the entity I want
+        //    Type t = typeof(T);
+        //    T returnObject = new T();
+
+        //    foreach (DataColumn col in tableRow.Table.Columns)
+        //    {
+        //        string colName = col.ColumnName;
+
+        //        // Look for the object's property with the columns name, ignore case
+        //        PropertyInfo pInfo = t.GetProperty(colName.ToLower(),
+        //            BindingFlags.IgnoreCase | BindingFlags.Public | BindingFlags.Instance);
+
+        //        // did we find the property ?
+        //        if (pInfo != null)
+        //        {
+        //            object val = tableRow[colName];
+        //            if (colName.ToLower() == "amount4")
+        //            {
+        //                val = tableRow[colName];
+        //            }
+        //            // is this a Nullable<> type
+        //            bool IsNullable = (Nullable.GetUnderlyingType(pInfo.PropertyType) != null || val is System.DBNull);
+        //            if (IsNullable)
+        //            {
+        //                if (val is System.DBNull)
+        //                {
+        //                    val = null;
+        //                }
+        //                else
+        //                {
+        //                    // Convert the db type into the T we have in our Nullable<T> type
+        //                    val = Convert.ChangeType
+        //            (val, Nullable.GetUnderlyingType(pInfo.PropertyType));
+        //                }
+        //            }
+        //            else
+        //            {
+        //                // Convert the db type into the type of the property in our entity
+        //                try
+        //                {
+        //                    val = Convert.ChangeType(val, pInfo.PropertyType);
+        //                }
+        //                catch (Exception ex)
+        //                {
+        //                    //ex;
+        //                }
+        //            }
+        //            // Set the value of the property with the value from the db
+        //            pInfo.SetValue(returnObject, val, null);
+        //        }
+        //    }
+
+        //    // return the entity object with values
+        //    return returnObject;
+        //}
     }
 }

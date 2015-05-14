@@ -108,6 +108,7 @@ namespace KTBLeasing.FrontLeasing.Models
                     Id = i,
                     CustomerId = i,
                     VisitNo = "VS" + date.Year + date.Month + date.Day + "00" + i,
+                    Year = date.Year.ToString(),
                     MarketingOfficer = "marketing_" + i,
                     RefNo = 10000025 + i,
                     CustomerName = "CustomerName_" + i,

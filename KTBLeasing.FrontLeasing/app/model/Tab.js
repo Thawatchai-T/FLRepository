@@ -46,6 +46,8 @@ Ext.define('TabUserInformation.model.Tab', {
         {
             type: 'date',
             name: 'Updatedate'
+        }, {
+            name: 'Widget'
         }
     ]
 });

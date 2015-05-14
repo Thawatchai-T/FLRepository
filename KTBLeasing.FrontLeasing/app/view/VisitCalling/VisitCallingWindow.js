@@ -555,11 +555,23 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                 {
                     xtype: 'container',
                     items: [
+                        //{
+                        //    xtype: 'combobox',
+                        //    fieldLabel: 'Result',
+                        //    labelAlign: 'right',
+                        //    name: 'Result'
+                        //},
                         {
-                            xtype: 'combobox',
-                            fieldLabel: 'Result',
-                            labelAlign: 'right',
-                            name: 'Result'
+                            xtype: 'radiogroup',
+                            fieldLabel: 'Two Columns',
+                            // Arrange radio buttons into two columns, distributed vertically
+                            columns: 3,
+                            vertical: true,
+                            items: [
+                                { boxLabel: 'Interested', name: 'Result', inputValue: '1' },
+                                { boxLabel: 'Non-Interested', name: 'Result', inputValue: '2', checked: true},
+                                { boxLabel: 'Considering', name: 'Result', inputValue: '3' }
+                            ]
                         },
                         {
                             xtype: 'textfield',

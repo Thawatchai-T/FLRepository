@@ -47,7 +47,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
-    <Reference Include="FluentNHibernate, Version=1.2.0.712, Culture=neutral, PublicKeyToken=8aa435e3cb308880, processorArchitecture=MSIL">
+    <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\FluentNHibernate.dll</HintPath>
     </Reference>
@@ -64,6 +64,10 @@
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
     </Reference>
@@ -86,7 +90,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+    <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\NHibernate.dll</HintPath>
     </Reference>
@@ -175,8 +179,13 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="Thinktecture.IdentityModel, Version=3.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Thinktecture.IdentityModel.3.6.1\lib\net40\Thinktecture.IdentityModel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\AgreementController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
@@ -225,6 +234,7 @@
     <Compile Include="Models\CollectionScheduleModel.cs" />
     <Compile Include="Models\CommissionModel.cs" />
     <Compile Include="Models\CommonCustomerModel.cs" />
+    <Compile Include="Models\Common\UserModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\ARCardModel.cs" />
     <Compile Include="Models\RestructureModel.cs" />
@@ -238,6 +248,7 @@
     <Compile Include="Models\BGModel.cs" />
     <Compile Include="Models\EquipmentDetailModel.cs" />
     <Compile Include="Models\MaintenanceListModel.cs" />
+    <Compile Include="Models\Rols\UserInRole.cs" />
     <Compile Include="Models\ThirdPartyModel.cs" />
     <Compile Include="Models\SellerModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />
@@ -292,11 +303,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WsLoginAD\Reference.cs">
+    <Compile Include="Service References\WS_ActiveDirectory\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utility\OAuthBase.cs" />
+    <Compile Include="Utility\SessionUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -8502,6 +8515,7 @@
     <Content Include="lib\Common.Logging.dll" />
     <Content Include="lib\Common.Logging.Log4Net.dll" />
     <Content Include="lib\FluentNHibernate.dll" />
+    <Content Include="lib\FluentNHibernate.pdb" />
     <Content Include="lib\FluentNHibernate.XML" />
     <Content Include="lib\HibernatingRhinos.Profiler.Appender.dll" />
     <Content Include="lib\Iesi.Collections.dll" />
@@ -8758,7 +8772,7 @@
     <None Include="Service References\PolymathCoreDllService\KTBLeasing.FrontLeasing.PolymathCoreDllService.ResponseReadCardsServices.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\PolymathCoreDllService\polymathcoredll.wsdl" />
+    <None Include="Service References\PolymathCoreDllService\polymathcoredll1.wsdl" />
     <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService.wsdl" />
     <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService.xsd">
       <SubType>Designer</SubType>
@@ -8775,15 +8789,16 @@
     <None Include="Service References\PolymathCoreDllService\PolymathCoreDllService4.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\WsLoginAD\configuration91.svcinfo" />
-    <None Include="Service References\WsLoginAD\configuration.svcinfo" />
-    <None Include="Service References\WsLoginAD\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <None Include="Service References\PolymathCoreDllService\configuration91.svcinfo" />
     <None Include="Service References\PolymathCoreDllService\configuration.svcinfo" />
     <None Include="Service References\PolymathCoreDllService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.disco" />
+    <None Include="Service References\WS_ActiveDirectory\configuration91.svcinfo" />
+    <None Include="Service References\WS_ActiveDirectory\configuration.svcinfo" />
+    <None Include="Service References\WS_ActiveDirectory\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -8798,6 +8813,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
@@ -9608,14 +9624,13 @@
     <None Include="ext\packages\sencha-soap\Readme.md" />
     <None Include="ext\packages\sencha-soap\test\specs\test.json" />
     <None Include="resources\Readme.md" />
-    <None Include="Service References\WsLoginAD\IWS_LoginADservice.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Service References\PolymathCoreDllService\" />
-    <WCFMetadataStorage Include="Service References\WsLoginAD\" />
+    <WCFMetadataStorage Include="Service References\WS_ActiveDirectory\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ktbl.Database.DB2\Com.Ktbl.Database.DB2.csproj">
@@ -9658,8 +9673,9 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>3842</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>
-          </IISUrl>
+          <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>http://localhost/KTBLeasing.FrontLeasing</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

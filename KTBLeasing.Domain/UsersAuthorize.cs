@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KTBLeasing.FrontLeasing.Domain {
     
-    public class UsersAuthorize {
+    public class UsersAuthorize:IVersionedModelObject {
         public UsersAuthorize()
         {
         }
@@ -13,7 +13,5 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual string UserId { get; set; }
         public virtual short Active { get; set; }
         public virtual string DepCode { get; set; }
-
-        
-    }
+		public virtual byte[] Version { get; set; }    }
 }

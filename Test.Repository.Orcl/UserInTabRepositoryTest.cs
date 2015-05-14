@@ -128,6 +128,13 @@ namespace Test.Repository.Orcl
             //  var result = target.GetGridView();
         }
 
+        [TestMethod]
+        public void TestCreateObjectWithStringName()
+        {
+            string namespaceName = "KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory";
+            string className = "UserInfomationRepository";
+            var myObj = Activator.CreateInstance(Type.GetType(namespaceName + className));
+        }
 
         private static ISessionFactory CreateSessionFactory()
         {

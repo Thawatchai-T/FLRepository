@@ -21,6 +21,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private ICustomerRepository CustomerRepository { get; set; }
 
         private ICommonDataRepository CommonDataRepository { get; set; }
+        public enum Test
+        {
+            a,
+            b
+        }
 
         #region Default 
 
@@ -41,8 +46,8 @@ namespace KTBLeasing.FrontLeasing.Controllers
                         IndustryCode = x.IndustryCode,
                         NatureCust = x.NatureCust,
                         TypeCust = x.TypeCust,
-                        CustomerThaiType = x.TitleCustNameEng,
-                        CustomerEngType = x.TitleCustNameTh,
+                        CustomerThaiType = x.TitleCustNameTh,
+                        CustomerEngType = x.TitleCustNameEng,
                         KTBIsicCode = x.TsicCode,
                         CustomerThaiName = x.NameTh,
                         CustomerEngName = x.NameEng,
@@ -67,9 +72,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/cusinfo/5
-        public string Get(int id)
+        public string Get(Test id)
         {
-            return "value";
+            return id.ToString();
         }
 
         // POST api/cusinfo

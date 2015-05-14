@@ -34,6 +34,7 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
                     popup.show();
                 } else if (btn == 'no') {
                     var popup2 = Ext.create('widget.customercusinfpopup');
+                    popup2.down('gridpanel').getStore().load();
                     popup2.show();
                 }
             }

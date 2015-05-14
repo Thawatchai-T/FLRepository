@@ -12,6 +12,12 @@ namespace KTBLeasing.FrontLeasing
 {
     public class NHHelpers
     {
+        private string Server { get; set; }
+        private int Port { get; set; }
+        private string Username { get; set; }
+        private string Password { get; set; }
+        private string Instance { get; set; }
+        
         public ISessionFactory CreateSessionFactory()
         {
             try
@@ -32,11 +38,11 @@ namespace KTBLeasing.FrontLeasing
                 var sessionf = Fluently.Configure()
                     .ProxyFactoryFactory<ProxyFactoryFactory>()
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
-                        x.Server("221.23.0.70")
-                        .Port(1521)
-                        .Username("FrontLeasing")
-                        .Password("ktblitadmin")
-                        .Instance("ktbl"))
+                        x.Server(Server)
+                        .Port(Port)
+                        .Username(Username)
+                        .Password(Password)
+                        .Instance(Instance))
                         )
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RoleMap>())
                     .ExposeConfiguration(c => c.SetProperty("current_session_context_class", "thread_static"))

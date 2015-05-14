@@ -18,10 +18,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             LazyLoad();
             Id(x => x.Id).GeneratedBy.Assigned().Column("ID");
             Map(x => x.RoleName).Column("ROLE_NAME").Not.Nullable();
-            Map(x => x.Createdate).Column("CREATE_DATE").Not.Nullable();
-            Map(x => x.Createby).Column("CREATE_BY").Not.Nullable();
-            Map(x => x.Updatedate).Column("UPDATE_DATE").Not.Nullable();
-            Map(x => x.Updateby).Column("UPDATE_BY").Not.Nullable();
+            Map(x => x.CreateDate).Column("CREATE_DATE").Not.Nullable();
+            Map(x => x.CreateBy).Column("CREATE_BY").Not.Nullable();
+            Map(x => x.UpdateDate).Column("UPDATE_DATE").Not.Nullable();
+            Map(x => x.UpdateBy).Column("UPDATE_BY").Not.Nullable();
         }
     }
 }

@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
 using System.Web.Http.WebHost;
+using Thinktecture.IdentityModel.Authorization.WebApi;
 
 namespace KTBLeasing.FrontLeasing
 {
     public static class WebApiConfig
     {
+        public static string UrlPrefix { get { return "api"; } }
+        public static string UrlPrefixRelative { get { return "~/api"; } }
+
+        
         public static void Register(HttpConfiguration config)
         {
            /** [20141118] woody add config for custom function in webapi */
@@ -30,14 +35,29 @@ namespace KTBLeasing.FrontLeasing
                 routeTemplate: "api/{controller}/{action}",
                 defaults: new { action = "Get" }
             );
-            //config.Routes.MapHttpRoute("API Default", "api/{controller}/{id}",
-            //new { id = RouteParameter.Optional });
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
 
             config.Routes.MapHttpRoute(
-                name: "DefaultApi",
-                routeTemplate: "api/{controller}/{id}",
-                defaults: new { id = RouteParameter.Optional }
-            );
+                 name: "DefaultApi",
+                 routeTemplate: WebApiConfig.UrlPrefix + "/{controller}/{id}",
+                 defaults: new { id = RouteParameter.Optional }
+             );
+
+            //config.Filters.Add(new ClaimsAuthorizeAttribute());
+
+            //handlers
+            config.MessageHandlers.Add(new AuthenticationHandler());
+
+            //config.Routes.MapHttpRoute(
+            //    name: "DefaultApi",
+            //    routeTemplate: "api/{controller}/{id}",
+            //    defaults: new { id = RouteParameter.Optional }
+            //);
         }
     }
 }

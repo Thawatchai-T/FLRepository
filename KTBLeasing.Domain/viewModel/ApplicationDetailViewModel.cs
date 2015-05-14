@@ -6,7 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.Domain
 {
-    public class ApplicationDetailViewModel: ApplicationDetail
+    public class ApplicationDetailViewModel : ApplicationDetail
     {
         public List<ApplicationDetail> ApplicationDetail { get; set; }
         public ApplicationDetailViewModel()

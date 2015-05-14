@@ -246,7 +246,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         public List<CommonCustomerDomain> GetCustomerInfoPopup(int start, int limit)
         {
             using (var session = SessionFactory.OpenStatelessSession())
-            using (var ts = session.BeginTransaction())
+            //using (var ts = session.BeginTransaction())
             {
                 var result = session.QueryOver<CommonCustomerDomain>().Skip(start).Take(limit).List();
                 return result as List<CommonCustomerDomain>;

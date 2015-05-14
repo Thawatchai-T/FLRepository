@@ -75,6 +75,7 @@ Ext.define('TabUserInformation.model.Lead', {
             name: 'Email'
         },
         {
+            type: 'int',
             name: 'SubDistrict'
         },
         {
