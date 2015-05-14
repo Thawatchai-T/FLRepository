@@ -6,7 +6,6 @@ using KTBLeasing.FrontLeasing.Domain;
 using System.Collections.Generic;
 using System;
 using KTBLeasing.FrontLeasing.Models;
-using KTBLeasing.FrontLeasing.WsLoginAD;
 using System.Collections.Specialized;
 using System.Net.Http.Formatting;
 //using System.Web.Mvc;

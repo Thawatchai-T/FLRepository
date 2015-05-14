@@ -23,6 +23,11 @@
         @*window.LoginWindow = '@Url.Action("LoginWindow", "Home")';*@
         @*window.Login = '@Url.Action("Login", "User")';*@
         var currentUser = '@ViewBag.User';
+        var apiBaseUrl = '@Url.Content(KTBLeasing.FrontLeasing.WebApiConfig.UrlPrefixRelative)';
+        console.log(apiBaseUrl);
+        //$.getJSON(apiBaseUrl + '/LoginApi').done(function (data) {
+        //           alert('session data received: ' + data.whatever);
+        //       });
     </script>
 </head>
 <body>

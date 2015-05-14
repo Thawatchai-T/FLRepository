@@ -17,6 +17,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.tabcusinftab',
 
+    config:{
+        test: 123
+    },
     onTextfieldKeyup: function (textfield, e, eOpts) {
         var grid = this.getView().down('gridpanel'),
             filters = grid.store.getFilters(),
@@ -48,15 +51,15 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
             this.nameFilter = null;
         }
 
-//        if (textfield.value) {
-//            store.getProxy().extraParams.text = textfield.value;
-//            store.getProxy().extraParams.property = property;
+        //        if (textfield.value) {
+        //            store.getProxy().extraParams.text = textfield.value;
+        //            store.getProxy().extraParams.property = property;
         //            Ext.getCmp('pagingtoolbar-custinfo').moveFirst();
-//        }
-//        else {
-//            store.getProxy().setExtraParams({});
-//            store.load();
-//        }
+        //        }
+        //        else {
+        //            store.getProxy().setExtraParams({});
+        //            store.load();
+        //        }
     },
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
@@ -64,8 +67,9 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
             var popup = Ext.create('widget.customercusinfwindow'),
                 form = popup.down('form'),
                 btnreset = popup.lookupReference('btnreset');
-            btnreset.hide();
             form.loadRecord(record);
+            btnreset.hide();
+            //debugger;
             popup.show();
         }
     },
@@ -82,7 +86,10 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
                 form = popup.down('form'),
                 btnreset = popup.lookupReference('btnreset');
             btnreset.hide();
+
             form.loadRecord(record);
+            form.findField('TypeCustomer').setValue(record.get('TypeCustomer'));
+            form.doLayout();
             popup.show();
         }
     }

@@ -64,6 +64,9 @@
       <HintPath>lib\log4net.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
@@ -77,8 +80,7 @@
       <HintPath>lib\MongoDB.Driver.dll</HintPath>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=3.1.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -111,6 +113,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
@@ -169,8 +172,12 @@
     <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.20710.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
     </Reference>
+    <Reference Include="Thinktecture.IdentityModel, Version=3.6.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Thinktecture.IdentityModel.3.6.1\lib\net40\Thinktecture.IdentityModel.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthenticationHandler.cs" />
     <Compile Include="Controllers\AddressController.cs" />
     <Compile Include="Controllers\CommonController.cs" />
     <Compile Include="Controllers\ContactController.cs" />
@@ -203,6 +210,7 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserInfoController.cs" />
     <Compile Include="Controllers\VisitCallingController.cs" />
+    <Compile Include="FLHttpModule.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,6 +220,7 @@
     <Compile Include="Models\CommissionModel.cs" />
     <Compile Include="Models\CommonCustomerModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
+    <Compile Include="Models\DummyModel.cs" />
     <Compile Include="Models\FinancialPolicyModel.cs" />
     <Compile Include="Models\ProjectPlanModel.cs" />
     <Compile Include="Models\BackgroundModel.cs" />
@@ -221,6 +230,7 @@
     <Compile Include="Models\BGModel.cs" />
     <Compile Include="Models\EquipmentDetailModel.cs" />
     <Compile Include="Models\MaintenanceListModel.cs" />
+    <Compile Include="Models\Rols\UserInRole.cs" />
     <Compile Include="Models\ThirdPartyModel.cs" />
     <Compile Include="Models\SellerModel.cs" />
     <Compile Include="Models\PurchaseOrderModel.cs" />
@@ -252,17 +262,26 @@
     <Compile Include="Models\UserInfoModel.cs" />
     <Compile Include="Models\UserInRole.cs" />
     <Compile Include="Models\UserInTabModel.cs" />
+    <Compile Include="Models\Common\UserModel.cs" />
     <Compile Include="Models\VisistCallModel.cs" />
     <Compile Include="Models\VisitAddressModel.cs" />
     <Compile Include="Models\WaiveDocumentModel.cs" />
     <Compile Include="NHHelpers.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service References\WsLoginAD\Reference.cs">
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Service References\WS_ActiveDirectory\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="TimeShareAttribute.cs" />
+    <Compile Include="Utility\OAuthBase.cs" />
+    <Compile Include="Utility\SessionUtility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -284,6 +303,8 @@
     <Content Include="app\model\Commission.js" />
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
+    <Content Include="app\model\RoleInTabs.js" />
+    <Content Include="app\model\MainCommon.js" />
     <Content Include="app\model\FinalcialProlicyModel.js" />
     <Content Include="app\model\CustomerInformation.js" />
     <Content Include="app\model\CustomerInformationPopup.js" />
@@ -310,6 +331,7 @@
     <Content Include="app\model\Province.js" />
     <Content Include="app\model\PurchaseOrder.js" />
     <Content Include="app\model\Role.js" />
+    <Content Include="app\model\Roles.js" />
     <Content Include="app\model\Seller.js" />
     <Content Include="app\model\Setup.js" />
     <Content Include="app\model\Signer.js" />
@@ -423,6 +445,7 @@
     <Content Include="app\store\optionEndLeaseTerms.js" />
     <Content Include="app\store\provinces.js" />
     <Content Include="app\store\purchaseOrders.js" />
+    <Content Include="app\store\roleInTabs.js" />
     <Content Include="app\store\sellers.js" />
     <Content Include="app\store\setups.js" />
     <Content Include="app\store\signers.js" />
@@ -590,6 +613,9 @@
     <Content Include="app\view\Job\Lead\LeadTab.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewController.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewModel.js" />
+    <Content Include="app\view\Role\RoleTab.js" />
+    <Content Include="app\view\Role\RoleTabViewController.js" />
+    <Content Include="app\view\Role\RoleTabViewModel.js" />
     <Content Include="app\view\Role\UserInRoleTab.js" />
     <Content Include="app\view\Role\UserInRoleTabViewController.js" />
     <Content Include="app\view\Role\UserInRoleTabViewModel.js" />
@@ -628,7 +654,9 @@
     <Content Include="app\view\VisitCalling\VisitCallingWindowViewModel.js" />
     <Content Include="bootstrap.css" />
     <Content Include="bootstrap.js" />
-    <Content Include="Config\Aspects.xml" />
+    <Content Include="Config\Aspects.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Config\controllers.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -8440,6 +8468,55 @@
     <Content Include="lib\log4mongo-net.dll" />
     <Content Include="lib\log4net.dll" />
     <Content Include="lib\log4net.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Antlr3.Runtime.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Castle.Core.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Castle.Core.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Common.Logging.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Common.Logging.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\FluentNHibernate.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\FluentNHibernate.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\HibernatingRhinos.Profiler.Appender.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Iesi.Collections.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Iesi.Collections.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\KTBLeasing.Domain.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\KTBLeasing.FrontLeasing.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\KTBLeasing.FrontLeasing.Mapping.Orcl.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\lib\net40\System.Web.Mvc.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\NHibernate.ByteCode.Castle.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\NHibernate.ByteCode.Castle.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\NHibernate.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\NHibernate.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Remotion.Data.Linq.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Spring.Core.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Spring.Web.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Spring.Web.Mvc4.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.Formatting.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.Formatting.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.WebRequest.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.WebRequest.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Net.Http.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Helpers.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Helpers.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Http.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Http.WebHost.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Http.WebHost.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Http.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Mvc.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Mvc.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Razor.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.Razor.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.Deployment.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.Deployment.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.Razor.dll" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.Razor.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\System.Web.WebPages.xml" />
+    <Content Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\WebGrease.dll" />
+    <Content Include="lib\Microsoft.IdentityModel.dll" />
+    <Content Include="lib\Microsoft.Web.Infrastructure.dll" />
     <Content Include="lib\MongoDB.Bson.dll" />
     <Content Include="lib\MongoDB.Driver.dll" />
     <Content Include="lib\Newtonsoft.Json.dll" />
@@ -8450,6 +8527,31 @@
     <Content Include="lib\Ninject.dll" />
     <Content Include="lib\Remotion.Data.Linq.dll" />
     <Content Include="lib\Spring.Data.NHibernate30.dll" />
+    <Content Include="lib\springlib\Common.Logging.dll" />
+    <Content Include="lib\springlib\Common.Logging.xml" />
+    <Content Include="lib\springlib\HibernatingRhinos.Profiler.Appender.dll" />
+    <Content Include="lib\springlib\HibernatingRhinos.Profiler.Appender.NHibernateLog4Net.dll" />
+    <Content Include="lib\springlib\HibernatingRhinos.Profiler.Production.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net20\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net20\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net35\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net35\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net40\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\netcore45\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\netcore45\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\portable-net40+sl5+wp80+win8+wpa81\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Newtonsoft.Json.6.0.6\lib\portable-net45+wp80+win8+wpa81+aspnetcore50\Newtonsoft.Json.xml" />
+    <Content Include="lib\springlib\Newtonsoft.Json.dll" />
+    <Content Include="lib\springlib\Spring.Core.dll" />
+    <Content Include="lib\springlib\Spring.Web.dll" />
+    <Content Include="lib\springlib\Spring.Web.Mvc4.dll" />
+    <Content Include="lib\Thinktecture.IdentityModel.dll" />
     <Content Include="resources\.arch-internal-preview.css" />
     <Content Include="resources\icons\delete.png" />
     <Content Include="resources\icons\page_white_edit.png" />
@@ -8677,9 +8779,16 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
-    <None Include="Service References\WsLoginAD\configuration91.svcinfo" />
-    <None Include="Service References\WsLoginAD\configuration.svcinfo" />
-    <None Include="Service References\WsLoginAD\Reference.svcmap">
+    <None Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\bootstrap.json" />
+    <None Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\content\Web.config.install.xdt" />
+    <None Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\content\Web.config.uninstall.xdt" />
+    <None Include="lib\Microsoft.AspNet.Mvc.4.0.40804.0\Microsoft.AspNet.Mvc.4.0.40804.0.nupkg" />
+    <None Include="lib\springlib\Newtonsoft.Json.6.0.6\Newtonsoft.Json.6.0.6.nupkg" />
+    <None Include="lib\springlib\Newtonsoft.Json.6.0.6\tools\install.ps1" />
+    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.disco" />
+    <None Include="Service References\WS_ActiveDirectory\configuration91.svcinfo" />
+    <None Include="Service References\WS_ActiveDirectory\configuration.svcinfo" />
+    <None Include="Service References\WS_ActiveDirectory\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
@@ -8694,6 +8803,7 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
+    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
@@ -9504,13 +9614,12 @@
     <None Include="ext\packages\sencha-soap\Readme.md" />
     <None Include="ext\packages\sencha-soap\test\specs\test.json" />
     <None Include="resources\Readme.md" />
-    <None Include="Service References\WsLoginAD\IWS_LoginADservice.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Service References\WsLoginAD\" />
+    <WCFMetadataStorage Include="Service References\WS_ActiveDirectory\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
@@ -9525,6 +9634,12 @@
       <Project>{E6896358-C0C2-4586-B286-564C0D32B907}</Project>
       <Name>log4mongo-net</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

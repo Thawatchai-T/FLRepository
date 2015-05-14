@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="sZsYXn3HC1PtakEFocK9PVmo3dw=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="9eh9jOQCJnNYgMQp/+UStKLJioU=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="IWS_LoginADbinding">
+    <bindingConfiguration bindingType="basicHttpBinding" name="WS_ActiveDirectorySoap">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>IWS_LoginADbinding</serializedValue>
+          <serializedValue>WS_ActiveDirectorySoap</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="IWS_LoginADPort" contract="WsLoginAD.IWS_LoginAD" bindingType="basicHttpBinding" address="http://221.23.1.11/loginad/ws_loginad.exe/soap/IWS_LoginAD" bindingConfiguration="IWS_LoginADbinding">
+    <endpoint name="WS_ActiveDirectorySoap" contract="WS_ActiveDirectory.WS_ActiveDirectorySoap" bindingType="basicHttpBinding" address="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx" bindingConfiguration="WS_ActiveDirectorySoap">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://221.23.1.11/loginad/ws_loginad.exe/soap/IWS_LoginAD</serializedValue>
+          <serializedValue>http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,10 +124,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>IWS_LoginADbinding</serializedValue>
+          <serializedValue>WS_ActiveDirectorySoap</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WsLoginAD.IWS_LoginAD</serializedValue>
+          <serializedValue>WS_ActiveDirectory.WS_ActiveDirectorySoap</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>IWS_LoginADPort</serializedValue>
+          <serializedValue>WS_ActiveDirectorySoap</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

@@ -39,16 +39,21 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return "value";
         }
 
-        public void DoPost(ApplicationDetail entity)
+        public List<ApplicationDetailModel> DoPost(ApplicationDetailModel entity)
         {
             try
             {
-                ApplicationDetailRepository.SaveOrUpdate(entity);
+                var a = entity;
+               // ApplicationDetailRepository.SaveOrUpdate(entity);
+                List<ApplicationDetailModel> obj = new List<ApplicationDetailModel>();
+                obj.Add(entity);
+                return obj;
             }
             catch(Exception e)
             {
                 Logger.Error(e);
             }
+            return null;
         }
 
         // POST api/contact
@@ -65,5 +70,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Delete(int id)
         {
         }
+
     }
 }

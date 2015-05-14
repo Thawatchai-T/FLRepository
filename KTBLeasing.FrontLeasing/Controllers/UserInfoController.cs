@@ -10,6 +10,8 @@ using KTBLeasing.Domain;
 using KTBLeasing.FrontLeasing.Models;
 using log4net;
 using System.Reflection;
+using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -18,15 +20,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         private IUserInfomationRepository UserInfomationRepository { get; set; }
         // GET api/userinfo
-        public List<UserInformationView> Get()
+        //public List<UserInformationView> Get(
+        public JArray Get()
         {
+            /** [20150327] Add by Woody change return to dynamic object. **/
             var view = UserInfomationRepository.GetAllView();
+            var jarr =view.ToArray<Object>();
+            string jsonString = JsonConvert.SerializeObject(view);
+            JArray result = JArray.Parse(jsonString) as JArray;
 
-            return view;
+            return result;
+            
+            //return view;
         }
 
         // GET api/userinfo/5
-        public string Get(int id)
+        public string Get(int id) 
         {
             return "value";
         }
@@ -163,5 +172,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 return null;
             }
         }
+    }
+
+    public enum TestType
+    {
+        class1,
+        class2
     }
 }

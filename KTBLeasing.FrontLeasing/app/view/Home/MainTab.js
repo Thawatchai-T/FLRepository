@@ -26,7 +26,8 @@ Ext.define('TabUserInformation.view.Home.MainTab', {
         'TabUserInformation.view.Job.JobTab',
         'TabUserInformation.view.Authorize.AuthorizeTab',
         'Ext.panel.Panel',
-        'Ext.tab.Tab'
+        'Ext.tab.Tab',
+        'TabUserInformation.view.Home.MainTabViewModel'
     ],
 
     viewModel: {
@@ -38,42 +39,43 @@ Ext.define('TabUserInformation.view.Home.MainTab', {
     iconAlign: 'top',
     title: 'KTBLeasing',
     titleAlign: 'right',
-    activeTab: 3,
+    activeTab: 1,
+    //padding: 5,
 
     items: [
-        {
-            xtype: 'authorizeauthorizetab'
-        },
-        {
-            xtype: 'roleuserinroletab',
-            id: 'tabuserinroletab'
-        },
-        {
-            xtype: 'setupsetuptab',
-            id: 'tabsetuptab'
-        },
-        {
-            xtype: 'useruserinftab',
-            id: 'tabuserinftab'
-        },
-        {
-            xtype: 'customercusinftab',
-            id: 'tabcusinftab'
-        },
-        {
-            xtype: 'visitcallingvisitcallingtab',
-            id: 'tabvisitcallingtab'
-        },
-        {
-            xtype: 'jobjobtab',
-            id: 'tabjobtab'
-        },
-        {
-            xtype: 'thirdpartythirdpartyinftab',
-            id: 'tabthirdpartyinftab',
-//            icon: 'resources/icons/tux.png',
-//            iconAlign: 'top'
-        }
+//        {
+//            xtype: 'authorizeauthorizetab'
+//        },
+//        {
+//            xtype: 'roleuserinroletab',
+//            id: 'tabuserinroletab'
+//        },
+//        {
+//            xtype: 'setupsetuptab',
+//            id: 'tabsetuptab'
+//        },
+//        {
+//            xtype: 'useruserinftab',
+//            id: 'tabuserinftab'
+//        },
+//        {
+//            xtype: 'customercusinftab',
+//            id: 'tabcusinftab'
+//        },
+//        {
+//            xtype: 'visitcallingvisitcallingtab',
+//            id: 'tabvisitcallingtab'
+//        },
+//        {
+//            xtype: 'jobjobtab',
+//            id: 'tabjobtab'
+//        },
+//        {
+//            xtype: 'thirdpartythirdpartyinftab',
+//            id: 'tabthirdpartyinftab',
+////            icon: 'resources/icons/tux.png',
+////            iconAlign: 'top'
+//        }
     ]
 
 });

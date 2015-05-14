@@ -17,9 +17,9 @@ Ext.define('TabUserInformation.controller.HomeController', {
     extend: 'Ext.app.Controller',
 
     control: {
-        "#myviewport": {
-            beforerender: 'doLogin'
-        }
+        //"#myviewport": {
+        //    beforerender: 'doLogin'
+        //}
         //        ,
         //        "#tabManagement": {
         //            beforerender: 'tabManagement'
@@ -27,83 +27,85 @@ Ext.define('TabUserInformation.controller.HomeController', {
     },
 
     doLogin: function (component, eOpts) {
-        var popup = Ext.create('widget.windowloginwindow');
-        //Show login windows
-        var supportsLocalStorage = Ext.supports.LocalStorage,
-            loggedIn;
-        // debugger;
-       // var provStore = Ext.create('store.provinces');
+        console.log(eOpts);
+        //    var popup = Ext.create('widget.windowloginwindow');
+        //    //Show login windows
+        //    var supportsLocalStorage = Ext.supports.LocalStorage,
+        //        loggedIn;
+        //    // debugger;
+        //   // var provStore = Ext.create('store.provinces');
 
-        //provStore.load();
+        //    //provStore.load();
 
-    //    Ext.Ajax.request({
-    //        url: 'api/common/GetAllProvince',
-    //        success: function (response) {
-    //            console.log(response);
-    //            // provStore.add(response.responseText);
-    //            //for (var i=0;i<datas.sessionTags.length;i++) {
-    //            //  tagStore.add({ ..datas.sessionTags[i]..});
-    //            //}
-    //            //console.log(response.responseText.length);
-    //            //for (var i = 0; i < response.responseText.length; i++) {
-    //            //    //provStore.add(response.responseText[i]);
-    //            //}
-    //            //response.responseText.each(function (e) { console.log(e); });
-    //            Ext.Array.each(response.responseText, function (name, index, countriesItSelf) {
-    //                console.log(name);
-    //               // provStore.add(name)
+        //    Ext.Ajax.request({
+        //        url: 'api/common/GetAllProvince',
+        //        success: function (response) {
+        //            console.log(response);
+        //            // provStore.add(response.responseText);
+        //            //for (var i=0;i<datas.sessionTags.length;i++) {
+        //            //  tagStore.add({ ..datas.sessionTags[i]..});
+        //            //}
+        //            //console.log(response.responseText.length);
+        //            //for (var i = 0; i < response.responseText.length; i++) {
+        //            //    //provStore.add(response.responseText[i]);
+        //            //}
+        //            //response.responseText.each(function (e) { console.log(e); });
+        //            //Ext.Array.each(response.responseText, function (name, index, countriesItSelf) {
+        //            //    console.log(name);
+        //            //   // provStore.add(name)
 
-    //            });
-    ////            provStore.load(record);
-    //            //provstore.sync();
-    //        },
-    //        failure: function (response) {
-    //            console.log(response);
-    //        }
-    //    });
+        //            //});
+        ////            provStore.load(record);
+        //            //provstore.sync();
+        //        },
+        //        failure: function (response) {
+        //            console.log(response);
+        //        }
+        //    });
 
 
 
-       // debugger;
-        console.log('debug');
-       // console.log(provStore);
-        //get
+        //   // debugger;
+        //    console.log('debug');
+        //   // console.log(provStore);
+        //    //get
 
-        var sessionId;
-        sessionId = localStorage.sessionID;
-        sessionId = localStorage.getItem('sessionId');
+        //    var sessionId;
+        //    sessionId = localStorage.sessionID;
+        //    sessionId = localStorage.getItem('sessionId');
 
-        localStorage.sessionId = undefined;
-        localStorage.removeItem('sessionId');
+        //    localStorage.sessionId = undefined;
+        //    localStorage.removeItem('sessionId');
 
-        if (supportsLocalStorage) {
-            //Ext.Msg.alert('supports');
-            loggedIn = localStorage.getItem("bar");
-            console.log(loggedIn);
-            // if (!loggedIn) popup.show();
-        }
+        //    if (supportsLocalStorage) {
+        //        //Ext.Msg.alert('supports');
+        //        loggedIn = localStorage.getItem("bar");
+        //        console.log(loggedIn);
+        //        // if (!loggedIn) popup.show();
+        //    }
 
 
     },
 
     tabManagement: function (container, component, eOpts) {
-        var store = Ext.getStore('userInTabs');
+        console.log(eOpts);
+        //var store = Ext.getStore('userInTabs');
 
-        store.on('load', function (store, records, successful) {
-            Ext.Object.each(records, function (index, record, records) {
-                //                if(record.get('TabId') == _container.
-                if (record.get('Tab').Name != container.items.getAt(index).getId()) {
-                    container.items.removeAt(index);
-                    container.getTabBar().items.removeAt(index);
-                    console.log(index);
-                }
-            });
-        }, this);
+        //store.on('load', function (store, records, successful) {
+        //    Ext.Object.each(records, function (index, record, records) {
+        //        //                if(record.get('TabId') == _container.
+        //        if (record.get('Tab').Name != container.items.getAt(index).getId()) {
+        //            container.items.removeAt(index);
+        //            container.getTabBar().items.removeAt(index);
+        //            console.log(index);
+        //        }
+        //    });
+        //}, this);
 
-        //                container.items.removeAt(2);
-        //                container.getTabBar().items.removeAt(2);
-        //container.doLayout();
-        console.log('before');
+        ////                container.items.removeAt(2);
+        ////                container.getTabBar().items.removeAt(2);
+        ////container.doLayout();
+        //console.log('before');
     }
 
 });

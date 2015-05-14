@@ -22,16 +22,36 @@ Ext.define('TabUserInformation.store.CommonData.custThaiType', {
         'Ext.data.proxy.Memory'
     ],
 
+    //constructor: function(cfg) {
+    //    var me = this;
+    //    cfg = cfg || {};
+    //    me.callParent([Ext.apply({
+    //        storeId: 'CommonData.custThaiType',
+    //        model: 'TabUserInformation.model.BaseCommonData',
+    //        autoLoad: true,
+    //        proxy: {
+    //            type: 'rest',
+    //            url: 'api/common/getcommonbynameeng?nameeng=cust_th_type',
+    //            reader: {
+    //                type: 'json'
+    //            }
+    //        }
+    //    }, cfg)]);
+    //}
+
     constructor: function(cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
-            storeId: 'CommonData.custThaiType',
+            storeId: 'custThaiType',
             model: 'TabUserInformation.model.BaseCommonData',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=cust_th_type',
-                type: 'rest'
+                reader: {
+                    type: 'json'
+                }
             }
         }, cfg)]);
     }

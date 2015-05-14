@@ -19,22 +19,35 @@ Ext.define('TabUserInformation.view.Home.index', {
 
     requires: [
         'TabUserInformation.view.Home.indexViewModel',
+        'TabUserInformation.view.Home.indexViewController',
         'TabUserInformation.view.Home.MainTab',
         'Ext.tab.Panel'
     ],
 
+    controller: 'homeindex',
+    
     viewModel: {
         type: 'homeindex'
     },
+
+    //bind: {
+    //    store: '{userinfoStore}'
+    //},
+
     id: 'myviewport',
     itemId: 'myviewport',
     padding: 5,
 
     items: [
         {
-            xtype: 'homemaintab',
-            title: 'My Tab'
+            xtype: 'homemaintab'//,
+            //padding: 5
         }
-    ]
+    ],
+
+    listeners: {
+        beforerender: 'onMainViewBeforeRender',
+        scope: 'controller'
+    }
 
 });

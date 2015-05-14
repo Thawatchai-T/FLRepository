@@ -21,6 +21,8 @@ namespace KTBLeasing.FrontLeasing
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             HibernatingRhinos.Profiler.Appender.NHibernate.NHibernateProfiler.Initialize();
+            Application_PostAuthorizeRequest();
+            IsWebApiRequest();
         }
 
         protected override System.Web.Http.Dependencies.IDependencyResolver BuildWebApiDependencyResolver()
@@ -39,6 +41,19 @@ namespace KTBLeasing.FrontLeasing
 
             //return the fully-configured resolver
             return resolver;
+        }
+
+        protected void Application_PostAuthorizeRequest()
+        {
+            if (IsWebApiRequest())
+            {
+                HttpContext.Current.SetSessionStateBehavior(System.Web.SessionState.SessionStateBehavior.Required);
+            }
+        }
+
+        private bool IsWebApiRequest()
+        {
+            return HttpContext.Current.Request.AppRelativeCurrentExecutionFilePath.StartsWith(WebApiConfig.UrlPrefixRelative);
         }
     }
 }

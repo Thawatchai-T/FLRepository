@@ -67,7 +67,11 @@ Ext.application({
         'MethodPayment',
         'BG',
         'EquipmentDetail',
-        'MaintenanceList'
+        'MaintenanceList',
+        //woody
+        'Roles',
+        
+
     ],
     stores: [
         'userInformations',
@@ -174,7 +178,9 @@ Ext.application({
         'CommonData.subTypesPassengerCar',
         'CommonData.subTypesMachine',
         'CommonData.subTypesFactoring',
-        'CommonData.subTypesOfficeAutomation'
+        'CommonData.subTypesOfficeAutomation',
+    //woody
+        
     ],
     views: [
         'User.UserInfWindow',
@@ -187,7 +193,7 @@ Ext.application({
         'Common.SignerWindow',
         'Common.ContactPersonWindow',
         'Common.AffidavitWindow',
-        //common address views use for all
+    //common address views use for all
         'Common.AddressViews',
     //'Tab.RoleTab',
         'VisitCalling.VisitCallingTab',
@@ -229,7 +235,9 @@ Ext.application({
         'Job.Application.Window.DefineAddress',
         'Job.Application.Window.AdditionSalePrice',
         'Job.Application.Window.BG',
-    
+    //woody
+        'TabUserInformation.view.Role.RoleTab'
+
     ],
     controllers: [
         'HomeController'
@@ -237,8 +245,25 @@ Ext.application({
     name: 'TabUserInformation',
 
     launch: function () {
-        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-//        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+        //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+
+        var supportsLocalStorage = Ext.supports.LocalStorage,
+            loggedIn;
+
+        if (!supportsLocalStorage) {
+
+            // Alert the user if the browser does not support localStorage
+            Ext.Msg.alert('Your Browser Does Not Support Local Storage');
+            return;
+        }
+        //sessionStorage
+        // Check to see the current value of the localStorage key
+        loggedIn = sessionStorage.getItem("FLSystem");
+
+        console.log(loggedIn);
+        debugger;
+        Ext.widget(loggedIn ? 'homeindex' : 'windowloginwindow');
     }
 
 });

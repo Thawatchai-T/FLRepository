@@ -48,6 +48,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
     },
 
     onButtonContactPersonClick: function (button, e, eOpts) {
+        console.log(Ext.create('controller.tabcusinftab').test);
         var popup = Ext.create("widget.windowcontactpersonwindow"),
             store = popup.down('gridpanel').getStore(),
             record = this.getView().down('form').getRecord();
@@ -155,7 +156,18 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
     },
 
     onButtonResetClick: function (button, e, eOpts) {
-        this.getView().getComponent('cusinfform').getForm().reset();
+       
+       // this.getView().getComponent('cusinfform').getForm().reset();
+    },
+
+    onCusinfwindowBeforeRender: function (component, eOpts) {
+        console.log(Ext.getBody().getViewSize().height);
+        debugger;
+        //Ext.getView().toggleMaximize();
+        ////myWindow.toggleMaximize();
+
+        component.setMaxHeight((Ext.getBody().getViewSize().height) - 25);
+        component.setHeight((Ext.getBody().getViewSize().height) - 25);
     }
 
 });

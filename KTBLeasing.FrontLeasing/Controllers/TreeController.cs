@@ -176,6 +176,21 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 return Json(new { success = false, message = "ไม่สามารถบันทึกข้อมูลได้" }, JsonRequestBehavior.AllowGet);
             }
         }
+
+        //[HttpPost]
+        public bool DoPost(ApplicationDetailModel entity)
+        {
+            try
+            {
+                var a = entity;
+                // ApplicationDetailRepository.SaveOrUpdate(entity);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+            }
+            return true;
+        }
     
     }
 }

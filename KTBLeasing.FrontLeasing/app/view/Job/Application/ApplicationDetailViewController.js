@@ -26,18 +26,115 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
             seller = this.getView().down('#seller').down('gridpanel').getStore().getData().map,
             formDetail = Ext.getCmp('jobapplicationapplicationdetail').getForm();
 
-        console.log(form);
+        console.log(formDetail.getFieldValues());
 
-                formDetail.submit({
-                    url: 'api/applicationdetail/dopost',
-                    success: function (form, action) {
-                        Ext.Msg.alert('Success', 'สำเร็จแล้ว');
-                    },
-                    failure: function (form, action) {
-                        Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
-                    }
-                });
+        //formDetail.submit({
+        //    url: 'api/applicationdetail/dopost',
+        //    success: function (form, action) {
+        //        Ext.Msg.alert('Success', 'สำเร็จแล้ว');
+        //    },
+        //    failure: function (form, action) {
+        //        Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
+        //    }
+        //});
+        var enc = formDetail;
+        var data = {
+            str: formDetail
+        }
 
+
+        data = {
+            "Id": 1,
+            "Code": "a0",
+            "Name": "15-0001-01",
+            "Year": 2015,
+            "ApplicationId": "15-0001-01",
+            "ApplicationType": 0,
+            "ApplicationDate": "03/18/2015",
+            "PrimaryJob": 0,
+            "IndicationLine": 0,
+            "Status": 0,
+            "AgreementNo": "a0",
+            "IntegralPartNo": 0,
+            "ScheduleNo": "15-0001-01",
+            "CustomerCode": 5,
+            "CustomerName": "a0",
+            "Telephone": "a0",
+            "Fax": "a0",
+            "MarketingOfficer": "a0",
+            "IndustryCode": 0,
+            "NatureCust": 0,
+            "GroupCust": 0,
+            "TypeLease": 0,
+            "TypeEquipment": 0,
+            "TypeBusiness": 0,
+            "TypeCustomer": 0,
+            "Business": "a0",
+            "SourceInformation": 0,
+            "Remark": "a0",
+            "ApproveDate": "03/18/2015",
+            "DeliveryDate": "03/18/2015",
+            "AgreementDate": "03/18/2015",
+            "ExecuteDate": "03/18/2015",
+            "ScheduleDate": "03/18/2015",
+            "VAT": 0,
+            "Currency": 0,
+            "ExchangeRate": 0,
+            "Rating": 0,
+            "ExposureLimit": 0,
+            "RatingDetail": "a0",
+            "RatingDate": "03/18/2015"
+        };
+        console.log(data);
+        //Guarantor = {
+        //    Id: 173,
+        //    AppId: 1,
+        //    ConditionLease: "minima",
+        //    BGNo: "aut",
+        //    BGReceivedDate: "2/13/2005",
+        //    ConfirmPrintedDate: "2/7/2006",
+        //    ReturnDate: "7/19/2011",
+        //    Bank: "sed",
+        //    Branch: "dolores",
+        //    BGAmount: 337.51,
+        //    BGDate: "2/19/2011",
+        //    PeriodFrom: "3/8/2010",
+        //    PeriodTo: "3/10/2003",
+        //    BuyerName: "dolor",
+        //    RSAAmount: 661.53,
+        //    EquipmentSalesPrintedDate: "7/4/2002",
+        //    Signer1EquipmentSales: 966.42,
+        //    Signer2EquipmentSales: 966.42,
+        //    WithnessEquipmentSales: 413.73,
+        //    AddressEquipmentSales: 107.93,
+        //    Collateral: 15,
+        //    CollateralDetail: "officiis",
+        //    AdditionalCondition: "inventore"
+        //}
+        var Guarantor = {};
+        Guarantor.Id = 199;
+        data.Guarantor = Guarantor;
+        console.log(data.Guarantor);
+        console.log(data);
+        Ext.Ajax.request({
+            url: 'api/ApplicationDetail/dopost',
+            method: 'post',
+            //params: { id: selModel.id },
+            params: { entity: DoPost },
+            //contentType: "application/json; charset=utf-8",
+            //dataType: "json",
+            success: function (response) {
+
+                //console.log(response);
+                Ext.Msg.alert('Success', "ลบข้อมูลเรียบร้อยแล้ว");
+
+            },
+            failure: function (response) {
+                //console.log(response);
+                var jsonResp = Ext.util.JSON.decode(response.responseText);
+                Ext.Msg.alert("Error", jsonResp.error);
+            }
+        });
         //        Ext.Ajax.request({
         //            method: 'post',
         //            cache: false,
