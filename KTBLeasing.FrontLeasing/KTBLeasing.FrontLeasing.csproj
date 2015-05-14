@@ -302,7 +302,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="app_main.js" />
+    <Content Include="app.js" />
     <Content Include="app\controller\HomeController.js" />
     <Content Include="app\model\Address.js" />
     <Content Include="app\model\Affidavit.js" />
@@ -704,7 +704,7 @@
     <Content Include="Config\repository.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="app.js" />
+    <Content Include="app_restructure.js" />
     <Content Include="ext\.sencha\package\Boot.js" />
     <Content Include="ext\.sencha\package\bootstrap-impl.xml" />
     <Content Include="ext\.sencha\package\build-impl.xml" />
@@ -9625,10 +9625,6 @@
     <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
       <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
       <Name>KTBLeasing.FrontLeasing.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\KTBLeasing.FrontLeasing.Report\KTBLeasing.FrontLeasing.Report.csproj">
-      <Project>{C10E9CFB-06B6-4294-B68F-CA8FC2BBC701}</Project>
-      <Name>KTBLeasing.FrontLeasing.Report</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
       <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>

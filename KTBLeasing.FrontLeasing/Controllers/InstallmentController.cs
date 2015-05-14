@@ -75,6 +75,8 @@ namespace KTBLeasing.FrontLeasing.Controllers
             double guess = 0.05;
 
             return Microsoft.VisualBasic.Financial.IRR(ref values, guess) * 100 * 12;
+
+            
         }
     }
 }

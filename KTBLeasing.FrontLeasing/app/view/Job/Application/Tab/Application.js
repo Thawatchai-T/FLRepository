@@ -517,7 +517,14 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                     xtype: 'gridcolumn',
                     dataIndex: 'SellerName',
                     flex: -1,
-                    text: 'SellerName'
+                    text: 'SellerName',
+                    editor: {
+                        xtype: 'combobox',
+                        name: 'SellerName',
+                        displayField: 'SellerName',
+                        //store: '{sellers}',
+                        valueField: 'Id'
+                    }
                 },
                 {
                     xtype: 'gridcolumn',

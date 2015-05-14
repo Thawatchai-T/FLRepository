@@ -215,6 +215,11 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
         var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;
         store.getProxy().extraParams.id = Id;
         store.getProxy().extraParams.name = 'EquipmentList';
+    },
+
+    onStoreSellerBeforeLoad: function (store, operation, eOpts) {
+        store = Ext.getCmp('jobapplicationtabseller').down('grid').getStore();
+        console.log(store);
     }
 
 });

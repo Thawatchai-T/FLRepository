@@ -72,8 +72,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
     },
 
     C3: function (record, InstallNo, OS_PR, EffectiveRate) {
-        var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'd/m'),
-            NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'd/m'),
+        var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
+            NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
             monthDiff;
 
         if (InstallNo == 1 & RestructureMonth == NewFirstDueMonth) {
@@ -232,9 +232,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                             date = new Date();
 
                     if (i > 0) {
-                        if (dataInstallment) {
+                        if (dataInstallment != null) {
                             var C1 = dataInstallment[i];
-                            console.log(C1);
                         } else {
                             var C1 = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(NewFlatRate, NewTerm, recordRestructures.get('OS_PR'));
                         }
@@ -276,6 +275,26 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     });
 
                     store.add(record);
+
+
+                    if (i == NewTerm) {
+                        var Last = record.get('OS_PR');
+                        if (Last != 0.00) {
+                            store.removeAll();
+                            i = -1;
+
+                            //                            if (Last > 0.00) {
+                            //                                EffectiveRate = EffectiveRate - 1;
+                            //                            } else 
+                            if (Last < 0.00) {
+                                EffectiveRate = EffectiveRate + 1;
+                            } else {
+                                EffectiveRate = EffectiveRate + 0.1;
+                            }
+
+                                console.log(EffectiveRate);
+                        }
+                    }
                 }
             }
         }
@@ -283,9 +302,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
 
     onStoreBeforeLoad: function (store, operation, eOpts) {
         var form = this.getView().down('form').getForm(),
-            dataInstallment = Ext.decode(sessionStorage.getItem('dataInstallment'));
-
-        var checkNew = form.findField('flag').getValue();
+            checkNew = form.findField('flag').getValue();
 
         if (checkNew != 'new') {
             store.getProxy().extraParams.Agreement = form.findField('Agreement').getValue();

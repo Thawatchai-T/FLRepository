@@ -91,12 +91,12 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     bind: {
                         value: '{today}',
                         maxValue: '{maxDate}',
-                        minValue: '{today}'
+                        //minValue: '{today}'
                     }
                 },
                 {
                     xtype: 'button',
-                    text: 'A/R Card',
+                    text: 'Create New Simulation',
                     itemId: 'arcard-button',
                     disabled: true,
                     listeners: {

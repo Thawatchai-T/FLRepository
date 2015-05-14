@@ -87,18 +87,17 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewController', {
         var view = this.getView(),
             form = view.down('form').getForm();
 
-        if (!selected[0].phantom) {
+        if (selected[0] != null) {
             form.loadRecord(selected[0]);
         }
         else {
-            form.reset();
+            //form.reset();
         }
     },
 
     onGridpanelDeselect: function (model, record, index, eOpts) {
         var form = this.getView().getForm();
 
-        console.log(record);
         form.updateRecord(record);
     },
 

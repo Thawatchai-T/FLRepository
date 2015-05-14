@@ -107,10 +107,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             width: 500,
             bodyPadding: 10,
             items: [
-                {
-                    xtype: 'hiddenfield',
-                    name: 'Id'
-                },
+//                {
+//                    xtype: 'hiddenfield',
+//                    name: 'Id'
+//                },
                 {
                     xtype: 'textareafield',
                     reference: 'address',

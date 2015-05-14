@@ -32,12 +32,22 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
             var Installment = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(record.get('NewFlatRate'), record.get('NewTerm'), record.get('OS_PR'));
             var objArray = [];
 
-            for (i = 0; i <= record.get('NewTerm'); i++) {
+            var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
+                NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
+                NewTerm = record.get('NewTerm');
+
+
+
+            for (i = 0; i <= NewTerm; i++) {
                 if (i == 0) {
                     objArray[i] = record.get('OS_PR') * -1;
                 }
                 else {
-                    objArray[i] = Installment;
+                    if (i == 1 & RestructureMonth == NewFirstDueMonth) {
+                        objArray[i] = Installment;
+                    } else {
+                        objArray[i] = Installment;
+                    }
                 }
             }
 
@@ -56,6 +66,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                 panel.down('form').getForm().loadRecord(record);
                                 panel.down('form').getForm().findField('SEQ').setValue(SEQ);
                                 sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
+                                sessionStorage.setItem('dataInstallment', null);
                             },
                             close: function (panel, eOpts) {
                                 Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveFirst();

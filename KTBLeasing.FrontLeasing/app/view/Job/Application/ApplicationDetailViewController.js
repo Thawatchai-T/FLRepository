@@ -85,7 +85,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
         this.saveStore('jobapplicationtabcollectionschedule', 'CollectionSchedule');
         this.saveStore('jobapplicationtabpurchaseorder', 'PurchaseOrder');
 
-        this.saveFormToStore('jobapplicationtabseller', 'Seller');
+        this.saveStore('jobapplicationtabseller', 'Seller');
 
         //        this.getView().down('jobapplicationtabapplication').down('grid').getStore().save();
         //        this.getView().down('jobapplicationtabapplication').down('grid').getStore().save();
