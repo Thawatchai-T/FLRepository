@@ -84,6 +84,7 @@
   <ItemGroup>
     <Compile Include="CustomerRepositoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TabRepositoryTest.cs" />
     <Compile Include="UserInTabRepositoryTest.cs" />
     <Compile Include="UsersAuthorizeRepositoryTest.cs" />
   </ItemGroup>
@@ -91,6 +92,10 @@
     <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
       <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
       <Name>KTBLeasing.FrontLeasing.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTBLeasing.FrontLeasing\KTBLeasing.FrontLeasing.csproj">
+      <Project>{1279D923-12A6-4B51-8710-1B3F012A24DF}</Project>
+      <Name>KTBLeasing.FrontLeasing</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Helpers\KTBLeasing.Helpers.csproj">
       <Project>{756AFE3E-8693-420F-81A6-6B9998F1FBD2}</Project>
@@ -103,6 +108,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Test References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
