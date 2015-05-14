@@ -1,4 +1,25 @@
-﻿using System;
+﻿/**
+ *   Ref: http://ayende.com/blog/4023/nhibernate-queries-examples
+ *   Examples 
+     Execut CreateCriteria
+ *****************************************************************************************************    
+ *    var blogs = s.CreateCriteria<Blog>()
+ *   .Add(Restrictions.Eq("Title","Ayende @ Rahien"))
+ *   .Add(Restrictions.Eq("Subtitle", "Send me a patch for that"))
+ *   .List<Blog>();
+ *****************************************************************************************************  
+ *   Join========
+ *   ProjectionList projectionList = Projections.ProjectionList();
+ *   projectionList.Add(Projections.Property("EmployeeID"), "Id");
+ *   projectionList.Add(Projections.Property("EmployeePosition"), "Label");
+ *   var x = DetachedCriteria.For(Employee);
+ *   x.SetProjection(projectionList);
+ *   x.SetResultTransformer(Transformers.AliasToBean(SimpleType)));
+ *   return x.GetExecutableCriteria(UnitOfWork.CurrentSession).List<SimpleType>();
+ *****************************************************************************************************
+ */
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +31,8 @@ using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl
 {
-    public class NhRepository : IDisposable
+    public class 
+        NhRepository : IDisposable
     {
         public static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         public void Dispose()

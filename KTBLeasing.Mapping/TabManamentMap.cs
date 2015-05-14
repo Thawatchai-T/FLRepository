@@ -19,6 +19,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
 			Map(x => x.Createdate).Column("CREATEDATE");
 			Map(x => x.Updateby).Column("UPDATEBY");
 			Map(x => x.Updatedate).Column("UPDATEDATE");
+            Map(x => x.Widget).Column("Widget");
         }
     }
 }

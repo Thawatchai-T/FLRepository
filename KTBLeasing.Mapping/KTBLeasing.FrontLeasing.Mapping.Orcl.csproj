@@ -71,6 +71,7 @@
     <Compile Include="BGMap.cs" />
     <Compile Include="CollectionScheduleMap.cs" />
     <Compile Include="CommissionMap.cs" />
+    <Compile Include="CommonDataMapView\CommonCustomerMap.cs" />
     <Compile Include="CommonDataMapView\DeparmentCodeMap.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -112,6 +113,7 @@
     <Compile Include="Reposotory\CustomerSignerRepository.cs" />
     <Compile Include="Reposotory\EquipmentListRepository.cs" />
     <Compile Include="Reposotory\VisitInformationRepository.cs" />
+    <Compile Include="RoleInTabsMap.cs" />
     <Compile Include="SellerMap.cs" />
     <Compile Include="StampDutyMap.cs" />
     <Compile Include="StipulateLossMap.cs" />
