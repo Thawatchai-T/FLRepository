@@ -20,6 +20,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         int Count(string text);
         bool SaveOrUpdate(UserInRole entity);
         bool Delete(UserInRole entity);
+        UserInRole GetByUserID(string userid);
     }
     public class UserInRoleRepository : NhRepository, IUserInRoleRepository
     {
@@ -52,6 +53,27 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     .Fetch(x => x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
                     .Where(x => x.Id == id)
                     .List<UserInRole>() as List<UserInRole>;
+            }
+        }
+
+        //[20150325] add by Woody get role by userId
+        public UserInRole GetByUserID(string userid)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenSession())
+                {
+                    var result = session.QueryOver<UserInRole>()
+                                 .Fetch(x=>x.Role).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                                 .Fetch(x=>x.UsersAuthorize).Eager.TransformUsing(new DistinctRootEntityResultTransformer()).Where(x => x.UsersAuthorize.UserId == userid).SingleOrDefault<UserInRole>();
+                    return result;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return null;
+
             }
         }
 
