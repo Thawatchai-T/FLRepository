@@ -20,8 +20,8 @@ namespace KTBLeasing.Domain
             this.obj = obj;
         }
 
-        //public virtual WaiveDocument WaiveDocument { get; set; }
+        public virtual WaiveDocument WaiveDocument { get; set; }
         //public virtual Guarantor Guarantor { get; set; }
-        public virtual EquipmentList EquipmentList { get; set; }
+        //public virtual EquipmentList EquipmentList { get; set; }
     }
 }

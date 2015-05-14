@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace KTBLeasing.FrontLeasing.Domain {
     
-    public class UserInRole {
+    public class UserInRole{
         public UserInRole()
         {
             this.Role = new Role();
@@ -14,6 +14,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual long Id { get; set; }
         public virtual Role Role { get; set; }
         public virtual UsersAuthorize UsersAuthorize { get; set; }
-
+        
     }
 }
