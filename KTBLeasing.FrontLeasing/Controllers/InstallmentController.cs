@@ -57,26 +57,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
         }
 
-        //public double GetEffectiveRate(double Installment,int NewTerm,double OS_PR)
-        //{
-        //    double[] a = new double[NewTerm + 1];
-        //    double b = 0.05;
-
-        //    for (int i = 0; i <= NewTerm; i++)
-        //    {
-        //        a[i] = (i == 0) ? OS_PR : Installment;
-        //    }
-
-        //    return Microsoft.VisualBasic.Financial.IRR(ref a, b) * 100 * 12;
-        //}
-
         public double PostEffectiveRate(double[] values)
         {
             double guess = 0.05;
 
             return Microsoft.VisualBasic.Financial.IRR(ref values, guess) * 100 * 12;
-
-            
         }
     }
 }

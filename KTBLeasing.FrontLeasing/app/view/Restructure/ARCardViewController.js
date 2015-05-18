@@ -36,26 +36,35 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                 NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
                 NewTerm = record.get('NewTerm');
 
-
-
-            for (i = 0; i <= NewTerm; i++) {
-                if (i == 0) {
-                    objArray[i] = record.get('OS_PR') * -1;
-                }
-                else {
-                    if (i == 1 & RestructureMonth == NewFirstDueMonth) {
+            //กรณี NewFirstDueMonth งวดแรกเป็นเดือนเดียวกับ RestructureMonth
+            if (RestructureMonth == NewFirstDueMonth) {
+                for (i = 0; i <= NewTerm - 1; i++) {
+                    if (i == 0) {
+                        objArray[i] = (record.get('OS_PR') * -1) + Installment;
+                    }
+                    else {
                         objArray[i] = Installment;
-                    } else {
+                    }
+                }
+            } 
+            //Case กรณีปกติ
+            else {
+                for (i = 0; i <= NewTerm; i++) {
+                    if (i == 0) {
+                        objArray[i] = record.get('OS_PR') * -1;
+                    }
+                    else {
                         objArray[i] = Installment;
                     }
                 }
             }
 
+
+
             //C5 Calculate EffectiveRate
             Ext.Ajax.request({
                 method: 'post',
                 url: 'api/installment/PostEffectiveRate',
-                //params: obj,
                 jsonData: objArray,
                 success: function (response) {
                     record.set('EffectiveRate', response.responseText);
@@ -68,12 +77,22 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                 sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
                                 sessionStorage.setItem('dataInstallment', null);
                             },
+//                            show: function (panel, eOpts) {
+//                                Ext.MessageBox.show({
+//                                    title: 'Please wait',
+//                                    msg: 'Loading items...',
+//                                    progressText: 'Initializing...',
+//                                    width: 300,
+//                                    progress: true,
+//                                    closable: false
+//                                    //animateTarget: btn
+//                                });
+//                            },
                             close: function (panel, eOpts) {
                                 Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveFirst();
                             }
                         }
                     });
-
                     popup.show();
 
                     view.close();

@@ -27,7 +27,7 @@ Ext.define('TabUserInformation.store.roleInTabs', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'roleInTabs',
-            model: 'TabUserInformation.model.RoleInTab',
+            model: 'TabUserInformation.model.RoleInTabs',
             data: [
                 {
                     UserId: 355,

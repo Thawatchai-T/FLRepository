@@ -107,22 +107,35 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         var grid = this.getView().down('grid'),
             store = this.getStore('installments');
 
-        store.load();
-        grid.view.refresh();
+        if (oldValue) {
+            store.load();
+            grid.view.refresh();
+        }
     },
 
     onCalculate: function (button, e, eOpts) {
         var grid = this.getView().down('grid'),
             form = this.getView().down('form').getForm(),
             store = this.getStore('installments'),
-            me = this;
+            data = [],
+            dataInstallment = [];
 
-        var data = [];
         store.data.each(function (record, index) {
-            data[index] = (index == 0) ? record.get('OS_PR') * -1 : record.get('InstallmentBeforeVAT');
+            var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
+                NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y');
+
+            if (RestructureMonth == NewFirstDueMonth) {
+                if (index > 0) {
+                    data[index - 1] = (index == 1) ? record.get('OS_PR') * -1 : record.get('InstallmentBeforeVAT');
+                }
+            } else {
+                data[index] = (index == 0) ? record.get('OS_PR') * -1 : record.get('InstallmentBeforeVAT');
+            }
+
+            dataInstallment[index] = (index == 0) ? record.get('OS_PR') * -1 : record.get('InstallmentBeforeVAT');
         });
 
-        sessionStorage.setItem('dataInstallment', Ext.encode(data));
+        sessionStorage.setItem('dataInstallment', Ext.encode(dataInstallment));
 
         //C5 Calculate EffectiveRate
         Ext.Ajax.request({
@@ -137,6 +150,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                 grid.view.refresh();
             },
             failure: function (response) {
+                Ext.MessageBox.alert("Error", "ไม่สามารถคำนวณ Effective Rate ได้โปรดกรอกข้อมูลให้ถูกต้อง.");
             }
         });
     },
@@ -156,25 +170,38 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         form.updateRecord(record);
 
         Ext.MessageBox.confirm('Confirm', 'Confirm Save?',
-                function (msg) {
-                    if (msg == 'yes') {
-                        store.sync({
-                            success: function (batch, options) {
-                                Ext.Ajax.request({
-                                    method: 'post',
-                                    url: 'api/Restructure/Post',
-                                    //params: obj,
-                                    params: record.data,
-                                    success: function (response) {
-                                        view.close();
-                                    },
-                                    failure: function (response) {
-                                    }
-                                });
+            function (msg) {
+                if (msg == 'yes') {
+                Ext.MessageBox.show({
+                    title: 'Please wait',
+                    msg: 'Saving items...',
+                    progressText: 'Saving...',
+                    width: 300,
+                    progress: true,
+                    closable: false,
+                });
+
+                store.sync({
+                    success: function (batch, options) {
+                        Ext.Ajax.request({
+                            method: 'post',
+                            url: 'api/Restructure/Post',
+                            //params: obj,
+                            params: record.data,
+                            success: function (response) {
+                                Ext.MessageBox.hide();
+                                Ext.MessageBox.alert("Result", "Successful.");
+                                view.close();
+                            },
+                            failure: function (response) {
+                                Ext.MessageBox.hide();
+                                Ext.MessageBox.alert("Error", response.responseText);
                             }
                         });
                     }
-                }, this);
+                });
+            }
+        }, this);
     },
 
     onPrint: function (button, e, eOpts) {
@@ -188,8 +215,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         store.data.each(function (record, index) {
             data[index] = record.data;
         });
-
-        console.log(record.data);
 
         Ext.Ajax.request({
             method: 'post',
@@ -208,10 +233,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
     },
 
     onStoreLoad: function (store, records, successful, eOpts) {
-
-        //        console.log('onStoreLoad');
         var form = this.getView().down('form').getForm(),
-        //store = this.getView().down('grid').getStore(),
             Agreement = form.findField('Agreement').getValue(),
             EffectiveRate = form.findField('EffectiveRate').getValue(),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
@@ -222,6 +244,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             NewTerm = recordRestructures.get('NewTerm');
 
         var checkNew = form.findField('flag').getValue();
+
+
 
         if (checkNew == 'new') {
             store.removeAll();
@@ -275,28 +299,29 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     });
 
                     store.add(record);
-
-
-                    if (i == NewTerm) {
-                        var Last = record.get('OS_PR');
-                        if (Last != 0.00) {
-                            store.removeAll();
-                            i = -1;
-
-                            //                            if (Last > 0.00) {
-                            //                                EffectiveRate = EffectiveRate - 1;
-                            //                            } else 
-                            if (Last < 0.00) {
-                                EffectiveRate = EffectiveRate + 1;
-                            } else {
-                                EffectiveRate = EffectiveRate + 0.1;
-                            }
-
-                                console.log(EffectiveRate);
-                        }
+                    
+                    if (i === NewTerm) {
+                        Ext.MessageBox.hide();
                     }
+
+//                    var f = function (v) {
+//                        return function () {
+//                            if (v == 12) {
+//                                Ext.MessageBox.hide();
+//                                Ext.example.msg('Done', 'Your fake items were loaded!');
+//                            } else {
+//                                var i = v / 11;
+//                                Ext.MessageBox.updateProgress(i, Math.round(100 * i) + '% completed');
+//                            }
+//                        };
+//                    };
+//                    for (var i = 1; i < 13; i++) {
+//                        setTimeout(f(i), i * 500);
+//                    }
                 }
             }
+        }else{
+            Ext.MessageBox.hide();
         }
     },
 
@@ -308,6 +333,30 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             store.getProxy().extraParams.Agreement = form.findField('Agreement').getValue();
             store.getProxy().extraParams.SEQ = form.findField('SEQ').getValue();
             //form.findField('flag').setValue('none');
+        }
+
+        Ext.MessageBox.show({
+            title: 'Please wait',
+            msg: 'Loading items...',
+            progressText: 'Loading...',
+            width: 300,
+            progress: true,
+            closable: false,
+//            wait: {
+//                interval: 20
+//            }
+            //animateTarget: btn
+        });
+    },
+
+    fn: function (i, NewTerm) {
+        console.log(NewTerm);
+        if (i === NewTerm) {
+            Ext.MessageBox.hide();
+        } else {
+            var val = i / (NewTerm + 1);
+            Ext.MessageBox.updateProgress(val, Math.round(100 * val) + '% completed');
+            setTimeout(this.fn(i, NewTerm), 500);
         }
     }
 });

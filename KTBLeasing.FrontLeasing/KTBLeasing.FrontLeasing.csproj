@@ -41,7 +41,7 @@
     </Reference>
     <Reference Include="Common.Logging, Version=2.0.0.0, Culture=neutral, PublicKeyToken=af08829b84f0328e, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>lib\springlib\Common.Logging.dll</HintPath>
+      <HintPath>lib\Common.Logging.dll</HintPath>
     </Reference>
     <Reference Include="Common.Logging.Log4Net, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -355,6 +355,7 @@
     <Content Include="app\model\Job.js" />
     <Content Include="app\model\Lead.js" />
     <Content Include="app\model\Login.js" />
+    <Content Include="app\model\MainCommon.js" />
     <Content Include="app\model\Maintenance.js" />
     <Content Include="app\model\MaintenanceList.js" />
     <Content Include="app\model\MethodPayment.js" />
@@ -364,6 +365,8 @@
     <Content Include="app\model\Restructure.js" />
     <Content Include="app\model\RestructureList.js" />
     <Content Include="app\model\Role.js" />
+    <Content Include="app\model\RoleInTabs.js" />
+    <Content Include="app\model\Roles.js" />
     <Content Include="app\model\Seller.js" />
     <Content Include="app\model\Setup.js" />
     <Content Include="app\model\Signer.js" />
@@ -488,6 +491,7 @@
     <Content Include="app\store\provinces.js" />
     <Content Include="app\store\purchaseOrders.js" />
     <Content Include="app\store\restructures.js" />
+    <Content Include="app\store\roleInTabs.js" />
     <Content Include="app\store\sellers.js" />
     <Content Include="app\store\setups.js" />
     <Content Include="app\store\signers.js" />
@@ -8508,31 +8512,6 @@
     <Content Include="ext\src\window\Window.js" />
     <Content Include="ext\src\ZIndexManager.js" />
     <Content Include="Global.asax" />
-    <Content Include="lib\Antlr3.Runtime.dll" />
-    <Content Include="lib\AutoMapper.dll" />
-    <Content Include="lib\Castle.Core.dll" />
-    <Content Include="lib\Castle.Core.xml" />
-    <Content Include="lib\Common.Logging.dll" />
-    <Content Include="lib\Common.Logging.Log4Net.dll" />
-    <Content Include="lib\FluentNHibernate.dll" />
-    <Content Include="lib\FluentNHibernate.pdb" />
-    <Content Include="lib\FluentNHibernate.XML" />
-    <Content Include="lib\HibernatingRhinos.Profiler.Appender.dll" />
-    <Content Include="lib\Iesi.Collections.dll" />
-    <Content Include="lib\Iesi.Collections.xml" />
-    <Content Include="lib\log4mongo-net.dll" />
-    <Content Include="lib\log4net.dll" />
-    <Content Include="lib\log4net.xml" />
-    <Content Include="lib\MongoDB.Bson.dll" />
-    <Content Include="lib\MongoDB.Driver.dll" />
-    <Content Include="lib\Newtonsoft.Json.dll" />
-    <Content Include="lib\NHibernate.ByteCode.Castle.dll" />
-    <Content Include="lib\NHibernate.ByteCode.Castle.xml" />
-    <Content Include="lib\NHibernate.dll" />
-    <Content Include="lib\NHibernate.xml" />
-    <Content Include="lib\Ninject.dll" />
-    <Content Include="lib\Remotion.Data.Linq.dll" />
-    <Content Include="lib\Spring.Data.NHibernate30.dll" />
     <Content Include="Reports\ReportViewer.aspx" />
     <Content Include="resources\.arch-internal-preview.css" />
     <Content Include="resources\icons\delete.png" />
@@ -8762,6 +8741,32 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
+    <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Http.WebHost.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Http.SelfHost.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Http.dll" />
+    <None Include="_bin_deployableAssemblies\System.Net.Http.WebRequest.dll" />
+    <None Include="_bin_deployableAssemblies\System.Net.Http.Formatting.dll" />
+    <None Include="_bin_deployableAssemblies\System.Net.Http.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.WebData.dll" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.xml" />
+    <None Include="_bin_deployableAssemblies\WebMatrix.Data.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Deployment.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Administration.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.WebPages.Administration.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Razor.dll" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.xml" />
+    <None Include="_bin_deployableAssemblies\System.Web.Helpers.dll" />
+    <None Include="_bin_deployableAssemblies\NuGet.Core.dll" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.xml" />
+    <None Include="_bin_deployableAssemblies\Microsoft.Web.Infrastructure.dll" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

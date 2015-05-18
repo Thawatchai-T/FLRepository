@@ -44,15 +44,15 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewModel', {
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }
-        },
-
-        sellers: {
-            model: 'TabUserInformation.model.Seller',
-            listeners: {
-                beforeload: 'onStoreSellerBeforeLoad'
-            }
-
         }
+
+//        sellers: {
+//            model: 'TabUserInformation.model.Seller',
+//            listeners: {
+//                beforeload: 'onStoreSellerBeforeLoad'
+//            }
+
+//        }
 
     }
 

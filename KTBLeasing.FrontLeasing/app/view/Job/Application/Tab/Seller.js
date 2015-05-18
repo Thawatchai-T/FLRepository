@@ -73,9 +73,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             xtype: 'gridpanel',
             dock: 'left',
             width: 300,
-            bind: {
-                store: '{sellers}'
-            },
+//            bind: {
+//                store: '{sellers}'
+            //            },
+            store: 'sellers',
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -95,9 +96,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            bind: {
-                store: '{sellers}'
-            }
+            store: 'sellers'
+//            bind: {
+//                store: '{sellers}'
+//            }
         }
     ],
     items: [

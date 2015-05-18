@@ -136,7 +136,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     xtype: 'numberfield',
                     fieldLabel: 'Effective Rate',
                     name: 'EffectiveRate',
-                    decimalPrecision: 20,
+                    decimalPrecision: 4,
+                    step: 0.0001,
                     listeners: {
                         change: 'onNumberfieldChange'
                     },

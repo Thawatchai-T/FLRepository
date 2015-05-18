@@ -13,9 +13,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class AgreementController : ApiController
     {
-        public List<AgrCodeDomain> ListAgrCode { get; set; }
+        public static List<AgrCodeDomain> ListAgrCode { get; set; }
         public Repository DB2Repository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
+        public List<AgrCodeDomain> GetListAgrCode()
+        {
+            ListAgrCode = (ListAgrCode == null) ? new List<AgrCodeDomain>() : ListAgrCode;
+            try
+            {
+                ListAgrCode = this.DB2Repository.GetAgrCodeAll();
+                return ListAgrCode;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+            
+        }
 
         // GET api/agreement
         public IEnumerable<string> Get()
@@ -28,21 +44,24 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             List<AgrCodeDomain> result = new List<AgrCodeDomain>();
 
-            //result.Add(new AgrCodeDomain {
-            //    AgrCode = "H01010003833",
-            //    ComId = "1",
-            //    CusCode =""
-            //});
-
-            //return result;
             try
             {
+                ListAgrCode = (ListAgrCode == null) ? this.GetListAgrCode() : ListAgrCode;
+
                 if (!string.IsNullOrEmpty(text))
-                    result = DB2Repository.GetAgrCodeAll(text);
-                    
+                {
+                    result = ListAgrCode.Where(x => x.AgrCode.Contains(text)).Select(x => new AgrCodeDomain { AgrCode = x.AgrCode.Trim(), ComId = x.ComId, CusCode = x.CusCode.Trim() }).ToList();
+                }     
+
+                //List<AgrCodeDomain> list = new List<AgrCodeDomain>();
+                //AgrCodeDomain a = new AgrCodeDomain();
+
+                //a.AgrCode = "H01010003806";
+
+                //list.Add(a);
+                //result = list;
+
                 return result;
-                //DB2Repository.DbAuth.GetOleDBConnetion();
-                //return new List<AgrCodeDomain>();
             }
             catch (Exception e)
             {

@@ -522,8 +522,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                         xtype: 'combobox',
                         name: 'SellerName',
                         displayField: 'SellerName',
-                        //store: '{sellers}',
-                        valueField: 'Id'
+                        store: 'sellers',
+                        valueField: 'Id',
+                        autoLoadValue: true
                     }
                 },
                 {
