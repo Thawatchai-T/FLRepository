@@ -11,6 +11,7 @@ namespace Com.Ktbl.Database.DB2.Repository
     {
         //private OleDbConnection _DbConn {get;set;}
         public DbAuth DbAuth { get; set; }
+       
         public Repository()
         {
         }
@@ -25,12 +26,12 @@ namespace Com.Ktbl.Database.DB2.Repository
             DbAuth._UserID = _UserID;
         }
 
-        public List<AgrCodeDomain> GetAgrCodeAll(string text)
+        public List<AgrCodeDomain> GetAgrCodeAll()
         {
             try
             {
                 //select COM_ID, AGRCODE, CUSCODE from AGRREL group by COM_ID, AGRCODE, CUSCODE;
-                string sqlCommand = "select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where AgrCode like '%" + text + "%' group by COM_ID, AGRCODE, CUSCODE";
+                string sqlCommand = "select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where com_id = '1' and comcode = '1' and reason <> 1  and reason <> 2  and reason <> 7 group by COM_ID, AGRCODE, CUSCODE";
                 this.DbAuth.GetOleDBConnetion();
                 var dt = this.DbAuth.ExecuteQueryWithSQL(sqlCommand);
                 var list = Db2Linq.ConvertToList<AgrCodeDomain>(dt);
@@ -43,12 +44,12 @@ namespace Com.Ktbl.Database.DB2.Repository
 
         }
 
-        public List<AgrCodeDomain> GetCuscodeWithAgrCode(string agrcode)
+        public List<AgrCodeDomain> GetSearchAgrCode(string agrcode)
         {
             try
             {
                 //select COM_ID, AGRCODE, CUSCODE from AGRREL group by COM_ID, AGRCODE, CUSCODE;
-                string sqlCommand = string.Format("select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where com_id ='{0}' and AGRCODE ='{1}' group by COM_ID, AGRCODE, CUSCODE", "1", agrcode);
+                string sqlCommand = string.Format("select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where reason in (1,2,7) and com_id ='{0}' and AGRCODE like'%{1}%' group by COM_ID, AGRCODE, CUSCODE", "1", agrcode);
                 var dt = DbAuth.ExecuteQueryWithSQL(sqlCommand);
                 var list = Db2Linq.ConvertToList<AgrCodeDomain>(dt);
                 
