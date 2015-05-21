@@ -18,7 +18,6 @@ Ext.Loader.setConfig({
 
 });
 
-
 Ext.application({
     models: [
         'UserInformation',
@@ -33,7 +32,6 @@ Ext.application({
         'Tab',
         'UserInTab',
         'Province',
-    //'CommonAddress',
         'CommonData',
         'BaseCommonData',
         'Job',
@@ -75,7 +73,9 @@ Ext.application({
         'Restructure',
         'Installment',
         'RestructureList',
-        'Agreement'
+        'Agreement',
+        'RoleInTabs',
+        'Roles'
     ],
     stores: [
         'userInformations',
@@ -195,7 +195,8 @@ Ext.application({
         'applicationDetails2',
         'restructures',
         'agreements',
-        'restructureLists'
+        'restructureLists',
+        //'roleInTabs'
     ],
     views: [
         'User.UserInfWindow',
@@ -210,7 +211,6 @@ Ext.application({
         'Common.AffidavitWindow',
         //common address views use for all
         'Common.AddressViews',
-    //'Tab.RoleTab',
         'VisitCalling.VisitCallingTab',
         'VisitCalling.VisitCallingWindow',
         'Home.index',
@@ -225,6 +225,7 @@ Ext.application({
         'Job.Indication.IndicationForEquipmentWindow',
         'Home.LoginWindow',
         'Job.Application.ApplicationWindow',
+        'Role.RoleTab',
         'Role.UserInRoleTab',
         'ThirdParty.ThirdPartyInfTab',
         'ThirdParty.ThirdPartyInfWindow',
@@ -262,9 +263,10 @@ Ext.application({
     name: 'TabUserInformation',
 
     launch: function () {
-//        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-//                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
-        Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Job.JobTab', { renderTo: Ext.getBody() });
+                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
     }
 
 });
