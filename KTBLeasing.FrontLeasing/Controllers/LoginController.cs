@@ -65,10 +65,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
             
             string ADstatus = VerifyAD(_User);
             HttpResponseMessage ResponseMsg = new HttpResponseMessage();
+            //TODO: maybe not use
+            //if (ADstatus.Equals("OK")) SessionUtility.RegisterAuthenticationSession(this._User);
 
-            if (ADstatus.Equals("OK")) SessionUtility.RegisterAuthenticationSession(this._User);
             FormsAuthentication.SetAuthCookie(formData.UserName, formData.RememberMe);
-            var testdata = SessionUtility.GetAuthenticationSession();
+            //var testdata = SessionUtility.GetAuthenticationSession();
             
             //var  session = new System.Web.SessionState.HttpSessionState();
             //session.

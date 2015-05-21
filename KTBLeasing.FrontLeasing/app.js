@@ -262,9 +262,29 @@ Ext.application({
     name: 'TabUserInformation',
 
     launch: function () {
-//        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
 //                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
-        Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
+        //Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
+
+        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+        //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+
+        var supportsLocalStorage = Ext.supports.LocalStorage,
+            loggedIn;
+
+        if (!supportsLocalStorage) {
+
+            // Alert the user if the browser does not support localStorage
+            Ext.Msg.alert('Your Browser Does Not Support Local Storage');
+            return;
+        }
+        //sessionStorage
+        // Check to see the current value of the localStorage key
+        loggedIn = sessionStorage.getItem("FLSystem");
+
+        console.log(loggedIn);
+        debugger;
+        Ext.widget(loggedIn ? 'homeindex' : 'windowloginwindow');
     }
 
 });
