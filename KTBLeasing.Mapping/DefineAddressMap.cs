@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public DefineAddressMap()
         {
-            Table("AD_DEFINE_ADDRESS");
+            Table("JOB_AD_DEFINE_ADDRESS");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

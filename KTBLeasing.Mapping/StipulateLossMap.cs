@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public StipulateLossMap()
         {
-            Table("AD_STIPULATE_LOSS");
+            Table("JOB_AD_STIPULATE_LOSS");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

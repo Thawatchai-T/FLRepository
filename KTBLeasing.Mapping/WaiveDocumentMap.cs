@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public WaiveDocumentMap()
         {
-            Table("AD_WAIVE_DOCUMENT");
+            Table("JOB_AD_WAIVE_DOCUMENT");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("AppId");

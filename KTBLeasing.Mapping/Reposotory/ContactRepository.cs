@@ -14,6 +14,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         bool Update(Contact entity);
         bool SaveOrUpdate(Contact entity);
         List<Contact> GetByPage(int custId, int start, int limit);
+        List<Contact> GetAll(int page, int start, int limit);
     }
 
     public class ContactRepository : NhRepository, IContactRepository
@@ -72,6 +73,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                             .Where(x => x.CustomerId == custId)
                             .Skip(start).Take(limit).List<Contact>();
                 return result as List<Contact>;
+            }
+        }
+
+        public List<Contact> GetAll(int page, int start, int limit)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenStatelessSession())
+                using (var ts = session.BeginTransaction())
+                {
+                    return session.QueryOver<Contact>()
+                       .Skip(start).Take(limit)
+                       .List<Contact>() as List<Contact>;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return null;
             }
         }
 

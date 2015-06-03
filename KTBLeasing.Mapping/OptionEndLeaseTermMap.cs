@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public OptionEndLeaseTermMap()
         {
-            Table("AD_OPTION_END_LEASE_TERM");
+            Table("JOB_AD_OPTION_END_LEASE_TERM");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

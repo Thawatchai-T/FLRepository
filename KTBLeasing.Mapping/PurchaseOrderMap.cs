@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public PurchaseOrderMap()
         {
-            Table("AD_PURCHASE_ORDER");
+            Table("JOB_AD_PURCHASE_ORDER");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

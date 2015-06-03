@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public MethodPaymentMap()
         {
-            Table("AD_METHOD_PAYMENT");
+            Table("JOB_AD_METHOD_PAYMENT");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

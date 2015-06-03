@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public GuarantorListMap()
         {
-            Table("AD_GUARANTOR_LIST");
+            Table("JOB_AD_GUARANTOR_LIST");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

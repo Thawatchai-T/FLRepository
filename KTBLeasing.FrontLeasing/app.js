@@ -75,7 +75,9 @@ Ext.application({
         'RestructureList',
         'Agreement',
         'RoleInTabs',
-        'Roles'
+        'Roles',
+        'RequestTransaction',
+        'Shareholder'
     ],
     stores: [
         'userInformations',
@@ -196,7 +198,8 @@ Ext.application({
         'restructures',
         'agreements',
         'restructureLists',
-        //'roleInTabs'
+    //'roleInTabs'
+        'requestTransactions'
     ],
     views: [
         'User.UserInfWindow',
@@ -233,6 +236,7 @@ Ext.application({
         'Common.AddressPopup',
         'Job.Lead.LeadTab',
         'Job.Information.InformationForIndicationTab',
+        'Job.Information.DetailRequestTransaction',
         'Job.Indication.IndicationDetail',
         'ThirdParty.ThirdPartyInfPopup',
         'Job.Application.ApplicationDetail',
@@ -256,6 +260,8 @@ Ext.application({
         'Restructure.RestructureList',
         'Restructure.RestructureWindow',
         'Restructure.ARCard',
+        'Approve.ApproveQueue',
+        'Customer.Shareholders'
     ],
     controllers: [
         'HomeController'
@@ -264,9 +270,28 @@ Ext.application({
 
     launch: function () {
         //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-        //Ext.create('TabUserInformation.view.Job.JobTab', { renderTo: Ext.getBody() });
-                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
-        //Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
+//        Ext.create('TabUserInformation.view.Job.JobWindow', { renderTo: Ext.getBody() });
+//                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+        Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
+
+        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+        //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+
+//        var supportsLocalStorage = Ext.supports.LocalStorage,
+//            loggedIn;
+
+//        if (!supportsLocalStorage) {
+
+//            // Alert the user if the browser does not support localStorage
+//            Ext.Msg.alert('Your Browser Does Not Support Local Storage');
+//            return;
+//        }
+//        //sessionStorage
+//        // Check to see the current value of the localStorage key
+//        loggedIn = sessionStorage.getItem("FLSystem");
+
+//        console.log(loggedIn);
+//        Ext.widget(loggedIn ? 'homeindex' : 'windowloginwindow');
     }
 
 });

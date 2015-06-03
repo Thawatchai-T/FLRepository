@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public InsurancePolicyMap()
         {
-            Table("AD_INSURANCE_POLICY");
+            Table("JOB_AD_INSURANCE_POLICY");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             Map(x => x.PolicyNo).Column("POLICY_NO").Length(20);

@@ -53,7 +53,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 try
                 {
-                    session.SaveOrUpdate(entity);
+                    base.SaveOrUpdate(entity);
                     ts.Commit();
                 }
                 catch (Exception e)

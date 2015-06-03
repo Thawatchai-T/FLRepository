@@ -67,7 +67,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 var result = UserInRoleRepository.GetAll(start, limit);
                 view.items = result;
                 view.totalProperty = UserInRoleRepository.Count();
-                var session = KTBLeasing.FrontLeasing.Utility.SessionUtility.GetAuthenticationSession();
+                //var session = KTBLeasing.FrontLeasing.Utility.SessionUtility.GetAuthenticationSession();
                 //var a = result.Select(x => new { x.Id, x.Role.RoleName, x.UsersAuthorize.UserId }).ToList();
                 return view;//result.Select(x => new { x.Id, x.Role.RoleName, x.UsersAuthorize.DepCode }).ToList();
             }

@@ -12,10 +12,11 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public SellerMap()
         {
-            Table("AD_SELLER");
+            Table("JOB_AD_SELLER");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");
+            Map(x => x.SellerId).Column("SELLER_ID").Length(20);
             Map(x => x.SellerName).Column("SELLER_NAME").Length(100);
             Map(x => x.Address).Column("ADDRESS").Length(255);
             Map(x => x.Signer1).Column("SIGNER_1").Length(100);

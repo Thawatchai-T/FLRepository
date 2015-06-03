@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public CollectionScheduleMap()
         {
-            Table("AD_COLLECTION_SCHEDULE");
+            Table("JOB_AD_COLLECTION_SCHEDULE");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

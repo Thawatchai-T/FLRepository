@@ -99,12 +99,11 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                     Session.Update(enity);
                     tran.Commit();
                 }
-                catch (Exception executeICriteria)
+                catch (Exception ex)
                 {
                     tran.Rollback();
-                    Logger.Error(executeICriteria);
-                    throw executeICriteria;
-
+                    Logger.Error(ex);
+                    throw ex;
                 }
             }
         }

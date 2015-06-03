@@ -35,9 +35,11 @@
       <HintPath>..\packages\Castle.Core.3.3.3\lib\net40-client\Castle.Core.dll</HintPath>
     </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\FluentNHibernate.2.0.1.0\lib\net40\FluentNHibernate.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections, Version=4.0.0.0, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Iesi.Collections.4.0.1.4000\lib\net40\Iesi.Collections.dll</HintPath>
     </Reference>
     <Reference Include="log4net">
@@ -47,6 +49,7 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate, Version=4.0.0.4000, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NHibernate.4.0.3.4000\lib\net40\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="NHibernate.ByteCode.Castle">
@@ -90,6 +93,14 @@
     </Compile>
     <Compile Include="CommonData.cs" />
     <Compile Include="ContactPersonMap.cs" />
+    <Compile Include="BackgroundMap.cs" />
+    <Compile Include="EquipmentMap.cs" />
+    <Compile Include="InformationIndicationMap.cs" />
+    <Compile Include="IndicationEquipmentMap.cs" />
+    <Compile Include="Reposotory\IndicationEquipmentRepository.cs" />
+    <Compile Include="Reposotory\InformationIndicationRepository.cs" />
+    <Compile Include="Reposotory\ThirdPartyRepository.cs" />
+    <Compile Include="ThirdPartyMap.cs" />
     <Compile Include="InstallmentMap.cs" />
     <Compile Include="Reposotory\InstallmentRepository.cs" />
     <Compile Include="Reposotory\RestructureRepository.cs" />

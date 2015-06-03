@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public AnnualTaxMap()
         {
-            Table("AD_ANNUAL_TAX");
+            Table("JOB_AD_ANNUAL_TAX");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

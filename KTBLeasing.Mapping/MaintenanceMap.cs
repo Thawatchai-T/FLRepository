@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public MaintenanceMap()
         {
-            Table("AD_MAINTENANCE");
+            Table("JOB_AD_MAINTENANCE");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

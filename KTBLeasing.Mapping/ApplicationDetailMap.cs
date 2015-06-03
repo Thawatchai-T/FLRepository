@@ -13,11 +13,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public ApplicationDetailMap()
         {
-            Table("APPLICATION_DETAIL");
+            Table("JOB_APPLICATION_DETAIL");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             Map(x => x.Code).Column("CODE").Length(10);
-            Map(x => x.Name).Column("NAME").Length(100);
             Map(x => x.Year).Column("YEAR");
             Map(x => x.ApplicationId).Column("APPLICATION_ID").Length(100);
             Map(x => x.ApplicationType).Column("APPLICATION_TYPE");
