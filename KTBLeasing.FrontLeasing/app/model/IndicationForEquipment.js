@@ -27,36 +27,37 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
             name: 'Id'
         },
         {
-            name: 'Name'
-        },
-        {
-            name: 'Code'
-        },
-        {
+            type: 'int',
             name: 'Year'
         },
         {
             name: 'IndicationId'
         },
         {
+            type: 'date',
             name: 'IndicationDate'
         },
         {
+            type: 'int',
             name: 'JobId'
         },
         {
             name: 'InformationId'
         },
         {
+
             name: 'RequestType'
         },
         {
+            type: 'int',
             name: 'ScheduleNo'
         },
         {
+            type: 'int',
             name: 'LeaseType'
         },
         {
+            type: 'int',
             name: 'CustomerId'
         },
         {
@@ -66,6 +67,7 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
             name: 'CustomerFax'
         },
         {
+            type: 'int',
             name: 'ThirdPartyId'
         },
         {
@@ -75,24 +77,30 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
             name: 'ThirdPartyContactPersonFax'
         },
         {
+            type: 'int',
             name: 'MarketingOfficer'
         },
         {
+            type: 'float',
             name: 'Currency'
         },
         {
+            type: 'float',
             name: 'ExchangeRate'
         },
         {
+            type: 'float',
             name: 'Rating'
         },
         {
+            type: 'float',
             name: 'ExposureLimit'
         },
         {
             name: 'RatingDetail'
         },
         {
+            type: 'date',
             name: 'RatingDate'
         }
     ]

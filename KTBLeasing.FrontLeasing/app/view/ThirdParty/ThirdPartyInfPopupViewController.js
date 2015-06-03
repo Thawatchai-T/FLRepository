@@ -34,6 +34,26 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopupViewController'
         }
     },
 
+    onKeyupSearchText: function(field, e, eOpts ){
+        var grid = this.getView().down('grid'),
+        // Access the field using its "reference" property name.
+            filterField = this.lookupReference('nameFilterField'),
+            filters = grid.store.getFilters();
+
+        if (filterField.value) {
+            this.nameFilter = filters.add({
+                id: 'nameFilter',
+                property: 'NameEn',
+                value: filterField.value,
+                anyMatch: true,
+                caseSensitive: false
+            });
+        } else if (this.nameFilter) {
+            filters.remove(this.nameFilter);
+            this.nameFilter = null;
+        }
+    },
+
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
         this.getView().close();
     }

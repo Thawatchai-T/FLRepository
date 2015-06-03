@@ -46,7 +46,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                         objArray[i] = Installment;
                     }
                 }
-            } 
+            }
             //Case กรณีปกติ
             else {
                 for (i = 0; i <= NewTerm; i++) {
@@ -77,17 +77,64 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                 sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
                                 sessionStorage.setItem('dataInstallment', null);
                             },
-//                            show: function (panel, eOpts) {
-//                                Ext.MessageBox.show({
-//                                    title: 'Please wait',
-//                                    msg: 'Loading items...',
-//                                    progressText: 'Initializing...',
-//                                    width: 300,
-//                                    progress: true,
-//                                    closable: false
-//                                    //animateTarget: btn
-//                                });
-//                            },
+                            beforeclose: function (panel, eOpts) {
+                                var store = panel.down('grid').getStore();
+
+                                 if (panel.closeMe) {
+                                    panel.closeMe = false;
+                                    
+                                    return true;
+                                }
+
+                                if (store.getModifiedRecords().length > 0) {
+                                    Ext.Msg.show({
+                                        title: 'Save',
+                                        message: 'Save Changes?',
+                                        buttons: Ext.Msg.YESNOCANCEL,
+                                        icon: Ext.Msg.QUESTION,
+                                        width: 300,
+                                        fn: function (btn) {
+                                            if (btn === 'yes') {
+                                                Ext.MessageBox.show({
+                                                    title: 'Please wait',
+                                                    msg: 'Saving items...',
+                                                    progressText: 'Saving...',
+                                                    width: 300,
+                                                    progress: true,
+                                                    closable: false,
+                                                });
+
+                                                store.sync({
+                                                    success: function (batch, options) {
+                                                        Ext.Ajax.request({
+                                                            method: 'post',
+                                                            url: 'api/Restructure/Post',
+                                                            //params: obj,
+                                                            params: record.data,
+                                                            success: function (response) {
+                                                                Ext.MessageBox.hide();
+                                                                Ext.MessageBox.alert("Result", "Successful.");
+                                                                panel.closeMe = true;
+                                                                panel.close();
+                                                            },
+                                                            failure: function (response) {
+                                                                Ext.MessageBox.hide();
+                                                                Ext.MessageBox.alert("Error", response.responseText);
+                                                            }
+                                                        });
+                                                    }
+                                                });
+                                            } else if (btn === 'no') {
+                                                panel.closeMe = true;
+                                                panel.close();
+                                            } else {
+                                            }
+                                        }
+                                    });
+                                } 
+
+                                return false;
+                            },
                             close: function (panel, eOpts) {
                                 Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveFirst();
                             }
@@ -109,6 +156,10 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
     onCancel: function (button, e, eOpts) {
         var form = this.getView().down('form').getForm();
         form.reset();
+    },
+
+    onAfterRender: function (component, eOpts) {
+        Ext.getCmp('arcard-form1').getForm().findField('NewFlatRate').focus();
     }
 
 });

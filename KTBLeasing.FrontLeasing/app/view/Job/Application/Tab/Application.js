@@ -92,6 +92,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     width: 150,
                     fieldLabel: 'Date',
                     labelAlign: 'right',
@@ -343,6 +344,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     anchor: '100%',
                     fieldLabel: 'As Of Date',
                     labelAlign: 'right',
@@ -418,6 +420,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'datefield',
+            format: 'd/m/Y',
             width: 250,
             fieldLabel: 'Approve Date',
             labelAlign: 'right',
@@ -435,6 +438,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'datefield',
+            format: 'd/m/Y',
             colspan: 1,
             width: 250,
             fieldLabel: 'Agreement Date',
@@ -444,6 +448,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'datefield',
+            format: 'd/m/Y',
             width: 250,
             fieldLabel: 'Execute Date',
             labelAlign: 'right',
@@ -452,6 +457,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'datefield',
+            format: 'd/m/Y',
             width: 250,
             fieldLabel: 'Schedule Date',
             labelAlign: 'right',
@@ -523,7 +529,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                         name: 'SellerName',
                         displayField: 'SellerName',
                         store: 'sellers',
-                        valueField: 'Id',
+                        valueField: 'SellerId',
                         autoLoadValue: true
                     }
                 },

@@ -15,10 +15,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private ISellerRepository SellerRepository { get; set; }
 
         // GET api/contact
-        public IEnumerable<SellerModel> Get()
-        {
-            return new SellerModel().Dummy();
-        }
+        //public IEnumerable<SellerModel> Get()
+        //{
+        //    return new SellerModel().Dummy();
+        //}
 
         // GET api/contact/5
         public List<Seller> Get(int page, int start, int limit, long id)
@@ -34,7 +34,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // POST api/contact
         public void Post(Seller entity)
         {
-            entity.ApplicationDetail.Id = entity.AppId;
             SellerRepository.SaveOrUpdate(entity);
         }
 

@@ -45,6 +45,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
     maximized: true,
     modal: true,
     session: true,
+//    tools: [
+//        {
+//            itemId: 'refresh',
+//            type: 'refresh',
+//            callback: function() {
+//                // do refresh
+//            }
+//        }
+//    ],
 
     items: [
         {
@@ -157,6 +166,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             bind: {
                 store: '{installments}'
             },
+            viewConfig: {
+                enableTextSelection: true
+            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -176,7 +188,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'InstallmentBeforeVAT',
                     text: 'Installment Before Vat',
                     editor: {
-                        xtype: 'numberfield'
+                        xtype: 'numberfield',
+                        selectOnFocus: true
                     },
                     //width: 200
                 },
@@ -264,7 +277,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     displayInfo: true,
                     bind: {
                         store: '{installments}'
-                    }
+                    },
+                    hidden: true
                 }
             ],
             plugins: [
@@ -272,7 +286,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     ptype: 'cellediting',
                     pluginId: 'celledit'
                 }
-            ]
+            ],
+            listeners: {
+                
+            }
         }
     ]
 

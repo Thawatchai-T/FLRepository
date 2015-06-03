@@ -15,6 +15,36 @@
 
 Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWindowViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobinformationinformationforindicationwindow'
+    alias: 'viewmodel.jobinformationinformationforindicationwindow',
 
+    requires: [
+        'Ext.data.Store',
+        'Ext.data.proxy.Rest',
+        'Ext.data.reader.Json'
+    ],
+
+    stores: {
+        backgrounds: {
+            model: 'TabUserInformation.model.Background',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/Background',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/Background/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
+        }
+    }
 });

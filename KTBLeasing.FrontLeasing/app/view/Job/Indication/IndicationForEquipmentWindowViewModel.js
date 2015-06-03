@@ -16,5 +16,4 @@
 Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindowViewModel', {
     extend: 'Ext.app.ViewModel',
     alias: 'viewmodel.jobindicationindicationforequipmentwindow'
-
 });

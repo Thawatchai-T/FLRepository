@@ -41,6 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewModel', {
                     create: 'api/ApplicationDetail/Post'
                 }
             },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }],
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }

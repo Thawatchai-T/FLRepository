@@ -37,6 +37,7 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
     title: 'Job Tree',
     maximized: true,
     modal: true,
+    id: 'jobjobwindow',
 
     items: [
         {

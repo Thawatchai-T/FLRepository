@@ -31,19 +31,24 @@ Ext.define('TabUserInformation.model.Background', {
             name: 'Id'
         },
         {
+            name: 'InformationId'
+        },
+        {
             name: 'Business'
         },
         {
             type: 'date',
-            name: 'Establishment'
+            name: 'Establishment',
+            dateWriteFormat: 'MS'
         },
         {
-            type: 'int',
+            type: 'float',
             name: 'Rating'
         },
         {
             type: 'date',
-            name: 'RatingDate'
+            name: 'RatingDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'RatingDetail'
@@ -61,7 +66,8 @@ Ext.define('TabUserInformation.model.Background', {
         },
         {
             type: 'date',
-            name: 'SalesDate'
+            name: 'SalesDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'SalesDetail'
@@ -72,7 +78,8 @@ Ext.define('TabUserInformation.model.Background', {
         },
         {
             type: 'date',
-            name: 'ProfitLossDate'
+            name: 'ProfitLossDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'ProfitLossDetail'
@@ -83,7 +90,8 @@ Ext.define('TabUserInformation.model.Background', {
         },
         {
             type: 'date',
-            name: 'ShareholderEquityDate'
+            name: 'ShareholderEquityDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'ShareholderEquityDetail'
@@ -94,7 +102,8 @@ Ext.define('TabUserInformation.model.Background', {
         },
         {
             type: 'date',
-            name: 'OutstandingAmountDate'
+            name: 'OutstandingAmountDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'float',
@@ -102,7 +111,8 @@ Ext.define('TabUserInformation.model.Background', {
         },
         {
             type: 'date',
-            name: 'ExposureLimitDate'
+            name: 'ExposureLimitDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'int',

@@ -28,6 +28,7 @@ Ext.define('TabUserInformation.store.CommonData.cusinfopopup', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.cusinfopopup',
             model: 'TabUserInformation.model.CustomerInformationPopup',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/cusinfo/GetCommonCustomerPopup'

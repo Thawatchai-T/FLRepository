@@ -18,14 +18,27 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentTabView
     alias: 'controller.jobindicationindicationforequipmenttab',
 
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.jobindicationindicationforequipmentwindow'),
-            form = popup.down('form').getForm();
+        var grid = this.getView().down('grid');
 
-        // var recordBusiness = Ext.create('TabUserInformation.model.IndicationForEquipment',record.get('Business'));
+        var popup = Ext.create('widget.jobindicationindicationforequipmentwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        grid = panel.down('grid'),
+                        storeEquipment = grid.getStore();
 
-        form.loadRecord(record);
-        // form.loadRecord(recordBusiness);
-        // form.setValues(record.get('Business'));
+                    form.loadRecord(record);
+
+                    storeEquipment.getProxy().extraParams.indicationId = record.get('Id');
+                    storeEquipment.load();
+                    grid.view.refresh();
+                },
+                close: function (panel, eOpts) {
+                    grid.view.refresh();
+                }
+            }
+        });
+
         popup.show();
     },
 

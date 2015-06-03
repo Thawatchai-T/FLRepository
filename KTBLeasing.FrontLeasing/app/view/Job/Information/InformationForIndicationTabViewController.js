@@ -18,17 +18,30 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationTabV
     alias: 'controller.jobinformationinformationforindicationtab',
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.jobinformationinformationforindicationwindow'),
-            form = popup.down('form').getForm(),
-            store = popup.lookupReference('province').getStore();
+        var grid = this.getView().down('grid');
 
-        store.getProxy().extraParams.text = '1769';
-        var recordBusiness = Ext.create('TabUserInformation.model.InformationForIndication', record.get('Business'));
-        
-        form.loadRecord(record);
-        form.loadRecord(recordBusiness);
+        var popup = Ext.createByAlias('widget.jobinformationinformationforindicationwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        formFooter = panel.lookupReference('form-footer').getForm(),
+                        storeBackground = panel.getViewModel().storeInfo.backgrounds;
 
-        // form.setValues(record.get('Business'));
+                    storeBackground.getProxy().extraParams.infoId = record.get('Id');
+                    storeBackground.load({
+                        callback: function (records, operation, success) {
+                            panel.lookupReference('form-background').getForm().loadRecord(records[0]);
+                        }
+                    });
+
+                    form.loadRecord(record);
+                    formFooter.loadRecord(record);
+                },
+                close: function (panel, eOpts) {
+                    grid.view.refresh();
+                }
+            }
+        });
 
         popup.show();
     },

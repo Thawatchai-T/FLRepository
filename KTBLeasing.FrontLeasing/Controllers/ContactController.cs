@@ -28,9 +28,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/contact/5
-        public string Get(int id)
+        public List<Contact> Get(int page, int start, int limit)
         {
-            return "value";
+            return ContactRepository.GetAll(page, start, limit);
         }
 
         // POST api/contact

@@ -40,6 +40,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
     title: 'Indication for Equipment',
     maximized: true,
     modal: true,
+    id: 'jobindicationindicationforequipmentwindow',
 
     items: [
         {
@@ -71,6 +72,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                                 },
                                 {
                                     xtype: 'datefield',
+                                    format: 'd/m/Y',
                                     margin: '0 0 0 5',
                                     fieldLabel: 'Indication Date',
                                     labelAlign: 'right',
@@ -191,7 +193,10 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                                                 {
                                                     xtype: 'button',
                                                     margin: '0 0 0 5',
-                                                    iconCls: 'x-form-search-trigger'
+                                                    iconCls: 'x-form-search-trigger',
+                                                    listeners: {
+                                                        click: 'onButtonLesseeSignerClick'
+                                                    }
                                                 }
                                             ]
                                         },
@@ -202,14 +207,17 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                                                 {
                                                     xtype: 'textfield',
                                                     width: 415,
-                                                    fieldLabel: 'KTIBJ Signer',
+                                                    fieldLabel: 'KTBL Signer',
                                                     labelAlign: 'right',
                                                     labelWidth: 140
                                                 },
                                                 {
                                                     xtype: 'button',
                                                     margin: '0 0 0 5',
-                                                    iconCls: 'x-form-search-trigger'
+                                                    iconCls: 'x-form-search-trigger',
+                                                    listeners: {
+                                                        click: 'onButtonKTBLSignerClick'
+                                                    }
                                                 }
                                             ]
                                         }
@@ -392,6 +400,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                                 },
                                 {
                                     xtype: 'datefield',
+                                    format: 'd/m/Y',
                                     anchor: '100%',
                                     fieldLabel: 'As Of Date',
                                     labelAlign: 'right',
@@ -453,19 +462,22 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                     ],
                     columns: [
                         {
-                            xtype: 'gridcolumn',
-                            dataIndex: 'Id',
-                            text: 'Id'
+                            xtype: 'rownumberer',
+                        },
+                        {
+                            xtype: 'hiddenfield',
+                            dataIndex: 'Id'
                         },
                         {
                             xtype: 'gridcolumn',
                             width: 320,
-                            dataIndex: 'Equipment',
+                            dataIndex: 'EquipmentName',
                             locked: true,
                             text: 'Equipment'
                         },
                         {
-                            xtype: 'gridcolumn',
+                            xtype: 'datecolumn',
+                            format: 'd/m/Y',
                             dataIndex: 'EquipmentDate',
                             text: 'EquipmentDate'
                         },
@@ -592,7 +604,10 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
             items: [
                 {
                     xtype: 'button',
-                    text: 'Save'
+                    text: 'Save',
+                    listeners: {
+                        click: 'onSaveButtonClick'
+                    }
                 },
                 {
                     xtype: 'button',

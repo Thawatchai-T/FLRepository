@@ -33,9 +33,9 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
     viewModel: {
         type: 'restructurearcard'
     },
-    title: 'A/R Card - Early Terminate',
+    title: 'Restructure - Create New Simulation',
     width: 600,
-    modal: true,
+    //modal: true,
     layout: {
         type: 'vbox',
         align: 'stretch'
@@ -50,7 +50,6 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                     xtype: 'form',
                     id: 'head-restructure-form2',
                     defaults: {
-                        margin: '5 5 5 5 ',
                         labelWidth: 200,
                         labelAlign: 'right'
                     },
@@ -94,6 +93,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                 {
                     xtype: 'form',
                     id: 'arcard-form1',
+                    itemId:'arcard-form1',
                     defaults: {
                         labelWidth: 200,
                         labelAlign: 'right',
@@ -104,37 +104,58 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'เงินต้นคงเหลือ',
-                            name: 'OS_PR'
+                            name: 'OS_PR',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'อัตราดอกเบี้ย',
-                            name: 'FlatRate'
+                            name: 'FlatRate',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'จำนวนวัน',
-                            name: 'Day'
+                            name: 'Day',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'ดอกเบี้ย',
-                            name: 'Interest'
+                            name: 'Interest',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'Unpaid VAT for Restructure',
-                            name: 'UnpaidVAT'
+                            name: 'UnpaidVAT',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'ค้างชำระเบี้ยปรับ+ค่าใช้จ่าย',
-                            name: 'Penalty'
+                            name: 'Penalty',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'Debit Note ค้างชำระ',
-                            name: 'DebitNote'
+                            name: 'DebitNote',
+                            renderer: function(value, displayField) {
+                                return Ext.util.Format.number(value, '0,000.00');
+                            }
                         },
                         {
                             xtype: 'numberfield',
@@ -204,6 +225,9 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        afterrender: 'onAfterRender'
+    }
 
 });

@@ -42,6 +42,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrderViewModel',
                     read: 'api/ApplicationDetail'
                 }
             },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }],
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }

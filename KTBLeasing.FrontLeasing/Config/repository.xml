@@ -70,6 +70,16 @@
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
 
+  <object id="informationIndicationRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.InformationIndicationRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+  
+  <object id="indicationEquipmentRepository"
+                type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.IndicationEquipmentRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
 	<object id="applicationDetailRepository"
                 type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ApplicationDetailRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
@@ -102,6 +112,11 @@
 
   <object id="restructureRepository"
               type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.RestructureRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="thirdPartyRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ThirdPartyRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
 </objects>

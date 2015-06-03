@@ -17,7 +17,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.MaintenancesViewControll
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobapplicationtabmaintenances',
 
-    onButtonThirdPartyClick: function(button, e, eOpts) {
+    onButtonThirdPartyClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -25,7 +25,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.MaintenancesViewControll
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('PayTo').setValue(record2.get('NameEn'));
                         form.findField('PaymentCondition').setValue(record2.get('PaymentCondition'));
                     }
@@ -35,50 +35,56 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.MaintenancesViewControll
         popup.show();
     },
 
-    onComboboxChange: function(field, newValue, oldValue, eOpts) {
+    onRadiogroupChange: function (field, newValue, oldValue, eOpts) {
         var view = this.getView();
 
-        if(newValue == 1){
+        if (newValue.pattern == 1) {
             view.down('#pattern1').show();
             view.down('#pattern2').hide();
-        }else if(newValue == 2){
+        } else {
             view.down('#pattern1').hide();
             view.down('#pattern2').show();
         }
     },
 
-    onButtonAddClick: function(button, e, eOpts) {
+    onButtonAddClick: function (button, e, eOpts) {
         var store = this.getView().down('grid').getStore();
-        var record = Ext.create('model.equipmentlist');
+        var record = Ext.create('model.maintenancelist', {
+            ApplicationDetail: {
+                Id: Ext.decode(sessionStorage.getItem('AppDetail')).Id
+            }
+        });
+
+        record.data.Id = 0;
 
         store.add(record);
         this.getView().down('grid').view.refresh();
     },
 
-    onButtonInsertClick: function(button, e, eOpts) {
+    onButtonInsertClick: function (button, e, eOpts) {
 
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
+    onButtonDeleteClick: function (button, e, eOpts) {
         var store = this.getView().down('grid').getStore(),
             record = this.getView().down('grid').getSelection()[0];
 
-        if(record){
-            if(record.get('Id') != '0'){
-                Ext.MessageBox.confirm('Confirm','Confirm Delete?',
-                function(msg){
-                    if(msg == 'yes'){
+        if (record) {
+            if (record.get('Id') != '0') {
+                Ext.MessageBox.confirm('Confirm', 'Confirm Delete?',
+                function (msg) {
+                    if (msg == 'yes') {
                         store.remove(record);
                     }
-                },this);
-            }else{
+                }, this);
+            } else {
                 store.remove(record);
             }
         }
 
     },
 
-    onJobappmaintenanceBeforeRender: function(component, eOpts) {
+    onJobappmaintenanceBeforeRender: function (component, eOpts) {
         component.down('#pattern2').hide();
     },
 

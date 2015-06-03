@@ -41,7 +41,7 @@ Ext.define('TabUserInformation.store.applicationDetails', {
                     writeAllFields: true
                 },
                 api: {
-                    create: 'api/ApplicationDetail/DoPost'
+                    create: 'api/ApplicationDetail/Post'
                 }
             }
         }, cfg)]);

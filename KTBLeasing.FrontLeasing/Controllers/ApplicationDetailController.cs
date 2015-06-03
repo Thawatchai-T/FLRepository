@@ -158,14 +158,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return result;
         }
 
-        public void DoPost(object obj, ApplicationDetailChildEnum name)
+        public void DoPost(ApplicationDetailViewModel entity)
         {
             try
             {
-                var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
-                var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
+                //var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
+                //var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
 
                 //ApplicationDetailRepository.SaveOrUpdate<object>(entity);
+                ApplicationDetailRepository.SaveOrUpdate(entity);
             }
             catch (Exception e)
             {
@@ -176,19 +177,33 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // POST api/contact
         public void Post(object obj, ApplicationDetailChildEnum name)
         {
-            var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
-            var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
+            try
+            {
+                var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
+                var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
 
-            ApplicationDetailRepository.Insert<object>(entity);
+                ApplicationDetailRepository.Insert<object>(entity);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+            }
         }
 
         // PUT api/contact/5
         public void Put(int id, object obj, ApplicationDetailChildEnum name)
         {
-            var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
-            var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
+            try
+            {
+                var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
+                var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
 
-            ApplicationDetailRepository.Update<object>(entity);
+                ApplicationDetailRepository.Update<object>(entity);
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+            }
         }
 
         // DELETE api/contact/5

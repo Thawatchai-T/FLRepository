@@ -45,54 +45,11 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
             bind: {
                 store: '{annualTaxes}'
             },
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    dock: 'top',
-                    items: [
-                        {
-                            xtype: 'button',
-                            ui: 'default-small',
-                            text: 'New',
-                            listeners: {
-                                click: 'onButtonNewClick'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            ui: 'default-small',
-                            text: 'Insert',
-                            listeners: {
-                                click: 'onButtonInsertClick'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            ui: 'default-small',
-                            text: 'Delete',
-                            listeners: {
-                                click: 'onButtonDeleteClick'
-                            }
-                        },
-                        {
-                            xtype: 'combobox',
-                            fieldLabel: 'Born by',
-                            labelAlign: 'right',
-                            labelWidth: 150,
-                            autoLoadOnValue: true,
-                            displayField: 'Name',
-                            store: 'CommonData.borneBy',
-                            valueField: 'Id',
-                            name: 'BornBy'
-                        }
-                    ]
-                }
-            ],
             columns: [
-                {
-                    xtype: 'hiddenfield',
-                    name: 'Id'
-                },
+//                {
+//                    xtype: 'hiddenfield',
+//                    name: 'Id'
+//                },
                 {
                     xtype: 'rownumberer',
                     width: 115,
@@ -104,8 +61,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
                     dataIndex: 'PerUnit',
                     text: 'PerUnit',
                     editor: {
-                        xtype: 'textfield',
-                        name: 'PerUnit'
+                        xtype: 'numberfield',
+                        hideTrigger: true
                     }
                 },
                 {
@@ -113,8 +70,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
                     dataIndex: 'Quantity',
                     text: 'Quantity',
                     editor: {
-                        xtype: 'textfield',
-                        name: 'Quantity'
+                        xtype: 'numberfield',
+                        hideTrigger: true
                     }
                 },
                 {
@@ -122,19 +79,62 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
                     dataIndex: 'Total',
                     text: 'Total',
                     editor: {
-                        xtype: 'textfield',
-                        name: 'Total'
+                        xtype: 'numberfield',
+                        hideTrigger: true
                     }
                 }
             ],
             plugins: [
                 {
-                    ptype: 'rowediting'
+                    ptype: 'rowediting',
+                    pluginId: 'rowedit'
                 }
             ]
         }
     ],
+            
     dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'top',
+            items: [
+                {
+                    xtype: 'button',
+                    ui: 'default-small',
+                    text: 'New',
+                    listeners: {
+                        click: 'onButtonNewClick'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    ui: 'default-small',
+                    text: 'Insert',
+                    listeners: {
+                        click: 'onButtonInsertClick'
+                    }
+                },
+                {
+                    xtype: 'button',
+                    ui: 'default-small',
+                    text: 'Delete',
+                    listeners: {
+                        click: 'onButtonDeleteClick'
+                    }
+                },
+                {
+                    xtype: 'combobox',
+                    fieldLabel: 'Born by',
+                    labelAlign: 'right',
+                    labelWidth: 150,
+                    autoLoadOnValue: true,
+                    displayField: 'Name',
+                    store: 'CommonData.borneBy',
+                    valueField: 'Id',
+                    name: 'BornBy'
+                }
+            ]
+        },
         {
             xtype: 'pagingtoolbar',
             dock: 'bottom',

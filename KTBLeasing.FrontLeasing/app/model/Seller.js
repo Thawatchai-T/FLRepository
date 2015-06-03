@@ -31,6 +31,9 @@ Ext.define('TabUserInformation.model.Seller', {
             name: 'AppId'
         },
         {
+            name: 'SellerId'
+        },
+        {
             name: 'SellerName'
         },
         {

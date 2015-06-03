@@ -35,7 +35,8 @@ Ext.define('TabUserInformation.model.CollectionSchedule', {
         },
         {
             type: 'date',
-            name: 'CollectionDate'
+            name: 'CollectionDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'Collection'

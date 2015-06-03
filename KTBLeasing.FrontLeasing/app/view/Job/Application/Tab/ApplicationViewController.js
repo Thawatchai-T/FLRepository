@@ -48,7 +48,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
                             if (store.getModifiedRecords()) {
                                 Ext.Msg.show({
                                     title: 'Save Changes?',
-                                    message: '§ÿ≥µÈÕß°“√∫—π∑÷°¢ÈÕ¡Ÿ≈À√◊Õ‰¡Ë?',
+                                    message: '‡∏Ñ‡∏∏‡∏ì‡∏ï‡πâ‡∏≠‡∏á‡∏Å‡∏≤‡∏£‡∏ö‡∏±‡∏ô‡∏ó‡∏∂‡∏Å‡∏Ç‡πâ‡∏≠‡∏°‡∏π‡∏•‡∏´‡∏£‡∏∑‡∏≠‡πÑ‡∏°‡πà?',
                                     buttons: Ext.Msg.YESNOCANCEL,
                                     icon: Ext.Msg.QUESTION,
                                     fn: function (btn) {

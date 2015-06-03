@@ -98,6 +98,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'BG Received Date',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -105,6 +106,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Confirmed Printed Date',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -112,6 +114,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     colspan: 2,
                     fieldLabel: 'Return Date',
                     labelAlign: 'right',
@@ -145,6 +148,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'BG Date',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -157,6 +161,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                     items: [
                         {
                             xtype: 'datefield',
+                            format: 'd/m/Y',
                             fieldLabel: 'Period',
                             labelAlign: 'right',
                             labelWidth: 150,
@@ -164,6 +169,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                         },
                         {
                             xtype: 'datefield',
+                            format: 'd/m/Y',
                             fieldLabel: 'To',
                             labelAlign: 'right',
                             labelWidth: 150,
@@ -195,6 +201,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                     items: [
                         {
                             xtype: 'datefield',
+                            format: 'd/m/Y',
                             fieldLabel: 'Equipment Sales Printed Date',
                             labelAlign: 'right',
                             labelWidth: 180,
@@ -342,9 +349,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
             },
             columns: [
                 {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'Id',
-                    text: 'Id'
+                    xtype: 'rownumberer',
+                    text: '#'
                 },
                 {
                     xtype: 'gridcolumn',
@@ -358,7 +364,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                 }
             ],
             listeners: {
-                selectionchange: 'onGridpanelSelectionChange'
+                selectionchange: 'onGridpanelSelectionChange',
+                deselect: 'onGridpanelDeselect'
             }
         },
         {

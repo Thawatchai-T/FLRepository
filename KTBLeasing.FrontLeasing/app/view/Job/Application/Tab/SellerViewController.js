@@ -20,17 +20,38 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewController', {
     onButtonAddClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.down('form').getForm(),
-            store = this.getView().down('gridpanel').getStore();
+            store = this.getView().down('gridpanel').getStore(),
+            grid = this.getView().down('grid');
 
         var popup = Ext.create('widget.thirdpartythirdpartyinfpopup', {
             listeners: {
                 close: function (panel, eOpts) {
-                    var record2 = panel.down('gridpanel').getSelection()[0];
-                    if (record2) {
+                    var record2 = panel.down('gridpanel').getSelection()[0],
+                        flag;
+
+                    store.data.each(function (record, index) {
+                        if (record2.get('ThirdPartyCode') == record.get('SellerId')) {
+                            flag = "same";
+                        }
+                    });
+
+                    if (record2 && flag != "same") {
                         //                         form.loadRecord(record);
 
                         store.add({
                             SellerName: record2.get('NameEn')
+                        });
+
+                        grid.getView().focusRow(store.data.length - 1);
+
+                        form.reset();
+
+                    } else {
+                        Ext.MessageBox.show({
+                            title: 'Warning',
+                            message: 'ข้อมูลซ้ำ',
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.Msg.WARNING
                         });
                     }
                 }
@@ -42,20 +63,38 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewController', {
     onButtonEditClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.down('form').getForm(),
-            record = view.down('gridpanel').getSelection()[0];
+            store = this.getView().down('gridpanel').getStore(),
+            record = view.down('gridpanel').getSelection()[0],
+            flag;
 
-        var popup = Ext.create('widget.thirdpartythirdpartyinfpopup', {
-            listeners: {
-                close: function (panel, eOpts) {
-                    var record2 = panel.down('gridpanel').getSelection()[0];
-                    if (record2) {
-                        //                         form.loadRecord(record);
-                        record.set('SellerName', record2.get('NameEn'));
+        if (record) {
+            var popup = Ext.create('widget.thirdpartythirdpartyinfpopup', {
+                listeners: {
+                    close: function (panel, eOpts) {
+                        var record2 = panel.down('gridpanel').getSelection()[0];
+
+                        store.data.each(function (record, index) {
+                            if (record2.get('ThirdPartyCode') == record.get('SellerId')) {
+                                flag = "same";
+                            }
+                        });
+
+                        if (record2 && flag != "same") {
+                            //                         form.loadRecord(record);
+                            record.set('SellerName', record2.get('NameEn'));
+                        } else {
+                            Ext.MessageBox.show({
+                                title: 'Warning',
+                                message: 'ข้อมูลซ้ำ',
+                                buttons: Ext.Msg.OK,
+                                icon: Ext.Msg.WARNING
+                            });
+                        }
                     }
                 }
-            }
-        });
-        popup.show();
+            });
+            popup.show();
+        }
     },
 
     onButtonDeleteClick: function (button, e, eOpts) {
@@ -67,15 +106,31 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewController', {
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var view = this.getView(),
-            form = view.down('form').getForm();
+            form = view.down('form').getForm(),
+            store = this.getView().down('gridpanel').getStore(),
+            flag;
 
         var popup = Ext.create('widget.thirdpartythirdpartyinfpopup', {
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if (record2) {
+
+                    store.data.each(function (record, index) {
+                        if (record2.get('ThirdPartyCode') == record.get('SellerId')) {
+                            flag = "same";
+                        }
+                    });
+
+                    if (record2 && flag != "same") {
                         //                         form.loadRecord(record);
                         record.set('SellerName', record2.get('NameEn'));
+                    } else {
+                        Ext.MessageBox.show({
+                            title: 'Warning',
+                            message: 'ข้อมูลซ้ำ',
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.Msg.WARNING
+                        });
                     }
                 }
             }

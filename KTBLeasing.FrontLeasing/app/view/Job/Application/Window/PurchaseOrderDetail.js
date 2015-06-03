@@ -61,6 +61,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetail',
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Po Date',
                     labelAlign: 'right',
                     name: 'PODate'
@@ -74,9 +75,9 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetail',
                     labelWidth: 150,
                     name: 'SellerId',
                     autoLoadOnValue: true,
-                    displayField: 'Name',
-                    store: 'CommonData.sellers',
-                    valueField: 'Id'
+                    displayField: 'SellerName',
+                    store: 'sellers',
+                    valueField: 'SellerId'
                 },
                 {
                     xtype: 'textfield',
@@ -87,6 +88,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetail',
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Quotation Date',
                     labelAlign: 'right',
                     name: 'QuotationDate1'
@@ -100,6 +102,7 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetail',
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Quotation Date',
                     labelAlign: 'right',
                     name: 'QuotationDate2'

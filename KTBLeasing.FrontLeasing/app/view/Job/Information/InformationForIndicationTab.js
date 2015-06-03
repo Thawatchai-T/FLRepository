@@ -78,8 +78,8 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationTab'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'InfoId',
-                    text: 'InfoId',
+                    dataIndex: 'InformationId',
+                    text: 'Information Id',
                     flex: -1
                 }
             ]

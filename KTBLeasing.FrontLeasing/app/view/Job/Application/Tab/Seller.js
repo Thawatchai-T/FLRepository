@@ -76,6 +76,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
 //            bind: {
 //                store: '{sellers}'
             //            },
+            forceFit: true,
             store: 'sellers',
             columns: [
                 {

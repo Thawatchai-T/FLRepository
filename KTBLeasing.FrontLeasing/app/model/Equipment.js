@@ -23,73 +23,91 @@ Ext.define('TabUserInformation.model.Equipment', {
         'Ext.data.field.Number'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
             type: 'int',
             name: 'Id'
         },
         {
-            name: 'Equipment'
+            type: 'int',
+            name: 'IndicationId'
+        },
+        {
+            name: 'EquipmentName'
         },
         {
             type: 'date',
-            name: 'EquipmentDate'
+            name: 'EquipmentDate',
+            dateWriteFormat: 'MS'
         },
         {
+            type: 'float',
             name: 'Quantity'
         },
         {
             type: 'float',
-            name: 'CostBHT'
-        },
-        {
-            type: 'float',
-            name: 'CostCurrency'
-        },
-        {
-            name: 'Term'
-        },
-        {
-            name: 'Deposit'
-        },
-        {
-            name: 'DepositAmount'
-        },
-        {
-            name: 'RV'
-        },
-        {
-            name: 'RVAmount'
-        },
-        {
-            name: 'IRRNet'
-        },
-        {
-            name: 'IRRGross'
-        },
-        {
-            name: 'AbnormalRental'
-        },
-        {
-            name: 'Rental'
+            name: 'Cost'
         },
         {
             type: 'int',
+            name: 'Term'
+        },
+        {
+            type: 'int',
+            name: 'Deposit'
+        },
+        {
+            type: 'float',
+            name: 'DepositAmount'
+        },
+        {
+            type: 'int',
+            name: 'RV'
+        },
+        {
+            type: 'float',
+            name: 'RVAmount'
+        },
+        {
+            type: 'float',
+            name: 'IRRNet'
+        },
+        {
+            type: 'float',
+            name: 'IRRGross'
+        },
+        {
+            type: 'float',
+            name: 'AbnormalRental'
+        },
+        {
+            type: 'float',
+            name: 'Rental'
+        },
+        {
+            type: 'float',
             name: 'TotalMA'
         },
         {
+            type: 'int',
             name: 'Payment'
         },
         {
+            type: 'int',
             name: 'AdvanceArrear'
         },
         {
+            type: 'int',
             name: 'InsuranceBorne'
         },
         {
+            type: 'int',
             name: 'ConditionLease'
         },
         {
+            type: 'int',
             name: 'InsTerritory'
         },
         {
@@ -99,6 +117,7 @@ Ext.define('TabUserInformation.model.Equipment', {
             name: 'OtherCondition'
         },
         {
+            type: 'int',
             name: 'Result'
         },
         {

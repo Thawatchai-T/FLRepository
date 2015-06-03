@@ -26,7 +26,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewModel', {
     stores: {
         sellers: {
             model: 'TabUserInformation.model.Seller',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/Seller',
@@ -42,6 +42,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.SellerViewModel', {
                     read: 'api/ApplicationDetail'
                 }
             },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }],
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }

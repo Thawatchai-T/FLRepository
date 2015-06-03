@@ -15,6 +15,7 @@
 
 Ext.define('TabUserInformation.store.informationForIndications', {
     extend: 'Ext.data.Store',
+    alias: 'store.informationForIndications',
 
     requires: [
         'TabUserInformation.model.InformationForIndication',
@@ -23,7 +24,7 @@ Ext.define('TabUserInformation.store.informationForIndications', {
         'Ext.data.writer.Json'
     ],
 
-    constructor: function(cfg) {
+    constructor: function (cfg) {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
@@ -31,83 +32,24 @@ Ext.define('TabUserInformation.store.informationForIndications', {
             storeId: 'informationForIndications',
             model: 'TabUserInformation.model.InformationForIndication',
             autoLoad: true,
-//            data: [
-//                {
-//                    Id: 763,
-//                    RequestDate: '5/7/2011',
-//                    PrimaryJob: 'quidem',
-//                    IndustryCode: 'quasi',
-//                    MarketingCode: 'itaque',
-//                    Year: 'sed',
-//                    InfoId: 'ea',
-//                    LeadId: 'magni',
-//                    Nationality: 'commodi',
-//                    CustomerId: 'dignissimos',
-//                    TypeCustomer: 'aut',
-//                    GroupCust: 'incidunt',
-//                    TitleNameTh: 'voluptate',
-//                    FirstNameTh: 'mollitia',
-//                    LastNameTh: 'eligendi',
-//                    TypeBusiness: 'numquam',
-//                    Address: 'nostrum',
-//                    SubDistrict: 'dolores',
-//                    Telephone: 'aliquid',
-//                    Fax: 'velit',
-//                    Email: 'consequuntur',
-//                    Business: {
-//                        Id: 826,
-//                        Business: 'voluptatem',
-//                        Establishment: '10/24/2004',
-//                        Rating: 995,
-//                        RatingDate: '2/5/2013',
-//                        RatingDetail: 'harum',
-//                        RegisterCapital: 50.93,
-//                        RegisterCapitalDetail: 'minima',
-//                        Sales: 616.96,
-//                        SalesDate: '2/11/2005',
-//                        SalesDetail: 'quod',
-//                        ProfitLoss: 971.16,
-//                        ProfitLossDate: '2/7/2002',
-//                        ProfitLossDetail: 'qui',
-//                        ShareholderEquity: 527.33,
-//                        ShareholderEquityDate: '3/5/2004',
-//                        ShareholderEquityDetail: 'sunt',
-//                        OutstandingAmount: 358.12,
-//                        OutstandingAmountDate: '8/13/2008',
-//                        ExposureLimit: 376.49,
-//                        ExposureLimitDate: '10/27/2001',
-//                        Committed: 670
-//                    },
-//                    TypeFinance: 'voluptatem',
-//                    SubLesseeSyndicated: 'placeat',
-//                    UsedEquipment: 'alias',
-//                    SpecialProgram: 'sed',
-//                    EQPYear: 'hic',
-//                    ProgramName: 'est',
-//                    Currency: 'cumque',
-//                    ExchangeRate: 'corporis',
-//                    SourceInformation: 'repellat',
-//                    Remark: 'aspernatur'
-//                }
-//            ],
-//            proxy: {
-//                type: 'memory',
-//                reader: {
-//                    type: 'json',
-//                    rootProperty: 'data'
-//                },
-//                writer: {
-//                    type: 'json',
-//                    rootProperty: 'data'
-//                }
-//            }
             proxy: {
                 type: 'rest',
                 url: 'api/informationindication',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/informationindication/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

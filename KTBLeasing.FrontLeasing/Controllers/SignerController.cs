@@ -17,6 +17,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private ICustomerSignerRepository CustomerSignerRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/signer
+
+        public List<CustomerSignerDomain> Get(int page, int start, int limit)
+        {
+            return CustomerSignerRepository.GetAll(start, limit);
+        }
+
         public IEnumerable<CustomerSignerDomain> Get(string custId, int page, int start, int limit)
         {
             try

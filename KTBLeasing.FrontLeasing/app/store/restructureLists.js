@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.store.restructureLists', {
         me.callParent([Ext.apply({
             storeId: 'restructureLists',
             model: 'TabUserInformation.model.RestructureList',
-            autoLoad: true,
+//            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/Restructure',

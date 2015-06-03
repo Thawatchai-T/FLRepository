@@ -84,16 +84,25 @@
     <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.InformationIndicationController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
+
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.BackgroundController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
+
+  </object>
+
   <object type="KTBLeasing.FrontLeasing.Controllers.IndicationEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="IndicationEquipmentRepository" ref="indicationEquipmentRepository"/>
 
   </object>
   
   <object type="KTBLeasing.FrontLeasing.Controllers.EquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
-
+    <property name="IndicationEquipmentRepository" ref="indicationEquipmentRepository"/>
   </object>
-
+  
   <object type="KTBLeasing.FrontLeasing.Controllers.ApplicationDetailController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="ApplicationDetailRepository" ref="applicationDetailRepository"/>
 
@@ -145,7 +154,7 @@
   </object>
   
   <object type="KTBLeasing.FrontLeasing.Controllers.ThirdPartyController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
+    <property name="ThirdPartyRepository" ref="thirdPartyRepository"/>
 
   </object>
 
@@ -193,6 +202,5 @@
     <property name="DB2Repository" ref="repositorydb2"/>
 
   </object>
-    
   
 </objects>

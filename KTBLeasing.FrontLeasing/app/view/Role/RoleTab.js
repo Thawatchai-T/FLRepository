@@ -69,10 +69,10 @@ Ext.define('TabUserInformation.view.Role.RoleTab', {
             bodyPadding: 5,
             title: 'Role Management',
             minHeight: 550,
-            height:730,
-            bind: {
-                store: '{roles}'
-            },
+            height: 730,
+//            bind: {
+//                store: '{roles}'
+//            },
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -111,9 +111,9 @@ Ext.define('TabUserInformation.view.Role.RoleTab', {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
                     displayInfo: true,
-                    bind: {
-                        store: '{roles}'
-                    }
+//                    bind: {
+//                        store: '{roles}'
+//                    }
                 }
             ],
             columns: [

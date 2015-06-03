@@ -18,7 +18,37 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetailViewControlle
     alias: 'controller.jobindicationindicationdetail',
 
     onButtonSaveClick: function(button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            //panel = Ext.getCmp('jobjobwindow'),
+            grid = Ext.getCmp('jobindicationindicationforequipmentwindow').down('grid'),
+            store = grid.getStore(),
+            record = grid.getSelection()[0];
+            
+            form.updateRecord(record);
 
+        if (form.isValid()) {
+//            form.submit({
+//                url: 'api/equipment/post',
+//                success: function (form, action) {
+//                    Ext.Msg.alert('Success', 'บันทึกข้อมูลเรียบร้อยแล้ว');
+//                },
+//                failure: function (form, action) {
+//                    Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
+//                }
+//            });
+            if (store.getModifiedRecords().length > 0) {
+                store.sync({
+                    success: function (batch, action) {
+                        Ext.Msg.alert('Success', 'สำเร็จแล้ว');
+                    },
+                    failure: function (batch, action) {
+                        Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
+                    }
+                });
+            }
+        } else {
+            Ext.Msg.alert('Failure', 'ข้อมูลไม่ถูกต้อง');
+        }
     },
     
     onButtonNewClick: function(button, e, eOpts) {

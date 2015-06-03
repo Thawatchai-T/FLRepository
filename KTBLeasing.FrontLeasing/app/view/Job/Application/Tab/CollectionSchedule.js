@@ -46,6 +46,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
         },
         {
             xtype: 'datefield',
+            format: 'd/m/Y',
             fieldLabel: 'As Date',
             labelAlign: 'right',
             name: 'CollectionDate'

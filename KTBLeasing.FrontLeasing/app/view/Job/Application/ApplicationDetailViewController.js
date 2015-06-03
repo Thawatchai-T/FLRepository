@@ -26,7 +26,8 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
         //form = this.getView().down('form').getForm(),
             storeAppDetail = Ext.create('store.appdetails'),
             form = Ext.getCmp('jobappapplication').getForm(),
-            object = {};
+            object = {},
+            me = this;
 
         storeAppDetail.each(function (record, index) {
             var formChild = Ext.getCmp(record.get('Id')).getForm();
@@ -41,8 +42,6 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
             }
         });
 
-        console.log(object);
-
         var data = Ext.decode(sessionStorage.getItem('AppDetail'));
 
         //        form.submit({
@@ -52,10 +51,10 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
         ////                data: data
         ////            },
         //            success: function (form, action) {
-        //                Ext.Msg.alert('Success', '���������');
+        //                Ext.Msg.alert('Success', 'สำเร็จแล้ว');
         //            },
         //            failure: function (form, action) {
-        //                Ext.Msg.alert('Failure', '��������');
+        //                Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
         //            }
         //        });
 
@@ -67,55 +66,66 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
             contentType: "application/json; charset=utf-8",
             dataType: 'json',
             success: function (form, action) {
-                Ext.Msg.alert('Success', "�ѹ�֡���������º����");
+                me.saveStore('jobapplicationtabapplication', 'EquipmentList');
+                me.saveStore('jobapplicationtabseller', 'Seller');
+                me.saveStore('jobapplicationtabguarantor', 'GuarantorList');
+                me.saveStore('jobapplicationtabinsurance', 'InsuranceEquipment');
+                me.saveStore('jobapplicationtabannualtax', 'AnnualTax');
+                me.saveStore('jobapplicationtabmaintenances', 'MaintenanceList');
+                me.saveStore('jobapplicationtabcollectionschedule', 'CollectionSchedule');
+                me.saveStore('jobapplicationtabpurchaseorder', 'PurchaseOrder');
+                
+
+                Ext.Msg.alert('Success', 'บันทึกข้อมูลเรียบร้อย');
                 //                Ext.getCmp('pagingtoolbar-custinfo').moveFirst();
                 //                button.up('window').close();
-                //                console.log(form);
             },
             failure: function (form, action) {
-                Ext.Msg.alert('Failed', '��سҵ�Ǩ�ͺ��� ���ͼ������������к�?');
+                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
             }
         });
-
-        this.saveStore('jobapplicationtabapplication', 'EquipmentList');
-        this.saveStore('jobapplicationtabcontrolpaymentadvice', 'EquipmentList');
-        this.saveStore('jobapplicationtabinsurance', 'InsuranceEquipment');
-        this.saveStore('jobapplicationtabannualtax', 'AnnualTax');
-        this.saveStore('jobapplicationtabmaintenances', 'MaintenanceList');
-        this.saveStore('jobapplicationtabcollectionschedule', 'CollectionSchedule');
-        this.saveStore('jobapplicationtabpurchaseorder', 'PurchaseOrder');
-
-        this.saveStore('jobapplicationtabseller', 'Seller');
-
-        //        this.getView().down('jobapplicationtabapplication').down('grid').getStore().save();
-        //        this.getView().down('jobapplicationtabapplication').down('grid').getStore().save();
-        //        this.getView().down('jobapplicationtabapplication').down('grid').getStore().save();
     },
 
     saveStore: function (panel, name) {
         var grid = this.getView().down(panel).down('grid'),
             store = grid.getStore();
 
-        store.getProxy().extraParams.name = name;
-        store.sync();
-        store.load();
-        grid.view.refresh();
-    },
-
-    saveFormToStore: function (panel, name) {
-        var grid = this.getView().down(panel).down('grid'),
-            store = grid.getStore(),
-            data = [];
-
-        store.getProxy().extraParams.name = name;
-
-        data[0] = this.getView().down(panel).getForm().getValues();
-        store.setData(data);
-
-        store.sync();
-        store.load();
-        grid.view.refresh();
+        if (store.getModifiedRecords().length > 0) {
+            store.getProxy().extraParams.name = name;
+            store.sync({
+                success: function (batch) {
+                    store.load();
+                },
+                failure: function (batch) {
+                    Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
+                }
+            });
+            //grid.view.refresh();
+            //grid.doLayout();
+        }
     }
+
+//    saveFormToStore: function (panel, name) {
+//        var grid = this.getView().down(panel).down('grid'),
+//            store = grid.getStore(),
+//            data = [];
+
+//        store.getProxy().extraParams.name = name;
+
+//        data[0] = this.getView().down(panel).getForm().getValues();
+//        store.setData(data);
+
+//        store.sync({
+//            success: function (batch) {
+//            },
+//            failure: function (batch) {
+//                console.log(batch);
+//                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
+//            }
+//        });
+//        store.load();
+//        grid.view.refresh();
+//    }
 
 
 });

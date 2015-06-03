@@ -100,7 +100,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
     },
 
     VAT: function (value) {
-        return value * 0.07;
+        return Ext.util.Format.round(value * 0.07, 2);
     },
 
     onNumberfieldChange: function (field, newValue, oldValue, eOpts) {
@@ -292,7 +292,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                         InstallmentDate: date,
                         InstallmentBeforeVAT: C1,
                         VAT: VAT,
-                        Total: C1 + VAT,
+                        Total: Ext.util.Format.round(C1 + VAT, 2),
                         Principle: C4,
                         Interest: C3,
                         OS_PR: OS_PR

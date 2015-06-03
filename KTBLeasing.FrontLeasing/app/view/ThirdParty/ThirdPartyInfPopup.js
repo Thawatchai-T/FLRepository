@@ -47,7 +47,12 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfPopup', {
                 {
                     xtype: 'textfield',
                     fieldLabel: 'Search Text',
-                    labelAlign: 'right'
+                    reference: 'nameFilterField',
+                    enableKeyEvents: true,
+                    labelAlign: 'right',
+                    listeners: {
+                        keyup: 'onKeyupSearchText'
+                    }
                 }
             ]
         },

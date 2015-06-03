@@ -184,20 +184,24 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     text: 'Licens'
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'StartDate',
                                     text: 'StartDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'StartDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'EndDate',
                                     text: 'EndDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'EndDate'
                                     }
                                 },
@@ -365,20 +369,22 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
                                     dataIndex: 'ReceivedDate',
                                     text: 'ReceivedDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'ReceivedDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
                                     dataIndex: 'PayDate',
                                     text: 'PayDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'PayDate'
                                     }
                                 },
@@ -496,20 +502,23 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     text: 'Licens'
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
                                     dataIndex: 'StartDate',
                                     text: 'StartDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'StartDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'EndDate',
                                     text: 'EndDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'EndDate'
                                     }
                                 },
@@ -677,20 +686,23 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'ReceivedDate',
                                     text: 'ReceivedDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'ReceivedDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
                                     dataIndex: 'PayDate',
                                     text: 'PayDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'PayDate'
                                     }
                                 },
@@ -788,20 +800,24 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     text: 'Licens'
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'StartDate',
                                     text: 'StartDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'StartDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'EndDate',
                                     text: 'EndDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'EndDate'
                                     }
                                 },
@@ -969,20 +985,24 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'ReceivedDate',
                                     text: 'ReceivedDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'ReceivedDate'
                                     }
                                 },
                                 {
-                                    xtype: 'gridcolumn',
+                                    xtype: 'datecolumn',
+                                    format: 'd/m/Y',
                                     dataIndex: 'PayDate',
                                     text: 'PayDate',
                                     editor: {
                                         xtype: 'datefield',
+                                        format: 'd/m/Y',
                                         name: 'PayDate'
                                     }
                                 },

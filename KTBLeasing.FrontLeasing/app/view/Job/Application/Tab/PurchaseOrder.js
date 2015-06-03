@@ -52,9 +52,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
                     text: 'PONo'
                 },
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'datecolumn',
                     dataIndex: 'PODate',
-                    text: 'PODate'
+                    text: 'PODate',
+                    format: 'd/m/Y'
                 },
                 {
                     xtype: 'gridcolumn',

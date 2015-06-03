@@ -38,6 +38,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
     width: 750,
     bodyPadding: 10,
     title: 'Indication Detail',
+    modal: true,
 
     items: [
         {
@@ -48,7 +49,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
             },
             items: [
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     colspan: 1,
                     width: 200,
                     fieldLabel: '#',
@@ -62,7 +63,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
                     fieldLabel: 'Equipment',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'Equipment'
+                    name: 'EquipmentName'
                 },
                 {
                     xtype: 'datefield',
@@ -134,7 +135,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
                             fieldLabel: 'Cost (BHT)',
                             labelAlign: 'right',
                             labelWidth: 150,
-                            name: 'CostBHT'
+                            name: 'Cost'
                         },
                         {
                             xtype: 'textfield',
@@ -142,7 +143,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
                             fieldLabel: 'Cost (Curr.)',
                             labelAlign: 'right',
                             labelWidth: 150,
-                            name: 'CostCurrency'
+                            name: 'Cost'
                         },
                         {
                             xtype: 'textfield',

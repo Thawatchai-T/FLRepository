@@ -26,43 +26,53 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
 
     fields: [
         {
+            type: 'int',
             name: 'Id'
         },
         {
+            name: 'InformationId'
+        },
+        {
             type: 'date',
-            name: 'RequestDate'
+            name: 'RequestDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'PrimaryJob'
         },
         {
+            type: 'int',
             name: 'IndustryCode'
         },
         {
+            type: 'int',
             name: 'MarketingCode'
         },
         {
+            type: 'int',
             name: 'Year'
-        },
-        {
-            name: 'InfoId'
         },
         {
             name: 'LeadId'
         },
         {
+            type: 'int',
             name: 'Nationality'
         },
         {
+            type: 'int',
             name: 'CustomerId'
         },
         {
+            type: 'int',
             name: 'TypeCustomer'
         },
         {
+            type: 'int',
             name: 'GroupCust'
         },
         {
+            type: 'int',
             name: 'TitleNameTh'
         },
         {
@@ -72,12 +82,14 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
             name: 'LastNameTh'
         },
         {
+            type: 'int',
             name: 'TypeBusiness'
         },
         {
             name: 'Address'
         },
         {
+            type: 'int',
             name: 'SubDistrict'
         },
         {
@@ -93,34 +105,46 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
             name: 'Business'
         },
         {
+            type: 'int',
             name: 'TypeFinance'
         },
         {
             name: 'SubLesseeSyndicated'
         },
         {
+            type: 'boolean',
             name: 'UsedEquipment'
         },
         {
+            type: 'boolean',
             name: 'SpecialProgram'
         },
         {
+            type: 'int',
             name: 'EQPYear'
         },
         {
+            type: 'int',
             name: 'ProgramName'
         },
         {
+            type: 'int',
             name: 'Currency'
         },
         {
+            type: 'float',
             name: 'ExchangeRate'
         },
         {
+            type: 'int',
             name: 'SourceInformation'
         },
         {
             name: 'Remark'
+        },
+        {
+            type: 'boolean',
+            name: 'Approve'
         }
     ],
 

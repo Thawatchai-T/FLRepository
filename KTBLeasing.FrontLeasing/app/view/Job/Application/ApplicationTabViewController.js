@@ -19,15 +19,14 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var store = dataview.getStore(),
-            Id = record.get('Id');
+            Id = record.get('Id'),
+            me = this;
 
         sessionStorage.setItem('AppDetail', Ext.encode(record.data));
 
         var popup = Ext.create('widget.jobapplicationapplicationdetail', {
             listeners: {
                 beforerender: function (panel, eOpts) {
-                    var me = TabUserInformation.view.Job.Application.ApplicationTabViewController;
-
                     //-- Load Form Parent --//
                     Ext.getCmp('jobappapplication').loadRecord(record);
 
@@ -44,6 +43,8 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
                     me.onLoadForm(Ext.getCmp('jobappmethodpayment'), 'MethodPayment', Id);
                     me.onLoadForm(Ext.getCmp('jobapptermcondition'), 'TermCondition', Id);
                     //me.onLoadForm(Ext.getCmp('jobappcollectionschedule'), 'CollectionSchedule', Id);
+
+                    me.onLoadStore(Ext.getCmp('jobappseller').down('grid').getStore(), 'Seller', Id);
                 },
                 close: function (panel, eOpts) {
                     store.reload();
@@ -59,26 +60,35 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
         popup.show();
     },
 
-    statics: {
-        onLoadForm: function (form, name, id) {
-            var modelName = 'TabUserInformation.model.' + name;
+    onLoadForm: function (form, name, id) {
+        var modelName = 'TabUserInformation.model.' + name;
 
-            form.load({
-                url: 'api/ApplicationDetail',
-                method: 'GET',
-                params: {
-                    id: id,
-                    name: name
-                },
-                success: function (form, action) {
-                    var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
-                    form.loadRecord(recordCommission);
-                },
-                failure: function (form, action) {
-                    var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
-                    form.loadRecord(recordCommission);
-                }
-            });
-        }
+        form.load({
+            url: 'api/ApplicationDetail',
+            method: 'GET',
+            params: {
+                id: id,
+                name: name
+            },
+            success: function (form, action) {
+                var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
+                form.loadRecord(recordCommission);
+            },
+            failure: function (form, action) {
+                var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
+                form.loadRecord(recordCommission);
+            }
+        });
+    },
+
+    onLoadStore: function (store, name, id) {
+        store.on({
+            beforeload: function (store, operation, eOpts) {
+                store.getProxy().extraParams.id = id;
+                store.getProxy().extraParams.name = name;
+            }
+        });
+
+        store.load();
     }
 });

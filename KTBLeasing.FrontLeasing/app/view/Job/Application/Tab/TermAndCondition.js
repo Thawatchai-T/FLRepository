@@ -585,6 +585,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'First Due Date',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -592,6 +593,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Last Due Date',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -599,6 +601,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'R.V.Due Date (ACCT)',
                     labelAlign: 'right',
                     labelWidth: 150,
@@ -687,6 +690,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'R.V.Due Date(Original)',
                     labelAlign: 'right',
                     labelWidth: 150,

@@ -52,14 +52,15 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentTab', {
             ],
             columns: [
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'datecolumn',
                     dataIndex: 'Year',
-                    text: 'Year'
+                    text: 'Year',
+                    format: 'Y'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name',
-                    text: 'Name',
+                    dataIndex: 'IndicationId',
+                    text: 'Indication Id',
                     flex: -1
                 }
             ],

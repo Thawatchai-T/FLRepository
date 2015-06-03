@@ -15,10 +15,12 @@
 
 Ext.define('TabUserInformation.store.indicationForEquipments', {
     extend: 'Ext.data.Store',
+    alias: 'store.indicationforequipment',
 
     requires: [
         'TabUserInformation.model.IndicationForEquipment',
-        'Ext.data.proxy.Memory'
+        'Ext.data.proxy.Memory',
+        'Ext.util.Grouper'
     ],
 
     constructor: function(cfg) {
@@ -29,128 +31,30 @@ Ext.define('TabUserInformation.store.indicationForEquipments', {
             storeId: 'indicationForEquipments',
             model: 'TabUserInformation.model.IndicationForEquipment',
             autoLoad: true,
-//            data: [
-//                {
-//                    IndicationId: 'aliquam',
-//                    IndicationDate: 'quibusdam',
-//                    JobId: 'eos',
-//                    InformationId: 'ipsa',
-//                    RequestType: 'reiciendis',
-//                    ScheduleNo: 'nulla',
-//                    LeaseType: 'earum',
-//                    CustomerId: 'deleniti',
-//                    ContactPerson: 'velit',
-//                    CustomerFax: 'at',
-//                    ThirdPartyId: 'qui',
-//                    ThirdPartyContactPerson: 'eum',
-//                    ThirdPartyContactPersonFax: 'et',
-//                    MarketingOfficer: 'quis',
-//                    Currency: 'exercitationem',
-//                    ExchangeRate: 'amet',
-//                    Id: 'numquam',
-//                    Name: 'iure',
-//                    Code: 'dolores',
-//                    Year: 'qui'
-//                },
-//                {
-//                    IndicationId: 'hic',
-//                    IndicationDate: 'ullam',
-//                    JobId: 'explicabo',
-//                    InformationId: 'rerum',
-//                    RequestType: 'quos',
-//                    ScheduleNo: 'qui',
-//                    LeaseType: 'qui',
-//                    CustomerId: 'sed',
-//                    ContactPerson: 'architecto',
-//                    CustomerFax: 'vel',
-//                    ThirdPartyId: 'voluptatum',
-//                    ThirdPartyContactPerson: 'voluptatum',
-//                    ThirdPartyContactPersonFax: 'ad',
-//                    MarketingOfficer: 'esse',
-//                    Currency: 'vel',
-//                    ExchangeRate: 'molestiae',
-//                    Id: 'id',
-//                    Name: 'unde',
-//                    Code: 'sed',
-//                    Year: 'voluptas'
-//                },
-//                {
-//                    IndicationId: 'rerum',
-//                    IndicationDate: 'assumenda',
-//                    JobId: 'dignissimos',
-//                    InformationId: 'nesciunt',
-//                    RequestType: 'ipsa',
-//                    ScheduleNo: 'ea',
-//                    LeaseType: 'repellat',
-//                    CustomerId: 'dolorem',
-//                    ContactPerson: 'eaque',
-//                    CustomerFax: 'occaecati',
-//                    ThirdPartyId: 'non',
-//                    ThirdPartyContactPerson: 'quis',
-//                    ThirdPartyContactPersonFax: 'in',
-//                    MarketingOfficer: 'suscipit',
-//                    Currency: 'eligendi',
-//                    ExchangeRate: 'qui',
-//                    Id: 'accusamus',
-//                    Name: 'nesciunt',
-//                    Code: 'tempora',
-//                    Year: 'est'
-//                },
-//                {
-//                    IndicationId: 'reprehenderit',
-//                    IndicationDate: 'necessitatibus',
-//                    JobId: 'dolorem',
-//                    InformationId: 'quia',
-//                    RequestType: 'et',
-//                    ScheduleNo: 'numquam',
-//                    LeaseType: 'aut',
-//                    CustomerId: 'alias',
-//                    ContactPerson: 'voluptatibus',
-//                    CustomerFax: 'ut',
-//                    ThirdPartyId: 'autem',
-//                    ThirdPartyContactPerson: 'et',
-//                    ThirdPartyContactPersonFax: 'explicabo',
-//                    MarketingOfficer: 'hic',
-//                    Currency: 'et',
-//                    ExchangeRate: 'repellendus',
-//                    Id: 'ex',
-//                    Name: 'aperiam',
-//                    Code: 'magnam',
-//                    Year: 'et'
-//                },
-//                {
-//                    IndicationId: 'animi',
-//                    IndicationDate: 'voluptatem',
-//                    JobId: 'dignissimos',
-//                    InformationId: 'doloribus',
-//                    RequestType: 'molestiae',
-//                    ScheduleNo: 'non',
-//                    LeaseType: 'aut',
-//                    CustomerId: 'quisquam',
-//                    ContactPerson: 'numquam',
-//                    CustomerFax: 'praesentium',
-//                    ThirdPartyId: 'aliquam',
-//                    ThirdPartyContactPerson: 'voluptates',
-//                    ThirdPartyContactPersonFax: 'omnis',
-//                    MarketingOfficer: 'ipsam',
-//                    Currency: 'eum',
-//                    ExchangeRate: 'ex',
-//                    Id: 'sit',
-//                    Name: 'iure',
-//                    Code: 'culpa',
-//                    Year: 'et'
-//                }
-//            ],
-//            proxy: {
-//                type: 'memory'
-//            }
             proxy: {
                 type: 'rest',
                 url: 'api/indicationequipment',
                 reader: {
                     type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/indicationequipment/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
+//            grouper: {
+//                groupFn: function(item) {
+//                    return Ext.Date.format(item.get('CreateDate'),'Y');
+//                },
+//                property: 'Year'
+//            }
         }, cfg)]);
     }
 });

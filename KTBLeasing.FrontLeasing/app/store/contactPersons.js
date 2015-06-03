@@ -28,14 +28,25 @@ Ext.define('TabUserInformation.store.contactPersons', {
         me.callParent([Ext.apply({
             storeId: 'contactPersons',
             model: 'TabUserInformation.model.ContactPerson',
-//            autoLoad: true,
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/contact',
                 reader: {
                         type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/contact/Post'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

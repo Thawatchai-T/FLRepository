@@ -73,13 +73,21 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
         //if (data != null) {
         Ext.create('widget.restructurearcard', {
             listeners: {
-                beforerender: function (panel, event) {
+                beforerender: function (panel, eOpts) {
                     var form = panel.down('form').getForm();
 
                     form.loadRecord(record);
                     form.findField('NewFirstDueDate').setValue(record.get('RestructureDate'));
                     form.findField('SEQ').setValue(SEQ);
-                }
+                },
+                //afterrender: function (panel, eOpts) {
+                //    //Ext.getCmp('arcard-form1').getForm().findField('NewFlatRate').focus();
+                //    var field = panel.down('#arcard-form1').getForm().findField('NewFlatRate'); //.focus();
+
+                //    //field.focus();
+                //    field.hasFocus = true;
+                //    console.log(field);
+                //}
             }
         }).show();
         //}
@@ -110,5 +118,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                 }
             }
         }).show();
+    },
+
+    onAfterRender: function (component, eOpts) {
+        component.down('form').getForm().findField('Agreement').focus();
     }
 });

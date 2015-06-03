@@ -41,6 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdviceView
                     create: 'api/ApplicationDetail/Post'
                 }
             },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }],
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }

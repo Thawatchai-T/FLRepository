@@ -76,6 +76,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     valueField: 'AgrCode',
                     store: 'agreements',
                     listeners: {
+                        //afterrender: 'onComboboxAfterRender',
                         select: 'onComboboxSelect'
                     }
                 },
@@ -89,6 +90,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     fieldLabel: 'Restructure Date',
                     name: 'RestructureDate',
                     format: 'd/m/Y',
+                    altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
                     bind: {
                         value: '{today}',
                         maxValue: '{maxDate}',
@@ -138,7 +140,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     format: 'd/m/Y'
                 },
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'numbercolumn',
                     dataIndex: 'EffectiveRate',
                     text: 'EffectiveRate'
                 }
@@ -154,6 +156,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                 }
             ],
         }
-    ]
+    ],
+    listeners: {
+        afterrender: 'onAfterRender'
+    }
+
 
 });

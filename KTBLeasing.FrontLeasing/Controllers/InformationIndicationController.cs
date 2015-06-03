@@ -5,15 +5,25 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class InformationIndicationController : ApiController
     {
+        private IInformationIndicationRepository InformationIndicationRepository { get; set; }
         // GET api/contact
-        public IEnumerable<InformationIndicationModel> Get()
+        public List<InformationIndication> Get(int page, int start, int limit)
         {
-            return new InformationIndicationModel().Dummy();
+            //return new InformationIndicationModel().Dummy();
+
+            return InformationIndicationRepository.GetAll();
+        }
+
+        public List<Background> GetBackground(long infoId)
+        {
+            return InformationIndicationRepository.GetBackground(infoId);
         }
 
         // GET api/contact/5
@@ -23,13 +33,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/contact
-        public void Post([FromBody]string value)
+        public void Post(InformationIndication entity)
         {
+            InformationIndicationRepository.Insert<InformationIndication>(entity);
         }
 
         // PUT api/contact/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, InformationIndication entity)
         {
+            InformationIndicationRepository.Update<InformationIndication>(entity);
         }
 
         // DELETE api/contact/5

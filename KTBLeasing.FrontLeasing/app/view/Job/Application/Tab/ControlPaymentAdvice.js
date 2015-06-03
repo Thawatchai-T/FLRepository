@@ -102,11 +102,13 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
                     }
                 },
                 {
-                    xtype: 'gridcolumn',
+                    xtype: 'datecolumn',
+                    format: 'd/m/Y',
                     dataIndex: 'ChequeDate',
                     text: 'ChequeDate',
                     editor: {
-                        xtype: 'datefield'
+                        xtype: 'datefield',
+                        format: 'd/m/Y'
                     }
                 }
             ],
@@ -151,6 +153,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
                 },
                 {
                     xtype: 'datefield',
+                    format: 'd/m/Y',
                     fieldLabel: 'Cheque Date',
                     labelAlign: 'right',
                     labelWidth: 150,

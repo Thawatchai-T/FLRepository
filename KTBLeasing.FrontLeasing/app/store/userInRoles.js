@@ -33,7 +33,7 @@ Ext.define('TabUserInformation.store.userInRoles', {
         me.callParent([Ext.apply({
             storeId: 'userInRoles',
             model: 'TabUserInformation.model.UserInRole',
-            autoLoad: true,
+            //autoLoad: true,
             pageSize: 16,
             proxy: {
                 type: 'rest',

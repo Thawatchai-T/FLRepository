@@ -25,6 +25,7 @@ Ext.define('TabUserInformation.view.Role.RoleTabViewModel', {
     stores: {
         roles: {
             pageSize: 10,
+            autoLoad: false,
             model: 'TabUserInformation.model.Roles',
             proxy: {
                 type: 'rest',

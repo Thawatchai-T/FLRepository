@@ -46,11 +46,13 @@ Ext.define('TabUserInformation.model.InsuranceEquipment', {
         },
         {
             type: 'date',
-            name: 'StartDate'
+            name: 'StartDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'EndDate'
+            name: 'EndDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'float',
@@ -104,11 +106,13 @@ Ext.define('TabUserInformation.model.InsuranceEquipment', {
         },
         {
             type: 'date',
-            name: 'ReceivedDate'
+            name: 'ReceivedDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'PayDate'
+            name: 'PayDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'Remark'

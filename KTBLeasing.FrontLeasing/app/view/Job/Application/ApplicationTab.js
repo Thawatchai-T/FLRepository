@@ -54,7 +54,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Year',
-                    text: 'Year'
+                    text: 'Year',
                 },
                 {
                     xtype: 'gridcolumn',

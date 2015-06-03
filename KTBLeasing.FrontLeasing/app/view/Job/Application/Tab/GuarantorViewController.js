@@ -17,12 +17,12 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobapplicationtabguarantor',
 
-    onButtonAddtionSalePriceClick: function(button, e, eOpts) {
+    onButtonAddtionSalePriceClick: function (button, e, eOpts) {
         var popup = Ext.create('widget.jobapplicationwindowadditionsaleprice');
         popup.show();
     },
 
-    onButtonSigner1Click: function(button, e, eOpts) {
+    onButtonSigner1Click: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -30,9 +30,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
-                        var name = record2.get('TitleNameEn')+' '+
-//                        record2.get('FirstNameEn')+' '+
+                    if (record2) {
+                        var name = record2.get('TitleNameEn') + ' ' +
+                        //                        record2.get('FirstNameEn')+' '+
                         record2.get('NameEn');
 
                         form.findField('Signer1EquipmentSales').setValue(name);
@@ -43,7 +43,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonSigner2Click: function(button, e, eOpts) {
+    onButtonSigner2Click: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -51,9 +51,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
-                        var name = record2.get('TitleNameEn')+' '+
-//                        record2.get('FirstNameEn')+' '+
+                    if (record2) {
+                        var name = record2.get('TitleNameEn') + ' ' +
+                        //                        record2.get('FirstNameEn')+' '+
                         record2.get('NameEn');
 
                         form.findField('Signer2EquipmentSales').setValue(name);
@@ -64,7 +64,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonWithnessClick: function(button, e, eOpts) {
+    onButtonWithnessClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -72,9 +72,9 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
-                        var name = record2.get('TitleNameEn')+' '+
-//                        record2.get('FirstNameEn')+' '+
+                    if (record2) {
+                        var name = record2.get('TitleNameEn') + ' ' +
+                        //                        record2.get('FirstNameEn')+' '+
                         record2.get('NameEn');
 
                         form.findField('WithnessEquipmentSales').setValue(name);
@@ -85,7 +85,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonAddressEqpClick: function(button, e, eOpts) {
+    onButtonAddressEqpClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -96,7 +96,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
                 },
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('AddressEquipmentSales').setValue(record2.get('AddressEng1'));
                     }
                 }
@@ -105,23 +105,29 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onGridpanelSelectionChange: function(model, selected, eOpts) {
-        if(selected[0]){
+    onGridpanelSelectionChange: function (model, selected, eOpts) {
+        if (selected[0]) {
             this.getView().down('#companyperson').getForm().loadRecord(selected[0]);
         }
     },
+    
+    onGridpanelDeselect: function (model, record, index, eOpts) {
+        var form = this.getView().getForm();
 
-    onCheckboxfieldChange: function(field, newValue, oldValue, eOpts) {
-        if(newValue){
+        form.updateRecord(record);
+    },
+
+    onCheckboxfieldChange: function (field, newValue, oldValue, eOpts) {
+        if (newValue) {
             this.getView().down('#person').hide();
             this.getView().down('#company').show();
-        }else{
+        } else {
             this.getView().down('#company').hide();
             this.getView().down('#person').show();
         }
     },
 
-    onButtonNameClick: function(button, e, eOpts) {
+    onButtonNameClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -129,7 +135,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('Name').setValue(record2.get('NameTh'));
                     }
                 }
@@ -138,7 +144,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonAddressClick: function(button, e, eOpts) {
+    onButtonAddressClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -146,7 +152,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('Address').setValue(record2.get('AddressTh1'));
                     }
                 }
@@ -155,7 +161,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonSigner1CompanyClick: function(button, e, eOpts) {
+    onButtonSigner1CompanyClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -163,8 +169,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
-                        var name = record2.get('TitleNameTh')+' '+
+                    if (record2) {
+                        var name = record2.get('TitleNameTh') + ' ' +
                         record2.get('NameTh');
 
                         form.findField('Signer1').setValue(name);
@@ -175,7 +181,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonSigner2CompanyClick: function(button, e, eOpts) {
+    onButtonSigner2CompanyClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.getForm();
 
@@ -183,8 +189,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
-                        var name = record2.get('TitleNameTh')+' '+
+                    if (record2) {
+                        var name = record2.get('TitleNameTh') + ' ' +
                         record2.get('NameTh');
 
                         form.findField('Signer2').setValue(name);
@@ -195,7 +201,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonPersonClick: function(button, e, eOpts) {
+    onButtonPersonClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.down('#companyperson').getForm();
 
@@ -203,7 +209,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
             listeners: {
                 close: function (panel, eOpts) {
                     var record2 = panel.down('gridpanel').getSelection()[0];
-                    if(record2){
+                    if (record2) {
                         form.findField('Person1').setValue(record2.get('CustomerThaiName'));
                         form.findField('Position').setValue(record2.get('Position1'));
                         form.findField('AddressPerson').setValue(record2.get('Address1'));
@@ -214,17 +220,21 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.GuarantorViewController'
         popup.show();
     },
 
-    onButtonAddClick: function(button, e, eOpts) {
+    onButtonAddClick: function (button, e, eOpts) {
+        var grid = this.getView().down('grid');
+        store = grid.getStore();
+
+        store.add({});
+    },
+
+    onButtonInsertClick: function (button, e, eOpts) {
 
     },
 
-    onButtonInsertClick: function(button, e, eOpts) {
+    onButtonDeleteClick: function (button, e, eOpts) {
 
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
-
-    },
 
     onStoreBeforeLoad: function (store, operation, eOpts) {
         var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;

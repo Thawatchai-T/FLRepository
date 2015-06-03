@@ -5,15 +5,22 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using KTBLeasing.FrontLeasing.Models;
+using KTBLeasing.FrontLeasing.Domain;
+using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using log4net;
+using System.Reflection;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class ThirdPartyController : ApiController
     {
+        private IThirdPartyRepository ThirdPartyRepository { get; set; }
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
+
         // GET api/contact
-        public IEnumerable<ThirdPartyModel> Get()
+        public List<ThirdParty> Get()
         {
-            return new ThirdPartyModel().Dummy();
+            return ThirdPartyRepository.GetAll();
         }
 
         // GET api/contact/5
