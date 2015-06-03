@@ -56,6 +56,12 @@
     <Compile Include="AnnualTax.cs" />
     <Compile Include="Approval.cs" />
     <Compile Include="BG.cs" />
+    <Compile Include="Background.cs" />
+    <Compile Include="Equipment.cs" />
+    <Compile Include="Lead.cs" />
+    <Compile Include="InformationIndication.cs" />
+    <Compile Include="IndicationEquipment.cs" />
+    <Compile Include="ThirdParty.cs" />
     <Compile Include="Installment.cs" />
     <Compile Include="Restructure.cs" />
     <Compile Include="TermCondition.cs" />

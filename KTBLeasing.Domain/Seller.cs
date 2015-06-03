@@ -15,6 +15,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
 
         public virtual long Id { get; set; }
         public virtual long AppId { get; set; }
+        public virtual string SellerId { get; set; }
         public virtual string SellerName { get; set; }
         public virtual string Address { get; set; }
         public virtual string Signer1 { get; set; }

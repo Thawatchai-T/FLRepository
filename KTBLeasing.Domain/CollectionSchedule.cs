@@ -15,7 +15,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
 
         public virtual long Id { get; set; }
         public virtual long AppId { get; set; }
-        public virtual string CollectionDate { get; set; }
+        public virtual DateTime? CollectionDate { get; set; }
         public virtual string Collection { get; set; }
         public virtual decimal Principal { get; set; }
         public virtual decimal Receivable { get; set; } 
