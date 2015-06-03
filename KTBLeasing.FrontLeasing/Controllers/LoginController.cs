@@ -48,6 +48,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //add by pom use login
         public HttpResponseMessage DoLogin(Models.User formData)
         {
+            Logger.Error("fuck");
             _UserViewModel = (_UserViewModel == null) ? new UserModel() : _UserViewModel;
             //[20141222] thawatchai.t change to model 
             this._User.UserName = formData.UserName;
