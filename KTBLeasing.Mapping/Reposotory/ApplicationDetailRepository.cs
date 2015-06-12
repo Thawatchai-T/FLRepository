@@ -26,7 +26,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         void Update(ApplicationDetailViewModel entity);
         //void Update(ApplicationDetail entity);
         void Update<T>(T entity);
-        List<T> GetAll<T>(int start, int limit, long id,T entity);
+        List<T> GetAll<T>(int start, int limit, long id, T entity);
         List<T> GetAll<T>(int start, int limit, long id, T entity, string Parent);
     }
 
@@ -102,12 +102,22 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
         public List<ApplicationDetail> GetAll()
         {
-            using (var session = SessionFactory.OpenSession())
+            try
             {
-                var list = session.QueryOver<ApplicationDetail>().List<ApplicationDetail>() as List<ApplicationDetail>;
-                return list;
+                using (var session = SessionFactory.OpenSession())
+                {
+                    var list = session.QueryOver<ApplicationDetail>()
+                        .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .List<ApplicationDetail>() as List<ApplicationDetail>;
+                    return list;
 
-                //return this.ExecuteICriteria<ApplicationDetail>() as List<ApplicationDetail>;
+                    //return this.ExecuteICriteria<ApplicationDetail>() as List<ApplicationDetail>;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
             }
         }
 
@@ -121,7 +131,20 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
          * 
          */
 
-        public List<T> GetAll<T>(int start, int limit, long id,T entity)
+        //public List<T> GetAll<T>(int start, int limit, long id, T entity)
+        //{
+        //    string Alias = typeof(T).Name;
+        //    string AliasJoin = string.Format("{0}.ApplicationDetail", Alias);
+        //    using (var session = SessionFactory.OpenSession())
+        //    {
+        //        var criteria = session.CreateCriteria(typeof(T), Alias);
+        //        criteria.CreateAlias(AliasJoin, "ApplicationDetail");
+        //        criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
+        //        return criteria.List<T>() as List<T>;
+        //    }
+        //}
+
+        public List<T> GetAll<T>(int start, int limit, long id, T entity)
         {
             string Alias = typeof(T).Name;
             string AliasJoin = string.Format("{0}.ApplicationDetail", Alias);
@@ -129,6 +152,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
+                criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
+                criteria.CreateAlias("ApplicationDetail.InformationIndication", "InformationIndication");
+                criteria.CreateAlias("IndicationEquipment.InformationIndication", "c");
                 criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
                 return criteria.List<T>() as List<T>;
             }
@@ -146,6 +172,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
+                criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
+                criteria.CreateAlias("ApplicationDetail.InformationIndication", "InformationIndication");
+                criteria.CreateAlias("IndicationEquipment.InformationIndication", "c");
                 criteria.CreateAlias(AliasJoin2, Parent);
                 criteria.Add(Restrictions.Eq(Parent + ".Id", id));
                 return criteria.List<T>() as List<T>;

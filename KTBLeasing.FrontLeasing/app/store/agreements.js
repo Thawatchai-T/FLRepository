@@ -35,7 +35,11 @@ Ext.define('TabUserInformation.store.agreements', {
                 reader: {
                     type: 'json'
                 }
-            }
+            },
+            sorters: [{
+                property: 'AgrCode',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

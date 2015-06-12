@@ -163,11 +163,12 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         var view = this.getView(),
             form = this.getView().down('form').getForm(),
             store = this.getStore('installments'),
-            storeRestructure = Ext.create('store.restructureLists');
+            storeRestructure = Ext.create('store.restructureLists'),
+            me = this;
 
-        var record = Ext.create('model.restructurelist');
+        var records = Ext.create('model.restructurelist');
 
-        form.updateRecord(record);
+        form.updateRecord(records);
 
         Ext.MessageBox.confirm('Confirm', 'Confirm Save?',
             function (msg) {
@@ -181,24 +182,58 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     closable: false,
                 });
 
-                store.sync({
-                    success: function (batch, options) {
-                        Ext.Ajax.request({
-                            method: 'post',
-                            url: 'api/Restructure/Post',
-                            //params: obj,
-                            params: record.data,
-                            success: function (response) {
-                                Ext.MessageBox.hide();
-                                Ext.MessageBox.alert("Result", "Successful.");
-                                view.close();
-                            },
-                            failure: function (response) {
-                                Ext.MessageBox.hide();
-                                Ext.MessageBox.alert("Error", response.responseText);
+//                store.sync({
+//                    success: function (batch, options) {
+//                    console.log(batch);
+//                        Ext.Ajax.request({
+//                            method: 'post',
+//                            url: 'api/Restructure/Post',
+//                            //params: obj,
+//                            params: records.data,
+//                            success: function (response) {
+//                                Ext.MessageBox.hide();
+//                                Ext.MessageBox.alert("Result", "Successful.");
+//                                view.close();
+//                            },
+//                            failure: function (response) {
+//                                Ext.MessageBox.hide();
+//                                Ext.MessageBox.alert("Error", response.responseText);
+//                            }
+//                        });
+//                    }
+//                });
+
+                store.data.each(function (record, index) {
+                    var i = index + 1;
+                    Ext.Ajax.request({
+                        method: 'post',
+                        url: 'api/Installment/Post',
+                        params: record.data,
+                        success: function (response) {
+                            me.fn(i,store.data.length);
+
+                            if(i === store.data.length){
+                                Ext.Ajax.request({
+                                    method: 'post',
+                                    url: 'api/Restructure/Post',
+                                    params: records.data,
+                                    success: function (response) {
+                                        Ext.MessageBox.hide();
+                                        Ext.MessageBox.alert("Result", "Successful.");
+                                        form.findField('Save').setValue('Y');
+                                        view.close();
+                                    },
+                                    failure: function (response) {
+                                        Ext.MessageBox.hide();
+                                        Ext.MessageBox.alert("Error", response.responseText);
+                                    }
+                                });
                             }
-                        });
-                    }
+                        },
+                        failure: function (response) {
+                            
+                        }
+                    });
                 });
             }
         }, this);
@@ -245,7 +280,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
 
         var checkNew = form.findField('flag').getValue();
 
-
+        var OSPR = null;
 
         if (checkNew == 'new') {
             store.removeAll();
@@ -253,24 +288,38 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             if (store.data.length === 0) {
                 for (i = 0; i <= NewTerm; i++) {
                     var record = null,
-                            date = new Date();
+                        date = new Date(),
+                        VAT,C1,C3,C4,OS_PR;
 
                     if (i > 0) {
                         if (dataInstallment != null) {
-                            var C1 = dataInstallment[i];
+                             C1 = dataInstallment[i];
                         } else {
-                            var C1 = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(NewFlatRate, NewTerm, recordRestructures.get('OS_PR'));
+                             C1 = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(NewFlatRate, NewTerm, recordRestructures.get(OSPR));
                         }
 
-                        var VAT = this.VAT(C1),
-                        C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate),
-                        C4 = this.C4(C1, C3),
+                        VAT = this.VAT(C1);
+                        C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate);
+                        C4 = this.C4(C1, C3);
+                        OS_PR = this.CalOSPR(store.findRecord('InstallNo', i - 1).get('OS_PR'), C4);
+                    }
+
+                    if(i == NewTerm && OS_PR != 0.00){
+                        C1 = Ext.util.Format.round(C1 + OS_PR, 2);
+                        VAT = this.VAT(C1);
+                        C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate);
+                        C4 = this.C4(C1, C3);
                         OS_PR = this.CalOSPR(store.findRecord('InstallNo', i - 1).get('OS_PR'), C4);
                     }
 
                     switch (i) {
                         case 0:
-                            var OS_PR = recordRestructures.get('OS_PR');
+                            if(form.findField('NewCheck').getValue() == 'true'){
+                                OSPR = 'New_OS_PR';
+                            }else{
+                                OSPR = 'OS_PR';
+                            }
+                            OS_PR = recordRestructures.get(OSPR);
                             date = recordRestructures.get('RestructureDate');
                             break;
                         case 1:
@@ -285,7 +334,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     }
 
                     record = Ext.create('model.installment', {
-                        //Id: 0,
                         Agreement: recordRestructures.get('Agreement'),
                         SEQ: form.findField('SEQ').getValue(),
                         InstallNo: i,
@@ -303,21 +351,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     if (i === NewTerm) {
                         Ext.MessageBox.hide();
                     }
-
-//                    var f = function (v) {
-//                        return function () {
-//                            if (v == 12) {
-//                                Ext.MessageBox.hide();
-//                                Ext.example.msg('Done', 'Your fake items were loaded!');
-//                            } else {
-//                                var i = v / 11;
-//                                Ext.MessageBox.updateProgress(i, Math.round(100 * i) + '% completed');
-//                            }
-//                        };
-//                    };
-//                    for (var i = 1; i < 13; i++) {
-//                        setTimeout(f(i), i * 500);
-//                    }
                 }
             }
         }else{
@@ -349,14 +382,13 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         });
     },
 
-    fn: function (i, NewTerm) {
-        console.log(NewTerm);
-        if (i === NewTerm) {
+    fn: function (i, length) {
+        if (i === length) {
             Ext.MessageBox.hide();
         } else {
-            var val = i / (NewTerm + 1);
+            var val = i / (length - 1);
             Ext.MessageBox.updateProgress(val, Math.round(100 * val) + '% completed');
-            setTimeout(this.fn(i, NewTerm), 500);
+            //setTimeout(this.fn(i, length), 100);
         }
     }
 });

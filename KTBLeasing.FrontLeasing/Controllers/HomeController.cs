@@ -14,7 +14,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //
         // GET: /Home/
 
-        public ActionResult Index()
+        public ActionResult Index(string page)
         {
             //if (Request.Cookies[FormsAuthentication.FormsCookieName] != null)
             //{
@@ -26,7 +26,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //    }
             //}
             //FormsAuthentication.SignOut();
-
+            ViewBag.page = page;
 
             return View();
         }
@@ -60,21 +60,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        [HttpPost]
-        public string DoPost(string data)
+        public ActionResult Restructure()
         {
-            try
-            {
-                //ApplicationDetailRepository.Update(entity);
-                //ApplicationDetailRepository.Insert(entity);
-                //ApplicationDetailViewModel datform = JsonConvert.DeserializeObject<ApplicationDetailViewModel>(data);
-                var a = 1;
-            }
-            catch (Exception e)
-            {
-                //Logger.Error(e);
-            }
-            return "string";
+            return RedirectToAction("Index", "Home", new { page = "Restructure" });
         }
     }
 }

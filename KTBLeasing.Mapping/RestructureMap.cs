@@ -20,7 +20,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.RestructureDate).Column("RESTRUCTURE_DATE").CustomSqlType("date");
             Map(x => x.Customer).Column("CUSTOMER").Length(100);
             Map(x => x.OS_PR).Column("OS_PR");
+            Map(x => x.New_OS_PR).Column("NEW_OS_PR");
             Map(x => x.FlatRate).Column("FLAT_RATE");
+            Map(x => x.Day).Column("DAY");
             Map(x => x.Interest).Column("INTEREST");
             Map(x => x.UnpaidVAT).Column("UNPAID_VAT");
             Map(x => x.Penalty).Column("PENALTY");

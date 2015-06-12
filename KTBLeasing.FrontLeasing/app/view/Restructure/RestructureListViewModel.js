@@ -34,6 +34,32 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewModel', {
         }
     },
     stores: {
+        restructureLists: {
+            model: 'TabUserInformation.model.RestructureList',
+            proxy: {
+                type: 'rest',
+                url: 'api/Restructure',
+                reader: {
+                    type: 'json',
+                    //rootProperty: 'data',
+                    totalProperty: 'total'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/Restructure/Post'
+                }
+            }, 
+            sorters: [{
+                property: 'SEQ',
+                direction: 'ASC'
+            }],
+            listeners: {
+                beforeload: 'onStoreBeforeLoad'
+            }
+        },
         restructures: {
             source: 'restructures'
         }

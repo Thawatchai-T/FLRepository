@@ -122,5 +122,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
 
     onAfterRender: function (component, eOpts) {
         component.down('form').getForm().findField('Agreement').focus();
+    },
+
+    onStoreBeforeLoad: function(store, operation, eOpts) {
     }
 });

@@ -102,12 +102,41 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                     },
                     items: [
                         {
-                            xtype: 'displayfield',
-                            fieldLabel: 'เงินต้นคงเหลือ',
-                            name: 'OS_PR',
-                            renderer: function(value, displayField) {
-                                return Ext.util.Format.number(value, '0,000.00');
-                            }
+                            xtype: 'container',
+                            margin: '0 5 5 120',
+                            layout: {
+                                type: 'hbox',
+                                align: 'stretch'
+                            },
+                            items: [
+                                {
+                                    xtype: 'displayfield',
+                                    fieldLabel: 'เงินต้นคงเหลือ',
+                                    labelWidth: 'right',
+                                    //width: 200,
+                                    name: 'OS_PR',
+                                    renderer: function(value, displayField) {
+                                        return Ext.util.Format.number(value, '0,000.00');
+                                    }
+                                },
+                                {
+                                    xtype: 'checkboxfield',
+                                    reference: 'NewCheck',
+                                    margin: '0 5 5 20',
+                                    name: 'NewCheck',
+                                    boxLabel: 'New'
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    flex: 1,
+                                    fieldLabel: ' ',
+                                    labelWidth: 5,
+                                    name: 'New_OS_PR',
+                                    bind: {
+                                        disabled: '{!NewCheck.checked}'
+                                    }
+                                }
+                            ]
                         },
                         {
                             xtype: 'displayfield',

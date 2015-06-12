@@ -11,20 +11,22 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IRestructureRepository
     {
-        List<Restructure> Get(string agrcode);
+        List<Restructure> Get(int start, int limit, string agrcode);
         Restructure GetRestructure(string agrcode, int SEQ);
         void Insert(Restructure entity);
         void Update(Restructure entity);
         void SaveOrUpdate(Restructure entity);
+        int Count(string agrcode);
     }
     public class RestructureRepository : NhRepository, IRestructureRepository
     {
-        public List<Restructure> Get(string agrcode)
+        public List<Restructure> Get(int start, int limit, string agrcode)
         {
             using (var session = SessionFactory.OpenSession())
             {
                 return session.QueryOver<Restructure>()
                     .Where(x => x.Agreement == agrcode)
+                    //.Skip(start).Take(limit)
                     .List<Restructure>()
                     
                     as List<Restructure>;
@@ -63,6 +65,18 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             using (var session = SessionFactory.OpenSession())
             {
                 base.SaveOrUpdate<Restructure>(entity);
+            }
+        }
+
+        public int Count(string agrcode)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                var result = session.QueryOver<Restructure>()
+                    .Where(x => x.Agreement == agrcode)
+                    .RowCount();
+                session.Close();
+                return result;
             }
         }
     }

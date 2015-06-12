@@ -18,6 +18,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual DateTime? RestructureDate { get; set; }
         public virtual string Customer { get; set; }
         public virtual decimal OS_PR { get; set; }
+        public virtual decimal New_OS_PR { get; set; }
         public virtual decimal FlatRate { get; set; }
         public virtual int Day { get; set; }
         public virtual decimal Interest { get; set; }

@@ -20,27 +20,36 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
     onCalculateInstallment: function (button, e, eOpts) {
         var view = this.getView(),
             form = this.getView().down('form').getForm(),
-            SEQ = form.findField('SEQ').getValue();
+            SEQ = form.findField('SEQ').getValue(),
+            NewCheck = form.findField('NewCheck').getValue();
 
         if (form.isValid()) {
             var headform = Ext.getCmp('head-restructure-form').getForm(),
                 values = form.getValues(),
-                record = Ext.create('model.restructure', values);
+                record = Ext.create('model.restructurelist', values),
+                OSPR = null;
 
             form.updateRecord(record);
+            
+            if(form.findField('NewCheck').checked){
+                OSPR = 'New_OS_PR';
+            }else{
+                OSPR = 'OS_PR';
+            }
 
-            var Installment = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(record.get('NewFlatRate'), record.get('NewTerm'), record.get('OS_PR'));
+            var Installment = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(record.get('NewFlatRate'), record.get('NewTerm'), record.get(OSPR));
             var objArray = [];
 
             var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
                 NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
                 NewTerm = record.get('NewTerm');
 
+
             //กรณี NewFirstDueMonth งวดแรกเป็นเดือนเดียวกับ RestructureMonth
             if (RestructureMonth == NewFirstDueMonth) {
                 for (i = 0; i <= NewTerm - 1; i++) {
                     if (i == 0) {
-                        objArray[i] = (record.get('OS_PR') * -1) + Installment;
+                        objArray[i] = (record.get(OSPR) * -1) + Installment;
                     }
                     else {
                         objArray[i] = Installment;
@@ -51,15 +60,13 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
             else {
                 for (i = 0; i <= NewTerm; i++) {
                     if (i == 0) {
-                        objArray[i] = record.get('OS_PR') * -1;
+                        objArray[i] = record.get(OSPR) * -1;
                     }
                     else {
                         objArray[i] = Installment;
                     }
                 }
             }
-
-
 
             //C5 Calculate EffectiveRate
             Ext.Ajax.request({
@@ -76,11 +83,12 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                 panel.down('form').getForm().findField('SEQ').setValue(SEQ);
                                 sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
                                 sessionStorage.setItem('dataInstallment', null);
+                                panel.down('form').getForm().findField('NewCheck').setValue(NewCheck);
                             },
                             beforeclose: function (panel, eOpts) {
                                 var store = panel.down('grid').getStore();
 
-                                 if (panel.closeMe) {
+                                 if (panel.closeMe || panel.down('form').getForm().findField('Save').getValue() === 'Y') {
                                     panel.closeMe = false;
                                     
                                     return true;
@@ -104,26 +112,63 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                                     closable: false,
                                                 });
 
-                                                store.sync({
-                                                    success: function (batch, options) {
-                                                        Ext.Ajax.request({
-                                                            method: 'post',
-                                                            url: 'api/Restructure/Post',
-                                                            //params: obj,
-                                                            params: record.data,
-                                                            success: function (response) {
+                                                store.data.each(function (record, index) {
+                                                    var i = index + 1;
+                                                    Ext.Ajax.request({
+                                                        method: 'post',
+                                                        url: 'api/Installment/Post',
+                                                        params: record.data,
+                                                        success: function (response) {
+                                                            if (i === store.data.length) {
                                                                 Ext.MessageBox.hide();
-                                                                Ext.MessageBox.alert("Result", "Successful.");
-                                                                panel.closeMe = true;
-                                                                panel.close();
-                                                            },
-                                                            failure: function (response) {
-                                                                Ext.MessageBox.hide();
-                                                                Ext.MessageBox.alert("Error", response.responseText);
+                                                            } else {
+                                                                var val = i / (store.data.length - 1);
+                                                                Ext.MessageBox.updateProgress(val, Math.round(100 * val) + '% completed');
+                                                                //setTimeout(this.fn(i, length), 500);
                                                             }
-                                                        });
+                                                        },
+                                                        failure: function (response) {
+                            
+                                                        }
+                                                    });
+                                                });
+
+                                                Ext.Ajax.request({
+                                                    method: 'post',
+                                                    url: 'api/Restructure/Post',
+                                                    params: record.data,
+                                                    success: function (response) {
+                                                        Ext.MessageBox.hide();
+                                                        Ext.MessageBox.alert("Result", "Successful.");
+                                                        panel.closeMe = true;
+                                                        panel.close();
+                                                    },
+                                                    failure: function (response) {
+                                                        Ext.MessageBox.hide();
+                                                        Ext.MessageBox.alert("Error", response.responseText);
                                                     }
                                                 });
+
+//                                                store.sync({
+//                                                    success: function (batch, options) {
+//                                                        Ext.Ajax.request({
+//                                                            method: 'post',
+//                                                            url: 'api/Restructure/Post',
+//                                                            //params: obj,
+//                                                            params: record.data,
+//                                                            success: function (response) {
+//                                                                Ext.MessageBox.hide();
+//                                                                Ext.MessageBox.alert("Result", "Successful.");
+//                                                                panel.closeMe = true;
+//                                                                panel.close();
+//                                                            },
+//                                                            failure: function (response) {
+//                                                                Ext.MessageBox.hide();
+//                                                                Ext.MessageBox.alert("Error", response.responseText);
+//                                                            }
+//                                                        });
+//                                                    }
+//                                                });
                                             } else if (btn === 'no') {
                                                 panel.closeMe = true;
                                                 panel.close();

@@ -75,6 +75,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'hiddenfield',
+                    name: 'Save',
+                    value: 'N'
+                },
+                {
+                    xtype: 'hiddenfield',
                     fieldLabel: 'ID',
                     name: 'Id'
                 },
@@ -107,7 +112,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'hiddenfield',
+                    name: 'New_OS_PR'
+                },
+                {
+                    xtype: 'hiddenfield',
                     name: 'FlatRate'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Day'
                 },
                 {
                     xtype: 'hiddenfield',
@@ -151,6 +164,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                         change: 'onNumberfieldChange'
                     },
                     allowBlank: false
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'NewCheck'
                 }
             ]
         },

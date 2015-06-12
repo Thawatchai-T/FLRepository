@@ -42,15 +42,15 @@ Ext.define('TabUserInformation.model.RestructureList', {
             dateWriteFormat: 'MS'
         },
         {
-            type: 'float',
-            name: 'EffectiveRate'
-        },
-        {
             name: 'Customer'
         },
         {
             type: 'float',
             name: 'OS_PR'
+        },
+        {
+            type: 'float',
+            name: 'New_OS_PR'
         },
         {
             type: 'float',
@@ -91,6 +91,10 @@ Ext.define('TabUserInformation.model.RestructureList', {
         {
             type: 'int',
             name: 'NewTerm'
+        },
+        {
+            type: 'float',
+            name: 'EffectiveRate'
         }
     ]
 });

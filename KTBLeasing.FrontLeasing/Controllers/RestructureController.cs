@@ -10,6 +10,7 @@ using KTBLeasing.FrontLeasing.Domain;
 using log4net;
 using System.Reflection;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
+using Newtonsoft.Json;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -24,18 +25,16 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/restructure/5
-        public List<Restructure> Get(string agrcode)
+        public List<Restructure> Get(int start, int limit, string agrcode)
         {
-            var result = restructureRepository.Get(agrcode);
+            var result = restructureRepository.Get(start, limit, agrcode);
+
             return (result != null) ? result : new List<Restructure>();
-            //var list = new List<Restructure>();
-            //list.Add(new Restructure
-            //{
-            //    Agreement = "Restructure"
+        }
 
-            //});
-
-            //return list;
+        public int GetCount(string agrcode)
+        {
+            return restructureRepository.Count(agrcode);
         }
 
         // POST api/restructure

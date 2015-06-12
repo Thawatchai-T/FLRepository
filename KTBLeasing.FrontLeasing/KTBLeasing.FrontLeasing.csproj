@@ -47,6 +47,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\Common.Logging.Log4Net.dll</HintPath>
     </Reference>
+    <Reference Include="DocumentFormat.OpenXml, Version=2.5.5631.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\DocumentFormat.OpenXml.2.5\lib\DocumentFormat.OpenXml.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EPPlus">
+      <HintPath>lib\EPPlus.dll</HintPath>
+    </Reference>
     <Reference Include="FluentNHibernate, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>lib\FluentNHibernate.dll</HintPath>
@@ -67,6 +74,9 @@
     <Reference Include="Microsoft.IdentityModel, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.IdentityModel.6.1.7600.16394\lib\net35\Microsoft.IdentityModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=14.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -183,6 +193,7 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Thinktecture.IdentityModel.3.6.1\lib\net40\Thinktecture.IdentityModel.dll</HintPath>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AuthenticationHandler.cs" />
@@ -308,6 +319,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Utility\CreateExcelFile.cs" />
     <Compile Include="Utility\OAuthBase.cs" />
     <Compile Include="Utility\SessionUtility.cs" />
   </ItemGroup>
@@ -464,7 +476,6 @@
     <Content Include="app\store\CommonData\types.js" />
     <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
-    <Content Include="app\store\applicationDetails2.js" />
     <Content Include="app\store\agreements.js" />
     <Content Include="app\store\requestTransactions.js" />
     <Content Include="app\store\restructureLists.js" />
@@ -508,6 +519,9 @@
     <Content Include="app\store\userInTabs.js" />
     <Content Include="app\store\VisitCallingStore.js" />
     <Content Include="app\store\waiveDocuments.js" />
+    <Content Include="app\view\Approve\ApprovalWindow.js" />
+    <Content Include="app\view\Approve\ApprovalWindowViewController.js" />
+    <Content Include="app\view\Approve\ApprovalWindowViewModel.js" />
     <Content Include="app\view\Approve\ApproveQueue.js" />
     <Content Include="app\view\Approve\ApproveQueueViewController.js" />
     <Content Include="app\view\Approve\ApproveQueueViewModel.js" />
@@ -8756,6 +8770,7 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="Views\Report\SSRSReport.cshtml" />
     <None Include="_bin_deployableAssemblies\System.Web.Mvc.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.Http.WebHost.dll" />
     <None Include="_bin_deployableAssemblies\System.Web.Http.SelfHost.dll" />
