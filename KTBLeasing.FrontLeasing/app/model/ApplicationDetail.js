@@ -56,9 +56,6 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
             name: 'PrimaryJob'
         },
         {
-            name: 'IndicationLine'
-        },
-        {
             name: 'Status'
         },
         {
@@ -146,20 +143,6 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
         {
             type: 'float',
             name: 'ExchangeRate'
-        },
-        {
-            type: 'int',
-            name: 'Rating'
-        },
-        {
-            name: 'ExposureLimit'
-        },
-        {
-            name: 'RatingDetail'
-        },
-        {
-            type: 'date',
-            name: 'RatingDate'
         }
     //        ,
     //        {

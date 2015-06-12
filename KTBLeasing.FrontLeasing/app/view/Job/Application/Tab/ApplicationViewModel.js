@@ -20,7 +20,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewModel', {
     requires: [
         'Ext.data.Store',
         'Ext.data.proxy.Rest',
-        'Ext.data.reader.Json'
+        'Ext.data.reader.Json',
+        'Ext.data.ChainedStore'
     ],
 
     stores: {
@@ -48,15 +49,19 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewModel', {
             listeners: {
                 beforeload: 'onStoreBeforeLoad'
             }
+        },
+
+        applicationDetails: {
+            source: 'applicationDetails'
         }
 
-//        sellers: {
-//            model: 'TabUserInformation.model.Seller',
-//            listeners: {
-//                beforeload: 'onStoreSellerBeforeLoad'
-//            }
+        //        sellers: {
+        //            model: 'TabUserInformation.model.Seller',
+        //            listeners: {
+        //                beforeload: 'onStoreSellerBeforeLoad'
+        //            }
 
-//        }
+        //        }
 
     }
 

@@ -28,6 +28,13 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
             listeners: {
                 beforerender: function (panel, eOpts) {
                     //-- Load Form Parent --//
+                    var recordIndication = Ext.create('model.IndicationEquipment', record.data.IndicationEquipment);
+                    var recordInformation = Ext.create('model.informationforindication', record.data.Information);
+
+                    console.log(record);
+
+                    Ext.getCmp('jobappapplication').loadRecord(recordInformation);
+                    Ext.getCmp('jobappapplication').loadRecord(recordIndication);
                     Ext.getCmp('jobappapplication').loadRecord(record);
 
                     //-- Load Form Child --//

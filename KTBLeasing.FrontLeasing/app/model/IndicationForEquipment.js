@@ -15,6 +15,7 @@
 
 Ext.define('TabUserInformation.model.IndicationForEquipment', {
     extend: 'Ext.data.Model',
+    alias: 'model.IndicationEquipment',
 
     requires: [
         'Ext.data.field.Field'
@@ -87,21 +88,6 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
         {
             type: 'float',
             name: 'ExchangeRate'
-        },
-        {
-            type: 'float',
-            name: 'Rating'
-        },
-        {
-            type: 'float',
-            name: 'ExposureLimit'
-        },
-        {
-            name: 'RatingDetail'
-        },
-        {
-            type: 'date',
-            name: 'RatingDate'
         }
     ]
 });

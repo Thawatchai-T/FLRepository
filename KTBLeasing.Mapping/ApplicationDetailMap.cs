@@ -16,13 +16,15 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("JOB_APPLICATION_DETAIL");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
+            References(x => x.IndicationEquipment).Column("INDICATION_ID");
+            References(x => x.InformationIndication).Column("INFORMATION_ID");
             Map(x => x.Code).Column("CODE").Length(10);
             Map(x => x.Year).Column("YEAR");
             Map(x => x.ApplicationId).Column("APPLICATION_ID").Length(100);
             Map(x => x.ApplicationType).Column("APPLICATION_TYPE");
             Map(x => x.ApplicationDate).Column("APPLICATION_DATE").CustomSqlType("date");
             Map(x => x.PrimaryJob).Column("PRIMARY_JOB");
-            Map(x => x.IndicationLine).Column("INDICATION_LINE").Length(50);
+            //Map(x => x.IndicationLine).Column("INDICATION_LINE").Length(50);
             Map(x => x.Status).Column("STATUS");
             Map(x => x.AgreementNo).Column("AGREEMENT_NO").Length(100);
             Map(x => x.IntegralPartNo).Column("INTEGRAL_PART_NO");
@@ -50,10 +52,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.VAT).Column("VAT");
             Map(x => x.Currency).Column("CURRENCY");
             Map(x => x.ExchangeRate).Column("EXCHANGE_RATE");
-            Map(x => x.Rating).Column("RATING");
-            Map(x => x.ExposureLimit).Column("EXPOSURE_LIMIT");
-            Map(x => x.RatingDetail).Column("RATING_DETAIL");
-            Map(x => x.RatingDate).Column("RATING_DATE").CustomSqlType("date");
+            Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
+            Map(x => x.CreateBy).Column("CREATE_BY").Length(32);
+            Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");
+            Map(x => x.UpdateBy).Column("UPDATE_BY").Length(32);
         }
     }
 

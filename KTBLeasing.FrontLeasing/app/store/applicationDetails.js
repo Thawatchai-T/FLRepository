@@ -43,7 +43,11 @@ Ext.define('TabUserInformation.store.applicationDetails', {
                 api: {
                     create: 'api/ApplicationDetail/Post'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

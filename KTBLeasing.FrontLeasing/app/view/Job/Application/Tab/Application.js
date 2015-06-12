@@ -125,7 +125,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
             fieldLabel: 'Indication Line',
             labelAlign: 'right',
             labelWidth: 140,
-            name: 'IndicationLine'
+            name: 'IndicationId',
+//            bind: {
+//                value: '{applicationDetails.data.IndicationEquipment.IndicationId}'
+//            }
         },
         {
             xtype: 'combobox',
@@ -512,7 +515,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
             bind: {
                 store: '{equipmentLists}'
             },
-//            store: 'equipmentLists',
+            //            store: 'equipmentLists',
             columns: [
                 {
                     xtype: 'gridcolumn',

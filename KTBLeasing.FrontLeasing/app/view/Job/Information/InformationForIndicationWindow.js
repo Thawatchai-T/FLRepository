@@ -745,7 +745,10 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                         },
                         {
                             ui: 'default-small',
-                            text: 'For Management'
+                            text: 'For Management',
+                            listeners: {
+                                click: 'onButtonForManagementClick'
+                            }
                         },
                         {
                             ui: 'default-small',

@@ -146,12 +146,12 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
             type: 'boolean',
             name: 'Approve'
         }
-    ],
+    ]
 
-    hasOne: {
-        model: 'TabUserInformation.model.Background',
-        name: 'Business',
-        associationKey: 'Id',
-        foreignKey: 'Business'
-    }
+//    hasOne: {
+//        model: 'TabUserInformation.model.Background',
+//        name: 'Business',
+//        associationKey: 'Id',
+//        foreignKey: 'Business'
+//    }
 });

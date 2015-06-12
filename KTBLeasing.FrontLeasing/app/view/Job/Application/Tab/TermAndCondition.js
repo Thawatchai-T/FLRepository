@@ -318,52 +318,27 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
         },
         {
             xtype: 'form',
-            height: 135,
             itemId: 'DuePanel',
+            defaults: {
+                titleAlign: 'center'
+            },
             bodyPadding: 10,
             layout: {
-                type: 'table',
-                columns: 4
+                type: 'hbox',
+                align: 'stretch'
             },
             bind: {
                 disabled: '{!abnormalRental.checked}'
             },
             items: [
                 {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 155',
-                    width: 170,
-                    name: 'head1',
-                    value: 'Per Unit (Curr.)',
-                    fieldCls: 'title-mini'
-                },
-                {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 5',
-                    width: 170,
-                    name: 'head2',
-                    value: 'Total (Curr.)',
-                    fieldCls: 'title-mini'
-                },
-                {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 5',
-                    width: 170,
-                    name: 'head3',
-                    value: 'Equal To (BHT.)',
-                    fieldCls: 'title-mini'
-                },
-                {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 5',
-                    width: 170,
-                    name: 'head4',
-                    value: 'Vat Amount (Curr.)',
-                    fieldCls: 'title-mini'
-                },
-                {
                     xtype: 'container',
-                    layout: 'table',
+                    margin: '0 0 -10 0',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch',
+                        pack: 'end'
+                    },
                     items: [
                         {
                             xtype: 'displayfield',
@@ -372,118 +347,52 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                             labelWidth: 150
                         },
                         {
-                            xtype: 'numberfield',
-                            fieldLabel: '',
-                            labelAlign: 'right',
-                            labelWidth: 150,
-                            name: 'FirstDuePerUnit',
-                            hideTrigger: true,
-                            bind: {
-                                disabled: '{!perUnitEqual.checked}',
-                                value: '{FirstDuePerUnit}'
-                            }
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'FirstDueTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{FirstDuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'FirstDueEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{FirstDuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    bind: '{FirstDueVatAmount}',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'FirstDueVatAmount',
-                    hideTrigger: true
-                },
-                {
-                    xtype: 'container',
-                    layout: 'table',
-                    items: [
-                        {
                             xtype: 'displayfield',
                             fieldLabel: 'Second Due',
                             labelAlign: 'right',
                             labelWidth: 150
                         },
                         {
+                            xtype: 'displayfield',
+                            fieldLabel: 'Last Due',
+                            labelAlign: 'right',
+                            labelWidth: 150
+                        }
+                    ]
+                },
+                {
+                    xtype: 'form',
+                    ui: 'light',
+                    defaults: {
+                        labelWidth: 0
+                    },
+                    layout: 'form',
+                    title: 'Per Unit (Curr.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            fieldLabel: '',
+                            labelAlign: 'right',
+                            name: 'FirstDuePerUnit',
+                            hideTrigger: true,
+                            bind: {
+                                disabled: '{!perUnitEqual.checked}',
+                                value: '{FirstDuePerUnit}'
+                            }
+                        },
+                        {
                             xtype: 'numberfield',
                             labelAlign: 'right',
-                            labelWidth: 150,
                             name: 'SecondDuePerUnit',
                             hideTrigger: true,
                             bind: {
                                 disabled: '{!perUnitEqual.checked}',
                                 value: '{SecondDuePerUnit}'
                             }
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'SecondDueTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{SecondDuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'SecondDueEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{SecondDuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    bind: '{SecondDueVatAmount}',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'SecondDueVatAmount',
-                    hideTrigger: true
-                },
-                {
-                    xtype: 'container',
-                    layout: 'table',
-                    items: [
-                        {
-                            xtype: 'displayfield',
-                            fieldLabel: 'Last Due',
-                            labelAlign: 'right',
-                            labelWidth: 150
                         },
                         {
                             xtype: 'numberfield',
                             labelAlign: 'right',
-                            labelWidth: 150,
                             name: 'LastDuePerUnit',
                             hideTrigger: true,
                             bind: {
@@ -494,35 +403,121 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                     ]
                 },
                 {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'LastDueTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{LastDuePerUnit}'
-                    }
+                    xtype: 'form',
+                    ui: 'light',
+                    defaults: {
+                        labelWidth: 0
+                    },
+                    layout: 'form',
+                    title: 'Total (Curr.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'FirstDueTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{FirstDuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'SecondDueTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{SecondDuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'LastDueTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{LastDuePerUnit}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'LastDueEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{LastDuePerUnit}'
-                    }
+                    xtype: 'form',
+                    ui: 'light',
+                    defaults: {
+                        labelWidth: 0
+                    },
+                    layout: 'form',
+                    title: 'Equal To (BHT.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'FirstDueEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{FirstDuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'SecondDueEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{SecondDuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'LastDueEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{LastDuePerUnit}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    xtype: 'numberfield',
-                    bind: '{LastDueVatAmount}',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'LastDueVatAmount',
-                    hideTrigger: true
+                    xtype: 'form',
+                    ui: 'light',
+                    defaults: {
+                        labelWidth: 0
+                    },
+                    layout: 'form',
+                    title: 'Vat Amount (Curr.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            bind: '{FirstDueVatAmount}',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'FirstDueVatAmount',
+                            hideTrigger: true
+                        },
+                        {
+                            xtype: 'numberfield',
+                            bind: '{SecondDueVatAmount}',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'SecondDueVatAmount',
+                            hideTrigger: true
+                        },
+                        {
+                            xtype: 'numberfield',
+                            bind: '{LastDueVatAmount}',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'LastDueVatAmount',
+                            hideTrigger: true
+                        }
+                    ]
                 }
             ]
         },
@@ -610,40 +605,24 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
             ]
         },
         {
-            xtype: 'panel',
+            xtype: 'form',
+            defaults: {
+                titleAlign: 'center'
+            },
             bodyPadding: 10,
             layout: {
-                type: 'table',
-                columns: 3
+                type: 'hbox',
+                align: 'stretch'
             },
             items: [
                 {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 155',
-                    width: 170,
-                    name: 'head5',
-                    value: 'Per Unit (Curr.)',
-                    fieldCls: 'title-mini'
-                },
-                {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 5',
-                    width: 170,
-                    name: 'head6',
-                    value: 'Total (Curr.)',
-                    fieldCls: 'title-mini'
-                },
-                {
-                    xtype: 'displayfield',
-                    margin: '-5 0 5 5',
-                    width: 170,
-                    name: 'head7',
-                    value: 'Equal To (BHT.)',
-                    fieldCls: 'title-mini'
-                },
-                {
                     xtype: 'container',
-                    layout: 'table',
+                    margin: '0 0 -10 0',
+                    layout: {
+                        type: 'vbox',
+                        align: 'stretch',
+                        pack: 'end'
+                    },
                     items: [
                         {
                             xtype: 'displayfield',
@@ -651,6 +630,32 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                             labelAlign: 'right',
                             labelWidth: 150
                         },
+                        {
+                            xtype: 'displayfield',
+                            fieldLabel: 'R.V.Due Date(Original)',
+                            labelAlign: 'right',
+                            labelWidth: 150
+                        },
+                        {
+                            xtype: 'displayfield',
+                            fieldLabel: 'Total Receivable',
+                            labelAlign: 'right',
+                            labelWidth: 150
+                        },
+                        {
+                            xtype: 'displayfield',
+                            fieldLabel: 'Total Unearned',
+                            labelAlign: 'right',
+                            labelWidth: 150
+                        }
+                    ]
+                },
+                {
+                    xtype: 'form',
+                    ui: 'light',
+                    layout: 'form',
+                    title: 'Per Unit (Curr.)',
+                    items: [
                         {
                             xtype: 'numberfield',
                             fieldLabel: 'Residual Value (R.V.)',
@@ -663,58 +668,12 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                                 disabled: '{!perUnitEqual.checked}',
                                 value: '{ResidualValuePerUnit}'
                             }
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'ResidualValueTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{ResidualValuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'ResidualValueEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{ResidualValuePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'datefield',
-                    format: 'd/m/Y',
-                    fieldLabel: 'R.V.Due Date(Original)',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'RVDueDateOriginal'
-                },
-                {
-                    xtype: 'numberfield',
-                    colspan: 2,
-                    margin: '-5 0 0 5',
-                    fieldLabel: '% of E.Q.',
-                    labelAlign: 'right',
-                    labelWidth: 170,
-                    name: 'PercentEQ',
-                    hideTrigger: true
-                },
-                {
-                    xtype: 'container',
-                    layout: 'table',
-                    items: [
+                        },
                         {
-                            xtype: 'displayfield',
-                            fieldLabel: 'Total Receivable',
+                            xtype: 'datefield',
                             labelAlign: 'right',
-                            labelWidth: 150
+                            labelWidth: 150,
+                            name: 'RVDueDateOriginal'
                         },
                         {
                             xtype: 'numberfield',
@@ -728,40 +687,6 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                                 disabled: '{!perUnitEqual.checked}',
                                 value: '{TotalReceivablePerUnit}'
                             }
-                        }
-                    ]
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'TotalReceivableTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{TotalReceivablePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'TotalReceivableEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{TotalReceivablePerUnit}'
-                    }
-                },
-                {
-                    xtype: 'container',
-                    layout: 'table',
-                    items: [
-                        {
-                            xtype: 'displayfield',
-                            fieldLabel: 'Total Unearned',
-                            labelAlign: 'right',
-                            labelWidth: 150
                         },
                         {
                             xtype: 'numberfield',
@@ -779,26 +704,95 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.TermAndCondition', {
                     ]
                 },
                 {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'TotalUnearnedTotal',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{TotalUnearnedPerUnit}'
-                    }
+                    xtype: 'form',
+                    ui: 'light',
+                    layout: 'form',
+                    title: 'Total (Curr.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'ResidualValueTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{ResidualValuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'displayfield',
+                            value: '% of E.Q.:'
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'TotalReceivableTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{TotalReceivablePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            name: 'TotalUnearnedTotal',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{TotalUnearnedPerUnit}'
+                            }
+                        }
+                    ]
                 },
                 {
-                    xtype: 'numberfield',
-                    margin: '-5 0 0 5',
-                    labelAlign: 'right',
-                    labelWidth: 150,
-                    name: 'TotalUnearnedEqualTo',
-                    hideTrigger: true,
-                    bind: {
-                        value: '{TotalUnearnedPerUnit}'
-                    }
+                    xtype: 'form',
+                    ui: 'light',
+                    layout: 'form',
+                    title: 'Equal To (BHT.)',
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            labelWidth: 150,
+                            name: 'ResidualValueEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{ResidualValuePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            labelWidth: 150,
+                            name: 'PercentEQ',
+                            hideTrigger: true
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            labelWidth: 150,
+                            name: 'TotalReceivableEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{TotalReceivablePerUnit}'
+                            }
+                        },
+                        {
+                            xtype: 'numberfield',
+                            margin: '-5 0 0 5',
+                            labelAlign: 'right',
+                            labelWidth: 150,
+                            name: 'TotalUnearnedEqualTo',
+                            hideTrigger: true,
+                            bind: {
+                                value: '{TotalUnearnedPerUnit}'
+                            }
+                        }
+                    ]
                 }
             ]
         }

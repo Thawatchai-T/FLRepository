@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.store.sellers', {
             //autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/Seller',
+                url: 'api/ApplicationDetail',
                 reader: {
                     type: 'json'
                 },

@@ -84,6 +84,20 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
         }).show();
     },
 
+    onButtonForManagementClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            me = this;
+
+        var popup = Ext.create('widget.approveapprovalwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                },
+                close: function (panel, eOpts) {
+                }
+            }
+        }).show();
+    },
+
     onShareholderClick: function (button, e, eOpts) {
         var form = this.getView().down('form').getForm(),
             me = this;

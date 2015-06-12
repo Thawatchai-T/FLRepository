@@ -32,13 +32,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER");
             Map(x => x.Currency).Column("CURRENCY");
             Map(x => x.ExchangeRate).Column("EXCHANGE_RATE");
-            Map(x => x.Rating).Column("RATING");
-            Map(x => x.ExposureLimit).Column("EXPOSURE_LIMIT");
-            Map(x => x.RatingDetail).Column("RATING_DETAIL").Length(256);
-            Map(x => x.RatingDate).Column("RATING_DATE").CustomSqlType("date");
             Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
             Map(x => x.CreateBy).Column("CREATE_BY").Length(32);
-            Map(x => x.UpdateDate).Column("UDPATE_DATE").CustomSqlType("date");
+            Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");
             Map(x => x.UpdateBy).Column("UPDATE_BY").Length(32);
         }
     }

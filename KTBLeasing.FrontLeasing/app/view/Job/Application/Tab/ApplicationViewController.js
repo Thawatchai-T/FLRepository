@@ -51,6 +51,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
                                     message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
                                     buttons: Ext.Msg.YESNOCANCEL,
                                     icon: Ext.Msg.QUESTION,
+                                    width: 300,
                                     fn: function (btn) {
                                         if (btn === 'yes') {
                                             store.sync();

@@ -41,7 +41,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.ResultQuantity).Column("RESULT_QUANTITY");
             Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
             Map(x => x.CreateBy).Column("CREATE_BY").Length(32);
-            Map(x => x.UpdateDate).Column("UDPATE_DATE").CustomSqlType("date");
+            Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");
             Map(x => x.UpdateBy).Column("UPDATE_BY").Length(32);
         }
     }
