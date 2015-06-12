@@ -25,16 +25,21 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/restructure/5
-        public List<Restructure> Get(int start, int limit, string agrcode)
+        public RestructureListModel Get(int start, int limit, string agrcode)
         {
-            var result = restructureRepository.Get(start, limit, agrcode);
+            try
+            {
+                RestructureListModel model = new RestructureListModel();
+                model.data = restructureRepository.Get(start, limit, agrcode);;
+                model.total = restructureRepository.Count(agrcode); ;
 
-            return (result != null) ? result : new List<Restructure>();
-        }
-
-        public int GetCount(string agrcode)
-        {
-            return restructureRepository.Count(agrcode);
+                return model;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
         }
 
         // POST api/restructure

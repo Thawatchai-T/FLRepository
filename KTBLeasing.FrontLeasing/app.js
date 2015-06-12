@@ -193,8 +193,6 @@ Ext.application({
         'termConditions',
         'CommonData.paymentPeriods',
         'appDetails',
-    //test
-        'restructures',
         'agreements',
         'restructureLists',
     //'roleInTabs'

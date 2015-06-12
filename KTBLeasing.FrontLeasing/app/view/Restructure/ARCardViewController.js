@@ -181,7 +181,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                                 return false;
                             },
                             close: function (panel, eOpts) {
-                                Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveFirst();
+                                Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
                             }
                         }
                     });

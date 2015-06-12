@@ -20,7 +20,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
     onComboboxSelect: function (combo, records, eOpts) {
         var form = Ext.getCmp('head-restructure-form').getForm(),
             grid = this.getView().down('grid'),
-            store = Ext.create('TabUserInformation.store.restructures'),
+            store = Ext.create('store.restructureLists'),
             storeList = grid.getStore(),
             buttonARCard = this.getView().down('button');
 
@@ -112,9 +112,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                     panel.down('#calculateButton').disable();
                     panel.down('#saveButton').disable();
                     grid.getPlugin('celledit').disable();
-                },
-                close: function (panel, eOpts) {
-                    view.down('pagingtoolbar').moveFirst();
                 }
             }
         }).show();

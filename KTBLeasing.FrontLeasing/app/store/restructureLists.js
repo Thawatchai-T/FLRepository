@@ -35,9 +35,9 @@ Ext.define('TabUserInformation.store.restructureLists', {
                 type: 'rest',
                 url: 'api/Restructure',
                 reader: {
-                    type: 'json'
-                    //rootProperty: 'data',
-                    //totalProperty: 'total'
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: 'total'
                 },
                 writer: {
                     type: 'json',
