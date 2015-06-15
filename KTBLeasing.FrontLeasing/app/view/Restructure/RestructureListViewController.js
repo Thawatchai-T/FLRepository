@@ -20,7 +20,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
     onComboboxSelect: function (combo, records, eOpts) {
         var form = Ext.getCmp('head-restructure-form').getForm(),
             grid = this.getView().down('grid'),
-            store = Ext.create('store.restructureLists'),
+            store = Ext.create('store.arcards'),
             storeList = grid.getStore(),
             buttonARCard = this.getView().down('button');
 
@@ -64,10 +64,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
         var form = Ext.getCmp('head-restructure-form').getForm(),
             grid = this.getView().down('grid'),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
-            record = Ext.create("model.restructure", data),
+            record = Ext.create("model.arcard", data),
             storeList = grid.getStore();
 
-        var SEQ = storeList.data.length + 1;
+        var SEQ = storeList.totalCount + 1;
 
         form.updateRecord(record);
         //if (data != null) {

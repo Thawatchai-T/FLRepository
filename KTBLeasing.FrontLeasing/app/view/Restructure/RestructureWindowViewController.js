@@ -272,7 +272,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             Agreement = form.findField('Agreement').getValue(),
             EffectiveRate = form.findField('EffectiveRate').getValue(),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
-            recordRestructures = Ext.create("model.restructure", data),
+            recordRestructures = Ext.create("model.restructurelist", data),
             dataInstallment = Ext.decode(sessionStorage.getItem('dataInstallment'));
 
         var NewFlatRate = recordRestructures.get('NewFlatRate'),

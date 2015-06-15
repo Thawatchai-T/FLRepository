@@ -23,7 +23,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         public List<Restructure> Get(int start, int limit, string agrcode)
         {
             using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
             {
                 try
                 {
@@ -32,13 +31,12 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         .Where(x => x.Agreement == agrcode)
                         .Skip(start).Take(limit)
                         .List<Restructure>() as List<Restructure>;
-                    ts.Commit();
+
                     return result;
                 }
                 catch (Exception ex)
                 {
                     Logger.Error(ex);
-                    ts.Rollback();
                     return null;
                 }
             }

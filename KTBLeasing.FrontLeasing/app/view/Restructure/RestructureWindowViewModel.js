@@ -54,16 +54,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewModel', {
                 load: 'onStoreLoad',
                 beforeload: 'onStoreBeforeLoad'
             }
-        },
-
-        restructures: {
-            model: 'TabUserInformation.model.Restructure',
-            proxy: {
-                type: 'ajax',
-                reader: {
-                    type: 'array'
-                }
-            }
         }
     }
 

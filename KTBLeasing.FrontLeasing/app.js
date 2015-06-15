@@ -70,7 +70,7 @@ Ext.application({
         'TermCondition',
         'AppDetail',
         'ApplicationDetailView',
-        'Restructure',
+        'ARCard',
         'Installment',
         'RestructureList',
         'Agreement',
@@ -194,6 +194,7 @@ Ext.application({
         'CommonData.paymentPeriods',
         'appDetails',
         'agreements',
+        'arcards',
         'restructureLists',
     //'roleInTabs'
         'requestTransactions'

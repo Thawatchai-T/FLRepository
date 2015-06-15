@@ -124,7 +124,10 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                     reference: 'NewCheck',
                                     margin: '0 5 5 20',
                                     name: 'NewCheck',
-                                    boxLabel: 'New'
+                                    boxLabel: 'New',
+                                    listeners: {
+                                        change: 'onCheckboxfieldChange'
+                                    }
                                 },
                                 {
                                     xtype: 'numberfield',
@@ -134,7 +137,9 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                     name: 'New_OS_PR',
                                     bind: {
                                         disabled: '{!NewCheck.checked}'
-                                    }
+                                    },
+                                    allowBlank: false,
+                                    //minValue: 1
                                 }
                             ]
                         },
@@ -199,10 +204,11 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                             xtype: 'datefield',
                             fieldLabel: 'New First Due Date',
                             name: 'NewFirstDueDate',
+                            altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
                             format: 'd/m/Y',
-                            bind: {
-                                minValue: '{today}'
-                            },
+//                            bind: {
+//                                minValue: '{today}'
+//                            },
                             allowBlank: false
                         },
                         {
