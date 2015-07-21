@@ -11,7 +11,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public ApplicationDetail()
         {
             IndicationEquipment = new IndicationEquipment();
-            InformationIndication = new InformationIndication();
         }
 
         public ApplicationDetail(ApplicationDetail obj)
@@ -24,7 +23,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
             ApplicationType  = obj.ApplicationType;
             ApplicationDate  = obj.ApplicationDate;
             PrimaryJob  = obj.PrimaryJob;
-            //IndicationLine  = obj.IndicationLine;
             Status  = obj.Status;
             AgreementNo  = obj.AgreementNo;
             IntegralPartNo  = obj.IntegralPartNo;
@@ -66,7 +64,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual int ApplicationType { get; set; }
         public virtual DateTime ApplicationDate { get; set; }
         public virtual int PrimaryJob { get; set; }
-        //public virtual string IndicationLine { get; set; }
         public virtual int Status { get; set; }
         public virtual string AgreementNo { get; set; }
         public virtual int IntegralPartNo { get; set; }
@@ -100,7 +97,5 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual DateTime RatingDate { get; set; }
 
         public virtual IndicationEquipment IndicationEquipment { get; set; }
-        public virtual InformationIndication InformationIndication { get; set; }
-        
     }
 }

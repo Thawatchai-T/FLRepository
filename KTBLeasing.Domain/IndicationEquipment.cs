@@ -10,6 +10,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public IndicationEquipment()
         {
+            InformationIndication = new InformationIndication();
         }
 
         public virtual long Id { get; set; }
@@ -34,5 +35,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal ExposureLimit { get; set; }
         public virtual string RatingDetail { get; set; }
         public virtual DateTime? RatingDate { get; set; }
+
+        public virtual InformationIndication InformationIndication { get; set; }
     }
 }

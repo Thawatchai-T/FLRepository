@@ -30,7 +30,9 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual int SubsequentDueDay { get; set; }
         public virtual decimal NewTerm { get; set; }
         public virtual decimal EffectiveRate { get; set; }
+        public virtual string Status { get; set; }
+        public virtual DateTime? ApproveDate { get; set; }
+        public virtual string ApproveBy { get; set; }
 
-        public virtual int total { get; set; }
     }
 }

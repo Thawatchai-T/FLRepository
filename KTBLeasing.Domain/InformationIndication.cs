@@ -11,6 +11,7 @@ namespace KTBLeasing.FrontLeasing.Domain
     {
         public InformationIndication()
         {
+            Job = new Job();
         }
 
         public virtual long Id { get; set; }
@@ -20,7 +21,6 @@ namespace KTBLeasing.FrontLeasing.Domain
         public virtual string PrimaryJob { get; set; }
         public virtual long IndustryCode { get; set; }
         public virtual long MarketingCode { get; set; }
-        public virtual string LeadId { get; set; }
         public virtual int Nationality { get; set; }
         public virtual int CustomerId { get; set; }
         public virtual int TypeCustomer { get; set; }
@@ -45,6 +45,9 @@ namespace KTBLeasing.FrontLeasing.Domain
         public virtual int SourceInformation { get; set; }
         public virtual string Remark { get; set; }
         public virtual bool Approve { get; set; }
+
+        public virtual Job Job { get; set; }
+        
 
     }
 }
