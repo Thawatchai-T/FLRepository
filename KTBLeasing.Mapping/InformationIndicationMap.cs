@@ -15,13 +15,13 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("JOB_INFORMATION_INDICATION");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
+            //References(x => x.Lead).Column("LEAD_ID");
             Map(x => x.Year, "YEAR");
             Map(x => x.InformationId).Column("INFORMATION_ID").Length(20);
             Map(x => x.RequestDate).Column("REQUEST_DATE").CustomSqlType("date");
             Map(x => x.PrimaryJob).Column("PRIMARY_JOB").Length(20);
             Map(x => x.IndustryCode).Column("INDUSTRY_CODE").Length(20);
             Map(x => x.MarketingCode).Column("MARKETING_CODE").Length(20);
-            Map(x => x.LeadId).Column("LEAD_ID");
             Map(x => x.Nationality).Column("NATIONALITY");
             Map(x => x.CustomerId).Column("CUSTOMER_ID");
             Map(x => x.TypeCustomer).Column("TYPE_CUSTOMER");

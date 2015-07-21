@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public InsuranceEquipmentMap()
         {
-            Table("AD_INSURANCE_EQUIPMENT");
+            Table("JOB_AD_INSURANCE_EQUIPMENT");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");

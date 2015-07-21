@@ -142,7 +142,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
                     tran.Rollback();
                     Logger.Error(ex);
                 }
-                
+                finally
+                {
+                    Session.Close();
+                }
 
             }
 

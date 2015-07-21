@@ -17,14 +17,12 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.IndicationEquipment).Column("INDICATION_ID");
-            References(x => x.InformationIndication).Column("INFORMATION_ID");
             Map(x => x.Code).Column("CODE").Length(10);
             Map(x => x.Year).Column("YEAR");
             Map(x => x.ApplicationId).Column("APPLICATION_ID").Length(100);
             Map(x => x.ApplicationType).Column("APPLICATION_TYPE");
             Map(x => x.ApplicationDate).Column("APPLICATION_DATE").CustomSqlType("date");
             Map(x => x.PrimaryJob).Column("PRIMARY_JOB");
-            //Map(x => x.IndicationLine).Column("INDICATION_LINE").Length(50);
             Map(x => x.Status).Column("STATUS");
             Map(x => x.AgreementNo).Column("AGREEMENT_NO").Length(100);
             Map(x => x.IntegralPartNo).Column("INTEGRAL_PART_NO");

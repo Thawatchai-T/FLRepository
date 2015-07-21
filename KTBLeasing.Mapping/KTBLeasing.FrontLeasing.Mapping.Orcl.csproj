@@ -94,9 +94,11 @@
     <Compile Include="CommonData.cs" />
     <Compile Include="ContactPersonMap.cs" />
     <Compile Include="BackgroundMap.cs" />
+    <Compile Include="JobMap.cs" />
     <Compile Include="EquipmentMap.cs" />
     <Compile Include="InformationIndicationMap.cs" />
     <Compile Include="IndicationEquipmentMap.cs" />
+    <Compile Include="Reposotory\JobRepository.cs" />
     <Compile Include="Reposotory\IndicationEquipmentRepository.cs" />
     <Compile Include="Reposotory\InformationIndicationRepository.cs" />
     <Compile Include="Reposotory\ThirdPartyRepository.cs" />

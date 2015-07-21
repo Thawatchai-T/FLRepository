@@ -32,6 +32,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.SubsequentDueDay).Column("SUBSEQUENT_DUE_DAY");
             Map(x => x.NewTerm).Column("NEW_TERM");
             Map(x => x.EffectiveRate).Column("EFFECTIVE_RATE");
+            Map(x => x.Status).Column("STATUS").Length(20);
+            Map(x => x.ApproveDate).Column("APPROVE_DATE").CustomSqlType("date");
+            Map(x => x.ApproveBy).Column("APPROVE_BY").Length(20);
             Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
             Map(x => x.CreateBy).Column("CREATE_BY").Length(20);
             Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");

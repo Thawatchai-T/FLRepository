@@ -6,6 +6,7 @@ using log4net;
 using System.Reflection;
 using KTBLeasing.FrontLeasing.Domain;
 using NHibernate.Transform;
+using NHibernate.Criterion;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -28,7 +29,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    return session.QueryOver<IndicationEquipment>().List<IndicationEquipment>() as List<IndicationEquipment>;
+                    return session.QueryOver<IndicationEquipment>()
+                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .List<IndicationEquipment>() as List<IndicationEquipment>;
                 }
             }
             catch (Exception ex)
@@ -44,10 +47,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    return session.QueryOver<Equipment>()
-                        .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                        .Where(x => x.IndicationEquipment.Id == indicationId)
-                        .List<Equipment>() as List<Equipment>;
+                    //return session.QueryOver<Equipment>()
+                    //    .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    //    .Where(x => x.IndicationEquipment.Id == indicationId)
+                    //    .List<Equipment>() as List<Equipment>;
+
+                    var criteria = session.CreateCriteria("Equipment", "Equipment");
+                    criteria.CreateAlias("Equipment.IndicationEquipment", "IndicationEquipment");
+                    criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
+                    criteria.Add(Restrictions.Eq("IndicationEquipment.Id", indicationId));
+                    return criteria.List<Equipment>() as List<Equipment>;
                 }
             }
             catch (Exception ex)

@@ -47,10 +47,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
         public void SaveOrUpdate(Installment entity)
         {
-            using (var session = SessionFactory.OpenSession())
-            {
+            //using (var session = SessionFactory.OpenSession())
+            //{
                 base.SaveOrUpdate<Installment>(entity);
-            }
+            //}
         }
     }
 }

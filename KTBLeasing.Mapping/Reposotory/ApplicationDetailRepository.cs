@@ -20,11 +20,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         ApplicationDetail Get(long id);
         List<ApplicationDetail> GetAllWithOrderBy(string orderby);
         List<ApplicationDetailViewModel> GetAll(int start, int limit, long id);
-        void Insert(ApplicationDetailViewModel entity);
         void Insert<T>(T entity);
-        bool SaveOrUpdate(ApplicationDetailViewModel entity);
-        void Update(ApplicationDetailViewModel entity);
-        //void Update(ApplicationDetail entity);
         void Update<T>(T entity);
         List<T> GetAll<T>(int start, int limit, long id, T entity);
         List<T> GetAll<T>(int start, int limit, long id, T entity, string Parent);
@@ -33,64 +29,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     public class ApplicationDetailRepository : NhRepository, IApplicationDetailRepository
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
-
-        public void Insert(ApplicationDetailViewModel entity)
-        {
-            using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
-            {
-                try
-                {
-                    session.Save(entity);
-                    ts.Commit();
-                }
-                catch (Exception e)
-                {
-                    Logger.Error(e);
-                    ts.Rollback();
-                }
-            }
-        }
-
-        public bool SaveOrUpdate(ApplicationDetailViewModel entity)
-        {
-            using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
-            {
-                try
-                {
-                    ApplicationDetail objApplicationDetail = new ApplicationDetail();
-                    objApplicationDetail = (ApplicationDetail)entity;
-
-                    session.SaveOrUpdate(entity.ApplicationDetail[0]);
-                    session.SaveOrUpdate(entity.WaiveDocument[0]);
-                    session.SaveOrUpdate(entity.Guarantor[0]);
-                    session.SaveOrUpdate(entity.MethodPayment[0]);
-                    session.SaveOrUpdate(entity.OptionEndLeaseTerm[0]);
-                    session.SaveOrUpdate(entity.Maintenance[0]);
-                    //session.SaveOrUpdate(entity.Seller[0]);
-                    //session.SaveOrUpdate(entity.PurchaseOrder[0]);
-                    session.SaveOrUpdate(entity.Insurance[0]);
-                    session.SaveOrUpdate(entity.Commission[0]);
-                    //session.SaveOrUpdate(entity.AnnualTax[0]);
-                    session.SaveOrUpdate(entity.StampDuty[0]);
-                    session.SaveOrUpdate(entity.StipulateLoss[0]);
-                    //session.SaveOrUpdate(entity.CollectionSchedule[0]);
-                    session.SaveOrUpdate(entity.Funding[0]);
-                    session.SaveOrUpdate(entity.TermCondition[0]);
-
-                    ts.Commit();
-                    return true;
-                }
-                catch (Exception e)
-                {
-                    Logger.Error(e);
-                    ts.Dispose();
-                    ts.Rollback();
-                    return false;
-                }
-            }
-        }
 
         public ApplicationDetail Get(long id)
         {
@@ -106,12 +44,15 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    var list = session.QueryOver<ApplicationDetail>()
-                        .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                        .List<ApplicationDetail>() as List<ApplicationDetail>;
-                    return list;
+                    //var list = session.QueryOver<ApplicationDetail>()
+                    //    .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    //    .List<ApplicationDetail>() as List<ApplicationDetail>;
+                    //return list;
 
-                    //return this.ExecuteICriteria<ApplicationDetail>() as List<ApplicationDetail>;
+                    var criteria = session.CreateCriteria("ApplicationDetail", "ApplicationDetail");
+                    criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
+                    criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
+                    return criteria.List<ApplicationDetail>() as List<ApplicationDetail>;
                 }
             }
             catch (Exception ex)
@@ -125,25 +66,12 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             return this.ExecuteICriteriaOrderBy<ApplicationDetail>(new ApplicationDetail(), orderby) as List<ApplicationDetail>;
         }
+
         /**
          * Hibernate Criteria Join with 2 Tables
          * ref: http://stackoverflow.com/questions/8726396/hibernate-criteria-join-with-3-tables
          * 
          */
-
-        //public List<T> GetAll<T>(int start, int limit, long id, T entity)
-        //{
-        //    string Alias = typeof(T).Name;
-        //    string AliasJoin = string.Format("{0}.ApplicationDetail", Alias);
-        //    using (var session = SessionFactory.OpenSession())
-        //    {
-        //        var criteria = session.CreateCriteria(typeof(T), Alias);
-        //        criteria.CreateAlias(AliasJoin, "ApplicationDetail");
-        //        criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
-        //        return criteria.List<T>() as List<T>;
-        //    }
-        //}
-
         public List<T> GetAll<T>(int start, int limit, long id, T entity)
         {
             string Alias = typeof(T).Name;
@@ -153,8 +81,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
                 criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
-                criteria.CreateAlias("ApplicationDetail.InformationIndication", "InformationIndication");
-                criteria.CreateAlias("IndicationEquipment.InformationIndication", "c");
+                criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
                 criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
                 return criteria.List<T>() as List<T>;
             }
@@ -173,8 +100,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
                 criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
-                criteria.CreateAlias("ApplicationDetail.InformationIndication", "InformationIndication");
-                criteria.CreateAlias("IndicationEquipment.InformationIndication", "c");
+                criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
                 criteria.CreateAlias(AliasJoin2, Parent);
                 criteria.Add(Restrictions.Eq(Parent + ".Id", id));
                 return criteria.List<T>() as List<T>;
@@ -242,77 +168,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public void Update(ApplicationDetailViewModel entity)
-        {
-            using (var session = SessionFactory.OpenStatelessSession())
-            using (var ts = session.BeginTransaction())
-            {
-                try
-                {
-                    ApplicationDetail newobj = new ApplicationDetail();
-                    newobj = entity.ApplicationDetail[0];
-                    string str = Newtonsoft.Json.JsonConvert.SerializeObject(newobj);
-                    Logger.Error("woody " + str);
-
-
-
-                    this.Update(newobj);
-                    //this.Update(entity.WaiveDocument[0]);
-                    //this.Update(entity.Guarantor[0]);
-                    //this.Update(entity.MethodPayment[0]);
-                    //this.Update(entity.OptionEndLeaseTerm[0]);
-                    //this.Update(entity.Maintenance[0]);
-                    //this.Update(entity.Seller[0]);
-                    //this.Update(entity.PurchaseOrder[0]);
-                    //this.Update(entity.Insurance[0]);
-                    //this.Update(entity.Commission[0]);
-                    //this.Update(entity.AnnualTax[0]);
-                    //this.Update(entity.StampDuty[0]);
-                    //this.Update(entity.StipulateLoss[0]);
-                    //this.Update(entity.CollectionSchedule[0]);
-                    //this.Update(entity.Funding[0]);
-                    //this.Update(entity.TermCondition[0]);
-                    ts.Commit();
-                    //return true;
-                }
-                catch (Exception ex)
-                {
-                    ts.Rollback();
-                    //return false;
-                }
-            }
-        }
-
-
-        public void Update(ApplicationDetail entity)
-        {
-            //using (var session = SessionFactory.OpenStatelessSession())
-            //using (var ts = session.BeginTransaction())
-            //{
-                try
-                {
-                    this.Insert<ApplicationDetail>(entity);
-               //     ts.Commit();
-                    //return true;
-                }
-                catch (Exception ex)
-                {
-             //       ts.Rollback();
-                    //return false;
-                }
-           // }
-        }
-
         public void Update<T>(T entity)
         {
-                try
-                {
-                    base.Update<T>(entity);
-                }
-                catch (Exception ex)
-                {
+            try
+            {
+                base.Update<T>(entity);
+            }
+            catch (Exception ex)
+            {
 
-                }
+            }
         }
              
         public int Count()
