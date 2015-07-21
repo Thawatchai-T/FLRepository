@@ -69,7 +69,6 @@ Ext.application({
         'DueDay',
         'TermCondition',
         'AppDetail',
-        'ApplicationDetailView',
         'ARCard',
         'Installment',
         'RestructureList',
@@ -92,7 +91,7 @@ Ext.application({
         'leads',
         'informationForIndications',
         'indicationForEquipments',
-        'applications',
+        'applicationLists',
         'contactPersons',
         'equipment',
         'backgrounds',
@@ -197,7 +196,8 @@ Ext.application({
         'arcards',
         'restructureLists',
     //'roleInTabs'
-        'requestTransactions'
+        'requestTransactions',
+        'jobs'
     ],
     views: [
         'User.UserInfWindow',
@@ -271,30 +271,32 @@ Ext.application({
     launch: function () {
         if (window.Page === 'Restructure') {
             Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
-        } 
+        }
         else {
-        //        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-        Ext.create('TabUserInformation.view.Job.JobWindow', { renderTo: Ext.getBody() });
-        //                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+            //        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+            //Ext.create('TabUserInformation.view.Job.JobTab', { renderTo: Ext.getBody() });
+            //                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
 
-        //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-        //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+            //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
+            //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
 
-        //        var supportsLocalStorage = Ext.supports.LocalStorage,
-        //            loggedIn;
+            var supportsLocalStorage = Ext.supports.LocalStorage,
+                loggedIn;
 
-        //        if (!supportsLocalStorage) {
+            if (!supportsLocalStorage) {
 
-        //            // Alert the user if the browser does not support localStorage
-        //            Ext.Msg.alert('Your Browser Does Not Support Local Storage');
-        //            return;
-        //        }
-        //        //sessionStorage
-        //        // Check to see the current value of the localStorage key
-        //        loggedIn = sessionStorage.getItem("FLSystem");
+                // Alert the user if the browser does not support localStorage
+                Ext.Msg.alert('Your Browser Does Not Support Local Storage');
+                return;
+            }
+            //sessionStorage
+            // Check to see the current value of the localStorage key
+            if (window.Page == 'logout') loggedIn = false;
+            else
+            loggedIn = sessionStorage.getItem("FLSystem");
 
-        //        console.log(loggedIn);
-        //        Ext.widget(loggedIn ? 'homeindex' : 'windowloginwindow');
+            //            console.log(loggedIn);
+            Ext.widget(loggedIn ? 'homeindex' : 'windowloginwindow');
         }
     }
 

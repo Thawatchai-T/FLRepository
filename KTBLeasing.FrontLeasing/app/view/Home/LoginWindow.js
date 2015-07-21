@@ -19,12 +19,14 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
 
     requires: [
         'TabUserInformation.view.Home.LoginWindowViewModel',
+        'TabUserInformation.view.Home.LoginWindowViewController',
         'Ext.form.Panel',
         'Ext.form.field.Text',
         'Ext.button.Button',
         "Ext.require([' * '])"
     ],
 
+    controller: 'windowloginwindow',
     viewModel: {
         type: 'windowloginwindow'
     },
@@ -34,9 +36,9 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
     autoShow: true,
     closable: false,
     title: 'Commercial System Log-in',
-    modal: true,
+    //modal: true,
     enableKeyEvents: true,
-    defaultListenerScope: true,
+    //defaultListenerScope: true,
 
     items: [
         {
@@ -79,48 +81,8 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
             ]
         }
     ],
-
-    onLoginClick: function (button, e, eOpts) {
-        var Me = this;
-        var form = this.down('form').getForm();
-        console.log(eOpts);
-        console.log(form);
-       // debugger;
-        if (form.isValid()) {
-            form.submit({
-                url: 'api/login/dologin',
-                type: 'POST',
-                timeout: 99999,
-                success: function (form, action) {
-                    if (action.response.responseText.status) {
-                        Ext.Msg.alert('Success', action.response.responseText);
-                    }
-                    console.log(action.response.responseText);
-
-                    if (action.response.statusText === "OK" && action.response.statusText !== "") {
-
-                        sessionStorage.setItem("FLSystem", true);
-                        sessionStorage.setItem("UserId", Ext.getCmp('username').getValue());
-                        Me.close();
-
-                        // Add the main view to the viewport
-                        Ext.widget('homeindex');
-                    } else {
-                        sessionStorage.setItem("LoggedIn", false);
-                        //fix Authentication Bypass
-                        Ext.widget('homeindex');
-                    }
-
-
-                    //Ext.widget('homeindex');
-                },
-                failure: function (form, action) {
-                    
-                    Ext.Msg.alert('Login Status', Ext.decode(action.response.responseText));
-                }
-
-            });
-        }
+    listeners: {
+        afterrender: 'onAfterRender'
     }
 
 }); 

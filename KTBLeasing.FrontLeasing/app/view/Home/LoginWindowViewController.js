@@ -15,5 +15,49 @@
 
 Ext.define('TabUserInformation.view.Home.LoginWindowViewController', {
     extend: 'Ext.app.ViewController',
-    alias: 'controller.windowloginwindow'
+    alias: 'controller.windowloginwindow',
+
+    onAfterRender: function (component, eOpts) {
+        component.down('form').getForm().findField('UserName').focus();
+    },
+
+    onLoginClick: function (button, e, eOpts) {
+        var Me = this.getView();
+        var form = this.getView().down('form').getForm();
+        // debugger;
+        if (form.isValid()) {
+            form.submit({
+                url: 'api/login/dologin',
+                type: 'POST',
+                timeout: 99999,
+                success: function (form, action) {
+                    if (action.response.responseText.status) {
+                        Ext.Msg.alert('Success', action.response.responseText);
+                    }
+
+                    if (action.response.statusText === "OK" && action.response.statusText !== "") {
+
+                        sessionStorage.setItem("FLSystem", true);
+                        sessionStorage.setItem("UserId", Ext.getCmp('username').getValue());
+                        Me.close();
+
+                        // Add the main view to the viewport
+                        Ext.widget('homeindex');
+                    } else {
+                        sessionStorage.setItem("LoggedIn", false);
+                        //fix Authentication Bypass
+                        Ext.widget('homeindex');
+                    }
+
+
+                    //Ext.widget('homeindex');
+                },
+                failure: function (form, action) {
+
+                    Ext.Msg.alert('Login Status', Ext.decode(action.response.responseText));
+                }
+
+            });
+        }
+    }
 });

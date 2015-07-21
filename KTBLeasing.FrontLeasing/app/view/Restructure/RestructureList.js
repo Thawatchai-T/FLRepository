@@ -14,7 +14,7 @@
  */
 
 Ext.define('TabUserInformation.view.Restructure.RestructureList', {
-    extend: 'Ext.container.Viewport',
+    extend: 'Ext.panel.Panel',
     alias: 'widget.restructurerestructurelist',
 
     requires: [
@@ -28,7 +28,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
         'Ext.button.Button',
         'Ext.grid.Panel',
         'Ext.grid.View',
-        'Ext.grid.column.Date'
+        'Ext.grid.column.Date',
+        'Ext.grid.column.Action'
     ],
 
     controller: 'restructurerestructurelist',
@@ -36,7 +37,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
         type: 'restructurerestructurelist'
     },
     //bodyPadding: 5,
-    title: 'FL Restructure',
+    title: 'Restructure',
     id: 'restructurerestructurelist',
     layout: 'border',
 
@@ -44,8 +45,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
         {
             xtype: 'form',
             region: 'north',
+            bodyPadding: 10,
             id: 'head-restructure-form',
-            title: 'FL Restructure',
+            //title: 'Restructure',
             defaults: {
                 margin: '5 5 5 5 ',
                 labelWidth: 150,
@@ -115,29 +117,86 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
             xtype: 'gridpanel',
             region: 'center',
             height: 750,
-            //forceFit: true,
+            forceFit: true,
             title: 'Restructure List',
-//            bind: {
-//                store: '{restructureLists}'
-//            },
-            store: 'restructureLists',
+            bind: {
+                store: '{restructureLists}'
+            },
+//            store: 'restructureLists',
             viewConfig: {
                 listeners: {
                     itemdblclick: 'onViewItemDblClick'
                 }
             },
+            columnLines: true,
             columns: [
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'SEQ',
-                    text: 'SEQ',
-                    flex: -1
+                    itemId: 'SEQ',
+                    //text: 'SEQ',
+                    width: 40,
+                    locked: true
+                },
+                {
+                    xtype: 'rownumberer',
+                    itemId: 'RowNumber',
+                    width: 40,
+                    locked: true,
+                    hidden: true
+                },
+                {
+                    xtype: 'actioncolumn',
+                    dataIndex: 'Status',
+                    itemId: 'Status',
+                    width: 25,
+                    locked: true,
+                    items: [{
+                        iconCls: 'flag_red x-item-disabled',
+                        getClass: function(v, metadata, r, rowIndex, colIndex, store) {
+                            if(v == 'normal'){
+                                return 'flag_red x-item-disabled';
+                            }else if(v == 'approve'){
+                                return 'accept';
+                            }else{
+                                return 'flag_red';
+                            }
+                        },
+                        handler: function(view, rowIndex, colIndex, item, e, record, row) {
+                            var UserData = Ext.decode(sessionStorage.getItem('UserData'));
+
+                            if(record.get('Status') == 'normal'){
+                                record.set('Status', 'pending');
+                            }else if(record.get('Status') == 'approve'){
+                                view.readOnly = true;
+                            }
+                            else{
+                                if (UserData.RoleName === 'head_marketing') {
+                                    view.readOnly = true;
+                                }else{
+                                    record.set('Status', 'normal');
+                                }
+                            }
+                            view.refresh();
+                        },
+                        getTip: function(v, metadata, r, rowIndex, colIndex, store) {
+                            if(v == 'normal'){
+                                return 'ปกติ';
+                            }else if(v == 'approve'){
+                                return 'อนุมัติ';
+                            }else{
+                                return 'รออนุมัติ';
+                            }
+                        },
+                    }]
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'Agreement',
                     text: 'Agreement',
-                    flex: 1
+                    //flex: 1,
+                    width: 110,
+                    locked: true
                 },
                 {
                     xtype: 'datecolumn',
@@ -146,39 +205,47 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     format: 'd/m/Y'
                 },
                 {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'FlatRate',
-                    text: 'อัตราดอกเบี้ย'
-                },
-                {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'OS_PR',
-                    text: 'เงินต้นคงเหลือ'
+                    text: 'Information',
+                    columns: [
+                        {
+                            xtype: 'gridcolumn',
+                            dataIndex: 'FlatRate',
+                            text: 'อัตราดอกเบี้ย'
+                        },
+                        {
+                            xtype: 'numbercolumn',
+                            dataIndex: 'OS_PR',
+                            text: 'เงินต้นคงเหลือ',
+                            flex: -1
+                        },
+//                        {
+//                            xtype: 'gridcolumn',
+//                            dataIndex: 'Day',
+//                            text: 'จำนวนวัน',
+//                            width: 50
+//                        },
+//                        {
+//                            xtype: 'numbercolumn',
+//                            dataIndex: 'Penalty',
+//                            text: 'ดอกเบี้ย'
+//                        },
+                        {
+                            xtype: 'numbercolumn',
+                            dataIndex: 'UnpaidVAT',
+                            text: 'ค้างชำระเบี้ยปรับ+ค่าใช้จ่าย'
+                        },
+                        {
+                            xtype: 'numbercolumn',
+                            dataIndex: 'DebitNote',
+                            text: 'DebitNote ค้างชำระ'
+                        }
+                    ]
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'New_OS_PR',
-                    text: 'เงินต้นคงเหลือ (New)'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'Day',
-                    text: 'จำนวนวัน'
-                },
-                {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'Penalty',
-                    text: 'ดอกเบี้ย'
-                },
-                {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'UnpaidVAT',
-                    text: 'ค้างชำระเบี้ยปรับ+ค่าใช้จ่าย'
-                },
-                {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'DebitNote',
-                    text: 'DebitNote ค้างชำระ'
+                    text: 'เงินต้นคงเหลือ (New)',
+                    flex: 1
                 },
                 {
                     xtype: 'numbercolumn',
@@ -188,12 +255,19 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'NewTerm',
-                    text: 'งวด'
+                    text: 'งวด',
+                    width: 50
                 },
                 {
-                    xtype: 'numbercolumn',
+                    xtype: 'gridcolumn',
                     dataIndex: 'EffectiveRate',
-                    text: 'EffectiveRate'
+                    text: 'Effective Rate',
+                    flex: 1
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'CreateBy',
+                    text: 'Create By'
                 }
             ],
             dockedItems: [
@@ -204,15 +278,37 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     ui: 'footer',
                     width: 360,
                     displayInfo: true,
-//                    bind: {
-//                        store: '{restructureLists}'
-//                    }
-                    store: 'restructureLists'
+                    bind: {
+                        store: '{restructureLists}'
+                    }
+//                    store: 'restructureLists'
                 }
             ],
+
+        }
+    ],
+    dockedItems: [
+        {
+            xtype: 'toolbar',
+            dock: 'bottom',
+            reference: 'restructure-toolbar',
+            ui: 'footer',
+            items: [
+                {
+                    xtype: 'button',
+                    formBind: true,
+                    itemId: 'copyButton',
+                    ui: 'default-small',
+                    text: 'Copy',
+                    listeners: {
+                        click: 'onCopyClick'
+                    }
+                },
+            ]
         }
     ],
     listeners: {
+        beforerender: 'onBeforeRender',
         afterrender: 'onAfterRender'
     }
 

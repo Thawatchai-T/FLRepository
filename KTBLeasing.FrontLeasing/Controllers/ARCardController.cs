@@ -17,30 +17,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
     public class ARCardController : ApiController
     {           
         private IPolymathCoreDllService _objIPolymathCoreDll { get; set; }
-        //public List<CustomerDomain> ListCustomer { get; set; }
-        public  static List<CustomerDomain> ListCustomer { get; set; }
+        public static List<CustomerDomain> ListCustomer { get; set; }
+        public static List<AgrCodeDomain> ListAgrCode { get; set; }
         public Repository DB2Repository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
         public ARCardController()
         {
-            //if (ListAgrCode == null)
-            //{
-            //    ListAgrCode = DB2Repository.GetAgrCodeAll();
-            //}
-            //else if (ListAgrCode.Count < 1)
-            //{
-            //    ListAgrCode = DB2Repository.GetAgrCodeAll();
-            //}
-
-            //if (ListCustomer == null)
-            //{
-            //    ListCustomer = DB2Repository.GetCustomerName();
-            //}
-            //else if (ListCustomer.Count < 1)
-            //{
-            //    ListCustomer = DB2Repository.GetCustomerName();
-            //}
         }
 
         // GET api/installment
@@ -50,10 +33,69 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //return new List<ARCardModel>();
         }
 
+        public List<AgrCodeDomain> GetListAgrCode()
+        {
+            ListAgrCode = (ListAgrCode == null) ? new List<AgrCodeDomain>() : ListAgrCode;
+            try
+            {
+                ListAgrCode = this.DB2Repository.GetAgrCodeAll();
+                return ListAgrCode;
+
+            }
+            catch (Exception ex)
+            {
+                return null;
+            }
+
+        }
+
+        public List<AgrCodeDomain> GetFindListAgrCode(string agrcode)
+        {
+            ListAgrCode = (ListAgrCode == null) ? this.GetListAgrCode() : ListAgrCode;
+            try
+            {
+                List<AgrCodeDomain> result = ListAgrCode.Where(x => x.AgrCode.Trim() == agrcode).Select(x => new AgrCodeDomain { AgrCode = x.AgrCode.Trim(), ComId = x.ComId, CusCode = x.CusCode.Trim() }).ToList();
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                throw ex;
+            }
+        }
+
         // GET api/installment/5
         public ARCardModel Get(string agrcode)
         {
-            return this.ARCard(agrcode);
+            try
+            {
+                return this.ARCard(agrcode);
+            }
+            catch (Exception ex)
+            {
+                return new ARCardModel();
+            }
+        }
+
+        public ARCardModel GetFindAgrCode(string agrcode)
+        {
+            try
+            {
+                List<AgrCodeDomain> list = this.GetFindListAgrCode(agrcode);
+                if (list.Count > 0)
+                {
+                    return this.ARCard(agrcode);
+                }
+                else
+                {
+                    return new ARCardModel();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ARCardModel();
+            }
         }
 
         // POST api/installment
@@ -112,10 +154,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
             model.DebitNote = Convert.ToDecimal(BuildCard.dn_outs) + Convert.ToDecimal(BuildCard.dn_vat_outs);
             //อัตราดอกเบี้ย
             model.FlatRate = Convert.ToDecimal(BuildCard.eff1);
-            //ดอกเบี้ย
-            model.Interest = Convert.ToDecimal(BuildCard.int_quo);
             //เงินต้นคงเหลือ
-            model.OS_PR = Convert.ToDecimal(BuildCard.os_ar);
+            model.OS_PR = Convert.ToDecimal(BuildCard.os_ar) - Convert.ToDecimal(BuildCard.act_unearned);
+            //ดอกเบี้ย
+            //model.Interest = Convert.ToDecimal(BuildCard.int_quo);
+            model.Interest = (((model.OS_PR * Convert.ToDecimal(BuildCard.eff1)) / 365) * int.Parse(BuildCard.late_max)) / 100;
             //ค้างชำระเบี้ยปรับ+ค่าใช้จ่าย
             model.Penalty = Convert.ToDecimal(BuildCard.penalty);
             //Unpaid VAT for Restructure

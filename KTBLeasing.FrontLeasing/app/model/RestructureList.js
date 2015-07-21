@@ -82,7 +82,8 @@ Ext.define('TabUserInformation.model.RestructureList', {
         },
         {
             type: 'date',
-            name: 'NewFirstDueDate'
+            name: 'NewFirstDueDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'int',
@@ -95,6 +96,18 @@ Ext.define('TabUserInformation.model.RestructureList', {
         {
             type: 'float',
             name: 'EffectiveRate'
+        },
+        {
+            name: 'Status'
+        },
+        {
+            type: 'float',
+            name: 'ApproveDate',
+            dateWriteFormat: 'MS'
+        },
+        {
+            type: 'float',
+            name: 'ApproveBy'
         }
     ]
 });

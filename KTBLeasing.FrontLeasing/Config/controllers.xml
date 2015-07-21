@@ -79,6 +79,10 @@
     <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.JobController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="JobRepository" ref="jobRepository"/>
+  </object>
+
   <object type="KTBLeasing.FrontLeasing.Controllers.VisitCallingController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="VisitInformationRepository" ref="visitInformationRepository"/>
     <property name="CommonDataRepository" ref="commonDataRepository"/>

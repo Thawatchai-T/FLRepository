@@ -32,29 +32,29 @@ Ext.define('TabUserInformation.model.Roles', {
         },
         {
             name: 'RoleName',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         },
         {
             name: 'Active',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         },
         {
             type: 'date',
             name: 'CreateDate',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         },
         {
             name: 'CreateBy',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         },
         {
             type: 'date',
             name: 'UpdateDate',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         },
         {
             name: 'UpdateBy',
-            mapping: 'Role.RoleName'
+            //mapping: 'Role.RoleName'
         }
     ]
     });

@@ -33,10 +33,12 @@ Ext.define('TabUserInformation.view.Role.UserInRoleTab', {
         type: 'tabuserinroletab'
     },
     title: 'User Role',
+    layout: 'border',
 
     items: [
         {
             xtype: 'panel',
+            region: 'north',
             bodyPadding: 10,
             layout: {
                 type: 'hbox',
@@ -61,7 +63,7 @@ Ext.define('TabUserInformation.view.Role.UserInRoleTab', {
         },
         {
             xtype: 'gridpanel',
-            height: 768,
+            region: 'center',
             id: 'userinrole-grid',
             forceFit: true,
             store: 'userInRoles',

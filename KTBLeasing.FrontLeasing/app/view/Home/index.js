@@ -37,11 +37,12 @@ Ext.define('TabUserInformation.view.Home.index', {
     id: 'myviewport',
     itemId: 'myviewport',
     padding: 5,
+    layout: 'border',
 
     items: [
         {
-            xtype: 'homemaintab'//,
-            //padding: 5
+            xtype: 'homemaintab',
+            region: 'center'
         }
     ],
 

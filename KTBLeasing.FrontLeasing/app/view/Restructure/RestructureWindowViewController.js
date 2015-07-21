@@ -107,6 +107,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         var grid = this.getView().down('grid'),
             store = this.getStore('installments');
 
+        this.getView().down('form').getForm().findField('Rate').setValue('true');
+
         if (oldValue) {
             store.load();
             grid.view.refresh();
@@ -119,6 +121,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             store = this.getStore('installments'),
             data = [],
             dataInstallment = [];
+
 
         store.data.each(function (record, index) {
             var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
@@ -145,98 +148,53 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             jsonData: data,
             success: function (response) {
                 form.findField('EffectiveRate').setValue(response.responseText);
+                form.findField('EffectiveRateDisplay').setValue(response.responseText);
+                form.findField('Rate').setValue('false');
 
                 store.load();
                 grid.view.refresh();
             },
             failure: function (response) {
-                Ext.MessageBox.alert("Error", "ไม่สามารถคำนวณ Effective Rate ได้โปรดกรอกข้อมูลให้ถูกต้อง.");
+                //Ext.MessageBox.alert("Error", "ไม่สามารถคำนวณ Effective Rate ได้โปรดกรอกข้อมูลให้ถูกต้อง.");
+                Ext.Msg.show({
+                    title:'Error',
+                    message: 'ไม่สามารถคำนวณ Effective Rate ได้โปรดกรอกข้อมูลให้ถูกต้อง.',
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.ERROR
+                });
             }
         });
     },
 
-    onTest: function (button, e, eOpts) {
-        this.getView().close();
-    },
-
-    onSave1: function (button, e, eOpts) {
-        var view = this.getView(),
+    onSave: function (button, e, eOpts) {
+        var me = this,
             form = this.getView().down('form').getForm(),
-            store = this.getStore('installments'),
-            storeRestructure = Ext.create('store.restructureLists'),
-            me = this;
+            store = this.getStore('installments');
 
-        var records = Ext.create('model.restructurelist');
-
-        form.updateRecord(records);
-
-        Ext.MessageBox.confirm('Confirm', 'Confirm Save?',
-            function (msg) {
-                if (msg == 'yes') {
-                Ext.MessageBox.show({
-                    title: 'Please wait',
-                    msg: 'Saving items...',
-                    progressText: 'Saving...',
-                    width: 300,
-                    progress: true,
-                    closable: false,
-                });
-
-//                store.sync({
-//                    success: function (batch, options) {
-//                    console.log(batch);
-//                        Ext.Ajax.request({
-//                            method: 'post',
-//                            url: 'api/Restructure/Post',
-//                            //params: obj,
-//                            params: records.data,
-//                            success: function (response) {
-//                                Ext.MessageBox.hide();
-//                                Ext.MessageBox.alert("Result", "Successful.");
-//                                view.close();
-//                            },
-//                            failure: function (response) {
-//                                Ext.MessageBox.hide();
-//                                Ext.MessageBox.alert("Error", response.responseText);
-//                            }
-//                        });
-//                    }
-//                });
-
-                store.data.each(function (record, index) {
-                    var i = index + 1;
-                    Ext.Ajax.request({
-                        method: 'post',
-                        url: 'api/Installment/Post',
-                        params: record.data,
-                        success: function (response) {
-                            me.fn(i,store.data.length);
-
-                            if(i === store.data.length){
-                                Ext.Ajax.request({
-                                    method: 'post',
-                                    url: 'api/Restructure/Post',
-                                    params: records.data,
-                                    success: function (response) {
-                                        Ext.MessageBox.hide();
-                                        Ext.MessageBox.alert("Result", "Successful.");
-                                        form.findField('Save').setValue('Y');
-                                        view.close();
-                                    },
-                                    failure: function (response) {
-                                        Ext.MessageBox.hide();
-                                        Ext.MessageBox.alert("Error", response.responseText);
-                                    }
-                                });
-                            }
-                        },
-                        failure: function (response) {
-                            
-                        }
+        if(store.getUpdatedRecords().length > 0){
+            Ext.Msg.show({
+                title:'Warning',
+                message: 'กรุณากดปุ่ม Calculate ก่อนทำการบันทึกข้อมูล.',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }else{
+            Ext.MessageBox.confirm('Confirm', (form.findField('flag').getValue() === 'new_approve') ? 'Confirm Approve?' : 'Confirm Save?',
+                function (msg) {
+                    if (msg === 'yes') {
+                    Ext.MessageBox.show({
+                        title: 'Please wait',
+                        msg: 'Saving items...',
+                        progressText: 'Saving...',
+                        width: 300,
+                        progress: true,
+                        closable: false,
                     });
-                });
-            }
-        }, this);
+
+                    me.fnSave();
+                }
+            }, this);
+        }
     },
 
     onPrint: function (button, e, eOpts) {
@@ -245,32 +203,41 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             record = Ext.create('model.restructurelist'),
             data = [];
 
-        form.updateRecord(record);
+        if(store.getUpdatedRecords().length > 0){
+            Ext.Msg.show({
+                title:'Warning',
+                message: 'กรุณากดปุ่ม Calculate ก่อนทำการออก Excel.',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }else{
+            form.updateRecord(record);
 
-        store.data.each(function (record, index) {
-            data[index] = record.data;
-        });
+            store.data.each(function (record, index) {
+                data[index] = record.data;
+            });
 
-        Ext.Ajax.request({
-            method: 'post',
-            url: 'Report/SSRSReport',
-            jsonData: {
-                list: data,
-                entity: record.data
-            },
-            success: function (response) {
-                var data = Ext.decode(response.responseText);
-                window.open(data.url);
-            },
-            failure: function (response) {
-            }
-        });
+            Ext.Ajax.request({
+                method: 'post',
+                url: 'Report/SSRSReport',
+                jsonData: {
+                    list: data,
+                    entity: record.data
+                },
+                success: function (response) {
+                    var data = Ext.decode(response.responseText);
+                    window.open(data.url);
+                },
+                failure: function (response) {
+                }
+            });
+        }
     },
 
     onStoreLoad: function (store, records, successful, eOpts) {
         var form = this.getView().down('form').getForm(),
             Agreement = form.findField('Agreement').getValue(),
-            EffectiveRate = form.findField('EffectiveRate').getValue(),
+            EffectiveRate = form.findField('EffectiveRateDisplay').getValue(),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
             recordRestructures = Ext.create("model.restructurelist", data),
             dataInstallment = Ext.decode(sessionStorage.getItem('dataInstallment'));
@@ -282,7 +249,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
 
         var OSPR = null;
 
-        if (checkNew == 'new') {
+        if (checkNew === 'new' || checkNew === 'new_approve') {
             store.removeAll();
 
             if (store.data.length === 0) {
@@ -292,8 +259,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                         VAT,C1,C3,C4,OS_PR;
 
                     if (i > 0) {
-                        if (dataInstallment != null) {
-                             C1 = dataInstallment[i];
+                        if (dataInstallment !== null) {
+                             C1 = parseFloat(dataInstallment[i]);
                         } else {
                              C1 = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(NewFlatRate, NewTerm, recordRestructures.get(OSPR));
                         }
@@ -304,7 +271,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                         OS_PR = this.CalOSPR(store.findRecord('InstallNo', i - 1).get('OS_PR'), C4);
                     }
 
-                    if(i == NewTerm && OS_PR != 0.00){
+                    if(i === NewTerm && OS_PR !== 0.00 && form.findField('Rate').getValue() === 'false'){
                         C1 = Ext.util.Format.round(C1 + OS_PR, 2);
                         VAT = this.VAT(C1);
                         C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate);
@@ -314,7 +281,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
 
                     switch (i) {
                         case 0:
-                            if(form.findField('NewCheck').getValue() == 'true'){
+                            if(form.findField('NewCheck').getValue() === 'true'){
                                 OSPR = 'New_OS_PR';
                             }else{
                                 OSPR = 'OS_PR';
@@ -334,8 +301,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     }
 
                     record = Ext.create('model.installment', {
-                        Agreement: recordRestructures.get('Agreement'),
-                        SEQ: form.findField('SEQ').getValue(),
+                        Agreement: Agreement,
                         InstallNo: i,
                         InstallmentDate: date,
                         InstallmentBeforeVAT: C1,
@@ -346,6 +312,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                         OS_PR: OS_PR
                     });
 
+                    if(checkNew === 'new_approve'){
+                        record.data.Id = records[i].get('Id');
+                    }
+
                     store.add(record);
                     
                     if (i === NewTerm) {
@@ -353,19 +323,29 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                     }
                 }
             }
+        }else if(checkNew === 'copy' ){
+            form.findField('flag').setValue('new');
+            Ext.MessageBox.hide();
+        }else if(checkNew === 'approve' ){
+            form.findField('flag').setValue('new_approve');
+            Ext.MessageBox.hide();
         }else{
             Ext.MessageBox.hide();
         }
+
+        store.commitChanges();
     },
 
     onStoreBeforeLoad: function (store, operation, eOpts) {
         var form = this.getView().down('form').getForm(),
             checkNew = form.findField('flag').getValue();
 
-        if (checkNew != 'new') {
+        if (checkNew === 'old' || checkNew === 'approve') {
             store.getProxy().extraParams.Agreement = form.findField('Agreement').getValue();
             store.getProxy().extraParams.SEQ = form.findField('SEQ').getValue();
-            //form.findField('flag').setValue('none');
+        }else if(checkNew  === 'copy') {
+            store.getProxy().extraParams.Agreement = form.findField('CopyAgreement').getValue();
+            store.getProxy().extraParams.SEQ = form.findField('SEQ').getValue();
         }
 
         Ext.MessageBox.show({
@@ -374,21 +354,133 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             progressText: 'Loading...',
             width: 300,
             progress: true,
-            closable: false,
-//            wait: {
-//                interval: 20
-//            }
-            //animateTarget: btn
+            closable: false
         });
     },
 
-    fn: function (i, length) {
+    onBeforeClose: function(panel, eOpts) {
+        var me = this,
+            form = this.getView().down('form').getForm(),
+            store = panel.down('grid').getStore();
+
+        if (panel.closeMe) {
+            panel.closeMe = false;
+            return true;
+        }
+
+        if (form.findField('flag').getValue() !== 'old' && form.findField('save').getValue() === 'N') {
+            Ext.Msg.show({
+                title: (form.findField('flag').getValue() === 'new_approve') ? 'Approve' : 'Save',
+                message: (form.findField('flag').getValue() === 'new_approve') ? 'Save Approve?' : 'Save Changes?',
+                buttons: Ext.Msg.YESNOCANCEL,
+                icon: Ext.Msg.QUESTION,
+                width: 300,
+                fn: function (btn) {
+                    if (btn === 'yes') {
+                        Ext.MessageBox.show({
+                            title: 'Please wait',
+                            msg: 'Saving items...',
+                            progressText: 'Saving...',
+                            width: 300,
+                            progress: true,
+                            closable: false,
+                        });
+
+                        me.fnSave();
+
+                    } else if (btn === 'no') {
+                        panel.closeMe = true;
+                        panel.close();
+                    }
+                }
+            });
+        } else {
+            panel.closeMe = true;
+            panel.close();
+        }
+
+        return false;
+    },
+
+    onClose: function(panel, eOpts) {
+        Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
+    },
+
+    fnSave: function() {
+        var view = this.getView(),
+            form = this.getView().down('form').getForm(),
+            store = this.getStore('installments'),
+            recordLists = Ext.create('model.restructurelist'),
+            me = this;
+
+        form.updateRecord(recordLists);
+
+        store.data.each(function (record, index) {
+            var i = index + 1;
+                    
+            record.data.SEQ = form.findField('SEQ').getValue();
+            record.data.Agreement = form.findField('Agreement').getValue();
+
+            if(form.findField('flag').getValue() === 'approve' || form.findField('flag').getValue() === 'new_approve'){
+                record.data.UpdateBy = sessionStorage.getItem('UserId');
+
+                recordLists.data.Status = 'approve';
+                recordLists.data.ApproveBy = sessionStorage.getItem('UserId');
+                recordLists.data.ApproveDate = new Date();
+                recordLists.data.EffectiveRate = form.findField('EffectiveRate').getValue();
+                recordLists.data.CreateBy =  form.findField('CreateBy').getValue();
+                recordLists.data.UpdateBy = sessionStorage.getItem('UserId');
+            }else{
+                record.data.CreateBy = sessionStorage.getItem('UserId');
+                record.data.CreateDate = new Date();
+
+                recordLists.data.Id = 0;
+                recordLists.data.Agreement = form.findField('Agreement').getValue();
+                recordLists.data.SEQ = form.findField('SEQ').getValue();
+                recordLists.data.Status = 'normal';
+                recordLists.data.CreateBy = sessionStorage.getItem('UserId');
+                recordLists.data.CreateDate = new Date();
+            }
+
+            Ext.Ajax.request({
+                method: 'post',
+                url: 'api/Installment/Post',
+                params: record.data,
+                success: function (response) {
+                    me.fnProgress(i,store.data.length);
+
+                    if(i === store.data.length){
+                        Ext.Ajax.request({
+                            method: 'post',
+                            url: 'api/Restructure/Post',
+                            params: recordLists.data,
+                            success: function (response) {
+                                Ext.MessageBox.hide();
+                                Ext.MessageBox.alert("Result", "Successful.");
+                                form.findField('save').setValue('Y');
+                                view.close();
+                            },
+                            failure: function (response) {
+                                Ext.MessageBox.hide();
+                                Ext.MessageBox.alert("Error", response.responseText);
+                            }
+                        });
+                    }
+                },
+                failure: function (response) {
+                    Ext.MessageBox.hide();
+                    Ext.MessageBox.alert("Error", response.responseText);
+                }
+            });
+        });
+    },
+
+    fnProgress: function (i, length) {
         if (i === length) {
             Ext.MessageBox.hide();
         } else {
             var val = i / (length - 1);
             Ext.MessageBox.updateProgress(val, Math.round(100 * val) + '% completed');
-            //setTimeout(this.fn(i, length), 100);
         }
     }
 });

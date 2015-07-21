@@ -64,5 +64,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             return RedirectToAction("Index", "Home", new { page = "Restructure" });
         }
+
+        public ActionResult Logout()
+        {
+            return RedirectToAction("Index", "Home", new { page = "logout" });
+        }
     }
 }

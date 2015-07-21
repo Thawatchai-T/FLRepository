@@ -130,7 +130,10 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueue', {
                     dataIndex: 'FirstNameTh',
                     text: 'First Name Th'
                 }
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'onViewItemDblClick'
+            }
         }
     ]
 

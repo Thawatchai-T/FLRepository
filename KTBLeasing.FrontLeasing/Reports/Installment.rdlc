@@ -1033,14 +1033,6 @@
                   <Value>=Sum(Fields!EffectiveRate.Value, "Restructure")</Value>
                   <Style>
                     <FontFamily>Tahoma</FontFamily>
-                    <Format>0.00;(0.00)</Format>
-                  </Style>
-                </TextRun>
-                <TextRun>
-                  <Value> %</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <Format>0.00;(0.00)</Format>
                   </Style>
                 </TextRun>
               </TextRuns>
@@ -1131,39 +1123,6 @@
             <PaddingBottom>2pt</PaddingBottom>
           </Style>
         </Textbox>
-        <Textbox Name="Day">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!Day.Value, "Restructure")</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <Format>#,0;(#,0)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Day</rd:DefaultName>
-          <Top>1.22917in</Top>
-          <Left>4in</Left>
-          <Height>0.25in</Height>
-          <Width>1in</Width>
-          <ZIndex>8</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
         <Textbox Name="UnpaidVAT">
           <CanGrow>true</CanGrow>
           <KeepTogether>true</KeepTogether>
@@ -1186,7 +1145,7 @@
           <Left>7in</Left>
           <Height>0.25in</Height>
           <Width>1in</Width>
-          <ZIndex>9</ZIndex>
+          <ZIndex>8</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1219,7 +1178,7 @@
           <Left>7in</Left>
           <Height>0.25in</Height>
           <Width>1in</Width>
-          <ZIndex>10</ZIndex>
+          <ZIndex>9</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1252,7 +1211,7 @@
           <Left>7in</Left>
           <Height>0.25in</Height>
           <Width>1in</Width>
-          <ZIndex>11</ZIndex>
+          <ZIndex>10</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1293,7 +1252,7 @@
           <Left>0.06958in</Left>
           <Height>0.25in</Height>
           <Width>1.16667in</Width>
-          <ZIndex>12</ZIndex>
+          <ZIndex>11</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1327,7 +1286,7 @@
           <Left>2.49667in</Left>
           <Height>0.25in</Height>
           <Width>1.48611in</Width>
-          <ZIndex>13</ZIndex>
+          <ZIndex>12</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1361,7 +1320,7 @@
           <Left>0.06958in</Left>
           <Height>0.25in</Height>
           <Width>1.16667in</Width>
-          <ZIndex>14</ZIndex>
+          <ZIndex>13</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1395,7 +1354,7 @@
           <Left>0.06958in</Left>
           <Height>0.25in</Height>
           <Width>1.16667in</Width>
-          <ZIndex>15</ZIndex>
+          <ZIndex>14</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1429,7 +1388,7 @@
           <Left>0.06958in</Left>
           <Height>0.25in</Height>
           <Width>1.16667in</Width>
-          <ZIndex>16</ZIndex>
+          <ZIndex>15</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1463,7 +1422,7 @@
           <Left>2.5in</Left>
           <Height>0.25in</Height>
           <Width>1.48611in</Width>
-          <ZIndex>17</ZIndex>
+          <ZIndex>16</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1497,75 +1456,7 @@
           <Left>2.5in</Left>
           <Height>0.25in</Height>
           <Width>1.48611in</Width>
-          <ZIndex>18</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox30">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>จำนวนวัน :</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox30</rd:DefaultName>
-          <Top>1.22917in</Top>
-          <Left>2.5in</Left>
-          <Height>0.25in</Height>
-          <Width>1.48611in</Width>
-          <ZIndex>19</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Textbox31">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>ดอกเบี้ย :</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style>
-                <TextAlign>Right</TextAlign>
-              </Style>
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Textbox31</rd:DefaultName>
-          <Top>0.47917in</Top>
-          <Left>6.26042in</Left>
-          <Height>0.25in</Height>
-          <Width>0.72916in</Width>
-          <ZIndex>20</ZIndex>
+          <ZIndex>17</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1599,7 +1490,7 @@
           <Left>4.99653in</Left>
           <Height>0.25in</Height>
           <Width>1.98958in</Width>
-          <ZIndex>21</ZIndex>
+          <ZIndex>18</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1633,7 +1524,7 @@
           <Left>4.99653in</Left>
           <Height>0.25in</Height>
           <Width>1.98958in</Width>
-          <ZIndex>22</ZIndex>
+          <ZIndex>19</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1667,40 +1558,7 @@
           <Left>4.99653in</Left>
           <Height>0.25in</Height>
           <Width>1.98958in</Width>
-          <ZIndex>23</ZIndex>
-          <Style>
-            <Border>
-              <Style>None</Style>
-            </Border>
-            <PaddingLeft>2pt</PaddingLeft>
-            <PaddingRight>2pt</PaddingRight>
-            <PaddingTop>2pt</PaddingTop>
-            <PaddingBottom>2pt</PaddingBottom>
-          </Style>
-        </Textbox>
-        <Textbox Name="Penalty1">
-          <CanGrow>true</CanGrow>
-          <KeepTogether>true</KeepTogether>
-          <Paragraphs>
-            <Paragraph>
-              <TextRuns>
-                <TextRun>
-                  <Value>=Sum(Fields!Penalty.Value, "Restructure")</Value>
-                  <Style>
-                    <FontFamily>Tahoma</FontFamily>
-                    <Format>#,0.00;(#,0.00)</Format>
-                  </Style>
-                </TextRun>
-              </TextRuns>
-              <Style />
-            </Paragraph>
-          </Paragraphs>
-          <rd:DefaultName>Penalty1</rd:DefaultName>
-          <Top>0.47917in</Top>
-          <Left>7in</Left>
-          <Height>0.25in</Height>
-          <Width>1in</Width>
-          <ZIndex>24</ZIndex>
+          <ZIndex>20</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1734,7 +1592,7 @@
           <Left>0.06958in</Left>
           <Height>0.25in</Height>
           <Width>1.16667in</Width>
-          <ZIndex>25</ZIndex>
+          <ZIndex>21</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1766,7 +1624,7 @@
           <Left>1.23625in</Left>
           <Height>0.25in</Height>
           <Width>1.26042in</Width>
-          <ZIndex>26</ZIndex>
+          <ZIndex>22</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1797,10 +1655,10 @@
           </Paragraphs>
           <rd:DefaultName>Textbox32</rd:DefaultName>
           <Top>1.47917in</Top>
-          <Left>5in</Left>
+          <Left>2.5in</Left>
           <Height>0.25in</Height>
-          <Width>1.98958in</Width>
-          <ZIndex>27</ZIndex>
+          <Width>1.48611in</Width>
+          <ZIndex>23</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1829,11 +1687,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>New_OS_PR</rd:DefaultName>
-          <Top>1.47917in</Top>
+          <Top>1.22917in</Top>
           <Left>4in</Left>
           <Height>0.25in</Height>
           <Width>1in</Width>
-          <ZIndex>28</ZIndex>
+          <ZIndex>24</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1863,11 +1721,11 @@
             </Paragraph>
           </Paragraphs>
           <rd:DefaultName>Textbox28</rd:DefaultName>
-          <Top>1.47917in</Top>
+          <Top>1.22917in</Top>
           <Left>2.5in</Left>
           <Height>0.25in</Height>
           <Width>1.48611in</Width>
-          <ZIndex>29</ZIndex>
+          <ZIndex>25</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>
@@ -1896,10 +1754,10 @@
           </Paragraphs>
           <rd:DefaultName>NewFlatRate</rd:DefaultName>
           <Top>1.47917in</Top>
-          <Left>6.98611in</Left>
+          <Left>3.98611in</Left>
           <Height>0.25in</Height>
           <Width>1in</Width>
-          <ZIndex>30</ZIndex>
+          <ZIndex>26</ZIndex>
           <Style>
             <Border>
               <Style>None</Style>

@@ -48,7 +48,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //add by pom use login
         public HttpResponseMessage DoLogin(Models.User formData)
         {
-            Logger.Error("fuck");
+            //Logger.Error("fuck");
             _UserViewModel = (_UserViewModel == null) ? new UserModel() : _UserViewModel;
             //[20141222] thawatchai.t change to model 
             this._User.UserName = formData.UserName;
@@ -137,7 +137,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
         private string VerifyAD(User user)
         {
-            if (user.UserName.Equals("thawatchai_ti") || user.UserName.Equals("phutip_pr") || user.Password.Equals("jfxm3kgt"))
+            if (user.UserName.Equals("mkt_id") || user.UserName.Equals("headmkt_id") || user.UserName.Equals("nidcha_bu") || user.UserName.Equals("thawatchai_ti") || user.UserName.Equals("phutip_pr") || user.Password.Equals("jfxm3kgt"))
                 return "OK";
             try
             {
@@ -189,7 +189,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             {
                 var userinfoList = this.UserInformationRepository.Find(UserId, "UserId", 0, 10);
                 var role = this.UserInRoleRepository.GetByUserID(UserId);
-                return (userinfoList.Count > 0) ? userinfoList.SingleOrDefault<UserInformationView>() : null;
+                return (userinfoList.Count > 0) ? userinfoList.FirstOrDefault<UserInformationView>() : null;
             }
             catch (Exception e)
             {

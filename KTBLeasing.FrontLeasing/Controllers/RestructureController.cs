@@ -19,19 +19,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private IRestructureRepository restructureRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/restructure
-        public List<Restructure> Get()
-        {
-            return new List<Restructure>();
-        }
-
-        // GET api/restructure/5
-        public RestructureListModel Get(int start, int limit, string agrcode)
+        public RestructureListModel Get(int start, int limit, int marketing_group)
         {
             try
             {
                 RestructureListModel model = new RestructureListModel();
-                model.data = restructureRepository.Get(start, limit, agrcode);;
-                model.total = restructureRepository.Count(agrcode); ;
+                model.data = restructureRepository.Get(start, limit, marketing_group);
+                model.total = restructureRepository.Count(marketing_group);
 
                 return model;
             }
@@ -42,10 +36,28 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
+        // GET api/restructure/5
+        public RestructureListModel Get(int start, int limit, int marketing_group, string agrcode)
+        {
+            try
+            {
+                RestructureListModel model = new RestructureListModel();
+                model.data = restructureRepository.Get(start, limit, marketing_group, agrcode);
+                model.total = restructureRepository.Count(marketing_group, agrcode);
+
+                return model;
+            }
+            catch (Exception ex)
+            { 
+                Logger.Error(ex);
+                return null;
+            }
+        }
+
         // POST api/restructure
         public void Post(Restructure entity)
         {
-            restructureRepository.Insert(entity);
+            restructureRepository.SaveOrUpdate(entity);
         }
 
         // PUT api/restructure/5

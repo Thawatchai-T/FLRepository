@@ -59,6 +59,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
         {
             xtype: 'form',
             region: 'north',
+            bodyPadding: 5,
             defaults: {
                 margin: '5 5 5 5 ',
                 labelWidth: 150,
@@ -75,8 +76,17 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'hiddenfield',
-                    name: 'Save',
+                    name: 'save',
                     value: 'N'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Rate',
+                    value: 'false'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'CopyAgreement'
                 },
                 {
                     xtype: 'hiddenfield',
@@ -157,7 +167,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 {
                     xtype: 'numberfield',
                     fieldLabel: 'Effective Rate',
-                    name: 'EffectiveRate',
+                    name: 'EffectiveRateDisplay',
                     decimalPrecision: 4,
                     step: 0.0001,
                     listeners: {
@@ -167,7 +177,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'hiddenfield',
+                    name: 'EffectiveRate'
+                },
+                {
+                    xtype: 'hiddenfield',
                     name: 'NewCheck'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'CreateBy'
                 }
             ]
         },
@@ -180,6 +198,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             session: true,
             region: 'center',
             forceFit: true,
+            columnLines: true,
             bind: {
                 store: '{installments}'
             },
@@ -262,7 +281,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             margin: 5,
                             text: 'Save',
                             listeners: {
-                                click: 'onSave1'
+                                click: 'onSave'
                             }
                         },
                         {
@@ -273,16 +292,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             listeners: {
                                 click: 'onPrint'
                             }
-                        },
-                        {
-                            xtype: 'button',
-                            itemId: 'testButton',
-                            margin: 5,
-                            text: 'Test',
-                            listeners: {
-                                click: 'onTest'
-                            },
-                            hidden: true
                         }
                     ]
                 },
@@ -303,11 +312,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     ptype: 'cellediting',
                     pluginId: 'celledit'
                 }
-            ],
-            listeners: {
-                
-            }
+            ]
         }
-    ]
-
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 });

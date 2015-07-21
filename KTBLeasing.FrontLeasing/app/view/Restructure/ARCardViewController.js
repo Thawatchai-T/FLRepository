@@ -17,12 +17,13 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.restructurearcard',
 
-    onCheckboxfieldChange: function(field, newValue, oldValue, eOpts) {
-        var New_OS_PR = this.getView().down('form').getForm().findField('New_OS_PR');
+    onCheckboxfieldChange: function (field, newValue, oldValue, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            New_OS_PR = form.findField('New_OS_PR');
 
-        if(field.checked){
+        if (field.checked) {
             New_OS_PR.allowBlank = false;
-        }else{
+        } else {
             New_OS_PR.allowBlank = true;
             New_OS_PR.validate();
         }
@@ -31,20 +32,18 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
     onCalculateInstallment: function (button, e, eOpts) {
         var view = this.getView(),
             form = this.getView().down('form').getForm(),
-            SEQ = form.findField('SEQ').getValue(),
-            NewCheck = form.findField('NewCheck').getValue();
+            me = this,
+            headform = Ext.getCmp('head-restructure-form').getForm(),
+            values = form.getValues(),
+            record = Ext.create('model.restructurelist', values),
+            OSPR = null;
 
         if (form.isValid()) {
-            var headform = Ext.getCmp('head-restructure-form').getForm(),
-                values = form.getValues(),
-                record = Ext.create('model.restructurelist', values),
-                OSPR = null;
-
             form.updateRecord(record);
-            
-            if(form.findField('NewCheck').checked){
+
+            if (form.findField('NewCheck').checked) {
                 OSPR = 'New_OS_PR';
-            }else{
+            } else {
                 OSPR = 'OS_PR';
             }
 
@@ -79,135 +78,84 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                 }
             }
 
-            //C5 Calculate EffectiveRate
-            Ext.Ajax.request({
-                method: 'post',
-                url: 'api/installment/PostEffectiveRate',
-                jsonData: objArray,
-                success: function (response) {
-                    record.set('EffectiveRate', response.responseText);
+            if (!form.findField('Rate').checked) {
+                //C5 Calculate EffectiveRate
+                Ext.Ajax.request({
+                    method: 'post',
+                    url: 'api/installment/PostEffectiveRate',
+                    jsonData: objArray,
+                    success: function (response) {
+                        record.set('EffectiveRate', response.responseText);
+                        record.set('EffectiveRateDisplay', response.responseText);
 
-                    var popup = Ext.create('widget.restructurerestructurewindow', {
-                        listeners: {
-                            beforerender: function (panel, eOpts) {
-                                panel.down('form').getForm().loadRecord(record);
-                                panel.down('form').getForm().findField('SEQ').setValue(SEQ);
-                                sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
-                                sessionStorage.setItem('dataInstallment', null);
-                                panel.down('form').getForm().findField('NewCheck').setValue(NewCheck);
-                            },
-                            beforeclose: function (panel, eOpts) {
-                                var store = panel.down('grid').getStore();
+                        sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
+                        sessionStorage.setItem('dataInstallment', null);
 
-                                 if (panel.closeMe || panel.down('form').getForm().findField('Save').getValue() === 'Y') {
-                                    panel.closeMe = false;
-                                    
-                                    return true;
-                                }
+                        me.onWindowPopupRestructure(form, record);
+                        view.close();
+                    },
+                    failure: function (response) {
+                        Ext.Msg.show({
+                            title: 'Error',
+                            message: 'ไม่สามารถคำนวณ Effective Rate ได้โปรดกรอกข้อมูลให้ถูกต้อง.',
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.Msg.ERROR
+                        });
+                    }
+                });
+            } else {
+                //C5 Calculate PmtRate
+                Ext.Ajax.request({
+                    method: 'get',
+                    url: 'api/installment/GetPmtRate',
+                    params: {
+                        Rate: form.findField('EffectiveRate').getValue(),
+                        NPer: record.get('NewTerm'),
+                        PV: record.get(OSPR)
+                    },
+                    success: function (response) {
+                        var dataInstallment = [];
 
-                                if (store.getModifiedRecords().length > 0) {
-                                    Ext.Msg.show({
-                                        title: 'Save',
-                                        message: 'Save Changes?',
-                                        buttons: Ext.Msg.YESNOCANCEL,
-                                        icon: Ext.Msg.QUESTION,
-                                        width: 300,
-                                        fn: function (btn) {
-                                            if (btn === 'yes') {
-                                                Ext.MessageBox.show({
-                                                    title: 'Please wait',
-                                                    msg: 'Saving items...',
-                                                    progressText: 'Saving...',
-                                                    width: 300,
-                                                    progress: true,
-                                                    closable: false,
-                                                });
+                        record.set('EffectiveRate', form.findField('EffectiveRate').getValue());
+                        record.set('EffectiveRateDisplay', form.findField('EffectiveRate').getValue());
 
-                                                store.data.each(function (record, index) {
-                                                    var i = index + 1;
-                                                    Ext.Ajax.request({
-                                                        method: 'post',
-                                                        url: 'api/Installment/Post',
-                                                        params: record.data,
-                                                        success: function (response) {
-                                                            if (i === store.data.length) {
-                                                                Ext.MessageBox.hide();
-                                                            } else {
-                                                                var val = i / (store.data.length - 1);
-                                                                Ext.MessageBox.updateProgress(val, Math.round(100 * val) + '% completed');
-                                                                //setTimeout(this.fn(i, length), 500);
-                                                            }
-                                                        },
-                                                        failure: function (response) {
-                            
-                                                        }
-                                                    });
-                                                });
-
-                                                Ext.Ajax.request({
-                                                    method: 'post',
-                                                    url: 'api/Restructure/Post',
-                                                    params: record.data,
-                                                    success: function (response) {
-                                                        Ext.MessageBox.hide();
-                                                        Ext.MessageBox.alert("Result", "Successful.");
-                                                        panel.closeMe = true;
-                                                        panel.close();
-                                                    },
-                                                    failure: function (response) {
-                                                        Ext.MessageBox.hide();
-                                                        Ext.MessageBox.alert("Error", response.responseText);
-                                                    }
-                                                });
-
-//                                                store.sync({
-//                                                    success: function (batch, options) {
-//                                                        Ext.Ajax.request({
-//                                                            method: 'post',
-//                                                            url: 'api/Restructure/Post',
-//                                                            //params: obj,
-//                                                            params: record.data,
-//                                                            success: function (response) {
-//                                                                Ext.MessageBox.hide();
-//                                                                Ext.MessageBox.alert("Result", "Successful.");
-//                                                                panel.closeMe = true;
-//                                                                panel.close();
-//                                                            },
-//                                                            failure: function (response) {
-//                                                                Ext.MessageBox.hide();
-//                                                                Ext.MessageBox.alert("Error", response.responseText);
-//                                                            }
-//                                                        });
-//                                                    }
-//                                                });
-                                            } else if (btn === 'no') {
-                                                panel.closeMe = true;
-                                                panel.close();
-                                            } else {
-                                            }
-                                        }
-                                    });
-                                } 
-
-                                return false;
-                            },
-                            close: function (panel, eOpts) {
-                                Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
+                        for (i = 0; i <= NewTerm; i++) {
+                            if (i == 0) {
+                                dataInstallment[i] = record.get(OSPR) * -1;
+                            }
+                            else {
+                                dataInstallment[i] = response.responseText;
                             }
                         }
-                    });
-                    popup.show();
 
-                    view.close();
-                },
-                failure: function (response) {
-                    Ext.MessageBox.alert('Error','ไม่สามารถคำนวณค่า 0 ได้');
-                }
-            });
+                        sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
+                        sessionStorage.setItem('dataInstallment', Ext.encode(dataInstallment));
 
+                        me.onWindowPopupRestructure(form, record);
+                        view.close();
+                    },
+                    failure: function (response) {
+                        Ext.MessageBox.alert('Error', 'ไม่สามารถคำนวณค่า 0 ได้');
+                    }
+                });
+            }
         } else {
 
         }
+    },
+
+    onWindowPopupRestructure: function (form, record) {
+        var popup = Ext.create('widget.restructurerestructurewindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    panel.down('form').getForm().loadRecord(record);
+                    panel.down('form').getForm().findField('SEQ').setValue(form.findField('SEQ').getValue());
+                    panel.down('form').getForm().findField('NewCheck').setValue(form.findField('NewCheck').getValue());
+                    panel.down('form').getForm().findField('Rate').setValue(form.findField('Rate').getValue());
+                }
+            }
+        });
+        popup.show();
     },
 
     onCancel: function (button, e, eOpts) {

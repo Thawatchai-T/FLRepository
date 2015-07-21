@@ -143,7 +143,27 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
         {
             type: 'float',
             name: 'ExchangeRate'
-        }
+        },
+        {
+            name: 'IndicationId',
+            mapping: 'IndicationEquipment.IndicationId'
+        },
+//        {
+//            name: 'Rating',
+//            mapping: 'IndicationEquipment.InformationIndication.Background.Rating'
+//        },
+//        {
+//            name: 'ExposureLimit',
+//            mapping: 'IndicationEquipment.InformationIndication.Background.ExposureLimit'
+//        },
+//        {
+//            name: 'RatingDate',
+//            mapping: 'IndicationEquipment.InformationIndication.Background.RatingDate'
+//        },
+//        {
+//            name: 'RatingDetail',
+//            mapping: 'IndicationEquipment.InformationIndication.Background.RatingDetail'
+//        },
     //        ,
     //        {
     //            name: 'DepositDownPayment'

@@ -206,6 +206,7 @@
     <Compile Include="Controllers\AnnualTaxController.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
     <Compile Include="Controllers\ARCardController.cs" />
+    <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\EquipmentDetailController.cs" />
     <Compile Include="Controllers\InstallmentController.cs" />
     <Compile Include="Controllers\MaintenanceListController.cs" />
@@ -248,6 +249,7 @@
     <Compile Include="Models\Common\UserModel.cs" />
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\ARCardModel.cs" />
+    <Compile Include="Models\JobModel.cs" />
     <Compile Include="Models\RestructureListModel.cs" />
     <Compile Include="Models\RestructureModel.cs" />
     <Compile Include="Models\InstallmentModel.cs" />
@@ -335,7 +337,7 @@
     <Content Include="app\model\AnnualTax.js" />
     <Content Include="app\model\AppDetail.js" />
     <Content Include="app\model\ApplicationDetail.js" />
-    <Content Include="app\model\ApplicationDetailView.js" />
+    <Content Include="app\model\ApplicationList.js" />
     <Content Include="app\model\Approval.js" />
     <Content Include="app\model\Authority.js" />
     <Content Include="app\model\Authorize.js" />
@@ -376,7 +378,7 @@
     <Content Include="app\model\Province.js" />
     <Content Include="app\model\PurchaseOrder.js" />
     <Content Include="app\model\RequestTransaction.js" />
-    <Content Include="app\model\Restructure.js" />
+    <Content Include="app\model\ARCard.js" />
     <Content Include="app\model\RestructureList.js" />
     <Content Include="app\model\Role.js" />
     <Content Include="app\model\RoleInTabs.js" />
@@ -400,7 +402,7 @@
     <Content Include="app\store\annualTaxes.js" />
     <Content Include="app\store\appDetails.js" />
     <Content Include="app\store\applicationDetails.js" />
-    <Content Include="app\store\applications.js" />
+    <Content Include="app\store\applicationLists.js" />
     <Content Include="app\store\approvals.js" />
     <Content Include="app\store\authorities.js" />
     <Content Include="app\store\authorizes.js" />
@@ -478,6 +480,7 @@
     <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
     <Content Include="app\store\agreements.js" />
+    <Content Include="app\store\jobs.js" />
     <Content Include="app\store\requestTransactions.js" />
     <Content Include="app\store\restructureLists.js" />
     <Content Include="app\store\customerInformations.js" />
@@ -505,6 +508,7 @@
     <Content Include="app\store\optionEndLeaseTerms.js" />
     <Content Include="app\store\provinces.js" />
     <Content Include="app\store\purchaseOrders.js" />
+    <Content Include="app\store\arcards.js" />
     <Content Include="app\store\roleInTabs.js" />
     <Content Include="app\store\sellers.js" />
     <Content Include="app\store\setups.js" />
@@ -8540,11 +8544,55 @@
     <Content Include="ext\src\window\Toast.js" />
     <Content Include="ext\src\window\Window.js" />
     <Content Include="ext\src\ZIndexManager.js" />
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="Reports\ReportViewer.aspx" />
     <Content Include="resources\.arch-internal-preview.css" />
-    <Content Include="resources\icons\delete.png" />
-    <Content Include="resources\icons\page_white_edit.png" />
+    <Content Include="resources\icons.css" />
+    <Content Include="resources\icons\accept.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\delete.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\exclamation.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_green.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_orange.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_pink.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_purple.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_red.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\flag_yellow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\page_white_edit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\space.gif">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\tick.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\images\breadcrumb\default-arrow-open-rtl.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-open.png" />
     <Content Include="resources\images\breadcrumb\default-arrow-rtl.png" />
@@ -9663,6 +9711,9 @@
     <EmbeddedResource Include="Reports\Installment.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Installment_bak.rdlc">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -9680,7 +9731,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3842</DevelopmentServerPort>
+          <DevelopmentServerPort>6700</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
           <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>

@@ -33,10 +33,12 @@ Ext.define('TabUserInformation.view.Setup.SetupTab', {
         type: 'tabsetuptab'
     },
     title: 'Setup Tab',
+    layout: 'border',
 
     items: [
         {
             xtype: 'panel',
+            region: 'north',
             bodyPadding: 10,
             layout: {
                 type: 'hbox',
@@ -64,6 +66,7 @@ Ext.define('TabUserInformation.view.Setup.SetupTab', {
         },
         {
             xtype: 'treepanel',
+            region: 'center',
             title: 'บริหารจัดการข้อมูล',
             //hideHeaders: true,
             store: 'commonDatas',
@@ -74,8 +77,8 @@ Ext.define('TabUserInformation.view.Setup.SetupTab', {
             useArrows: true,
             rootVisible: false,
             animate: false,
-            height: 750,
-            margin: '10 10 10 10',
+            //height: 750,
+            //margin: '10 10 10 10',
             tools: [{
                 type: 'refresh',
                 tooltip: 'Reset example',

@@ -36,12 +36,14 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewModel', {
     stores: {
         restructureLists: {
             model: 'TabUserInformation.model.RestructureList',
+            autoLoad: true,
+            autoSync: true,
             proxy: {
                 type: 'rest',
                 url: 'api/Restructure',
                 reader: {
                     type: 'json',
-                    //rootProperty: 'data',
+                    rootProperty: 'data',
                     totalProperty: 'total'
                 },
                 writer: {

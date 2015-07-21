@@ -77,12 +77,14 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public IEnumerable<Role> Get()
+        public RoleModel Get()
         {
             try
             {
+                RoleModel model = new RoleModel();
                 var result = RoleRepository.Get();
-                return result;
+                model.items = result;
+                return model;
             }
             catch (Exception ex)
             {
@@ -161,7 +163,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //this.UserInRoleRepository.Delete(entity);
         }
 
-        public IEnumerable<Role> GetRole()
+        public RoleModel GetRole()
         {
             return this.Get();
         }

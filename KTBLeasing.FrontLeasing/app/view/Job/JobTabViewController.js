@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
             msg: 'Create New Job or Old Job',
             buttons: Ext.MessageBox.YESNOCANCEL,
             buttonText: { yes: 'New Job', no: 'Old Customer', cancel: 'Cancel' },
+            width: 300,
             icon: Ext.MessageBox.INFO,
             fn: function (btn) {
                 if (btn == 'yes') {
@@ -47,8 +48,15 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
     },
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
-        var popup = Ext.create('widget.jobjobwindow');
-        popup.show();
+        Ext.create('widget.jobjobwindow', {
+            listeners: {
+                beforerender: function (panel, e0pst) {
+                    var form = panel.down('form').getForm();
+
+                    form.loadRecord(record);
+                }
+            }
+        }).show();
     }
 
 });

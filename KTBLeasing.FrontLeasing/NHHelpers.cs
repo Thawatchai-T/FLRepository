@@ -22,31 +22,31 @@ namespace KTBLeasing.FrontLeasing
         {
             try
             {
-                //var sessionf = Fluently.Configure()
-                //    .ProxyFactoryFactory<ProxyFactoryFactory>()
-                //    .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
-                //        x.Server("221.23.0.70")
-                //        .Port(1521)
-                //        .Username("FrontLeasing")
-                //        .Password("ktblitadmin")
-                //        .Instance("ktbl"))
-                //        )
-                //    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RoleMap>())
-                //    .ExposeConfiguration(c => c.SetProperty("current_session_context_class", "thread_static"))
-                //    .BuildSessionFactory();
-
                 var sessionf = Fluently.Configure()
                     .ProxyFactoryFactory<ProxyFactoryFactory>()
                     .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
-                        x.Server(Server)
-                        .Port(Port)
-                        .Username(Username)
-                        .Password(Password)
-                        .Instance(Instance))
+                        x.Server("221.23.0.70")
+                        .Port(1521)
+                        .Username("FrontLeasing_UAT")
+                        .Password("ktblitadmin")
+                        .Instance("ktbl"))
                         )
                     .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RoleMap>())
                     .ExposeConfiguration(c => c.SetProperty("current_session_context_class", "thread_static"))
                     .BuildSessionFactory();
+
+                //var sessionf = Fluently.Configure()
+                //    .ProxyFactoryFactory<ProxyFactoryFactory>()
+                //    .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
+                //        x.Server(Server)
+                //        .Port(Port)
+                //        .Username(Username)
+                //        .Password(Password)
+                //        .Instance(Instance))
+                //        )
+                //    .Mappings(m => m.FluentMappings.AddFromAssemblyOf<RoleMap>())
+                //    .ExposeConfiguration(c => c.SetProperty("current_session_context_class", "thread_static"))
+                //    .BuildSessionFactory();
                 return sessionf;
             }
             catch (Exception ex)

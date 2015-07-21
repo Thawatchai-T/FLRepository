@@ -68,6 +68,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                         {
                             xtype: 'hiddenfield',
                             name: 'SEQ',
+                            value: '1'
                         },
                         {
                             xtype: 'displayfield',
@@ -151,22 +152,22 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                 return Ext.util.Format.number(value, '0,000.00');
                             }
                         },
-                        {
-                            xtype: 'displayfield',
-                            fieldLabel: 'จำนวนวัน',
-                            name: 'Day',
-                            renderer: function(value, displayField) {
-                                return Ext.util.Format.number(value, '0,000.00');
-                            }
-                        },
-                        {
-                            xtype: 'displayfield',
-                            fieldLabel: 'ดอกเบี้ย',
-                            name: 'Interest',
-                            renderer: function(value, displayField) {
-                                return Ext.util.Format.number(value, '0,000.00');
-                            }
-                        },
+//                        {
+//                            xtype: 'displayfield',
+//                            fieldLabel: 'จำนวนวัน',
+//                            name: 'Day',
+//                            renderer: function(value, displayField) {
+//                                return Ext.util.Format.number(value, '0,000.00');
+//                            }
+//                        },
+//                        {
+//                            xtype: 'displayfield',
+//                            fieldLabel: 'ดอกเบี้ย',
+//                            name: 'Interest',
+//                            renderer: function(value, displayField) {
+//                                return Ext.util.Format.number(value, '0,000.00');
+//                            }
+//                        },
                         {
                             xtype: 'displayfield',
                             fieldLabel: 'Unpaid VAT for Restructure',
@@ -192,13 +193,54 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                             }
                         },
                         {
-                            xtype: 'numberfield',
-                            fieldLabel: 'New Flat Rate (Est.)',
-                            name: 'NewFlatRate',
-                            maxValue: 99.99,
-                            minValue: 0.01,
-                            step: 0.01,
-                            allowBlank: false
+                            xtype: 'container',
+                            defaults: {
+                                labelWidth: 200,
+                                labelAlign: 'right'
+                            },
+                            layout: {
+                                type: 'table',
+                                columns: 2
+                            },
+                            items: [
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'Effective Rate',
+                                    name: 'EffectiveRate',
+                                    allowBlank: false,
+                                    maxValue: 99.99,
+                                    minValue: 0,
+                                    decimalPrecision: 4,
+                                    step: 0.0001,
+                                    bind: {
+                                        disabled: '{!Rate.checked}'
+                                    }
+                                },
+                                {
+                                    xtype: 'radiofield',
+                                    reference: 'Rate',
+                                    name: 'Rate',
+                                    margin: '-5 0 0 20'
+                                },
+                                {
+                                    xtype: 'numberfield',
+                                    fieldLabel: 'New Flat Rate (Est.)',
+                                    name: 'NewFlatRate',
+                                    allowBlank: false,
+                                    maxValue: 99.99,
+                                    minValue: 0,
+                                    step: 0.01,
+                                    bind: {
+                                        disabled: '{Rate.checked}'
+                                    }
+                                },
+                                {
+                                    xtype: 'radiofield',
+                                    margin: '-5 0 0 20',
+                                    name: 'Rate',
+                                    checked: true
+                                }
+                            ]
                         },
                         {
                             xtype: 'datefield',

@@ -33,17 +33,18 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
         type: 'jobjobwindow'
     },
     autoShow: true,
-    height: 768,
     title: 'Job Tree',
     maximized: true,
     modal: true,
     id: 'jobjobwindow',
+    layout: 'border',
 
     items: [
         {
             xtype: 'form',
+            region: 'north',
             layout: 'auto',
-            bodyPadding: 10,
+            bodyPadding: 5,
             items: [
                 {
                     xtype: 'textfield',
@@ -51,7 +52,7 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
                     fieldLabel: 'Job #',
                     labelAlign: 'right',
                     labelWidth: 120,
-                    name: 'CustomerId'
+                    name: 'Id'
                 },
                 {
                     xtype: 'textfield',
@@ -59,7 +60,7 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
                     fieldLabel: 'Customer Name',
                     labelAlign: 'right',
                     labelWidth: 120,
-                    name: 'CustomerEngName'
+                    name: 'Customer'
                 },
                 {
                     xtype: 'textfield',
@@ -67,26 +68,26 @@ Ext.define('TabUserInformation.view.Job.JobWindow', {
                     fieldLabel: 'Marketing Officer',
                     labelAlign: 'right',
                     labelWidth: 120,
-                    hidden: true
+                    name: 'MarketingOfficer'
+                }
+            ]
+        },
+        {
+            xtype: 'tabpanel',
+            region: 'center',
+            activeTab: 0,
+            items: [
+                {
+                    xtype: 'jobleadleadtab'
                 },
                 {
-                    xtype: 'tabpanel',
-                    height: 768,
-                    activeTab: 0,
-                    items: [
-                        {
-                            xtype: 'jobleadleadtab'
-                        },
-                        {
-                            xtype: 'jobinformationinformationforindicationtab'
-                        },
-                        {
-                            xtype: 'jobindicationindicationforequipmenttab'
-                        },
-                        {
-                            xtype: 'jobapplicationapplicationtab'
-                        }
-                    ]
+                    xtype: 'jobinformationinformationforindicationtab'
+                },
+                {
+                    xtype: 'jobindicationindicationforequipmenttab'
+                },
+                {
+                    xtype: 'jobapplicationapplicationtab'
                 }
             ]
         }

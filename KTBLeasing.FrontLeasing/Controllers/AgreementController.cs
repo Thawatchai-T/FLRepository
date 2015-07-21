@@ -33,6 +33,22 @@ namespace KTBLeasing.FrontLeasing.Controllers
             
         }
 
+        public List<AgrCodeDomain> GetFindAgrCode(string agrcode)
+        {
+            ListAgrCode = (ListAgrCode == null) ? this.GetListAgrCode() : ListAgrCode;
+            try
+            {
+                List<AgrCodeDomain> result = ListAgrCode.Where(x => x.AgrCode == agrcode).Select(x => new AgrCodeDomain { AgrCode = x.AgrCode.Trim(), ComId = x.ComId, CusCode = x.CusCode.Trim() }).ToList();
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                throw ex;
+            }
+        }
+
         // GET api/agreement
         public IEnumerable<string> Get()
         {
@@ -52,22 +68,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 {
                     result = ListAgrCode.Where(x => x.AgrCode.Contains(text)).Select(x => new AgrCodeDomain { AgrCode = x.AgrCode.Trim(), ComId = x.ComId, CusCode = x.CusCode.Trim() }).ToList();
                 }     
-
-                //List<AgrCodeDomain> list = new List<AgrCodeDomain>();
-                //AgrCodeDomain a = new AgrCodeDomain();
-
-                //a.AgrCode = "H01010003806";
-
-                //list.Add(a);
-                //result = list;
-
                 return result;
             }
             catch (Exception e)
             {
-
                 Logger.Error(e);
-                Logger.ErrorFormat("{0} {1} {2} {3} {4}", DB2Repository.DbAuth._DATABASE, DB2Repository.DbAuth._Password, DB2Repository.DbAuth._Provider, DB2Repository.DbAuth._SERVER, DB2Repository.DbAuth._UserID);
                 throw e;
             }
         }

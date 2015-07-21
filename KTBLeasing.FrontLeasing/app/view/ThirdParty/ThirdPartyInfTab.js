@@ -35,13 +35,14 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfTab', {
     viewModel: {
         type: 'thirdpartythirdpartyinftab'
     },
-    layout: 'anchor',
+    layout: 'border',
     title: 'ThirdParty Information',
     titleCollapse: false,
 
     items: [
         {
             xtype: 'panel',
+            region: 'north',
             layout: 'table',
             bodyPadding: 10,
             items: [
@@ -54,23 +55,25 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfTab', {
         },
         {
             xtype: 'gridpanel',
+            region: 'center',
             autoScroll: true,
             height: 768,
             forceFit: true,
+            store: 'thirdParties',
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Code',
+                    dataIndex: 'ThirdPartyCode',
                     text: 'Code'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Eng',
+                    dataIndex: 'NameEn',
                     text: 'Name Eng'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name Thai',
+                    dataIndex: 'NameTh',
                     text: 'Name Thai'
                 }
             ],

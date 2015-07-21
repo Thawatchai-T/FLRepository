@@ -34,10 +34,12 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
         type: 'tabauthorizetab'
     },
     title: 'Authorize',
+    layout: 'border',
    
     items: [
         {
             xtype: 'panel',
+            region: 'north',
             bodyPadding: 10,
             layout: {
                 type: 'hbox',
@@ -64,7 +66,7 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
         },
         {
             xtype: 'gridpanel',
-            height: 768,
+            region: 'center',
             id: 'grid',
             store: 'authorizes',
             selModel: Ext.create('Ext.selection.CheckboxModel'),

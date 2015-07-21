@@ -43,7 +43,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewModel', {
                     writeAllFields: true
                 },
                 api: {
-                    create: 'api/installment/Post'
+                    create: 'api/installment/Post',
+                    update: 'api/installment/Put'
                 }
             },
             sorters: [{

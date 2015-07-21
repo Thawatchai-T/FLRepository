@@ -38,10 +38,12 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
     id: 'cusinftab',
     title: 'Customer Information',
     titleCollapse: false,
+    layout: 'border',
 
     items: [
         {
             xtype: 'form',
+            region: 'north',
             bodyPadding: 10,
             layout: {
                 type: 'hbox',
@@ -103,6 +105,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
         },
         {
             xtype: 'gridpanel',
+            region: 'center',
             autoScroll: true,
             height: 768,
             forceFit: true,
@@ -287,6 +290,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
         },
         {
             xtype: 'toolbar',
+            region: 'south',
             ui: 'footer',
             items: [
                 {

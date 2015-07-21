@@ -32,7 +32,7 @@ Ext.define('TabUserInformation.view.Role.RoleTabViewModel', {
                 url: '/api/role',
                 api: {
                     create: '/api/role/Post',
-                    read: '/api/role',
+                    read: '/api/role/getrole',
                     update: '/api/role',
                     destroy: '/api/role'
                 },

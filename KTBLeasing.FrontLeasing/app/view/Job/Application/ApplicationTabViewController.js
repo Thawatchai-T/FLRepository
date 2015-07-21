@@ -33,8 +33,8 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
 
                     console.log(record);
 
-                    Ext.getCmp('jobappapplication').loadRecord(recordInformation);
-                    Ext.getCmp('jobappapplication').loadRecord(recordIndication);
+//                    Ext.getCmp('jobappapplication').loadRecord(recordInformation);
+//                    Ext.getCmp('jobappapplication').loadRecord(recordIndication);
                     Ext.getCmp('jobappapplication').loadRecord(record);
 
                     //-- Load Form Child --//

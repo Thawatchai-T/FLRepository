@@ -44,7 +44,8 @@ Ext.define('TabUserInformation.store.restructureLists', {
                     writeAllFields: true
                 },
                 api: {
-                    create: 'api/Restructure/Post'
+                    create: 'api/Restructure/Post',
+                    update: 'api/Restructure/Put'
                 }
             }, 
             sorters: [{

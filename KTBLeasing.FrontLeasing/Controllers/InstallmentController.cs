@@ -39,7 +39,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             try
             {
-                installmentRepository.Insert(entity);
+                installmentRepository.SaveOrUpdate(entity);
             }
             catch (Exception e)
             {
@@ -63,6 +63,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
             double guess = 0.05;
 
             return Microsoft.VisualBasic.Financial.IRR(ref values, guess) * 100 * 12;
+        }
+
+        public double GetPmtRate(double Rate, double NPer, double PV)
+        {
+            return Microsoft.VisualBasic.Financial.Pmt((Rate / 100) / 12, NPer, -PV);
         }
     }
 }

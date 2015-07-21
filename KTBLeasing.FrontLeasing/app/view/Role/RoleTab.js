@@ -24,16 +24,18 @@ Ext.define('TabUserInformation.view.Role.RoleTab', {
     viewModel: {
         type: 'roleroletab'
     },
-    bodyPadding: 5,
+    layout: 'border',
+    //bodyPadding: 5,
     title: 'Role',
 
     items: [
         {
             xtype: 'form',
+            region: 'north',
             reference: 'form',
             itemId: 'myform4',
             bodyPadding: 10,
-            title: 'Search Role form',
+            //title: 'Search Role form',
             items: [
                 {
                     xtype: 'container',
@@ -66,13 +68,14 @@ Ext.define('TabUserInformation.view.Role.RoleTab', {
         },
         {
             xtype: 'gridpanel',
-            bodyPadding: 5,
+            region: 'center',
+            //bodyPadding: 5,
             title: 'Role Management',
             minHeight: 550,
             height: 730,
-//            bind: {
-//                store: '{roles}'
-//            },
+            bind: {
+                store: '{roles}'
+            },
             dockedItems: [
                 {
                     xtype: 'toolbar',
@@ -110,10 +113,11 @@ Ext.define('TabUserInformation.view.Role.RoleTab', {
                 {
                     xtype: 'pagingtoolbar',
                     dock: 'bottom',
+                    ui: 'footer',
                     displayInfo: true,
-//                    bind: {
-//                        store: '{roles}'
-//                    }
+                    bind: {
+                        store: '{roles}'
+                    }
                 }
             ],
             columns: [

@@ -158,22 +158,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return result;
         }
 
-        public void DoPost(ApplicationDetailViewModel entity)
-        {
-            try
-            {
-                //var typeEntity = Activator.CreateInstance("KTBLeasing.Domain", string.Format("KTBLeasing.FrontLeasing.Domain.{0}", name)).Unwrap().GetType();
-                //var entity = JsonConvert.DeserializeObject(obj.ToString(), typeEntity);
-
-                //ApplicationDetailRepository.SaveOrUpdate<object>(entity);
-                ApplicationDetailRepository.SaveOrUpdate(entity);
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e);
-            }
-        }
-
         // POST api/contact
         public void Post(object obj, ApplicationDetailChildEnum name)
         {

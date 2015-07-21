@@ -36,14 +36,13 @@ Ext.define('TabUserInformation.view.User.UserInfTab', {
     viewModel: {
         type: 'tabuserinftab'
     },
-    resizable: false,
-    width: '100%',
-    manageHeight: false,
+    layout: 'border',
     title: 'User Information',
 
     items: [
         {
             xtype: 'panel',
+            region: 'north',
             bodyPadding: 10,
             layout: {
                 type: 'hbox',
@@ -97,6 +96,7 @@ Ext.define('TabUserInformation.view.User.UserInfTab', {
         },
         {
             xtype: 'gridpanel',
+            region: 'center',
             autoScroll: true,
             height: 768,
             store: 'userInformations',

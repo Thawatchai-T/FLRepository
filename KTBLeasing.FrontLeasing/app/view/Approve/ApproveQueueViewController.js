@@ -17,16 +17,28 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueueViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.approveapprovequeue',
 
-    onTextfieldKeyup: function(textfield, e, eOpts) {
+    onTextfieldKeyup: function (textfield, e, eOpts) {
 
     },
 
-    onButtonApproveClick: function(button, e, eOpts) {
+    onButtonApproveClick: function (button, e, eOpts) {
 
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
+    onButtonDeleteClick: function (button, e, eOpts) {
 
+    },
+
+    onViewItemDblClick: function (dataview, record, item, index, e, eOpts) {
+        Ext.create('widget.jobinformationinformationforindicationwindow', {
+            listeners: {
+                beforerender: function (panel, e0pts) {
+                    var form = panel.down('form').getForm();
+
+                    form.loadRecord(record);
+                }
+            }
+        }).show();
     }
 
 });
