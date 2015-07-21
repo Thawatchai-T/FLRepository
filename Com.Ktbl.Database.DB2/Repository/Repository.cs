@@ -31,7 +31,7 @@ namespace Com.Ktbl.Database.DB2.Repository
             try
             {
                 //select COM_ID, AGRCODE, CUSCODE from AGRREL group by COM_ID, AGRCODE, CUSCODE;
-                string sqlCommand = "select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where com_id = '1' and comcode = '1' and reason <> 1  and reason <> 2  and reason <> 7 group by COM_ID, AGRCODE, CUSCODE";
+                string sqlCommand = "select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where com_id = '1' and comcode = '1' and reason <> 1  and reason <> 2  and reason <> 7 group by COM_ID, AGRCODE, CUSCODE with ur";
                 this.DbAuth.GetOleDBConnetion();
                 var dt = this.DbAuth.ExecuteQueryWithSQL(sqlCommand);
                 var list = Db2Linq.ConvertToList<AgrCodeDomain>(dt);
@@ -49,7 +49,7 @@ namespace Com.Ktbl.Database.DB2.Repository
             try
             {
                 //select COM_ID, AGRCODE, CUSCODE from AGRREL group by COM_ID, AGRCODE, CUSCODE;
-                string sqlCommand = string.Format("select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where reason in (1,2,7) and com_id ='{0}' and AGRCODE like'%{1}%' group by COM_ID, AGRCODE, CUSCODE", "1", agrcode);
+                string sqlCommand = string.Format("select COM_ID ComId, AGRCODE AgrCode, CUSCODE CusCode from AGRREL where reason in (1,2,7) and com_id ='{0}' and AGRCODE like'%{1}%' group by COM_ID, AGRCODE, CUSCODE with ur", "1", agrcode);
                 var dt = DbAuth.ExecuteQueryWithSQL(sqlCommand);
                 var list = Db2Linq.ConvertToList<AgrCodeDomain>(dt);
                 
@@ -66,7 +66,7 @@ namespace Com.Ktbl.Database.DB2.Repository
         {
             try
             {
-                string sql = "select com_id ComId,ENTCODE CusCode, name_t NameTh,name_e NameEng, title_T TitleTh, title_e TitleEng FROM ENTREL group by com_id,ENTCODE,name_t,name_e,title_T,title_e";
+                string sql = "select com_id ComId,ENTCODE CusCode, name_t NameTh,name_e NameEng, title_T TitleTh, title_e TitleEng FROM ENTREL group by com_id,ENTCODE,name_t,name_e,title_T,title_e with ur";
                 var dt = DbAuth.ExecuteQueryWithSQL(sql);
                 var list = Db2Linq.ConvertToList<CustomerDomain>(dt);
                 return list;
@@ -83,7 +83,7 @@ namespace Com.Ktbl.Database.DB2.Repository
         {
             try
             {
-                string sql = string.Format("select com_id ComId,ENTCODE CusCode, name_t NameTh,name_e NameEng, title_T TitleTh, title_e TitleEng FROM ENTREL where com_id='{0}' and ENTCODE ='{1}' group by com_id,ENTCODE,name_t,name_e,title_T,title_e", "1", cuscode);
+                string sql = string.Format("select com_id ComId,ENTCODE CusCode, name_t NameTh,name_e NameEng, title_T TitleTh, title_e TitleEng FROM ENTREL where com_id='{0}' and ENTCODE ='{1}' group by com_id,ENTCODE,name_t,name_e,title_T,title_e with ur", "1", cuscode);
                 var dt = DbAuth.ExecuteQueryWithSQL(sql);
                 var list = Db2Linq.ConvertToList<CustomerDomain>(dt);
                 return list;
