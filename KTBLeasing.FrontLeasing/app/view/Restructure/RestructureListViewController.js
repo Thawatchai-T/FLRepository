@@ -180,6 +180,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                         form.findField('flag').setValue('approve');
 
                     } else {
+                        panel.down('#calculateEffectiveRateButton').disable();
                         panel.down('#calculateButton').disable();
                         panel.down('#saveButton').disable();
                         grid.getPlugin('celledit').disable();
