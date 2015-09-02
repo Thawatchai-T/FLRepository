@@ -40,6 +40,53 @@ Ext.define('TabUserInformation.view.Home.index', {
     layout: 'border',
 
     items: [
+//        {
+//            xtype: 'container',
+//            region: 'north',
+//            height: 66,
+//            layout: {
+//                type: 'hbox',
+//                align: 'middle',
+//                pack: 'end'
+//            },
+//            items: [
+//                {
+//                    xtype: 'container',
+//                    layout: {
+//                        type: 'table',
+//                        columns: 1
+//                    },
+//                    margin: '0 20 0 0',
+//                    items: [
+//                        {
+//                            xtype: 'container',
+//                            layout: {
+//                                type: 'hbox',
+//                                pack: 'end'
+//                            },
+//                            width: 200,
+//                            items: [
+//                                {
+//                                    xtype: 'button',
+//                                    glyph: 'xf08b@FontAwesome',
+//                                    iconAlign: 'right',
+//                                    text: 'Logout',
+//                                    listeners: {
+//                                        click: 'onButtonLogoutClick'
+//                                    }
+//                                }
+//                            ]
+//                        },
+//                        {
+//                            xtype: 'label',
+//                            bind: {
+//                                html: '<span style="color:white"><b>{FullNameTh} <br/> {DeptThaiDesc}</b></span>'
+//                            }
+//                        }
+//                    ]
+//                }
+//            ]
+//        },
         {
             xtype: 'homemaintab',
             region: 'center'

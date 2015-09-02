@@ -15,6 +15,7 @@
 
 Ext.define('TabUserInformation.store.agreements', {
     extend: 'Ext.data.Store',
+    alias: 'store.agreements',
 
     requires: [
         'TabUserInformation.model.Agreement',

@@ -23,5 +23,9 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal Principle { get; set; }
         public virtual decimal Interest { get; set; }
         public virtual decimal OS_PR { get; set; }
+        public virtual decimal Penalty { get; set; }
+        public virtual decimal Unknown2 { get; set; }
+        public virtual decimal Unknown3 { get; set; }
+        public virtual decimal Unknown4 { get; set; }
     }
 }

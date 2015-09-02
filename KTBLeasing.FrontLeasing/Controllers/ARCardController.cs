@@ -11,6 +11,7 @@ using Com.Ktbl.Database.DB2.Domain;
 using Com.Ktbl.Database.DB2.Repository;
 using log4net;
 using System.Reflection;
+using KTBLeasing.FrontLeasing.Helpers;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -66,11 +67,23 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/installment/5
-        public ARCardModel Get(string agrcode)
+        public CustomerDomain Get(string CusCode)
         {
             try
             {
-                return this.ARCard(agrcode);
+                return this.GetCustomerNameWithAgrCode(CusCode);
+            }
+            catch (Exception ex)
+            {
+                return new CustomerDomain();
+            }
+        }
+
+        public ARCardModel Get(string agrcode, DateTime date)
+        {
+            try
+            {
+                return this.ARCard(agrcode, date);
             }
             catch (Exception ex)
             {
@@ -78,25 +91,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public ARCardModel GetFindAgrCode(string agrcode)
-        {
-            try
-            {
-                List<AgrCodeDomain> list = this.GetFindListAgrCode(agrcode);
-                if (list.Count > 0)
-                {
-                    return this.ARCard(agrcode);
-                }
-                else
-                {
-                    return new ARCardModel();
-                }
-            }
-            catch (Exception ex)
-            {
-                return new ARCardModel();
-            }
-        }
+        //public ARCardModel GetFindAgrCode(string agrcode)
+        //{
+        //    try
+        //    {
+        //        List<AgrCodeDomain> list = this.GetFindListAgrCode(agrcode);
+        //        if (list.Count > 0)
+        //        {
+        //            return this.ARCard(agrcode);
+        //        }
+        //        else
+        //        {
+        //            return new ARCardModel();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return new ARCardModel();
+        //    }
+        //}
 
         // POST api/installment
         public void Post([FromBody]string value)
@@ -113,7 +126,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
         }
 
-        private ARCardModel ARCard(string agrcode)
+        private ARCardModel ARCard(string agrcode, DateTime date)
         {
             try
             {
@@ -125,7 +138,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
                 request.AgrCode = agrcode;
                 request.AppName = "app";
-                request.AsOfDate = DateTime.Now;
+                request.AsOfDate = date;
 
                 //var test = _objIPolymathCoreDll.GetName();
 
@@ -146,8 +159,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
             //สัญญา
             model.Agreement = BuildCard.agrcode;
-            //ชื่อลูกค้า
-            model.Customer = this.GetCustomerNameWithAgrCode(BuildCard.cuscode).NameTh;// BuildCard.cuscode;
             //จำนวนวัน
             model.Day = int.Parse(BuildCard.late_max);
             //Debit Note ค้างชำระ
@@ -163,7 +174,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             model.Penalty = Convert.ToDecimal(BuildCard.penalty);
             //Unpaid VAT for Restructure
             model.UnpaidVAT = Convert.ToDecimal(BuildCard.unpaid_vat);
-            //model.Customers = this.GetCustomerNameWithAgrCode(BuildCard.agrcode);
+            
             return model;
         }
 
@@ -171,14 +182,16 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             try
             {
-                ListCustomer = (ListCustomer == null)? DB2Repository.GetCustomerName(): ListCustomer;
+                //ListCustomer = (ListCustomer == null)? DB2Repository.GetCustomerName(): ListCustomer;
 
 //                ListAgrCode = DB2Repository.GetCuscodeWithAgrCode(agrcode);
 
                 //var agrentity = ListAgrCode.FirstOrDefault();
                 
-                var result = ListCustomer.Where(x => x.CusCode == CusCode).FirstOrDefault();
+                //var result = ListCustomer.Where(x => x.CusCode == CusCode).FirstOrDefault();
                 //var result = DB2Repository.GetCustomerNameWithCusCode(CusCode).FirstOrDefault();
+                //[20150827] add by woody
+                var result = CommonHelps.ListCustomerDomain.Where(x => x.CusCode.Trim() == CusCode).FirstOrDefault();
                 return result;
             }
             catch (Exception e)

@@ -25,7 +25,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
             buttonARCard = this.getView().down('button'),
             UserData = Ext.decode(sessionStorage.getItem('UserData'));
 
-        store.getProxy().extraParams.agrcode = combo.value;
+        store.getProxy().extraParams.CusCode = combo.getStore().findRecord('AgrCode', combo.value).get('CusCode');
+
         buttonARCard.disable();
 
         Ext.MessageBox.show({
@@ -46,9 +47,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                 storeList.load();
                 grid.view.refresh();
 
-                sessionStorage.setItem('dataRestructure', Ext.encode(records[0].data));
+                //sessionStorage.setItem('dataRestructure', Ext.encode(records[0].data));
 
-                form.findField('Customer').setValue(records[0].get('Customer'));
+                form.findField('Customer').setValue(records[0].get('NameTh'));
 
                 buttonARCard.enable();
 
@@ -61,29 +62,34 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
     },
 
     onButtonARCardClick: function (button, e, eOpts) {
-        var form = Ext.getCmp('head-restructure-form').getForm(),
+        var formHead = Ext.getCmp('head-restructure-form').getForm(),
             grid = this.getView().down('grid'),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
             record = Ext.create("model.arcard", data),
-            storeList = grid.getStore();
+            storeList = grid.getStore(),
+            store = Ext.create('store.arcards');
+
+        formHead.updateRecord(record);
 
         var SEQ = storeList.totalCount + 1;
 
-        form.updateRecord(record);
+        store.getProxy().extraParams.agrcode = formHead.findField('Agreement').getValue();
+        store.getProxy().extraParams.date = formHead.findField('RestructureDate').getValue();
+        store.load(function (records, operation, success) {
+            Ext.create('widget.restructurearcard', {
+                listeners: {
+                    beforerender: function (panel, eOpts) {
+                        var form = panel.down('form').getForm();
 
-        //if (data != null) {
-        Ext.create('widget.restructurearcard', {
-            listeners: {
-                beforerender: function (panel, eOpts) {
-                    var form = panel.down('form').getForm();
-
-                    form.loadRecord(record);
-                    form.findField('NewFirstDueDate').setValue(Ext.Date.add(record.get('RestructureDate'),Ext.Date.MONTH,1));
-                    form.findField('SEQ').setValue(SEQ);
+                        form.loadRecord(records[0]);
+                        form.findField('Customer').setValue(formHead.findField('Customer').getValue());
+                        form.findField('RestructureDate').setValue(formHead.findField('RestructureDate').getValue());
+                        form.findField('NewFirstDueDate').setValue(Ext.Date.add(formHead.findField('RestructureDate').getValue(), Ext.Date.MONTH, 1));
+                        form.findField('SEQ').setValue(SEQ);
+                    }
                 }
-            }
-        }).show();
-        //}
+            }).show();
+        });
     },
 
     onCopyClick: function (button, e, eOpts) {

@@ -38,4 +38,9 @@
   <!--<object id="listOfProvince" type="System.Collections.Generic.Dictionary&lt;string,string&gt;"
         factory-object="nhHelpersFactory"
         factory-method="CreateSessionFactory" singleton="true"/>-->
+
+
+  <object id="commonhelper" type="KTBLeasing.FrontLeasing.Helpers.CommonHelps, KTBLeasing.FrontLeasing" singleton="true" >
+    <constructor-arg index="0" ref="repositorydb2"/>
+  </object>
 </objects>

@@ -28,6 +28,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
         'Ext.grid.View',
         'Ext.grid.column.Date',
         'Ext.grid.column.Number',
+        'Ext.grid.feature.Summary',
         'Ext.toolbar.Paging',
         'Ext.grid.plugin.RowEditing',
         'Ext.button.Button'
@@ -45,16 +46,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
     maximized: true,
     modal: true,
     session: true,
-//    tools: [
-//        {
-//            itemId: 'refresh',
-//            type: 'refresh',
-//            callback: function() {
-//                // do refresh
-//            }
-//        }
-//    ],
-
     items: [
         {
             xtype: 'form',
@@ -167,14 +158,14 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 {
                     xtype: 'numberfield',
                     fieldLabel: 'Effective Rate',
-                    name: 'EffectiveRateDisplay',
+                    name: 'EffectiveRate',
                     decimalPrecision: 4,
                     step: 0.0001,
                     allowBlank: false
                 },
                 {
                     xtype: 'hiddenfield',
-                    name: 'EffectiveRate'
+                    name: 'EffectiveRateDisplay'
                 },
                 {
                     xtype: 'hiddenfield',
@@ -202,6 +193,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             viewConfig: {
                 enableTextSelection: true
             },
+//            features: [
+//                {
+//                    id: 'group',
+//                    ftype: 'summary',
+//                    groupHeaderTpl: 'A',
+//                    hideGroupedHeader: true,
+//                    enableGroupingMenu: false
+//                }
+//            ],
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -214,7 +214,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'InstallmentDate',
                     text: 'Date',
                     format: 'd/m/Y',
-//                    width: 100
                 },
                 {
                     xtype: 'numbercolumn',
@@ -224,37 +223,87 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                         xtype: 'numberfield',
                         selectOnFocus: true
                     },
-                    //width: 200
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'VAT',
                     text: 'VAT',
-//                    width: 100
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'Total',
                     text: 'Total',
-//                    width: 100
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'Principle',
                     text: 'Principle',
-//                    width: 100
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'Interest',
                     text: 'Int.',
-//                    width: 100
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'OS_PR',
-                    text: 'O/S Principle',
-                    //width: 250
+                    text: 'O/S Principle'
+                },
+                {
+                    xtype: 'numbercolumn',
+                    dataIndex: 'Penalty',
+                    text: 'ผ่อนชำระเฉพาะส่วนดอกเบี้ยค้างชำระ',
+                    editor: {
+                        xtype: 'numberfield',
+                        selectOnFocus: true
+                    },
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
+                },
+                {
+                    xtype: 'numbercolumn',
+                    dataIndex: 'Unknown2',
+                    text: 'ค่างวดผ่อนชำระตามสัญญาปรับปรุงโครงสร้างหนี้',
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'Unknown3',
+                    text: '1/(1+r)^n'
+                },
+                {
+                    xtype: 'numbercolumn',
+                    dataIndex: 'Unknown4',
+                    text: 'PV',
+                    summaryType: 'sum',
+                    summaryRenderer: function(value, summaryData, dataIndex) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    }
                 }
             ],
             dockedItems: [

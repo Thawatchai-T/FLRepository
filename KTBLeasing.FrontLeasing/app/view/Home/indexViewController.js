@@ -21,6 +21,14 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
         'TabUserInformation.view.Home.indexViewModel'
     ],
 
+    fnLogOut: function () {
+        sessionStorage.clear();
+
+        this.getView().destroy();
+
+        Ext.create('widget.windowloginwindow').show();
+    },
+
     onMainViewBeforeRender: function (component, eOpts) {
         //console.log(eOpts);
         var viewport = component.down('tabpanel'),
@@ -70,8 +78,6 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
             }
         });
 
-
-
         //var loginmodel =  Ext.decode(sessionStorage.getItem('UserModel')).data;
         //var store = Ext.getStore('tabInRoles');
 
@@ -107,5 +113,9 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
 
 
 
+    },
+
+    onButtonLogoutClick: function (button, e, eOpts) {
+        this.fnLogOut();
     }
 });

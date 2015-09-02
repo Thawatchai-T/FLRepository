@@ -20,7 +20,8 @@ Ext.define('TabUserInformation.model.Installment', {
     requires: [
         'Ext.data.field.Integer',
         'Ext.data.field.Date',
-        'Ext.data.field.Number'
+        'Ext.data.field.Number',
+        'TabUserInformation.model.RestructureList'
     ],
 
     idProperty: 'Id',
@@ -53,15 +54,24 @@ Ext.define('TabUserInformation.model.Installment', {
         },
         {
             type: 'float',
-            name: 'VAT'
+            name: 'VAT',
+            calculate: function (data) {
+                return data.InstallmentBeforeVAT * 0.07;
+            }
         },
         {
             type: 'float',
-            name: 'Total'
+            name: 'Total',
+            calculate: function (data) {
+                return data.InstallmentBeforeVAT + data.VAT;
+            }
         },
         {
             type: 'float',
-            name: 'Principle'
+            name: 'Principle',
+            calculate: function (data) {
+                return data.InstallmentBeforeVAT - data.Interest;
+            }
         },
         {
             type: 'float',
@@ -70,6 +80,38 @@ Ext.define('TabUserInformation.model.Installment', {
         {
             type: 'float',
             name: 'OS_PR'
+        },
+        {
+            type: 'float',
+            name: 'Penalty',
+//            calculate: function (data) {
+//                return Ext.decode(sessionStorage.getItem('dataRestructure')).Penalty / Ext.decode(sessionStorage.getItem('dataRestructure')).NewTerm;
+//            }
+        },
+        {
+            type: 'float',
+            name: 'Unknown2',
+            calculate: function (data) {
+                return data.InstallmentBeforeVAT + data.Penalty;
+            }
+        },
+        {
+            type: 'float',
+            name: 'Unknown3',
+            calculate: function (data) {
+                var result = 0.00;
+                if (data.InstallNo > 0) {
+                    result = (1 / Math.pow((1 + ((Ext.decode(sessionStorage.getItem('dataRestructure')).EffectiveRate / 100) / 12)), data.InstallNo));
+                }
+                return result;
+            }
+        },
+        {
+            type: 'float',
+            name: 'Unknown4',
+            calculate: function (data) {
+                return data.InstallmentBeforeVAT * data.Unknown3;
+            }
         }
     ]
 });

@@ -152,6 +152,8 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                     panel.down('form').getForm().findField('SEQ').setValue(form.findField('SEQ').getValue());
                     panel.down('form').getForm().findField('NewCheck').setValue(form.findField('NewCheck').getValue());
                     panel.down('form').getForm().findField('Rate').setValue(form.findField('Rate').getValue());
+
+                    //panel.down('grid').getView().getFeature('group').toggleSummaryRow();
                 }
             }
         });

@@ -308,11 +308,18 @@ public class DbAuth
       DataTable dt = new DataTable();
       
       cn.Open();
-      OleDbCommand cmd = new OleDbCommand(sql, cn);
-      OleDbDataReader reader = cmd.ExecuteReader();
-      dt.Load(reader);
-      cn.Close();
-      return dt;
+      //OleDbCommand cmd = new OleDbCommand(sql, cn);
+      using (var cmd = new OleDbCommand(sql, cn))
+      {
+          cmd.CommandTimeout = 360;
+          OleDbDataReader reader = cmd.ExecuteReader();
+          dt.Load(reader);
+          cn.Close();
+          return dt;
+      }
+      
+
+      
   }
 
   public DataTable ExecuteUpdate(string tablename, string value)

@@ -8,6 +8,7 @@ using Com.Ktbl.Database.DB2.Domain;
 using Com.Ktbl.Database.DB2.Repository;
 using log4net;
 using System.Reflection;
+using KTBLeasing.FrontLeasing.Helpers;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -22,7 +23,10 @@ namespace KTBLeasing.FrontLeasing.Controllers
             ListAgrCode = (ListAgrCode == null) ? new List<AgrCodeDomain>() : ListAgrCode;
             try
             {
-                ListAgrCode = this.DB2Repository.GetAgrCodeAll();
+                
+                //ListAgrCode = this.DB2Repository.GetAgrCodeAll();
+                //[20150827] add by Woody
+                ListAgrCode = CommonHelps.ListAgrCodeDomain; 
                 return ListAgrCode;
 
             }

@@ -108,7 +108,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             form = this.getView().down('form').getForm(),
             store = this.getStore('installments'),
             data = [],
-            dataInstallment = [];
+            dataInstallment = [],
+            dataPenalty = [];
 
         store.data.each(function (record, index) {
             var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
@@ -123,9 +124,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             }
 
             dataInstallment[index] = (index == 0) ? record.get('OS_PR') * -1 : record.get('InstallmentBeforeVAT');
+            dataPenalty[index] = (index == 0) ? 0.00 : record.get('Penalty');
         });
 
         sessionStorage.setItem('dataInstallment', Ext.encode(dataInstallment));
+        sessionStorage.setItem('dataPenalty', Ext.encode(dataPenalty));
 
         return data;
     },
@@ -249,8 +252,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             EffectiveRate = form.findField('EffectiveRateDisplay').getValue(),
             data = Ext.decode(sessionStorage.getItem('dataRestructure')),
             recordRestructures = Ext.create("model.restructurelist", data),
-            dataInstallment = Ext.decode(sessionStorage.getItem('dataInstallment'));
-
+            dataInstallment = Ext.decode(sessionStorage.getItem('dataInstallment')),
+            dataPenalty = Ext.decode(sessionStorage.getItem('dataPenalty'));
+            
         var NewFlatRate = recordRestructures.get('NewFlatRate'),
             NewTerm = recordRestructures.get('NewTerm');
 
@@ -265,16 +269,23 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                 for (i = 0; i <= NewTerm; i++) {
                     var record = null,
                         date = new Date(),
-                        VAT,C1,C3,C4,OS_PR;
+                        VAT,C1,C3,C4,OS_PR,Penalty;
 
                     if (i > 0) {
                         if (dataInstallment !== null) {
                              C1 = parseFloat(dataInstallment[i]);
                         } else {
                              C1 = TabUserInformation.view.Restructure.RestructureWindowViewController.C1(NewFlatRate, NewTerm, recordRestructures.get(OSPR));
+                             
                         }
 
-                        VAT = this.VAT(C1);
+                        if(dataPenalty !== null){
+                            Penalty = parseFloat(dataPenalty[i]);
+                        }else{
+                            Penalty = 0.00;
+                        }
+
+                        //VAT = this.VAT(C1);
                         C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate);
                         C4 = this.C4(C1, C3);
                         OS_PR = this.CalOSPR(store.findRecord('InstallNo', i - 1).get('OS_PR'), C4);
@@ -282,7 +293,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
 
                     if(i === NewTerm && OS_PR !== 0.00 && form.findField('Rate').getValue() === 'false'){
                         C1 = Ext.util.Format.round(C1 + OS_PR, 2);
-                        VAT = this.VAT(C1);
+                        //VAT = this.VAT(C1);
                         C3 = this.C3(recordRestructures, i, store.findRecord('InstallNo', i - 1).get('OS_PR'), EffectiveRate);
                         C4 = this.C4(C1, C3);
                         OS_PR = this.CalOSPR(store.findRecord('InstallNo', i - 1).get('OS_PR'), C4);
@@ -314,11 +325,12 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
                         InstallNo: i,
                         InstallmentDate: date,
                         InstallmentBeforeVAT: C1,
-                        VAT: VAT,
-                        Total: Ext.util.Format.round(C1 + VAT, 2),
-                        Principle: C4,
+                        //VAT: VAT,
+                        //Total: Ext.util.Format.round(C1 + VAT, 2),
+                        //Principle: C4,
                         Interest: C3,
-                        OS_PR: OS_PR
+                        OS_PR: OS_PR,
+                        Penalty: Penalty
                     });
 
                     if(checkNew === 'new_approve'){
@@ -412,6 +424,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
     },
 
     onClose: function(panel, eOpts) {
+        sessionStorage.removeItem('dataInstallment');
+        sessionStorage.removeItem('dataPenalty');
         Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
     },
 

@@ -49,42 +49,13 @@ namespace KTBLeasing.FrontLeasing.Reports
 
                 ReportDataSource dsInstallment = new ReportDataSource("Installment", list);
                 ReportDataSource dsRestructure = new ReportDataSource("Restructure", listentity);
-                //rptViewer = new Microsoft.Reporting.WebForms.ReportViewer();
-                //rptViewer.ProcessingMode = ProcessingMode.Local;
-                //rptViewer.LocalReport.ReportPath = Server.MapPath("Installment.rdlc");
-                //rptViewer.LocalReport.DataSources.Clear();
-                //rptViewer.LocalReport.DataSources.Add(dsInstallment);
-                //rptViewer.LocalReport.DataSources.Add(dsRestructure);
-
-                //rptViewer.LocalReport.Refresh();
-
-                
-
-                //byte[] bytes = rptViewer.LocalReport.Render("EXCEL",null, out mimeType, out encoding, out extension, out streamIds, out warnings);
-
-                //// Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
-                //Response.Buffer = true;
-                //Response.Clear();
-                //Response.ContentType = mimeType;
-                //Response.AddHeader("content-disposition", "attachment; filename=" + "Installment" + "." + extension);
-                //Response.BinaryWrite(bytes); // create the file
-                //Response.Flush();
-                //Response.End();
-
-
+               
                 LocalReport report = new LocalReport();
                 report.ReportPath = Server.MapPath("Installment.rdlc"); 
-                //ReportDataSource rds = new ReportDataSource();
-                //rds.Name = "DataSet1";//This refers to the dataset name in the RDLC file
-                //rds.Value = EmployeeRepository.GetAllEmployees();
-                //report.DataSources.Add(rds);
-                //report.DataSources
-                //report.ReportPath = Server.MapPath("Installment.rdlc");
                 report.DataSources.Clear();
                 report.DataSources.Add(dsInstallment);
                 report.DataSources.Add(dsRestructure);
 
-                //Byte[] mybytes = report.Render("EXCEL");
                 byte[] bytes = report.Render("EXCEL", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
 
                 // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
@@ -95,11 +66,6 @@ namespace KTBLeasing.FrontLeasing.Reports
                 Response.BinaryWrite(bytes); // create the file
                 Response.Flush();
                 Response.End();
-                //Byte[] mybytes = report.Render("PDF"); for exporting to PDF
-                //using (FileStream fs = File.Create(@"D:\SalSlip.xls"))
-                //{
-                //    fs.Write(mybytes, 0, mybytes.Length);
-                //}
             }
             catch (Exception ex)
             {

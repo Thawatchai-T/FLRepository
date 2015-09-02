@@ -239,6 +239,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\CommonHelps.cs" />
     <Compile Include="Helpers\ReportingCredential.cs" />
     <Compile Include="Models\ApplicationDetailChildEnum.cs" />
     <Compile Include="Models\Authorize.cs" />
@@ -9708,9 +9709,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\Installment.rdlc">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Installment.rdlc" />
     <EmbeddedResource Include="Reports\Installment_bak.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
