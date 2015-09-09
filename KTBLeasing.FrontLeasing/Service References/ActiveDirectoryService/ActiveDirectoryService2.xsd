@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://localhost" elementFormDefault="qualified" targetNamespace="http://localhost" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Ktbl.ActiveDirectory.Service" />
+  <xs:element name="CheckAuthenticated">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Ktbl.ActiveDirectory.Service" minOccurs="0" name="Request" nillable="true" type="q1:RequestAuthentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CheckAuthenticatedResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Ktbl.ActiveDirectory.Service" minOccurs="0" name="CheckAuthenticatedResult" nillable="true" type="q2:ResponseAuthentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfo">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Ktbl.ActiveDirectory.Service" minOccurs="0" name="Request" nillable="true" type="q3:RequestUserInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetUserInfoResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Ktbl.ActiveDirectory.Service" minOccurs="0" name="GetUserInfoResult" nillable="true" type="q4:ResponseAuthentication" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetName">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNameResult" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

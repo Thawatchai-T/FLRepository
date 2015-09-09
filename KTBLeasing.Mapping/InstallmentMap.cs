@@ -25,6 +25,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.Principle).Column("PRINCIPLE");
             Map(x => x.Interest).Column("INTEREST");
             Map(x => x.OS_PR).Column("OS_PR");
+            Map(x => x.Penalty).Column("PENALTY");
             Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
             Map(x => x.CreateBy).Column("CREATE_BY").Length(20);
             Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");

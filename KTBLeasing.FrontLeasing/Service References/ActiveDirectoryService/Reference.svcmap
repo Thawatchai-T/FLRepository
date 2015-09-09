@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a0046515-4f29-441e-898a-b97eef719acd" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ActiveDirectoryService.xsd" MetadataType="Schema" ID="eea3225c-38ce-4c55-b334-634bf2ba0bd8" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?xsd=xsd1" />
+    <MetadataFile FileName="ActiveDirectoryService.wsdl" MetadataType="Wsdl" ID="9942e324-9490-4612-a08f-3225f2e297e5" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?wsdl=wsdl0" />
+    <MetadataFile FileName="adservice.wsdl" MetadataType="Wsdl" ID="5dabd3a6-cd0d-4fe0-b87e-7d72ba817832" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?wsdl" />
+    <MetadataFile FileName="ActiveDirectoryService1.xsd" MetadataType="Schema" ID="876a0c9d-6387-4b1b-aaab-66ebb18b0e24" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?xsd=xsd2" />
+    <MetadataFile FileName="ActiveDirectoryService2.xsd" MetadataType="Schema" ID="cf1bcec8-583f-4010-94c3-8965dd145408" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?xsd=xsd0" />
+    <MetadataFile FileName="ActiveDirectoryService.disco" MetadataType="Disco" ID="7a7ac9c6-bed9-4c18-bee4-c4e086e3b788" SourceId="1" SourceUrl="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

@@ -16,6 +16,10 @@
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>false</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -313,12 +317,12 @@
     <Compile Include="Reports\ReportViewer.aspx.designer.cs">
       <DependentUpon>ReportViewer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Service References\PolymathCoreDllService\Reference.cs">
+    <Compile Include="Service References\ActiveDirectoryService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Service References\WS_ActiveDirectory\Reference.cs">
+    <Compile Include="Service References\PolymathCoreDllService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -751,7 +755,9 @@
     <Content Include="Config\controllers.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Config\objects.xml" />
+    <Content Include="Config\objects.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Config\repository.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -8819,11 +8825,32 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
+    <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService.disco" />
+    <None Include="Service References\ActiveDirectoryService\configuration91.svcinfo" />
+    <None Include="Service References\ActiveDirectoryService\configuration.svcinfo" />
+    <None Include="Service References\ActiveDirectoryService\KTBLeasing.FrontLeasing.ActiveDirectoryService.ResponseAuthentication.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ActiveDirectoryService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="Views\Report\SSRSReport.cshtml" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService.wsdl" />
+    <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\ActiveDirectoryService\adservice.wsdl" />
     <None Include="Service References\PolymathCoreDllService\KTBLeasing.FrontLeasing.PolymathCoreDllService.ResponseBuildCardServices.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -8853,13 +8880,6 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
-    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.disco" />
-    <None Include="Service References\WS_ActiveDirectory\configuration91.svcinfo" />
-    <None Include="Service References\WS_ActiveDirectory\configuration.svcinfo" />
-    <None Include="Service References\WS_ActiveDirectory\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -8871,7 +8891,6 @@
     </Content>
     <Content Include="Views\Web.config" />
     <Content Include="Views\Home\Login.cshtml" />
-    <None Include="Service References\WS_ActiveDirectory\WS_ActiveDirectory.wsdl" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\Uploads\" />
@@ -9687,8 +9706,8 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ActiveDirectoryService\" />
     <WCFMetadataStorage Include="Service References\PolymathCoreDllService\" />
-    <WCFMetadataStorage Include="Service References\WS_ActiveDirectory\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Ktbl.Database.DB2\Com.Ktbl.Database.DB2.csproj">
@@ -9709,10 +9728,9 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Reports\Installment.rdlc" />
-    <EmbeddedResource Include="Reports\Installment_bak.rdlc">
+    <Content Include="Reports\Installment.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -9733,8 +9751,6 @@
           <DevelopmentServerPort>6700</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
-          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
-          <IISAppRootUrl>http://localhost/KTBLeasing.FrontLeasing</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

@@ -91,25 +91,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        //public ARCardModel GetFindAgrCode(string agrcode)
-        //{
-        //    try
-        //    {
-        //        List<AgrCodeDomain> list = this.GetFindListAgrCode(agrcode);
-        //        if (list.Count > 0)
-        //        {
-        //            return this.ARCard(agrcode);
-        //        }
-        //        else
-        //        {
-        //            return new ARCardModel();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        return new ARCardModel();
-        //    }
-        //}
+        public ARCardModel GetFindAgrCode(string agrcode, DateTime date)
+        {
+            try
+            {
+                List<AgrCodeDomain> list = GetFindListAgrCode(agrcode);
+                if (list.Count > 0)
+                {
+                    return this.ARCard(agrcode, date);
+                }
+                else
+                {
+                    return new ARCardModel();
+                }
+            }
+            catch (Exception ex)
+            {
+                return new ARCardModel();
+            }
+        }
 
         // POST api/installment
         public void Post([FromBody]string value)
@@ -158,7 +158,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
             ARCardModel model = new ARCardModel();
 
             //สัญญา
-            model.Agreement = BuildCard.agrcode;
+            model.Agreement = BuildCard.agrcode.Trim();
+            //ลูกค้า
+            model.Customer = this.GetCustomerNameWithAgrCode(BuildCard.cuscode.Trim()).NameTh;
             //จำนวนวัน
             model.Day = int.Parse(BuildCard.late_max);
             //Debit Note ค้างชำระ

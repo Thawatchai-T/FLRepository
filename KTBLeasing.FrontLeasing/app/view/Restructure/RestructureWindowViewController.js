@@ -71,15 +71,27 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         return date;
     },
 
+    //Interest
     C3: function (record, InstallNo, OS_PR, EffectiveRate) {
         var RestructureMonth = Ext.Date.format(record.get('RestructureDate'), 'm/Y'),
             NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
             monthDiff;
 
-        if (InstallNo == 1 & RestructureMonth == NewFirstDueMonth) {
-            monthDiff = 0;
+        var diffDay = Ext.Date.diff(record.get('RestructureDate'),record.get('NewFirstDueDate'),Ext.Date.DAY);
+        var countDayByMonth = Ext.Date.diff(Ext.Date.getFirstDateOfMonth(record.get('RestructureDate')),Ext.Date.getLastDateOfMonth(record.get('RestructureDate')),Ext.Date.DAY);
+
+        if (Ext.Date.format(record.get('RestructureDate'),'d/m/Y') === Ext.Date.format(Ext.Date.getFirstDateOfMonth(record.get('RestructureDate')),'d/m/Y')) {
+            if(InstallNo === 1 & diffDay < countDayByMonth){
+                monthDiff = 0;
+            } else {
+                monthDiff = 1;
+            }
         } else {
-            monthDiff = 1;
+            if (InstallNo === 1 & RestructureMonth === NewFirstDueMonth) {
+                monthDiff = 0;
+            } else {
+                monthDiff = 1;
+            }
         }
 
         var result = OS_PR * (EffectiveRate / 100) * (monthDiff / 12);

@@ -105,8 +105,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                 if (btn == 'ok') {
                     storeArcards.getProxy().setUrl('api/ARCard/GetFindAgrcode');
                     storeArcards.getProxy().extraParams.agrcode = value;
+                    storeArcards.getProxy().extraParams.date = record.get('RestructureDate');
                     storeArcards.load(function (records, operation, success) {
-                        if (records[0].get('Agreement') !== null) {
+                        if (record.get('Agreement') !== null) {
                             sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
 
                             Ext.create('widget.restructurerestructurewindow', {
