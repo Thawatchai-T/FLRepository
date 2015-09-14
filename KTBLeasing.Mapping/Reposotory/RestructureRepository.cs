@@ -19,6 +19,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         void SaveOrUpdate(Restructure entity);
         int Count(int marketing_group);
         int Count(int marketing_group, string agrcode);
+        string GetSQLRelease(long id);
     }
     public class RestructureRepository : NhRepository, IRestructureRepository
     {
@@ -159,45 +160,48 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public string GetSQLReles(){
+        public string GetSQLRelease(long id)
+        {
             try
             {
-                string agrcode = "F01H40001517";
-                int seq = 2;
                 StringBuilder sb = new StringBuilder();
-                var instResVat = (1*0.7);//replact instr
-
+               
                 using (var session = SessionFactory.OpenStatelessSession())
                 using (var tx = session.BeginTransaction())
                 {
-                    var head = session.QueryOver<Restructure>().Where(Expression.Eq("Agreement",agrcode) && Expression.Eq("SEQ",seq)).List<Restructure>().FirstOrDefault();
-                    var result = session.QueryOver<Installment>().Where(Expression.Eq("Agreement",agrcode) && Expression.Eq("SEQ",seq)).List<Installment>();
+                    var head = session.QueryOver<Restructure>().Where(Expression.Eq("Id",id)).List<Restructure>().FirstOrDefault();
+                    var result = session.QueryOver<Installment>().Where(Expression.Eq("Res_Id", id)).List<Installment>();
 
-                    result.AsParallel().ForAll(x=>{
-                        Object obj = new Object();
-                        lock(obj){
-                            var insvat = x.InstallmentTotal* Convert.ToDecimal(0.07);
-                            var RestructureDate = Convert.ToDateTime(head.RestructureDate).ToString("yyyy-MM-dd");
+                    foreach(var item in result){
 
-                            sb.Append("UPDATE KEMADIST.PAYREL SET ");
-                            sb.Append(string.Format("A.INSTALL = ROUND({0}, 2), ", x.InstallmentTotal));
-                            sb.Append(string.Format("A.INST_VAT = ROUND({0}, 2), ", insvat));
-                            sb.Append(string.Format("WHERE COM_ID = '1' AND COMCODE = 'AGRCODE', ", x.Agreement));
-                            sb.Append(string.Format("AND DATE_EFF = {0} ", RestructureDate));
-                            sb.Append(string.Format("AND DATEPAY = {0} ", RestructureDate));
-                        
-                        
-                        }
+                        if (item.InstallNo == 0) break;
+                        var insvat = item.Installment_Total * Convert.ToDecimal(0.07);
+                        var RestructureDate = Convert.ToDateTime(head.RestructureDate).ToString("yyyy-MM-dd");
+                        string InstallmentDate = Convert.ToDateTime(item.InstallmentDate).ToString("yyyy-MM-dd");
 
-                    
-                    });
+                        sb.Append("---------------------------------------------------------------------------\n");    
+                        sb.Append("UPDATE KEMADIST.PAYREL SET ");
+                        sb.Append(string.Format("A.INSTALL = ROUND({0}, 2), ", item.Installment_Total));
+                        sb.Append(string.Format("A.INST_VAT = ROUND({0}, 2) ", insvat));
+                        sb.Append(string.Format("WHERE COM_ID = '1' AND COMCODE = 'AGRCODE', ", item.Agreement));
+                        sb.Append(string.Format("AND DATE_EFF = '{0}' ", RestructureDate));
+                        sb.Append(string.Format("AND DATEPAY = '{0}' ;", InstallmentDate));
+                            
+                        sb.Append("\n---------------------------------------------------------------------------\n");
+                        sb.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = {0} ", item.Agreement));
+                        sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
+
+                        sb.Append("\n---------------------------------------------------------------------------\n");
+                        sb.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = {0} ", item.Agreement));
+                        sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
+                        sb.Append("\n");
+
+                    }
 
                 }
-                
-       
-       
-       AND DATE_EFF = 3 AND COMCODE = DATEPAY = 4
-                return null;
+                return sb.ToString();
             }
             catch (Exception)
             {
