@@ -160,6 +160,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
+        //[2015.914] Add by Woody. Gen file sql update db2
         public string GetSQLRelease(long id)
         {
             try
@@ -170,31 +171,31 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 using (var tx = session.BeginTransaction())
                 {
                     var head = session.QueryOver<Restructure>().Where(Expression.Eq("Id",id)).List<Restructure>().FirstOrDefault();
-                    var result = session.QueryOver<Installment>().Where(Expression.Eq("Res_Id", id)).List<Installment>();
+                    var result = session.QueryOver<Installment>().Where(Expression.Eq("Res_Id", id)).OrderBy(x=>x.InstallNo).Asc().List<Installment>();
 
                     foreach(var item in result){
 
-                        if (item.InstallNo == 0) break;
+                        if (item.InstallNo == 0) continue;
                         var insvat = item.Installment_Total * Convert.ToDecimal(0.07);
                         var RestructureDate = Convert.ToDateTime(head.RestructureDate).ToString("yyyy-MM-dd");
                         string InstallmentDate = Convert.ToDateTime(item.InstallmentDate).ToString("yyyy-MM-dd");
-
-                        sb.Append("---------------------------------------------------------------------------\n");    
-                        sb.Append("UPDATE KEMADIST.PAYREL SET ");
-                        sb.Append(string.Format("A.INSTALL = ROUND({0}, 2), ", item.Installment_Total));
-                        sb.Append(string.Format("A.INST_VAT = ROUND({0}, 2) ", insvat));
-                        sb.Append(string.Format("WHERE COM_ID = '1' AND COMCODE = 'AGRCODE', ", item.Agreement));
+                        
+                        sb.Append(string.Format("-- InstallNo: {0} -------------------------------------------------------------------------\n",item.InstallNo));    
+                        sb.Append("UPDATE PAYREL SET ");
+                        sb.Append(string.Format("INSTALL = ROUND({0}, 2), ", item.Installment_Total));
+                        sb.Append(string.Format("INST_VAT = ROUND({0}, 2) ", insvat));
+                        sb.Append(string.Format("WHERE COM_ID = '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb.Append(string.Format("AND DATE_EFF = '{0}' ", RestructureDate));
                         sb.Append(string.Format("AND DATEPAY = '{0}' ;", InstallmentDate));
                             
                         sb.Append("\n---------------------------------------------------------------------------\n");
                         sb.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ",item.Interest));
-                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = {0} ", item.Agreement));
+                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
 
                         sb.Append("\n---------------------------------------------------------------------------\n");
                         sb.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ",item.Interest));
-                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = {0} ", item.Agreement));
+                        sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
                         sb.Append("\n");
 
