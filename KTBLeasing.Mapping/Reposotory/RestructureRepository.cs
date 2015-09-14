@@ -144,5 +144,52 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return result;
             }
         }
+
+        public string GetSQLReles(){
+            try
+            {
+                string agrcode = "F01H40001517";
+                int seq = 2;
+                StringBuilder sb = new StringBuilder();
+                var instResVat = (1*0.7);//replact instr
+
+                using (var session = SessionFactory.OpenStatelessSession())
+                using (var tx = session.BeginTransaction())
+                {
+                    var head = session.QueryOver<Restructure>().Where(Expression.Eq("Agreement",agrcode) && Expression.Eq("SEQ",seq)).List<Restructure>().FirstOrDefault();
+                    var result = session.QueryOver<Installment>().Where(Expression.Eq("Agreement",agrcode) && Expression.Eq("SEQ",seq)).List<Installment>();
+
+                    result.AsParallel().ForAll(x=>{
+                        Object obj = new Object();
+                        lock(obj){
+                            var insvat = x.InstallmentTotal* Convert.ToDecimal(0.07);
+                            var RestructureDate = Convert.ToDateTime(head.RestructureDate).ToString("yyyy-MM-dd");
+
+                            sb.Append("UPDATE KEMADIST.PAYREL SET ");
+                            sb.Append(string.Format("A.INSTALL = ROUND({0}, 2), ", x.InstallmentTotal));
+                            sb.Append(string.Format("A.INST_VAT = ROUND({0}, 2), ", insvat));
+                            sb.Append(string.Format("WHERE COM_ID = '1' AND COMCODE = 'AGRCODE', ", x.Agreement));
+                            sb.Append(string.Format("AND DATE_EFF = {0} ", RestructureDate));
+                            sb.Append(string.Format("AND DATEPAY = {0} ", RestructureDate));
+                        
+                        
+                        }
+
+                    
+                    });
+
+                }
+                
+       
+       
+       AND DATE_EFF = 3 AND COMCODE = DATEPAY = 4
+                return null;
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        }
     }
 }
