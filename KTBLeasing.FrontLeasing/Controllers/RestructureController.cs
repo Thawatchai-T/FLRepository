@@ -79,5 +79,25 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public void Delete(int id)
         {
         }
+
+        /// <summary>
+        /// [20150914] Add by Woody Method GetReleaseSql, Use for update db2
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns>string Sql</returns>
+        public string GetRelease(long id){
+
+            try
+            {
+                return this.restructureRepository.GetSQLRelease(id);
+            }
+            catch (Exception)
+            {
+                
+                throw;
+            }
+        
+        }
+
     }
 }
