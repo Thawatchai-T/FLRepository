@@ -13,6 +13,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         }
 
         public virtual long Id { get; set; }
+        public virtual long Res_Id { get; set; }
         public virtual string Agreement { get; set; }
         public virtual int SEQ { get; set; }
         public virtual int InstallNo { get; set; }
@@ -24,8 +25,8 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal Interest { get; set; }
         public virtual decimal OS_PR { get; set; }
         public virtual decimal Penalty { get; set; }
-        public virtual decimal Unknown2 { get; set; }
-        public virtual decimal Unknown3 { get; set; }
-        public virtual decimal Unknown4 { get; set; }
+        public virtual decimal Installment_Total { get; set; }
+        public virtual decimal Waste_Value { get; set; }
+        public virtual decimal PV { get; set; }
     }
 }

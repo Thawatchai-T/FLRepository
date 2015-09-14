@@ -374,11 +374,9 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             checkNew = form.findField('flag').getValue();
 
         if (checkNew === 'old' || checkNew === 'approve') {
-            store.getProxy().extraParams.Agreement = form.findField('Agreement').getValue();
-            store.getProxy().extraParams.SEQ = form.findField('SEQ').getValue();
+            store.getProxy().extraParams.Res_Id = form.findField('Res_Id').getValue();
         }else if(checkNew  === 'copy') {
-            store.getProxy().extraParams.Agreement = form.findField('CopyAgreement').getValue();
-            store.getProxy().extraParams.SEQ = form.findField('SEQ').getValue();
+            store.getProxy().extraParams.Res_Id = form.findField('Res_Id').getValue();
         }
 
         Ext.MessageBox.show({
@@ -446,67 +444,75 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
             form = this.getView().down('form').getForm(),
             store = this.getStore('installments'),
             recordLists = Ext.create('model.restructurelist'),
-            me = this;
+            me = this,
+            UserData = Ext.decode(sessionStorage.getItem('UserData'));
 
         form.updateRecord(recordLists);
 
-        store.data.each(function (record, index) {
-            var i = index + 1;
-                    
-            record.data.SEQ = form.findField('SEQ').getValue();
-            record.data.Agreement = form.findField('Agreement').getValue();
-
-            if(form.findField('flag').getValue() === 'approve' || form.findField('flag').getValue() === 'new_approve'){
-                record.data.UpdateBy = sessionStorage.getItem('UserId');
-
-                recordLists.data.Status = 'approve';
-                recordLists.data.ApproveBy = sessionStorage.getItem('UserId');
-                recordLists.data.ApproveDate = new Date();
-                recordLists.data.EffectiveRate = form.findField('EffectiveRate').getValue();
-                recordLists.data.CreateBy =  form.findField('CreateBy').getValue();
-                recordLists.data.UpdateBy = sessionStorage.getItem('UserId');
-            }else{
-                record.data.CreateBy = sessionStorage.getItem('UserId');
-                record.data.CreateDate = new Date();
-
-                recordLists.data.Id = 0;
-                recordLists.data.Agreement = form.findField('Agreement').getValue();
-                recordLists.data.SEQ = form.findField('SEQ').getValue();
+        if(form.findField('flag').getValue() === 'approve' || form.findField('flag').getValue() === 'new_approve'){
+            recordLists.data.Status = 'approve';
+            recordLists.data.ApproveBy = sessionStorage.getItem('UserId');
+            recordLists.data.ApproveDate = new Date();
+            recordLists.data.EffectiveRate = form.findField('EffectiveRate').getValue();
+            recordLists.data.CreateBy =  form.findField('CreateBy').getValue();
+            recordLists.data.UpdateBy = sessionStorage.getItem('UserId');
+        }else{
+            recordLists.data.Id = 0;
+            recordLists.data.Agreement = form.findField('Agreement').getValue();
+            recordLists.data.SEQ = form.findField('SEQ').getValue();
+            if(UserData.RoleName === 'marketing'){
                 recordLists.data.Status = 'normal';
-                recordLists.data.CreateBy = sessionStorage.getItem('UserId');
-                recordLists.data.CreateDate = new Date();
+            }else{
+                recordLists.data.Status = 'pending';
             }
+            recordLists.data.CreateBy = sessionStorage.getItem('UserId');
+            recordLists.data.CreateDate = new Date();
+        }
 
-            Ext.Ajax.request({
-                method: 'post',
-                url: 'api/Installment/Post',
-                params: record.data,
-                success: function (response) {
-                    me.fnProgress(i,store.data.length);
+        Ext.Ajax.request({
+            method: 'post',
+            url: 'api/Restructure/Post',
+            params: recordLists.data,
+            success: function (response) {
+                store.data.each(function (record, index) {
+                    var i = index + 1;
 
-                    if(i === store.data.length){
-                        Ext.Ajax.request({
-                            method: 'post',
-                            url: 'api/Restructure/Post',
-                            params: recordLists.data,
-                            success: function (response) {
+                    record.data.Res_Id = response.responseText;
+                    record.data.SEQ = form.findField('SEQ').getValue();
+                    record.data.Agreement = form.findField('Agreement').getValue();
+
+                    if(form.findField('flag').getValue() === 'approve' || form.findField('flag').getValue() === 'new_approve'){
+                        record.data.UpdateBy = sessionStorage.getItem('UserId');
+                    } else {
+                        record.data.CreateBy = sessionStorage.getItem('UserId');
+                        record.data.CreateDate = new Date();
+                    }
+
+                    Ext.Ajax.request({
+                        method: 'post',
+                        url: 'api/Installment/Post',
+                        params: record.data,
+                        success: function (response) {
+                            me.fnProgress(i,store.data.length);
+
+                            if(i === store.data.length){
                                 Ext.MessageBox.hide();
                                 Ext.MessageBox.alert("Result", "Successful.");
                                 form.findField('save').setValue('Y');
                                 view.close();
-                            },
-                            failure: function (response) {
-                                Ext.MessageBox.hide();
-                                Ext.MessageBox.alert("Error", response.responseText);
                             }
-                        });
-                    }
-                },
-                failure: function (response) {
-                    Ext.MessageBox.hide();
-                    Ext.MessageBox.alert("Error", response.responseText);
-                }
-            });
+                        },
+                        failure: function (response) {
+                            Ext.MessageBox.hide();
+                            Ext.MessageBox.alert("Error", response.responseText);
+                        }
+                    });
+                });
+            },
+            failure: function (response) {
+                Ext.MessageBox.hide();
+                Ext.MessageBox.alert("Error", response.responseText);
+            }
         });
     },
 

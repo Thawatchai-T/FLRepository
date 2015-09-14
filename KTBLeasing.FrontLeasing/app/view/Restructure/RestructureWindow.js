@@ -63,6 +63,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             items: [
                 {
                     xtype: 'hiddenfield',
+                    name: 'Res_Id'
+                },
+                {
+                    xtype: 'hiddenfield',
                     name: 'flag'
                 },
                 {
@@ -293,7 +297,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'numbercolumn',
-                    dataIndex: 'Unknown2',
+                    dataIndex: 'Installment_Total',
                     text: 'ค่างวดผ่อนชำระตามสัญญาปรับปรุงโครงสร้างหนี้',
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
@@ -303,13 +307,13 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Unknown3',
+                    dataIndex: 'Waste_Value',
                     text: '1/(1+r)^n',
                     sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
-                    dataIndex: 'Unknown4',
+                    dataIndex: 'PV',
                     text: 'PV',
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {

@@ -27,9 +27,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/installment/5
-        public List<Installment> Get(string Agreement, int SEQ)
+        //public List<Installment> Get(string Agreement, int SEQ, int marketing_group)
+        //{
+        //    var result = installmentRepository.Get(Agreement, SEQ, marketing_group);
+
+        //    return (result != null) ? result : new List<Installment>();
+        //}
+        public List<Installment> Get(long Res_Id)
         {
-            var result = installmentRepository.Get(Agreement, SEQ);
+            var result = installmentRepository.Get(Res_Id);
 
             return (result != null) ? result : new List<Installment>();
         }

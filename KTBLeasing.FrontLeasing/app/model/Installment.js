@@ -32,6 +32,10 @@ Ext.define('TabUserInformation.model.Installment', {
             name: 'Id'
         },
         {
+            type: 'int',
+            name: 'Res_Id'
+        },
+        {
             name: 'Agreement'
         },
         {
@@ -94,14 +98,14 @@ Ext.define('TabUserInformation.model.Installment', {
         },
         {
             type: 'float',
-            name: 'Unknown2',
+            name: 'Installment_Total',
             calculate: function (data) {
                 return data.InstallmentBeforeVAT + data.Penalty;
             }
         },
         {
             type: 'float',
-            name: 'Unknown3',
+            name: 'Waste_Value',
             calculate: function (data) {
                 var result = 0.00;
                 if (data.InstallNo > 0) {
@@ -112,7 +116,7 @@ Ext.define('TabUserInformation.model.Installment', {
         },
         {
             type: 'float',
-            name: 'Unknown4',
+            name: 'PV',
             calculate: function (data) {
                 return data.InstallmentBeforeVAT * data.Unknown3;
             }

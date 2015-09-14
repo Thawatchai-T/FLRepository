@@ -12,19 +12,32 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IInstallmentRepository
     {
-        List<Installment> Get(string agrcode, int SEQ);
+        //List<Installment> Get(string agrcode, int SEQ, int marketing_group);
+        List<Installment> Get(long Res_Id);
         void Insert(Installment entity);
         void Update(Installment entity);
         void SaveOrUpdate(Installment entity);
     }
     public class InstallmentRepository : NhRepository, IInstallmentRepository
     {
-        public List<Installment> Get(string agrcode, int SEQ)
+        //public List<Installment> Get(string agrcode, int SEQ, int marketing_group)
+        //{
+        //    using (var session = SessionFactory.OpenSession())
+        //    {
+        //        return (from x in session.QueryOver<Installment>().List()
+        //                join y in session.QueryOver<UserInformation>().List()
+        //                on x.CreateBy equals y.UsersAuthorize.UserId
+        //                where x.Agreement == agrcode && x.SEQ == SEQ && y.MarketingGroup == marketing_group
+        //                select x)
+        //                .ToList<Installment>();
+        //    }
+        //}
+        public List<Installment> Get(long Res_Id)
         {
             using (var session = SessionFactory.OpenSession())
             {
                 return session.QueryOver<Installment>()
-                    .Where(x => x.Agreement == agrcode && x.SEQ == SEQ)
+                    .Where(x => x.Res_Id == Res_Id)
                     .List<Installment>() as List<Installment>;
             }
         }

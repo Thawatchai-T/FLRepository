@@ -55,9 +55,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/restructure
-        public void Post(Restructure entity)
+        public long Post(Restructure entity)
         {
-            restructureRepository.SaveOrUpdate(entity);
+            if (entity.Id == 0)
+            {
+                var id = restructureRepository.Insert(entity);
+                return id;
+            }
+            else
+            {
+                restructureRepository.Update(entity);
+                return entity.Id;
+            }
         }
 
         // PUT api/restructure/5

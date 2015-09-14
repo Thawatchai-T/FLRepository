@@ -15,6 +15,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("RES_INSTALLMENT");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
+            Map(x => x.Res_Id).Column("RES_ID");
             Map(x => x.Agreement, "AGRCODE").Length(20);
             Map(x => x.SEQ).Column("SEQ");
             Map(x => x.InstallNo).Column("INSTALL_NO");
@@ -26,6 +27,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.Interest).Column("INTEREST");
             Map(x => x.OS_PR).Column("OS_PR");
             Map(x => x.Penalty).Column("PENALTY");
+            Map(x => x.Penalty).Column("INSTALLMENT_TOTAL");
+            Map(x => x.Penalty).Column("WASTE_VALUE");
+            Map(x => x.Penalty).Column("PV");
             Map(x => x.CreateDate).Column("CREATE_DATE").CustomSqlType("date");
             Map(x => x.CreateBy).Column("CREATE_BY").Length(20);
             Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");

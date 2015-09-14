@@ -55,7 +55,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewModel', {
                 }
             }, 
             sorters: [{
-                property: 'SEQ',
+                property: 'Id',
                 direction: 'ASC'
             }],
             listeners: {

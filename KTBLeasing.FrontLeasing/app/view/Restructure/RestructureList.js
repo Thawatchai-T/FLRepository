@@ -136,14 +136,14 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     itemId: 'SEQ',
                     //text: 'SEQ',
                     width: 40,
-                    locked: true
+                    locked: true,
+                    hidden: true
                 },
                 {
                     xtype: 'rownumberer',
                     itemId: 'RowNumber',
                     width: 40,
-                    locked: true,
-                    hidden: true
+                    locked: true
                 },
                 {
                     xtype: 'actioncolumn',
