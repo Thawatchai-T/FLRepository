@@ -11,35 +11,43 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IRestructureRepository
     {
-        List<Restructure> Get(int start, int limit, int marketing_group);
+        List<Restructure> Get(int start, int limit, string user_id, string user_group, int marketing_group);
         List<Restructure> Get(int start, int limit, int marketing_group, string agrcode);
         Restructure GetRestructure(string agrcode, int SEQ);
         long Insert(Restructure entity);
         void Update(Restructure entity);
         void SaveOrUpdate(Restructure entity);
-        int Count(int marketing_group);
+        int Count(string user_id, string user_group, int marketing_group);
         int Count(int marketing_group, string agrcode);
     }
     public class RestructureRepository : NhRepository, IRestructureRepository
     {
-        public List<Restructure> Get(int start, int limit, int marketing_group)
+        public List<Restructure> Get(int start, int limit, string user_id, string user_group, int marketing_group)
         {
             using (var session = SessionFactory.OpenSession())
             {
                 try
                 {
-                    //var result = session.QueryOver<Restructure>()
-                    //    .OrderBy(x => x.SEQ).Asc
-                    //    .Where(x => x.Status == "pending")
-                    //    .Skip(start).Take(limit)
-                    //    .List<Restructure>() as List<Restructure>;
+                    var result = new List<Restructure>();
 
-                    var result = (from x in session.QueryOver<Restructure>().List()
+                    if (user_group == "head_marketing")
+                    {
+                        result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
                                     on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where x.Status != "normal" && y.MarketingGroup == marketing_group
+                                  where x.Status != "normal" && y.MarketingGroup == marketing_group && x.CreateBy == user_id
                                   select x)
+                                  .Skip(start).Take(limit)
                                   .ToList<Restructure>();
+                    }else {
+                        result = (from x in session.QueryOver<Restructure>().List()
+                                  join y in session.QueryOver<UserInformation>().List()
+                                    on x.CreateBy equals y.UsersAuthorize.UserId
+                                  where x.Status != "pending" && y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                                  select x)
+                                  .Skip(start).Take(limit)
+                                  .ToList<Restructure>();
+                    }
 
                     return result;
                 }
@@ -62,6 +70,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                                     on x.CreateBy equals y.UsersAuthorize.UserId
                                   where x.Agreement == agrcode && y.MarketingGroup == marketing_group
                                   select x)
+                                  .Skip(start).Take(limit)
                                   .ToList<Restructure>();
 
                     return result;
@@ -123,22 +132,29 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public int Count(int marketing_group)
+        public int Count(string user_id, string user_group, int marketing_group)
         {
             using (var session = SessionFactory.OpenSession())
             {
-                //var result = session.QueryOver<Restructure>()
-                //    .Where(x => x.Status == "pending")
-                //    .RowCount();
-                //session.Close();
-                //return result;
-
-                var result = (from x in session.QueryOver<Restructure>().List()
+                int result = 0;
+                if (user_group == "head_marketing")
+                {
+                    result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where x.Status != "normal" && y.MarketingGroup == marketing_group
+                              where x.Status != "normal" && y.MarketingGroup == marketing_group && x.CreateBy == user_id
                               select x)
                               .Count();
+                }
+                else
+                {
+                    result = (from x in session.QueryOver<Restructure>().List()
+                              join y in session.QueryOver<UserInformation>().List()
+                                on x.CreateBy equals y.UsersAuthorize.UserId
+                              where x.Status != "pending" && y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                              select x)
+                             .Count();
+                }
 
                 return result;
             }
