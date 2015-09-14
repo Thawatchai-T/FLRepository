@@ -32,6 +32,7 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
     },
     id: 'loginwindow',
     width: 400,
+    height: 200,
     bodyPadding: 30,
     autoShow: true,
     closable: false,
@@ -59,7 +60,10 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
                     allowBlank: false,
                     msgTarget: 'under',
                     regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/,
-                    invalidText: 'FisrtName_Lastname 2 digit'
+                    invalidText: 'FisrtName_Lastname 2 digit',
+                    listeners: {
+                        specialkey: 'onSpecialKey'
+                    }
                 },
                 {
                     xtype: 'textfield',
@@ -68,7 +72,10 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
                     fieldLabel: 'Password',
                     inputType: 'password',
                     allowBlank: false,
-                    msgTarget: 'under'
+                    msgTarget: 'under',
+                    listeners: {
+                        specialkey: 'onSpecialKey'
+                    }
                 },
                 {
                     xtype: 'button',

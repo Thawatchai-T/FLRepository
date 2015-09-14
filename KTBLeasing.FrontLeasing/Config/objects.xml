@@ -17,8 +17,18 @@
   <object id="usermodel" type="KTBLeasing.FrontLeasing.Models.UserModel, KTBLeasing.FrontLeasing"/>
   
   <!--[20150331] Add by Woody New service login ad-->
-  <object id="wsad" type="KTBLeasing.FrontLeasing.WS_ActiveDirectory.WS_ActiveDirectorySoapClient, KTBLeasing.FrontLeasing"/>
- 
+  <!--<object id="wsad" type="KTBLeasing.FrontLeasing.WS_ActiveDirectory.WS_ActiveDirectorySoapClient, KTBLeasing.FrontLeasing"/>-->
+  <object id="wsad" type="KTBLeasing.FrontLeasing.ActiveDirectoryService.ActiveDirectoryServiceClient, KTBLeasing.FrontLeasing"/>
+  
+
+
+  <!--<object id="db2util" type="DbAuth, Com.Ktbl.Database.DB2" >
+    <property name="_Provider" value="IBMDADB2.DB2COPY1"/>
+    <property name="_Password" value="JUNEJULY"/>
+    <property name="_UserID" value="KEMADIST"/>
+    <property name="_DATABASE" value="KTBL"/>
+    <property name="_SERVER" value="221.23.0.2"/>
+  </object>-->
 
   <object id="db2util" type="DbAuth, Com.Ktbl.Database.DB2" >
     <property name="_Provider" value="IBMDADB2.DB2COPY1"/>

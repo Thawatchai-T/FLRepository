@@ -14,7 +14,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<Restructure> Get(int start, int limit, int marketing_group);
         List<Restructure> Get(int start, int limit, int marketing_group, string agrcode);
         Restructure GetRestructure(string agrcode, int SEQ);
-        void Insert(Restructure entity);
+        long Insert(Restructure entity);
         void Update(Restructure entity);
         void SaveOrUpdate(Restructure entity);
         int Count(int marketing_group);
@@ -85,11 +85,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public void Insert(Restructure entity)
+        public long Insert(Restructure entity)
         {
-            using (var session = SessionFactory.OpenSession())
+            using (var Session = SessionFactory.OpenStatelessSession())
+            using (var tran = Session.BeginTransaction())
             {
-                base.Insert<Restructure>(entity);
+                try
+                {
+                    var result = Session.Insert(entity);
+                    tran.Commit();
+                    long id = Convert.ToInt64(result);
+                    return id;
+                }
+                catch (Exception ex)
+                {
+                    tran.Rollback();
+                    Logger.Error(ex);
+                    return 0;
+                    //throw;
+                }
             }
         }
 

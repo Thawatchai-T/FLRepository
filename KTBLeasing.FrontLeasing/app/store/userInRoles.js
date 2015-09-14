@@ -35,6 +35,7 @@ Ext.define('TabUserInformation.store.userInRoles', {
             model: 'TabUserInformation.model.UserInRole',
             //autoLoad: true,
             pageSize: 16,
+            groupField: 'RoleName',
             proxy: {
                 type: 'rest',
                 url: 'api/role',
@@ -43,7 +44,11 @@ Ext.define('TabUserInformation.store.userInRoles', {
                     rootProperty: 'items',
 					totalProperty:'totalProperty'
                 }
-            }
+            },
+            sorters: [{
+                property: 'UserId',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

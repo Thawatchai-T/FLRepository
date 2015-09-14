@@ -22,6 +22,16 @@ Ext.define('TabUserInformation.view.Home.LoginWindowViewController', {
     },
 
     onLoginClick: function (button, e, eOpts) {
+        this.fnLogin();
+    },
+
+    onSpecialKey: function (field, e) {
+        if (e.getKey() == e.ENTER) {
+            this.fnLogin();
+        }
+    },
+
+    fnLogin: function(){
         var Me = this.getView();
         var form = this.getView().down('form').getForm();
         // debugger;

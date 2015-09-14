@@ -63,6 +63,10 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             items: [
                 {
                     xtype: 'hiddenfield',
+                    name: 'Res_Id'
+                },
+                {
+                    xtype: 'hiddenfield',
                     name: 'flag'
                 },
                 {
@@ -207,6 +211,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     xtype: 'gridcolumn',
                     dataIndex: 'InstallNo',
                     text: 'Install No',
+                    sortable: false
                     //flex: 1
                 },
                 {
@@ -214,6 +219,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'InstallmentDate',
                     text: 'Date',
                     format: 'd/m/Y',
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -226,7 +232,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -235,7 +242,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -244,7 +252,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -253,7 +262,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -262,12 +272,14 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
                     dataIndex: 'OS_PR',
-                    text: 'O/S Principle'
+                    text: 'O/S Principle',
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
@@ -280,30 +292,34 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
-                    dataIndex: 'Unknown2',
+                    dataIndex: 'Installment_Total',
                     text: 'ค่างวดผ่อนชำระตามสัญญาปรับปรุงโครงสร้างหนี้',
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Unknown3',
-                    text: '1/(1+r)^n'
+                    dataIndex: 'Waste_Value',
+                    text: '1/(1+r)^n',
+                    sortable: false
                 },
                 {
                     xtype: 'numbercolumn',
-                    dataIndex: 'Unknown4',
+                    dataIndex: 'PV',
                     text: 'PV',
                     summaryType: 'sum',
                     summaryRenderer: function(value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
-                    }
+                    },
+                    sortable: false
                 }
             ],
             dockedItems: [
@@ -365,7 +381,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             plugins: [
                 {
                     ptype: 'cellediting',
-                    pluginId: 'celledit'
+                    pluginId: 'celledit',
+                    clicksToEdit: 1
                 }
             ]
         }

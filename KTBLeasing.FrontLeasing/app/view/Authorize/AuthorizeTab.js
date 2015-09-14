@@ -26,7 +26,8 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
         'Ext.grid.View',
         'Ext.grid.plugin.RowEditing',
         'Ext.toolbar.Paging',
-        'Ext.grid.column.Column'
+        'Ext.grid.column.Column',
+        'Ext.grid.feature.Grouping'
     ],
 
     controller: 'tabauthorizetab',
@@ -76,6 +77,12 @@ Ext.define('TabUserInformation.view.Authorize.AuthorizeTab', {
                     ptype: 'rowediting',
                     pluginId: 'rowediting',
                     clicksToMoveEditor: 1
+                }
+            ],
+            features: [
+                {
+                    ftype: 'grouping',
+                    hideGroupedHeader: true
                 }
             ],
             dockedItems: [

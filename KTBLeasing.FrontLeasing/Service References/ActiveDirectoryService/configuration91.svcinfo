@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="7Br7lvMdItp1Cf/7IzbiaB6R4og=">
+<SavedWcfConfigurationInformation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" Version="9.1" CheckSum="nvJ4AZt+kR2EN/3tXjkZ82nE3mA=">
   <bindingConfigurations>
-    <bindingConfiguration bindingType="basicHttpBinding" name="WS_ActiveDirectorySoap1">
+    <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_IActiveDirectoryService">
       <properties>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WS_ActiveDirectorySoap1</serializedValue>
+          <serializedValue>BasicHttpBinding_IActiveDirectoryService</serializedValue>
         </property>
         <property path="/closeTimeout" isComplexType="false" isExplicitlyDefined="true" clrType="System.TimeSpan, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -112,10 +112,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="WS_ActiveDirectorySoap1" contract="WS_ActiveDirectory.WS_ActiveDirectorySoap" bindingType="basicHttpBinding" address="http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx" bindingConfiguration="WS_ActiveDirectorySoap1">
+    <endpoint name="BasicHttpBinding_IActiveDirectoryService" contract="ActiveDirectoryService.IActiveDirectoryService" bindingType="basicHttpBinding" address="http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc" bindingConfiguration="BasicHttpBinding_IActiveDirectoryService">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://221.23.1.33/Wsad/WS_ActiveDirectory.asmx</serializedValue>
+          <serializedValue>http://new-server70.ktbleasing.com/ServiceAD/ActiveDirectoryService.svc</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -124,10 +124,10 @@
           <serializedValue>basicHttpBinding</serializedValue>
         </property>
         <property path="/bindingConfiguration" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WS_ActiveDirectorySoap1</serializedValue>
+          <serializedValue>BasicHttpBinding_IActiveDirectoryService</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WS_ActiveDirectory.WS_ActiveDirectorySoap</serializedValue>
+          <serializedValue>ActiveDirectoryService.IActiveDirectoryService</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -187,7 +187,7 @@
           <serializedValue>False</serializedValue>
         </property>
         <property path="/name" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>WS_ActiveDirectorySoap1</serializedValue>
+          <serializedValue>BasicHttpBinding_IActiveDirectoryService</serializedValue>
         </property>
         <property path="/kind" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />

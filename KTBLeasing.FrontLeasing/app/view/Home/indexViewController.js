@@ -26,12 +26,13 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
 
         this.getView().destroy();
 
-        Ext.create('widget.windowloginwindow').show();
+        Ext.create('widget.windowloginwindow');
     },
 
     onMainViewBeforeRender: function (component, eOpts) {
         //console.log(eOpts);
-        var viewport = component.down('tabpanel'),
+        var me = this,
+        viewport = component.down('tabpanel'),
         userid = sessionStorage.getItem('UserId'),
         store = this.getStore('userinfoStore'),
         title;
@@ -49,21 +50,12 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
             callback: function (records, operation, success) {
                 // the operation object
                 // contains all of the details of the load operation
-                title = "<b>ยินดีต้อนรับคุณ</b> ";
-                title += records[0].get('UserInfo').FirstNameTh + "  ";
-                title += records[0].get('UserInfo').LastNameTh + "  ";
-                title += "<b>ตำแหน่งงาน</b> ";
-                title += records[0].get('UserInfo').Position.Name + "  ";
-                title += "<b>วันที่เข้าสู่ระบบ</b> ";
-                title += Ext.Date.format(new Date(), 'd/m/Y') + "  ";
-                title += '<a href="Home/Logout">LogOut</a>';
+
 
                 //                console.log(records[0].get('UserInfo'));
 
                 //                console.log(records[0]);
                 sessionStorage.setItem('UserData', Ext.encode(records[0].data));
-
-                viewport.setTitle(title);
 
                 var ltab = records[0].get('TabMdelList');
 
@@ -73,8 +65,32 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
                     viewport.add(Ext.widget(ltab[i].Widget));
                 }
 
-                if (ltab.length > 0) viewport.setActiveTab(0);
+                if (ltab.length > 0) {
+                    viewport.setActiveTab(0);
 
+                    title = "<b>ยินดีต้อนรับคุณ</b> ";
+                    title += records[0].get('UserInfo').FirstNameTh + "  ";
+                    title += records[0].get('UserInfo').LastNameTh + "  ";
+                    title += "<b>ตำแหน่งงาน</b> ";
+                    title += records[0].get('UserInfo').Position.Name + "  ";
+                    title += "<b>วันที่เข้าสู่ระบบ</b> ";
+                    title += Ext.Date.format(new Date(), 'd/m/Y') + "  ";
+                } else {
+                    Ext.Msg.show({
+                        title: 'Warning',
+                        message: 'คุณไม่มีสิทธิในการใช้งานระบบ',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING,
+                        fn: function (btn, value) {
+                            if (btn == 'ok') {
+                            }
+                        }
+                    });
+                }
+
+                title += '<a href="Home/Logout">LogOut</a>';
+
+                viewport.setTitle(title);
             }
         });
 

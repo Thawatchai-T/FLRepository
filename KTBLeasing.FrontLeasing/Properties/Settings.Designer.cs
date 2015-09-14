@@ -49,5 +49,14 @@ namespace KTBLeasing.FrontLeasing.Properties {
                 return ((string)(this["CredentialPassword"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool IsProduction {
+            get {
+                return ((bool)(this["IsProduction"]));
+            }
+        }
     }
 }
