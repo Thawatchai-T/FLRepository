@@ -19,13 +19,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private IRestructureRepository restructureRepository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/restructure
-        public RestructureListModel Get(int start, int limit, int marketing_group)
+        public RestructureListModel Get(int start, int limit,string user_id,string user_group, int marketing_group)
         {
             try
             {
                 RestructureListModel model = new RestructureListModel();
-                model.data = restructureRepository.Get(start, limit, marketing_group);
-                model.total = restructureRepository.Count(marketing_group);
+                model.data = restructureRepository.Get(start, limit, user_id,user_group, marketing_group);
+                model.total = restructureRepository.Count(user_id, user_group, marketing_group);
 
                 return model;
             }

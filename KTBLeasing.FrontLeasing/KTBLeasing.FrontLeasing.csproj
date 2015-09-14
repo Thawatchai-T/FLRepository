@@ -8555,6 +8555,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Global.asax" />
+    <Content Include="images\blurry-wallpapers-35112-35916-hd-wallpapers.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-24.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Reports\ReportViewer.aspx" />
     <Content Include="resources\.arch-internal-preview.css" />
     <Content Include="resources\icons.css" />

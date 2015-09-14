@@ -171,7 +171,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
 
     onViewItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var view = this.getView(),
-            grid = view.down('grid')
+            grid = view.down('grid'),
         UserData = Ext.decode(sessionStorage.getItem('UserData'));
 
         Ext.create('widget.restructurerestructurewindow', {
@@ -200,6 +200,14 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                         panel.down('#calculateEffectiveRateButton').disable();
                         panel.down('#calculateButton').disable();
                         panel.down('#saveButton').disable();
+
+                        panel.down('#releaseButton').show();
+                        if (record.get('Release')) {
+                            panel.down('#releaseButton').disable();
+                        } else {
+                            panel.down('#releaseButton').enable();
+                        }
+
                         grid.getPlugin('celledit').disable();
 
                         form.findField('flag').setValue('old');
@@ -229,8 +237,8 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
     onStoreBeforeLoad: function (store, operation, eOpts) {
         var UserData = Ext.decode(sessionStorage.getItem('UserData'));
 
-        if (UserData.RoleName === 'head_marketing') {
-            store.getProxy().extraParams.marketing_group = UserData.UserInfo.MarketingGroup.Id;
-        }
+        store.getProxy().extraParams.user_id = UserData.UserId;
+        store.getProxy().extraParams.user_group = UserData.RoleName;
+        store.getProxy().extraParams.marketing_group = UserData.UserInfo.MarketingGroup.Id;
     }
 });

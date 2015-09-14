@@ -118,7 +118,7 @@ Ext.define('TabUserInformation.model.Installment', {
             type: 'float',
             name: 'PV',
             calculate: function (data) {
-                return data.InstallmentBeforeVAT * data.Unknown3;
+                return data.InstallmentBeforeVAT * data.Waste_Value;
             }
         }
     ]

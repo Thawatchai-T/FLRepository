@@ -258,6 +258,24 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindowViewController'
         }
     },
 
+    onRelease: function (button, e, eOpts) {
+        var grid = Ext.getCmp('restructurerestructurelist').down('grid'),
+            store = grid.getStore(),
+            record = grid.getSelection()[0];
+
+        record.set('Release', true);
+
+        store.sync({
+            success: function (response) {
+                button.disable();
+                Ext.MessageBox.alert("Result", "Release Complete.");
+            },
+            failure: function (response) {
+                Ext.MessageBox.alert("Result", "Release Failure.");
+            }
+        });
+    },
+
     onStoreLoad: function (store, records, successful, eOpts) {
         var form = this.getView().down('form').getForm(),
             Agreement = form.findField('Agreement').getValue(),

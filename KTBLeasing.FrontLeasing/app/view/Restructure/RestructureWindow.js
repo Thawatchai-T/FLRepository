@@ -363,6 +363,16 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             listeners: {
                                 click: 'onPrint'
                             }
+                        },'->',
+                        {
+                            xtype: 'button',
+                            itemId: 'releaseButton',
+                            margin: 5,
+                            text: 'Release',
+                            listeners: {
+                                click: 'onRelease'
+                            },
+                            hidden: true
                         }
                     ]
                 },

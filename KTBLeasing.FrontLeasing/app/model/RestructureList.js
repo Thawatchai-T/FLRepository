@@ -108,6 +108,10 @@ Ext.define('TabUserInformation.model.RestructureList', {
         {
             type: 'float',
             name: 'ApproveBy'
+        },
+        {
+            type: 'boolean',
+            name: 'Release'
         }
     ]
 });
