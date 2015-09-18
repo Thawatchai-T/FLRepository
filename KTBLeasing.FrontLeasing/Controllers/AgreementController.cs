@@ -54,9 +54,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/agreement
-        public IEnumerable<string> Get()
+        public List<AgrCodeDomain> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new List<AgrCodeDomain>();
         }
 
         // GET api/agreement/5

@@ -8567,6 +8567,12 @@
     <Content Include="resources\icons\accept.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="resources\icons\bullet_go.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="resources\icons\database_go.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\icons\delete.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -9723,6 +9729,10 @@
     <ProjectReference Include="..\KTBLeasing.Domain\KTBLeasing.FrontLeasing.Domain.csproj">
       <Project>{19924ED2-CB69-4593-B217-4DE8403D2AD0}</Project>
       <Name>KTBLeasing.FrontLeasing.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KTBLeasing.Helpers\KTBLeasing.Helpers.csproj">
+      <Project>{756AFE3E-8693-420F-81A6-6B9998F1FBD2}</Project>
+      <Name>KTBLeasing.Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\KTBLeasing.Mapping\KTBLeasing.FrontLeasing.Mapping.Orcl.csproj">
       <Project>{D2A10E1F-6FFE-47BD-B199-F0430772C21A}</Project>

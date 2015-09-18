@@ -38,6 +38,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewModel', {
             model: 'TabUserInformation.model.RestructureList',
             autoLoad: true,
             autoSync: true,
+            pageSize: 22,
             proxy: {
                 type: 'rest',
                 url: 'api/Restructure',

@@ -33,7 +33,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return null;
+                return new JobModel();
             }
         }
 

@@ -210,7 +210,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                     allowBlank: false,
                                     maxValue: 99.99,
                                     minValue: 0,
-                                    decimalPrecision: 4,
+                                    decimalPrecision: 20,
                                     step: 0.0001,
                                     bind: {
                                         disabled: '{!Rate.checked}'
@@ -220,7 +220,8 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                     xtype: 'radiofield',
                                     reference: 'Rate',
                                     name: 'Rate',
-                                    margin: '-5 0 0 20'
+                                    margin: '-5 0 0 20',
+                                    checked: true
                                 },
                                 {
                                     xtype: 'numberfield',
@@ -237,8 +238,7 @@ Ext.define('TabUserInformation.view.Restructure.ARCard', {
                                 {
                                     xtype: 'radiofield',
                                     margin: '-5 0 0 20',
-                                    name: 'Rate',
-                                    checked: true
+                                    name: 'Rate'
                                 }
                             ]
                         },

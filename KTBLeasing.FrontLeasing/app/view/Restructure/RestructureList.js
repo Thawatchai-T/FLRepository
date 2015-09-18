@@ -76,12 +76,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     triggerAction: 'last',
                     //minChars: 9,
                     //queryDelay: 1000,
+                    triggerAction: 'last',
+                    forceSelection: true,
                     queryParam: 'text',
                     queryMode: 'remote',
                     valueField: 'AgrCode',
                     store: 'agreements',
                     listeners: {
                         //afterrender: 'onComboboxAfterRender',
+                        change: 'onComboboxChange',
                         select: 'onComboboxSelect'
                     }
                 },
@@ -157,7 +160,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                             if(v == 'normal'){
                                 return 'flag_red x-item-disabled';
                             }else if(v == 'approve'){
-                                return 'accept';
+                                if(r.get('Release')) {
+                                    return 'database_go';
+                                }else{
+                                    return 'accept';
+                                }
                             }else{
                                 return 'flag_red';
                             }
@@ -183,7 +190,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                             if(v == 'normal'){
                                 return 'ปกติ';
                             }else if(v == 'approve'){
-                                return 'อนุมัติ';
+                                if(r.get('Release')) {
+                                    return 'Release';
+                                }else{
+                                    return 'อนุมัติ';
+                                }
                             }else{
                                 return 'รออนุมัติ';
                             }
@@ -195,7 +206,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                     dataIndex: 'Agreement',
                     text: 'Agreement',
                     //flex: 1,
-                    width: 110,
+                    width: 115,
                     locked: true
                 },
                 {

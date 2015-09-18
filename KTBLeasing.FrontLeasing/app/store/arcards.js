@@ -28,7 +28,7 @@ Ext.define('TabUserInformation.store.arcards', {
         me.callParent([Ext.apply({
             storeId: 'arcards',
             model: 'TabUserInformation.model.ARCard',
-            autoLoad: true,
+            //autoLoad: true,
             timeout: 99999,
             proxy: {
                 type: 'rest',

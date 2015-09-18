@@ -5,7 +5,7 @@
     <!--[20150331] Add by Woody Inject property-->
     <property name="Server" value="221.23.0.70"/>
     <property name="Port" value="1521"/>
-    <property name="Username" value="FrontLeasing"/>
+    <property name="Username" value="FrontLeasing_UAT"/>
     <property name="Password" value="ktblitadmin"/>
     <property name="Instance" value="ktbl"/>
   </object>

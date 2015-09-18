@@ -11,20 +11,23 @@ using log4net;
 using System.Reflection;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using Newtonsoft.Json;
+using Com.Ktbl.Database.DB2.Repository;
+using KTBLeasing.Helpers;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class RestructureController : ApiController
     {
         private IRestructureRepository restructureRepository { get; set; }
+        private Repository DB2Repository { get; set; }
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         // GET api/restructure
-        public RestructureListModel Get(int start, int limit,string user_id,string user_group, int marketing_group)
+        public RestructureListModel Get(int start, int limit, string user_id, string user_group, int marketing_group)
         {
             try
             {
                 RestructureListModel model = new RestructureListModel();
-                model.data = restructureRepository.Get(start, limit, user_id,user_group, marketing_group);
+                model.data = restructureRepository.Get(start, limit, user_id, user_group, marketing_group);
                 model.total = restructureRepository.Count(user_id, user_group, marketing_group);
 
                 return model;
@@ -37,13 +40,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // GET api/restructure/5
-        public RestructureListModel Get(int start, int limit, int marketing_group, string agrcode)
+        public RestructureListModel Get(int start, int limit, string user_id, string user_group, int marketing_group, string agrcode)
         {
             try
             {
                 RestructureListModel model = new RestructureListModel();
-                model.data = restructureRepository.Get(start, limit, marketing_group, agrcode);
-                model.total = restructureRepository.Count(marketing_group, agrcode);
+                model.data = restructureRepository.Get(start, limit, user_id, user_group, marketing_group, agrcode);
+                model.total = restructureRepository.Count(user_id, user_group, marketing_group, agrcode);
 
                 return model;
             }
@@ -85,19 +88,20 @@ namespace KTBLeasing.FrontLeasing.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns>string Sql</returns>
-        public string GetRelease(long id){
+        public HttpResponseMessage  GetRelease(long id)
+        {
 
             try
             {
-                return this.restructureRepository.GetSQLRelease(id);
+                var lsql = this.restructureRepository.GetSQLRelease(id);
+                var result = DB2Repository.UpdateRelease(lsql);
+                return this.Request.CreateResponse(HttpStatusCode.OK, new { Message = "", Status = result });
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
-                throw;
+                Logger.Error(ex);
+                return this.Request.CreateResponse(HttpStatusCode.OK, new { Message = ex.Message, Status = false });
             }
-        
         }
-
     }
 }

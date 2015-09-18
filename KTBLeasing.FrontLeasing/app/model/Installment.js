@@ -60,11 +60,7 @@ Ext.define('TabUserInformation.model.Installment', {
             type: 'float',
             name: 'VAT',
             calculate: function (data) {
-                if(data.Interest === 0.00){
-                    return 0.00;  
-                }else{
-                    return data.InstallmentBeforeVAT * 0.07;
-                }
+                return data.InstallmentBeforeVAT * 0.07;
             }
         },
         {

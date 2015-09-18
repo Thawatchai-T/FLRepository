@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Data.OleDb;
 using Com.Ktbl.Database.DB2.Domain;
+using System.Reflection;
+using log4net;
 
 namespace Com.Ktbl.Database.DB2.Repository
 {
@@ -11,6 +13,7 @@ namespace Com.Ktbl.Database.DB2.Repository
     {
         //private OleDbConnection _DbConn {get;set;}
         public DbAuth DbAuth { get; set; }
+        private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
        
         public Repository()
         {
@@ -37,8 +40,9 @@ namespace Com.Ktbl.Database.DB2.Repository
                 var list = Db2Linq.ConvertToList<AgrCodeDomain>(dt);
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 throw;
             }
 
@@ -55,8 +59,9 @@ namespace Com.Ktbl.Database.DB2.Repository
                 
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
+                Logger.Error(ex);
                 throw;
             }
 
@@ -71,9 +76,9 @@ namespace Com.Ktbl.Database.DB2.Repository
                 var list = Db2Linq.ConvertToList<CustomerDomain>(dt);
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                
+                Logger.Error(ex);
                 throw;
             }
             
@@ -88,12 +93,27 @@ namespace Com.Ktbl.Database.DB2.Repository
                 var list = Db2Linq.ConvertToList<CustomerDomain>(dt);
                 return list;
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-
+                Logger.Error(ex);
                 throw;
             }
 
+        }
+
+        public bool UpdateRelease(List<string> lsql)
+        {
+            try
+            {
+                var dt = DbAuth.ExecuteTransaction(lsql);
+                //var list = Db2Linq.ConvertToList<CustomerDomain>(dt);
+                return true;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                throw;
+            }
         }
     }
 }

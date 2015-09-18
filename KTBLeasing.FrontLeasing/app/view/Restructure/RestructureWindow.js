@@ -160,16 +160,35 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     name: 'NewTerm'
                 },
                 {
-                    xtype: 'numberfield',
-                    fieldLabel: 'Effective Rate',
-                    name: 'EffectiveRate',
-                    decimalPrecision: 4,
-                    step: 0.0001,
-                    allowBlank: false
-                },
-                {
-                    xtype: 'hiddenfield',
-                    name: 'EffectiveRateDisplay'
+                    xtype: 'container',
+                    layout: {
+                        type: 'table',
+                        columns: 2
+                    },
+                    defaults: {
+                        labelWidth: 150,
+                        labelAlign: 'right'
+                    },
+                    items: [
+                        {
+                            xtype: 'numberfield',
+                            fieldLabel: 'Effective Rate',
+                            name: 'EffectiveRate',
+                            decimalPrecision: 20,
+                            step: 0.0001,
+                            allowBlank: false
+                        },
+                        {
+                            xtype: 'button',
+                            itemId: 'effButton',
+                            margin: '-5 0 0 5',
+                            text: 'Confirm Eff',
+                            listeners: {
+                                click: 'onButtonEffClick'
+                            },
+                            hidden: true
+                        }
+                    ]
                 },
                 {
                     xtype: 'hiddenfield',
@@ -197,15 +216,15 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
             viewConfig: {
                 enableTextSelection: true
             },
-//            features: [
-//                {
-//                    id: 'group',
-//                    ftype: 'summary',
-//                    groupHeaderTpl: 'A',
-//                    hideGroupedHeader: true,
-//                    enableGroupingMenu: false
-//                }
-//            ],
+            //            features: [
+            //                {
+            //                    id: 'group',
+            //                    ftype: 'summary',
+            //                    groupHeaderTpl: 'A',
+            //                    hideGroupedHeader: true,
+            //                    enableGroupingMenu: false
+            //                }
+            //            ],
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -230,7 +249,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                         selectOnFocus: true
                     },
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -240,7 +259,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'VAT',
                     text: 'VAT',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -250,7 +269,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'Total',
                     text: 'Total',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -260,7 +279,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'Principle',
                     text: 'Principle',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -270,7 +289,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'Interest',
                     text: 'Int.',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -290,7 +309,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                         selectOnFocus: true
                     },
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -300,7 +319,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'Installment_Total',
                     text: 'ค่างวดผ่อนชำระตามสัญญาปรับปรุงโครงสร้างหนี้',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -316,7 +335,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                     dataIndex: 'PV',
                     text: 'PV',
                     summaryType: 'sum',
-                    summaryRenderer: function(value, summaryData, dataIndex) {
+                    summaryRenderer: function (value, summaryData, dataIndex) {
                         return Ext.util.Format.number(value, '0,000.00');
                     },
                     sortable: false
@@ -334,7 +353,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             margin: 5,
                             text: 'คำนวนหา Effective Rate ใหม่',
                             listeners: {
-                                click: 'onCalculate'
+                                click: 'onButtonCalculateClick'
                             }
                         },
                         {
@@ -343,7 +362,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             margin: 5,
                             text: 'คำนวณจาก Efferive Rate เดิม',
                             listeners: {
-                                click: 'onCalculateEffectiveRate'
+                                click: 'onButtonCalculateEffectiveRateClick'
                             }
                         },
                         {
@@ -352,7 +371,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             margin: 5,
                             text: 'Save',
                             listeners: {
-                                click: 'onSave'
+                                click: 'onButtonSaveClick'
                             }
                         },
                         {
@@ -361,16 +380,16 @@ Ext.define('TabUserInformation.view.Restructure.RestructureWindow', {
                             margin: 5,
                             text: 'Print',
                             listeners: {
-                                click: 'onPrint'
+                                click: 'onButtonPrintClick'
                             }
-                        },'->',
+                        }, '->',
                         {
                             xtype: 'button',
                             itemId: 'releaseButton',
                             margin: 5,
                             text: 'Release',
                             listeners: {
-                                click: 'onRelease'
+                                click: 'onButtonReleaseClick'
                             },
                             hidden: true
                         }

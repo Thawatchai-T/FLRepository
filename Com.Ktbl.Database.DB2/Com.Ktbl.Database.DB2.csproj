@@ -32,6 +32,10 @@
     <PlatformTarget>AnyCPU</PlatformTarget>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.10.0, Culture=neutral, PublicKeyToken=692fbea5521e1304, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\KTBLeasing.FrontLeasing\lib\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,6 +51,12 @@
     <Compile Include="Repository\Repository.cs" />
     <Compile Include="UtilityDB2\Db2Linq.cs" />
     <Compile Include="UtilityDB2\DB2Utility.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KTBLeasing.Helpers\KTBLeasing.Helpers.csproj">
+      <Project>{756AFE3E-8693-420F-81A6-6B9998F1FBD2}</Project>
+      <Name>KTBLeasing.Helpers</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

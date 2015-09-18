@@ -5,6 +5,8 @@ using System.IO;
 using System.Data.OleDb;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Reflection;
+using log4net;
 
 
 public class DbAuth
@@ -18,6 +20,7 @@ public class DbAuth
 #endregion
 
     public OleDbConnection dbConn { get; set; }
+    private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
   // Helper method: This method establishes a connection to a database
   //public static DB2Connection ConnectDb()
   //{
@@ -346,6 +349,65 @@ public class DbAuth
       string ConnectionStr = constr;
       var cn = new OleDbConnection(ConnectionStr);
       return cn;
+  }
+
+  public bool ExecuteTransaction(List<string> lsql)
+  {
+      using (OleDbConnection connection = GetOleDBConnetion())
+      {
+          OleDbCommand command = new OleDbCommand();
+          OleDbTransaction transaction = null;
+
+          // Set the Connection to the new OleDbConnection.
+          command.Connection = connection;
+
+          // Open the connection and execute the transaction. 
+          try
+          {
+              connection.Open();
+
+              // Start a local transaction with ReadCommitted isolation level.
+              transaction = connection.BeginTransaction(IsolationLevel.ReadCommitted);
+
+              // Assign transaction object for a pending local transaction.
+              command.Connection = connection;
+              command.Transaction = transaction;
+              Logger.Debug("INFO SQL");
+              // Execute the commands.
+             
+              lsql.ForEach(x => {
+                  Logger.Error(x);
+             
+                  command.CommandText = x;
+                  command.ExecuteNonQuery();  
+              });
+
+             
+              // Commit the transaction.
+              transaction.Commit();
+              return true;
+          }
+          catch (Exception ex)
+          {
+              Console.WriteLine(ex.Message);
+              Logger.Error(ex);
+              try
+              {
+                  // Attempt to roll back the transaction.
+                  transaction.Rollback();
+              }
+              catch (Exception e)
+              {
+                  // Do nothing here; transaction is not active.
+                  Logger.Error("Do nothing here; transaction is not active.");
+                  throw new Exception("Do nothing here; transaction is not active.");
+              }
+
+              throw ex;
+          }
+          // The connection is automatically closed when the 
+          // code exits the using block.
+      }
   }
 
 } // DbAuth

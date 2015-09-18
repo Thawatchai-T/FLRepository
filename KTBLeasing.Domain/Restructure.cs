@@ -33,6 +33,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual string Status { get; set; }
         public virtual DateTime? ApproveDate { get; set; }
         public virtual string ApproveBy { get; set; }
+        public virtual bool Release { get; set; }
 
     }
 }

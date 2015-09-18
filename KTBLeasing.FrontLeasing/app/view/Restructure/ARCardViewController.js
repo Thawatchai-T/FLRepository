@@ -54,9 +54,10 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                 NewFirstDueMonth = Ext.Date.format(record.get('NewFirstDueDate'), 'm/Y'),
                 NewTerm = record.get('NewTerm');
 
+            var diffDay = Ext.Date.diff(record.get('RestructureDate'),record.get('NewFirstDueDate'),Ext.Date.DAY);
 
             //กรณี NewFirstDueMonth งวดแรกเป็นเดือนเดียวกับ RestructureMonth
-            if (RestructureMonth == NewFirstDueMonth) {
+            if (diffDay <= 0) {
                 for (i = 0; i <= NewTerm - 1; i++) {
                     if (i == 0) {
                         objArray[i] = (record.get(OSPR) * -1) + Installment;
@@ -86,7 +87,6 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                     jsonData: objArray,
                     success: function (response) {
                         record.set('EffectiveRate', response.responseText);
-                        record.set('EffectiveRateDisplay', response.responseText);
 
                         sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
                         sessionStorage.setItem('dataInstallment', null);
@@ -117,7 +117,6 @@ Ext.define('TabUserInformation.view.Restructure.ARCardViewController', {
                         var dataInstallment = [];
 
                         record.set('EffectiveRate', form.findField('EffectiveRate').getValue());
-                        record.set('EffectiveRateDisplay', form.findField('EffectiveRate').getValue());
 
                         for (i = 0; i <= NewTerm; i++) {
                             if (i == 0) {

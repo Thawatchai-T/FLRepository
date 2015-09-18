@@ -42,12 +42,12 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
 
         store.load(function (records, operation, success) {
             if (success) {
-                if (UserData.RoleName === 'marketing') {
-                    storeList.getProxy().extraParams.agrcode = combo.value;
-                    storeList.getProxy().extraParams.marketing_group = UserData.UserInfo.MarketingGroup.Id;
-                    storeList.load();
-                    grid.view.refresh();
-                }
+                //if (UserData.RoleName === 'marketing') {
+                storeList.getProxy().extraParams.agrcode = combo.value;
+                storeList.getProxy().extraParams.marketing_group = UserData.UserInfo.MarketingGroup.Id;
+                storeList.load();
+                grid.view.refresh();
+                //}
 
                 //sessionStorage.setItem('dataRestructure', Ext.encode(records[0].data));
 
@@ -63,6 +63,22 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
         });
     },
 
+    onComboboxChange: function (combo, newValue, oldValue, eOpts) {
+        var view = this.getView(),
+            store = view.down('grid').getStore(),
+            form = view.down('form').getForm(),
+            buttonARCard = view.down('button');
+
+        if (newValue === '') {
+            form.findField('Agreement').setValue('');
+            form.findField('Customer').setValue('');
+            buttonARCard.disable();
+
+            store.getProxy().extraParams.agrcode = {};
+            store.load();
+        }
+    },
+
     onButtonARCardClick: function (button, e, eOpts) {
         var formHead = Ext.getCmp('head-restructure-form').getForm(),
             grid = this.getView().down('grid'),
@@ -72,8 +88,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
             store = Ext.create('store.arcards');
 
         formHead.updateRecord(record);
-
-        console.log(storeList.filter('Agreement', formHead.findField('Agreement').getValue()));
 
         var SEQ = storeList.totalCount + 1;
 
@@ -122,7 +136,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                                         form.loadRecord(record);
 
                                         form.findField('Res_Id').setValue(record.get('Id'));
-                                        form.findField('EffectiveRateDisplay').setValue(record.get('EffectiveRate'));
                                         form.findField('EffectiveRate').setValue(record.get('EffectiveRate'));
                                         form.findField('Agreement').setValue(value);
                                         form.findField('Customer').setValue(records[0].get('Customer'));
@@ -132,19 +145,18 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
 
                                         form.findField('flag').setValue('copy');
                                         form.findField('CopyAgreement').setValue(record.get('Agreement'));
-                                        if (UserData.RoleName === 'marketing') {
-                                            store.getProxy().extraParams.agrcode = value;
-                                            store.load(function (records, operation, success) {
-                                                var SEQ = this.totalCount + 1;
-                                                form.findField('SEQ').setValue(SEQ);
-                                            });
-                                        }
+                                        store.getProxy().extraParams.user_id = UserData.UserId;
+                                        store.getProxy().extraParams.user_group = UserData.RoleName;
+                                        store.getProxy().extraParams.agrcode = value;
+                                        store.load(function (records, operation, success) {
+                                            var SEQ = this.totalCount + 1;
+                                            form.findField('SEQ').setValue(SEQ);
+                                        });
                                     },
                                     close: function (panel, event) {
-                                        if (UserData.RoleName === 'marketing') {
-                                            form.findField('Agreement').setValue(value);
-                                        }
-                                        Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
+                                        form.findField('Agreement').setValue(value);
+                                        //Ext.getCmp('restructurerestructurelist').down('pagingtoolbar').moveLast();
+                                        store.load();
                                     }
                                 }
                             }).show();
@@ -183,7 +195,6 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                     form.loadRecord(record);
 
                     form.findField('Res_Id').setValue(record.get('Id'));
-                    form.findField('EffectiveRateDisplay').setValue(record.get('EffectiveRate'));
                     form.findField('EffectiveRate').setValue(record.get('EffectiveRate'));
                     form.findField('Rate').setValue('false');
                     sessionStorage.setItem('dataRestructure', Ext.encode(record.data));

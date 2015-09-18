@@ -5,3 +5,11 @@
 .accept {
     background:transparent url(icons/accept.png) no-repeat 0 0;
 }
+
+.bullet_go {
+    background:transparent url(icons/bullet_go.png) no-repeat 0 0;
+}
+
+.database_go {
+    background:transparent url(icons/database_go.png) no-repeat 0 0;
+}
