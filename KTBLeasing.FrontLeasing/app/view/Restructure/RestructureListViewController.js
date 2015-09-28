@@ -212,14 +212,19 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                             form.findField('NewCheck').setValue(true);
                         }
 
-                        form.findField('flag').setValue('approve');
-
                         panel.down('#releaseButton').show();
                         if (record.get('Release')) {
                             panel.down('#releaseButton').disable();
                         } else {
                             panel.down('#releaseButton').enable();
                         }
+
+                        panel.down('#calculateEffectiveRateButton').disable();
+                        panel.down('#calculateButton').disable();
+                        panel.down('#saveButton').disable();
+                        grid.getPlugin('celledit').disable();
+                        form.findField('flag').setValue('approve');
+
                     } else {
                         panel.down('#calculateEffectiveRateButton').disable();
                         panel.down('#calculateButton').disable();

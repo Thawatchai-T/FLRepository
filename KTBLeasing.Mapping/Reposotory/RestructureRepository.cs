@@ -87,7 +87,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
                                     on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where x.Agreement == agrcode //&& y.MarketingGroup == marketing_group 
+                                  where x.Status != "normal" && x.Agreement == agrcode //&& y.MarketingGroup == marketing_group 
                                   select x)
                                   .Skip(start).Take(limit)
                                   .ToList<Restructure>();
@@ -219,7 +219,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where x.Agreement == agrcode //&& y.MarketingGroup == marketing_group
+                              where x.Status != "normal" && x.Agreement == agrcode //&& y.MarketingGroup == marketing_group
                               select x)
                               .Count();
                 }
@@ -325,6 +325,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         StringBuilder sb = new StringBuilder();
                         StringBuilder sb1 = new StringBuilder();
                         StringBuilder sb2 = new StringBuilder();
+                        var interest = item.Interest + item.Penalty;
                         //sb.Append(string.Format("-- InstallNo: {0} -------------------------------------------------------------------------\n", item.InstallNo));
                         sb.Append("UPDATE PAYREL SET ");
                         sb.Append(string.Format("INSTALL = ROUND({0}, 2), ", item.Installment_Total));
@@ -334,12 +335,14 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         sb.Append(string.Format("AND DATEPAY = '{0}' ;", InstallmentDate));
                         
                         //sb1.Append("\n---------------------------------------------------------------------------\n");
-                        sb1.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ", item.Interest));
+                        //sb1.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ", item.Interest));
+                        sb1.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ", interest));
                         sb1.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb1.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
 
                         //sb1.Append("\n---------------------------------------------------------------------------\n");
-                        sb2.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ", item.Interest));
+                        //sb2.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ", item.Interest));
+                        sb2.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ", interest));
                         sb2.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb2.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
                         lsql.Add(sb.ToString());
