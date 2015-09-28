@@ -76,7 +76,8 @@ Ext.application({
         'RoleInTabs',
         'Roles',
         'RequestTransaction',
-        'Shareholder'
+        'Shareholder',
+        'RedbookVehicle'
     ],
     stores: [
         'userInformations',
@@ -197,7 +198,8 @@ Ext.application({
         'restructureLists',
     //'roleInTabs'
         'requestTransactions',
-        'jobs'
+        'jobs',
+        'redbookVehicles'
     ],
     views: [
         'User.UserInfWindow',

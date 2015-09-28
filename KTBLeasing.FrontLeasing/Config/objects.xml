@@ -8,6 +8,11 @@
     <property name="Username" value="FrontLeasing_UAT"/>
     <property name="Password" value="ktblitadmin"/>
     <property name="Instance" value="ktbl"/>
+
+    <property name="Server2" value="221.23.4.64"/>
+    <property name="Database2" value="redbook"/>
+    <property name="Username2" value="sa"/>
+    <property name="Password2" value="ktblitadmin"/>
   </object>
   
   <!--[20150331] commment by Woody old service check login ad-->

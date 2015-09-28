@@ -18,7 +18,7 @@ Ext.define('TabUserInformation.view.ThirdParty.ThirdPartyInfTabViewController', 
     alias: 'controller.thirdpartythirdpartyinftab',
 
     onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
-        this.getView().close();
+        var popup = Ext.create("widget.thirdpartythirdpartyinfwindow").show();
     },
 
     onButtonEditClick1: function(button, e, eOpts) {

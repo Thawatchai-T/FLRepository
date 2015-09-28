@@ -38,6 +38,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 return session.QueryOver<Installment>()
                     .Where(x => x.Res_Id == Res_Id)
+                    .OrderBy(x => x.InstallNo).Asc
                     .List<Installment>() as List<Installment>;
             }
         }

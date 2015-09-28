@@ -37,6 +37,9 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -62,6 +65,7 @@
     <Compile Include="Lead.cs" />
     <Compile Include="InformationIndication.cs" />
     <Compile Include="IndicationEquipment.cs" />
+    <Compile Include="RedbookVehicle.cs" />
     <Compile Include="ThirdParty.cs" />
     <Compile Include="Installment.cs" />
     <Compile Include="Restructure.cs" />
@@ -117,6 +121,9 @@
       <Project>{A01C9E7D-AD0E-46DB-9D56-C44C828AD45C}</Project>
       <Name>Com.Ktbl.Database.DB2</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

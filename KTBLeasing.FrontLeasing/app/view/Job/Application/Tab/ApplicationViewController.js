@@ -167,6 +167,62 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
         }
     },
 
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
+        var view = this.getView();
+        var value = this.getView().down('#TypeEquipment').getRawValue();
+
+        var popup = Ext.create('widget.jobapplicationwindowequipmentdetail', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    panel.getController().HideAndShow(value);
+                    panel.down('form').getForm().loadRecord(record);
+                },
+                beforeclose: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                                store = panel.down('grid').getStore(),
+                                record = panel.down('grid').getSelection()[0];
+
+                    if (record) {
+                        form.updateRecord(record);
+                    }
+
+                    if (panel.closeMe) {
+                        panel.closeMe = false;
+                        return true;
+                    }
+
+                    if (store.getModifiedRecords()) {
+                        Ext.Msg.show({
+                            title: 'Save Changes?',
+                            message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
+                            buttons: Ext.Msg.YESNOCANCEL,
+                            icon: Ext.Msg.QUESTION,
+                            width: 300,
+                            fn: function (btn) {
+                                if (btn === 'yes') {
+                                    store.sync();
+                                    panel.closeMe = true;
+                                    panel.close();
+                                } else if (btn === 'no') {
+                                    panel.closeMe = true;
+                                    panel.close();
+                                } else {
+                                }
+                            }
+                        });
+                    }
+
+                    return false;
+                },
+                close: function (panel, eOpts) {
+                    view.down('grid').getStore().load();
+                }
+            }
+        });
+        popup.center();
+        popup.show();
+    },
+
     onGridpanelSelectionChange: function (model, selected, eOpts) {
         var form = this.getView().getForm();
 
@@ -181,6 +237,8 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
     },
 
     onButtonNewLineClick: function (button, e, eOpts) {
+        var view = this.getView();
+        var value = this.getView().down('#TypeEquipment').getRawValue();
         var store = this.getView().down('grid').getStore(),
             record = Ext.create('model.equipmentlist', {
                 ApplicationDetail: {
@@ -190,7 +248,57 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
 
         record.data.Id = 0;
         store.add(record);
-        this.getView().down('grid').view.refresh();
+        var popup = Ext.create('widget.jobapplicationwindowequipmentdetail', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    panel.getController().HideAndShow(value);
+                    panel.down('form').getForm().loadRecord(record);
+                },
+                beforeclose: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                                store = panel.down('grid').getStore(),
+                                record = panel.down('grid').getSelection()[0];
+
+                    if (record) {
+                        form.updateRecord(record);
+                    }
+
+                    if (panel.closeMe) {
+                        panel.closeMe = false;
+                        return true;
+                    }
+
+                    if (store.getModifiedRecords()) {
+                        Ext.Msg.show({
+                            title: 'Save Changes?',
+                            message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
+                            buttons: Ext.Msg.YESNOCANCEL,
+                            icon: Ext.Msg.QUESTION,
+                            width: 300,
+                            fn: function (btn) {
+                                if (btn === 'yes') {
+                                    store.sync();
+                                    panel.closeMe = true;
+                                    panel.close();
+                                } else if (btn === 'no') {
+                                    panel.closeMe = true;
+                                    panel.close();
+                                } else {
+                                }
+                            }
+                        });
+                    }
+
+                    return false;
+                },
+                close: function (panel, eOpts) {
+                    view.down('grid').getStore().load();
+                }
+            }
+        });
+        popup.center();
+        popup.show();
+
     },
 
     onButtonDeleteLineClick: function (button, e, eOpts) {

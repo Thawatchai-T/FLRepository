@@ -382,6 +382,7 @@
     <Content Include="app\model\OptionEndLeaseTerm.js" />
     <Content Include="app\model\Province.js" />
     <Content Include="app\model\PurchaseOrder.js" />
+    <Content Include="app\model\RedbookVehicle.js" />
     <Content Include="app\model\RequestTransaction.js" />
     <Content Include="app\model\ARCard.js" />
     <Content Include="app\model\RestructureList.js" />
@@ -486,6 +487,7 @@
     <Content Include="app\store\contactPersons.js" />
     <Content Include="app\store\agreements.js" />
     <Content Include="app\store\jobs.js" />
+    <Content Include="app\store\redbookVehicles.js" />
     <Content Include="app\store\requestTransactions.js" />
     <Content Include="app\store\restructureLists.js" />
     <Content Include="app\store\customerInformations.js" />
@@ -9764,7 +9766,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>6700</DevelopmentServerPort>
+          <DevelopmentServerPort>24753</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

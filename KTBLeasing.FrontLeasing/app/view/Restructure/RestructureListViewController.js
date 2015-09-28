@@ -199,18 +199,20 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                     form.findField('Rate').setValue('false');
                     sessionStorage.setItem('dataRestructure', Ext.encode(record.data));
 
-                    if (UserData.RoleName === 'head_marketing' && record.get('Status') !== 'approve') {
+                    if ((UserData.RoleName === 'head_marketing' || UserData.RoleName === 'admin_mkt') && record.get('Status') !== 'approve') {
                         panel.down('#saveButton').setText('Approve');
+
                         if (record.get('New_OS_PR') > 0) {
                             form.findField('NewCheck').setValue(true);
                         }
 
                         form.findField('flag').setValue('approve');
+                    } else if ((UserData.RoleName === 'head_marketing' || UserData.RoleName === 'admin_mkt') && record.get('Status') === 'approve') {
+                        if (record.get('New_OS_PR') > 0) {
+                            form.findField('NewCheck').setValue(true);
+                        }
 
-                    } else {
-                        panel.down('#calculateEffectiveRateButton').disable();
-                        panel.down('#calculateButton').disable();
-                        panel.down('#saveButton').disable();
+                        form.findField('flag').setValue('approve');
 
                         panel.down('#releaseButton').show();
                         if (record.get('Release')) {
@@ -218,9 +220,11 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
                         } else {
                             panel.down('#releaseButton').enable();
                         }
-
+                    } else {
+                        panel.down('#calculateEffectiveRateButton').disable();
+                        panel.down('#calculateButton').disable();
+                        panel.down('#saveButton').disable();
                         grid.getPlugin('celledit').disable();
-
                         form.findField('flag').setValue('old');
                     }
                 }
@@ -231,7 +235,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureListViewController', 
     onBeforeRender: function (component, eOpts) {
         var UserData = Ext.decode(sessionStorage.getItem('UserData'));
 
-        if (UserData.RoleName === 'head_marketing') {
+        if ((UserData.RoleName === 'head_marketing' || UserData.RoleName === 'admin_mkt')) {
             //this.lookupReference('restructure-toolbar').hide();
             //Ext.getCmp('head-restructure-form').hide();
             this.getView().down('grid').setTitle('Restructure List (Approve)');

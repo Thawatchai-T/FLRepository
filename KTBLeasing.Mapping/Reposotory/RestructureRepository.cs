@@ -34,23 +34,34 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
                     if (user_group == "head_marketing")
                     {
+                            
+                            result = (from x in session.QueryOver<Restructure>().List()
+                                      join y in session.QueryOver<UserInformation>().List()
+                                        on x.CreateBy equals y.UsersAuthorize.UserId
+                                      where x.Status != "normal" //&& y.MarketingGroup == marketing_group
+                                      select x)
+                                      .Skip(start).Take(limit)
+                                      .ToList<Restructure>();
+                    }
+                    else if (user_group == "marketing")
+                    {
                         result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
-                                    on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where x.Status != "normal" && y.MarketingGroup == marketing_group
+                                  on x.CreateBy equals y.UsersAuthorize.UserId
+                                  where y.MarketingGroup == marketing_group && x.CreateBy == user_id
                                   select x)
-                                  .Skip(start).Take(limit)
-                                  .ToList<Restructure>();
+                                .Skip(start).Take(limit)
+                                .ToList<Restructure>();
                     }
-                    else 
+                    else
                     {
                         result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
                                     on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                                  where x.Status != "normal"
                                   select x)
-                                  .Skip(start).Take(limit)
-                                  .ToList<Restructure>();
+                                      .Skip(start).Take(limit)
+                                      .ToList<Restructure>();
                     }
 
                     return result;
@@ -76,7 +87,17 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
                                     on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where x.Agreement == agrcode && y.MarketingGroup == marketing_group 
+                                  where x.Agreement == agrcode //&& y.MarketingGroup == marketing_group 
+                                  select x)
+                                  .Skip(start).Take(limit)
+                                  .ToList<Restructure>();
+                    }
+                    else if (user_group == "marketing")
+                    {
+                        result = (from x in session.QueryOver<Restructure>().List()
+                                  join y in session.QueryOver<UserInformation>().List()
+                                    on x.CreateBy equals y.UsersAuthorize.UserId
+                                  where x.Agreement == agrcode && y.MarketingGroup == marketing_group && x.CreateBy == user_id
                                   select x)
                                   .Skip(start).Take(limit)
                                   .ToList<Restructure>();
@@ -86,7 +107,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         result = (from x in session.QueryOver<Restructure>().List()
                                   join y in session.QueryOver<UserInformation>().List()
                                     on x.CreateBy equals y.UsersAuthorize.UserId
-                                  where x.Agreement == agrcode && y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                                  where x.Status != "normal" && x.Agreement == agrcode
                                   select x)
                                   .Skip(start).Take(limit)
                                   .ToList<Restructure>();
@@ -161,16 +182,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where x.Status != "normal" && y.MarketingGroup == marketing_group
+                              where x.Status != "normal" //&& y.MarketingGroup == marketing_group
                               select x)
                               .Count();
+                }
+                else if (user_group == "marketing")
+                {
+                    result = (from x in session.QueryOver<Restructure>().List()
+                              join y in session.QueryOver<UserInformation>().List()
+                                on x.CreateBy equals y.UsersAuthorize.UserId
+                              where y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                              select x)
+                             .Count();
                 }
                 else
                 {
                     result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                              where x.Status != "normal"
                               select x)
                              .Count();
                 }
@@ -189,7 +219,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where x.Agreement == agrcode && y.MarketingGroup == marketing_group
+                              where x.Agreement == agrcode //&& y.MarketingGroup == marketing_group
+                              select x)
+                              .Count();
+                }
+                else if (user_group == "marketing")
+                {
+                    result = (from x in session.QueryOver<Restructure>().List()
+                              join y in session.QueryOver<UserInformation>().List()
+                                on x.CreateBy equals y.UsersAuthorize.UserId
+                              where x.Agreement == agrcode && y.MarketingGroup == marketing_group && x.CreateBy == user_id
                               select x)
                               .Count();
                 }
@@ -198,7 +237,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     result = (from x in session.QueryOver<Restructure>().List()
                               join y in session.QueryOver<UserInformation>().List()
                                 on x.CreateBy equals y.UsersAuthorize.UserId
-                              where x.Agreement == agrcode && y.MarketingGroup == marketing_group && x.CreateBy == user_id
+                              where x.Status != "normal" && x.Agreement == agrcode
                               select x)
                               .Count();
                 }

@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueueViewController', {
     },
 
     onViewItemDblClick: function (dataview, record, item, index, e, eOpts) {
-        Ext.create('widget.jobinformationinformationforindicationwindow', {
+        Ext.create('widget.approveapprovalwindow', {
             listeners: {
                 beforerender: function (panel, e0pts) {
                     var form = panel.down('form').getForm();

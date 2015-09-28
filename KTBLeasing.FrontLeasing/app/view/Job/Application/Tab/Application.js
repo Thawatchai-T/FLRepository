@@ -594,13 +594,14 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
                     ftype: 'summary'
                 }
             ],
-            plugins: [
-                {
-                    ptype: 'rowediting',
-                    pluginId: 'rowedit'
-                }
-            ],
+//            plugins: [
+//                {
+//                    ptype: 'rowediting',
+//                    pluginId: 'rowedit'
+//                }
+//            ],
             listeners: {
+                itemdblclick: 'onGridpanelItemDblClick',
                 selectionchange: 'onGridpanelSelectionChange'
             }
         }

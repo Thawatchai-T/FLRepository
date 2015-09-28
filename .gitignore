@@ -429,3 +429,5 @@ FLRepository.sln
 /ExtProject/sass/example/render.js
 /ExtProject/sass/example/theme.html
 /KTBLeasing.FrontLeasing/app/lib
+KTBLeasing.FrontLeasing/resources/icons/bullet_go.png
+KTBLeasing.FrontLeasing/resources/icons/database_go.png

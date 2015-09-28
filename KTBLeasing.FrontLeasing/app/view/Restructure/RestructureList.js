@@ -178,7 +178,7 @@ Ext.define('TabUserInformation.view.Restructure.RestructureList', {
                                 view.readOnly = true;
                             }
                             else{
-                                if (UserData.RoleName === 'head_marketing') {
+                                if ((UserData.RoleName === 'head_marketing' || UserData.RoleName === 'admin_mkt')) {
                                     view.readOnly = true;
                                 }else{
                                     record.set('Status', 'normal');
