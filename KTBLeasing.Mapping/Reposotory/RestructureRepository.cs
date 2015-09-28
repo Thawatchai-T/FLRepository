@@ -265,6 +265,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         var insvat = item.Installment_Total * Convert.ToDecimal(0.07);
                         var RestructureDate = Convert.ToDateTime(head.RestructureDate).ToString("yyyy-MM-dd");
                         string InstallmentDate = Convert.ToDateTime(item.InstallmentDate).ToString("yyyy-MM-dd");
+                        //[20150928] Add by Woody. Request By P'Tu Fix cast not sum penalty
+                        var interest = item.Interest + item.Penalty;
                         
                         sb.Append(string.Format("-- InstallNo: {0} -------------------------------------------------------------------------\n",item.InstallNo));    
                         sb.Append("UPDATE PAYREL SET ");
@@ -275,12 +277,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         sb.Append(string.Format("AND DATEPAY = '{0}' ;", InstallmentDate));
                             
                         sb.Append("\n---------------------------------------------------------------------------\n");
-                        sb.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        //[20150928] Updat by Woody. Request By P'Tu Fix cast not sum penalty
+                        //sb.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        sb.Append(string.Format("UPDATE INC_FREL SET INCOME = ROUND({0}, 2) ", interest));
                         sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
 
                         sb.Append("\n---------------------------------------------------------------------------\n");
-                        sb.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        //[20150928] Updat by Woody. Request By P'Tu Fix cast not sum penalty
+                        //sb.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ",item.Interest));
+                        sb.Append(string.Format("UPDATE INC_NREL SET INCOME = ROUND({0}, 2) ", interest));
                         sb.Append(string.Format("WHERE COM_ID= '1' AND COMCODE = '1' AND AGRCODE = '{0}' ", item.Agreement));
                         sb.Append(string.Format("AND DATE_EFF = '{0}' AND DATEINC = '{1}' ;", RestructureDate, InstallmentDate));
                         sb.Append("\n");
