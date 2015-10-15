@@ -37,6 +37,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetail', {
         'TabUserInformation.view.Job.Application.Tab.StipulateLoss',
         'TabUserInformation.view.Job.Application.Tab.CollectionSchedule',
         'TabUserInformation.view.Job.Application.Tab.Funding',
+        'TabUserInformation.view.Job.Application.Tab.RegistrationForm',
         'TabUserInformation.view.Job.Application.Tab.Document',
         'Ext.form.Panel',
         'Ext.tab.Panel',
@@ -194,6 +195,13 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetail', {
                         },
                         {
                             xtype: 'jobapplicationtabfunding',
+                            tabConfig: {
+                                xtype: 'tab',
+                                textAlign: 'right'
+                            }
+                        },
+                        {
+                            xtype: 'jobapplicationtabregistrationform',
                             tabConfig: {
                                 xtype: 'tab',
                                 textAlign: 'right'

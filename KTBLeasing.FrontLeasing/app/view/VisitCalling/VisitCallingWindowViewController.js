@@ -69,7 +69,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
     onButtonAddressClick: function (button, e, eOpts) {
         var form = this.getView().down('form').getForm(),
         custid = form.findField('CustomerId').getValue(),
-        
+
         popup = Ext.create('widget.windowaddressviews', {
             listeners: {
                 beforeshow: function (panel, eOpts) {
@@ -84,7 +84,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
                 }
             }
         }),
-        
+
         windowStore = popup.down('gridpanel').getStore();
 
         popup.down('form').getForm().findField('CustomerId').setValue('<b style="color:green;">' + custid + '</b>');
@@ -112,7 +112,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
     },
 
     onButtonContactPersonClick: function (button, e, eOpts) {
-        
+
         var form = this.getView().down('form').getForm(),
         view = this.getView(),
         popup = Ext.create('widget.commoncontactpersonpopup', {
@@ -122,7 +122,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
                     if (record) {
                         //                        form.loadRecord(record);
                         //                        console.log(view.down('#ContactPersonTitleNameTh'));
-                        
+
                         view.down('#ContactPersonTitleNameTh').setValue(record.get('TitleTh'));
                         view.down('#ContactPersonFirstNameTh').setValue(record.get('FirstNameTh'));
                         view.down('#ContactPersonLastNameTh').setValue(record.get('LastNameTh'));
@@ -182,7 +182,24 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindowViewControlle
     },
 
     onSaveClick: function (button, e, eOpts) {
-        console.log(this.getView().down('form').getForm().getRecord());
+        var record = this.getView().down('form').getForm().getRecord();
+
+        Ext.Ajax.request({
+            method: 'post',
+            url: 'api/VisitCalling/Post',
+            params: record.data,
+            success: function (response) {
+                Ext.MessageBox.alert("Result", "Save Success.");
+            },
+            failure: function (response) {
+                Ext.Msg.show({
+                    title: 'Error',
+                    message: response.responseText,
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.ERROR
+                });
+            }
+        });
     },
 
 

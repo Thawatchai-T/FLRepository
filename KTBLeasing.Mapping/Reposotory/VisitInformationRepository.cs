@@ -35,6 +35,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
             catch (Exception ex)
             {
+                Logger.Error(ex);
                 return false;
                 throw;
             }

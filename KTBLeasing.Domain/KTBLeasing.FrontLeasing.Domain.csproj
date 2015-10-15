@@ -60,6 +60,8 @@
     <Compile Include="Approval.cs" />
     <Compile Include="BG.cs" />
     <Compile Include="Background.cs" />
+    <Compile Include="RequestTransaction.cs" />
+    <Compile Include="RegistrationForm.cs" />
     <Compile Include="Job.cs" />
     <Compile Include="Equipment.cs" />
     <Compile Include="Lead.cs" />

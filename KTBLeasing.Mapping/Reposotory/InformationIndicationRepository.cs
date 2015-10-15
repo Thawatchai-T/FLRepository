@@ -14,9 +14,12 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<InformationIndication> GetAll();
         InformationIndication Get(long id);
         List<Background> GetBackground(long id);
+        List<Approval> GetApproval(long id);
+        List<RequestTransaction> GetRequestTransaction(long id);
         void Insert<T>(T entity);
         void Update<T>(T entity);
         void SaveOrUpdate<T>(T entity);
+        void Delete<T>(T entity);
     }
     public class InformationIndicationRepository : NhRepository, IInformationIndicationRepository
     {
@@ -28,7 +31,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    return session.QueryOver<InformationIndication>().List<InformationIndication>() as List<InformationIndication>;
+                    return session.QueryOver<InformationIndication>()
+                        //.Fetch(x => x.Approval).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .List<InformationIndication>() as List<InformationIndication>;
                 }
             }
             catch (Exception ex)
@@ -63,7 +68,47 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                     return session.QueryOver<Background>()
                         .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
                         .Where(x => x.InformationIndication.Id == id)
+                        .OrderBy(x => x.Id).Asc
                         .List<Background>() as List<Background>;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
+        }
+
+        public List<Approval> GetApproval(long id)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session.QueryOver<Approval>()
+                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Where(x => x.InformationIndication.Id == id)
+                        .List<Approval>() as List<Approval>;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
+        }
+
+        public List<RequestTransaction> GetRequestTransaction(long id)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session.QueryOver<RequestTransaction>()
+                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Where(x => x.InformationIndication.Id == id)
+                        .OrderBy(x => x.Id).Asc
+                        .List<RequestTransaction>() as List<RequestTransaction>;
                 }
             }
             catch (Exception ex)
@@ -102,6 +147,18 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             try
             {
                 base.SaveOrUpdate<T>(entity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
+        }
+
+        public void Delete<T>(T entity)
+        {
+            try
+            {
+                base.Delete<T>(entity);
             }
             catch (Exception ex)
             {

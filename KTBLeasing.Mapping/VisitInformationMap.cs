@@ -14,12 +14,13 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             Table("VISIT_HEAD");
             LazyLoad();
             Id(x => x.Id,"ID").GeneratedBy.Sequence("SEQ_VISIT_CALL");
+            //Id(x => x.Id, "ID").GeneratedBy.Identity();
             Map(x => x.CustomerId).Column("CUSTOMER_ID").Length(22);
             Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER").Length(100);
             Map(x => x.Status).Column("STATUS").Length(20);
             Map(x => x.RefNo).Column("REF_NO").Length(22);
             Map(x => x.VsCode).Column("VS_CODE").Length(75);
-            Map(x => x.FinalcialProlicy).Column("FINALCIAL_PROLICY").Length(6);
+            //Map(x => x.FinalcialProlicy).Column("FINALCIAL_PROLICY").Length(6);
             Map(x => x.CustCode).Column("CUST_CODE").Length(20);
             Map(x => x.CustId).Column("CUST_ID").Length(22);
             Map(x => x.TypeCustomer).Column("TYPE_CUSTOMER").Length(20);

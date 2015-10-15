@@ -28,6 +28,7 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationTab'
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobinformationinformationforindicationtab',
     controller: 'jobinformationinformationforindicationtab',
     viewModel: {
         type: 'jobinformationinformationforindicationtab'

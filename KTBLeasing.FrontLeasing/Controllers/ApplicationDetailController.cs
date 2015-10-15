@@ -150,6 +150,14 @@ namespace KTBLeasing.FrontLeasing.Controllers
                     var listPurchaseOrder = ApplicationDetailRepository.GetAll<PurchaseOrder>(0, 30, id, new PurchaseOrder());
                     json = JsonConvert.SerializeObject(listPurchaseOrder);
                     break;
+                case ApplicationDetailChildEnum.RegistrationForm:
+                    var listRegistrationForm = ApplicationDetailRepository.GetAll<RegistrationForm>(0, 30, id, new RegistrationForm());
+                    json = JsonConvert.SerializeObject(listRegistrationForm);
+                    break;
+                case ApplicationDetailChildEnum.Approval:
+                    var listApproval = ApplicationDetailRepository.GetAll<Approval>(0, 30, id, new Approval(), "Approval");
+                    json = JsonConvert.SerializeObject(listApproval);
+                    break;
                 case ApplicationDetailChildEnum.Unknow:
                     break;
             }

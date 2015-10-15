@@ -33,7 +33,7 @@ Ext.define('TabUserInformation.model.RequestTransaction', {
             name: 'EquipmentTypeCode'
         },
         {
-            type: 'float',
+            type: 'string',
             name: 'EquipmentName'
         },
         {
@@ -72,7 +72,9 @@ Ext.define('TabUserInformation.model.RequestTransaction', {
             name: 'Comment'
         },
         {
-            name: 'Delivery'
+            type: 'date',
+            name: 'Delivery',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'Competitor'

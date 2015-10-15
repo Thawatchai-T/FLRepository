@@ -31,8 +31,6 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
                     var recordIndication = Ext.create('model.IndicationEquipment', record.data.IndicationEquipment);
                     var recordInformation = Ext.create('model.informationforindication', record.data.Information);
 
-                    console.log(record);
-
 //                    Ext.getCmp('jobappapplication').loadRecord(recordInformation);
 //                    Ext.getCmp('jobappapplication').loadRecord(recordIndication);
                     Ext.getCmp('jobappapplication').loadRecord(record);
@@ -49,6 +47,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
                     me.onLoadForm(Ext.getCmp('jobappstampduty'), 'StampDuty', Id);
                     me.onLoadForm(Ext.getCmp('jobappmethodpayment'), 'MethodPayment', Id);
                     me.onLoadForm(Ext.getCmp('jobapptermcondition'), 'TermCondition', Id);
+                    me.onLoadForm(Ext.getCmp('jobappregistrationform'), 'RegistrationForm', Id);
                     //me.onLoadForm(Ext.getCmp('jobappcollectionschedule'), 'CollectionSchedule', Id);
 
                     me.onLoadStore(Ext.getCmp('jobappseller').down('grid').getStore(), 'Seller', Id);

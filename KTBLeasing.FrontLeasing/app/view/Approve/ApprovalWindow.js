@@ -54,12 +54,14 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
             store: 'approvals',
             columns: [
                 {
-                    xtype: 'rownumberer'
+                    xtype: 'rownumberer',
+                    sortable: false
                 },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'ApprovedBy',
-                    text: 'Approve By'
+                    text: 'Approve By',
+                    sortable: false
                 }
             ],
             listeners: {
@@ -103,13 +105,19 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
     ],
     items: [
         {
+            xtype: 'hiddenfield',
+            itemId: 'InformationId'
+        },
+        {
             xtype: 'form',
+            itemId: 'approveForm',
             defaults: {
                 allowBlank: false,
                 
             },
             titleCollapse: false,
             items: [
+                
                 {
                     xtype: 'container',
                     width: 400,
@@ -163,7 +171,8 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
                                     name: 'Unquote',
                                     boxLabel: 'Unquote'
                                 }
-                            ]
+                            ],
+                            allowBlank: true
                         },
                         {
                             xtype: 'datefield',
@@ -173,7 +182,8 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
                             labelAlign: 'right',
                             name: 'ApprovalDate',
                             altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
-                            format: 'd/m/Y'
+                            format: 'd/m/Y',
+                            allowBlank: true
                         },
                         {
                             xtype: 'datefield',
@@ -182,7 +192,8 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
                             labelAlign: 'right',
                             name: 'UnquoteDate',
                             altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
-                            format: 'd/m/Y'
+                            format: 'd/m/Y',
+                            allowBlank: true
                         }
                     ]
                 },
@@ -240,7 +251,8 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
                                     name: 'CG',
                                     boxLabel: 'CG'
                                 }
-                            ]
+                            ],
+                            allowBlank: true
                         },
                         {
                             xtype: 'combobox',
@@ -294,7 +306,8 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindow', {
         }
     ],
     listeners: {
-        beforeclose: 'onWindowBeforeClose'
+        beforeclose: 'onWindowBeforeClose',
+        close: 'onWindowClose'
     }
 
 });

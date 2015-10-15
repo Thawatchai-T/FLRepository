@@ -94,6 +94,8 @@
     <Compile Include="CommonData.cs" />
     <Compile Include="ContactPersonMap.cs" />
     <Compile Include="BackgroundMap.cs" />
+    <Compile Include="RequestTransactionMap.cs" />
+    <Compile Include="RegistrationFormMap.cs" />
     <Compile Include="JobMap.cs" />
     <Compile Include="EquipmentMap.cs" />
     <Compile Include="InformationIndicationMap.cs" />

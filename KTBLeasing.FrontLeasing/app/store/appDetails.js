@@ -81,6 +81,10 @@ Ext.define('TabUserInformation.store.appDetails', {
                     Id: 'jobapptermcondition',
                     Name: 'TermCondition'
                 },
+                {
+                    Id: 'jobappregistrationform',
+                    Name: 'RegistrationForm'
+                }
 //                {
 //                    Id: 'jobappseller',
 //                    Name: 'Seller'

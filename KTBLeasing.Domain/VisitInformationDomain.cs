@@ -27,7 +27,7 @@ namespace KTBLeasing.Domain
 
         public virtual string VsCode { get; set; }
 
-        public virtual string FinalcialProlicy { get; set; }
+        //public virtual string FinalcialProlicy { get; set; }
 
         public virtual string CustCode { get; set; }
 

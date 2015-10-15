@@ -74,7 +74,7 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
                 me.saveStore('jobapplicationtabmaintenances', 'MaintenanceList');
                 me.saveStore('jobapplicationtabcollectionschedule', 'CollectionSchedule');
                 me.saveStore('jobapplicationtabpurchaseorder', 'PurchaseOrder');
-                
+                me.saveStore('jobapplicationtabregistrationform', 'RegistrationForm');
 
                 Ext.Msg.alert('Success', 'บันทึกข้อมูลเรียบร้อย');
                 //                Ext.getCmp('pagingtoolbar-custinfo').moveFirst();

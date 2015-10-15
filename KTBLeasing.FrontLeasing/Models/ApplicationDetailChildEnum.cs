@@ -20,6 +20,7 @@ namespace KTBLeasing.FrontLeasing.Models
         StipulateLoss,
         Funding,
         TermCondition,
+        RegistrationForm,
 
         //Store
         EquipmentList,
@@ -31,6 +32,7 @@ namespace KTBLeasing.FrontLeasing.Models
         MaintenanceList,
         EquipmentDetail,
         PurchaseOrder,
+        Approval,
         //Unknow
         Unknow
     }

@@ -210,6 +210,7 @@
     <Compile Include="Controllers\AnnualTaxController.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
     <Compile Include="Controllers\ARCardController.cs" />
+    <Compile Include="Controllers\RequestTransactionController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\EquipmentDetailController.cs" />
     <Compile Include="Controllers\InstallmentController.cs" />
@@ -354,6 +355,8 @@
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
     <Content Include="app\model\Agreement.js" />
+    <Content Include="app\model\USDCurrency.js" />
+    <Content Include="app\model\RegistrationForm.js" />
     <Content Include="app\model\DueDay.js" />
     <Content Include="app\model\FinalcialProlicyModel.js" />
     <Content Include="app\model\CustomerInformation.js" />
@@ -433,6 +436,7 @@
     <Content Include="app\store\CommonData\collaterals.js" />
     <Content Include="app\store\CommonData\committed.js" />
     <Content Include="app\store\CommonData\conditionLease.js" />
+    <Content Include="app\store\CommonData\registrationForms.js" />
     <Content Include="app\store\CommonData\paymentPeriods.js" />
     <Content Include="app\store\CommonData\methodPayment.js" />
     <Content Include="app\store\CommonData\currency.js" />
@@ -634,6 +638,9 @@
     <Content Include="app\view\Job\Application\Tab\PurchaseOrder.js" />
     <Content Include="app\view\Job\Application\Tab\PurchaseOrderViewController.js" />
     <Content Include="app\view\Job\Application\Tab\PurchaseOrderViewModel.js" />
+    <Content Include="app\view\Job\Application\Tab\RegistrationForm.js" />
+    <Content Include="app\view\Job\Application\Tab\RegistrationFormViewController.js" />
+    <Content Include="app\view\Job\Application\Tab\RegistrationFormViewModel.js" />
     <Content Include="app\view\Job\Application\Tab\Seller.js" />
     <Content Include="app\view\Job\Application\Tab\SellerViewController.js" />
     <Content Include="app\view\Job\Application\Tab\SellerViewModel.js" />

@@ -15,6 +15,28 @@
 
 Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.jobinformationdetailrequesttransaction'
+    alias: 'viewmodel.jobinformationdetailrequesttransaction',
+
+    requires: [
+        'Ext.app.bind.Formula',
+        'Ext.data.Store'
+    ],
+
+    formulas: {
+        AmountCurrency: function (get) {
+            return get('Amount') * get('usdCurrency').getAt(0).get('rate');
+        }
+    },
+
+    stores: {
+        usdCurrency: {
+            model: 'TabUserInformation.model.USDCurrency',
+            autoLoad: true,
+            proxy: {
+                type: 'jsonp',
+                url: 'https://currency-api.appspot.com/api/THB/USD.jsonp'
+            }
+        }
+    }
 
 });

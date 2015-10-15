@@ -32,10 +32,14 @@ Ext.define('TabUserInformation.model.Approval', {
         },
         {
             type: 'int',
-            name: 'InformationId'
+            name: 'InformationId',
         },
         {
             name: 'ApprovedBy'
+        },
+        {
+            type: 'boolean',
+            name: 'Approve'
         },
         {
             type: 'date',
@@ -43,10 +47,6 @@ Ext.define('TabUserInformation.model.Approval', {
         },
         {
             name: 'Position'
-        },
-        {
-            type: 'boolean',
-            name: 'Status'
         },
         {
             type: 'boolean',

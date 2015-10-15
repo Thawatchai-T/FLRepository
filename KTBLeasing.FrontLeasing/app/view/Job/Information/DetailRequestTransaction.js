@@ -39,7 +39,14 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
     items: [
         {
             xtype: 'form',
+            defaults: {
+                allowBlank: false
+            },
             items: [
+                {
+                    xtype: 'hiddenfield',
+                    name: 'InformationId'
+                },
                 {
                     xtype: 'textfield',
                     width: 200,
@@ -54,7 +61,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                     fieldLabel: 'Equipment Type',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'EquipmentType',
+                    name: 'EquipmentTypeCode',
                     autoLoadOnValue: true,
                     displayField: 'Name',
                     store: 'CommonData.typeEquipment',
@@ -70,19 +77,26 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                 },
                 {
                     xtype: 'numberfield',
-                    fieldLabel: 'Amount (BHT)',
+                    fieldLabel: 'Amount (THB)',
                     labelAlign: 'right',
                     labelWidth: 150,
                     name: 'Amount',
-                    hideTrigger: true
+                    hideTrigger: true,
+                    bind: {
+                        value: '{Amount}'
+                    }
                 },
                 {
-                    xtype: 'numberfield',
+                    xtype: 'displayfield',
                     fieldLabel: 'Amount (Curr.)',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'Amount',
-                    hideTrigger: true
+                    renderer: function(value, displayField) {
+                        return Ext.util.Format.number(value, '0,000.00');
+                    },
+                    bind: {
+                        value: '{AmountCurrency}'
+                    }
                 },
                 {
                     xtype: 'numberfield',
@@ -122,7 +136,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                     labelAlign: 'right',
                     labelWidth: 150,
                     name: 'FinalIRR',
-                    readOnly: true,
+                    disabled: true,
                     hideTrigger: true
                 },
                 {
@@ -130,7 +144,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                     fieldLabel: 'Insurance',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'Insurance',
+                    name: 'InsuranceCode',
                     autoLoadOnValue: true,
                     displayField: 'Name',
                     store: 'CommonData.borneBy',
@@ -141,7 +155,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                     fieldLabel: 'Condition of Lease',
                     labelAlign: 'right',
                     labelWidth: 150,
-                    name: 'ConditionLease',
+                    name: 'ConditionLeaseCode',
                     autoLoadOnValue: true,
                     displayField: 'Name',
                     store: 'CommonData.conditionLease',
@@ -180,6 +194,15 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
             dock: 'bottom',
             ui: 'footer',
             items: [
+                {
+                    xtype: 'button',
+                    text: 'Save',
+                    listeners: {
+                        click: 'onButtonSaveClick'
+                    }
+                },
+                '->'
+                ,
                 {
                     xtype: 'button',
                     text: 'New Indication',

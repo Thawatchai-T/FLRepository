@@ -50,6 +50,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.CreateBy).Column("CREATE_BY").Length(32);
             Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");
             Map(x => x.UpdateBy).Column("UPDATE_BY").Length(32);
+
+            //HasMany(x => x.Approval).KeyColumn("ID");
         }
     }
 }

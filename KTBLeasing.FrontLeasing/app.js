@@ -15,7 +15,7 @@
 
 // @require @packageOverrides
 Ext.Loader.setConfig({
-
+    
 });
 
 Ext.application({
@@ -77,7 +77,9 @@ Ext.application({
         'Roles',
         'RequestTransaction',
         'Shareholder',
-        'RedbookVehicle'
+        'RedbookVehicle',
+        'RegistrationForm',
+        'USDCurrency'
     ],
     stores: [
         'userInformations',
@@ -199,7 +201,8 @@ Ext.application({
     //'roleInTabs'
         'requestTransactions',
         'jobs',
-        'redbookVehicles'
+        'redbookVehicles',
+        'CommonData.registrationForms'
     ],
     views: [
         'User.UserInfWindow',
@@ -276,11 +279,11 @@ Ext.application({
         }
         else {
             //        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-            //Ext.create('TabUserInformation.view.Job.JobTab', { renderTo: Ext.getBody() });
+//            Ext.create('TabUserInformation.view.Job.JobWindow', { renderTo: Ext.getBody() });
             //                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
 
             //Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
-            //        Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });
+            //                    Ext.create('TabUserInformation.view.Approve.ApproveQueue', { renderTo: Ext.getBody() });
 
             var supportsLocalStorage = Ext.supports.LocalStorage,
                 loggedIn;

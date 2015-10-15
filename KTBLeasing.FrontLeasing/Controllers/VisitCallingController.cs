@@ -31,13 +31,15 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/visitcalling
-        public void Post([FromBody]string value)
+        public void Post(VisitInformationDomain value)
         {
+            VisitInformationRepository.SaveOrUpdate(value);
         }
 
         // PUT api/visitcalling/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, VisitInformationDomain value)
         {
+            VisitInformationRepository.Update(value);
         }
 
         // DELETE api/visitcalling/5
@@ -59,11 +61,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public List<VisistCallModel> getVisitCallingPage(int page,int start, int limit)
+        public List<VisitInformationDomain> getVisitCallingPage(int page, int start, int limit)
         {
-            VisistCallModel en = new VisistCallModel();
+            //VisistCallModel en = new VisistCallModel();
 
-            return en.GenDummyData();
+            //return en.GenDummyData();
+
+            return VisitInformationRepository.Get(start, limit);
         }
 
 

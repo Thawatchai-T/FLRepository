@@ -12,6 +12,7 @@ namespace KTBLeasing.FrontLeasing.Domain
         public InformationIndication()
         {
             Job = new Job();
+            //Approval = new List<Approval>();
         }
 
         public virtual long Id { get; set; }
@@ -46,8 +47,7 @@ namespace KTBLeasing.FrontLeasing.Domain
         public virtual string Remark { get; set; }
         public virtual bool Approve { get; set; }
 
+        //public virtual IList<Approval> Approval { get; set; }
         public virtual Job Job { get; set; }
-        
-
     }
 }

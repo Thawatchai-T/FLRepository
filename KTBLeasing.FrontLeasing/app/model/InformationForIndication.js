@@ -19,7 +19,8 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
 
     requires: [
         'Ext.data.field.Integer',
-        'Ext.data.field.Date'
+        'Ext.data.field.Date',
+        'TabUserInformation.model.Approval'
     ],
 
     idProperty: 'Id',
@@ -146,12 +147,7 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
             type: 'boolean',
             name: 'Approve'
         }
-    ]
+    ],
 
-//    hasOne: {
-//        model: 'TabUserInformation.model.Background',
-//        name: 'Business',
-//        associationKey: 'Id',
-//        foreignKey: 'Business'
-//    }
+    hasMany: 'TabUserInformation.model.Approval'
 });

@@ -17,35 +17,61 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.approveapprovalwindow',
 
-    onGridpanelSelectionChange: function(model, selected, eOpts) {
-        var form = this.getView().down('form').getForm();
+    onGridpanelSelectionChange: function (model, selected, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            grid = this.getView().down('grid'),
+            store = grid.getStore();
 
-        if(selected[0] !== null){
+        if (selected.length > 0) {
             form.loadRecord(selected[0]);
+
+            if (selected[0].get('Id') !== store.getAt(store.getCount() - 1).get('Id')) {
+                Ext.Array.each(form.getFields().items, function (field, index) {
+                    field.setReadOnly(true);
+                });
+            } else {
+                Ext.Array.each(form.getFields().items, function (field, index) {
+                    field.setReadOnly(false);
+                });
+            }
         }
     },
 
-    onGridpanelDeselect: function(rowmodel, record, index, eOpts) {
+    onGridpanelDeselect: function (rowmodel, record, index, eOpts) {
         var form = this.getView().down('form').getForm();
 
         form.updateRecord(record);
     },
 
-    onButtonNewClick: function(button, e, eOpts) {
+    onButtonNewClick: function (button, e, eOpts) {
         var grid = this.getView().down('grid'),
-            form = this.getView().down('form'),
+            form = this.getView().down('form').getForm(),
             store = grid.getStore(),
-            record = Ext.create('model.approval');
+            InformationId = this.getView().down('#InformationId').getValue(),
+            record = Ext.create('model.approval', {
+                InformationId: InformationId
+            });
 
-        store.add(record);
-        grid.getView().setSelection(record);
-        form.reset();
+        if (store.getModifiedRecords().length === 0) {
+            store.add(record);
+            grid.getView().setSelection(record);
+            form.reset();
+        } else {
+            Ext.Msg.show({
+                title: 'Warning',
+                message: 'กรุณาบันทึกข้อมูลก่อนทำการเพิ่ม',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }
+
     },
 
-    onButtonSaveClick: function(button, e, eOpts) {
+    onButtonSaveClick: function (button, e, eOpts) {
         var view = this.getView(),
             form = view.down('form').getForm(),
-            store = view.down('grid').getStore();
+            store = view.down('grid').getStore(),
+            record = form.getRecord();
 
         Ext.Msg.show({
             title: 'Save Changes?',
@@ -54,17 +80,19 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
             icon: Ext.Msg.QUESTION,
             fn: function (btn) {
                 if (btn === 'yes') {
-                    if(form.isValid()){
+                    if (form.isValid()) {
+                        form.updateRecord(record);
+
                         store.sync({
-                            success: function(batch){
-
+                            success: function (batch) {
+                                store.load();
                             },
-                            failed:function(batch){
-
+                            failed: function (batch) {
                             }
                         });
-                    }else{
-                        Ext.MessageBox.alert('Warning','กรอกข้อมูลไม่ครบถ้วน');
+
+                    } else {
+                        Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
                     }
                 } else {
                 }
@@ -72,27 +100,46 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
         });
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
+    onButtonDeleteClick: function (button, e, eOpts) {
         var grid = this.getView().down('grid'),
+            form = this.getView().down('form').getForm(),
             store = grid.getStore(),
-            record = grid.getSelection()[0];
+            selected = grid.getSelection();
 
-        if(record){
-            Ext.Msg.show({
-                title: 'Delete?',
-                message: 'คุณต้องการลบข้อมูลหรือไม่?',
-                buttons: Ext.Msg.YESNO,
-                icon: Ext.Msg.QUESTION,
-                fn: function (btn) {
-                    if (btn === 'yes') {
-                        store.remove(record);
+        if (selected.length > 0) {
+            if (selected[0].get('Id') === store.getAt(store.getCount() - 1).get('Id')) {
+                Ext.Msg.show({
+                    title: 'Delete?',
+                    message: 'คุณต้องการลบข้อมูลหรือไม่?',
+                    buttons: Ext.Msg.YESNO,
+                    icon: Ext.Msg.QUESTION,
+                    fn: function (btn) {
+                        if (btn === 'yes') {
+                            store.remove(selected[0]);
+
+                            store.sync({
+                                success: function (batch) {
+                                    store.load();
+                                },
+                                failed: function (batch) {
+                                }
+                            });
+                        }
                     }
-                }
+                });
+            }
+
+        } else {
+            Ext.Msg.show({
+                title: 'Warning',
+                message: 'กรุณาเลือกข้อมูลที่จะทำการลบ',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
             });
         }
     },
 
-    onWindowBeforeClose: function(panel, eOpts) {
+    onWindowBeforeClose: function (panel, eOpts) {
         var view = this.getView(),
             form = view.down('form').getForm(),
             grid = view.down('grid'),
@@ -104,11 +151,11 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
             return true;
         }
 
-        if(selected[0]){
+        if (selected[0]) {
             form.updateRecord(selected[0]);
         }
 
-        if(store.getModifiedRecords().length > 0){
+        if (store.getModifiedRecords().length > 0) {
             Ext.MessageBox.show({
                 title: 'Save Changes?',
                 message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
@@ -118,19 +165,19 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
                 fn: function (btn) {
                     if (btn === 'yes') {
                         store.sync({
-                            success: function(batch){
+                            success: function (batch) {
 
                             },
-                            failed:function(batch){
+                            failed: function (batch) {
 
                             }
                         });
                         view.close();
                         view.closeMe = true;
-                    } else if(btn === 'no'){
+                    } else if (btn === 'no') {
                         view.close();
                         view.closeMe = true;
-                    }else {
+                    } else {
                     }
                 }
             });
@@ -138,6 +185,12 @@ Ext.define('TabUserInformation.view.Approve.ApprovalWindowViewController', {
             return false;
         }
 
+    },
+
+    onWindowClose: function (panel, eOpts) {
+        var store = panel.down('grid').getStore();
+
+        store.load();
     }
 
 });

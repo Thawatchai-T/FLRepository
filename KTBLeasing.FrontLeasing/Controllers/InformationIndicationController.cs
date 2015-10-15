@@ -17,8 +17,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         public List<InformationIndication> Get(int page, int start, int limit)
         {
             //return new InformationIndicationModel().Dummy();
+            var result = InformationIndicationRepository.GetAll();
 
-            return InformationIndicationRepository.GetAll();
+            return result;
         }
 
         public List<Background> GetBackground(long infoId)

@@ -70,15 +70,22 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
     },
 
     onButtonLeadRequestedTransactionsClick: function (button, e, eOpts) {
-        var form = this.getView().down('form').getForm(),
-            me = this;
+        var me = this;
 
         var popup = Ext.create('widget.jobinformationdetailrequesttransaction', {
             listeners: {
                 beforerender: function (panel, eOpts) {
-                },
-                close: function (panel, eOpts) {
-                    me.getView().close();
+                    var form = panel.down('form').getForm(),
+                        store = Ext.create('store.requesttransactions');
+
+                    store.getProxy().extraParams.infoId = me.getView().down('form').getForm().findField('Id').getValue();
+                    store.load(function (records, operation, success) {
+                        if (records.length > 0) {
+                            form.loadRecord(records[0]);
+                            form.findField('InformationId').setValue(me.getView().down('form').getForm().findField('Id').getValue());
+                            form.findField('Delivery').setValue(Ext.Date.format(records[0].get('Delivery'), 'Y-m'));
+                        }
+                    });
                 }
             }
         }).show();
@@ -86,11 +93,21 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
 
     onButtonForManagementClick: function (button, e, eOpts) {
         var form = this.getView().down('form').getForm(),
-            me = this;
+            me = this,
+            record = form.getRecord();
 
         var popup = Ext.create('widget.approveapprovalwindow', {
             listeners: {
                 beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        grid = panel.down('grid'),
+                        store = grid.getStore();
+
+                    store.getProxy().extraParams.infoId = record.get('Id');
+                    store.load(function (records, operation, success) {
+                        form.loadRecord(records[store.getCount() - 1]);
+                        panel.down('#InformationId').setValue(record.get('Id'));
+                    });
                 },
                 close: function (panel, eOpts) {
                 }

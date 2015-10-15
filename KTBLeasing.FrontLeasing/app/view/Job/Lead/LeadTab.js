@@ -28,6 +28,7 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTab', {
         'Ext.toolbar.Paging'
     ],
 
+    id: 'jobleadleadtab',
     controller: 'jobleadleadtab',
     viewModel: {
         type: 'jobleadleadtab'

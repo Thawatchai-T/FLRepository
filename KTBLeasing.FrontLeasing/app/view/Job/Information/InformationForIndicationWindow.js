@@ -34,6 +34,7 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
         'Ext.toolbar.Toolbar'
     ],
 
+    id: 'jobinformationinformationforindicationwindow',
     controller: 'jobinformationinformationforindicationwindow',
     viewModel: {
         type: 'jobinformationinformationforindicationwindow'
@@ -752,7 +753,7 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                         },
                         {
                             ui: 'default-small',
-                            text: 'Requested fot Approve'
+                            text: 'Requested for Approve'
                         }
                     ]
                 },

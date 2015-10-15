@@ -95,9 +95,16 @@
 
   <object type="KTBLeasing.FrontLeasing.Controllers.BackgroundController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
-
   </object>
-
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.ApprovalController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
+  </object>
+  
+  <object type="KTBLeasing.FrontLeasing.Controllers.RequestTransactionController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
+  </object>
+  
   <object type="KTBLeasing.FrontLeasing.Controllers.IndicationEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="IndicationEquipmentRepository" ref="indicationEquipmentRepository"/>
 

@@ -15,12 +15,14 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("JOB_AD_APPROVAL");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.ApplicationDetail).Column("APP_ID");
+            References(x => x.InformationIndication).Column("INFORMATION_ID");
             Map(x => x.ApprovedBy).Column("APPROVED_BY").Length(100);
-            Map(x => x.Position).Column("POSITIONS").Length(100);
-            Map(x => x.Status).Column("STATUS");
-            Map(x => x.Comment).Column("REMARK").Length(255);
+            Map(x => x.Approve).Column("APPROVE");
             Map(x => x.ApprovalDate).Column("APPROVAL_DATE").CustomSqlType("date");
+            Map(x => x.Unquote).Column("UNQUOTE");
+            Map(x => x.UnquoteDate).Column("UNQUOTE_DATE").CustomSqlType("date");
+            Map(x => x.Position).Column("POSITIONS").Length(100);
+            Map(x => x.Comment).Column("REMARK").Length(255);
             Map(x => x.MinIRR).Column("MIN_IRR").Length(20);
             Map(x => x.PDC).Column("PDC");
             Map(x => x.PG).Column("PG");

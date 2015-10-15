@@ -64,16 +64,16 @@
           <DataField>Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Unknown2">
-          <DataField>Unknown2</DataField>
+        <Field Name="Installment_Total">
+          <DataField>Installment_Total</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Unknown3">
-          <DataField>Unknown3</DataField>
+        <Field Name="Waste_Value">
+          <DataField>Waste_Value</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
-        <Field Name="Unknown4">
-          <DataField>Unknown4</DataField>
+        <Field Name="PV">
+          <DataField>PV</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
         </Field>
         <Field Name="UpdateBy">
@@ -1426,14 +1426,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Unknown2">
+                    <Textbox Name="Installment_Total">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Unknown2.Value</Value>
+                              <Value>=Fields!Total.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Format>#,0.00;(#,0.00)</Format>
@@ -1444,7 +1444,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Unknown2</rd:DefaultName>
+                      <rd:DefaultName>Installment_Total</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1479,14 +1479,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Unknown3">
+                    <Textbox Name="Waste_Value">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Unknown3.Value</Value>
+                              <Value>=Fields!Waste_Value.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Color>#4d4d4d</Color>
@@ -1496,7 +1496,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Unknown3</rd:DefaultName>
+                      <rd:DefaultName>Waste_Value</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -1531,14 +1531,14 @@
                 </TablixCell>
                 <TablixCell>
                   <CellContents>
-                    <Textbox Name="Unknown4">
+                    <Textbox Name="PV">
                       <CanGrow>true</CanGrow>
                       <KeepTogether>true</KeepTogether>
                       <Paragraphs>
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Fields!Unknown4.Value</Value>
+                              <Value>=Fields!PV.Value</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Format>#,0.00;(#,0.00)</Format>
@@ -1549,7 +1549,7 @@
                           <Style />
                         </Paragraph>
                       </Paragraphs>
-                      <rd:DefaultName>Unknown4</rd:DefaultName>
+                      <rd:DefaultName>PV</rd:DefaultName>
                       <Style>
                         <Border>
                           <Style>Solid</Style>
@@ -2024,7 +2024,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!Unknown2.Value)</Value>
+                              <Value>=Sum(Fields!Total.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Format>#,0.00;(#,0.00)</Format>
@@ -2129,7 +2129,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>=Sum(Fields!Unknown4.Value)</Value>
+                              <Value>=Sum(Fields!PV.Value)</Value>
                               <Style>
                                 <FontFamily>Tahoma</FontFamily>
                                 <Format>#,0.00;(#,0.00)</Format>

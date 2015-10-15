@@ -26,9 +26,13 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueue', {
         'Ext.view.Table',
         'Ext.grid.column.Date',
         'Ext.button.Button',
-        'Ext.toolbar.Paging'
+        'Ext.toolbar.Paging',
+        'Ext.ux.grid.SubTable',
+        'TabUserInformation.model.InformationForIndication',
+        'TabUserInformation.model.Approval'
     ],
 
+    id: 'approveapprovequeue',
     controller: 'approveapprovequeue',
     viewModel: {
         type: 'approveapprovequeue'
@@ -133,7 +137,17 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueue', {
             ],
             listeners: {
                 itemdblclick: 'onViewItemDblClick'
-            }
+            },
+//            plugins: {
+//                ptype: 'subtable',
+//                association: 'Approval',
+//                headerWidth: 32,
+//                columns: [{
+//                    text: 'ApprovedBy',
+//                    dataIndex: 'ApprovedBy',
+//                    width: 100
+//                }]
+//            }
         }
     ]
 

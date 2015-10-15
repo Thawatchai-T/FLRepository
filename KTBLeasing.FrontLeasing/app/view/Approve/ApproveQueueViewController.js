@@ -33,12 +33,17 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueueViewController', {
         Ext.create('widget.approveapprovalwindow', {
             listeners: {
                 beforerender: function (panel, e0pts) {
-                    var form = panel.down('form').getForm();
+                    var form = panel.down('form').getForm(),
+                        grid = panel.down('grid'),
+                        store = grid.getStore();
 
-                    form.loadRecord(record);
+                    store.getProxy().extraParams.infoId = record.get('Id');
+                    store.load(function (records, operation, success) {
+                        form.loadRecord(records[store.getCount() - 1]);
+                        panel.down('#InformationId').setValue(record.get('Id'));
+                    });
                 }
             }
         }).show();
     }
-
 });

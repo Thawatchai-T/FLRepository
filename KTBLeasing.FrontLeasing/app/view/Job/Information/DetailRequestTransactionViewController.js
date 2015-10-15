@@ -17,6 +17,35 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobinformationdetailrequesttransaction',
 
+    onButtonSaveClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            record = form.getRecord();
+
+        form.updateRecord(record);
+
+        if (form.isValid()) {
+            if (record.store.getModifiedRecords().length > 0) {
+                record.store.sync({
+                    success: function (response) {
+                        Ext.MessageBox.alert("Result", "Successful.");
+                    },
+                    failure: function (response) {
+                        Ext.Msg.show({
+                            title: 'Error',
+                            message: response.responseText,
+                            buttons: Ext.Msg.OK,
+                            icon: Ext.Msg.ERROR
+                        });
+                    }
+                });
+            } else {
+                Ext.MessageBox.alert('Warning', 'ไม่พบการเปลี่ยนแปลงข้อมูล');
+            }
+        } else {
+            Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
+        }
+    },
+
     onButtonNewIndicationClick: function (button, e, eOpts) {
         var panel = Ext.getCmp('jobjobwindow'),
             grid = panel.down('jobindicationindicationforequipmenttab').down('grid'),
@@ -38,6 +67,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
                     grid.view.refresh();
 
                     me.getView().close();
+                    Ext.getCmp('jobinformationinformationforindicationwindow').close();
                 } else if (btn === 'no') {
                 } else {
                 }
