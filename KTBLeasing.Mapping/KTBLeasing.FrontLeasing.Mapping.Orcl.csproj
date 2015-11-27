@@ -130,7 +130,6 @@
     <Compile Include="OptionEndLeaseTermMap.cs" />
     <Compile Include="PurchaseOrderMap.cs" />
     <Compile Include="Reposotory\ApplicationDetailRepository.cs" />
-    <Compile Include="Reposotory\CommonRepository.cs" />
     <Compile Include="Reposotory\ContactRepository.cs" />
     <Compile Include="Reposotory\EquipmentDetailRepository.cs" />
     <Compile Include="Reposotory\CustomerRepository.cs" />
@@ -149,7 +148,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Reposotory\AddressRepository.cs" />
     <Compile Include="Reposotory\CommonDataRepository.cs" />
-    <Compile Include="Reposotory\ComboboxRepository.cs" />
     <Compile Include="Reposotory\UserInfomationRepository.cs" />
     <Compile Include="Reposotory\RoleRepository.cs">
       <SubType>Code</SubType>

@@ -237,68 +237,72 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewControlle
     },
 
     onButtonNewLineClick: function (button, e, eOpts) {
-        var view = this.getView();
-        var value = this.getView().down('#TypeEquipment').getRawValue();
-        var store = this.getView().down('grid').getStore(),
+        var view = this.getView(),
+            value = view.down('#TypeEquipment').getRawValue(),
+            store = view.down('grid').getStore(),
             record = Ext.create('model.equipmentlist', {
                 ApplicationDetail: {
                     Id: Ext.decode(sessionStorage.getItem('AppDetail')).Id
                 }
             });
 
-        record.data.Id = 0;
-        store.add(record);
-        var popup = Ext.create('widget.jobapplicationwindowequipmentdetail', {
-            listeners: {
-                beforerender: function (panel, eOpts) {
-                    panel.getController().HideAndShow(value);
-                    panel.down('form').getForm().loadRecord(record);
-                },
-                beforeclose: function (panel, eOpts) {
-                    var form = panel.down('form').getForm(),
-                                store = panel.down('grid').getStore(),
-                                record = panel.down('grid').getSelection()[0];
+        if (view.down('#TypeEquipment').getPicker().getSelection().length > 0) {
+            record.data.Id = 0;
+            store.add(record);
 
-                    if (record) {
-                        form.updateRecord(record);
-                    }
+            var popup = Ext.create('widget.jobapplicationwindowequipmentdetail', {
+                listeners: {
+                    beforerender: function (panel, eOpts) {
+                        panel.getController().HideAndShow(value);
+                        panel.down('form').getForm().loadRecord(record);
+                    },
+                    beforeclose: function (panel, eOpts) {
+                        var form = panel.down('form').getForm(),
+                            store = panel.down('grid').getStore(),
+                            record = panel.down('grid').getSelection()[0];
 
-                    if (panel.closeMe) {
-                        panel.closeMe = false;
-                        return true;
-                    }
+                        if (record) {
+                            form.updateRecord(record);
+                        }
 
-                    if (store.getModifiedRecords()) {
-                        Ext.Msg.show({
-                            title: 'Save Changes?',
-                            message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
-                            buttons: Ext.Msg.YESNOCANCEL,
-                            icon: Ext.Msg.QUESTION,
-                            width: 300,
-                            fn: function (btn) {
-                                if (btn === 'yes') {
-                                    store.sync();
-                                    panel.closeMe = true;
-                                    panel.close();
-                                } else if (btn === 'no') {
-                                    panel.closeMe = true;
-                                    panel.close();
-                                } else {
+                        if (panel.closeMe) {
+                            panel.closeMe = false;
+                            return true;
+                        }
+
+                        if (store.getModifiedRecords()) {
+                            Ext.Msg.show({
+                                title: 'Save Changes?',
+                                message: 'คุณต้องการบันทึกข้อมูลหรือไม่?',
+                                buttons: Ext.Msg.YESNOCANCEL,
+                                icon: Ext.Msg.QUESTION,
+                                width: 300,
+                                fn: function (btn) {
+                                    if (btn === 'yes') {
+                                        store.sync();
+                                        panel.closeMe = true;
+                                        panel.close();
+                                    } else if (btn === 'no') {
+                                        panel.closeMe = true;
+                                        panel.close();
+                                    } else {
+                                    }
                                 }
-                            }
-                        });
+                            });
+                        }
+
+                        return false;
+                    },
+                    close: function (panel, eOpts) {
+                        store.load();
                     }
-
-                    return false;
-                },
-                close: function (panel, eOpts) {
-                    view.down('grid').getStore().load();
                 }
-            }
-        });
-        popup.center();
-        popup.show();
-
+            });
+            popup.center();
+            popup.show();
+        } else {
+            Ext.MessageBox.alert('Warning', 'กรุณาเลือก Type of Equipment');
+        }
     },
 
     onButtonDeleteLineClick: function (button, e, eOpts) {

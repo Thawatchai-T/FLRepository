@@ -25,17 +25,18 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationTabV
                 beforerender: function (panel, eOpts) {
                     var form = panel.down('form').getForm(),
                         formFooter = panel.lookupReference('form-footer').getForm(),
-                        storeBackground = panel.getViewModel().storeInfo.backgrounds;
+                        storeBackground = Ext.getStore('backgrounds'),
+                        recordJob = Ext.getCmp('jobjobwindow').down('form').getForm().getRecord();
 
-                    storeBackground.getProxy().extraParams.infoId = record.get('Id');
+                    storeBackground.getProxy().extraParams.custId = recordJob.get('CustId');
                     storeBackground.load({
                         callback: function (records, operation, success) {
                             panel.lookupReference('form-background').getForm().loadRecord(records[0]);
+                            form.loadRecord(record);
+                            formFooter.loadRecord(record);
                         }
                     });
 
-                    form.loadRecord(record);
-                    formFooter.loadRecord(record);
                 },
                 close: function (panel, eOpts) {
                     grid.view.refresh();
@@ -47,8 +48,28 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationTabV
     },
 
     onButtonNewClick: function (button, e, eOpts) {
-        var popup = Ext.create('widget.jobinformationinformationforindicationwindow');
-        popup.show();
+        var popup = Ext.create('widget.jobinformationinformationforindicationwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        formBackground = panel.lookupReference('form-background').getForm(),
+                        storeBackground = Ext.getStore('backgrounds'),
+                        record = Ext.create('model.informationforindication', {
+                            JobId: Ext.getCmp('jobjobwindow').down('form').getForm().findField('Id').getValue()
+                        }),
+                        recordJob = Ext.getCmp('jobjobwindow').down('form').getForm().getRecord();
+
+                    storeBackground.getProxy().extraParams.custId = recordJob.get('CustId');
+                    storeBackground.load({
+                        callback: function (records, operation, success) {
+                            formBackground.loadRecord(records[0]);
+                            form.loadRecord(record);
+                        }
+                    });
+
+                }
+            }
+        }).show();
     }
 
 });

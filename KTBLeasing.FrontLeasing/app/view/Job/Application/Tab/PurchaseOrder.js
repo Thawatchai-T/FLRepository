@@ -41,10 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
         },
         {
             xtype: 'gridpanel',
-            //store: 'purchaseOrders',
-            bind: {
-                store: '{purchaseOrders}'
-            },
+            store: 'purchaseOrders',
+//            bind: {
+//                store: '{purchaseOrders}'
+//            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -124,10 +124,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.PurchaseOrder', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            //store: 'purchaseOrders'
-            bind: {
-                store: '{purchaseOrders}'
-            }
+            store: 'purchaseOrders'
+//            bind: {
+//                store: '{purchaseOrders}'
+//            }
         }
     ]
 

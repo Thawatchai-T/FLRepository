@@ -25,16 +25,16 @@ Ext.define('TabUserInformation.model.UserInRole', {
         'TabUserInformation.model.Role'
     ],
 
+    idProperty: 'Id', 
+
     fields: [
         {
-            //type: 'string',
+            type: 'int',
             name: 'Id'
         },
         {
-            //type: 'string',
             name: 'RoleName',
             mapping: 'Role.RoleName'
-            //reference: 'TabUserInformation.model.Role',
         },
         {
             name: 'UserId',
@@ -42,20 +42,4 @@ Ext.define('TabUserInformation.model.UserInRole', {
         }
 
     ]
-//    ,
-//    belongsTo: [
-//    {
-//        associationKey: 'ID',
-//        foreignKey: 'ROLE_NAME',
-//        name: 'Role',
-//        model: 'TabUserInformation.model.Role'
-//    },
-//    {
-//        associationKey: 'UserId',
-//        foreignKey: 'UserId',
-//        name: 'Authorize',
-//        model: 'TabUserInformation.model.Authorize'
-//    }]
-    //case have id
-    , idProperty: 'Id'
 });

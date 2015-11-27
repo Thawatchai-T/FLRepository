@@ -13,18 +13,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
     public class InformationIndicationController : ApiController
     {
         private IInformationIndicationRepository InformationIndicationRepository { get; set; }
+
         // GET api/contact
         public List<InformationIndication> Get(int page, int start, int limit)
         {
-            //return new InformationIndicationModel().Dummy();
-            var result = InformationIndicationRepository.GetAll();
-
+            var result = InformationIndicationRepository.GetListApprove(start, limit);
             return result;
         }
-
-        public List<Background> GetBackground(long infoId)
+        
+        public List<InformationIndication> Get(int page, int start, int limit, long jobId)
         {
-            return InformationIndicationRepository.GetBackground(infoId);
+            var result = InformationIndicationRepository.Get(start, limit, jobId);
+            return result;
         }
 
         // GET api/contact/5

@@ -32,12 +32,6 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
             name: 'Id'
         },
         {
-            name: 'Code'
-        },
-        {
-            name: 'Name'
-        },
-        {
             type: 'int',
             defaultValue: 2014,
             name: 'Year'
@@ -50,7 +44,8 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
         },
         {
             type: 'date',
-            name: 'ApplicationDate'
+            name: 'ApplicationDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'PrimaryJob'
@@ -116,22 +111,26 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
         },
         {
             type: 'date',
-            name: 'ApproveDate'
+            name: 'ApproveDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'DeliveryDate'
         },
         {
             type: 'date',
-            name: 'AgreementDate'
+            name: 'AgreementDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'ExecuteDate'
+            name: 'ExecuteDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'ScheduleDate'
+            name: 'ScheduleDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'VAT'
@@ -146,8 +145,16 @@ Ext.define('TabUserInformation.model.ApplicationDetail', {
         },
         {
             name: 'IndicationId',
+            mapping: 'IndicationEquipment.Id'
+        },
+        {
+            name: 'IndicationLine',
             mapping: 'IndicationEquipment.IndicationId'
         },
+        {
+            name: 'JobId',
+            mapping: 'Job.Id'
+        }
 //        {
 //            name: 'Rating',
 //            mapping: 'IndicationEquipment.InformationIndication.Background.Rating'

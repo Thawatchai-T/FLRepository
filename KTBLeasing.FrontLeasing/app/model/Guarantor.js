@@ -35,6 +35,7 @@ Ext.define('TabUserInformation.model.Guarantor', {
             name: 'AppId'
         },
         {
+            type: 'int',
             name: 'ConditionLease'
         },
         {
@@ -42,21 +43,24 @@ Ext.define('TabUserInformation.model.Guarantor', {
         },
         {
             type: 'date',
-            name: 'BGReceivedDate'
+            name: 'BGReceivedDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'ConfirmPrintedDate'
+            name: 'ConfirmPrintedDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'ReturnDate'
+            name: 'ReturnDate',
+            dateWriteFormat: 'MS'
         },
         {
+            type: 'int',
             name: 'Bank'
         },
         {
-            mapping: 'Guarantor.Branch',
             name: 'Branch'
         },
         {
@@ -65,15 +69,18 @@ Ext.define('TabUserInformation.model.Guarantor', {
         },
         {
             type: 'date',
-            name: 'BGDate'
+            name: 'BGDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'PeriodFrom'
+            name: 'PeriodFrom',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'PeriodTo'
+            name: 'PeriodTo',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'BuyerName'
@@ -84,24 +91,23 @@ Ext.define('TabUserInformation.model.Guarantor', {
         },
         {
             type: 'date',
-            name: 'EquipmentSalesPrintedDate'
+            name: 'EquipmentSalesPrintedDate',
+            dateWriteFormat: 'MS'
         },
         {
             name: 'Signer1EquipmentSales'
         },
         {
-            type: 'float',
             name: 'Signer2EquipmentSales'
         },
         {
-            type: 'float',
             name: 'WithnessEquipmentSales'
         },
         {
-            type: 'float',
             name: 'AddressEquipmentSales'
         },
         {
+            type: 'int',
             name: 'Collateral'
         },
         {

@@ -28,25 +28,24 @@ Ext.define('TabUserInformation.store.stipulateLosses', {
         me.callParent([Ext.apply({
             storeId: 'stipulateLosses',
             model: 'TabUserInformation.model.StipulateLoss',
-            data: [
-                {
-                    Id: 1,
-                    AppId: 1,
-                    CLPerUnit: 167,
-                    CLTotal: 736,
-                    MDAmountFrom: 765,
-                    MDAmountTo: 871.97,
-                    MDPerUnit: 595.14,
-                    MDTotal: 996.28,
-                    MDAmountFrom2: 412.85,
-                    MDAmountTo2: 153.23,
-                    MDPerUnit2: 737,
-                    MDTotal2: 513
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

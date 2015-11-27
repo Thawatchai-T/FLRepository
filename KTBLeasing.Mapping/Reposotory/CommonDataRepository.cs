@@ -24,7 +24,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
         bool Update(CommonData commonAddress);
         List<CommonData> GetCommonByNameEng(string nameeng);
-
+        List<Province> GetProvince();
         List<CommonCustomerDomain> GetCustomerInfoPopup(int start, int limit);
         int CountCommonCustomerPopup();
     }
@@ -227,14 +227,27 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 try
                 {
-                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng.Equals(nameeng)).List<CommonData>();
-                    return result as List<CommonData>;
+                    var result = session.QueryOver<CommonData>().Where(x => x.Name_Eng == nameeng && x.Parent_Id != 0)
+                        .List<CommonData>() as List<CommonData>;
+
+                    return result;
                 }
                 catch (Exception e)
                 {
                     Logger.Error(e);
                     return null;
                 }
+            }
+        }
+
+        public List<Province> GetProvince()
+        {
+            using (var session = SessionFactory.OpenSession())
+            using (var ts = session.BeginTransaction())
+            {
+                var result = session.QueryOver<Province>().List();
+
+                return result as List<Province>;
             }
         }
 

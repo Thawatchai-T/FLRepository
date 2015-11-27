@@ -28,14 +28,24 @@ Ext.define('TabUserInformation.store.guarantorLists', {
         me.callParent([Ext.apply({
             storeId: 'guarantorLists',
             model: 'TabUserInformation.model.GuarantorList',
-            autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/GuarantorList',
+                url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

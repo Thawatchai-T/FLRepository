@@ -94,13 +94,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
                             inputValue: 'thai'
                         }
                     ]
-                    }
-//                ,
-//                {
-//                    xtype: 'checkboxfield',
-//                    flex: 0,
-//                    boxLabel: 'Partial'
-//                }
+                }
             ]
         },
         {
@@ -130,18 +124,6 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
                     dataIndex: 'CustomerId',
                     text: 'รหัสลูกค้า'
                 },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'CustomerEngType',
-//                    text: 'CustomerEngType',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'CustomerThaiType',
-//                    text: 'CustomerThaiType',
-//                    hidden: true
-//                },
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'CustomerThaiName',
@@ -151,85 +133,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTab', {
                     xtype: 'gridcolumn',
                     dataIndex: 'CustomerEngName',
                     text: 'ที่อยู่ (ภาษาอังกฤษ)'
-                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'TypeCustomer',
-//                    text: 'TypeCustomer',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'ParentCompany',
-//                    text: 'ParentCompany',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'Telephone',
-//                    text: 'Telephone',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'Email',
-//                    text: 'Email',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'TaxNo',
-//                    text: 'TaxNo',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'Fax',
-//                    text: 'Fax',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'KTBIsicCode',
-//                    text: 'KTBIsicCode',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'KTBCustType',
-//                    text: 'KTBCustType',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'VAT',
-//                    text: 'VAT',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'IndustryCode',
-//                    text: 'IndustryCode',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'NatureCust',
-//                    text: 'NatureCust',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'GroupCust',
-//                    text: 'GroupCust',
-//                    hidden: true
-//                },
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'TypeCust',
-//                    text: 'TypeCust',
-//                    hidden: true
-//                }
+                }
             ]
         },
         {

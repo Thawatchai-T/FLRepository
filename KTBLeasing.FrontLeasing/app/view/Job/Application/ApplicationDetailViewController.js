@@ -17,55 +17,26 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobapplicationapplicationdetail',
 
-    onTabpanelBeforeRender: function (component, eOpts) {
-        component.setHeight(Ext.getBody().getViewSize().height * 0.92);
-    },
-
-    onButtonSaveClick: function (button, e, eOpts) {
-        var store = Ext.create('store.applicationdetails'),
-        //form = this.getView().down('form').getForm(),
-            storeAppDetail = Ext.create('store.appdetails'),
-            form = Ext.getCmp('jobappapplication').getForm(),
-            object = {},
+    fnSave: function () {
+        var form = Ext.getCmp('jobappapplication').getForm(),
+            record = form.getRecord(),
+            store = record.store,
             me = this;
 
-        storeAppDetail.each(function (record, index) {
-            var formChild = Ext.getCmp(record.get('Id')).getForm();
-
-            for (var name in formChild.getValues()) {
-                if (!formChild.findField(record.get('Name') + 'AppId')) {
-                    object[record.get('Name') + '[0].AppId'] = form.findField('Id').getValue();
-                    object[record.get('Name') + '[0].ApplicationDetail.Id'] = form.findField('Id').getValue();
-                }
-
-                object[record.get('Name') + '[0].' + name] = formChild.findField(name).getValue();
-            }
-        });
-
-        var data = Ext.decode(sessionStorage.getItem('AppDetail'));
-
-        //        form.submit({
-        //            url: 'api/applicationdetail/dopost',
-        ////            params: {
-        ////                //WaiveDocument: Ext.decode(sessionStorage.getItem('AppDetail')).WaiveDocument//Ext.decode(sessionStorage.getItem('AppDetail')).WaiveDocument
-        ////                data: data
-        ////            },
-        //            success: function (form, action) {
-        //                Ext.Msg.alert('Success', 'สำเร็จแล้ว');
-        //            },
-        //            failure: function (form, action) {
-        //                Ext.Msg.alert('Failure', 'ไม่สำเร็จ');
-        //            }
-        //        });
+        form.updateRecord(record);
 
         Ext.Ajax.request({
             method: 'post',
-            cache: false,
-            url: 'api/applicationdetail/dopost',
-            params: object,
-            contentType: "application/json; charset=utf-8",
-            dataType: 'json',
-            success: function (form, action) {
+            url: 'api/ApplicationDetail/Post',
+            params: {
+                jobId: Ext.getCmp('jobjobwindow').down('form').getForm().findField('Id').getValue(),
+                indicationId: form.findField('IndicationId').getValue()
+            },
+            jsonData: record.data,
+            success: function (response) {
+                var Id = response.responseText;
+                me.getView().down('form').getForm().findField('Id').setValue(Id);
+
                 me.saveStore('jobapplicationtabapplication', 'EquipmentList');
                 me.saveStore('jobapplicationtabseller', 'Seller');
                 me.saveStore('jobapplicationtabguarantor', 'GuarantorList');
@@ -74,14 +45,35 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
                 me.saveStore('jobapplicationtabmaintenances', 'MaintenanceList');
                 me.saveStore('jobapplicationtabcollectionschedule', 'CollectionSchedule');
                 me.saveStore('jobapplicationtabpurchaseorder', 'PurchaseOrder');
-                me.saveStore('jobapplicationtabregistrationform', 'RegistrationForm');
 
-                Ext.Msg.alert('Success', 'บันทึกข้อมูลเรียบร้อย');
-                //                Ext.getCmp('pagingtoolbar-custinfo').moveFirst();
-                //                button.up('window').close();
+                me.saveForm('jobappwaivedocument', 'WaiveDocument', Id);
+                me.saveForm('jobappguarantor', 'Guarantor', Id);
+                me.saveForm('jobappfunding', 'Funding', Id);
+                me.saveForm('jobappstipulateloss', 'StipulateLoss', Id);
+                me.saveForm('jobappoptionatend', 'OptionEndLeaseTerm', Id);
+                me.saveForm('jobappcommission', 'Commission', Id);
+                me.saveForm('jobappmaintenance', 'Maintenance', Id);
+                me.saveForm('jobappinsurance', 'Insurance', Id);
+                me.saveForm('jobappstampduty', 'StampDuty', Id);
+                me.saveForm('jobappmethodpayment', 'MethodPayment', Id);
+                me.saveForm('jobapptermcondition', 'TermCondition', Id);
             },
-            failure: function (form, action) {
-                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
+            failure: function (response) {
+                Ext.MessageBox.alert("Error", response.responseText);
+            }
+        });
+    },
+
+    onTabpanelBeforeRender: function (component, eOpts) {
+        component.setHeight(Ext.getBody().getViewSize().height * 0.92);
+    },
+
+    onButtonSaveClick: function (button, e, eOpts) {
+        var me = this;
+
+        Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
+            if (msg === 'yes') {
+                me.fnSave();
             }
         });
     },
@@ -97,36 +89,79 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetailViewControl
                     store.load();
                 },
                 failure: function (batch) {
-                    Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
+                    Ext.Msg.alert('Failed', 'Form ' + name + ' Error');
                 }
             });
-            //grid.view.refresh();
-            //grid.doLayout();
         }
+    },
+
+    saveForm: function (panel, name, id) {
+        var form = Ext.getCmp(panel).getForm(),
+            record = form.getRecord(),
+            store = record.store;
+            
+            record.set({
+                ApplicationDetail: {
+                    Id: id
+                }
+            });
+
+            form.updateRecord(record);
+
+        if (store.getModifiedRecords().length > 0) {
+            store.getProxy().extraParams.name = name;
+            store.sync({
+                success: function (response) {
+                    if(name === 'TermCondition'){
+                        Ext.Msg.alert('Success', 'บันทึกข้อมูลเรียบร้อย');
+                    }
+                },
+                failure: function (response) {
+                    Ext.Msg.alert('Failed', 'Form ' + name + ' Error');
+                }
+            });
+        }
+    },
+
+    onBeforeClose: function (panel, eOpts) {
+        var me = this;
+
+        if (panel.closeMe) {
+            panel.closeMe = false;
+            return true;
+        }
+
+        Ext.Msg.show({
+            title: 'Save',
+            message: 'Save Changes?',
+            buttons: Ext.Msg.YESNOCANCEL,
+            icon: Ext.Msg.QUESTION,
+            width: 300,
+            fn: function (btn) {
+                if (btn === 'yes') {
+                    Ext.MessageBox.show({
+                        title: 'Please wait',
+                        msg: 'Saving items...',
+                        progressText: 'Saving...',
+                        width: 300,
+                        progress: true,
+                        closable: false,
+                    });
+
+                    me.fnSave();
+
+                } else if (btn === 'no') {
+                    panel.closeMe = true;
+                    panel.close();
+                }
+            }
+        });
+
+        return false;
+    },
+
+    onClose: function (panel, eOpts) {
+
     }
-
-//    saveFormToStore: function (panel, name) {
-//        var grid = this.getView().down(panel).down('grid'),
-//            store = grid.getStore(),
-//            data = [];
-
-//        store.getProxy().extraParams.name = name;
-
-//        data[0] = this.getView().down(panel).getForm().getValues();
-//        store.setData(data);
-
-//        store.sync({
-//            success: function (batch) {
-//            },
-//            failure: function (batch) {
-//                console.log(batch);
-//                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
-//            }
-//        });
-//        store.load();
-//        grid.view.refresh();
-//    }
-
-
 });
 

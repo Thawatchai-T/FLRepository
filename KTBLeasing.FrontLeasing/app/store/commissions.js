@@ -33,9 +33,20 @@ Ext.define('TabUserInformation.store.commissions', {
                 type: 'rest',
                 url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class BackgroundController : ApiController
     {
-        private IInformationIndicationRepository InformationIndicationRepository { get; set; }
+        private ICustomerRepository CustomerRepository { get; set; }
         // GET api/contact
         public IEnumerable<Background> Get()
         {
@@ -20,9 +20,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return null;
         }
 
-        public List<Background> Get(long infoId)
+        public List<Background> Get(long custId)
         {
-            return InformationIndicationRepository.GetBackground(infoId);
+            return CustomerRepository.GetBackground(custId);
         }
 
         // GET api/contact/5
@@ -34,13 +34,13 @@ namespace KTBLeasing.FrontLeasing.Controllers
         // POST api/contact
         public void Post(Background entity)
         {
-            InformationIndicationRepository.Insert<Background>(entity);
+            CustomerRepository.Insert<Background>(entity);
         }
 
         // PUT api/contact/5
         public void Put(int id, Background entity)
         {
-            InformationIndicationRepository.Update<Background>(entity);
+            CustomerRepository.Update<Background>(entity);
         }
 
         // DELETE api/contact/5

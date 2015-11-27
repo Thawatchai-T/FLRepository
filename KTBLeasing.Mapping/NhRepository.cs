@@ -108,15 +108,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             }
         }
 
-        public void Insert<T>(T entity)
+        public object Insert<T>(T entity)
         {
             using (var Session = SessionFactory.OpenStatelessSession())
             using (var tran = Session.BeginTransaction())
             {
                 try
                 {
-                    Session.Insert(entity);
+                    var result = Session.Insert(entity);
                     tran.Commit();
+                    return result;
                 }
                 catch (Exception ex)
                 {

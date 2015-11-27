@@ -231,6 +231,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                 {
                     xtype: 'toolbar',
                     ui: 'footer',
+                    itemId: 'custinf-toolbar',
                     items: [
                         {
                             xtype: 'button',

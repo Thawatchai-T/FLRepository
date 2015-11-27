@@ -21,6 +21,8 @@ Ext.define('TabUserInformation.model.Lead', {
         'Ext.data.field.Date'
     ],
 
+    idProperty: 'Id',
+
     fields: [
         {
             type: 'int',
@@ -32,7 +34,7 @@ Ext.define('TabUserInformation.model.Lead', {
             name: 'Year'
         },
         {
-            name: 'VSCode'
+            name: 'VsCode'
         },
         {
             name: 'Status'
@@ -42,7 +44,7 @@ Ext.define('TabUserInformation.model.Lead', {
             name: 'RequestDate'
         },
         {
-            name: 'MarketingCode'
+            name: 'MarketingOfficer'
         },
         {
             name: 'Method'

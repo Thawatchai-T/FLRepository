@@ -15,8 +15,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
     public class CommonController : ApiController
     {
+        ICommonDataRepository CommonDataRepository { get; set; }
+
         #region properties 
-        private IComboboxRepository CommonRepository { get; set; }
         private static List<Province> Province { get; set; }
         #endregion
 
@@ -83,34 +84,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return result;
         }
 
-        public IEnumerable<TitleTh> GetTitleNameTh()
-        {
-            return this.CommonRepository.GetTitleNameTh();
-        }
-
-        public IEnumerable<TitleEng> GetTitleNameEn()
-        {
-            return this.CommonRepository.GetTitleNameEn();
-        }
-
-        public IEnumerable<DepartmentCode> GetDepartment()
-        {
-            return this.CommonRepository.GetDeparment();
-        }
-
-        public IEnumerable<Position> GetPosition()
-        {
-            return this.CommonRepository.GetPosition();
-        }
-
-        public IEnumerable<MarketingGroup> GetMarketingGroup()
-        {
-            return this.CommonRepository.GetMarketingGroup();
-        }
-
         public IEnumerable<CommonData> GetCommonByNameEng(string NameEng)
         {
-            return this.CommonRepository.GetCommonByNameEng(NameEng).OrderBy(x=>x.Name);
+            return this.CommonDataRepository.GetCommonByNameEng(NameEng).OrderBy(x => x.Name);
         }
 
         #endregion
@@ -131,7 +107,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             if (Province.Count > 0) return Province;
             else
             {
-                Province = this.CommonRepository.GetProvince();
+                Province = this.CommonDataRepository.GetProvince();
                 return Province;
             }
         }

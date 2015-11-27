@@ -54,7 +54,7 @@ Ext.define('TabUserInformation.store.appDetails', {
                     Name: 'OptionEndLeaseTerm'
                 },
                 {
-                    Id: 'jopappcommission',
+                    Id: 'jobappcommission',
                     Name: 'Commission'
                 },
                 {

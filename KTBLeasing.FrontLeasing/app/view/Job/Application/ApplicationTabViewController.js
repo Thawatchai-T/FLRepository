@@ -27,30 +27,44 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
         var popup = Ext.create('widget.jobapplicationapplicationdetail', {
             listeners: {
                 beforerender: function (panel, eOpts) {
-                    //-- Load Form Parent --//
-                    var recordIndication = Ext.create('model.IndicationEquipment', record.data.IndicationEquipment);
-                    var recordInformation = Ext.create('model.informationforindication', record.data.Information);
+                    var recordJob = Ext.getCmp('jobjobwindow').down('form').getForm().getRecord();
 
-//                    Ext.getCmp('jobappapplication').loadRecord(recordInformation);
-//                    Ext.getCmp('jobappapplication').loadRecord(recordIndication);
-                    Ext.getCmp('jobappapplication').loadRecord(record);
+                    //-- Load Form Parent --//
+                    var storeBackground = Ext.getStore('backgrounds');
+                    storeBackground.getProxy().extraParams.custId = recordJob.get('CustId');
+                    storeBackground.load(function (records, operation, success) {
+                        Ext.getCmp('jobappapplication').getForm().loadRecord(records[0]);
+                        Ext.getCmp('jobappapplication').getForm().loadRecord(record);
+                    });
+
 
                     //-- Load Form Child --//
-                    me.onLoadForm(Ext.getCmp('jopappcommission'), 'Commission', Id);
-                    me.onLoadForm(Ext.getCmp('jobappguarantor'), 'Guarantor', Id);
-                    me.onLoadForm(Ext.getCmp('jobappfunding'), 'Funding', Id);
-                    me.onLoadForm(Ext.getCmp('jobappstipulateloss'), 'StipulateLoss', Id);
-                    me.onLoadForm(Ext.getCmp('jobappoptionatend'), 'OptionEndLeaseTerm', Id);
-                    me.onLoadForm(Ext.getCmp('jobappmaintenance'), 'Maintenance', Id);
-                    me.onLoadForm(Ext.getCmp('jobappinsurance'), 'Insurance', Id);
-                    me.onLoadForm(Ext.getCmp('jobappwaivedocument'), 'WaiveDocument', Id);
-                    me.onLoadForm(Ext.getCmp('jobappstampduty'), 'StampDuty', Id);
-                    me.onLoadForm(Ext.getCmp('jobappmethodpayment'), 'MethodPayment', Id);
-                    me.onLoadForm(Ext.getCmp('jobapptermcondition'), 'TermCondition', Id);
-                    me.onLoadForm(Ext.getCmp('jobappregistrationform'), 'RegistrationForm', Id);
+                    me.onLoadForm(Ext.getCmp('jobappcommission'), 'commissions', 'Commission', Id);
+                    me.onLoadForm(Ext.getCmp('jobappguarantor'), 'guarantors', 'Guarantor', Id);
+                    me.onLoadForm(Ext.getCmp('jobappfunding'), 'fundings', 'Funding', Id);
+                    me.onLoadForm(Ext.getCmp('jobappstipulateloss'), 'stipulateLosses', 'StipulateLoss', Id);
+                    me.onLoadForm(Ext.getCmp('jobappoptionatend'), 'optionEndLeaseTerms', 'OptionEndLeaseTerm', Id);
+                    me.onLoadForm(Ext.getCmp('jobappmaintenance'), 'maintenances', 'Maintenance', Id);
+                    me.onLoadForm(Ext.getCmp('jobappinsurance'), 'insurances', 'Insurance', Id);
+                    me.onLoadForm(Ext.getCmp('jobappwaivedocument'), 'waiveDocuments', 'WaiveDocument', Id);
+                    me.onLoadForm(Ext.getCmp('jobappstampduty'), 'stampDuties', 'StampDuty', Id);
+                    me.onLoadForm(Ext.getCmp('jobappmethodpayment'), 'methodPayments', 'MethodPayment', Id);
+                    me.onLoadForm(Ext.getCmp('jobapptermcondition'), 'termConditions', 'TermCondition', Id);
+                    //me.onLoadForm(Ext.getCmp('jobappregistrationform'), 'registrationForms', 'RegistrationForm', Id);
                     //me.onLoadForm(Ext.getCmp('jobappcollectionschedule'), 'CollectionSchedule', Id);
 
-                    me.onLoadStore(Ext.getCmp('jobappseller').down('grid').getStore(), 'Seller', Id);
+                    me.onLoadStore(Ext.getStore('equipmentLists'), 'EquipmentList', Id);
+                    me.onLoadStore(Ext.getStore('sellers'), 'Seller', Id);
+                    me.onLoadStore(Ext.getStore('annualTaxes'), 'AnnualTax', Id);
+                    me.onLoadStore(Ext.getStore('insuranceEquipments'), 'InsuranceEquipment', Id);
+                    me.onLoadStore(Ext.getStore('insuranceEquipments2'), 'InsuranceEquipment', Id);
+                    me.onLoadStore(Ext.getStore('insuranceEquipments3'), 'InsuranceEquipment', Id);
+                    me.onLoadStore(Ext.getStore('guarantorLists'), 'GuarantorList', Id);
+                    me.onLoadStore(Ext.getStore('collectionSchedules'), 'CollectionSchedule', Id);
+                    me.onLoadStore(Ext.getStore('maintenanceLists'), 'MaintenanceList', Id);
+                    //me.onLoadStore(Ext.getStore(''), 'EquipmentDetail', Id);
+                    me.onLoadStore(Ext.getStore('purchaseOrders'), 'PurchaseOrder', Id);
+                    //me.onLoadStore(Ext.getStore(''), 'Approval', Id);
                 },
                 close: function (panel, eOpts) {
                     store.reload();
@@ -66,35 +80,29 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
         popup.show();
     },
 
-    onLoadForm: function (form, name, id) {
-        var modelName = 'TabUserInformation.model.' + name;
-
-        form.load({
-            url: 'api/ApplicationDetail',
-            method: 'GET',
+    onLoadForm: function (form, storeName, name, id) {
+        var store = Ext.getStore(storeName);
+        store.load({
             params: {
-                id: id,
-                name: name
+                name: name,
+                Id: id
             },
-            success: function (form, action) {
-                var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
-                form.loadRecord(recordCommission);
-            },
-            failure: function (form, action) {
-                var recordCommission = Ext.create(modelName, Ext.decode(action.response.responseText)[0]);
-                form.loadRecord(recordCommission);
+            callback: function (records, operation, success) {
+                if (records.length > 0) {
+                    form.getForm().loadRecord(records[0]);
+                } else {
+                    var record = Ext.create('TabUserInformation.model.' + name);
+
+                    store.add(record);
+                    form.getForm().loadRecord(record);
+                }
             }
         });
     },
 
     onLoadStore: function (store, name, id) {
-        store.on({
-            beforeload: function (store, operation, eOpts) {
-                store.getProxy().extraParams.id = id;
-                store.getProxy().extraParams.name = name;
-            }
-        });
-
+        store.getProxy().extraParams.id = id;
+        store.getProxy().extraParams.name = name;
         store.load();
     }
 });

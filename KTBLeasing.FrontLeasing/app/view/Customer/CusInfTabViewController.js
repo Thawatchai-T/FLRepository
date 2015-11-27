@@ -60,15 +60,23 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
     },
 
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
-        if (this.getView().down('gridpanel').getSelection().length) {
-            var popup = Ext.create('widget.customercusinfwindow'),
-                form = popup.down('form'),
-                btnreset = popup.lookupReference('btnreset');
-            btnreset.hide();
-            form.loadRecord(record);
-            console.log(record);
-            popup.show();
-        }
+        var popup = Ext.create('widget.customercusinfwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        btnreset = panel.lookupReference('btnreset');
+
+                    btnreset.hide();
+
+                    var storeBackground = Ext.getStore('backgrounds');
+                    storeBackground.getProxy().extraParams.custId = record.get('CustomerId');
+                    storeBackground.load(function (records, operation, success) {
+                        form.loadRecord(records[0]);
+                        form.loadRecord(record);
+                    });
+                }
+            }
+        }).show();
     },
 
     onButtonClick: function (button, e, eOpts) {
@@ -77,14 +85,26 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
     },
 
     onButtonEditClick1: function (button, e, eOpts) {
-        var record = this.getView().down('gridpanel').getSelection()[0];
-        if (this.getView().down('gridpanel').getSelection().length) {
-            var popup = Ext.create('widget.customercusinfwindow'),
-                form = popup.down('form'),
-                btnreset = popup.lookupReference('btnreset');
-            btnreset.hide();
-            form.loadRecord(record);
-            popup.show();
+        var selected = this.getView().down('gridpanel').getSelection();
+
+        if (selected.length > 0) {
+            var popup = Ext.create('widget.customercusinfwindow', {
+                listeners: {
+                    beforerender: function (panel, eOpts) {
+                        var form = panel.down('form').getForm(),
+                            btnreset = panel.lookupReference('btnreset');
+
+                        btnreset.hide();
+
+                        var storeBackground = Ext.getStore('backgrounds');
+                        storeBackground.getProxy().extraParams.custId = selected[0].get('CustomerId');
+                        storeBackground.load(function (records, operation, success) {
+                            form.loadRecord(records[0]);
+                            form.loadRecord(selected[0]);
+                        });
+                    }
+                }
+            }).show();
         }
     }
 

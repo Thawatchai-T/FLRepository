@@ -120,10 +120,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid1',
                             height: 250,
-                            //                            store: 'insuranceEquipments',
-                            bind: {
-                                store: '{insuranceEquipments}'
-                            },
+                            store: 'insuranceEquipments',
+//                            bind: {
+//                                store: '{insuranceEquipments}'
+//                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
@@ -438,10 +438,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid2',
                             height: 250,
-                            //store: 'insuranceEquipments2',
-                            bind: {
-                                store: '{insuranceEquipments}'
-                            },
+                            store: 'insuranceEquipments2',
+//                            bind: {
+//                                store: '{insuranceEquipments}'
+//                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
@@ -449,7 +449,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     ui: 'footer',
                                     width: 360,
                                     displayInfo: true,
-                                    store: 'insuranceEquipments'
+                                    store: 'insuranceEquipments2'
                                 },
                                 {
                                     xtype: 'toolbar',
@@ -736,10 +736,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                             xtype: 'gridpanel',
                             reference: 'grid3',
                             height: 250,
-                            //store: 'insuranceEquipments3',
-                            bind: {
-                                store: '{insuranceEquipments}'
-                            },
+                            store: 'insuranceEquipments3',
+//                            bind: {
+//                                store: '{insuranceEquipments}'
+//                            },
                             dockedItems: [
                                 {
                                     xtype: 'pagingtoolbar',
@@ -747,7 +747,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Insurance', {
                                     ui: 'footer',
                                     width: 360,
                                     displayInfo: true,
-                                    store: 'insuranceEquipments'
+                                    store: 'insuranceEquipments3'
                                 },
                                 {
                                     xtype: 'toolbar',

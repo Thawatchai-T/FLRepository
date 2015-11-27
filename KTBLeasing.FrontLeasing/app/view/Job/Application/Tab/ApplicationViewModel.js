@@ -27,7 +27,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewModel', {
     stores: {
         equipmentLists: {
             model: 'TabUserInformation.model.EquipmentList',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/ApplicationDetail',

@@ -59,15 +59,9 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTab', {
                 {
                     xtype: 'gridcolumn',
                     dataIndex: 'ApplicationId',
-                    text: 'Name',
+                    text: 'Application_Id',
                     flex: -1
-                }, 
-//                {
-//                    xtype: 'gridcolumn',
-//                    dataIndex: 'Id',
-//                    text: 'Name',
-//                    flex: -1
-//                }
+                }
             ],
             listeners: {
                 itemdblclick: 'onGridpanelItemDblClick'

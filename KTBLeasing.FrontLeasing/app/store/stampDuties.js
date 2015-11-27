@@ -28,29 +28,24 @@ Ext.define('TabUserInformation.store.stampDuties', {
         me.callParent([Ext.apply({
             storeId: 'stampDuties',
             model: 'TabUserInformation.model.StampDuty',
-            data: [
-                {
-                    Id: 566,
-                    CustomerCode: 'et',
-                    BorneBy: 409,
-                    Amount: 475.54
-                },
-                {
-                    Id: 309,
-                    CustomerCode: 'repellendus',
-                    BorneBy: 76,
-                    Amount: 312.81
-                },
-                {
-                    Id: 587,
-                    CustomerCode: 'neque',
-                    BorneBy: 314,
-                    Amount: 449.11
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

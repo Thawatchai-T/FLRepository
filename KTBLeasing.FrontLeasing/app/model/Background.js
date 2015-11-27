@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.model.Background', {
             name: 'Id'
         },
         {
-            name: 'InformationId'
+            name: 'CustId'
         },
         {
             name: 'Business'

@@ -36,14 +36,17 @@ Ext.define('TabUserInformation.model.IndicationForEquipment', {
         },
         {
             type: 'date',
-            name: 'IndicationDate'
+            name: 'IndicationDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'int',
-            name: 'JobId'
+            name: 'JobId',
+            mapping: 'Job.Id'
         },
         {
-            name: 'InformationId'
+            name: 'InformationId',
+            mapping: 'InformationIndication.InformationId'
         },
         {
 

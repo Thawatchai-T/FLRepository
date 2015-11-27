@@ -30,6 +30,11 @@ Ext.define('TabUserInformation.model.Job', {
             name: 'Id'
         },
         {
+            type: 'int',
+            name: 'CustId',
+            mapping: 'Customer.Id'
+        },
+        {
             type: 'string',
             name: 'Customer',
             mapping: 'Customer.NameEng'

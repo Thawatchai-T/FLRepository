@@ -28,14 +28,24 @@ Ext.define('TabUserInformation.store.insuranceEquipments3', {
             pageSize: 6,
             storeId: 'insuranceEquipments3',
             model: 'TabUserInformation.model.InsuranceEquipment',
-            autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/InsuranceEquipment',
+                url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

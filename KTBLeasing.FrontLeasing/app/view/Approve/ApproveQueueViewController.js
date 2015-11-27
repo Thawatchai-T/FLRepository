@@ -39,11 +39,13 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueueViewController', {
 
                     store.getProxy().extraParams.infoId = record.get('Id');
                     store.load(function (records, operation, success) {
-                        form.loadRecord(records[store.getCount() - 1]);
-                        panel.down('#InformationId').setValue(record.get('Id'));
+                        if (records.length > 0) {
+                            form.loadRecord(records[store.getCount() - 1]);
+                            panel.down('#InformationId').setValue(record.get('Id'));
+                        }
                     });
                 }
             }
         }).show();
-    }
+    },
 });

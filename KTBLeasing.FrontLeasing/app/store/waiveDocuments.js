@@ -28,41 +28,25 @@ Ext.define('TabUserInformation.store.waiveDocuments', {
         me.callParent([Ext.apply({
             storeId: 'waiveDocuments',
             model: 'TabUserInformation.model.WaiveDocument',
-            data: [
-                {
-                    Id: 194,
-                    CustomerCode: 'eum',
-                    Document: 'quia',
-                    Reason: 'voluptatem'
-                },
-                {
-                    Id: 921,
-                    CustomerCode: 'tenetur',
-                    Document: 'quam',
-                    Reason: 'omnis'
-                },
-                {
-                    Id: 580,
-                    CustomerCode: 'rerum',
-                    Document: 'ea',
-                    Reason: 'minima'
-                },
-                {
-                    Id: 277,
-                    CustomerCode: 'vel',
-                    Document: 'quod',
-                    Reason: 'molestiae'
-                },
-                {
-                    Id: 433,
-                    CustomerCode: 'similique',
-                    Document: 'ex',
-                    Reason: 'nam'
-                }
-            ],
+            //autoLoad: false,
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

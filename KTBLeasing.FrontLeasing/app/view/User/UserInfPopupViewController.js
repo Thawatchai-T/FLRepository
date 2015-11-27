@@ -17,22 +17,26 @@ Ext.define('TabUserInformation.view.User.UserInfPopupViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.popupuserinfpopup',
 
-    onButtonSearchClick: function(button, e, eOpts) {
+    onButtonSearchClick: function (button, e, eOpts) {
 
     },
 
-    onButtonNewClick: function(button, e, eOpts) {
+    onButtonNewClick: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.userinfwindow");
         // Show window
         popup.show();
     },
 
-    onButtonEditClick: function(button, e, eOpts) {
+    onButtonEditClick: function (button, e, eOpts) {
         // Create new register form window
         var popup = Ext.create("widget.userinfwindow");
         // Show window
         popup.show();
+    },
+
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
+        this.getView().close();
     }
 
 });

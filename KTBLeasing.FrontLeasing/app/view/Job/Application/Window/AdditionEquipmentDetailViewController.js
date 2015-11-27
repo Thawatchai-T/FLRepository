@@ -22,12 +22,15 @@ Ext.define('TabUserInformation.view.Job.Application.Window.AdditionEquipmentDeta
 
         var form = this.getView().down('form').getForm(),
             storeEquipment = this.getViewModel().getData().Equipment.getSource(),
-            recordEquipment = Ext.create('model.equipment', storeEquipment.getData().items[0].getData()),
+            recordEquipment = Ext.create('model.equipment', form.getRecord()),
             storeStipulateloss = this.getViewModel().getData().stipulateLosses.getSource(),
-            recordStipulateloss = Ext.create('model.stipulateloss', storeStipulateloss.findRecord('AppId', Id)).getData();
+            recordStipulateloss = Ext.getCmp('jobappstipulateloss').getForm().getRecord();
 
-        form.loadRecord(recordEquipment);
-        console.log(storeStipulateloss);
+        storeEquipment.getProxy().extraParams.indicationId = Ext.decode(sessionStorage.getItem('AppDetail')).IndicationEquipment.Id;
+        storeEquipment.load(function (records, operation, success) {
+            form.loadRecord(records[0]);
+        });
+
         form.loadRecord(recordStipulateloss);
     }
 

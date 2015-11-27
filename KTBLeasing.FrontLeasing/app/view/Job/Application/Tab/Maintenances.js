@@ -142,10 +142,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Maintenances', {
             xtype: 'gridpanel',
             height: 300,
             itemId: 'pattern2',
-            //store: 'maintenanceLists',
-            bind: {
-                store: '{maintenanceLists}'
-            },
+            store: 'maintenanceLists',
+//            bind: {
+//                store: '{maintenanceLists}'
+//            },
 
             columns: [
                 {

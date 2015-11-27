@@ -49,6 +49,15 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
             },
             items: [
                 {
+                    xtype: 'hiddenfield',
+                    name: 'IndicationId'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'save',
+                    value: 'N'
+                },
+                {
                     xtype: 'displayfield',
                     colspan: 1,
                     width: 200,
@@ -348,6 +357,10 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationDetail', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

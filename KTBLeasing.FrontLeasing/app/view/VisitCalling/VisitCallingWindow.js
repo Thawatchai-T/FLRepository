@@ -54,11 +54,20 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                             layout: 'table',
                             items: [
                                 {
+                                    xtype: 'hiddenfield',
+                                    name: 'save',
+                                    value: 'N'
+                                },
+                                {
+                                    xtype: 'hiddenfield',
+                                    name: 'Id'
+                                },
+                                {
                                     xtype: 'textfield',
                                     width: 200,
                                     fieldLabel: 'Visit #',
                                     labelAlign: 'right',
-                                    name: 'LeadId',
+                                    name: 'VsCode',
                                     itemId: 'LeadId',
                                 },
                                 {
@@ -74,7 +83,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                                     fieldLabel: 'Marketing Officer',
                                     labelAlign: 'right',
                                     labelWidth: 120,
-                                    name: 'MarketingCode'
+                                    name: 'MarketingOfficer'
                                 }
                             ]
                         },
@@ -604,6 +613,10 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingWindow', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

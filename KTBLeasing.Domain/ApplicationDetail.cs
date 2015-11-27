@@ -11,13 +11,12 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public ApplicationDetail()
         {
             IndicationEquipment = new IndicationEquipment();
+            Job = new Job();
         }
 
         public ApplicationDetail(ApplicationDetail obj)
         {
             Id  = obj.Id;
-            Code  = obj.Code;
-            Name  = obj.Name;
             Year  = obj.Year;
             ApplicationId = obj.ApplicationId;
             ApplicationType  = obj.ApplicationType;
@@ -50,15 +49,9 @@ namespace KTBLeasing.FrontLeasing.Domain {
             VAT  = obj.VAT;
             Currency  = obj.Currency;
             ExchangeRate  = obj.ExchangeRate;
-            Rating  = obj.Rating;
-            ExposureLimit  = obj.ExposureLimit;
-            RatingDetail  = obj.RatingDetail;
-            RatingDate  = obj.RatingDate;
         }
 
         public virtual long Id { get; set; }
-        public virtual string Code { get; set; }
-        public virtual string Name { get; set; }
         public virtual int Year { get; set; }
         public virtual string ApplicationId { get; set; }
         public virtual int ApplicationType { get; set; }
@@ -91,11 +84,8 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal VAT { get; set; }
         public virtual int Currency { get; set; }
         public virtual decimal ExchangeRate { get; set; }
-        public virtual decimal Rating { get; set; }
-        public virtual decimal ExposureLimit { get; set; }
-        public virtual string RatingDetail { get; set; }
-        public virtual DateTime RatingDate { get; set; }
 
         public virtual IndicationEquipment IndicationEquipment { get; set; }
+        public virtual Job Job { get; set; }
     }
 }

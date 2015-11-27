@@ -30,6 +30,7 @@ Ext.define('TabUserInformation.model.Maintenance', {
             name: 'Id'
         },
         {
+            type: 'int',
             name: 'AppId'
         },
         {

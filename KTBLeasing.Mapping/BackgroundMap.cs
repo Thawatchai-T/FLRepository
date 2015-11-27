@@ -12,10 +12,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public BackgroundMap()
         {
-            Table("JOB_IF_BACKGROUND");
+            Table("CUST_BACKGROUND");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.InformationIndication).Column("INFORMATION_ID");
+            References(x => x.Customer).Column("CUST_ID");
             Map(x => x.Business).Column("BUSINESS").Length(128);
             Map(x => x.Establishment).Column("ESTABLISHMENT").CustomSqlType("date");
             Map(x => x.Rating).Column("RATING");

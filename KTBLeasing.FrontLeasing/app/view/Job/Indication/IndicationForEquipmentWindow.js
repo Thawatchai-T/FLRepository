@@ -64,6 +64,11 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                             },
                             items: [
                                 {
+                                    xtype: 'hiddenfield',
+                                    name: 'save',
+                                    value: 'N'
+                                },
+                                {
                                     xtype: 'textfield',
                                     fieldLabel: 'Indication #',
                                     labelAlign: 'right',
@@ -376,6 +381,9 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                             xtype: 'fieldset',
                             margin: '0 0 0 5',
                             title: 'Rating Point',
+                            defaults: {
+                                readOnly: true
+                            },
                             items: [
                                 {
                                     xtype: 'textfield',
@@ -619,6 +627,10 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentWindow'
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

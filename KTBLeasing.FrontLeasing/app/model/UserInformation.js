@@ -35,6 +35,11 @@ Ext.define('TabUserInformation.model.UserInformation', {
             mapping: 'DepartmentCode.Id'
         },
         {
+            type: 'string',
+            name: 'DepartmentName',
+            mapping: 'DepartmentCode.Name'
+        },
+        {
             type: 'int',
             name: 'IdTitleName',
             mapping: 'TitleNameTh.Id'
@@ -56,6 +61,14 @@ Ext.define('TabUserInformation.model.UserInformation', {
         {
             type: 'string',
             name: 'LastNameTh'
+        },
+        {
+            type: 'string',
+            name: 'FullNameTh',
+            convert: function (v, rec) {
+                return rec.get('FirstNameTh') + ' ' + rec.get('LastNameTh');
+            },
+            depends: ['FirstNameTh', 'LastNameTh']
         },
         {
             type: 'string',

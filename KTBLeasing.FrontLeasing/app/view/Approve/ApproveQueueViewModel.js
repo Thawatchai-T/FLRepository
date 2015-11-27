@@ -15,6 +15,32 @@
 
 Ext.define('TabUserInformation.view.Approve.ApproveQueueViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.approveapprovequeue'
+    alias: 'viewmodel.approveapprovequeue',
+
+    stores: {
+        informationForIndications: {
+            groupField: 'Year',
+            model: 'TabUserInformation.model.InformationForIndication',
+            autoLoad: true,
+            proxy: {
+                type: 'rest',
+                url: 'api/informationindication',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/informationindication/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
+        }
+    }
 
 });

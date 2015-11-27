@@ -29,7 +29,7 @@ Ext.define('TabUserInformation.store.applicationDetails', {
             groupField: 'Year',
             storeId: 'applicationDetails',
             model: 'TabUserInformation.model.ApplicationDetail',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/ApplicationDetail',

@@ -17,7 +17,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobinformationdetailrequesttransaction',
 
-    onButtonSaveClick: function (button, e, eOpts) {
+    fnSave: function () {
         var form = this.getView().down('form').getForm(),
             record = form.getRecord();
 
@@ -46,11 +46,22 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
         }
     },
 
+    onButtonSaveClick: function (button, e, eOpts) {
+        var me = this;
+
+        Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
+            if (msg === 'yes') {
+                me.fnSave();
+            }
+        });
+    },
+
     onButtonNewIndicationClick: function (button, e, eOpts) {
         var panel = Ext.getCmp('jobjobwindow'),
             grid = panel.down('jobindicationindicationforequipmenttab').down('grid'),
             store = grid.getStore(),
-            me = this;
+            me = this,
+            form = me.getView().down('form').getForm();
 
         Ext.Msg.show({
             title: 'Save Changes?',
@@ -63,17 +74,64 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
                         IndicationId: 'ID' + Ext.Date.format(new Date(), 'Y') + '00002',
                         Year: Ext.Date.format(new Date(), 'Y')
                     });
-                    panel.down('tabpanel').setActiveTab(2);
-                    grid.view.refresh();
 
+                    //--close page--//
+                    form.findField('save').setValue('Y');
+                    panel.down('tabpanel').setActiveTab(2);
                     me.getView().close();
+                    Ext.getCmp('jobinformationinformationforindicationwindow').down('form').getForm().findField('save').setValue('Y');
                     Ext.getCmp('jobinformationinformationforindicationwindow').close();
                 } else if (btn === 'no') {
                 } else {
                 }
             }
         });
+    },
 
+    onBeforeClose: function (panel, eOpts) {
+        var me = this,
+            form = panel.down('form').getForm();
+
+        if (panel.closeMe) {
+            panel.closeMe = false;
+            return true;
+        }
+
+        if (form.findField('save').getValue() === 'N') {
+            Ext.Msg.show({
+                title: 'Save',
+                message: 'Save Changes?',
+                buttons: Ext.Msg.YESNOCANCEL,
+                icon: Ext.Msg.QUESTION,
+                width: 300,
+                fn: function (btn) {
+                    if (btn === 'yes') {
+                        Ext.MessageBox.show({
+                            title: 'Please wait',
+                            msg: 'Saving items...',
+                            progressText: 'Saving...',
+                            width: 300,
+                            progress: true,
+                            closable: false,
+                        });
+
+                        me.fnSave();
+
+                    } else if (btn === 'no') {
+                        panel.closeMe = true;
+                        panel.close();
+                    }
+                }
+            });
+        }else {
+            panel.closeMe = true;
+            panel.close();
+        }
+
+        return false;
+    },
+
+    onClose: function (panel, eOpts) {
 
     }
 

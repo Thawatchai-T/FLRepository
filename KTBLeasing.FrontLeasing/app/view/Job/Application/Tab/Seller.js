@@ -75,7 +75,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             width: 300,
 //            bind: {
 //                store: '{sellers}'
-            //            },
+//            },
             forceFit: true,
             store: 'sellers',
             columns: [
@@ -110,10 +110,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Seller', {
             width: 500,
             bodyPadding: 10,
             items: [
-//                {
-//                    xtype: 'hiddenfield',
-//                    name: 'Id'
-//                },
+                {
+                    xtype: 'hiddenfield',
+                    name: 'Id'
+                },
                 {
                     xtype: 'textareafield',
                     reference: 'address',

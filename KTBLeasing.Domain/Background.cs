@@ -10,7 +10,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public Background()
         {
-            InformationIndication = new InformationIndication();
+            Customer = new Customer();
         }
 
         public virtual long Id { get; set; }
@@ -37,6 +37,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual DateTime? ExposureLimitDate { get; set; }
         public virtual int Committed { get; set; }
 
-        public virtual InformationIndication InformationIndication { get; set; }
+        public virtual Customer Customer { get; set; }
     }
 }

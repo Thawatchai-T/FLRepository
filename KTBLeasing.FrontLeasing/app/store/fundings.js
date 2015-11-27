@@ -28,23 +28,24 @@ Ext.define('TabUserInformation.store.fundings', {
         me.callParent([Ext.apply({
             storeId: 'fundings',
             model: 'TabUserInformation.model.Funding',
-            data: [
-                {
-                    Id: 685,
-                    CustomerCode: 'velit',
-                    Source: 864,
-                    NetRate: 452.6,
-                    FundingCost: 455.83,
-                    Spread: 759.07,
-                    ProfitFromSpread: 867.64,
-                    CreditNetRate: 86.48,
-                    CreditSpread: 910.28,
-                    CreditProfit: 629.11
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

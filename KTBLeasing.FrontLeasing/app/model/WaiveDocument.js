@@ -21,6 +21,10 @@ Ext.define('TabUserInformation.model.WaiveDocument', {
         'Ext.data.field.Integer'
     ],
 
+    use: [
+        'TabUserInformation.model.ApplicationDetail'
+    ],
+
     idProperty: 'Id',
 
     fields: [
@@ -29,7 +33,9 @@ Ext.define('TabUserInformation.model.WaiveDocument', {
             name: 'Id'
         },
         {
-            name: 'AppId'
+            type: 'int',
+            name: 'AppId',
+            referenece: 'TabUserInformation.model.ApplicationDetail'
         },
         {
             name: 'Document'

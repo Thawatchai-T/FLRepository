@@ -5,43 +5,44 @@ using System.Reflection;
 using KTBLeasing.FrontLeasing.Domain;
 using NHibernate.Criterion;
 using KTBLeasing.Domain.ViewCommonData;
+using NHibernate.Transform;
 
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface ICustomerRepository
     {
-        bool Insert(Customer entity);
-        bool Update(Customer entity);
-        bool SaveOrUpdate(Customer entity);
+        object Insert<T>(T entity);
+        bool Update<T>(T entity);
+        bool SaveOrUpdate<T>(T entity);
         Customer GetById(int id);
         List<Customer> GetAll();
         List<Customer> GetWihtPage(int start, int limit);
         List<Customer> Find(int start, int limit, string text, int type);
+        List<Background> GetBackground(long id);
     }
     public class CustomerRepository : NhRepository, ICustomerRepository
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         
-        public bool Insert(Customer entity)
+        public object Insert<T>(T entity)
         {
             try
             {
-                this.Insert<Customer>(entity);
-                return true;
+                return base.Insert<T>(entity);
             }
             catch (Exception ex)
             {
                 Logger.Error(ex);
-                return false;
+                return null;
             }
         }
 
-        public bool Update(Customer entity)
+        public bool Update<T>(T entity)
         {
             try
             {
-                this.Update<Customer>(entity);
+                base.Update<T>(entity);
                 return true;
             }
             catch (Exception e)
@@ -52,20 +53,21 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             
         }
 
-        public bool SaveOrUpdate(Customer entity)
+        public bool SaveOrUpdate<T>(T entity)
         {
             try
             {
-                //this.SaveOrUpdate<Customer>(entity);
-                var result = this.GetById((int)entity.Id);
-                if (result != null)
-                {
-                    this.Update(entity);
-                }
-                else
-                {
-                    this.Insert(entity);
-                }
+                //var result = this.GetById((int)entity.Id);
+                //if (result != null)
+                //{
+                //    this.Update(entity);
+                //}
+                //else
+                //{
+                //    this.Insert(entity);
+                //}
+
+                base.SaveOrUpdate<T>(entity);
 
                 return true;
             }
@@ -130,6 +132,41 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
             }
             
+        }
+
+        public List<Background> GetBackground(long id)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenSession())
+                {
+                    return session.QueryOver<Background>()
+                        .Fetch(x => x.Customer).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Where(x => x.Customer.Id == id)
+                        .OrderBy(x => x.Id).Asc
+                        .List<Background>() as List<Background>;
+
+                    //return session.QueryOver<Background>()
+                    //    .Fetch(x => x.InformationIndication).Eager
+                    //    .Fetch(x => x.InformationIndication.Job).Eager
+                    //    .Fetch(x => x.InformationIndication.Job.Customer).Eager
+                    //    .Fetch(x => x.InformationIndication.Job.MarketingOfficer).Eager
+                    //    .Fetch(x => x.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                    //    .Fetch(x => x.InformationIndication.VisitInformationDomain).Eager
+                    //    .Fetch(x => x.InformationIndication.VisitInformationDomain.Job).Eager
+                    //    .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                    //    .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                    //    .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                    //    .Where(x => x.InformationIndication.Id == id)
+                    //    .OrderBy(x => x.Id).Asc
+                    //    .List<Background>() as List<Background>;
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
         }
 
         public List<Customer> Find(int start, int limit, string text,int type)

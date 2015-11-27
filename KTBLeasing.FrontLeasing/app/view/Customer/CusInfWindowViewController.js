@@ -24,39 +24,56 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
 
     onButtonAddressClick: function (button, e, eOpts) {
         var record = this.getView().down('form').getRecord();
-        var popup = Ext.create("widget.commonaddresswindow");
-        var form = popup.down('form');
 
-        var store = popup.lookupReference('addressgrid').getStore();
-        store.getProxy().extraParams.text = record.get('CustomerId');
-        store.load();
+        var popup = Ext.create("widget.commonaddresswindow", {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm(),
+                        store = panel.lookupReference('addressgrid').getStore();
 
-        form.loadRecord(record);
-        popup.show();
+                    form.loadRecord(record);
+
+                    store.getProxy().extraParams.text = record.get('CustomerId');
+                    store.load();
+                }
+            }
+        }).show();
     },
 
     onButtonSignClick: function (button, e, eOpts) {
-        var popup = Ext.create("widget.windowsignerwindow"),
-            store = popup.down('gridpanel').getStore(),
-            record = this.getView().down('form').getRecord();
+        var form = this.getView().down('form').getForm(),
+            record = form.getRecord();
 
-        popup.lookupReference('CustomerId').setValue(record.get('CustomerId'));
-        store.getProxy().extraParams.custId = record.get('CustomerId');
-        store.load();
-        popup.show();
+        var popup = Ext.create('widget.windowsignerwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var store = panel.down('gridpanel').getStore();
 
+                    store.getProxy().extraParams.custId = record.get('CustomerId');
+                    store.load();
+                },
+                beforeclose: function (panel, eOpts) {
+                }
+            }
+        }).show();
     },
 
     onButtonContactPersonClick: function (button, e, eOpts) {
-        console.log(Ext.create('controller.tabcusinftab').test);
-        var popup = Ext.create("widget.windowcontactpersonwindow"),
-            store = popup.down('gridpanel').getStore(),
-            record = this.getView().down('form').getRecord();
+        var form = this.getView().down('form').getForm(),
+            record = form.getRecord();
 
-        popup.lookupReference('CustomerId').setValue(record.get('CustomerId'));
-        store.getProxy().extraParams.custId = record.get('CustomerId');
-        store.load();
-        popup.show();
+        var popup = Ext.create('widget.windowcontactpersonwindow', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var store = panel.down('gridpanel').getStore();
+
+                    store.getProxy().extraParams.custId = record.get('CustomerId');
+                    store.load();
+                },
+                beforeclose: function (panel, eOpts) {
+                }
+            }
+        }).show();
     },
 
     onButtonAffidavitClick: function (button, e, eOpts) {
@@ -67,6 +84,25 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
     onButtonPowerOfAttorneyClick: function (button, e, eOpts) {
         var popup = Ext.create("widget.commonpowerofattorneywindow");
         popup.show();
+    },
+
+    onButtonMktClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm();
+
+        var popup = Ext.create('widget.popupuserinfpopup', {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    panel.down('#userinf-toolbar').hide();
+                },
+                beforeclose: function (panel, eOpts) {
+                    var selected = panel.down('grid').getSelection()[0];
+
+                    if (selected) {
+                        form.findField('MarketingOfficer').setValue(selected.get('FullNameTh'));
+                    }
+                }
+            }
+        }).show();
     },
 
     onUploadClick: function (button, e, eOpts) {
@@ -156,8 +192,8 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindowViewController', {
     },
 
     onButtonResetClick: function (button, e, eOpts) {
-       
-       // this.getView().getComponent('cusinfform').getForm().reset();
+
+        // this.getView().getComponent('cusinfform').getForm().reset();
     },
 
     onCusinfwindowBeforeRender: function (component, eOpts) {

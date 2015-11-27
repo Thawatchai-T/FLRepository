@@ -57,6 +57,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
                     name: 'Id'
                 },
                 {
+                    xtype: 'hiddenfield',
+                    name: 'AppId'
+                },
+                {
                     xtype: 'combobox',
                     fieldLabel: 'Condition of Lease',
                     labelAlign: 'right',
@@ -343,10 +347,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Guarantor', {
         },
         {
             xtype: 'gridpanel',
-            //            store: 'guarantorLists',
-            bind: {
-                store: '{guarantorLists}'
-            },
+            store: 'guarantorLists',
+//            bind: {
+//                store: '{guarantorLists}'
+//            },
             columns: [
                 {
                     xtype: 'rownumberer',

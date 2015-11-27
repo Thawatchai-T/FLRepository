@@ -28,14 +28,25 @@ Ext.define('TabUserInformation.store.annualTaxes', {
         me.callParent([Ext.apply({
             storeId: 'annualTaxes',
             model: 'TabUserInformation.model.AnnualTax',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/AnnualTax',
+                url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

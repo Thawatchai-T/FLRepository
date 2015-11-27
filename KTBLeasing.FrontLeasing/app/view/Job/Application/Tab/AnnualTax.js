@@ -41,10 +41,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
         
         {
             xtype: 'gridpanel',
-            //            store: 'annualTaxes',
-            bind: {
-                store: '{annualTaxes}'
-            },
+            store: 'annualTaxes',
+//            bind: {
+//                store: '{annualTaxes}'
+//            },
             columns: [
 //                {
 //                    xtype: 'hiddenfield',
@@ -141,9 +141,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.AnnualTax', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            bind: {
-                store: '{annualTaxes}'
-            },
+            store: 'annualTaxes'
+//            bind: {
+//                store: '{annualTaxes}'
+//            },
         }
     ]
 

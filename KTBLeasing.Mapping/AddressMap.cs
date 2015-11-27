@@ -12,8 +12,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
        public AddressMap() {
             Table("ADDRESS");
             LazyLoad();
-            Id(x => x.Id, "ID").GeneratedBy.Increment(); 
-            Map(x => x.CustomerId).Column("CUSTOMER_ID"); 
+            Id(x => x.Id, "ID").GeneratedBy.Increment();
+            References(x => x.Customer).Column("CUSTOMER_ID"); 
             Map(x => x.AddressTh).Column("ADDRESS_TH");
             Map(x => x.AddressEng).Column("ADDRESS_ENG");
             Map(x => x.SubdistrictId).Column("SUBDISTRICT_ID");

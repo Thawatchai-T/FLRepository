@@ -53,10 +53,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
         },
         {
             xtype: 'gridpanel',
-            //store: 'collectionScheldules',
-            bind: {
-                store: '{collectionScheldules}'
-            },
+            store: 'collectionSchedules',
+//            bind: {
+//                store: '{collectionSchedules}'
+//            },
             features: [
                 {
                     ftype: 'summary'
@@ -105,10 +105,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.CollectionSchedule', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-//            store: 'collectionScheldules'
-            bind: {
-                store: '{collectionScheldules}'
-            }
+            store: 'collectionSchedules'
+//            bind: {
+//                store: '{collectionSchedules}'
+//            }
         }
     ]
 

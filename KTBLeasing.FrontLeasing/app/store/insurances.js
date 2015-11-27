@@ -28,23 +28,24 @@ Ext.define('TabUserInformation.store.insurances', {
         me.callParent([Ext.apply({
             storeId: 'insurances',
             model: 'TabUserInformation.model.Insurance',
-            data: [
-                {
-                    Id: 371,
-                    CustomerCode: 'quae',
-                    InsuranceCompany: 278,
-                    PaymentCondition: 387.54,
-                    Equipment1: 'dolores',
-                    BorneBy1: 629,
-                    Equipment2: 'dicta',
-                    BorneBy2: 487,
-                    ExceptEquipment: 'vero',
-                    Remark: 'veniam'
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

@@ -39,6 +39,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.WaiveDocument', {
                     name: 'Id'
                 },
                 {
+                    xtype: 'hiddenfield',
+                    name: 'AppId'
+                },
+                {
                     xtype: 'textfield',
                     width: 500,
                     fieldLabel: 'Document',

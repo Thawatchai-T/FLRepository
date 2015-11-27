@@ -31,8 +31,22 @@ Ext.define('TabUserInformation.store.addresses', {
 //            autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/address'
-            }
+                url: 'api/address',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/Address/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

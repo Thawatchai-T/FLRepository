@@ -44,11 +44,15 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
             name: 'Id'
         },
         {
+            xtype: 'hiddenfield',
+            name: 'AppId'
+        },
+        {
             xtype: 'gridpanel',
-            //            store: 'equipmentLists',
-            bind: {
-                store: '{equipmentLists}'
-            },
+            store: 'equipmentLists',
+//            bind: {
+//                store: '{equipmentLists}'
+//            },
             columns: [
                 {
                     xtype: 'gridcolumn',
@@ -167,9 +171,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdvice', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            bind: {
-                store: '{equipmentLists}'
-            }
+//            bind: {
+//                store: '{equipmentLists}'
+//            }
+            store: 'equipmentLists'
         }
     ]
 

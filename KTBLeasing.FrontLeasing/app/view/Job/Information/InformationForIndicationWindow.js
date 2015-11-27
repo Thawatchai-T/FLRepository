@@ -64,6 +64,11 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                     items: [
                         {
                             xtype: 'hiddenfield',
+                            name: 'save',
+                            value: 'N'
+                        },
+                        {
+                            xtype: 'hiddenfield',
                             name: 'Id'
                         },
                         {
@@ -125,7 +130,7 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                             fieldLabel: 'Visit/Calling #',
                             labelAlign: 'right',
                             labelWidth: 120,
-                            name: 'LeadId'
+                            name: 'VsCode'
                         },
                         {
                             xtype: 'button',
@@ -753,7 +758,10 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                         },
                         {
                             ui: 'default-small',
-                            text: 'Requested for Approve'
+                            text: 'Requested for Approve',
+                            listeners: {
+                                click: 'onButtonRequestApproveClick'
+                            }
                         }
                     ]
                 },
@@ -794,6 +802,10 @@ Ext.define('TabUserInformation.view.Job.Information.InformationForIndicationWind
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

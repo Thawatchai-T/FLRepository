@@ -48,6 +48,11 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                     name: 'InformationId'
                 },
                 {
+                    xtype: 'hiddenfield',
+                    name: 'save',
+                    value: 'N'
+                },
+                {
                     xtype: 'textfield',
                     width: 200,
                     fieldLabel: '#',
@@ -212,6 +217,10 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransaction', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

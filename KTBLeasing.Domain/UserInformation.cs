@@ -6,7 +6,7 @@ using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.Domain
 {
-    public class UserInformation :BaseDomain
+    public class UserInformation : BaseDomain
     {
         public UserInformation()
         {
@@ -24,11 +24,7 @@ namespace KTBLeasing.Domain
             public virtual int Position { get; set; }
             public virtual int MarketingGroup { get; set; }
             public virtual int MarketingCode { get; set; }
-            //public virtual DateTime? CreateDate { get; set; }
-            //public virtual string UpdateDate { get; set; }
-            //public virtual string CreateBy { get; set; }
-            //public virtual string UpdateBy { get; set; }
-            public virtual int? DepartmentCode { get; set; }
+            public virtual int DepartmentCode { get; set; }
         
         
     }

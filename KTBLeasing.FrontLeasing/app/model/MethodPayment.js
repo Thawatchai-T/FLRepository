@@ -30,6 +30,7 @@ Ext.define('TabUserInformation.model.MethodPayment', {
             name: 'Id'
         },
         {
+            type: 'int',
             name: 'AppId'
         },
         {

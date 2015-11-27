@@ -633,7 +633,10 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                         {
                                             xtype: 'button',
                                             margin: '0 0 0 5',
-                                            iconCls: 'x-form-search-trigger'
+                                            iconCls: 'x-form-search-trigger',
+                                            listeners: {
+                                                click: 'onButtonMktClick'
+                                            }
                                         },
                                         {
                                             xtype: 'button',

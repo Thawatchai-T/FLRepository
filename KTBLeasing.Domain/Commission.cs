@@ -13,7 +13,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
             ApplicationDetail = new ApplicationDetail();
         }
 
-        public virtual long Id { get; set; }
+        public virtual long? Id { get; set; }
         public virtual long AppId { get; set; }
         public virtual string PayCompanyName { get; set; }
         public virtual decimal PayAmount { get; set; }

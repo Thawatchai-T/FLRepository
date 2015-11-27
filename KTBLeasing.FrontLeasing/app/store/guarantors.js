@@ -28,35 +28,24 @@ Ext.define('TabUserInformation.store.guarantors', {
         me.callParent([Ext.apply({
             storeId: 'guarantors',
             model: 'TabUserInformation.model.Guarantor',
-            data: [
-                {
-                    Id: 173,
-                    ConditionLease: 'minima',
-                    BGNo: 'aut',
-                    BGReceivedDate: '2/13/2005',
-                    ConfirmPrintedDate: '2/7/2006',
-                    ReturnDate: '7/19/2011',
-                    Bank: 'sed',
-                    Branch: 'dolores',
-                    BGAmount: 337.51,
-                    BGDate: '2/19/2011',
-                    PeriodFrom: '3/8/2010',
-                    PeriodTo: '3/10/2003',
-                    BuyerName: 'dolor',
-                    RSAAmount: 661.53,
-                    EquipmentSalesPrintedDate: '7/4/2002',
-                    Signer1EquipmentSales: 'at',
-                    Signer2EquipmentSales: 966.42,
-                    WithnessEquipmentSales: 413.73,
-                    AddressEquipmentSales: 107.93,
-                    Collateral: 'laborum',
-                    CollateralDetail: 'officiis',
-                    AdditionalCondition: 'inventore'
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

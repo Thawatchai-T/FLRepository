@@ -13,7 +13,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
             ApplicationDetail = new ApplicationDetail();
         }
 
-        public virtual long Id { get; set; }
+        public virtual long? Id { get; set; }
         public virtual long AppId { get; set; }
         public virtual int LeaseTerm { get; set; }
         public virtual int PaymentId { get; set; }
@@ -40,11 +40,11 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal AverageLife { get; set; }
         public virtual decimal RentalMA { get; set; }
         public virtual decimal NumberPayment { get; set; }
-        public virtual DateTime FirstDueDate { get; set; }
-        public virtual DateTime LastDueDate { get; set; }
-        public virtual DateTime RVDueDate { get; set; }
+        public virtual DateTime? FirstDueDate { get; set; }
+        public virtual DateTime? LastDueDate { get; set; }
+        public virtual DateTime? RVDueDate { get; set; }
         public virtual decimal ResidualValuePerUnit { get; set; }
-        public virtual DateTime RVDueDateOriginal { get; set; }
+        public virtual DateTime? RVDueDateOriginal { get; set; }
         public virtual decimal PercentEQ { get; set; }
         public virtual decimal TotalReceivablePerUnit { get; set; }
         public virtual decimal TotalUnearnedPerUnit { get; set; }

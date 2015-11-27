@@ -89,25 +89,34 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueue', {
             ui: 'footer',
             width: 360,
             displayInfo: true,
-            store: 'informationForIndications'
+            bind: {
+                store: '{informationForIndications}'
+            }
         }
     ],
     items: [
         {
             xtype: 'gridpanel',
             forceFit: true,
-            store: 'informationForIndications',
+            bind: {
+                store: '{informationForIndications}'
+            },
             columns: [
                 {
                     xtype: 'datecolumn',
-                    dataIndex: 'RequestDate',
+                    dataIndex: 'UpdateDate',
                     text: 'Request Date',
                     format: 'm/j/Y'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'PrimaryJob',
+                    dataIndex: 'JobId',
                     text: 'Primary Job'
+                },
+                {
+                    xtype: 'gridcolumn',
+                    dataIndex: 'InformationId',
+                    text: 'Information No'
                 },
                 {
                     xtype: 'gridcolumn',
@@ -131,7 +140,7 @@ Ext.define('TabUserInformation.view.Approve.ApproveQueue', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'FirstNameTh',
+                    dataIndex: 'NameTh',
                     text: 'First Name Th'
                 }
             ],

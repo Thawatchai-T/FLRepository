@@ -33,6 +33,7 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentTab', {
         type: 'jobindicationindicationforequipmenttab'
     },
     title: 'Indication for Equipment',
+    id: 'jobIndicationEquipmentTab',
 
     items: [
         {

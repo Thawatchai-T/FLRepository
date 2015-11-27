@@ -12,7 +12,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IIndicationEquipmentRepository
     {
-        List<IndicationEquipment> GetAll();
+        List<IndicationEquipment> GetAll(int start, int limit, long jobId);
         List<Equipment> GetEquipment(long indicationId);
         IndicationEquipment Get(long id);
         void Insert<T>(T entity);
@@ -23,14 +23,30 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public List<IndicationEquipment> GetAll()
+        public List<IndicationEquipment> GetAll(int start, int limit, long jobId)
         {
             try
             {
                 using (var session = SessionFactory.OpenSession())
                 {
                     return session.QueryOver<IndicationEquipment>()
-                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Fetch(x => x.Job).Eager
+                        .Fetch(x => x.Job.Customer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.InformationIndication).Eager
+                        .Fetch(x => x.InformationIndication.Job).Eager
+                        .Fetch(x => x.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Where(x => x.Job.Id == jobId)
+                        .OrderBy(x => x.Id).Asc
+                        .Skip(start).Take(limit)
                         .List<IndicationEquipment>() as List<IndicationEquipment>;
                 }
             }
@@ -47,16 +63,30 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    //return session.QueryOver<Equipment>()
-                    //    .Fetch(x => x.IndicationEquipment).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                    //    .Where(x => x.IndicationEquipment.Id == indicationId)
-                    //    .List<Equipment>() as List<Equipment>;
+                    return session.QueryOver<Equipment>()
+                        .Fetch(x => x.IndicationEquipment).Eager
+                        .Fetch(x => x.IndicationEquipment.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Where(x => x.IndicationEquipment.Id == indicationId)
+                        .List<Equipment>() as List<Equipment>;
 
-                    var criteria = session.CreateCriteria("Equipment", "Equipment");
-                    criteria.CreateAlias("Equipment.IndicationEquipment", "IndicationEquipment");
-                    criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
-                    criteria.Add(Restrictions.Eq("IndicationEquipment.Id", indicationId));
-                    return criteria.List<Equipment>() as List<Equipment>;
+                    //var criteria = session.CreateCriteria("Equipment", "Equipment");
+                    //criteria.CreateAlias("Equipment.IndicationEquipment", "IndicationEquipment");
+                    //criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
+                    //criteria.Add(Restrictions.Eq("IndicationEquipment.Id", indicationId));
+                    //return criteria.List<Equipment>() as List<Equipment>;
                 }
             }
             catch (Exception ex)

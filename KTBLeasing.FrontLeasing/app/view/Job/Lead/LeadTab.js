@@ -59,7 +59,6 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTab', {
             dockedItems: [
                 {
                     xtype: 'toolbar',
-                    hidden: true,
                     dock: 'top',
                     items: [
                         {
@@ -87,7 +86,7 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTab', {
 //                },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'VisitNo',
+                    dataIndex: 'VsCode',
                     text: 'VSCode',
                     flex: -1
                 }

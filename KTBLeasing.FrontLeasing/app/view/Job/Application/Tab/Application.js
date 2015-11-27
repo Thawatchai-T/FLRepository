@@ -58,6 +58,14 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
         },
         {
             xtype: 'hiddenfield',
+            name: 'JobId'
+        },
+        {
+            xtype: 'hiddenfield',
+            name: 'IndicationId'
+        },
+        {
+            xtype: 'hiddenfield',
             name: 'Code'
         },
         {
@@ -125,7 +133,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
             fieldLabel: 'Indication Line',
             labelAlign: 'right',
             labelWidth: 140,
-            name: 'IndicationId',
+            name: 'IndicationLine',
 //            bind: {
 //                value: '{applicationDetails.data.IndicationEquipment.IndicationId}'
 //            }
@@ -512,10 +520,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Application', {
             xtype: 'gridpanel',
             //            id: 'equipmentLists-grid',
             colspan: 4,
-            bind: {
-                store: '{equipmentLists}'
-            },
-            //            store: 'equipmentLists',
+//            bind: {
+//                store: '{equipmentLists}'
+//            },
+            store: 'equipmentLists',
             columns: [
                 {
                     xtype: 'gridcolumn',

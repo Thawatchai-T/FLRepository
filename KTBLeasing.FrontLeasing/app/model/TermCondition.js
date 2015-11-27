@@ -48,6 +48,7 @@ Ext.define('TabUserInformation.model.TermCondition', {
             name: 'TypeId'
         },
         {
+
             name: 'SyndicateSubLease'
         },
         {
@@ -198,15 +199,18 @@ Ext.define('TabUserInformation.model.TermCondition', {
         },
         {
             type: 'date',
-            name: 'FirstDueDate'
+            name: 'FirstDueDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'LastDueDate'
+            name: 'LastDueDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'date',
-            name: 'RVDueDate'
+            name: 'RVDueDate',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'float',
@@ -228,7 +232,8 @@ Ext.define('TabUserInformation.model.TermCondition', {
         },
         {
             type: 'date',
-            name: 'RVDueDateOriginal'
+            name: 'RVDueDateOriginal',
+            dateWriteFormat: 'MS'
         },
         {
             type: 'float',

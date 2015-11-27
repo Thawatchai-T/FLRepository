@@ -17,27 +17,30 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ControlPaymentAdviceView
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobapplicationtabcontrolpaymentadvice',
 
-    onButtonAddClick: function(button, e, eOpts) {
-        var store = this.getView().down('grid').getStore();
-        var record = Ext.create('model.equipmentlist');
+    onButtonAddClick: function (button, e, eOpts) {
+        var form = this.getView().getForm(),
+            store = this.getView().down('grid').getStore(),
+            record = Ext.create('model.equipmentlist', {
+                AppId: form.findField('AppId').getValue()
+            });
 
         store.add(record);
         this.getView().down('grid').view.refresh();
     },
 
-    onButtonDeleteClick: function(button, e, eOpts) {
+    onButtonDeleteClick: function (button, e, eOpts) {
         var store = this.getView().down('grid').getStore(),
             record = this.getView().down('grid').getSelection()[0];
 
-        if(record){
-            if(record.get('Id') != '0'){
-                Ext.MessageBox.confirm('Confirm','Confirm Delete?',
-                function(msg){
-                    if(msg == 'yes'){
+        if (record) {
+            if (record.get('Id') != '0') {
+                Ext.MessageBox.confirm('Confirm', 'Confirm Delete?',
+                function (msg) {
+                    if (msg == 'yes') {
                         store.remove(record);
                     }
-                },this);
-            }else{
+                }, this);
+            } else {
                 store.remove(record);
             }
         }

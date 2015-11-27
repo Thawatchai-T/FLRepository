@@ -14,9 +14,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
     {
         IIndicationEquipmentRepository IndicationEquipmentRepository { get; set; }
         // GET api/contact
-        public List<IndicationEquipment> Get(int page, int start, int limit)
+        public List<IndicationEquipment> Get(int page, int start, int limit, long jobId)
         {
-            return IndicationEquipmentRepository.GetAll();
+            return IndicationEquipmentRepository.GetAll(start, limit, jobId);
         }
 
         // GET api/contact/5

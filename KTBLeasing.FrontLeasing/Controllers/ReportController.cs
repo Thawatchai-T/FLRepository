@@ -32,49 +32,57 @@ namespace KTBLeasing.FrontLeasing.Controllers
             Session["Installment"] = list;
             Session["Restructure"] = entity;
 
-            return Json(new { url = Url.Content("~/Reports/ReportViewer.aspx") }, JsonRequestBehavior.AllowGet);
+            return Json(new { url = Url.Content("Report/GetExcelReport") }, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
-        //public ActionResult SSRSReport(List<Installment> list, Restructure entity)
-        //{
-        //    try
-        //    {
-        //        Warning[] warnings;
-        //        string[] streamIds;
-        //        string mimeType = string.Empty;
-        //        string encoding = string.Empty;
-        //        string extension = string.Empty;
+        public void GetExcelReport()
+        {
+            try
+            {
+                List<Installment> list = new List<Installment>();
+                Restructure entity = new Restructure();
 
-        //        List<Restructure> listentity = new List<Restructure>();
-        //        listentity.Add(entity);
+                if (Session["Installment"] != null && Session["Restructure"] != null)
+                {
+                    list = (List<Installment>)Session["Installment"];
+                    entity = (Restructure)Session["Restructure"];
+                    Session.Clear();
+                }
 
-        //        ReportDataSource dsInstallment = new ReportDataSource("Installment", list);
-        //        ReportDataSource dsRestructure = new ReportDataSource("Restructure", listentity);
+                Warning[] warnings;
+                string[] streamIds;
+                string mimeType = string.Empty;
+                string encoding = string.Empty;
+                string extension = string.Empty;
 
-        //        LocalReport report = new LocalReport();
-        //        report.ReportPath = Server.MapPath("Installment.rdlc");
-        //        report.DataSources.Clear();
-        //        report.DataSources.Add(dsInstallment);
-        //        report.DataSources.Add(dsRestructure);
+                List<Restructure> listentity = new List<Restructure>();
+                listentity.Add(entity);
 
-        //        byte[] bytes = report.Render("EXCEL", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+                ReportDataSource dsInstallment = new ReportDataSource("Installment", list);
+                ReportDataSource dsRestructure = new ReportDataSource("Restructure", listentity);
 
-        //        Response.Buffer = true;
-        //        Response.Clear();
-        //        Response.ContentType = mimeType;
-        //        Response.AddHeader("content-disposition", "attachment; filename=" + "Installment" + "." + extension);
-        //        Response.BinaryWrite(bytes); // create the file
-        //        Response.Flush();
-        //        Response.End();
+                LocalReport report = new LocalReport();
+                report.ReportPath = Server.MapPath("~/Reports/Installment.rdlc");
+                report.DataSources.Clear();
+                report.DataSources.Add(dsInstallment);
+                report.DataSources.Add(dsRestructure);
 
-        //        return View("Report");
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Logger.Error(ex);
-        //        return null;
-        //    }
-        //}
+                byte[] bytes = report.Render("EXCEL", null, out mimeType, out encoding, out extension, out streamIds, out warnings);
+
+                // Now that you have all the bytes representing the PDF report, buffer it and send it to the client.
+                Response.Buffer = true;
+                Response.Clear();
+                Response.ContentType = mimeType;
+                Response.AddHeader("content-disposition", "attachment; filename=" + "Installment" + "." + extension);
+                Response.BinaryWrite(bytes); // create the file
+                Response.Flush();
+                Response.End();
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+            }
+        }
     }
 }

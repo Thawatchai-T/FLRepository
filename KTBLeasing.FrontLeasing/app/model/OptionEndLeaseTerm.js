@@ -30,6 +30,7 @@ Ext.define('TabUserInformation.model.OptionEndLeaseTerm', {
             name: 'Id'
         },
         {
+            type: 'int',
             name: 'AppId'
         },
         {
@@ -48,7 +49,7 @@ Ext.define('TabUserInformation.model.OptionEndLeaseTerm', {
             name: 'Others'
         },
         {
-            type: 'int',
+            type: 'boolean',
             name: 'Renewal'
         },
         {

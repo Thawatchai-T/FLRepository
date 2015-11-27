@@ -13,10 +13,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
 {
     public class AddressController : ApiController
     {
-        private ComboboxRepository comboboxRepository { get; set; }
         private IAddressRepository AddressRepository { get; set; }
         // GET api/address
-        public List<AddressViewModel> Get(string text, int page, int start, int limit)
+        public List<Address> Get(string text, int page, int start, int limit)
         {
             try
             {
@@ -60,18 +59,5 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
 
         }
-
-        public List<Province> GetProvince()
-        {
-            try
-            {
-                return comboboxRepository.GetProvince();
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
     }
 }

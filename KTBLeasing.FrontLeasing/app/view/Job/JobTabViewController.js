@@ -31,8 +31,34 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
             icon: Ext.MessageBox.INFO,
             fn: function (btn) {
                 if (btn == 'yes') {
-                    var popup = Ext.create('widget.jobjobwindow');
-                    popup.show();
+                    var popup = Ext.create('widget.jobjobwindow', {
+                        listeners: {
+                            beforerender: function (panel, e0pst) {
+                                var form = panel.down('form').getForm(),
+                                    record = Ext.create('model.job', {
+                                        Id: 0
+                                    });
+
+                                form.loadRecord(record);
+
+                                var storeVC = Ext.getStore('leads');
+                                storeVC.getProxy().extraParams.jobId = record.get('Id');
+                                storeVC.load();
+
+                                var storeID = Ext.getStore('informationForIndications');
+                                storeID.getProxy().extraParams.jobId = record.get('Id');
+                                storeID.load();
+
+                                var storeIF = Ext.getStore('indicationForEquipments');
+                                storeIF.getProxy().extraParams.jobId = record.get('Id');
+                                storeIF.load();
+
+                                var storeAD = Ext.getStore('applicationDetails');
+                                storeAD.getProxy().extraParams.jobId = record.get('Id');
+                                storeAD.load();
+                            }
+                        }
+                    }).show();
                 } else if (btn == 'no') {
                     var popup2 = Ext.create('widget.customercusinfpopup');
                     popup2.down('gridpanel').getStore().load();
@@ -54,6 +80,22 @@ Ext.define('TabUserInformation.view.Job.JobTabViewController', {
                     var form = panel.down('form').getForm();
 
                     form.loadRecord(record);
+
+                    var storeVC = Ext.getStore('leads');
+                    storeVC.getProxy().extraParams.jobId = record.get('Id');
+                    storeVC.load();
+
+                    var storeID = Ext.getStore('informationForIndications');
+                    storeID.getProxy().extraParams.jobId = record.get('Id');
+                    storeID.load();
+
+                    var storeIF = Ext.getStore('indicationForEquipments');
+                    storeIF.getProxy().extraParams.jobId = record.get('Id');
+                    storeIF.load();
+
+                    var storeAD = Ext.getStore('applicationDetails');
+                    storeAD.getProxy().extraParams.jobId = record.get('Id');
+                    storeAD.load();
                 }
             }
         }).show();

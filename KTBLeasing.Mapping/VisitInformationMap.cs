@@ -14,6 +14,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl
             Table("VISIT_HEAD");
             LazyLoad();
             Id(x => x.Id,"ID").GeneratedBy.Sequence("SEQ_VISIT_CALL");
+            References(x => x.Job).Column("JOB_ID");
             //Id(x => x.Id, "ID").GeneratedBy.Identity();
             Map(x => x.CustomerId).Column("CUSTOMER_ID").Length(22);
             Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER").Length(100);

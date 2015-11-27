@@ -30,7 +30,8 @@ Ext.define('TabUserInformation.model.StampDuty', {
             name: 'Id'
         },
         {
-            name: 'AddId'
+            type: 'int',
+            name: 'AppId'
         },
         {
             type: 'int',

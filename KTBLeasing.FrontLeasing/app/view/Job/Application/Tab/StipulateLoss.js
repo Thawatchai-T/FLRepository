@@ -38,6 +38,10 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.StipulateLoss', {
     },
     items: [
         {
+            xtype: 'hiddenfield',
+            name: 'Id'
+        },
+        {
             xtype: 'tbspacer'
         },
         {

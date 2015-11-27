@@ -28,32 +28,24 @@ Ext.define('TabUserInformation.store.methodPayments', {
         me.callParent([Ext.apply({
             storeId: 'methodPayments',
             model: 'TabUserInformation.model.MethodPayment',
-            data: [
-                {
-                    Id: 53,
-                    CustomerCode: 'doloremque',
-                    MethodPayment: 979,
-                    BankCharges: 7,
-                    ChequeAmount: 894.55
-                },
-                {
-                    Id: 16,
-                    CustomerCode: 'fugit',
-                    MethodPayment: 714,
-                    BankCharges: 191,
-                    ChequeAmount: 27.06
-                },
-                {
-                    Id: 870,
-                    CustomerCode: 'impedit',
-                    MethodPayment: 17,
-                    BankCharges: 532,
-                    ChequeAmount: 937.48
-                }
-            ],
             proxy: {
-                type: 'memory'
-            }
+                type: 'rest',
+                url: 'api/ApplicationDetail',
+                reader: {
+                    type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

@@ -48,16 +48,15 @@
   <object type="KTBLeasing.FrontLeasing.Controllers.AddressController, KTBLeasing.FrontLeasing" singleton="false" >
     <!--inject value in property-->
     <property name="AddressRepository" ref="addressRepository"/>
-    <property name="ComboboxRepository" ref="comboboxRepository"/>
   </object>
 
   <!--[20141219] Thawatchai.T add CommonColler-->
   <object type="KTBLeasing.FrontLeasing.Controllers.CommonController, KTBLeasing.FrontLeasing" singleton="false" >
-    <property name="CommonRepository" ref="comboboxRepository"/>
     <property name="Province">
       <list element-type="KTBLeasing.FrontLeasing.Domain.Province, KTBLeasing.Domain">
       </list>
     </property>
+    <property name="CommonDataRepository" ref="commonDataRepository"/>
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.UserInfoController, KTBLeasing.FrontLeasing" singleton="false" >
@@ -94,7 +93,7 @@
   </object>
 
   <object type="KTBLeasing.FrontLeasing.Controllers.BackgroundController, KTBLeasing.FrontLeasing" singleton="false" >
-    <property name="InformationIndicationRepository" ref="informationIndicationRepository"/>
+    <property name="CustomerRepository" ref="customerRepository"/>
   </object>
   
   <object type="KTBLeasing.FrontLeasing.Controllers.ApprovalController, KTBLeasing.FrontLeasing" singleton="false" >

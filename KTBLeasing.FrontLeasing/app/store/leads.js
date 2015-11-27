@@ -32,11 +32,22 @@ Ext.define('TabUserInformation.store.leads', {
             model: 'TabUserInformation.model.Lead',
             proxy: {
                 type: 'rest',
-                url: 'api/VisitCalling/getVisitCallingPage',
+                url: 'api/VisitCalling',
                 reader: {
                     type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/VisitCalling/Post'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

@@ -20,7 +20,9 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
     requires: [
         'Ext.data.field.Integer'
     ],
+
     idProperty: 'CustomerId',
+
     fields: [
         {
             type: 'int',

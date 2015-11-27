@@ -19,7 +19,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
 
     onButtonSearchClick: function (button, e, eOpts) {
         this.getView();
-        
+
     },
 
     onButtonNewClick: function (button, e, eOpts) {
@@ -32,11 +32,29 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
     },
 
     onButtonEditClick: function (button, e, eOpts) {
-        // Create new register form window
-        var popup = Ext.create("widget.visitcallingvisitcallingwindow");
-        console.log((63 & 45));
-        // Show window
-        popup.show();
+        var grid = this.getView().down('grid'),
+            selected = grid.getSelection()[0];
+        var popup = Ext.create("widget.visitcallingvisitcallingwindow", {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm();
+
+                    form.loadRecord(selected);
+                }
+            }
+        }).show();
+    },
+
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
+        var popup = Ext.create("widget.visitcallingvisitcallingwindow", {
+            listeners: {
+                beforerender: function (panel, eOpts) {
+                    var form = panel.down('form').getForm();
+
+                    form.loadRecord(record);
+                }
+            }
+        }).show();
     },
 
     onGridSelectionChange: function (model, selected, eOpts) {
@@ -60,12 +78,12 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
         //debugger;
         var contactperson = record.get('ContactPersonTitleNameTh') + record.get('ContactPersonFirstNameTh') + "  " + record.get('ContactPersonLastNameTh');
 
-        this.getView().down("#addressThTab").setValue('<b>' + record.get('Address').AddressTh + '</b>');
+        this.getView().down("#addressThTab").setValue('<b>' + record.get('Address') + '</b>');
         this.getView().down("#businessTab").setValue('<b>' + record.get('Business') + '</b>');
         this.getView().down("#contactPersonTab").setValue('<b>' + contactperson + '</b>');
-//        this.getView().down("#telephoneTab").setValue('<b>' + record.get('Telephone') + '</b>');
+        //        this.getView().down("#telephoneTab").setValue('<b>' + record.get('Telephone') + '</b>');
         this.getView().down("#telephoneTab").setValue("025502549");
-//        this.getView().down("#sourceofInformationTab").setValue('<b>' + record.get('SourceInformation') + '</b>');
+        //        this.getView().down("#sourceofInformationTab").setValue('<b>' + record.get('SourceInformation') + '</b>');
         this.getView().down("#sourceofInformationTab").setValue("KTB recommendation");
 
     },
@@ -97,6 +115,48 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTabViewController',
         this.getView().down("#ProjectPlanAmount").setValue('<b>' + projectPlan.Amount + '</b>');
         this.getView().down("#ProjectPlanSchedule").setValue('<b>' + projectPlan.Schedule + '</b>');
 
+    },
+
+    onCheckboxfieldChange6: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('detail');
+        this.Shows(textBox, newValue);
+    },
+
+    onCheckboxfieldChange11: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('detail');
+        this.Shows(textBox, newValue);
+    },
+
+    onCheckboxfieldChange21: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('type-of-lease-equipment');
+        var textBox2 = this.getComponent('financialpolicy').getComponent('leasing-company');
+        var textBox3 = this.getComponent('financialpolicy').getComponent('term-and-condition');
+        this.ShowsDefault(textBox, newValue);
+        this.ShowsDefault(textBox2, newValue);
+        this.ShowsDefault(textBox3, newValue);
+    },
+
+    onCheckboxfieldChange51: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('type-of-hp-equipment');
+        var textBox2 = this.getComponent('financialpolicy').getComponent('hp-company');
+        var textBox3 = this.getComponent('financialpolicy').getComponent('hp-term-and-condition');
+        this.ShowsDefault(textBox, newValue);
+        this.ShowsDefault(textBox2, newValue);
+        this.ShowsDefault(textBox3, newValue);
+    },
+
+    onCheckboxfieldChange31: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('detail');
+        this.Shows(textBox, newValue);
+    },
+
+    onCheckboxfieldChange41: function (field, newValue, oldValue, eOpts) {
+        var textBox = this.getComponent('financialpolicy').getComponent('detail');
+        this.Shows(textBox, newValue);
+    },
+
+    onDatefieldRender: function (component, eOpts) {
+        component.setValue(new Date());
     }
 
 });

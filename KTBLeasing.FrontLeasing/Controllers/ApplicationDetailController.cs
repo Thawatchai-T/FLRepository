@@ -12,6 +12,8 @@ using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.Domain;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using System.Web;
+using System.Threading.Tasks;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -22,12 +24,12 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
 
         // GET api/contact
-        public List<ApplicationDetail> Get()
+        public List<ApplicationDetail> Get(int start, int limit, long jobId)
         {
             try
             {
                 //return new ApplicationDetailModel().Dummy();
-                return ApplicationDetailRepository.GetAll();
+                return ApplicationDetailRepository.GetAll(start, limit, jobId);
             }
             catch (Exception e)
             {
@@ -36,14 +38,90 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
+        public JArray Get(ApplicationDetailChildEnum name) {
+            string json = string.Empty;
+            var result = this.GetNew(name, ref json);
+            return result;
+        }
+
         //// GET api/contact/5
-        //public List<ApplicationDetail> Get(long id)
-        //{
-        //    List<ApplicationDetail> list = new List<ApplicationDetail>();
-        //    var result = ApplicationDetailRepository.Get(id);
-        //    list.Add(result);
-        //    return list;
-        //}
+        public JArray GetNew(ApplicationDetailChildEnum name, ref string json)
+        {
+            switch (name)
+            {
+                case ApplicationDetailChildEnum.ApplicationDetail:
+                    json = JsonConvert.SerializeObject(new List<ApplicationDetail>());
+                    break;
+                case ApplicationDetailChildEnum.Commission:
+                    json = JsonConvert.SerializeObject(new List<Commission>());
+                    break;
+                case ApplicationDetailChildEnum.Funding:
+                    json = JsonConvert.SerializeObject(new List<Funding>());
+                    break;
+                case ApplicationDetailChildEnum.Guarantor:
+                    json = JsonConvert.SerializeObject(new List<Guarantor>());
+                    break;
+                case ApplicationDetailChildEnum.Insurance:
+                    json = JsonConvert.SerializeObject(new List<Insurance>());
+                    break;
+                case ApplicationDetailChildEnum.Maintenance:
+                    json = JsonConvert.SerializeObject(new List<Maintenance>());
+                    break;
+                case ApplicationDetailChildEnum.MethodPayment:
+                    json = JsonConvert.SerializeObject(new List<MethodPayment>());
+                    break;
+                case ApplicationDetailChildEnum.OptionEndLeaseTerm:
+                    json = JsonConvert.SerializeObject(new List<OptionEndLeaseTerm>());
+                    break;
+                case ApplicationDetailChildEnum.StampDuty:
+                    json = JsonConvert.SerializeObject(new List<StampDuty>());
+                    break;
+                case ApplicationDetailChildEnum.StipulateLoss:
+                    json = JsonConvert.SerializeObject(new List<StipulateLoss>());
+                    break;
+                case ApplicationDetailChildEnum.TermCondition:
+                    json = JsonConvert.SerializeObject(new List<TermCondition>());
+                    break;
+                case ApplicationDetailChildEnum.WaiveDocument:
+                    json = JsonConvert.SerializeObject(new List<WaiveDocument>());
+                    break;
+                case ApplicationDetailChildEnum.EquipmentList:
+                    json = JsonConvert.SerializeObject(new List<EquipmentList>());
+                    break;
+                case ApplicationDetailChildEnum.Seller:
+                    json = JsonConvert.SerializeObject(new List<Seller>());
+                    break;
+                case ApplicationDetailChildEnum.AnnualTax:
+                    json = JsonConvert.SerializeObject(new List<AnnualTax>());
+                    break;
+                case ApplicationDetailChildEnum.InsuranceEquipment:
+                    json = JsonConvert.SerializeObject(new List<InsuranceEquipment>());
+                    break;
+                case ApplicationDetailChildEnum.GuarantorList:
+                    json = JsonConvert.SerializeObject(new List<GuarantorList>());
+                    break;
+                case ApplicationDetailChildEnum.CollectionSchedule:
+                    json = JsonConvert.SerializeObject(new List<CollectionSchedule>());
+                    break;
+                case ApplicationDetailChildEnum.MaintenanceList:
+                    json = JsonConvert.SerializeObject(new List<MaintenanceList>());
+                    break;
+                case ApplicationDetailChildEnum.EquipmentDetail:
+                    json = JsonConvert.SerializeObject(new List<EquipmentDetail>());
+                    break;
+                case ApplicationDetailChildEnum.PurchaseOrder:
+                    json = JsonConvert.SerializeObject(new List<PurchaseOrder>());
+                    break;
+                case ApplicationDetailChildEnum.Approval:
+                    json = JsonConvert.SerializeObject(new List<Approval>());
+                    break;
+                case ApplicationDetailChildEnum.Unknow:
+                    break;
+            }
+
+            var result = JArray.Parse(json);
+            return result;
+        }
 
         public JArray Get(long id, ApplicationDetailChildEnum name)
         {
@@ -150,10 +228,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
                     var listPurchaseOrder = ApplicationDetailRepository.GetAll<PurchaseOrder>(0, 30, id, new PurchaseOrder());
                     json = JsonConvert.SerializeObject(listPurchaseOrder);
                     break;
-                case ApplicationDetailChildEnum.RegistrationForm:
-                    var listRegistrationForm = ApplicationDetailRepository.GetAll<RegistrationForm>(0, 30, id, new RegistrationForm());
-                    json = JsonConvert.SerializeObject(listRegistrationForm);
-                    break;
                 case ApplicationDetailChildEnum.Approval:
                     var listApproval = ApplicationDetailRepository.GetAll<Approval>(0, 30, id, new Approval(), "Approval");
                     json = JsonConvert.SerializeObject(listApproval);
@@ -164,6 +238,41 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
             var result = JArray.Parse(json);
             return result;
+        }
+
+        private string GetApplicationId()
+        {
+            string d = DateTime.Now.Year.ToString().Substring(2, 3);
+            int i = 1;
+            return d + "-" + i.ToString().PadLeft(4, '0') + "-" + i.ToString().PadLeft(2, '0');
+        }
+
+        public long Post(long jobId, long indicationId, ApplicationDetail entity)
+        {
+            try
+            {
+                entity.IndicationEquipment.Id = indicationId;
+                entity.Job.Id = jobId;
+
+                if (entity.Id == 0)
+                {
+                    entity.Year = DateTime.Now.Year;
+                    entity.ApplicationId = this.GetApplicationId();
+
+                    var result = ApplicationDetailRepository.Insert<ApplicationDetail>(entity);
+                    return Convert.ToInt64(result);
+                }
+                else
+                {
+                    ApplicationDetailRepository.Update<ApplicationDetail>(entity);
+                    return entity.Id;
+                }
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return 0;
+            }
         }
 
         // POST api/contact
@@ -183,7 +292,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/contact/5
-        public void Put(int id, object obj, ApplicationDetailChildEnum name)
+        public void Put(long id, object obj, ApplicationDetailChildEnum name)
         {
             try
             {

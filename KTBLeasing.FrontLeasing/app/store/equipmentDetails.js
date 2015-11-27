@@ -31,11 +31,22 @@ Ext.define('TabUserInformation.store.equipmentDetails', {
 //            autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/EquipmentDetail',
+                url: 'api/ApplicationDetail',
                 reader: {
-                        type: 'json'
+                    type: 'json'
                 },
-            }
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

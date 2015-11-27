@@ -34,6 +34,11 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
             name: 'InformationId'
         },
         {
+            type: 'int',
+            name: 'JobId',
+            mapping: 'Job.Id'
+        },
+        {
             type: 'date',
             name: 'RequestDate',
             dateWriteFormat: 'MS'
@@ -43,18 +48,21 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
         },
         {
             type: 'int',
-            name: 'IndustryCode'
+            name: 'IndustryCode',
+            mapping: 'Job.Customer.IndustryCode'
         },
         {
             type: 'int',
-            name: 'MarketingCode'
+            name: 'MarketingCode',
+            mapping: 'Job.MarketingOfficer.Id'
         },
         {
             type: 'int',
             name: 'Year'
         },
         {
-            name: 'LeadId'
+            name: 'VsCode',
+            mapping: 'VisitInformationDomain.VsCode'
         },
         {
             type: 'int',
@@ -62,7 +70,8 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
         },
         {
             type: 'int',
-            name: 'CustomerId'
+            name: 'CustomerId',
+            mapping: 'Job.Customer.Id'
         },
         {
             type: 'int',
@@ -74,7 +83,8 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
         },
         {
             type: 'int',
-            name: 'TitleNameTh'
+            name: 'TitleNameTh',
+            mapping: 'Job.Customer.TitleCustNameTh'
         },
         {
             name: 'FirstNameTh'
@@ -146,8 +156,15 @@ Ext.define('TabUserInformation.model.InformationForIndication', {
         {
             type: 'boolean',
             name: 'Approve'
+        },
+        {
+            type: 'string',
+            name: 'NameTh',
+            mapping: 'Job.Customer.NameTh'
+        },
+        {
+            name: 'RequestTransaction',
+            reference: 'TabUserInformation.model.RequestTransaction'
         }
-    ],
-
-    hasMany: 'TabUserInformation.model.Approval'
+    ]
 });

@@ -25,16 +25,22 @@ Ext.define('TabUserInformation.view.Job.Indication.IndicationForEquipmentTabView
                 beforerender: function (panel, eOpts) {
                     var form = panel.down('form').getForm(),
                         grid = panel.down('grid'),
-                        storeEquipment = grid.getStore();
-
-                    form.loadRecord(record);
+                        storeEquipment = grid.getStore(),
+                        recordJob = Ext.getCmp('jobjobwindow').down('form').getForm().getRecord();
 
                     storeEquipment.getProxy().extraParams.indicationId = record.get('Id');
                     storeEquipment.load();
-                    grid.view.refresh();
+
+                    var storeBackground = Ext.getStore('backgrounds');
+                    storeBackground.getProxy().extraParams.custId = recordJob.get('CustId');
+                    storeBackground.load(function (records, operation, success) {
+                        form.loadRecord(records[0]);
+                        form.loadRecord(record);
+                    });
+
                 },
                 close: function (panel, eOpts) {
-                    grid.view.refresh();
+                    
                 }
             }
         });

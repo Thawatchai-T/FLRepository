@@ -61,10 +61,14 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetail', {
                 {
                     xtype: 'tabpanel',
                     height: 768,
-                    activeTab: 0,
+                    activeTab: 1,
                     tabPosition: 'left',
                     tabRotation: 0,
                     items: [
+                        {
+                            xtype: 'hiddenfield',
+                            name: 'Id'
+                        },
                         {
                             xtype: 'jobapplicationtabapplication',
                             height: 768,
@@ -237,6 +241,10 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationDetail', {
                 }
             ]
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose',
+        close: 'onClose'
+    }
 
 });

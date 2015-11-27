@@ -2,11 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using KTBLeasing.FrontLeasing.Domain;
 
 namespace KTBLeasing.Domain
 {
     public class VisitInformationDomain
     {
+        public VisitInformationDomain()
+        {
+            Job = new Job();
+        }
+
         public virtual long Id { get; set; }
 
         public virtual decimal? CustomerId { get; set; }
@@ -82,5 +88,7 @@ namespace KTBLeasing.Domain
         public virtual decimal? ProjectPlanResult { get; set; }
 
         public virtual string ProjectPlanComment { get; set; }
+
+        public virtual Job Job { get; set; }
     }
 }

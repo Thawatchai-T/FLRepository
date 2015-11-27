@@ -24,18 +24,7 @@ Ext.define('TabUserInformation.view.Job.Information.DetailRequestTransactionView
 
     formulas: {
         AmountCurrency: function (get) {
-            return get('Amount') * get('usdCurrency').getAt(0).get('rate');
-        }
-    },
-
-    stores: {
-        usdCurrency: {
-            model: 'TabUserInformation.model.USDCurrency',
-            autoLoad: true,
-            proxy: {
-                type: 'jsonp',
-                url: 'https://currency-api.appspot.com/api/THB/USD.jsonp'
-            }
+            return get('Amount') * Ext.getStore('currency-USD').getAt(0).get('rate');
         }
     }
 

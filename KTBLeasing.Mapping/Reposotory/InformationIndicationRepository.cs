@@ -1,4 +1,4 @@
-﻿using System;
+﻿ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,6 +6,8 @@ using log4net;
 using System.Reflection;
 using KTBLeasing.FrontLeasing.Domain;
 using NHibernate.Transform;
+using NHibernate.Criterion;
+using KTBLeasing.Domain;
 
 namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
@@ -13,7 +15,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     {
         List<InformationIndication> GetAll();
         InformationIndication Get(long id);
-        List<Background> GetBackground(long id);
+        List<InformationIndication> GetListApprove(int start, int limit);
+        List<InformationIndication> Get(int start, int limit, long jobId);
         List<Approval> GetApproval(long id);
         List<RequestTransaction> GetRequestTransaction(long id);
         void Insert<T>(T entity);
@@ -58,18 +61,81 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 return null;
             }
         }
-        
-        public List<Background> GetBackground(long id)
+
+        public List<InformationIndication> ListInformationIndication()
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                return session.QueryOver<InformationIndication>()
+                    .Fetch(x => x.Job).Eager
+                    .Fetch(x => x.Job.Customer).Eager
+                    .Fetch(x => x.Job.MarketingOfficer).Eager
+                    .Fetch(x => x.Job.MarketingOfficer.UsersAuthorize).Eager
+                    .Fetch(x => x.VisitInformationDomain).Eager
+                    .Fetch(x => x.VisitInformationDomain.Job).Eager
+                    .Fetch(x => x.VisitInformationDomain.Job.Customer).Eager
+                    .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer).Eager
+                    .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                    .OrderBy(x => x.Id).Asc
+                    .List<InformationIndication>()
+                    
+                    as List<InformationIndication>;
+            }
+        }
+
+        public List<InformationIndication> GetListApprove(int start, int limit)
         {
             try
             {
                 using (var session = SessionFactory.OpenSession())
                 {
-                    return session.QueryOver<Background>()
-                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                        .Where(x => x.InformationIndication.Id == id)
+                    var result = session.QueryOver<InformationIndication>()
+                        .Fetch(x => x.Job).Eager
+                        .Fetch(x => x.Job.Customer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.VisitInformationDomain).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Where(x => x.Approve == true)
                         .OrderBy(x => x.Id).Asc
-                        .List<Background>() as List<Background>;
+                        .List<InformationIndication>() as List<InformationIndication>;
+
+                    return result;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
+        }
+
+        public List<InformationIndication> Get(int start, int limit, long jobId)
+        {
+            try
+            {
+                using (var session = SessionFactory.OpenSession())
+                {
+                    var result = session.QueryOver<InformationIndication>()
+                        .Fetch(x => x.Job).Eager
+                        .Fetch(x => x.Job.Customer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.VisitInformationDomain).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Where(x => x.Job.Id == jobId)
+                        .OrderBy(x => x.Id).Asc
+                        .List<InformationIndication>() as List<InformationIndication>;
+
+                    return result;
+
                 }
             }
             catch (Exception ex)
@@ -85,9 +151,24 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 using (var session = SessionFactory.OpenSession())
                 {
+                    //return session.QueryOver<Approval>()
+                    //    .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                    //    .Where(x => x.InformationIndication.Id == id)
+                    //    .List<Approval>() as List<Approval>;
+
                     return session.QueryOver<Approval>()
-                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Fetch(x => x.InformationIndication).Eager
+                        .Fetch(x => x.InformationIndication.Job).Eager
+                        .Fetch(x => x.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
                         .Where(x => x.InformationIndication.Id == id)
+                        .OrderBy(x => x.Id).Asc
                         .List<Approval>() as List<Approval>;
                 }
             }
@@ -105,7 +186,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 using (var session = SessionFactory.OpenSession())
                 {
                     return session.QueryOver<RequestTransaction>()
-                        .Fetch(x => x.InformationIndication).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+                        .Fetch(x => x.InformationIndication).Eager
+                        .Fetch(x => x.InformationIndication.Job).Eager
+                        .Fetch(x => x.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
                         .Where(x => x.InformationIndication.Id == id)
                         .OrderBy(x => x.Id).Asc
                         .List<RequestTransaction>() as List<RequestTransaction>;

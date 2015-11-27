@@ -365,7 +365,6 @@
     <Content Include="app\model\Equipment.js" />
     <Content Include="app\model\EquipmentDetail.js" />
     <Content Include="app\model\EquipmentList.js" />
-    <Content Include="app\model\FinalcialProlicyModel.js" />
     <Content Include="app\model\Funding.js" />
     <Content Include="app\model\Guarantor.js" />
     <Content Include="app\model\GuarantorList.js" />
@@ -417,7 +416,7 @@
     <Content Include="app\store\authorizes.js" />
     <Content Include="app\store\backgrounds.js" />
     <Content Include="app\store\bGs.js" />
-    <Content Include="app\store\collectionScheldules.js" />
+    <Content Include="app\store\collectionSchedules.js" />
     <Content Include="app\store\commissions.js" />
     <Content Include="app\store\commonDatas.js" />
     <Content Include="app\store\CommonData\addressPurchaseOuder.js" />
@@ -436,6 +435,7 @@
     <Content Include="app\store\CommonData\collaterals.js" />
     <Content Include="app\store\CommonData\committed.js" />
     <Content Include="app\store\CommonData\conditionLease.js" />
+    <Content Include="app\store\CommonData\provinces.js" />
     <Content Include="app\store\CommonData\registrationForms.js" />
     <Content Include="app\store\CommonData\paymentPeriods.js" />
     <Content Include="app\store\CommonData\methodPayment.js" />
@@ -460,7 +460,6 @@
     <Content Include="app\store\CommonData\paymentMethod.js" />
     <Content Include="app\store\CommonData\percentEquipmentCostTypes.js" />
     <Content Include="app\store\CommonData\positions.js" />
-    <Content Include="app\store\CommonData\provinces.js" />
     <Content Include="app\store\CommonData\purchaseOrders.js" />
     <Content Include="app\store\CommonData\rateTypes.js" />
     <Content Include="app\store\CommonData\residualValues.js" />
@@ -490,6 +489,7 @@
     <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
     <Content Include="app\store\agreements.js" />
+    <Content Include="app\store\currency-USD.js" />
     <Content Include="app\store\jobs.js" />
     <Content Include="app\store\redbookVehicles.js" />
     <Content Include="app\store\requestTransactions.js" />
@@ -517,7 +517,6 @@
     <Content Include="app\store\methodPayments.js" />
     <Content Include="app\store\MyJsonStore.js" />
     <Content Include="app\store\optionEndLeaseTerms.js" />
-    <Content Include="app\store\provinces.js" />
     <Content Include="app\store\purchaseOrders.js" />
     <Content Include="app\store\arcards.js" />
     <Content Include="app\store\roleInTabs.js" />
@@ -770,7 +769,6 @@
     <Content Include="Config\repository.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="app_restructure.js" />
     <Content Include="ext\.sencha\package\Boot.js" />
     <Content Include="ext\.sencha\package\bootstrap-impl.xml" />
     <Content Include="ext\.sencha\package\build-impl.xml" />

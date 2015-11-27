@@ -163,7 +163,7 @@ Ext.application({
         'insuranceEquipments2',
         'insuranceEquipments3',
         'insurancePolicies',
-        'collectionScheldules',
+        'collectionSchedules',
         'annualTaxes',
         'approvals',
         'defineAddresses',
@@ -202,7 +202,8 @@ Ext.application({
         'requestTransactions',
         'jobs',
         'redbookVehicles',
-        'CommonData.registrationForms'
+        'CommonData.registrationForms',
+        'currency-USD'
     ],
     views: [
         'User.UserInfWindow',

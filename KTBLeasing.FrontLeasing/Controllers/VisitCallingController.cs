@@ -30,10 +30,20 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return "value";
         }
 
+        public List<VisitInformationDomain> Get(int page, int start,int limit)
+        {
+            return VisitInformationRepository.Get(start, limit);
+        }
+
+        public List<VisitInformationDomain> Get(int page, int start, int limit, long jobId)
+        {
+            return VisitInformationRepository.Get(start, limit, jobId);
+        }
+
         // POST api/visitcalling
         public void Post(VisitInformationDomain value)
         {
-            VisitInformationRepository.SaveOrUpdate(value);
+            VisitInformationRepository.Insert(value);
         }
 
         // PUT api/visitcalling/5
@@ -59,15 +69,6 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 return false;
                 //throw;
             }
-        }
-
-        public List<VisitInformationDomain> getVisitCallingPage(int page, int start, int limit)
-        {
-            //VisistCallModel en = new VisistCallModel();
-
-            //return en.GenDummyData();
-
-            return VisitInformationRepository.Get(start, limit);
         }
 
 

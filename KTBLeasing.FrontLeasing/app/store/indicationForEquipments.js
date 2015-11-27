@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.store.indicationForEquipments', {
             groupField: 'Year',
             storeId: 'indicationForEquipments',
             model: 'TabUserInformation.model.IndicationForEquipment',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/indicationequipment',

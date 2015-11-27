@@ -46,7 +46,7 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
     //layout: 'border',
     layout: 'border',
     title: 'Visit/Calling Information',
-    defaultListenerScope: true,
+    //defaultListenerScope: true,
 
     items: [
         {
@@ -120,8 +120,8 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    text: 'VistitNo',
-                    dataIndex:'VisitNo',
+                    text: 'VisitNo',
+                    dataIndex:'VsCode',
                     widht: 100
                 },
                 {
@@ -191,7 +191,11 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                 selectionchange: {
                     fn: 'onGridSelectionChange',
                     scope: 'controller'
-                }
+                },
+                itemdblclick: {
+                    fn: 'onGridpanelItemDblClick',
+                    scope: 'controller'
+                },
             }
         },
         {
@@ -421,47 +425,5 @@ Ext.define('TabUserInformation.view.VisitCalling.VisitCallingTab', {
                 }
             ]
         }
-    ],
-
-    onCheckboxfieldChange6: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox, newValue);
-    },
-
-    onCheckboxfieldChange11: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox, newValue);
-    },
-
-    onCheckboxfieldChange21: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('type-of-lease-equipment');
-        var textBox2 = this.getComponent('financialpolicy').getComponent('leasing-company');
-        var textBox3 = this.getComponent('financialpolicy').getComponent('term-and-condition');
-        this.ShowsDefault(textBox, newValue);
-        this.ShowsDefault(textBox2, newValue);
-        this.ShowsDefault(textBox3, newValue);
-    },
-
-    onCheckboxfieldChange51: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('type-of-hp-equipment');
-        var textBox2 = this.getComponent('financialpolicy').getComponent('hp-company');
-        var textBox3 = this.getComponent('financialpolicy').getComponent('hp-term-and-condition');
-        this.ShowsDefault(textBox, newValue);
-        this.ShowsDefault(textBox2, newValue);
-        this.ShowsDefault(textBox3, newValue);
-    },
-
-    onCheckboxfieldChange31: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox, newValue);
-    },
-
-    onCheckboxfieldChange41: function (field, newValue, oldValue, eOpts) {
-        var textBox = this.getComponent('financialpolicy').getComponent('detail');
-        this.Shows(textBox, newValue);
-    },
-
-    onDatefieldRender: function(component, eOpts) {
-        component.setValue(new Date());
-    }
+    ]
 });

@@ -15,7 +15,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("JOB_AD_WAIVE_DOCUMENT");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.ApplicationDetail).Column("AppId");
+            References(x => x.ApplicationDetail).Column("APP_ID");
             Map(x => x.Document).Column("DOCUMENT").Length(150);
             Map(x => x.Reason).Column("REASON").Length(255);
         }

@@ -19,9 +19,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<ApplicationDetail> GetAll();
         ApplicationDetail Get(long id);
         List<ApplicationDetail> GetAllWithOrderBy(string orderby);
-        List<ApplicationDetailViewModel> GetAll(int start, int limit, long id);
-        void Insert<T>(T entity);
+        List<ApplicationDetail> GetAll(int start, int limit, long jobId);
+        object Insert<T>(T entity);
         void Update<T>(T entity);
+        void SaveOrUpdate<T>(T entity);
         List<T> GetAll<T>(int start, int limit, long id, T entity);
         List<T> GetAll<T>(int start, int limit, long id, T entity, string Parent);
     }
@@ -72,7 +73,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
          * ref: http://stackoverflow.com/questions/8726396/hibernate-criteria-join-with-3-tables
          * 
          */
-        public List<T> GetAll<T>(int start, int limit, long id, T entity)
+        public List<T> GetAll<T>(int start, int limit, long id, T entity)// where T : class
         {
             string Alias = typeof(T).Name;
             string AliasJoin = string.Format("{0}.ApplicationDetail", Alias);
@@ -80,17 +81,39 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
+                criteria.CreateAlias("ApplicationDetail.Job", "Job");
+                criteria.CreateAlias("Job.Customer", "Customer");
+                criteria.CreateAlias("Job.MarketingOfficer", "MarketingOfficer");
+                criteria.CreateAlias("MarketingOfficer.UsersAuthorize", "UsersAuthorize");
+
                 criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
+                criteria.CreateAlias("IndicationEquipment.Job", "Job2");
+                criteria.CreateAlias("Job2.Customer", "Customer2");
+                criteria.CreateAlias("Job2.MarketingOfficer", "MarketingOfficer2");
+                criteria.CreateAlias("MarketingOfficer2.UsersAuthorize", "UsersAuthorize2");
+
                 criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
+                criteria.CreateAlias("InformationIndication.Job", "Job3");
+                criteria.CreateAlias("Job3.Customer", "Customer3");
+                criteria.CreateAlias("Job3.MarketingOfficer", "MarketingOfficer3");
+                criteria.CreateAlias("MarketingOfficer3.UsersAuthorize", "UsersAuthorize3");
+
+                criteria.CreateAlias("InformationIndication.VisitInformationDomain", "VisitInformationDomain");
+                criteria.CreateAlias("VisitInformationDomain.Job", "Job4");
+                criteria.CreateAlias("Job4.Customer", "Customer4");
+                criteria.CreateAlias("Job4.MarketingOfficer", "MarketingOfficer4");
+                criteria.CreateAlias("MarketingOfficer4.UsersAuthorize", "UsersAuthorize4");
+
                 criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
-                return criteria.List<T>() as List<T>;
+                var result = criteria.List<T>() as List<T>;
+                return result;
             }
         }
 
         /**
          * Hibernate Criteria Join with 3 Tables
          */
-        public List<T> GetAll<T>(int start, int limit, long id, T entity,string Parent)
+        public List<T> GetAll<T>(int start, int limit, long id, T entity, string Parent)
         {
             string Alias = typeof(T).Name;
             string AliasJoin = string.Format("{0}.ApplicationDetail", Parent);
@@ -99,72 +122,131 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 var criteria = session.CreateCriteria(typeof(T), Alias);
                 criteria.CreateAlias(AliasJoin, "ApplicationDetail");
-                criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
-                criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
                 criteria.CreateAlias(AliasJoin2, Parent);
+                criteria.CreateAlias("ApplicationDetail.Job", "Job");
+                criteria.CreateAlias("Job.Customer", "Customer");
+                criteria.CreateAlias("Job.MarketingOfficer", "MarketingOfficer");
+                criteria.CreateAlias("MarketingOfficer.UsersAuthorize", "UsersAuthorize");
+
+                criteria.CreateAlias("ApplicationDetail.IndicationEquipment", "IndicationEquipment");
+                criteria.CreateAlias("IndicationEquipment.Job", "Job2");
+                criteria.CreateAlias("Job2.Customer", "Customer2");
+                criteria.CreateAlias("Job2.MarketingOfficer", "MarketingOfficer2");
+                criteria.CreateAlias("MarketingOfficer2.UsersAuthorize", "UsersAuthorize2");
+
+                criteria.CreateAlias("IndicationEquipment.InformationIndication", "InformationIndication");
+                criteria.CreateAlias("InformationIndication.Job", "Job3");
+                criteria.CreateAlias("Job3.Customer", "Customer3");
+                criteria.CreateAlias("Job3.MarketingOfficer", "MarketingOfficer3");
+                criteria.CreateAlias("MarketingOfficer3.UsersAuthorize", "UsersAuthorize3");
+
+                criteria.CreateAlias("InformationIndication.VisitInformationDomain", "VisitInformationDomain");
+                criteria.CreateAlias("VisitInformationDomain.Job", "Job4");
+                criteria.CreateAlias("Job4.Customer", "Customer4");
+                criteria.CreateAlias("Job4.MarketingOfficer", "MarketingOfficer4");
+                criteria.CreateAlias("MarketingOfficer4.UsersAuthorize", "UsersAuthorize4");
+
+                criteria.Add(Restrictions.Eq("ApplicationDetail.Id", id));
+                var result = criteria.List<T>() as List<T>;
+                return result;
                 criteria.Add(Restrictions.Eq(Parent + ".Id", id));
                 return criteria.List<T>() as List<T>;
             }
         }
 
-        public List<ApplicationDetailViewModel> GetAll(int start, int limit, long id)
+        #region "Back up"
+        //public List<ApplicationDetailViewModel> GetAll(int start, int limit, long id)
+        //{
+        //    using (var session = SessionFactory.OpenSession())
+        //    {
+        //        //var result1 = session.QueryOver<WaiveDocument>()
+        //        //    .Fetch(x => x.ApplicationDetail).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
+        //        //    .List<WaiveDocument>();
+
+        //        var resultApp = session.Get<ApplicationDetail>(id);
+        //        var viewmodel = new ApplicationDetailViewModel(resultApp);
+        //        var resultWaiveDocument = session.QueryOver<WaiveDocument>().Where(x => x.ApplicationDetail.Id == id).List<WaiveDocument>() as List<WaiveDocument>;
+        //        var resultGuarantor = session.QueryOver<Guarantor>().Where(x => x.ApplicationDetail.Id == id).List<Guarantor>() as List<Guarantor>;
+        //        var resultMethodPayment = session.QueryOver<MethodPayment>().Where(x => x.ApplicationDetail.Id == id).List<MethodPayment>() as List<MethodPayment>;
+        //        var resultOptionEndLeaseTerm = session.QueryOver<OptionEndLeaseTerm>().Where(x => x.ApplicationDetail.Id == id).List<OptionEndLeaseTerm>() as List<OptionEndLeaseTerm>;
+        //        var resultMaintenance = session.QueryOver<Maintenance>().Where(x => x.ApplicationDetail.Id == id).List<Maintenance>() as List<Maintenance>;
+        //        var resultSeller = session.QueryOver<Seller>().Where(x => x.ApplicationDetail.Id == id).List<Seller>() as List<Seller>;
+        //        var resultPurchaseOrder = session.QueryOver<PurchaseOrder>().Where(x => x.ApplicationDetail.Id == id).List<PurchaseOrder>() as List<PurchaseOrder>;
+        //        var resultInsurance = session.QueryOver<Insurance>().Where(x => x.ApplicationDetail.Id == id).List<Insurance>() as List<Insurance>;
+        //        var resultCommission = session.QueryOver<Commission>().Where(x => x.ApplicationDetail.Id == id).List<Commission>() as List<Commission>;
+        //        var resultAnnualTax = session.QueryOver<AnnualTax>().Where(x => x.ApplicationDetail.Id == id).List<AnnualTax>() as List<AnnualTax>;
+        //        var resultStampDuty = session.QueryOver<StampDuty>().Where(x => x.ApplicationDetail.Id == id).List<StampDuty>() as List<StampDuty>;
+        //        var resultStipulateLoss = session.QueryOver<StipulateLoss>().Where(x => x.ApplicationDetail.Id == id).List<StipulateLoss>() as List<StipulateLoss>;
+        //        var resultCollectionSchedule = session.QueryOver<CollectionSchedule>().Where(x => x.ApplicationDetail.Id == id).List<CollectionSchedule>() as List<CollectionSchedule>;
+        //        var resultFunding = session.QueryOver<Funding>().Where(x => x.ApplicationDetail.Id == id).List<Funding>() as List<Funding>;
+        //        var resultTermCondition = session.QueryOver<TermCondition>().Where(x => x.ApplicationDetail.Id == id).List<TermCondition>() as List<TermCondition>;
+                
+        //        viewmodel.WaiveDocument = resultWaiveDocument;
+        //        viewmodel.MethodPayment = resultMethodPayment;
+        //        viewmodel.Guarantor = resultGuarantor;
+        //        viewmodel.OptionEndLeaseTerm = resultOptionEndLeaseTerm;
+        //        viewmodel.Maintenance = resultMaintenance;
+        //        //viewmodel.Seller = resultSeller;
+        //        //viewmodel.PurchaseOrder = resultPurchaseOrder;
+        //        viewmodel.Insurance = resultInsurance;
+        //        viewmodel.Commission = resultCommission;
+        //        //viewmodel.AnnualTax = resultAnnualTax;
+        //        viewmodel.StampDuty = resultStampDuty;
+        //        viewmodel.StipulateLoss = resultStipulateLoss;
+        //        //viewmodel.CollectionSchedule = resultCollectionSchedule;
+        //        viewmodel.Funding = resultFunding;
+        //        viewmodel.TermCondition = resultTermCondition;
+
+        //        List<ApplicationDetailViewModel> list = new List<ApplicationDetailViewModel>();
+        //        list.Add(viewmodel);
+
+        //        return list;
+        //    }
+        //}
+        #endregion
+
+        public List<ApplicationDetail> GetAll(int start, int limit, long jobId) 
         {
             using (var session = SessionFactory.OpenSession())
             {
-                //var result1 = session.QueryOver<WaiveDocument>()
-                //    .Fetch(x => x.ApplicationDetail).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                //    .List<WaiveDocument>();
+                var result = session.QueryOver<ApplicationDetail>()
+                        .Fetch(x => x.Job).Eager
+                        .Fetch(x => x.Job.Customer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.IndicationEquipment).Eager
+                        .Fetch(x => x.IndicationEquipment.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Where(x => x.Job.Id == jobId)
+                        .OrderBy(x => x.Id).Asc
+                        .Skip(start).Take(limit)
+                        .List<ApplicationDetail>() as List<ApplicationDetail>;
 
-                var resultApp = session.Get<ApplicationDetail>(id);
-                var viewmodel = new ApplicationDetailViewModel(resultApp);
-                var resultWaiveDocument = session.QueryOver<WaiveDocument>().Where(x => x.ApplicationDetail.Id == id).List<WaiveDocument>() as List<WaiveDocument>;
-                var resultGuarantor = session.QueryOver<Guarantor>().Where(x => x.ApplicationDetail.Id == id).List<Guarantor>() as List<Guarantor>;
-                var resultMethodPayment = session.QueryOver<MethodPayment>().Where(x => x.ApplicationDetail.Id == id).List<MethodPayment>() as List<MethodPayment>;
-                var resultOptionEndLeaseTerm = session.QueryOver<OptionEndLeaseTerm>().Where(x => x.ApplicationDetail.Id == id).List<OptionEndLeaseTerm>() as List<OptionEndLeaseTerm>;
-                var resultMaintenance = session.QueryOver<Maintenance>().Where(x => x.ApplicationDetail.Id == id).List<Maintenance>() as List<Maintenance>;
-                var resultSeller = session.QueryOver<Seller>().Where(x => x.ApplicationDetail.Id == id).List<Seller>() as List<Seller>;
-                var resultPurchaseOrder = session.QueryOver<PurchaseOrder>().Where(x => x.ApplicationDetail.Id == id).List<PurchaseOrder>() as List<PurchaseOrder>;
-                var resultInsurance = session.QueryOver<Insurance>().Where(x => x.ApplicationDetail.Id == id).List<Insurance>() as List<Insurance>;
-                var resultCommission = session.QueryOver<Commission>().Where(x => x.ApplicationDetail.Id == id).List<Commission>() as List<Commission>;
-                var resultAnnualTax = session.QueryOver<AnnualTax>().Where(x => x.ApplicationDetail.Id == id).List<AnnualTax>() as List<AnnualTax>;
-                var resultStampDuty = session.QueryOver<StampDuty>().Where(x => x.ApplicationDetail.Id == id).List<StampDuty>() as List<StampDuty>;
-                var resultStipulateLoss = session.QueryOver<StipulateLoss>().Where(x => x.ApplicationDetail.Id == id).List<StipulateLoss>() as List<StipulateLoss>;
-                var resultCollectionSchedule = session.QueryOver<CollectionSchedule>().Where(x => x.ApplicationDetail.Id == id).List<CollectionSchedule>() as List<CollectionSchedule>;
-                var resultFunding = session.QueryOver<Funding>().Where(x => x.ApplicationDetail.Id == id).List<Funding>() as List<Funding>;
-                var resultTermCondition = session.QueryOver<TermCondition>().Where(x => x.ApplicationDetail.Id == id).List<TermCondition>() as List<TermCondition>;
-                
-                viewmodel.WaiveDocument = resultWaiveDocument;
-                viewmodel.MethodPayment = resultMethodPayment;
-                viewmodel.Guarantor = resultGuarantor;
-                viewmodel.OptionEndLeaseTerm = resultOptionEndLeaseTerm;
-                viewmodel.Maintenance = resultMaintenance;
-                //viewmodel.Seller = resultSeller;
-                //viewmodel.PurchaseOrder = resultPurchaseOrder;
-                viewmodel.Insurance = resultInsurance;
-                viewmodel.Commission = resultCommission;
-                //viewmodel.AnnualTax = resultAnnualTax;
-                viewmodel.StampDuty = resultStampDuty;
-                viewmodel.StipulateLoss = resultStipulateLoss;
-                //viewmodel.CollectionSchedule = resultCollectionSchedule;
-                viewmodel.Funding = resultFunding;
-                viewmodel.TermCondition = resultTermCondition;
-
-                List<ApplicationDetailViewModel> list = new List<ApplicationDetailViewModel>();
-                list.Add(viewmodel);
-
-                return list;
+                return result;
             }
         }
 
-        public void Insert<T>(T entity)
+        public object Insert<T>(T entity)
         {
             try
             {
-                base.Insert<T>(entity);
+               return base.Insert<T>(entity);
             }
             catch (Exception ex)
             {
-
+                return null;
             }
         }
 
@@ -179,7 +261,19 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 
             }
         }
-             
+
+        public void SaveOrUpdate<T>(T entity)
+        {
+            try
+            {
+                base.SaveOrUpdate<T>(entity);
+            }
+            catch (Exception ex)
+            {
+
+            }
+        }
+
         public int Count()
         {
             using (var session = SessionFactory.OpenSession())

@@ -15,7 +15,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Table("JOB_INFORMATION_INDICATION");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            //References(x => x.Lead).Column("LEAD_ID");
+            References(x => x.VisitInformationDomain).Column("LEAD_ID");
+            References(x => x.Job).Column("JOB_ID");
+            //HasOne(x => x.RequestTransaction).Cascade.All();
             Map(x => x.Year, "YEAR");
             Map(x => x.InformationId).Column("INFORMATION_ID").Length(20);
             Map(x => x.RequestDate).Column("REQUEST_DATE").CustomSqlType("date");
@@ -50,8 +52,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.CreateBy).Column("CREATE_BY").Length(32);
             Map(x => x.UpdateDate).Column("UPDATE_DATE").CustomSqlType("date");
             Map(x => x.UpdateBy).Column("UPDATE_BY").Length(32);
-
-            //HasMany(x => x.Approval).KeyColumn("ID");
         }
     }
 }

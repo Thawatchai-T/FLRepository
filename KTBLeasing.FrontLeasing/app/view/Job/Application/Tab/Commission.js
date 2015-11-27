@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.Commission', {
     viewModel: {
         type: 'jobapplicationtabcommission'
     },
-    id: 'jopappcommission',
+    id: 'jobappcommission',
     layout: 'table',
     bodyPadding: 10,
     title: 'Commission',

@@ -63,13 +63,13 @@ Ext.define('TabUserInformation.view.Job.Application.Window.AdditionEquipmentDeta
                             colspan: 2,
                             width: 400,
                             fieldLabel: 'Equipment Name',
-                            name: 'Equipment'
+                            name: 'EquipmentName'
                         },
                         {
                             xtype: 'numberfield',
                             colspan: 2,
                             fieldLabel: 'Equipment Cost',
-                            name: 'CostBHT'
+                            name: 'Cost'
                         },
                         {
                             xtype: 'numberfield',

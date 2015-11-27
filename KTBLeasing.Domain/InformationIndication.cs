@@ -11,8 +11,9 @@ namespace KTBLeasing.FrontLeasing.Domain
     {
         public InformationIndication()
         {
+            VisitInformationDomain = new VisitInformationDomain();
             Job = new Job();
-            //Approval = new List<Approval>();
+            //sRequestTransaction = new RequestTransaction();
         }
 
         public virtual long Id { get; set; }
@@ -47,7 +48,9 @@ namespace KTBLeasing.FrontLeasing.Domain
         public virtual string Remark { get; set; }
         public virtual bool Approve { get; set; }
 
-        //public virtual IList<Approval> Approval { get; set; }
+        public virtual VisitInformationDomain VisitInformationDomain { get; set; }
         public virtual Job Job { get; set; }
+        //public virtual RequestTransaction RequestTransaction { get; set; }
+
     }
 }

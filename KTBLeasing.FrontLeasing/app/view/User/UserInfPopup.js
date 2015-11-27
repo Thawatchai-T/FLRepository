@@ -84,6 +84,7 @@ Ext.define('TabUserInformation.view.User.UserInfPopup', {
         {
             xtype: 'gridpanel',
             autoScroll: true,
+            forceFit: true,
             height: 500,
             store: 'userInformations',
             dockedItems: [
@@ -99,22 +100,17 @@ Ext.define('TabUserInformation.view.User.UserInfPopup', {
             columns: [
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'id',
-                    text: 'Id'
+                    dataIndex: 'MarketingCode',
+                    text: 'MarketingCode'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Code',
-                    text: 'Code'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'Title',
+                    dataIndex: 'TitleNameTh',
                     text: 'Title'
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'Name',
+                    dataIndex: 'FullNameTh',
                     text: 'Name'
                 },
                 {
@@ -124,23 +120,17 @@ Ext.define('TabUserInformation.view.User.UserInfPopup', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'MarketingGroup',
-                    text: 'MarketingGroup'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'MarketingCode',
-                    text: 'MarketingCode'
-                },
-                {
-                    xtype: 'gridcolumn',
-                    dataIndex: 'Department',
+                    dataIndex: 'DepartmentName',
                     text: 'Department'
                 }
-            ]
+            ],
+            listeners: {
+                itemdblclick: 'onGridpanelItemDblClick'
+            }
         },
         {
             xtype: 'toolbar',
+            itemId: 'userinf-toolbar',
             ui: 'footer',
             items: [
                 {

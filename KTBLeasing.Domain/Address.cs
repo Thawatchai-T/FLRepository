@@ -10,7 +10,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public Address()
         {
-            //if (Customer == null) Customer = new Customer();
+            Customer = new Customer();
         }
         public virtual long Id { get; set; }
         public virtual string AddressTh { get; set; }
@@ -21,10 +21,8 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual string Remark { get; set; }
         public virtual long AddressType { get; set; }
         public virtual short Active { get; set; }
-        //public virtual DateTime? CreateDate { get; set; }
-        //public virtual string UpdateDate { get; set; }
-        //public virtual string CreateBy { get; set; }
-        //public virtual string UpdateBy { get; set; }
+
+        public virtual Customer Customer { get; set; }
         
     }
 }
