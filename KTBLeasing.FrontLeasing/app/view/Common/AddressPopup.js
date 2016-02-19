@@ -33,10 +33,12 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
     viewModel: {
         type: 'popupaddresspopup'
     },
+    id: 'addresspopup',
     autoShow: true,
     width: 750,
     title: 'Address',
     modal: true,
+    session: true,
 
     items: [
         {
@@ -46,27 +48,33 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
                 type: 'table',
                 columns: 2
             },
+            trackResetOnLoad: true,
             items: [
+                {
+                    xtype: 'hiddenfield',
+                    name: 'save',
+                    value: 'N'
+                },
+                {
+                    xtype: 'hiddenfield',
+                    itemId: 'MasterPage',
+                },
                 {
                     xtype: 'hiddenfield',
                     name: 'Id'
                 },
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     colspan: 2,
                     fieldLabel: 'Customer Code',
-                    name: 'CustomerId',
-                    readOnly: true,
-                    allowBlank: false
+                    name: 'CustomerId'
                 },
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     colspan: 2,
                     width: '90%',
                     fieldLabel: 'Customer Name',
-                    name: 'CustomerThaiName',
-                    readOnly: true,
-                    allowBlank: false
+                    name: 'NameTh'
                 },
                 {
                     xtype: 'combobox',
@@ -181,31 +189,21 @@ Ext.define('TabUserInformation.view.Common.AddressPopup', {
                     checked: true,
                     inputValue: 1
                 }
-            ],
-            dockedItems: [
-                {
-                    xtype: 'toolbar',
-                    dock: 'bottom',
-                    ui: 'footer',
-                    items: [
-                        {
-                            xtype: 'button',
-                            text: 'Save',
-                            listeners: {
-                                click: 'onButtonSaveClick'
-                            }
-                        },
-                        {
-                            xtype: 'button',
-                            text: 'Cancel',
-                            listeners: {
-                                click: 'onButtonCancelClick'
-                            }
-                        }
-                    ]
-                }
             ]
         }
-    ]
+    ],
+    buttons: [
+        {
+            xtype: 'button',
+            glyph: 'xf0c7@FontAwesome',
+            text: 'Save',
+            listeners: {
+                click: 'onButtonSaveClick'
+            }
+        }
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose'
+    }
 
 });

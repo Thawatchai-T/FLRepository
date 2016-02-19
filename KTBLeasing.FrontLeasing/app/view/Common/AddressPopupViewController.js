@@ -17,76 +17,67 @@ Ext.define('TabUserInformation.view.Common.AddressPopupViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.popupaddresspopup',
 
-    onUpdate: function (cell, value, record, view) {
-        console.log(cell);
-        console.log(value);
-        console.log(record);
-        console.log(view);
-    },
-
     onButtonSaveClick: function (button, e, eOpts) {
-        var status = false;
+        var view = this.getView();
 
-        var form = this.getView().down('form').getForm();
+        Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
+            if (msg === 'yes') {
+                TabUserInformation.controller.WindowController.fnSave(view);
+            }
+        });
+    },
 
-        if (form.isValid()) {
-            Ext.MessageBox.confirm('Confirm', 'คุณต้องการที่บันทึกหรือเปลื่ยนแปลงข้อมูล?',
-                function (cbtn, bool) {
-                    if (cbtn == 'yes') {
-                        form.submit({
-                            url: 'api/address/dopost',
-                            success: function (form, action) {
-                                console.log(action);
-                                Ext.Msg.alert('Success', "บันทึกข้อมูลเรียบร้อย");
-                                Ext.getCmp('pagingtoolbar-address').moveFirst();
-                                //button.up('window').destroy();
-                                button.up('window').close();
-                            },
-                            failure: function (form, action) {
-                                Ext.Msg.alert('Failed', 'กรุณาตรวจสอบว่า ชื่อผู้ใช้มีอยู่ในระบบ?');
-                            }
-                        });
-                    }
+    onBeforeClose: function (panel, eOpts) {
+        var me = this,
+            form = panel.down('form').getForm(),
+            record = form.getRecord();
 
-                }
-            );
-
-        } else {
-            Ext.Msg.alert('Data is not valid!', 'กรุณาเลือกข้อมูลให้ครบถ้วน');
+        if (panel.closeMe) {
+            panel.closeMe = false;
+            return true;
         }
-    },
 
-    onButtonCancelClick: function (button, e, eOpts) {
-        this.getView().close();
-    },
+        if (form.isDirty()) {
+            if (form.findField('save').getValue() === 'N') {
+                Ext.Msg.show({
+                    title: 'Save',
+                    message: 'Save Changes?',
+                    buttons: Ext.Msg.YESNOCANCEL,
+                    icon: Ext.Msg.QUESTION,
+                    width: 300,
+                    fn: function (btn) {
+                        if (btn === 'yes') {
+                            TabUserInformation.controller.WindowController.fnSave(panel);
+                        } else if (btn === 'no') {
+                            if (record.phantom) // phantom true = not exist server-side
+                            {
+                                record.phantom = false;
+                                record.set('Active', false);
+                                record.drop();
+                                record.save();
+                            }
+                            panel.closeMe = true;
+                            panel.close();
+                        }
+                    }
+                });
+            } else {
+                panel.closeMe = true;
+                panel.close();
+            }
+        } else {
+            if (record.phantom) // phantom true = not exist server-side
+            {
+                record.phantom = false;
+                record.set('Active', false);
+                record.drop();
+                record.save();
+            }
+            panel.closeMe = true;
+            panel.close();
+        }
 
-    onTextchange: function (text, oldText, newText, eOpts) {
-        var filters = this.getView().getReference('#province').getStore().getFilters();
-        console.log(eOpts);
-        console.log(newText);
-        console.log(text);
-        console.log(filters);
-
-        //filters = grid.store.getFilters(),
-        //if (text != null) {
-        //    store.getProxy().extraParams.text = text;
-        //} else {
-        //    store.getProxy().extraParams.text = 0;
-        //}
-        //store.load();
-
-        //filter
-        //if (textfield.value) {
-        //    this.nameFilter = filters.add({ id: 'nameFilter',
-        //        property: property,
-        //        value: textfield.value,
-        //        anyMatch: true,
-        //        caseSensitive: true
-        //    });
-        //} else if (this.nameFilter) {
-        //    filters.remove(this.nameFilter);
-        //    this.nameFilter = null;
-        //}
+        return false;
     }
 
 });

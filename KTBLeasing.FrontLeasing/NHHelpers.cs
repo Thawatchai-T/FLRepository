@@ -30,7 +30,7 @@ namespace KTBLeasing.FrontLeasing
             {
                 var sessionf = Fluently.Configure()
                     .ProxyFactoryFactory<ProxyFactoryFactory>()
-                    .Database(OracleClientConfiguration.Oracle10.ConnectionString(x =>
+                    .Database(OracleClientConfiguration.Oracle10.UseOuterJoin().ConnectionString(x =>
                         x.Server(Server)
                         .Port(Port)
                         .Username(Username)

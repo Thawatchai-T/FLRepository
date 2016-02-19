@@ -29,9 +29,16 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetailVi
             autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/ApplicationDetail',
+                url: 'api/EquipmentList',
                 reader: {
                     type: 'json'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true
+                },
+                api: {
+                    create: 'api/ApplicationDetail/Post'
                 }
             },
             listeners: {

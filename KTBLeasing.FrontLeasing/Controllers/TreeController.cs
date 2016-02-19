@@ -178,19 +178,19 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         //[HttpPost]
-        public bool DoPost(ApplicationDetailModel entity)
-        {
-            try
-            {
-                var a = entity;
-                // ApplicationDetailRepository.SaveOrUpdate(entity);
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e);
-            }
-            return true;
-        }
+        //public bool DoPost(ApplicationDetailModel entity)
+        //{
+        //    try
+        //    {
+        //        var a = entity;
+        //        // ApplicationDetailRepository.SaveOrUpdate(entity);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        Logger.Error(e);
+        //    }
+        //    return true;
+        //}
     
     }
 }

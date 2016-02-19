@@ -12,10 +12,11 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
     {
         public GuarantorListMap()
         {
-            Table("JOB_AD_GUARANTOR_LIST");
+            Table("GUARANTOR_LIST");
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            References(x => x.ApplicationDetail).Column("APP_ID");
+            //References(x => x.ApplicationDetail).Column("APP_ID");
+            Map(x => x.GuarantorId).Column("GUARANTOR_Id");
             Map(x => x.GuarantorType).Column("GUARANTOR_TYPE");
             Map(x => x.Name).Column("NAME").Length(100);
             Map(x => x.Address).Column("ADDRESS").Length(255);
@@ -26,6 +27,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.PersonAddress).Column("PERSON_ADDRESS").Length(255);
             Map(x => x.ConsentSpouse).Column("CONSENT_SPOUSE").Length(100);
             Map(x => x.SpouseAddress).Column("SPOUSE_ADDRESS").Length(255);
+            Map(x => x.CreditLimitId).Column("CREDIT_LIMIT_ID");
+            Map(x => x.SSID).Column("SSID");
         }
     }
 }

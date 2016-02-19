@@ -38,6 +38,14 @@ Ext.define('TabUserInformation.model.BaseCommonData', {
         {
             type: 'boolean',
             name: 'Active'
+        },
+        {
+            type: 'string',
+            name: 'IdAndName',
+            convert: function (v, rec) {
+                return rec.get('Id') + ' ' + rec.get('Name');
+            },
+            depends: ['Id', 'Name']
         }
     ]
 });

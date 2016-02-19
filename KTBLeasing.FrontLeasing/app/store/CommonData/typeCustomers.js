@@ -26,16 +26,20 @@ Ext.define('TabUserInformation.store.CommonData.typeCustomers', {
         var me = this;
         cfg = cfg || {};
         me.callParent([Ext.apply({
-            storeId: 'typeCustomers',
+            storeId: 'CommonData.typeCustomers',
             model: 'TabUserInformation.model.BaseCommonData',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=type_customer',
                 reader: {
                     type: 'json'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

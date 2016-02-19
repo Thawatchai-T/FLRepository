@@ -29,11 +29,15 @@ Ext.define('TabUserInformation.store.CommonData.marketingGroups', {
             model: 'TabUserInformation.model.BaseCommonData',
             proxy: {
                 type: 'rest',
-                url: 'api/common/getmarketinggroup',
+                url: 'api/common/getcommonbynameeng?nameeng=marketing_group',
                 reader: {
                     type: 'json'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

@@ -37,7 +37,11 @@ Ext.define('TabUserInformation.store.tabs', {
             proxy: {
                 type: 'rest',
                 url: 'api/tab/gettab',
-            }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

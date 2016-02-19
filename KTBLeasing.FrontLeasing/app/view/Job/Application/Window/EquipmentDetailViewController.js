@@ -121,7 +121,6 @@ Ext.define('TabUserInformation.view.Job.Application.Window.EquipmentDetailViewCo
             //var FrameNo = store.getAt(store.totalCount - 1).FrameChassisSerialNo + 1
         //record.data.FrameChassisSerialNo = store.getAt(store.totalCount - 1).FrameChassisSerialNo + 1;
         store.add(record);
-        grid.view.refresh();
     },
 
     onButtonDeleteClick: function (button, e, eOpts) {

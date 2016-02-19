@@ -1,0 +1,42 @@
+using System; 
+using System.Collections.Generic; 
+using System.Text; 
+using FluentNHibernate.Mapping;
+using KTBLeasing.FrontLeasing.Domain; 
+
+namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
+
+
+    public class CreditLimitApprovalMap : ClassMap<CreditLimitApproval>
+    {
+        public CreditLimitApprovalMap()
+        {
+			Table("CREDIT_LIMIT_APPROVAL");
+			LazyLoad();
+            Id(x => x.Id, "ID").GeneratedBy.Increment();
+            HasMany(x => x.Customer).KeyColumn("CL_ID").Cascade.All().OrderBy("ID");
+            Map(x => x.TypeCreditLimit).Column("TYPE_CREDIT_LIMIT");
+            Map(x => x.MarketingGroup).Column("MARKETING_GROUP");
+            Map(x => x.Branch).Column("BRANCH");
+            Map(x => x.ApproveDate).Column("APPROVE_DATE");
+            Map(x => x.CustType).Column("CUST_TYPE");
+            Map(x => x.TypeLeasing).Column("TYPE_LEASING");
+            Map(x => x.TypeProductHP).Column("TYPE_PRODUCT_HP");
+            Map(x => x.TypeProductLease).Column("TYPE_PRODUCT_LEASE");
+            Map(x => x.CreditLimit).Column("CREDIT_LIMIT");
+            Map(x => x.Total).Column("TOTAL");
+            Map(x => x.Balance).Column("BALANCE");
+            Map(x => x.AssetAmount).Column("ASSET_AMOUNT");
+            Map(x => x.Limit).Column("LIMIT");
+            Map(x => x.StartLimitDate).Column("START_LIMIT_DATE");
+            Map(x => x.EndLimitDate).Column("END_LIMIT_DATE");
+            Map(x => x.LimitHPAmount).Column("LIMIT_HP_AMOUNT");
+            Map(x => x.LimitLeaseAmount).Column("LIMIT_LEASE_AMOUNT");
+            Map(x => x.Active).Column("ACTIVE");
+            Map(x => x.CreateBy).Column("CREATE_BY");
+            Map(x => x.UpdateBy).Column("UPDATE_BY");
+            Map(x => x.CreateDate).Column("CREATE_DATE");
+            Map(x => x.UpdateDate).Column("UPDATE_DATE");
+        }
+    }
+}

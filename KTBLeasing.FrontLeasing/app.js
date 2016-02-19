@@ -79,7 +79,14 @@ Ext.application({
         'Shareholder',
         'RedbookVehicle',
         'RegistrationForm',
-        'USDCurrency'
+        'USDCurrency',
+        'EqpRel',
+        //'VisitCalling',
+        'Leads',
+        'CreditApproval',
+        'CreditLimitDetail',
+        'Customer',
+        'GuarantorModel'
     ],
     stores: [
         'userInformations',
@@ -203,7 +210,35 @@ Ext.application({
         'jobs',
         'redbookVehicles',
         'CommonData.registrationForms',
-        'currency-USD'
+        'currency-USD',
+        'CommonData.EQPs',
+        'CommonData.DownHireInsurances',
+        'CommonData.otherConditions',
+        'CommonData.assetTypes',
+        'CommonData.terms',
+        'CommonData.termStyles',
+        'CommonData.chequeConditions',
+        'CommonData.insurances',
+        'CommonData.regists',
+        'CommonData.registAgencies',
+        'CommonData.typeLeasings',
+        'CommonData.products',
+        'CommonData.guarantors',
+        'creditApprovals',
+        'creditLimitDetails',
+        'CommonData.assetAmounts',
+        'CommonData.downRates',
+        'CommonData.branchs',
+        'customers',
+        'CommonData.units',
+        'CommonData.limitTypes',
+        'CommonData.limits',
+        'CommonData.timeInsurances',
+        'CommonData.assets',
+        'guarantorModels',
+        'CommonData.collateralTypes',
+        'CommonData.BOTcollaterals',
+        'CommonData.BOTSubcollaterals',
     ],
     views: [
         'User.UserInfWindow',
@@ -266,11 +301,18 @@ Ext.application({
         'Restructure.ARCard',
         'Approve.ApprovalWindow',
         'Approve.ApproveQueue',
-        'Customer.Shareholders'
-
+        'Customer.Shareholders',
+        'Lead.LeadWindow',
+        'Financial.FinancialAmountWindow',
+        'Financial.FinancialAmountDetail',
+        'Financial.FinancialAmountTab',
+        'Guarantor.GuarantorWindow',
+        'Guarantor.GuarantorsWindow',
+        'Customer.CustomerWindow'
     ],
     controllers: [
-        'HomeController'
+        'HomeController',
+        'WindowController'
     ],
     name: 'TabUserInformation',
 
@@ -279,6 +321,8 @@ Ext.application({
             Ext.create('TabUserInformation.view.Restructure.RestructureList', { renderTo: Ext.getBody() });
         }
         else {
+//            Ext.create('TabUserInformation.view.Financial.FinancialAmountTab', { renderTo: Ext.getBody() });
+            //Ext.create('TabUserInformation.view.Job.Lead.LeadTab', { renderTo: Ext.getBody() });
             //        Ext.create('TabUserInformation.view.Home.index', { renderTo: Ext.getBody() });
 //            Ext.create('TabUserInformation.view.Job.JobWindow', { renderTo: Ext.getBody() });
             //                Ext.create('TabUserInformation.view.Job.Application.ApplicationTab', { renderTo: Ext.getBody() });

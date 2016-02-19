@@ -18,7 +18,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         List<EquipmentList> Find(int start, int limit, string text);
         List<EquipmentList> GetAll();
         List<EquipmentList> GetAllWithOrderBy(string orderby);
-        List<EquipmentList> GetAll(int start, int limit, long id);
+        List<EquipmentList> GetByAppId(int start, int limit, long app_id);
+        List<EquipmentList> GetByPOId(int start, int limit, long app_id, long po_id);
         void Insert(EquipmentList entity);
         void Update(EquipmentList entity);
         void Delete(long id);
@@ -113,16 +114,86 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             return this.ExecuteICriteriaOrderBy<EquipmentList>(new EquipmentList(), orderby) as List<EquipmentList>;
         }
-        
-        public List<EquipmentList> GetAll(int start, int limit, long id)
+
+        public List<EquipmentList> GetByAppId(int start, int limit, long app_id)
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var list = session.QueryOver<EquipmentList>().Where(x => x.ApplicationDetail.Id == id)
-                    .Fetch(x => x.ApplicationDetail).Eager.TransformUsing(new DistinctRootEntityResultTransformer())
-                    .List<EquipmentList>() as List<EquipmentList>;
+                try
+                {
+                    var list = session.QueryOver<EquipmentList>()
+                        .Fetch(x => x.ApplicationDetail).Eager
+                        .Fetch(x => x.ApplicationDetail.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.PurchaseOrder).Eager
+                        .Where(x => x.ApplicationDetail.Id == app_id)
+                        .List<EquipmentList>() as List<EquipmentList>;
 
-                return list;
+                    return list;
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    return null;
+                }
+            }
+        }
+
+        public List<EquipmentList> GetByPOId(int start, int limit, long app_id, long po_id)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                try
+                {
+                    var list = session.QueryOver<EquipmentList>()
+                        .Fetch(x => x.ApplicationDetail).Eager
+                        .Fetch(x => x.ApplicationDetail.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.Customer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer).Eager
+                        .Fetch(x => x.ApplicationDetail.IndicationEquipment.InformationIndication.VisitInformationDomain.Job.MarketingOfficer.UsersAuthorize).Eager
+                        .Fetch(x => x.PurchaseOrder).Eager
+                        .Where(x => x.PurchaseOrder.Id == po_id)
+                        .List<EquipmentList>() as List<EquipmentList>;
+
+                    return list;
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    return null;
+                }
             }
         }
              

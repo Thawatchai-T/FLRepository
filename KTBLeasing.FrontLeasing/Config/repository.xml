@@ -119,4 +119,14 @@
               type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.ThirdPartyRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
     <property name="SessionFactory"  ref="sessionFactory"/>
   </object>
+
+  <object id="creditLimitRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.CreditLimitRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
+
+  <object id="guarantorRepository"
+              type="KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory.GuarantorRepository, KTBLeasing.FrontLeasing.Mapping.Orcl">
+    <property name="SessionFactory"  ref="sessionFactory"/>
+  </object>
 </objects>

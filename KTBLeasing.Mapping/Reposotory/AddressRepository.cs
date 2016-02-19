@@ -12,8 +12,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface IAddressRepository
     {
-        void Insert(Address entity);
-        void SaveOrUpdate(Address entity);
+        long Insert<T>(T entity);
+        void Update<T>(T entity);
+        void SaveOrUpdate<T>(T entity);
         List<Address> GetAll();
         List<Address> GetAllWithOrderBy(string orderby);
         List<Address> GetAll(int start, int limit, int custid);
@@ -25,49 +26,48 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
 
-        public void Insert(Address entity)
+        public long Insert<T>(T entity)
         {
-            using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
+            try
             {
-                try
+                using (var session = SessionFactory.OpenSession())
                 {
-                    session.Save(entity);
-                    ts.Commit();
+                    var result = base.Insert<T>(entity);
+
+                    long id = Convert.ToInt64(result);
+                    return id;
                 }
-                catch (Exception e)
-                {
-                    Logger.Error(e);
-                    ts.Rollback();
-                }
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return 0;
             }
         }
 
-        public void SaveOrUpdate(Address entity)
+        public void Update<T>(T entity)
         {
             using (var session = SessionFactory.OpenSession())
-            using (var ts = session.BeginTransaction())
             {
-                try
-                {
-                    session.SaveOrUpdate(entity);
-                    ts.Commit();
-                }
-                catch (Exception e)
-                {
-                    Logger.Error(e);
-                }
+                base.Update<T>(entity);
             }
+        }
 
+        public void SaveOrUpdate<T>(T entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                base.SaveOrUpdate<T>(entity);
+            }
         }
 
         public List<Address> GetAll()
         {
             using (var session = SessionFactory.OpenSession())
             {
-                return session.QueryOver<Address>().List<Address>() as List<Address>;
-                
-                return this.ExecuteICriteria<Address>() as List<Address>;
+                return session.QueryOver<Address>()
+                    .Where(x => x.Active == true)
+                    .List<Address>() as List<Address>;
             }
         }
 
@@ -177,7 +177,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                         //             ).Skip(start).Take(limit).ToList<Address>();
                         var result = session.QueryOver<Address>()
                                 .Fetch(x => x.Customer).Eager
-                                .Where(x => x.Customer.Id == custid)
+                                .Where(x => x.Customer.Id == custid && x.Active == true)
                                 .List<Address>() as List<Address>;
 
                         return result;
@@ -195,7 +195,9 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         {
             using (var session = SessionFactory.OpenSession())
             {
-                var result = session.QueryOver<Address>().RowCount();
+                var result = session.QueryOver<Address>()
+                    .Where(x => x.Active == true)
+                    .RowCount();
                 session.Close();
                 return result;
             }

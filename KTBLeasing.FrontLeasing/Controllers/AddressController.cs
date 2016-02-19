@@ -34,15 +34,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // POST api/address
-        public void Post(Address form)
+        public void Post(Address value)
         {
+            value.CreateDate = DateTime.Now;
+
+            AddressRepository.Insert(value);
         }
 
-        public void DoPost(Address form)
+        public void DoPost(Address value)
         {
             try
             {
-                AddressRepository.SaveOrUpdate(form);
+                AddressRepository.SaveOrUpdate(value);
             }
             catch (Exception e)
             {
@@ -50,14 +53,19 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         // PUT api/address/5
-        public void Put(int id, [FromBody]string value)
+        public void Put(int id, Address value)
         {
+            value.UpdateDate = DateTime.Now;
+
+            AddressRepository.Update(value);
         }
 
         // DELETE api/address/5
-        public void Delete(int id)
+        public void Delete(int id, Address value)
         {
+            value.UpdateDate = DateTime.Now;
 
+            AddressRepository.Update(value);
         }
     }
 }

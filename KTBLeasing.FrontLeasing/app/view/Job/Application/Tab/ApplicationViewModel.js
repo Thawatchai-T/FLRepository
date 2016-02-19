@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.view.Job.Application.Tab.ApplicationViewModel', {
             //autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/ApplicationDetail',
+                url: 'api/EquipmentList',
                 reader: {
                     type: 'json'
                 },

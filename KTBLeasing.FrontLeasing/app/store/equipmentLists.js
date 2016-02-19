@@ -31,7 +31,7 @@ Ext.define('TabUserInformation.store.equipmentLists', {
        //     autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/ApplicationDetail',
+                url: 'api/EquipmentList',
                 reader: {
                     type: 'json'
                 },

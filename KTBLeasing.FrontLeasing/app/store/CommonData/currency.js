@@ -27,7 +27,7 @@ Ext.define('TabUserInformation.store.CommonData.currency', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.currency',
             model: 'TabUserInformation.model.BaseCommonData',
-            autoLoad: true,
+            //autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=currency',

@@ -15,6 +15,17 @@
 
 Ext.define('TabUserInformation.view.Common.AddressWindowViewModel', {
     extend: 'Ext.app.ViewModel',
-    alias: 'viewmodel.windowaddresswindow'
+    alias: 'viewmodel.windowaddresswindow',
+
+    stores: {
+        addresses: {
+            model: 'TabUserInformation.model.Address',
+            session: true,
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }]
+        }
+    }
 
 });

@@ -156,16 +156,20 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                 }
                             ]
                         },
+//                        {
+//                            xtype: 'combobox',
+//                            margin: '0 0 0 5',
+//                            fieldLabel: 'Nationality',
+//                            width: 400,
+//                            name: 'NatureCust',
+//                            displayField: 'Name',
+//                            store: 'CommonData.natureCusts',
+//                            valueField: 'Id',
+//                            autoLoadOnValue: true
+//                        },
                         {
-                            xtype: 'combobox',
-                            margin: '0 0 0 5',
-                            fieldLabel: 'Nationality',
-                            width: 400,
-                            name: 'NatureCust',
-                            displayField: 'Name',
-                            store: 'CommonData.natureCusts',
-                            valueField: 'Id',
-                            autoLoadOnValue: true
+                            xtype: 'textfield',
+                            name: 'NatureCust'
                         },
                         {
                             xtype: 'container',
@@ -188,7 +192,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfWindow', {
                                     xtype: 'textfield',
                                     width: 375,
                                     margin: '0 0 0 5',
-                                    name: 'CustomerThaiName'
+                                    name: 'NameTh'
                                 }
                             ]
                         },

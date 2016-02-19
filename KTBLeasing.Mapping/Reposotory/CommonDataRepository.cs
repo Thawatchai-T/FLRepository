@@ -21,9 +21,12 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
         void SaveOrUpdate(CommonData entity);
         bool Delete(int entity);
         CommonData GetById(long id);
+        List<EQP> GetEQP();
+        List<AssetType> GetAssetType();
 
         bool Update(CommonData commonAddress);
         List<CommonData> GetCommonByNameEng(string nameeng);
+        List<CommonData> GetSubCommonById(long id);
         List<Province> GetProvince();
         List<CommonCustomerDomain> GetCustomerInfoPopup(int start, int limit);
         int CountCommonCustomerPopup();
@@ -195,6 +198,26 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
+        public List<CommonData> GetSubCommonById(long id)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<CommonData>()
+                        .Where(x => x.Parent_Id == id)
+                        .List<CommonData>() as List<CommonData>;
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return null;
+                }
+            }
+        }
+
         public bool Delete(int id)
         {
              var sql = string.Format("DELETE COMMON_DATA a WHERE EXISTS (SELECT * FROM (SELECT b.ID FROM COMMON_DATA b CONNECT BY prior b.id  = b.PARENT_ID START WITH b.Parent_id = {0} )tmp " +
@@ -276,5 +299,45 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
         #endregion
+
+        public List<EQP> GetEQP()
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<EQP>()
+                        .OrderBy(x => x.IdSort).Asc
+                        .List<EQP>() as List<EQP>;
+
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    return null;
+                }
+            }
+        }
+
+        public List<AssetType> GetAssetType()
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<AssetType>()
+                        .OrderBy(x => x.Id).Asc
+                        .List<AssetType>() as List<AssetType>;
+
+                    return result;
+                }
+                catch (Exception e)
+                {
+                    Logger.Error(e);
+                    return null;
+                }
+            }
+        }
     }
 }

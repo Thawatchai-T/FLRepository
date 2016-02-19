@@ -60,6 +60,10 @@
     <Compile Include="Approval.cs" />
     <Compile Include="BG.cs" />
     <Compile Include="Background.cs" />
+    <Compile Include="FilterModel.cs" />
+    <Compile Include="GuarantorModel.cs" />
+    <Compile Include="CreditLimitApproval.cs" />
+    <Compile Include="CreditLimitDetail.cs" />
     <Compile Include="RequestTransaction.cs" />
     <Compile Include="RegistrationForm.cs" />
     <Compile Include="Job.cs" />
@@ -91,6 +95,8 @@
     <Compile Include="Insurance.cs" />
     <Compile Include="Funding.cs" />
     <Compile Include="Guarantor.cs" />
+    <Compile Include="ViewCommonData\AssetType.cs" />
+    <Compile Include="ViewCommonData\EQP.cs" />
     <Compile Include="ViewModel\ApplicationDetailViewModel.cs" />
     <Compile Include="ViewModel\TestApplicationDetailViewModel.cs" />
     <Compile Include="WaiveDocument.cs" />

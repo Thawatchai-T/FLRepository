@@ -24,8 +24,10 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.TitleCustNameTh).Column("TITLE_CUST_NAME_TH");
             Map(x => x.TsicCode).Column("TSIC_CODE");
             Map(x => x.CustType).Column("CUST_TYPE");
-            Map(x => x.NameTh).Column("NAME_TH");
-            Map(x => x.NameEng).Column("NAME_ENG");
+            Map(x => x.FirstNameTh).Column("FIRST_NAME_TH");
+            Map(x => x.LastNameTh).Column("LAST_NAME_TH");
+            Map(x => x.FirstNameEng).Column("FIRST_NAME_ENG");
+            Map(x => x.LastNameEng).Column("LAST_NAME_ENG");
             Map(x => x.ParentId).Column("PARENT_ID").Not.Nullable();
             Map(x => x.VsAreaProvince).Column("VS_AREA_PROVINCE");
             Map(x => x.VsAreaIndEstate).Column("VS_AREA_IND_ESTATE");
@@ -33,16 +35,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.Vat).Column("VAT");
             Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER");
             Map(x => x.Remark).Column("REMARK");
-            Map(x => x.Active).Column("ACTIVE");
-            Map(x => x.CreateBy).Column("CREATE_BY");
-            Map(x => x.UpdateBy).Column("UPDATE_BY");
-            Map(x => x.CreateDate).Column("CREATE_DATE");
-            Map(x => x.UpdateDate).Column("UPDATE_DATE");
             Map(x => x.GroupCust).Column("GROUP_CUST_ID");
             Map(x => x.PhoneNo).Column("PHONE_NO");
             Map(x => x.FaxNo).Column("FAX_NO");
             Map(x => x.KTBCustType).Column("KTB_CUST_TYPE");
             Map(x => x.Email).Column("E_MAIL");
+            Map(x => x.BirthDate).Column("BIRTH_DATE");
+            Map(x => x.IdIssueDate).Column("ID_ISSUE_DATE");
+            Map(x => x.IdExpireDate).Column("ID_EXPIRE_DATE");
+            Map(x => x.OwnerBranch).Column("OWNER_BRANCH");
+            Map(x => x.Contact).Column("CONTACT");
+            Map(x => x.VAT_Registration).Column("VAT_REGISTRATION");
+            Map(x => x.CreditLimit).Column("CREDIT_LIMIT");
+            Map(x => x.CreditLimitId).Column("CL_ID");
+
+            Map(x => x.Active).Column("ACTIVE");
+            Map(x => x.CreateBy).Column("CREATE_BY");
+            Map(x => x.UpdateBy).Column("UPDATE_BY");
+            Map(x => x.CreateDate).Column("CREATE_DATE");
+            Map(x => x.UpdateDate).Column("UPDATE_DATE");
         }
     
         

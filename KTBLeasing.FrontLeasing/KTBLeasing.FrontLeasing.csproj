@@ -210,6 +210,8 @@
     <Compile Include="Controllers\AnnualTaxController.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
     <Compile Include="Controllers\ARCardController.cs" />
+    <Compile Include="Controllers\CreditLimitDetailController.cs" />
+    <Compile Include="Controllers\CreditLimitApprovalController.cs" />
     <Compile Include="Controllers\RequestTransactionController.cs" />
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\EquipmentDetailController.cs" />
@@ -223,7 +225,7 @@
     <Compile Include="Controllers\ThirdPartyController.cs" />
     <Compile Include="Controllers\SellerController.cs" />
     <Compile Include="Controllers\InsurancePolicyController.cs" />
-    <Compile Include="Controllers\GuarantorListController.cs" />
+    <Compile Include="Controllers\GuarantorController.cs" />
     <Compile Include="Controllers\EquipmentListController.cs" />
     <Compile Include="Controllers\DefineAddressController.cs" />
     <Compile Include="Controllers\LeadController.cs" />
@@ -256,6 +258,7 @@
     <Compile Include="Models\ContactPersonModel.cs" />
     <Compile Include="Models\ARCardModel.cs" />
     <Compile Include="Models\JobModel.cs" />
+    <Compile Include="Models\PagingModel.cs" />
     <Compile Include="Models\RestructureListModel.cs" />
     <Compile Include="Models\RestructureModel.cs" />
     <Compile Include="Models\InstallmentModel.cs" />
@@ -278,7 +281,6 @@
     <Compile Include="Models\EquipmentListModel.cs" />
     <Compile Include="Models\DefineAddressModel.cs" />
     <Compile Include="Models\FundingModel.cs" />
-    <Compile Include="Models\GuarantorModel.cs" />
     <Compile Include="Models\InsuranceModel.cs" />
     <Compile Include="Models\LeadModel.cs" />
     <Compile Include="Models\EquipmentModel.cs" />
@@ -337,6 +339,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Content Include="app.js" />
+    <Content Include="app\controller\WindowController.js" />
     <Content Include="app\controller\HomeController.js" />
     <Content Include="app\model\Address.js" />
     <Content Include="app\model\Affidavit.js" />
@@ -355,6 +358,12 @@
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
     <Content Include="app\model\Agreement.js" />
+    <Content Include="app\model\Customer.js" />
+    <Content Include="app\model\CreditApproval.js" />
+    <Content Include="app\model\CreditLimitDetail.js" />
+    <Content Include="app\model\EqpRel.js" />
+    <Content Include="app\model\GuarantorModel.js" />
+    <Content Include="app\model\Leads.js" />
     <Content Include="app\model\USDCurrency.js" />
     <Content Include="app\model\RegistrationForm.js" />
     <Content Include="app\model\DueDay.js" />
@@ -435,6 +444,30 @@
     <Content Include="app\store\CommonData\collaterals.js" />
     <Content Include="app\store\CommonData\committed.js" />
     <Content Include="app\store\CommonData\conditionLease.js" />
+    <Content Include="app\store\CommonData\assetTypes.js" />
+    <Content Include="app\store\CommonData\chequeConditions.js" />
+    <Content Include="app\store\CommonData\assetAmounts.js" />
+    <Content Include="app\store\CommonData\branchs.js" />
+    <Content Include="app\store\CommonData\assets.js" />
+    <Content Include="app\store\CommonData\collateralTypes.js" />
+    <Content Include="app\store\CommonData\BOTcollaterals.js" />
+    <Content Include="app\store\CommonData\BOTSubcollaterals.js" />
+    <Content Include="app\store\CommonData\timeInsurances.js" />
+    <Content Include="app\store\CommonData\limits.js" />
+    <Content Include="app\store\CommonData\limitTypes.js" />
+    <Content Include="app\store\CommonData\units.js" />
+    <Content Include="app\store\CommonData\downRates.js" />
+    <Content Include="app\store\CommonData\terms.js" />
+    <Content Include="app\store\CommonData\guarantors.js" />
+    <Content Include="app\store\CommonData\products.js" />
+    <Content Include="app\store\CommonData\typeLeasings.js" />
+    <Content Include="app\store\CommonData\registAgencies.js" />
+    <Content Include="app\store\CommonData\regists.js" />
+    <Content Include="app\store\CommonData\insurances.js" />
+    <Content Include="app\store\CommonData\termStyles.js" />
+    <Content Include="app\store\CommonData\otherConditions.js" />
+    <Content Include="app\store\CommonData\DownHireInsurances.js" />
+    <Content Include="app\store\CommonData\EQPs.js" />
     <Content Include="app\store\CommonData\provinces.js" />
     <Content Include="app\store\CommonData\registrationForms.js" />
     <Content Include="app\store\CommonData\paymentPeriods.js" />
@@ -489,7 +522,11 @@
     <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
     <Content Include="app\store\agreements.js" />
+    <Content Include="app\store\customers.js" />
+    <Content Include="app\store\creditApprovals.js" />
+    <Content Include="app\store\creditLimitDetails.js" />
     <Content Include="app\store\currency-USD.js" />
+    <Content Include="app\store\guarantorModels.js" />
     <Content Include="app\store\jobs.js" />
     <Content Include="app\store\redbookVehicles.js" />
     <Content Include="app\store\requestTransactions.js" />
@@ -577,9 +614,24 @@
     <Content Include="app\view\Customer\CusInfWindow.js" />
     <Content Include="app\view\Customer\CusInfWindowViewController.js" />
     <Content Include="app\view\Customer\CusInfWindowViewModel.js" />
+    <Content Include="app\view\Customer\CustomerWindow.js" />
+    <Content Include="app\view\Customer\CustomerWindowViewController.js" />
+    <Content Include="app\view\Customer\CustomerWindowViewModel.js" />
     <Content Include="app\view\Customer\Shareholders.js" />
     <Content Include="app\view\Customer\ShareholdersViewController.js" />
     <Content Include="app\view\Customer\ShareholdersViewModel.js" />
+    <Content Include="app\view\Financial\FinancialAmountDetail.js" />
+    <Content Include="app\view\Financial\FinancialAmountDetailViewController.js" />
+    <Content Include="app\view\Financial\FinancialAmountDetailViewModel.js" />
+    <Content Include="app\view\Financial\FinancialAmountTab.js" />
+    <Content Include="app\view\Financial\FinancialAmountTabViewController.js" />
+    <Content Include="app\view\Financial\FinancialAmountTabViewModel.js" />
+    <Content Include="app\view\Financial\FinancialAmountWindow.js" />
+    <Content Include="app\view\Financial\FinancialAmountWindowViewController.js" />
+    <Content Include="app\view\Financial\FinancialAmountWindowViewModel.js" />
+    <Content Include="app\view\Guarantor\GuarantorsWindowViewController.js" />
+    <Content Include="app\view\Guarantor\GuarantorsWindowViewModel.js" />
+    <Content Include="app\view\Guarantor\GuarantorsWindow.js" />
     <Content Include="app\view\Home\index.js" />
     <Content Include="app\view\Home\indexViewController.js" />
     <Content Include="app\view\Home\indexViewModel.js" />
@@ -709,6 +761,9 @@
     <Content Include="app\view\Job\Lead\LeadTab.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewController.js" />
     <Content Include="app\view\Job\Lead\LeadTabViewModel.js" />
+    <Content Include="app\view\Lead\LeadWindow.js" />
+    <Content Include="app\view\Lead\LeadWindowViewController.js" />
+    <Content Include="app\view\Lead\LeadWindowViewModel.js" />
     <Content Include="app\view\Restructure\ARCard.js" />
     <Content Include="app\view\Restructure\ARCardViewController.js" />
     <Content Include="app\view\Restructure\ARCardViewModel.js" />
@@ -8561,8 +8616,14 @@
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="fonts\fontawesome-webfont.svg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Global.asax" />
     <Content Include="images\blurry-wallpapers-35112-35916-hd-wallpapers.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="images\ktbl-wallpaper-blurredblue.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="images\The-best-top-desktop-blue-wallpapers-blue-wallpaper-blue-background-hd-24.jpg">
@@ -8570,6 +8631,9 @@
     </Content>
     <Content Include="Reports\ReportViewer.aspx" />
     <Content Include="resources\.arch-internal-preview.css" />
+    <Content Include="resources\font-awesome.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="resources\icons.css" />
     <Content Include="resources\icons\accept.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -8844,6 +8908,21 @@
     <Content Include="scripts\jquery.validate-vsdoc.js" />
     <Content Include="scripts\jquery.validate.js" />
     <Content Include="scripts\jquery.validate.min.js" />
+    <Content Include="fonts\fontawesome-webfont.eot">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.woff">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\fontawesome-webfont.woff2">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="fonts\FontAwesome.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Service References\ActiveDirectoryService\ActiveDirectoryService.disco" />
     <None Include="Service References\ActiveDirectoryService\configuration91.svcinfo" />
     <None Include="Service References\ActiveDirectoryService\configuration.svcinfo" />
@@ -9771,7 +9850,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>24753</DevelopmentServerPort>
+          <DevelopmentServerPort>62408</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

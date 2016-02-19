@@ -10,11 +10,12 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public GuarantorList()
         {
-            ApplicationDetail = new ApplicationDetail();
+            //ApplicationDetail = new ApplicationDetail();
         }
 
         public virtual long Id { get; set; }
-        public virtual long AppId { get; set; }
+        //public virtual long AppId { get; set; }
+        public virtual long GuarantorId { get; set; }
         public virtual bool GuarantorType { get; set; }
         public virtual string Name { get; set; }
         public virtual string Address { get; set; }
@@ -25,7 +26,8 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual string PersonAddress { get; set; }
         public virtual string ConsentSpouse { get; set; }
         public virtual string SpouseAddress { get; set; }
-
-        public virtual ApplicationDetail ApplicationDetail { get; set; }
+        public virtual string SSID { get; set; }
+        public virtual long CreditLimitId { get; set; }
+        //public virtual ApplicationDetail ApplicationDetail { get; set; }
     }
 }

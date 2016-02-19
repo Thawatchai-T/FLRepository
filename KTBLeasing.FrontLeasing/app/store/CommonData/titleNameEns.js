@@ -33,7 +33,11 @@ Ext.define('TabUserInformation.store.CommonData.titleNameEns', {
                 reader: {
                     type: 'json'
                 }
-            }
+            },
+            sorters: [{
+                property: 'Code',
+                direction: 'ASC'
+            }]
         }, cfg)]);
     }
 });

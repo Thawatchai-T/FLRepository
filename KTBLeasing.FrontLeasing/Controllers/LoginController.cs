@@ -91,7 +91,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
             _UserViewModel.RoleId = (result != null) ? result.Role.Id : 0;
             _UserViewModel.RoleName = (result != null) ? result.Role.RoleName : "ไม่มีสิทธิในการใช้งาน";
-            _UserViewModel.TabMdelList = this.TabRepository.GetTabBYRoleID(_UserViewModel.RoleId).Select(x => x.TabManament).ToList<Tab>();
+            _UserViewModel.TabMdelList = this.TabRepository.GetTabBYRoleID(_UserViewModel.RoleId).OrderBy(x => x.TabId).Select(x => x.TabManament).ToList<Tab>();
             _UserViewModel.Status = true;
             list.Add(_UserViewModel);
 //            return _UserViewModel;

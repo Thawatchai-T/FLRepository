@@ -20,30 +20,6 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
     requires: [
         'TabUserInformation.view.Customer.CusInfPopupViewModel',
         'TabUserInformation.view.Customer.CusInfPopupViewController',
-        'Ext.form.field.Text',
-        'Ext.button.Button',
-        'Ext.form.RadioGroup',
-        'Ext.form.field.Radio',
-        'Ext.grid.Panel',
-        'Ext.grid.View',
-        'Ext.toolbar.Paging',
-        'Ext.grid.column.Column',
-        'Ext.grid.plugin.RowExpander',
-        'Ext.XTemplate'
-    ],
-
-    controller: 'customercusinfpopup',
-    viewModel: {
-        type: 'customercusinfpopup'
-    },
-    //width: 800,
-    layout: 'anchor',
-    title: 'Customer Information',
-    modal: true,
-
-    requires: [
-        'TabUserInformation.view.Customer.CusInfPopupViewModel',
-        'TabUserInformation.view.Customer.CusInfPopupViewController',
         'Ext.form.field.Date',
         'Ext.grid.Panel',
         'Ext.grid.column.Number',
@@ -88,7 +64,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                     items: [
                         {
                             xtype: 'textfield',
-                            fieldLabel: 'Search Text',
+                            fieldLabel: 'ค้นหา',
                             labelAlign: 'right'
                         },
                         {
@@ -135,14 +111,15 @@ Ext.define('TabUserInformation.view.Customer.CusInfPopup', {
                     autoScroll: true,
                     height: 500,
                     width: '100%',
-                    store: 'CommonData.cusinfopopup',
+//                    store: 'CommonData.cusinfopopup',
+                    store: 'customerInformations',
                     columnLines: true,
                     columns: [
                         {
                             xtype: 'gridcolumn',
                             dataIndex: 'CustomerCode',
                             locked   : true,
-                            text: 'Code',
+                            text: 'Id',
                             width: 50
 
                         },

@@ -70,9 +70,11 @@ Ext.define('TabUserInformation.view.Job.Application.Window.PurchaseOrderDetailVi
     },
 
     onStoreBeforeLoad: function (store, operation, eOpts) {
-        var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id;
-        store.getProxy().extraParams.id = Id;
-        store.getProxy().extraParams.name = 'EquipmentList';
+        var Id = Ext.decode(sessionStorage.getItem('AppDetail')).Id,
+            record = this.getView().down('form').getForm().getRecord();
+
+        store.getProxy().extraParams.app_id = Id;
+        store.getProxy().extraParams.po_id = record.get('Id');
     }
 
 });

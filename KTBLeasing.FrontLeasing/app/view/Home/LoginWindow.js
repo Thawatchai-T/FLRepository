@@ -23,7 +23,7 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
         'Ext.form.Panel',
         'Ext.form.field.Text',
         'Ext.button.Button',
-        "Ext.require([' * '])"
+        //"Ext.require([' * '])"
     ],
 
     controller: 'windowloginwindow',
@@ -31,20 +31,26 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
         type: 'windowloginwindow'
     },
     id: 'loginwindow',
-    width: 400,
-    height: 200,
-    bodyPadding: 30,
+    //width: 400,
+    layout: 'form',
     autoShow: true,
     closable: false,
     title: 'Commercial System Log-in',
     //modal: true,
-    enableKeyEvents: true,
+    //enableKeyEvents: true,
     //defaultListenerScope: true,
+    resizable: false,
 
     items: [
         {
             xtype: 'form',
             id: 'loginform',
+            border: false,
+            bodyPadding: 15,
+            defaults: {
+                labelWidth: 75,
+                labelAlign: 'right'
+            },
             layout: {
                 type: 'vbox',
                 align: 'center',
@@ -58,7 +64,7 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
                     name: 'UserName',
                     fieldLabel: 'Username',
                     allowBlank: false,
-                    msgTarget: 'under',
+                    msgTarget: 'qtip',
                     regex: /^[a-zA-Z]\S*.[_].[{2,}a-zA-Z]$/,
                     invalidText: 'FisrtName_Lastname 2 digit',
                     listeners: {
@@ -72,13 +78,15 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
                     fieldLabel: 'Password',
                     inputType: 'password',
                     allowBlank: false,
-                    msgTarget: 'under',
+                    msgTarget: 'qtip',
                     listeners: {
                         specialkey: 'onSpecialKey'
                     }
                 },
                 {
                     xtype: 'button',
+                    glyph: 'xf090@FontAwesome',
+                    margin: '15 0 0 0',
                     id: 'login',
                     text: 'Log-in',
                     listeners: {
@@ -88,8 +96,8 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
             ]
         }
     ],
-    listeners: {
-        afterrender: 'onAfterRender'
-    }
+//    listeners: {
+//        afterrender: 'onAfterRender'
+//    }
 
 }); 

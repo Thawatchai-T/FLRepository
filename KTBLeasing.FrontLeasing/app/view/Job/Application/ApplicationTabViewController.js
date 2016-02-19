@@ -53,7 +53,10 @@ Ext.define('TabUserInformation.view.Job.Application.ApplicationTabViewController
                     //me.onLoadForm(Ext.getCmp('jobappregistrationform'), 'registrationForms', 'RegistrationForm', Id);
                     //me.onLoadForm(Ext.getCmp('jobappcollectionschedule'), 'CollectionSchedule', Id);
 
-                    me.onLoadStore(Ext.getStore('equipmentLists'), 'EquipmentList', Id);
+                    var equipmentLists = Ext.getStore('equipmentLists');
+                    equipmentLists.getProxy().extraParams.app_id = Id;
+                    equipmentLists.load();
+
                     me.onLoadStore(Ext.getStore('sellers'), 'Seller', Id);
                     me.onLoadStore(Ext.getStore('annualTaxes'), 'AnnualTax', Id);
                     me.onLoadStore(Ext.getStore('insuranceEquipments'), 'InsuranceEquipment', Id);

@@ -138,11 +138,6 @@
 
   </object>
 
-  <object type="KTBLeasing.FrontLeasing.Controllers.GuarantorListController, KTBLeasing.FrontLeasing" singleton="false" >
-    <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
-
-  </object>
-
   <object type="KTBLeasing.FrontLeasing.Controllers.InsuranceEquipmentController, KTBLeasing.FrontLeasing" singleton="false" >
     <!--<property name="CustomerSignerRepository" ref="customerSignerRepository"/>-->
 
@@ -212,6 +207,18 @@
   <object type="KTBLeasing.FrontLeasing.Controllers.AgreementController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="DB2Repository" ref="repositorydb2"/>
 
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.CreditLimitApprovalController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CreditLimitRepository" ref="creditLimitRepository"/>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.CreditLimitDetailController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CreditLimitRepository" ref="creditLimitRepository"/>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.GuarantorController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="GuarantorRepository" ref="guarantorRepository"/>
   </object>
   
 </objects>

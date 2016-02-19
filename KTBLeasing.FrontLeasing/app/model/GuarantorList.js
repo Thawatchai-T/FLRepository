@@ -29,9 +29,13 @@ Ext.define('TabUserInformation.model.GuarantorList', {
             type: 'int',
             name: 'Id'
         },
-        {
+//        {
+//            type: 'int',
+//            name: 'AppId'
+//        },
+{
             type: 'int',
-            name: 'AppId'
+            name: 'GuarantorId'
         },
         {
             name: 'GuarantorType'
@@ -65,6 +69,14 @@ Ext.define('TabUserInformation.model.GuarantorList', {
         {
             type: 'string',
             name: 'SpouseAddress'
+        },
+        {
+            type: 'string',
+            name: 'SSID'
+        },
+        {
+            type: 'int',
+            name: 'CreditLimitId'
         }
     ]
 });

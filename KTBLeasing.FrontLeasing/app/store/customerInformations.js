@@ -27,12 +27,30 @@ Ext.define('TabUserInformation.store.customerInformations', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'customerInformations',
-            model: 'TabUserInformation.model.CustomerInformation',
+            model: 'TabUserInformation.model.Customer',
             autoLoad: true,
             proxy: {
                 type: 'rest',
-                url: 'api/cusinfo'
-            }
+                url: 'api/CusInfo',
+                reader: {
+                    type: 'json',
+                    rootProperty: 'data',
+                    totalProperty: 'total'
+                },
+                writer: {
+                    type: 'json',
+                    writeAllFields: true,
+                    dateFormat: 'c'
+                },
+                api: {
+                    read: 'api/CusInfo/GetByCreditLimitId',
+                    create: 'api/CusInfo/Post'
+                }
+            },
+            sorters: [{
+                property: 'Id',
+                direction: 'ASC'
+            }],
         }, cfg)]);
     }
 });

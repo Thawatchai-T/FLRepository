@@ -17,15 +17,17 @@ Ext.define('TabUserInformation.view.Job.Lead.LeadTabViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.jobleadleadtab',
 
-    onGridpanelItemDblClick: function(dataview, record, item, index, e, eOpts) {
+    onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var popup = Ext.create('widget.visitcallingvisitcallingwindow'),
             form = popup.down('form').getForm();
 
         form.loadRecord(record);
         popup.show();
+
+        console.log(Ext.create('widget.leadleadwindow').down('form').getForm());
     },
 
-    onButtonNewClick: function(button, e, eOpts) {
+    onButtonNewClick: function (button, e, eOpts) {
         var popup = Ext.create('widget.visitcallingvisitcallingwindow');
         popup.show();
     }

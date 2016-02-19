@@ -91,9 +91,16 @@
     <Compile Include="CommonDataMapView\TitleThMap.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="CommonData.cs" />
+    <Compile Include="AssetTypeMap.cs" />
+    <Compile Include="GuarantorsMap.cs" />
+    <Compile Include="CreditLimitDetailMap.cs" />
+    <Compile Include="CreditLimitApprovalMap.cs" />
+    <Compile Include="EqpMap.cs" />
     <Compile Include="ContactPersonMap.cs" />
     <Compile Include="BackgroundMap.cs" />
+    <Compile Include="CommonDataMap.cs" />
+    <Compile Include="Reposotory\GuarantorRepository.cs" />
+    <Compile Include="Reposotory\CreditLimitRepository.cs" />
     <Compile Include="RequestTransactionMap.cs" />
     <Compile Include="RegistrationFormMap.cs" />
     <Compile Include="JobMap.cs" />

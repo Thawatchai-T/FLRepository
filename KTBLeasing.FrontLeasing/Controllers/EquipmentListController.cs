@@ -27,10 +27,14 @@ namespace KTBLeasing.FrontLeasing.Controllers
             //return EquipmentListRepository.GetAll();
         }
 
-        public List<EquipmentList> Get(int page, int start, int limit, long id)
+        public List<EquipmentList> Get(int page, int start, int limit, long app_id)
         {
-            //return new EquipmentListModel().Dummy();
-            return EquipmentListRepository.GetAll(0, 5, id);
+            return EquipmentListRepository.GetByAppId(start, limit, app_id);
+        }
+
+        public List<EquipmentList> Get(int page, int start, int limit, long app_id, long po_id)
+        {
+            return EquipmentListRepository.GetByPOId(start, limit, app_id, po_id);
         }
 
         // GET api/contact/5

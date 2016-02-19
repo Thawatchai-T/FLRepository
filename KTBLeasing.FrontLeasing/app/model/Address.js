@@ -21,14 +21,31 @@ Ext.define('TabUserInformation.model.Address', {
         'Ext.data.field.String'
     ],
 
+    proxy: {
+        type: 'rest',
+        url: 'api/address',
+        reader: {
+            type: 'json'
+        },
+        writer: {
+            type: 'json',
+            writeAllFields: true
+        },
+        api: {
+            create: 'api/Address/Post'
+        }
+    },
+
     idProperty: 'Id',
 
     fields: [
         {
+            type: 'int',
             name: 'Id'
         },
         {
-            name: 'CustomerId'
+            name: 'CustomerId',
+            mapping: 'Customer.Id'
         },
         {
             name: 'AddressEng'
@@ -58,6 +75,10 @@ Ext.define('TabUserInformation.model.Address', {
         {
             type: 'bool',
             name: 'Active'
+        },
+        {
+            name: 'NameTh',
+            mapping: 'Customer.NameTh'
         }
     ]
 });

@@ -8,6 +8,7 @@ using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.Domain;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using KTBLeasing.Domain;
+using KTBLeasing.Domain.ViewCommonData;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -89,18 +90,17 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return this.CommonDataRepository.GetCommonByNameEng(NameEng).OrderBy(x => x.Name);
         }
 
-        #endregion
-
-        #region Customer information popup
-        public IEnumerable<Position> GetCustomerInformation()
+        public List<CommonData> GetSubCommonById()
         {
+            return new List<CommonData>();
+        }
 
-            return null;
+        public List<CommonData> GetSubCommonById(long id)
+        {
+            return this.CommonDataRepository.GetSubCommonById(id);
         }
 
         #endregion
-
-
 
         private List<Province> SetProvince()
         {
@@ -110,6 +110,16 @@ namespace KTBLeasing.FrontLeasing.Controllers
                 Province = this.CommonDataRepository.GetProvince();
                 return Province;
             }
+        }
+
+        public List<EQP> GetEQP() 
+        {
+            return CommonDataRepository.GetEQP();
+        }
+
+        public List<AssetType> GetAssetType()
+        {
+            return CommonDataRepository.GetAssetType();
         }
     }
 }

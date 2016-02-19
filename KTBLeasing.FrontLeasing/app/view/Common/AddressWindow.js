@@ -35,32 +35,36 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
     viewModel: {
         type: 'windowaddresswindow'
     },
+    id: 'addresswindow',
     autoShow: true,
     width: 1025,
     title: 'Address',
     modal: true,
+    session: true,
 
     items: [
+        {
+            xtype: 'hiddenfield',
+            itemId: 'MasterPage',
+        },
         {
             xtype: 'form',
             id: 'address-form',
             bodyPadding: 10,
             items: [
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     margin: '5 0 5 20',
                     fieldLabel: 'Customer Code',
-                    readOnly: true,
                     name: 'CustomerId'
                 },
                 {
-                    xtype: 'textfield',
+                    xtype: 'displayfield',
                     id: 'address-customername-textfield',
                     margin: '0 0 5 20',
                     width: 639,
                     fieldLabel: 'Customer Name',
-                    readOnly: true,
-                    name: 'CustomerThaiName'
+                    name: 'NameTh'
                 }
             ]
         },
@@ -68,7 +72,8 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
             xtype: 'gridpanel',
             height: 400,
             reference: 'addressgrid',
-            store: 'addresses', 
+            //store: 'addresses',
+            bind: '{addresses}',
             viewConfig: {
                 emptyText: '<span class="emptyText">No rows found.</span>'
             },
@@ -98,7 +103,7 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'DisplayProvince',
+                    dataIndex: 'SubdistrictId',
                     text: 'Province',
                     flex: -1,
                     editor: {
@@ -109,6 +114,17 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                         valueField: 'Id',
                         autoLoadOnValue: true
 
+                    },
+                    renderer: function (value) {
+                        var result;
+
+                        if (value) {
+                            var record = Ext.getStore('CommonData.provinces').findRecord('SubdistrictId', value);
+                            
+                            result = record.get('ProvinceName') + ' ' + record.get('DistrictName') + ' ' + record.get('SubdistrictName') + ' ' + record.get('Zipcode');
+                        }
+
+                        return result;
                     }
                 }
             //                ,
@@ -141,12 +157,12 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
             //                    }
             //                }
             ],
-//            plugins: [
-//                {
-//                    ptype: 'rowediting',
-//                    pluginId: 'rowediting'
-//                }
-                //            ],
+            //            plugins: [
+            //                {
+            //                    ptype: 'rowediting',
+            //                    pluginId: 'rowediting'
+            //                }
+            //            ],
             listeners: {
                 itemdblclick: 'onItemDblClick'
             },
@@ -158,7 +174,10 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                     ui: 'footer',
                     width: 360,
                     displayInfo: true,
-                    store: 'addresses'
+                    bind: {
+                        store: '{addresses}'
+                    },
+                    //store: 'addresses'
                 }
             ]
         }
@@ -173,6 +192,7 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                 {
                     xtype: 'button',
                     id: 'new',
+                    glyph: 'xf067@FontAwesome',
                     text: 'New',
                     listeners: {
                         click: 'onButtonNewClick'
@@ -180,16 +200,9 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                 },
                 {
                     xtype: 'button',
-                    text: 'Edit',
-                    listeners: {
-                        click: 'onButtonEditClick'
-                    }
-                },
-                {
-                    xtype: 'button',
                     id: 'delete',
+                    glyph: 'xf014@FontAwesome',
                     text: 'Delete',
-                    hidden: true,
                     listeners: {
                         click: 'onButtonDeleteClick'
                     }

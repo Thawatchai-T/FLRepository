@@ -55,7 +55,7 @@
         factory-method="CreateSessionFactory" singleton="true"/>-->
 
 
-  <object id="commonhelper" type="KTBLeasing.FrontLeasing.Helpers.CommonHelps, KTBLeasing.FrontLeasing" singleton="true" >
+  <object id="commonhelper" type="KTBLeasing.FrontLeasing.Helpers.CommonHelps, KTBLeasing.FrontLeasing" singleton="false" >
     <constructor-arg index="0" ref="repositorydb2"/>
   </object>
 </objects>

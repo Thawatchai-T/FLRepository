@@ -12,71 +12,24 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
 {
     public interface ICustomerRepository
     {
-        object Insert<T>(T entity);
-        bool Update<T>(T entity);
-        bool SaveOrUpdate<T>(T entity);
         Customer GetById(int id);
+        List<Customer> GetByCreditLimitId(int start, int limit, long cl_id);
+        int CountByCreditLimit(int start, int limit, long cl_id);
         List<Customer> GetAll();
         List<Customer> GetWihtPage(int start, int limit);
         List<Customer> Find(int start, int limit, string text, int type);
         List<Background> GetBackground(long id);
+        int Count();
+        object Insert<T>(T entity);
+        bool Update<T>(T entity);
+        bool SaveOrUpdate<T>(T entity);
+        void Delete<T>(T entity);
     }
     public class CustomerRepository : NhRepository, ICustomerRepository
     {
         private static readonly ILog Logger = LogManager.GetLogger(MethodBase.GetCurrentMethod().DeclaringType);
         
-        public object Insert<T>(T entity)
-        {
-            try
-            {
-                return base.Insert<T>(entity);
-            }
-            catch (Exception ex)
-            {
-                Logger.Error(ex);
-                return null;
-            }
-        }
-
-        public bool Update<T>(T entity)
-        {
-            try
-            {
-                base.Update<T>(entity);
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e);
-                return false;
-            }
-            
-        }
-
-        public bool SaveOrUpdate<T>(T entity)
-        {
-            try
-            {
-                //var result = this.GetById((int)entity.Id);
-                //if (result != null)
-                //{
-                //    this.Update(entity);
-                //}
-                //else
-                //{
-                //    this.Insert(entity);
-                //}
-
-                base.SaveOrUpdate<T>(entity);
-
-                return true;
-            }
-            catch (Exception e)
-            {
-                Logger.Error(e);
-                return false;
-            }
-        }
+        
 
         public Customer GetById(int id)
         {
@@ -95,6 +48,50 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 {
                     Logger.Error(ex);
                     return null;
+                }
+            }
+        }
+
+        public List<Customer> GetByCreditLimitId(int start, int limit, long cl_id)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    var result = session.QueryOver<Customer>()
+                        .Where(x => x.CreditLimitId == cl_id && x.Active == true)
+                        .Skip(start).Take(limit)
+                        .List<Customer>() as List<Customer>;
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return null;
+                }
+            }
+        }
+
+        public int CountByCreditLimit(int start, int limit, long cl_id)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    var result = session.QueryOver<Customer>()
+                        .Where(x => x.CreditLimitId == cl_id && x.Active == true)
+                        .Skip(start).Take(limit)
+                        .List<Customer>().Count;
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return 0;
                 }
             }
         }
@@ -132,6 +129,25 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
             }
             
+        }
+
+        public int Count()
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            {
+                try
+                {
+                    var result = session.QueryOver<Customer>().RowCount();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return 0;
+                }
+            }
+
         }
 
         public List<Background> GetBackground(long id)
@@ -200,6 +216,65 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
+        public object Insert<T>(T entity)
+        {
+            try
+            {
+                return base.Insert<T>(entity);
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
+        }
 
+        public bool Update<T>(T entity)
+        {
+            try
+            {
+                base.Update<T>(entity);
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return false;
+            }
+
+        }
+
+        public bool SaveOrUpdate<T>(T entity)
+        {
+            try
+            {
+                //var result = this.GetById((int)entity.Id);
+                //if (result != null)
+                //{
+                //    this.Update(entity);
+                //}
+                //else
+                //{
+                //    this.Insert(entity);
+                //}
+
+                base.SaveOrUpdate<T>(entity);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                Logger.Error(e);
+                return false;
+            }
+        }
+
+        public void Delete<T>(T entity)
+        {
+            using (var session = SessionFactory.OpenSession())
+            {
+                base.Delete<T>(entity);
+            }
+        }
     }
 }

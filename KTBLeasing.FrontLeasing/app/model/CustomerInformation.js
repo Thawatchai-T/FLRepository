@@ -63,6 +63,7 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
             name: 'KTBCustType'
         },
         {
+            type: 'boolean',
             name: 'VAT'
         },
         {
@@ -97,6 +98,22 @@ Ext.define('TabUserInformation.model.CustomerInformation', {
         },
         {
             name: 'Address2'
+        },
+        {
+            type: 'string',
+            name: 'SSID'
+        },
+        {
+            type: 'int',
+            name: 'VATRegistration'
+        },
+        {
+            type: 'float',
+            name: 'CreditLimit'
+        },
+        {
+            type: 'int',
+            name: 'CreditLimitId'
         }
     ]
 });

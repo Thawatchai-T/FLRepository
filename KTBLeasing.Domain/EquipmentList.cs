@@ -10,7 +10,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public EquipmentList()
         {
-            ApplicationDetail = new ApplicationDetail();
+            PurchaseOrder = new PurchaseOrder();
         }
         public virtual long Id { get; set; }
         public virtual long AppId { get; set; }
@@ -26,5 +26,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual DateTime? ChequeDate { get; set; } 
 
         public virtual ApplicationDetail ApplicationDetail { get; set; }
+        public virtual PurchaseOrder PurchaseOrder { get; set; }
     }
 }

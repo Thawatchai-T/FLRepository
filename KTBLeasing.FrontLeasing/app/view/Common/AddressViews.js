@@ -67,7 +67,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
             xtype: 'gridpanel',
             height: 400,
             reference: 'addressgrid',
-            store: 'addresses', 
+            store: 'addresses',
             viewConfig: {
                 emptyText: '<span class="emptyText">No rows found.</span>'
             },
@@ -108,6 +108,17 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                         valueField: 'Id',
                         autoLoadOnValue: true
 
+                    },
+                    renderer: function (value) {
+                        var result;
+
+                        if (value) {
+                            var record = Ext.getStore('CommonData.provinces').findRecord('SubdistrictId', value);
+                            console.log(record);
+                            result = record.get('ProvinceName') + ' ' + record.get('DistrictName') + ' ' + record.get('SubdistrictName') + ' ' + record.get('Zipcode');
+                        }
+
+                        return result;
                     }
                 }
             //                ,
@@ -140,12 +151,12 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
             //                    }
             //                }
             ],
-//            plugins: [
-//                {
-//                    ptype: 'rowediting',
-//                    pluginId: 'rowediting'
-//                }
-                //            ],
+            //            plugins: [
+            //                {
+            //                    ptype: 'rowediting',
+            //                    pluginId: 'rowediting'
+            //                }
+            //            ],
             listeners: {
                 itemdblclick: 'onItemDblClick'
             },
@@ -172,6 +183,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                 {
                     xtype: 'button',
                     id: 'new',
+                    glyph: 'xf24d@FontAwesome',
                     text: 'New',
                     listeners: {
                         click: 'onButtonNewClick'
@@ -179,6 +191,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                 },
                 {
                     xtype: 'button',
+                    glyph: 'xf040@FontAwesome',
                     text: 'Edit',
                     listeners: {
                         click: 'onButtonEditClick'
@@ -187,6 +200,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                 {
                     xtype: 'button',
                     id: 'delete',
+                    glyph: 'xf014@FontAwesome',
                     text: 'Delete',
                     hidden: true,
                     listeners: {

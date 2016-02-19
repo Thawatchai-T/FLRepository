@@ -17,20 +17,15 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
     extend: 'Ext.app.ViewController',
     alias: 'controller.homeindex',
 
-    requires: [
-        'TabUserInformation.view.Home.indexViewModel'
-    ],
-
     fnLogOut: function () {
         sessionStorage.clear();
 
-        this.getView().destroy();
-
         Ext.create('widget.windowloginwindow');
+
+        this.getView().destroy();
     },
 
     onMainViewBeforeRender: function (component, eOpts) {
-        //console.log(eOpts);
         var me = this,
         viewport = component.down('tabpanel'),
         userid = sessionStorage.getItem('UserId'),
@@ -39,27 +34,14 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
 
         viewport.removeAll();
 
-        //var userid = sessionStorage.getItem('UserId');
-
-        //var store = this.getStore('userinfoStore');
-
         store.getProxy().setExtraParam("userid", userid);
 
         store.load({
             scope: this,
             callback: function (records, operation, success) {
-                // the operation object
-                // contains all of the details of the load operation
-
-
-                //                console.log(records[0].get('UserInfo'));
-
-                //                console.log(records[0]);
                 sessionStorage.setItem('UserData', Ext.encode(records[0].data));
 
                 var ltab = records[0].get('TabMdelList');
-
-                //                console.log(ltab);
 
                 for (i = 0; i < ltab.length; i++) {
                     viewport.add(Ext.widget(ltab[i].Widget));
@@ -75,6 +57,12 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
                     title += records[0].get('UserInfo').Position.Name + "  ";
                     title += "<b>วันที่เข้าสู่ระบบ</b> ";
                     title += Ext.Date.format(new Date(), 'd/m/Y') + "  ";
+
+                    var html = '<span style="color:white;font:status-bar;"><b>'
+                    + 'ยินดีต้อนรับ! </br>'
+                    + 'คุณ ' + records[0].get('UserInfo').FirstNameTh + ' ' + records[0].get('UserInfo').LastNameTh + ' <br/>'
+                    + 'ตำแหน่งงาน : ' + records[0].get('UserInfo').Position.Name + ' </span>'
+
                 } else {
                     Ext.Msg.show({
                         title: 'Warning',
@@ -88,47 +76,11 @@ Ext.define('TabUserInformation.view.Home.indexViewController', {
                     });
                 }
 
-                title += '<a href="Home/Logout">LogOut</a>';
+                //title += '<a href="Home/Logout">LogOut</a>';
 
-                viewport.setTitle(title);
+                viewport.down('#titleShowName').setHtml(html);
             }
         });
-
-        //var loginmodel =  Ext.decode(sessionStorage.getItem('UserModel')).data;
-        //var store = Ext.getStore('tabInRoles');
-
-        //var name = "ยินดีต้อนคุณ "+loginmodel.TitleName+loginmodel.FirstName+"  "+loginmodel.LastName+" ",
-        //    position = "Position: "+loginmodel.Position+" ",
-        //    date ="วันที่: "+new Date();
-
-        //var viewport = component.down('tabpanel');
-        ////remvoe
-        //viewport.removeAll();
-        //debugger;
-        ////mockup
-        //viewport.setTitle("Thawatchai Tipkote position: GB");
-        //viewport.add(Ext.widget('tabauthorizetab'));
-        //viewport.add(Ext.widget('tabuserinftab'));
-        ////viewport.setTitle(name+position+date);
-        ////store
-        //allRecords = store.data;
-        //allRecords.each( function(record){
-
-        //    //console.log(record);
-        //    //    //add tab by role
-        //       //viewport.add(Ext.widget(record.get('Widget')));
-        //    //    //viewport.add(Ext.widget(record.get('TabName')));
-
-        //    //});
-
-        //    //setActiveTab default index 0
-        //    //viewport.setActiveTab(0);
-
-        //    viewport.show();
-        //}
-
-
-
     },
 
     onButtonLogoutClick: function (button, e, eOpts) {

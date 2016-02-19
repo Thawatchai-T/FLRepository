@@ -30,16 +30,19 @@ Ext.define('TabUserInformation.store.guarantorLists', {
             model: 'TabUserInformation.model.GuarantorList',
             proxy: {
                 type: 'rest',
-                url: 'api/ApplicationDetail',
+                url: 'api/Guarantor',
                 reader: {
-                    type: 'json'
+                    type: 'json',
+                    totalProperty: 'total',
+                    rootProperty: 'data'
                 },
                 writer: {
                     type: 'json',
                     writeAllFields: true
                 },
                 api: {
-                    create: 'api/ApplicationDetail/Post'
+                    read: 'api/Guarantor/GetByCreditLimitId',
+                    create: 'api/Guarantor/Post'
                 }
             },
             sorters: [{

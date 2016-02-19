@@ -16,6 +16,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
             References(x => x.ApplicationDetail).Column("APP_ID");
+            References(x => x.PurchaseOrder).Column("PO_ID");
             Map(x => x.SellerId).Column("SELLER_ID");
             Map(x => x.SellerName).Column("SELLER_NAME").Length(100);
             Map(x => x.Quantity).Column("QUANTITY");
