@@ -62,7 +62,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
     onGridpanelItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var popup = Ext.create('widget.customercusinfwindow', {
             listeners: {
-                beforerender: function (panel, eOpts) {
+                afterrender: function (panel, eOpts) {
                     var form = panel.down('form').getForm(),
                         btnreset = panel.lookupReference('btnreset');
 
@@ -90,7 +90,7 @@ Ext.define('TabUserInformation.view.Customer.CusInfTabViewController', {
         if (selected.length > 0) {
             var popup = Ext.create('widget.customercusinfwindow', {
                 listeners: {
-                    beforerender: function (panel, eOpts) {
+                    afterrender: function (panel, eOpts) {
                         var form = panel.down('form').getForm(),
                             btnreset = panel.lookupReference('btnreset');
 

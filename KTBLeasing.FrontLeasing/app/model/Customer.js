@@ -36,7 +36,6 @@ Ext.define('TabUserInformation.model.Customer', {
             allowSingle: false
         },
         api: {
-            read: 'api/CusInfo/GetByCreditLimitId',
             create: 'api/CusInfo/Post'
         }
     },
@@ -178,20 +177,5 @@ Ext.define('TabUserInformation.model.Customer', {
             type: 'string',
             name: 'Contact'
         },
-        {
-            type: 'boolean',
-            name: 'VAT_Registration'
-        },
-        {
-            type: 'float',
-            name: 'CreditLimit'
-        },
-        {
-            type: 'int',
-            name: 'CreditLimitId',
-            reference: {
-                parent: 'TabUserInformation.model.CreditApproval'
-            }
-        }
     ]
 });

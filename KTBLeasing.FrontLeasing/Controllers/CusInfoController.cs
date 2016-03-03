@@ -78,11 +78,11 @@ namespace KTBLeasing.FrontLeasing.Controllers
         //    return this.GetByCreditLimitId(1, 1, 25, Convert.ToInt64(listFilters[0].value));
         //}
 
-        public PagingModel<Customer> GetByCreditLimitId(int page, int start, int limit)
+        public PagingModel<CommonCustomerDomain> Get(int page, int start, int limit)
         {
             try
             {
-                PagingModel<Customer> list = new PagingModel<Customer>();
+                PagingModel<CommonCustomerDomain> list = new PagingModel<CommonCustomerDomain>();
                 list.data = CustomerRepository.GetWihtPage(start, limit);
                 list.total = CustomerRepository.Count();
                 return list;
@@ -94,13 +94,31 @@ namespace KTBLeasing.FrontLeasing.Controllers
             }
         }
 
-        public PagingModel<Customer> GetByCreditLimitId(int page, int start, int limit, long id)
+        public PagingModel<Customer> Get(int page, int start, int limit, long id)
         {
             try
             {
                 PagingModel<Customer> list = new PagingModel<Customer>();
-                list.data = CustomerRepository.GetByCreditLimitId(start, limit, id);
-                list.total = CustomerRepository.CountByCreditLimit(start, limit, id);
+                list.data = CustomerRepository.Get(start, limit, id);
+                list.total = CustomerRepository.Count(start, limit, id);
+                return list;
+            }
+            catch (Exception ex)
+            {
+                Logger.Error(ex);
+                return null;
+            }
+        }
+
+        public PagingModel<CommonCustomerDomain> Get(int page, int start, int limit, string filter)
+        {
+            try
+            {
+                List<FilterModel> listFilters = JsonConvert.DeserializeObject<List<FilterModel>>(filter);
+
+                PagingModel<CommonCustomerDomain> list = new PagingModel<CommonCustomerDomain>();
+                list.data = CustomerRepository.Get(start, limit, listFilters);
+                list.total = CustomerRepository.Count(listFilters);
                 return list;
             }
             catch (Exception ex)
@@ -111,61 +129,66 @@ namespace KTBLeasing.FrontLeasing.Controllers
         }
 
         //// POST api/cusinfo
-        //public void Post(Customer value)
-        //{
-        //    value.CreateDate = DateTime.Now;
-
-        //    CustomerRepository.Insert(value);
-        //}
-
-        //// PUT api/cusinfo/5
-        //public void Put(int id, Customer value)
-        //{
-        //    value.UpdateDate = DateTime.Now;
-
-        //    CustomerRepository.Update(value);
-        //}
-
-        //// DELETE api/cusinfo/5
-        //public void Delete(int id, Customer value)
-        //{
-        //    value.UpdateDate = DateTime.Now;
-
-        //    CustomerRepository.Update(value);
-        //}
-
-        // POST api/cusinfo
-        public void Post(List<Customer> list)
+        public long Post(Customer value)
         {
-            foreach (Customer value in list)
-            {
-                value.CreateDate = DateTime.Now;
-
-                CustomerRepository.Insert<Customer>(value);
-            }
+            value.CreateDate = DateTime.Now;
+            long id = Convert.ToInt64(CustomerRepository.Insert(value));
+            return id;
         }
 
         // PUT api/cusinfo/5
-        public void Put(int id, List<Customer> list)
+        public void Put(int id, Customer value)
         {
-            foreach (Customer value in list)
-            {
-                value.UpdateDate = DateTime.Now;
+            value.UpdateDate = DateTime.Now;
 
-                CustomerRepository.Update<Customer>(value);
-            }
+            CustomerRepository.Update(value);
         }
 
         // DELETE api/cusinfo/5
-        public void Delete(int id, List<Customer> list)
+        public void Delete(int id, Customer value)
         {
-            foreach (Customer value in list)
-            {
-                value.UpdateDate = DateTime.Now;
+            value.UpdateDate = DateTime.Now;
 
-                CustomerRepository.Update<Customer>(value);
-            }
+            CustomerRepository.Update(value);
         }
+
+        // POST api/cusinfo
+        //public long Post(List<Customer> list)
+        //{
+        //    long result = 0;
+
+        //    foreach (Customer value in list)
+        //    {
+        //        value.CreateDate = DateTime.Now;
+
+        //        result = Convert.ToInt64(CustomerRepository.Insert(value));
+
+        //    }
+
+        //    return result;
+        //}
+
+        //// PUT api/cusinfo/5
+        //public void Put(int id, List<Customer> list)
+        //{
+        //    foreach (Customer value in list)
+        //    {
+        //        value.UpdateDate = DateTime.Now;
+
+        //        CustomerRepository.Update<Customer>(value);
+        //    }
+        //}
+
+        //// DELETE api/cusinfo/5
+        //public void Delete(int id, List<Customer> list)
+        //{
+        //    foreach (Customer value in list)
+        //    {
+        //        value.UpdateDate = DateTime.Now;
+
+        //        CustomerRepository.Update<Customer>(value);
+        //    }
+        //}
 
         //public bool DoPost(CusInfoModel data)
         //{

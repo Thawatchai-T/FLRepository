@@ -45,8 +45,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual DateTime IdExpireDate { get; set; }
         public virtual string OwnerBranch { get; set; }
         public virtual string Contact { get; set; }
-        public virtual long VAT_Registration { get; set; }
-        public virtual decimal CreditLimit { get; set; }
-        public virtual long CreditLimitId { get; set; }
+        public virtual string FullNameTh { get { return string.Format("{0} {1}", this.FirstNameTh, this.LastNameTh); } }
     }
 }

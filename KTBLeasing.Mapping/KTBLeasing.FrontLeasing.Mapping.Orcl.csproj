@@ -92,6 +92,11 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="AssetTypeMap.cs" />
+    <Compile Include="CreditLimitGuarantorMap.cs" />
+    <Compile Include="CreditLimitGuarantorViewMap.cs" />
+    <Compile Include="CreditLimitCustomerViewMap.cs" />
+    <Compile Include="CreditLimitMasterViewMap.cs" />
+    <Compile Include="CreditLimitCustomerMap.cs" />
     <Compile Include="GuarantorsMap.cs" />
     <Compile Include="CreditLimitDetailMap.cs" />
     <Compile Include="CreditLimitApprovalMap.cs" />

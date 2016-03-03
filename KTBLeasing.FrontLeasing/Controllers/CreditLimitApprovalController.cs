@@ -9,6 +9,7 @@ using KTBLeasing.FrontLeasing.Models;
 using KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory;
 using System.Collections;
 using Newtonsoft.Json;
+using KTBLeasing.FrontLeasing.Domain.ViewModel;
 
 namespace KTBLeasing.FrontLeasing.Controllers
 {
@@ -17,9 +18,9 @@ namespace KTBLeasing.FrontLeasing.Controllers
         private ICreditLimitRepository CreditLimitRepository { get; set; }
 
         // GET api/creditlimit
-        public PagingModel<CreditLimitApproval> Get(int start, int limit)
+        public PagingModel<CreditLimitMasterView> Get(int start, int limit)
         {
-            PagingModel<CreditLimitApproval> list = new PagingModel<CreditLimitApproval>();
+            PagingModel<CreditLimitMasterView> list = new PagingModel<CreditLimitMasterView>();
             list.data = CreditLimitRepository.GetApproval(start, limit);
             list.total = CreditLimitRepository.CountApproval();
 
@@ -31,15 +32,20 @@ namespace KTBLeasing.FrontLeasing.Controllers
             return CreditLimitRepository.GetApproval(id);
         }
 
-        public PagingModel<CreditLimitApproval> Get(int start, int limit, string filter)
+        public PagingModel<CreditLimitMasterView> Get(int start, int limit, string filter)
         {
             List<FilterModel> listFilters = JsonConvert.DeserializeObject<List<FilterModel>>(filter);
-            
-            PagingModel<CreditLimitApproval> list = new PagingModel<CreditLimitApproval>();
+
+            PagingModel<CreditLimitMasterView> list = new PagingModel<CreditLimitMasterView>();
             list.data = CreditLimitRepository.GetApproval(start, limit, listFilters);
             list.total = CreditLimitRepository.CountApproval(listFilters);
 
             return list;
+        }
+
+        public List<CreditLimitMasterView> Get(long customer_id, long limit_type, DateTime start_date, DateTime end_date)
+        {
+            return CreditLimitRepository.findDupCustomerInRange(customer_id, limit_type, start_date, end_date);
         }
 
         // GET api/creditlimit/5
@@ -69,7 +75,14 @@ namespace KTBLeasing.FrontLeasing.Controllers
         {
             value.UpdateDate = DateTime.Now;
 
-            CreditLimitRepository.Update(value);
+            CreditLimitRepository.Delete(value);
         }
+
+        //public void Delete(int id, CreditLimitApproval value)
+        //{
+        //    value.UpdateDate = DateTime.Now;
+
+        //    CreditLimitRepository.Update(value);
+        //}
     }
 }

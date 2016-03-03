@@ -15,7 +15,9 @@
 
 // @require @packageOverrides
 Ext.Loader.setConfig({
-    
+    paths: {
+        'Overrides': 'app/overrides'
+    }
 });
 
 Ext.application({
@@ -86,7 +88,9 @@ Ext.application({
         'CreditApproval',
         'CreditLimitDetail',
         'Customer',
-        'GuarantorModel'
+        'GuarantorModel',
+        'CreditLimitCustomer',
+        'CreditLimitGuarantor',
     ],
     stores: [
         'userInformations',
@@ -239,6 +243,11 @@ Ext.application({
         'CommonData.collateralTypes',
         'CommonData.BOTcollaterals',
         'CommonData.BOTSubcollaterals',
+        'creditLimitCustomers',
+        'creditLimitGuarantors',
+        'CommonData.vatRegistrations',
+        'CommonData.productLeases',
+        'CommonData.productHPs',
     ],
     views: [
         'User.UserInfWindow',
@@ -306,7 +315,6 @@ Ext.application({
         'Financial.FinancialAmountWindow',
         'Financial.FinancialAmountDetail',
         'Financial.FinancialAmountTab',
-        'Guarantor.GuarantorWindow',
         'Guarantor.GuarantorsWindow',
         'Customer.CustomerWindow'
     ],

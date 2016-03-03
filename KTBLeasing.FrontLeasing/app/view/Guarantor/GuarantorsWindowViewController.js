@@ -18,31 +18,25 @@ Ext.define('TabUserInformation.view.Guarantor.GuarantorsWindowViewController', {
     alias: 'controller.guarantorguarantorswindow',
 
     onButtonSaveClick: function (button, e, eOpts) {
-        var view = this.getView();
+        var me = this,
+            view = me.getView();
 
         Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
             if (msg === 'yes') {
-                form.updateRecord(record);
-
-//                if (form.isValid()) {
-//                    form.findField('save').setValue('Y');
-//                    view.close();
-//                }
-                
-                TabUserInformation.controller.WindowController.fnSaveChildSession(view);
+                TabUserInformation.controller.WindowController.fnSave(view);
             }
         });
     },
 
     onButtonAddressClick: function (button, e, eOpts) {
         var me = this,
-            form = this.getView().down('form').getForm()
-        record = form.getRecord();
+            form = this.getView().down('form').getForm(),
+            record = form.getRecord();
 
         if (form.getRecord().phantom === false) {
             Ext.create('widget.windowaddresswindow', {
                 listeners: {
-                    beforerender: function (panel, eOpts) {
+                    afterrender: function (panel, eOpts) {
                         var form = panel.down('form').getForm(),
                             store = panel.getViewModel().getStore('addresses');
 

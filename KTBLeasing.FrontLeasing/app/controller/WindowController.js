@@ -30,7 +30,7 @@ Ext.define('TabUserInformation.controller.WindowController', {
                 batch.on({
                     complete: function (batch, operation) {
                         Ext.MessageBox.alert("Result", "Successful.");
-                        panel.close();
+                        panel.down('form').getForm().destroy();
                     },
                     exception: function () {
                         Ext.Msg.show({
@@ -49,7 +49,7 @@ Ext.define('TabUserInformation.controller.WindowController', {
             }
         },
 
-        fnSaveChild: function(panel) {
+        fnSaveAssociation: function(panel) {
             var form = panel.down('form').getForm(),
                 record = form.getRecord(),
                 MasterPage = panel.down('#MasterPage').value;
@@ -86,26 +86,60 @@ Ext.define('TabUserInformation.controller.WindowController', {
                 var session = Ext.getCmp(MasterPage).getSession(),
                     sessionChild = panel.getSession();
 
-                //session.adopt(record);
-                //sessionChild.adopt(record);
                 sessionChild.setParent(session);
                 sessionChild.save();
-//                var visitor = new Ext.data.session.ChildChangesVisitor(sessionChild);
-//                sessionChild.visitData(visitor);
-//                console.log(visitor.result);
-//                console.log(sessionChild.getChanges());
-//                session.adopt(record);
-//                session.update(sessionChild.getChanges());
 
-                //this.createRecord(entityType, data);
-
-                
                 panel.close();
             } else {
                 Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
             }
 
             return session;
+        },
+
+        fnSaveForm: function(panel) {
+            var form = panel.down('form').getForm(),
+                record = form.getRecord(),
+                UserId = sessionStorage.getItem('UserId');
+
+            form.updateRecord();
+
+            if (form.isValid()) {
+                form.findField('save').setValue('Y');
+
+                if(record.phantom === true) {
+                    record.data.CreateBy = UserId;
+                }else{
+                    record.data.UpdateBy = UserId;
+                }
+
+                panel.close();
+            }else {
+                Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
+            }
+        },
+
+        fnSaveStore: function(panel, storeArray) {
+            Ext.Array.each(storeArray, function (store, index) {
+                if (store.getModifiedRecords().length > 0 || store.getRemovedRecords().length > 0) {
+                    store.sync({
+                        success: function (response) {
+                            if(index === storeArray.length - 1) {
+                                Ext.MessageBox.alert("Result", "Successful.");
+                                panel.close();
+                            }
+                        },
+                        failure: function (response) {
+                            Ext.Msg.show({
+                                title: 'Error',
+                                message: response.responseText,
+                                buttons: Ext.Msg.OK,
+                                icon: Ext.Msg.ERROR
+                            });
+                        }
+                    });
+                }
+            });
         },
 
         fnSave: function(panel) {
@@ -119,7 +153,7 @@ Ext.define('TabUserInformation.controller.WindowController', {
 
             if(record.phantom === true) {
                 record.data.CreateBy = UserId;
-                me.fnSaveAdd(form, record);
+                //me.fnSaveAdd(form, record);
             }else{
                 record.data.UpdateBy = UserId;
             }
@@ -211,7 +245,7 @@ Ext.define('TabUserInformation.controller.WindowController', {
                                 closable: false,
                             });
 
-                            TabUserInformation.controller.WindowController.fnSaveChildSession(panel);
+                            TabUserInformation.controller.WindowController.fnSaveForm(view);
 
                         } else if (btn === 'no') {
                             if(record.phantom)

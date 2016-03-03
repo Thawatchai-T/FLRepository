@@ -21,8 +21,13 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.CommonDataMapView
             ReadOnly();
 			Id(x => x.CustomerCode).GeneratedBy.Assigned().Column("CUSTOMER_CODE");
             Map(x => x.TitleNameTh).Column("TITLE_NAME_TH").Not.Nullable();
-            Map(x => x.NameTh).Column("FIRST_NAME_TH").Not.Nullable();
-            Map(x => x.NameEng).Column("FIRST_NAME_ENG").Not.Nullable();
+            Map(x => x.FirstNameTh).Column("FIRST_NAME_TH").Not.Nullable();
+            Map(x => x.LastNameTh).Column("LAST_NAME_TH").Not.Nullable();
+            Map(x => x.FullNameTh).Column("FULL_NAME_TH").Not.Nullable();
+            Map(x => x.FirstNameEng).Column("FIRST_NAME_ENG").Not.Nullable();
+            Map(x => x.LastNameEng).Column("LAST_NAME_ENG").Not.Nullable();
+            Map(x => x.FullNameEng).Column("FULL_NAME_ENG").Not.Nullable();
+            Map(x => x.TaxNo).Column("TAX_NO").Not.Nullable();
             Map(x => x.MarketingOfficer).Column("MARKETING_OFFICER").Not.Nullable();
             Map(x => x.TypeCustomer).Column("TYPE_CUSTOMER").Not.Nullable();
             Map(x => x.AddressTh).Column("ADDRESS_TH").Not.Nullable();

@@ -60,6 +60,11 @@
     <Compile Include="Approval.cs" />
     <Compile Include="BG.cs" />
     <Compile Include="Background.cs" />
+    <Compile Include="CreditLimitGuarantor.cs" />
+    <Compile Include="CreditLimitGuarantorView.cs" />
+    <Compile Include="CreditLimitCustomer.cs" />
+    <Compile Include="ViewModel\CreditLimitApprovalView.cs" />
+    <Compile Include="CreditLimitCustomerView.cs" />
     <Compile Include="FilterModel.cs" />
     <Compile Include="GuarantorModel.cs" />
     <Compile Include="CreditLimitApproval.cs" />

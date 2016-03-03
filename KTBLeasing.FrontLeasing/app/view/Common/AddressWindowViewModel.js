@@ -20,7 +20,6 @@ Ext.define('TabUserInformation.view.Common.AddressWindowViewModel', {
     stores: {
         addresses: {
             model: 'TabUserInformation.model.Address',
-            session: true,
             sorters: [{
                 property: 'Id',
                 direction: 'ASC'

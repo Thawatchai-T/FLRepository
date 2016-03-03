@@ -210,6 +210,8 @@
     <Compile Include="Controllers\AnnualTaxController.cs" />
     <Compile Include="Controllers\ApprovalController.cs" />
     <Compile Include="Controllers\ARCardController.cs" />
+    <Compile Include="Controllers\CreditLimitGuarantorController.cs" />
+    <Compile Include="Controllers\CreditLimitCustomerController.cs" />
     <Compile Include="Controllers\CreditLimitDetailController.cs" />
     <Compile Include="Controllers\CreditLimitApprovalController.cs" />
     <Compile Include="Controllers\RequestTransactionController.cs" />
@@ -358,6 +360,8 @@
     <Content Include="app\model\CommonData.js" />
     <Content Include="app\model\ContactPerson.js" />
     <Content Include="app\model\Agreement.js" />
+    <Content Include="app\model\CreditLimitGuarantor.js" />
+    <Content Include="app\model\CreditLimitCustomer.js" />
     <Content Include="app\model\Customer.js" />
     <Content Include="app\model\CreditApproval.js" />
     <Content Include="app\model\CreditLimitDetail.js" />
@@ -414,6 +418,7 @@
     <Content Include="app\model\UserInTab.js" />
     <Content Include="app\model\VisitCallingModel.js" />
     <Content Include="app\model\WaiveDocument.js" />
+    <Content Include="app\overrides\picker\Date.js" />
     <Content Include="app\store\addresses.js" />
     <Content Include="app\store\affidavits.js" />
     <Content Include="app\store\annualTaxes.js" />
@@ -452,6 +457,9 @@
     <Content Include="app\store\CommonData\collateralTypes.js" />
     <Content Include="app\store\CommonData\BOTcollaterals.js" />
     <Content Include="app\store\CommonData\BOTSubcollaterals.js" />
+    <Content Include="app\store\CommonData\productLeases.js" />
+    <Content Include="app\store\CommonData\productHPs.js" />
+    <Content Include="app\store\CommonData\vatRegistrations.js" />
     <Content Include="app\store\CommonData\timeInsurances.js" />
     <Content Include="app\store\CommonData\limits.js" />
     <Content Include="app\store\CommonData\limitTypes.js" />
@@ -522,6 +530,8 @@
     <Content Include="app\store\CommonData\typeSimulations.js" />
     <Content Include="app\store\contactPersons.js" />
     <Content Include="app\store\agreements.js" />
+    <Content Include="app\store\creditLimitGuarantors.js" />
+    <Content Include="app\store\creditLimitCustomers.js" />
     <Content Include="app\store\customers.js" />
     <Content Include="app\store\creditApprovals.js" />
     <Content Include="app\store\creditLimitDetails.js" />
@@ -9850,7 +9860,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>62408</DevelopmentServerPort>
+          <DevelopmentServerPort>61434</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost/KTBLeasing.FrontLeasing</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>

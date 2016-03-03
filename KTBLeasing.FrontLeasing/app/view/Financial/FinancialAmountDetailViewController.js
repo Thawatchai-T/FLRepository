@@ -108,7 +108,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewControlle
         var me = this,
             view = me.getView(),
             form = view.down('form').getForm(),
-            record = form.getRecord();
+            record = form.getRecord(),
+            UserId = sessionStorage.getItem('UserId');
 
         Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
             if (msg === 'yes') {
@@ -116,66 +117,77 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewControlle
 
                 form.updateRecord(record);
 
-//                if (form.isValid()) {
-//                    form.findField('save').setValue('Y');
-//                    view.close();
-//                }
-                TabUserInformation.controller.WindowController.fnSaveChildSession(view);
+                if (form.isValid()) {
+                    form.findField('save').setValue('Y');
+                    if(record.phantom === true) {
+                        record.data.CreateBy = UserId;
+                    }else{
+                        record.data.UpdateBy = UserId;
+                    }
+
+                    view.close();
+                }
             }
         });
     },
 
     onButtonGuarantorAddClick: function (button, e, eOpts) {
         var me = this,
-            store = me.getViewModel().getStore('guarantorModels'),
+            store = Ext.getStore('creditLimitGuarantors'),
             formMain = this.getView().down('#formMain').getForm(),
             Id = formMain.findField('Id').getValue(),
             record = Ext.create('model.guarantormodel', {
                 CreditLimitId: Id
             });
 
-        if (Id > 0) {
-            Ext.Msg.show({
-                title: 'Select Guarantor',
-                msg: 'Create New Guarantor or Old Guarantor',
-                buttons: Ext.MessageBox.YESNOCANCEL,
-                buttonText: { yes: 'New Guarantor', no: 'Old Guarantor', cancel: 'Cancel' },
-                width: 350,
-                icon: Ext.MessageBox.INFO,
-                fn: function (btn) {
-                    if (btn === 'yes') {
-                        Ext.create('widget.guarantorguarantorswindow', {
-                            listeners: {
-                                afterrender: function (panel, eOpts) {
-                                    var form = panel.down('form').getForm();
+        Ext.create('widget.popupcusinfpopup', {
+            listeners: {
+                afterrender: function (panel, eOpts) {
+                    var store = panel.down('grid').getStore();
 
-                                    panel.down('#MasterPage').setValue(me.getView().getId());
+                    //store.getProxy().extraParams.cl_id = {};
+                    store.load();
+                },
+                beforeclose: function (panel, e0pst) {
+                    var grid = panel.down('grid'),
+                        selected = grid.getSelection();
 
-                                    store.add(record);
+                    if(selected.length > 0) {
+                        var record = Ext.create('model.creditlimitcustomer', {
+                            CreditLimitDetailId: Id,
+                            CustomerId: selected[0].get('CustomerCode'),
+                            FirstNameTh: selected[0].get('FirstNameTh'),
+                            LastNameTh: selected[0].get('LastNameTh'),
+                            TaxNo: selected[0].get('TaxNo')
+                        });
 
-                                    form.loadRecord(record);
+                        if(!store.findRecord('CustomerId', record.get('CustomerId'))) {
+                            store.add(record);
+
+                            store.sync({
+                                success: function (response) {
+                                },
+                                failure: function (response) {
+                                    Ext.Msg.show({
+                                        title: 'Error',
+                                        message: response.responseText,
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.ERROR
+                                    });
                                 }
-                            }
-                        }).show();
-                    } else if (btn === 'no') {
-                        Ext.create('widget.popupcusinfpopup', {
-                            listeners: {
-                                afterrender: function (panel, e0pst) {
-                                    panel.down('#MasterPage').setValue(me.getView().getId());
-                                }
-                            }
-                        }).show();
+                            });
+                        }else {
+                            Ext.Msg.show({
+                                title: 'Warning',
+                                message: 'มีผู้ค้ำรายนี้อยู่แล้ว',
+                                buttons: Ext.Msg.OK,
+                                icon: Ext.Msg.WARNING
+                            });
+                        }
                     }
                 }
-            });
-        } else {
-            Ext.Msg.show({
-                title: 'Warning',
-                message: 'กรุณาทำการบันทึกข้อมูลหน้าหลักก่อน',
-                buttons: Ext.Msg.OK,
-                icon: Ext.Msg.WARNING
-            });
-        }
+            }
+        }).show();
     },
 
     onGridpanelGuarantorItemDblClick: function (dataview, record, item, index, e, eOpts) {
@@ -184,11 +196,21 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewControlle
         Ext.create('widget.guarantorguarantorswindow', {
             listeners: {
                 afterrender: function (panel, eOpts) {
-                    var form = panel.down('form').getForm();
+                    var form = panel.down('form').getForm(),
+                        store = Ext.getStore('customers');
 
                     panel.down('#MasterPage').setValue(me.getView().getId());
 
-                    form.loadRecord(record);
+                    store.load({
+                        scope: this,
+                        params: {
+                            id: record.get('CustomerId')
+                        },
+                        callback: function(records, operation, success) {
+                            form.loadRecord(records[0]);
+                        }
+                    });
+                    
                 }
             }
         }).show();
@@ -252,9 +274,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewControlle
                                 closable: false,
                             });
 
-                            record.phantom = false;
-
-                            TabUserInformation.controller.WindowController.fnSaveChildSession(view);
+                            TabUserInformation.controller.WindowController.fnSaveForm(view);
 
                         } else if (btn === 'no') {
                             if(record.phantom) // phantom true = not exist server-side
@@ -289,8 +309,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewControlle
     },
 
     onClose: function(panel, eOpts) {
-        var store = Ext.getCmp(this.getView().down('#MasterPage').getValue()).getViewModel().getStore('creditLimitDetails');
-        //store.rejectChanges();
+
     }
 
 });

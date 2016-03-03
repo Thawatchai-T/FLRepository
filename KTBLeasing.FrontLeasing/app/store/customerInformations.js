@@ -18,7 +18,7 @@ Ext.define('TabUserInformation.store.customerInformations', {
     alias: 'store.customerinformations',
 
     requires: [
-        'TabUserInformation.model.CustomerInformation',
+        'TabUserInformation.model.CustomerInformationPopup',
         'Ext.data.proxy.Rest'
     ],
 
@@ -27,8 +27,10 @@ Ext.define('TabUserInformation.store.customerInformations', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'customerInformations',
-            model: 'TabUserInformation.model.Customer',
+            model: 'TabUserInformation.model.CustomerInformationPopup',
             autoLoad: true,
+            remoteFilter: true,
+            pageSize: 15,
             proxy: {
                 type: 'rest',
                 url: 'api/CusInfo',
@@ -43,12 +45,11 @@ Ext.define('TabUserInformation.store.customerInformations', {
                     dateFormat: 'c'
                 },
                 api: {
-                    read: 'api/CusInfo/GetByCreditLimitId',
                     create: 'api/CusInfo/Post'
                 }
             },
             sorters: [{
-                property: 'Id',
+                property: 'FullNameTh',
                 direction: 'ASC'
             }],
         }, cfg)]);

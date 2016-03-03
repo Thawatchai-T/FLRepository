@@ -37,23 +37,34 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetailViewModel', {
         },
 
         MaxAmount: function (get) {
-            var store = Ext.getCmp('financialamountwindow').getViewModel().getStore('creditLimitDetails'),
+            var store = Ext.getStore('creditLimitDetails'),
                 form = this.getView().down('form').getForm(),
                 record = form.getRecord(),
                 result;
 
-            if (record.get('TypeLeasingCode') === 'HP') {
-                result = record.get('LimitHPAmount') - (store.sum('Amount', true).HP - record.get('Amount'));
-            } else if (record.get('TypeLeasingCode') === 'LEASING') {
-                result = record.get('LimitLeasingAmount') - (store.sum('Amount', true).LEASING - record.get('Amount'));
-            }
+            var filter = new Ext.util.Filter({
+                filterFn: function (item) {
+                    return item.get('Id') !== record.get('Id');
+                }
+            });
+
+            store.addFilter(filter, true);
             
+            if (record.get('TypeLeasingCode') === 'HP') {
+                result = record.get('LimitHPAmount') - store.sum('Amount', true).HP;
+            } else if (record.get('TypeLeasingCode') === 'LEASING') {
+                result = record.get('LimitLeasingAmount') - store.sum('Amount', true).LEASING;
+            }
+
+            store.clearFilter();
+
             return result;
         }
     },
 
     stores: {
         MainAssets: {
+            autoLoad: true,
             model: 'TabUserInformation.model.BaseCommonData',
             proxy: {
                 type: 'rest',

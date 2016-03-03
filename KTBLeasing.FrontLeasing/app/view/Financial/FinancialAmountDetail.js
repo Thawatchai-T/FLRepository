@@ -30,7 +30,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
         'Ext.form.field.Radio',
         'Ext.grid.Panel',
         'Ext.grid.column.RowNumberer',
-        'Ext.view.Table'
+        'Ext.view.Table',
+        'Overrides.picker.Date'
     ],
 
     controller: 'financialfinancialamountdetail',
@@ -92,7 +93,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                         labelWidth: 250,
                         width: 550,
                         allowBlank: false,
-                        forceSelection: true
+                        forceSelection: true,
+                        editable: false
                     },
                     items: [
                         {
@@ -197,8 +199,9 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                         labelAlign: 'right',
                         labelWidth: 250,
                         allowBlank: false,
-                        width: 500,
-                        forceSelection: true
+                        width: 550,
+                        forceSelection: true,
+                        editable: false
                     },
                     items: [
                         {
@@ -208,8 +211,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                             mouseWheelEnabled:false,
                             hideTrigger: true,
                             hidden: true,
+                            reference: 'Amount',
                             bind: {
-                                value: '{Amount}',
                                 maxValue: '{MaxAmount}'
                             }
                         },
@@ -395,8 +398,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                             height: 170,
                             width: 850,
                             title: '',
-//                            store: 'guarantorModels',
-                            bind: '{guarantorModels}',
+                            store: 'creditLimitGuarantors',
+//                            bind: '{creditLimitGuarantors}',
                             columnLines: true,
                             columns: [
                                 {
@@ -464,8 +467,10 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                             defaults: {
                                 labelAlign: 'right',
                                 labelWidth: 250,
+                                width: 550,
                                 allowBlank: false,
-                                forceSelection: true
+                                forceSelection: true,
+                                editable: false
                             },
                             items: [
                                 {
@@ -493,13 +498,15 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountDetail', {
                             title: 'การจดทะเบียนทรัพย์สิน',
                             layout: {
                                 type: 'table',
-                                columns: 2
+                                columns: 1
                             },
                             defaults: {
                                 labelAlign: 'right',
-                                labelWidth: 150,
+                                labelWidth: 250,
+                                width: 550,
                                 allowBlank: false,
-                                forceSelection: true
+                                forceSelection: true,
+                                editable: false
                             },
                             items: [
                                 {

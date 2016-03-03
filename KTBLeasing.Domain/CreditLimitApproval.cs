@@ -32,6 +32,6 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual decimal LimitHPAmount { get; set; }
         public virtual decimal LimitLeaseAmount { get; set; }
 
-        public virtual IList<Customer> Customer { get; set; }
+        public virtual IList<CreditLimitCustomer> CreditLimitCustomer { get; set; }
     }
 }

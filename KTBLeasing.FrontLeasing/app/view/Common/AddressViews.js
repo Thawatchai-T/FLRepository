@@ -50,7 +50,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                     margin: '5 0 5 20',
                     fieldLabel: 'Customer Code',
                     readOnly: true,
-                    name: 'CustomerId'
+                    name: 'Id'
                 },
                 {
                     xtype: 'displayfield',
@@ -59,7 +59,7 @@ Ext.define('TabUserInformation.view.Common.AddressViews', {
                     width: 639,
                     fieldLabel: 'Customer Name',
                     readOnly: true,
-                    name: 'CustomerThaiName'
+                    name: 'FullNameTh'
                 }
             ]
         },

@@ -13,13 +13,15 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
     public interface ICustomerRepository
     {
         Customer GetById(int id);
-        List<Customer> GetByCreditLimitId(int start, int limit, long cl_id);
-        int CountByCreditLimit(int start, int limit, long cl_id);
+        List<Customer> Get(int start, int limit, long id);
+        List<CommonCustomerDomain> Get(int start, int limit, List<FilterModel> filter);
+        int Count(int start, int limit, long id);
         List<Customer> GetAll();
-        List<Customer> GetWihtPage(int start, int limit);
+        List<CommonCustomerDomain> GetWihtPage(int start, int limit);
         List<Customer> Find(int start, int limit, string text, int type);
         List<Background> GetBackground(long id);
         int Count();
+        int Count(List<FilterModel> filter);
         object Insert<T>(T entity);
         bool Update<T>(T entity);
         bool SaveOrUpdate<T>(T entity);
@@ -52,17 +54,78 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public List<Customer> GetByCreditLimitId(int start, int limit, long cl_id)
+        public List<Customer> Get(int start, int limit, long id)
         {
             using (var session = SessionFactory.OpenStatelessSession())
             using (var ts = session.BeginTransaction())
             {
                 try
                 {
-                    var result = session.QueryOver<Customer>()
-                        .Where(x => x.CreditLimitId == cl_id && x.Active == true)
+                    List<Customer> list = new List<Customer>();
+                    var result = session.Get<Customer>(id);
+                    list.Add(result);
+
+                    return list;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return null;
+                }
+            }
+        }
+
+        private Conjunction GetCriteriaParameter(List<FilterModel> filter)
+        {
+            Conjunction conj = new Conjunction();
+
+            foreach (var item in filter)
+            {
+                switch (item.type)
+                {
+                    case "number":
+                        if (item.property == "Id")
+                        {
+                            conj.Add(Restrictions.Eq(item.property, Convert.ToInt64(item.value)));
+                        }
+                        else
+                        {
+                            conj.Add(Restrictions.Eq(item.property, Convert.ToInt32(item.value)));
+                        }
+                        break;
+                    case "string":
+                        conj.Add(Restrictions.Like(item.property, string.Format("%{0}%", item.value)));
+                        break;
+                    case "date":
+                        if (item.property == "StartDate")
+                        {
+                            conj.Add(Restrictions.Ge("ApproveDate", Convert.ToDateTime(item.value)));
+                        }
+                        else if (item.property == "EndDate")
+                        {
+                            conj.Add(Restrictions.Le("ApproveDate", Convert.ToDateTime(item.value)));
+                        }
+                        break;
+                }
+            }
+
+            return conj;
+        }
+
+        public List<CommonCustomerDomain> Get(int start, int limit, List<FilterModel> filter)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    Conjunction conj = this.GetCriteriaParameter(filter);
+
+                    var result = session.QueryOver<CommonCustomerDomain>()
+                        .And(Restrictions.Conjunction().Add(conj))
+                        .OrderBy(x => x.FirstNameTh).Asc
                         .Skip(start).Take(limit)
-                        .List<Customer>() as List<Customer>;
+                        .List<CommonCustomerDomain>() as List<CommonCustomerDomain>;
 
                     return result;
                 }
@@ -74,7 +137,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public int CountByCreditLimit(int start, int limit, long cl_id)
+        public int Count(int start, int limit, long id)
         {
             using (var session = SessionFactory.OpenStatelessSession())
             using (var ts = session.BeginTransaction())
@@ -82,7 +145,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 try
                 {
                     var result = session.QueryOver<Customer>()
-                        .Where(x => x.CreditLimitId == cl_id && x.Active == true)
                         .Skip(start).Take(limit)
                         .List<Customer>().Count;
 
@@ -112,13 +174,16 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             }
         }
 
-        public List<Customer> GetWihtPage(int start, int limit)
+        public List<CommonCustomerDomain> GetWihtPage(int start, int limit)
         {
             using (var session = SessionFactory.OpenStatelessSession())
             {
                 try
                 {
-                    var result = session.QueryOver<Customer>().Skip(start).Take(limit).List<Customer>() as List<Customer>;
+                    var result = session.QueryOver<CommonCustomerDomain>()
+                        .OrderBy(x => x.FirstNameTh).Asc
+                        .Skip(start).Take(limit)
+                        .List<CommonCustomerDomain>() as List<CommonCustomerDomain>;
 
                     return result;
                 }
@@ -137,7 +202,7 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
             {
                 try
                 {
-                    var result = session.QueryOver<Customer>().RowCount();
+                    var result = session.QueryOver<CommonCustomerDomain>().RowCount();
 
                     return result;
                 }
@@ -148,6 +213,29 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl.Reposotory
                 }
             }
 
+        }
+
+        public int Count(List<FilterModel> filter)
+        {
+            using (var session = SessionFactory.OpenStatelessSession())
+            using (var ts = session.BeginTransaction())
+            {
+                try
+                {
+                    Conjunction conj = this.GetCriteriaParameter(filter);
+
+                    var result = session.QueryOver<CommonCustomerDomain>()
+                        .And(Restrictions.Conjunction().Add(conj))
+                        .RowCount();
+
+                    return result;
+                }
+                catch (Exception ex)
+                {
+                    Logger.Error(ex);
+                    return 0;
+                }
+            }
         }
 
         public List<Background> GetBackground(long id)

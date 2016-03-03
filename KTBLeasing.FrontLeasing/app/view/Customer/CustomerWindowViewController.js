@@ -18,13 +18,82 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindowViewController', {
     alias: 'controller.customercustomerwindow',
 
     onButtonSaveClick: function (button, e, eOpts) {
-        var view = this.getView();
+        var me = this,
+            view = me.getView();
 
         Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
             if (msg === 'yes') {
-                TabUserInformation.controller.WindowController.fnSaveChildSession(view);
+                TabUserInformation.controller.WindowController.fnSave(view);
             }
         });
+    },
+
+    fnSaveForm: function (panel) {
+        var me = this,
+            form = panel.down('#formCustomer').getForm(),
+            record = form.getRecord(),
+            formLimit = panel.down('#formLimit').getForm(),
+            recordLimit = formLimit.getRecord(),
+            UserId = sessionStorage.getItem('UserId'),
+            url;
+
+        form.updateRecord(record);
+
+        if (form.isValid()) {
+            if (record.phantom === true) {
+                record.data.CreateBy = UserId;
+                url = 'api/CusInfo/Post';
+            } else {
+                record.data.UpdateBy = UserId;
+                url = 'api/CusInfo/Put';
+            }
+
+            Ext.Ajax.request({
+                method: 'post',
+                url: url,
+                jsonData: record.data,
+                success: function (response) {
+                    if (url === 'api/CusInfo/Post') {
+                        recordLimit.set('CustomerId', response.responseText);
+                    }
+
+                    me.fnSave(panel, formLimit);
+                },
+                failure: function (response) {
+                    Ext.Msg.show({
+                        title: 'Error',
+                        message: response.responseText,
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.ERROR
+                    });
+                }
+            });
+
+        } else {
+            Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
+        }
+    },
+
+    fnSave: function (panel, form) {
+        var formMain = panel.down('form').getForm(),
+            record = form.getRecord(),
+            UserId = sessionStorage.getItem('UserId');
+
+        form.updateRecord();
+
+        if (form.isValid()) {
+            formMain.findField('save').setValue('Y');
+
+            if (record.phantom === true) {
+                record.data.CreateBy = UserId;
+            } else {
+                record.data.UpdateBy = UserId;
+            }
+
+            panel.close();
+        } else {
+            Ext.MessageBox.alert('Warning', 'กรอกข้อมูลไม่ครบถ้วน');
+        }
     },
 
     onButtonAddressClick: function (button, e, eOpts) {
@@ -32,16 +101,15 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindowViewController', {
             form = this.getView().down('form').getForm(),
             record = form.getRecord();
 
-        if (form.getRecord().phantom === false) {
+        if (record.phantom === false) {
             Ext.create('widget.windowaddresswindow', {
                 listeners: {
-                    beforerender: function (panel, eOpts) {
+                    afterrender: function (panel, eOpts) {
                         var form = panel.down('form').getForm(),
-                            store = panel.getViewModel().getStore('addresses');
+                            store = Ext.getStore('addresses');
 
                         form.loadRecord(record);
-
-                        store.getProxy().extraParams.text = record.get('CustomerId');
+                        store.getProxy().extraParams.text = record.get('Id');
                         store.load();
                     }
                 }
@@ -70,5 +138,59 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindowViewController', {
             store = Ext.getStore('CommonData.titleNameThs');
 
         form.findField('TitleCustNameTh').setValue(store.findRecord('Code', combo.valueModels[0].get('Code')));
+    },
+
+    onBeforeClose: function (panel, eOpts) {
+        var me = this,
+            form = panel.down('form').getForm(),
+            record = form.getRecord();
+
+        if (panel.closeMe) {
+            panel.closeMe = false;
+            return true;
+        }
+
+        if (form.isDirty()) {
+            if (form.findField('save').getValue() === 'N') {
+                Ext.Msg.show({
+                    title: 'Save',
+                    message: 'Save Changes?',
+                    buttons: Ext.Msg.YESNOCANCEL,
+                    icon: Ext.Msg.QUESTION,
+                    width: 300,
+                    fn: function (btn) {
+                        if (btn === 'yes') {
+                            TabUserInformation.controller.WindowController.fnSave(panel);
+                        } else if (btn === 'no') {
+                            if (record.phantom) // phantom true = not exist server-side
+                            {
+                                record.phantom = false;
+                                record.set('Active', false);
+                                record.drop();
+                                //record.save();
+                            }
+                            panel.closeMe = true;
+                            panel.close();
+                        }
+                    }
+                });
+            } else {
+                panel.closeMe = true;
+                panel.close();
+            }
+        } else {
+            if (record.phantom) // phantom true = not exist server-side
+            {
+                record.phantom = false;
+                record.set('Active', false);
+                record.drop();
+                //record.save();
+            }
+            panel.closeMe = true;
+            panel.close();
+        }
+
+        return false;
     }
+
 });

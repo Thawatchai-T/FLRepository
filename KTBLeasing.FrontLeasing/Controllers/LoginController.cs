@@ -57,7 +57,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
             string userName = User.Identity.Name;
 
             var ADstatus = false;
-            if (_User.UserName.Equals("mkt_id") || _User.UserName.Equals("headmkt_id"))
+            if (_User.UserName.Equals("mkt_id") || _User.UserName.Equals("headmkt_id") || _User.UserName.Equals("testuser_id"))
             {
                 ADstatus = true;
             }

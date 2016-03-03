@@ -45,9 +45,6 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
             Map(x => x.IdExpireDate).Column("ID_EXPIRE_DATE");
             Map(x => x.OwnerBranch).Column("OWNER_BRANCH");
             Map(x => x.Contact).Column("CONTACT");
-            Map(x => x.VAT_Registration).Column("VAT_REGISTRATION");
-            Map(x => x.CreditLimit).Column("CREDIT_LIMIT");
-            Map(x => x.CreditLimitId).Column("CL_ID");
 
             Map(x => x.Active).Column("ACTIVE");
             Map(x => x.CreateBy).Column("CREATE_BY");

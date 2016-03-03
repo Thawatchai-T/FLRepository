@@ -25,7 +25,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
         'Ext.view.Table',
         'Ext.grid.column.Date',
         'Ext.grid.column.Number',
-        'Ext.toolbar.Paging'
+        'Ext.toolbar.Paging',
+        'Overrides.picker.Date'
     ],
 
     controller: 'financialfinancialamounttab',
@@ -54,7 +55,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                     defaults: {
                         labelWidth: 100,
                         labelAlign: 'right',
-                        width: 325
+                        width: 325,
+                        //forceSelection: true
                     },
                     layout: {
                         type: 'table',
@@ -137,7 +139,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                             colspan: 2,
                             fieldLabel: 'ชื่อ - นามสกุล',
                             labelAlign: 'right',
-                            name: 'CustFullName'
+                            name: 'FullNameTh'
                         },
                         {
                             xtype: 'combobox',
@@ -191,6 +193,15 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                             listeners: {
                                 click: 'onButtonSearchClick'
                             }
+                        },
+                        {
+                            xtype: 'button',
+                            ui: 'default-small',
+                            glyph: 'xf12d@FontAwesome',
+                            text: 'Clear',
+                            listeners: {
+                                click: 'onButtonClearClick'
+                            }
                         }
                     ]
                 }
@@ -199,11 +210,11 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
         {
             xtype: 'gridpanel',
             region: 'center',
-            title: 'My Grid Panel',
-            //store: 'creditApprovals',
-            bind: {
-                store: '{creditApprovals}',
-            },
+            title: 'ตั้งวงเงิน',
+            store: 'creditApprovals',
+//            bind: {
+//                store: '{creditApprovals}',
+//            },
             forceFit: true,
             columns: [
                 {
@@ -224,7 +235,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                 },
                 {
                     xtype: 'gridcolumn',
-                    dataIndex: 'CustFullName',
+                    dataIndex: 'FullNameTh',
                     text: 'ชื่อลูกค้า',
                     flex: -1
                 },
@@ -243,14 +254,18 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                     }
                 },
                 {
-                    xtype: 'numbercolumn',
-                    dataIndex: 'CreditLimit',
-                    text: 'วงเงิน'
-                },
-                {
                     xtype: 'gridcolumn',
-                    dataIndex: 'AssetAmount',
-                    text: 'จำนวนประเภททรัพย์สินที่ได้รับอนุมัติ'
+                    dataIndex: 'TypeCreditLimit',
+                    text: 'ประเภทวงเงิน',
+                    renderer: function (value) {
+                        var result;
+
+                        if (value) {
+                            result = Ext.getStore('CommonData.limitTypes').getById(value).get('Name');
+                        }
+
+                        return result;
+                    }
                 },
                 {
                     xtype: 'gridcolumn',
@@ -265,6 +280,23 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
 
                         return result;
                     }
+                },
+                {
+                    xtype: 'datecolumn',
+                    dataIndex: 'StartLimitDate',
+                    text: 'วันที่เริ่มต้นวงเงิน',
+                    format: 'd/m/Y'
+                },
+                {
+                    xtype: 'datecolumn',
+                    dataIndex: 'EndLimitDate',
+                    text: 'วันที่สิ้นสุดวงเงิน',
+                    format: 'd/m/Y'
+                },
+                {
+                    xtype: 'numbercolumn',
+                    dataIndex: 'CreditLimit',
+                    text: 'วงเงิน'
                 },
                 {
                     xtype: 'numbercolumn',
@@ -284,10 +316,10 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                     ui: 'footer',
                     width: 360,
                     displayInfo: true,
-//                    store: 'creditApprovals'
-                    bind: {
-                        store: '{creditApprovals}',
-                    },
+                    store: 'creditApprovals'
+//                    bind: {
+//                        store: '{creditApprovals}',
+//                    },
                 },
                 {
                     xtype: 'toolbar',
@@ -315,7 +347,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTab', {
                 }
             ],
             listeners: {
-                itemdblclick: 'onGridpanelItemDblClick'
+                itemdblclick: 'onGridpanelItemDblClick',
+                beforerender: 'onBeforeRender'
             }
         }
     ]

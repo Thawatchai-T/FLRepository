@@ -28,7 +28,7 @@ Ext.define('TabUserInformation.store.CommonData.typeCustomers', {
         me.callParent([Ext.apply({
             storeId: 'CommonData.typeCustomers',
             model: 'TabUserInformation.model.BaseCommonData',
-            //autoLoad: true,
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=type_customer',

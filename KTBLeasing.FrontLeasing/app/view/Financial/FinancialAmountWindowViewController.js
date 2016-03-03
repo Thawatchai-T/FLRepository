@@ -17,15 +17,117 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
     extend: 'Ext.app.ViewController',
     alias: 'controller.financialfinancialamountwindow',
 
+    onEditorLimitAmountAfterRender: function (panel, eOpts ) {
+        var store = Ext.getStore('creditLimitCustomers'),
+            form = this.getView().down('form').getForm(),
+            grid = this.getView().down('grid'),
+            record = grid.getSelection()[0],
+            field = Ext.getCmp('editLimitAmount'),
+            result;
+        
+        if (field) {
+            result = form.findField('CreditLimit').getValue() - (store.sum('LimitAmount') - record.get('LimitAmount'));
+        
+            field.maxValue = result;
+        }    
+    },
+
+    onGridpanelCustomerSelect: function (panel, record, index, eOpts ) {
+        var store = panel.getStore(),
+            form = this.getView().down('form').getForm(),
+            field = Ext.getCmp('editLimitAmount'),
+            result;
+        
+        if (field) {
+            result = form.findField('CreditLimit').getValue() - (store.sum('LimitAmount') - record.get('LimitAmount'));
+        
+            field.maxValue = result;
+        }    
+    },
+
+    fnInverseCheckDupCustomer: function () {
+        var form = this.getView().down('form').getForm(),
+            Id = this.getView().down('#Id').getValue(),
+            store = this.getView().down('#gridCustomer').getStore();
+           
+        if(store.getCount() > 0) {
+            if(form.findField('EndLimitDate').getValue() && form.findField('EndLimitDate').getValue() && form.findField('Limit').getValue()) {
+                store.each(function(record) {
+                    Ext.Ajax.request({
+                        method: 'get',
+                        url: 'api/CreditLimitApproval',
+                        params: {
+                            customer_id: record.get('CustomerId'), 
+                            limit_type: form.findField('TypeCreditLimit').getValue(), 
+                            start_date: form.findField('StartLimitDate').getValue(), 
+                            end_date: form.findField('EndLimitDate').getValue()
+                        },
+                        success: function (response) {
+                            var result = Ext.decode(response.responseText);
+                    
+                            if(result.length > 0) {
+                                Ext.Array.each(result, function(item) {
+                                    if(item.Id.toString() !== Id.toString()) {
+                                        store.remove(record);
+                                    }
+                                });
+                            }
+                        },
+        //                failure: function (response) {
+        //                    Ext.Msg.show({
+        //                        title: 'Warning',
+        //                        message: 'กรุณาเลือก ประเภทวงเงิน วันที่เริ่มและวันที่สิ้นสุดวงเงิน ก่อนทำการเลือกลูกค้า',
+        //                        buttons: Ext.Msg.OK,
+        //                        icon: Ext.Msg.WARNING
+        //                    });
+        //                }
+                    });
+                });
+            }
+        }
+    },
+
+    onStartLimitDateSelect: function (field, value, eOpts) {
+        var form = this.getView().down('form').getForm();
+
+        if(value > form.findField('EndLimitDate').getValue())  {
+            form.findField('EndLimitDate').setValue(value);
+        }
+
+        this.fnInverseCheckDupCustomer();
+    },
+
+    onEndLimitDateExpand: function (field, eOpts) {
+        var form = this.getView().down('form').getForm();
+        
+        form.updateRecord();
+        
+        if (field) {
+            field.setMinValue(form.findField('StartLimitDate').getValue());
+        }    
+    },
+
+    onEndLimitDateSelect: function (field, value, eOpts) {
+        this.onEndLimitDateExpand(field, eOpts);
+        this.fnInverseCheckDupCustomer();
+    },
+
+    onComboboxTypeCreditLimitSelect: function (combo, record, eOpts) {
+        this.fnInverseCheckDupCustomer();
+    },
+
     onComboboxCustTypeChange: function (field, newValue, oldValue, eOpts) {
         var button = this.getView().down('#custAdd'),
-            store = this.getView().down('#gridCustomer').getStore();
-
+            grid = this.getView().down('#gridCustomer'),
+            store = grid.getStore();
+            
         if (newValue) {
-            if (field.valueModels[0].get('Name') === 'บุคคล' && store.getCount() > 1) {
+            if (field.valueModels[0].get('Name') === 'บุคคล' && store.getCount() >= 1) {
                 button.disable();
+                grid.down('#LimitAmount').hide();
             } else {
                 button.enable();
+                grid.down('#LimitAmount').show();
             }
         }
     },
@@ -54,44 +156,63 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
         var form = this.getView().down('form').getForm(),
             combo = form.findField('TypeLeasing'),
             fieldHP = form.findField('TypeProductHP'),
-            fieldLease = form.findField('TypeProductLease');
-
+            LimitHPAmount = form.findField('LimitHPAmount'),
+            fieldLease = form.findField('TypeProductLease'),
+            LimitLeaseAmount = form.findField('LimitLeaseAmount');
+            
         if (newValue > 0) {
             if (combo.valueModels[0].get('Code') === 'HP') {
                 this.getView().down('#TypeProductHP').show();
-                this.getView().down('#TypeProductLease').hide();
                 fieldHP.allowBlank = false;
+                LimitHPAmount.allowBlank = false;
+
+                this.getView().down('#TypeProductLease').hide();
                 fieldLease.allowBlank = true;
+                LimitLeaseAmount.allowBlank = false;
 
                 if (oldValue) {
                     fieldLease.setValue(null);
+                    LimitLeaseAmount.setValue(0);
                 }
             } else if (combo.valueModels[0].get('Code') === 'LEASING') {
                 this.getView().down('#TypeProductHP').hide();
+                fieldHP.allowBlank = true;
+                LimitHPAmount.allowBlank = true;
+
                 this.getView().down('#TypeProductLease').show();
-                fieldHP.allowBlank = false;
-                fieldLease.allowBlank = true;
+                fieldLease.allowBlank = false;
+                LimitLeaseAmount.allowBlank = false;
 
                 if (oldValue) {
                     fieldHP.setValue(null);
+                    LimitHPAmount.setValue(0);
                 }
             } else if (combo.valueModels[0].get('Code') === 'ALL') {
                 this.getView().down('#TypeProductHP').show();
-                this.getView().down('#TypeProductLease').show();
                 fieldHP.allowBlank = false;
+                LimitHPAmount.allowBlank = false;
+
+                this.getView().down('#TypeProductLease').show();
                 fieldLease.allowBlank = false;
+                LimitLeaseAmount.allowBlank = false;
             } 
         } 
         else 
         {
             this.getView().down('#TypeProductHP').hide();
-            this.getView().down('#TypeProductLease').hide();
             fieldHP.allowBlank = true;
+            LimitHPAmount.allowBlank = true;
+
+            this.getView().down('#TypeProductLease').hide();
             fieldLease.allowBlank = true;
+            LimitLeaseAmount.allowBlank = true;
 
             if (oldValue) {
                 fieldHP.setValue(null);
+                LimitHPAmount.setValue(0);
+
                 fieldLease.setValue(null);
+                LimitLeaseAmount.setValue(0);
             }
         }
     },
@@ -123,29 +244,33 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
     fnDetailPopup: function (store, record) {
         var me = this;
             form = this.getView().down('form').getForm(),
-            Id = form.findField('Id').getValue();
+            Id = form.findField('Id').getValue(),
+            UserId = sessionStorage.getItem('UserId');
 
         Ext.create('widget.financialfinancialamountdetail', {
             listeners: {
                 afterrender: function (panel, eOpts) {
                     var formMain = panel.down('#formMain').getForm(),
+                        storeGua = Ext.getStore('creditLimitGuarantors'),
                         records = Ext.create('model.creditlimitdetail', {
                             Total: record.get('Total'),
                             LimitHPAmount: form.findField('LimitHPAmount').getValue(),
                             LimitLeaseAmount: form.findField('LimitLeaseAmount').getValue(),
                             TypeLeasing: record.get('TypeLeasing'),
-                            CreditLimitDetail: {
+                            CreditLimitApproval: {
                                 Id: Id
                             }
                         });
 
                     panel.down('#MasterPage').setValue(me.getView().getId());
 
-                    //records = store.findRecord('Id', 1).copy(null);
+                    records.data.CreateBy = UserId;
 
                     records.save({
                         callback: function (record, operation) {
                             record.setId(operation.getResponse().responseText);
+                            record.data.CreateBy = UserId;
+                            record.data.CreateDate = new Date();
                             record.phantom = true;
 
                             store.add(record);
@@ -153,10 +278,10 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
                             
                             me.fnSetControl(panel, formMain);
 
-                            var storeGua = Ext.getStore('guarantorModels');
-                            storeGua.removeAll(true);
                         }
                     });
+
+                    storeGua.removeAll(true);
                 }
             }
         }).show();
@@ -168,7 +293,9 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
             record = form.getRecord(),
             store = this.getView().lookupReference('gridDetail').getStore();
 
-        if (form.isValid()) {
+        form.updateRecord();
+
+        if (form.findField('TypeLeasing').getValue()) {
             if (form.findField('TypeLeasing').valueModels[0].get('Code') === 'ALL') {
                 Ext.Msg.show({
                     title: 'เลือกประเภทสินเชื่อ',
@@ -179,21 +306,61 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
                     icon: Ext.MessageBox.INFO,
                     fn: function (btn) {
                         if (btn === 'yes') {
-                            record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'HP').get('Id');
-                            me.fnDetailPopup(store, record);
+                            if(record.get('LimitHPAmount') > store.sum('Amount', true).HP || !store.sum('Amount', true).HP) {
+                                record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'HP').get('Id');
+                                me.fnDetailPopup(store, record);
+                            } else {
+                                Ext.Msg.show({
+                                    title: 'Warning',
+                                    message: 'ครบวงเงินแล้ว',
+                                    buttons: Ext.Msg.OK,
+                                    icon: Ext.Msg.WARNING
+                                });
+                            }
                         } else if (btn === 'no') {
-                            record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'LEASING').get('Id');
-                            me.fnDetailPopup(store, record);
+                            if(record.get('LimitLeaseAmount') > store.sum('Amount', true).LEASING || !store.sum('Amount', true).LEASING) {
+                                record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'LEASING').get('Id');
+                                me.fnDetailPopup(store, record);
+                            } else {
+                                Ext.Msg.show({
+                                    title: 'Warning',
+                                    message: 'ครบวงเงินแล้ว',
+                                    buttons: Ext.Msg.OK,
+                                    icon: Ext.Msg.WARNING
+                                });
+                            }
                         }
                     }
                 });
-            } else {
-                me.fnDetailPopup(store, record);
+            } else if (form.findField('TypeLeasing').valueModels[0].get('Code') === 'HP') {
+                if(record.get('LimitHPAmount') > store.sum('Amount', true).HP || !store.sum('Amount', true).HP) {
+                    record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'HP').get('Id');
+                    me.fnDetailPopup(store, record);
+                } else {
+                    Ext.Msg.show({
+                        title: 'Warning',
+                        message: 'ครบวงเงินแล้ว',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+                }
+            } else if (form.findField('TypeLeasing').valueModels[0].get('Code') === 'LEASING') {
+                if(record.get('LimitLeaseAmount') > store.sum('Amount', true).LEASING || !store.sum('Amount', true).LEASING) {
+                    record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'LEASING').get('Id');
+                    me.fnDetailPopup(store, record);
+                } else {
+                    Ext.Msg.show({
+                        title: 'Warning',
+                        message: 'ครบวงเงินแล้ว',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+                }
             }
         } else {
             Ext.Msg.show({
                 title: 'Warning',
-                message: 'กรุณาทำการกรอกข้อมูลในหน้าหลักให้ครบถ้วน',
+                message: 'กรุณาทำการเลือกประเภทผลิตภัณฑ์และวงเงินผลิตภัณฑ์ ก่อน',
                 buttons: Ext.Msg.OK,
                 icon: Ext.Msg.WARNING
             });
@@ -208,7 +375,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
             listeners: {
                 afterrender: function (panel, eOpts) {
                     var formMain = panel.down('#formMain').getForm(),
-                        storeGua = panel.getViewModel().getStore('guarantorModels'),
+                        storeGua = Ext.getStore('creditLimitGuarantors'),
                         session = me.getSession();
 
                     panel.down('#MasterPage').setValue(me.getView().getId());
@@ -219,39 +386,51 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
 
                     storeGua.load({
                         params: {
-                            cl_id: record.get('Id')
-                        },
-                        callback: function(records, operation, success) {
-                            var data = [];
-                            
-                            Ext.Object.each(session.data, function(key, value, myself) {
-                                if(key === 'TabUserInformation.model.CreditLimitDetail') {
-                                    Ext.Object.each(value, function(key, value, myself) {
-                                        if(key === record.get('Id').toString()) {
-                                            Ext.Object.each(value.refs, function(key, value, myself) {
-                                                var index = 0;
-
-                                                Ext.Object.each(value, function(key, value, myself) {
-                                                    data[index] = session.getRecord('TabUserInformation.model.GuarantorModel', key);
-                                                    index++;
-                                                });
-                                                    
-                                                storeGua.session = false;
-                                                storeGua.loadRecords(data, {
-                                                    addRecords: true
-                                                });
-                                                storeGua.session = true;
-                                            });
-                                        }
-                                    });
-                                };
-                            });
+                            id: record.get('Id')
                         }
                     });
                 }
             }
         }).show();
     },
+
+    onButtonDeleteCustomerClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            grid = this.getView().down('#gridCustomer'),
+            store = grid.getStore(),
+            buttonAdd = this.getView().down('#custAdd'),
+            selected = grid.getSelection();
+
+        if (selected.length > 0) {
+            Ext.MessageBox.confirm({
+                title: 'Delete?',
+                message: 'คุณต้องการลบรายการนี้ใช่หรือไม่?',
+                buttons: Ext.Msg.YESNO,
+                icon: Ext.Msg.QUESTION,
+                fn: function (btn) {
+                    if (btn === 'yes') {
+                        selected[0].set('Active', false);
+                        store.remove(selected[0]);
+
+                        if (form.findField('CustType').valueModels[0].get('Name') === 'บุคคล' && store.getCount() >= 1) {
+                            buttonAdd.disable(); 
+                            grid.down('#LimitAmount').hide();
+                        } else {
+                            buttonAdd.enable();
+                            grid.down('#LimitAmount').show();
+                        }
+                    }
+                }
+            });
+        } else {
+            Ext.Msg.show({
+                title: 'Warning',
+                message: 'กรุณาทำการเลือกรายการที่ต้องการลบ',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }
+    }, 
 
     onButtonDeleteClick: function (button, e, eOpts) {
         var grid = button.up('grid'),
@@ -272,7 +451,6 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
                         store.sync({
                             success: function (response, opertation) {
                                 Ext.Msg.alert('Success!', 'Delete Success');
-                                store.load();
                             },
                             failure: function (response, opertation) {
                                 Ext.Msg.show({
@@ -299,184 +477,322 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
     onButtonCustomerAddClick: function (button, e, eOpts) {
         var me = this,
             formMain = me.getView().down('form').getForm(),
-            store = this.getView().down('grid').getStore(),
-            Id = this.getView().down('#Id').getValue(),
-            record = Ext.create('model.customer', {
-                CreditLimitId: Id
-            });
+            gridCust = this.getView().down('#gridCustomer'),
+            store = gridCust.getStore(),
+            Id = this.getView().down('#Id').getValue();
+      
+        if (formMain.findField('CustType').getValue() > 0) {
+            if (formMain.findField('CustType').valueModels[0].get('Name') === 'นิติบุคคล' && formMain.findField('CreditLimit').getValue() <= 0) {
+                Ext.Msg.show({
+                    title: 'Warning',
+                    message: 'กรุณากรอกวงเงินที่ได้รับอนุมัติก่อน',
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.WARNING
+                });
+            } else {
+                Ext.create('widget.popupcusinfpopup', {
+                    listeners: {
+                        afterrender: function (panel, eOpts) {
+                            var store = panel.down('grid').getStore();
 
-        Ext.Msg.show({
-            title: 'Select Customer',
-            msg: 'Create New Customer or Old Customer',
-            buttons: Ext.MessageBox.YESNOCANCEL,
-            buttonText: { yes: 'New Customer', no: 'Old Customer', cancel: 'Cancel' },
-            width: 350,
-            icon: Ext.MessageBox.INFO,
-            fn: function (btn) {
-                if (btn === 'yes') {
+                            store.load();
+                        },
+                        beforeclose: function (panel, e0pst) {
+                            var grid = panel.down('grid'),
+                                selected = grid.getSelection();
+                                
+                            if(selected.length > 0) {
+                                var record = Ext.create('model.creditlimitcustomer', {
+                                    CreditLimitApprovalId: Id,
+                                    CustomerId: selected[0].get('CustomerCode'),
+                                    FirstNameTh: selected[0].get('FirstNameTh'),
+                                    LastNameTh: selected[0].get('LastNameTh'),
+                                    TaxNo: selected[0].get('TaxNo')
+                                });
 
-                    if (formMain.findField('CustType').getValue() > 0) {
-                        if (formMain.findField('CustType').valueModels[0].get('Name') === 'นิติบุคคล' && formMain.findField('CreditLimit').getValue() <= 0) {
-                            Ext.Msg.show({
-                                title: 'Warning',
-                                message: 'กรุณากรอกวงเงินที่ได้รับอนุมัติก่อน',
-                                buttons: Ext.Msg.OK,
-                                icon: Ext.Msg.WARNING
-                            });
-                        } else {
-                            Ext.create('widget.customercustomerwindow', {
-                                listeners: {
-                                    beforerender: function (panel, eOpts) {
-                                        var form = panel.down('form').getForm();
+                                if(!store.findRecord('CustomerId', record.get('CustomerId'))) {
+                                    if(store.getRemovedRecords().length > 0) {
+                                        Ext.Array.each(store.getRemovedRecords(), function(item) {
+                                            if(item.get('CustomerId') === record.get('CustomerId')) {
+                                                store.add(record);
+                                            } 
+                                            else {
+                                                Ext.Ajax.request({
+                                                    method: 'get',
+                                                    url: 'api/CreditLimitApproval',
+                                                    params: {
+                                                        customer_id: record.get('CustomerId'), 
+                                                        limit_type: formMain.findField('TypeCreditLimit').getValue(), 
+                                                        start_date: formMain.findField('StartLimitDate').getValue(), 
+                                                        end_date: formMain.findField('EndLimitDate').getValue()
+                                                    },
+                                                    success: function (response) {
+                                                        if(Ext.decode(response.responseText).length <= 0) {
+                                                            store.add(record);
 
-                                        panel.down('#MasterPage').setValue(me.getView().getId());
-                                        
-                                        //record = store.findRecord('Id', 1).copy(null);
+                                                            if(formMain.findField('CustType').valueModels[0].get('Name') === 'บุคคล') {
+                                                                button.disable();
+                                                                gridCust.down('#LimitAmount').hide();
+                                                            }
+                                                        }else {
+                                                            Ext.Msg.show({
+                                                                title: 'Warning',
+                                                                message: 'มีลูกค้า ประเภทวงเงิน วันที่เริ่มและวันที่สิ้นสุดวงเงิน ซ้ำในรายการอื่น',
+                                                                buttons: Ext.Msg.OK,
+                                                                icon: Ext.Msg.WARNING
+                                                            });
+                                                        }
+                                                    },
+                                                    failure: function (response) {
+                                                        Ext.Msg.show({
+                                                            title: 'Warning',
+                                                            message: 'กรุณาเลือก ประเภทวงเงิน วันที่เริ่มและวันที่สิ้นสุดวงเงิน ก่อนทำการเลือกลูกค้า',
+                                                            buttons: Ext.Msg.OK,
+                                                            icon: Ext.Msg.WARNING
+                                                        });
+                                                    }
+                                                });
+                                            }
+                                        });
+                                    } else {
+                                        Ext.Ajax.request({
+                                            method: 'get',
+                                            url: 'api/CreditLimitApproval',
+                                            params: {
+                                                customer_id: record.get('CustomerId'), 
+                                                limit_type: formMain.findField('TypeCreditLimit').getValue(), 
+                                                start_date: formMain.findField('StartLimitDate').getValue(), 
+                                                end_date: formMain.findField('EndLimitDate').getValue()
+                                            },
+                                            success: function (response) {
+                                                if(Ext.decode(response.responseText).length <= 0) {
+                                                    store.add(record);
 
-                                        store.add(record);
-                                        form.loadRecord(record);
-
-                                        if (formMain.findField('CustType').valueModels[0].get('Name') === 'นิติบุคคล') {
-                                            panel.down('#formLimit').show();
-                                            form.findField('CreditLimit').setMaxValue(formMain.findField('Balance').getValue());
-                                            form.findField('CreditLimit').allowBlank = false;
-                                            panel.down('#VAT_Registration').allowBlank = false;
-                                        } else {
-                                            form.findField('CreditLimit').allowBlank = true;
-                                            panel.down('#VAT_Registration').allowBlank = true;
-                                            panel.down('#formLimit').hide();
-                                        }
+                                                    if(formMain.findField('CustType').valueModels[0].get('Name') === 'บุคคล') {
+                                                        button.disable();
+                                                        gridCust.down('#LimitAmount').hide();
+                                                    }
+                                                }else {
+                                                    Ext.Msg.show({
+                                                        title: 'Warning',
+                                                        message: 'มีลูกค้า ประเภทวงเงิน วันที่เริ่มและวันที่สิ้นสุดวงเงิน ซ้ำในรายการอื่น',
+                                                        buttons: Ext.Msg.OK,
+                                                        icon: Ext.Msg.WARNING
+                                                    });
+                                                }
+                                            },
+                                            failure: function (response) {
+                                                Ext.Msg.show({
+                                                    title: 'Warning',
+                                                    message: 'กรุณาเลือก ประเภทวงเงิน วันที่เริ่มและวันที่สิ้นสุดวงเงิน ก่อนทำการเลือกลูกค้า',
+                                                    buttons: Ext.Msg.OK,
+                                                    icon: Ext.Msg.WARNING
+                                                });
+                                            }
+                                        });
                                     }
+                                }else {
+                                    Ext.Msg.show({
+                                        title: 'Warning',
+                                        message: 'มีลูกค้ารายนี้อยู่แล้ว',
+                                        buttons: Ext.Msg.OK,
+                                        icon: Ext.Msg.WARNING
+                                    });
                                 }
-                            }).show();
-                        }
-                    } else {
-                        Ext.Msg.show({
-                            title: 'Warning',
-                            message: 'กรุณาเลือกข้อมูลประเภทลูกค้าก่อน',
-                            buttons: Ext.Msg.OK,
-                            icon: Ext.Msg.WARNING
-                        });
-                    }
-                } else if (btn === 'no') {
-                    Ext.create('widget.popupcusinfpopup', {
-                        listeners: {
-                            afterrender: function (panel, eOpts) {
-                                var store = panel.down('grid').getStore();
-
-                                //store.getProxy().extraParams.cl_id = {};
-                                store.load();
-                            },
-                            beforeclose: function (panel, e0pst) {
-                                var grid = panel.down('grid'),
-                                        selected = grid.getSelection();
-
-                                store.add(selected[0]);
                             }
                         }
-                    }).show();
-                }
+                    }
+                }).show();
             }
-        });
+        } else {
+            Ext.Msg.show({
+                title: 'Warning',
+                message: 'กรุณาเลือกข้อมูลประเภทลูกค้าก่อน',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }
     },
 
     onGridpanelCustomerItemDblClick: function (dataview, record, item, index, e, eOpts) {
         var me = this,
-            formMain = me.getView().down('form').getForm();
+            formMain = me.getView().down('form').getForm(),
+            store = Ext.getStore('customers');
+            
+        store.load({
+            scope: this,
+            params: {
+                id: record.get('CustomerId')
+            },
+            callback: function(records, operation, success) {
+                Ext.create('widget.customercustomerwindow', {
+                    listeners: {
+                        afterrender: function (panel, eOpts) {
+                            var form = panel.down('form').getForm(),
+                                recordCus = Ext.create('model.customer', record.get('Customer'));
 
-        Ext.create('widget.customercustomerwindow', {
-            listeners: {
-                afterrender: function (panel, eOpts) {
-                    var form = panel.down('form').getForm();
+                            panel.down('#MasterPage').setValue(me.getView().getId());
 
-                    panel.down('#MasterPage').setValue(me.getView().getId());
-
-                    record.set('CustomerId', record.get('Id'));
-                    form.loadRecord(record);
-
-                    if (formMain.findField('CustType').valueModels[0].get('Name') === 'นิติบุคคล') {
-                        panel.down('#formLimit').show();
-                        form.findField('CreditLimit').setMaxValue(formMain.findField('Balance').getValue());
-                    } else {
-                        panel.down('#formLimit').hide();
+                            form.loadRecord(records[0]);
+                        },
+                        beforeclose: function (panel, eOpts) {
+                            var store = Ext.getStore('creditLimitCustomers'),
+                                selected = dataview.getSelection()[0],
+                                recordCus = panel.down('form').getForm().getRecord();
+                            
+                            selected.set('FirstNameTh', recordCus.get('FirstNameTh'));
+                            selected.set('LastNameTh', recordCus.get('LastNameTh'));
+                            selected.set('TaxNo', recordCus.get('TaxNo'));
+                        }
                     }
-                }
+                }).show();
             }
-        }).show();
+        });
     },
 
     onButtonSaveClick: function (button, e, eOpts) {
+        var me = this;
+
+        Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
+            if (msg === 'yes') {
+                me.fnSave();
+            }
+        });
+    },
+
+    fnSave: function() {
         var me = this,
             view = me.getView(),
             form = view.down('form').getForm(),
             record = form.getRecord(),
-            session;
+            gridCust = this.getView().down('#gridCustomer'),
+            store = gridCust.getStore(),
+            UserId = sessionStorage.getItem('UserId');
 
-        Ext.MessageBox.confirm('Confirm', 'Confirm Save?', function (msg) {
-            if (msg === 'yes') {
-                record.phantom = false;
+        record.phantom = false;
+
+        form.updateRecord(record);
+                
+        if (form.isValid()) {
+            if(store.getCount() > 0) {
                 form.findField('save').setValue('Y');
+                if(record.phantom === true) {
+                    record.data.CreateBy = UserId;
+                }else{
+                    record.data.UpdateBy = UserId;
+                }
+                var storeApproval = Ext.getStore('creditApprovals'), 
+                    storeDetail = Ext.getStore('creditLimitDetails'),
+                    storeCust = Ext.getStore('creditLimitCustomers');
+                    
+                var storeArray = [storeApproval,storeDetail,storeCust];
+            
+                storeArray = me.fnAddStoreArray(storeArray);
+                
+                TabUserInformation.controller.WindowController.fnSaveStore(view, storeArray);
+            } else {
+                Ext.Msg.show({
+                    title: 'Warning',
+                    message: 'กรุณาเพิ่มข้อมูลลูกค้าก่อน',
+                    buttons: Ext.Msg.OK,
+                    icon: Ext.Msg.WARNING
+                });
+            }
+        }else {
+            Ext.Msg.show({
+                title: 'Warning',
+                message: 'กรอกข้อมูลไม่ครบถ้วน',
+                buttons: Ext.Msg.OK,
+                icon: Ext.Msg.WARNING
+            });
+        }
+    },
 
-                session = TabUserInformation.controller.WindowController.fnSaveChildSession(view);
+    fnAddStoreArray: function (storeArray) {
+        var array = [],
+            i = 0;
 
-//                if(Ext.getCmp('financialamounttab')){
-//                    var sessionA = Ext.getCmp('financialamounttab').getSession();
-//                TabUserInformation.controller.WindowController.fnSaveBatch(sessionA, Ext.getCmp('financialamounttab'));
+        Ext.Array.each(storeArray, function (store) {
+            if (store.getModifiedRecords().length > 0 || store.getRemovedRecords().length > 0) {
+                array[i] = store;
+                i++;
+            }
+        });
+        
+        return array;
+    },
 
+    fnCopy: function () {
+        var me = this,
+            grid = me.getView().lookupReference('gridDetail'),
+            store = grid.getStore(),
+            record = grid.getSelection()[0],
+            UserId = sessionStorage.getItem('UserId');
 
-//                }
+        Ext.MessageBox.confirm('Copy', 'คุณต้องการทำการ Copy ข้อมูล?', function (msg) {
+            if (msg === 'yes') {
+                Ext.create('widget.financialfinancialamountdetail', {
+                    listeners: {
+                        afterrender: function (panel, eOpts) {
+                            var formMain = panel.down('#formMain').getForm();
 
-//                if(Ext.getCmp('financialamountwindow')){
-//                    var sessionB = Ext.getCmp('financialamountwindow').getSession();
-//                TabUserInformation.controller.WindowController.fnSaveBatch(sessionB, Ext.getCmp('financialamountwindow'));
+                            record = record.copy(null);
 
-//                }
+                            record.save({
+                                callback: function (record, operation) {
+                                    record.setId(operation.getResponse().responseText);
+                                    record.data.CreateBy = UserId;
+                                    record.data.CreateDate = new Date();
+                                    record.phantom = true;
 
-//                if(Ext.getCmp('financialamountdetail')){
-//                    var sessionC = Ext.getCmp('financialamountdetail').getSession();
-//                TabUserInformation.controller.WindowController.fnSaveBatch(sessionC, Ext.getCmp('financialamountdetail'));
+                                    store.add(record);
 
-//                }
+                                    formMain.loadRecord(record);
 
-//                    view.close();
+                                    me.fnSetControl(panel, formMain);
+                                }
+                            });
+                        }
+                    }
+                }).show();
             }
         });
     },
 
     onButtonCopyClick: function (button, e, eOpts) {
         var me = this,
+            form = me.getView().down('form').getForm(),
             grid = me.getView().lookupReference('gridDetail'),
             store = grid.getStore(),
-            Id = this.getView().down('#Id').getValue(),
             record = grid.getSelection()[0];
 
         if (record) {
-            Ext.MessageBox.confirm('Copy', 'คุณต้องการทำการ Copy ข้อมูล?', function (msg) {
-                if (msg === 'yes') {
-                    Ext.create('widget.financialfinancialamountdetail', {
-                        listeners: {
-                            afterrender: function (panel, eOpts) {
-                                var formMain = panel.down('#formMain').getForm();
-
-                                record = record.copy(null);
-
-                                record.save({
-                                    callback: function (record, operation) {
-                                        record.setId(operation.getResponse().responseText);
-                                        record.phantom = true;
-
-                                        store.add(record);
-
-                                        formMain.loadRecord(record);
-
-                                        me.fnSetControl(panel, formMain);
-                                    }
-                                });
-                            }
-                        }
-                    }).show();
+            if (record.get('TypeLeasingCode') === 'HP') {
+                if(record.get('LimitHPAmount') > store.sum('Amount', true).HP || !store.sum('Amount', true).HP) {
+                    record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'HP').get('Id');
+                    me.fnCopy();
+                } else {
+                    Ext.Msg.show({
+                        title: 'Warning',
+                        message: 'ครบวงเงินแล้ว',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
                 }
-            });
+            } else if (record.get('TypeLeasingCode') === 'LEASING') {
+                if(record.get('LimitLeaseAmount') > store.sum('Amount', true).LEASING || !store.sum('Amount', true).LEASING) {
+                    record.data.TypeLeasing = form.findField('TypeLeasing').getStore().findRecord('Code', 'LEASING').get('Id');
+                    me.fnCopy();
+                } else {
+                    Ext.Msg.show({
+                        title: 'Warning',
+                        message: 'ครบวงเงินแล้ว',
+                        buttons: Ext.Msg.OK,
+                        icon: Ext.Msg.WARNING
+                    });
+                }
+            }
+            
         } else {
             Ext.Msg.show({
                 title: 'Warning',
@@ -517,11 +833,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
                                 closable: false,
                             });
 
-                            record.phantom = false;
-
-                            var session = TabUserInformation.controller.WindowController.fnSaveChildSession(view);
-                            
-                            TabUserInformation.controller.WindowController.fnSaveBatch(session, view);
+                            me.fnSave();
 
                         } else if (btn === 'no') {
                             if(record.phantom) // phantom true = not exist server-side
@@ -556,10 +868,9 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewControlle
     },
 
     onClose: function(panel, eOpts) {
-        //var store = Ext.getCmp(this.getView().down('#MasterPage').getValue()).getViewModel().getStore('creditApprovals');
-        //store.rejectChanges();
-        //store.load();
-
-        //store.commitChanges();
+        var store = Ext.getStore('creditApprovals'),
+            form = panel.down('form').getForm();
+        
+        store.load();
     }
 });

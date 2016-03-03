@@ -10,6 +10,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
     {
         public GuarantorModel()
         {
+            CreditLimitDetail = new CreditLimitDetail();
         }
 
         //public virtual long Id { get; set; }
@@ -67,5 +68,7 @@ namespace KTBLeasing.FrontLeasing.Domain {
         public virtual long VAT_Registration { get; set; }
         public virtual decimal CreditLimit { get; set; }
         public virtual long CreditLimitId { get; set; }
+
+        public virtual CreditLimitDetail CreditLimitDetail { get; set; }
     }
 }

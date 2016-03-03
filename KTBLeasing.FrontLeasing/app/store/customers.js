@@ -43,12 +43,11 @@ Ext.define('TabUserInformation.store.customers', {
                     dateFormat: 'c'
                 },
                 api: {
-                    read: 'api/CusInfo/GetByCreditLimitId',
                     create: 'api/CusInfo/Post'
                 }
             },
             sorters: [{
-                property: 'id',
+                property: 'FullNameTh',
                 direction: 'ASC'
             }],
         }, cfg)]);

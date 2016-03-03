@@ -38,7 +38,8 @@ Ext.define('TabUserInformation.store.guarantorModels', {
                 },
                 writer: {
                     type: 'json',
-                    writeAllFields: true
+                    writeAllFields: true,
+                    allowSingle: false
                 },
                 api: {
                     create: 'api/Guarantor/Post'

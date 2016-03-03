@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.store.CommonData.marketingGroups', {
         me.callParent([Ext.apply({
             storeId: 'marketingGroups',
             model: 'TabUserInformation.model.BaseCommonData',
+            autoLoad: true,
             proxy: {
                 type: 'rest',
                 url: 'api/common/getcommonbynameeng?nameeng=marketing_group',

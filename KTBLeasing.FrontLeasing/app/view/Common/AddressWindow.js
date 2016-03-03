@@ -56,7 +56,7 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                     xtype: 'displayfield',
                     margin: '5 0 5 20',
                     fieldLabel: 'Customer Code',
-                    name: 'CustomerId'
+                    name: 'Id'
                 },
                 {
                     xtype: 'displayfield',
@@ -64,7 +64,7 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                     margin: '0 0 5 20',
                     width: 639,
                     fieldLabel: 'Customer Name',
-                    name: 'NameTh'
+                    name: 'FullNameTh'
                 }
             ]
         },
@@ -72,8 +72,8 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
             xtype: 'gridpanel',
             height: 400,
             reference: 'addressgrid',
-            //store: 'addresses',
-            bind: '{addresses}',
+            store: 'addresses',
+//            bind: '{addresses}',
             viewConfig: {
                 emptyText: '<span class="emptyText">No rows found.</span>'
             },
@@ -174,10 +174,10 @@ Ext.define('TabUserInformation.view.Common.AddressWindow', {
                     ui: 'footer',
                     width: 360,
                     displayInfo: true,
-                    bind: {
-                        store: '{addresses}'
-                    },
-                    //store: 'addresses'
+//                    bind: {
+//                        store: '{addresses}'
+//                    },
+                    store: 'addresses'
                 }
             ]
         }

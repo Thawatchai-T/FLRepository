@@ -28,7 +28,7 @@ Ext.define('TabUserInformation.store.creditLimitDetails', {
         me.callParent([Ext.apply({
             storeId: 'creditLimitDetails',
             model: 'TabUserInformation.model.CreditLimitDetail',
-            groupField: 'TypeLeasing',
+            groupField: 'TypeLeasingCode',
             //autoLoad: true,
             proxy: {
                 type: 'rest',
@@ -40,7 +40,9 @@ Ext.define('TabUserInformation.store.creditLimitDetails', {
                 },
                 writer: {
                     type: 'json',
-                    writeAllFields: true
+                    writeAllFields: true,
+                    dateFormat: 'MS',
+                    allowSingle: false
                 },
                 api: {
                     create: 'api/CreditLimitDetail/Post'

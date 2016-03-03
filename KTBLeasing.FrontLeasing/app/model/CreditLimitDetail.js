@@ -32,7 +32,16 @@ Ext.define('TabUserInformation.model.CreditLimitDetail', {
         writer: {
             type: 'json',
             writeAllFields: true,
-            allowSingle: false
+            allowSingle: false,
+            allDataOptions: {
+                persist: true,
+                associated: true
+            },
+            partialDataOptions: {
+                changes: true, 
+                critical: true,
+                associated: true
+            },
         },
         api: {
             create: 'api/CreditLimitDetail/Post'
@@ -40,6 +49,7 @@ Ext.define('TabUserInformation.model.CreditLimitDetail', {
     },
 
     idProperty: 'Id',
+
 
 //    identifier: {
 //        type: 'negative',
@@ -189,12 +199,28 @@ Ext.define('TabUserInformation.model.CreditLimitDetail', {
             defaultValue: true
         },
         {
-            type: 'int',
-            name: 'CreditLimitId',
-            reference: {
-                parent: 'TabUserInformation.model.CreditApproval'
-            }
+            type: 'string',
+            name: 'CreateBy'
+        },
+        {
+            type: 'date',
+            name: 'CreateDate'
+        },
+        {
+            type: 'date',
+            name: 'UpdateDate'
+        },
+        {
+            type: 'string',
+            name: 'UpdateBy'
         }
+//        {
+//            type: 'int',
+//            name: 'CreditLimitId',
+//            reference: {
+//                parent: 'TabUserInformation.model.CreditApproval'
+//            }
+//        }
 
     ],
 

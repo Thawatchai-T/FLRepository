@@ -32,7 +32,8 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindow', {
         'Ext.grid.column.Boolean',
         'Ext.view.Table',
         'Ext.toolbar.Paging',
-        'Ext.button.Button'
+        'Ext.button.Button',
+        'Overrides.picker.Date'
     ],
 
     controller: 'financialfinancialamountwindow',
@@ -71,7 +72,9 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindow', {
                     padding: 10,
                     defaults: {
                         labelAlign: 'right',
-                        allowBlank: false
+                        allowBlank: false,
+                        forceSelection: true,
+                        editable: false
                     },
                     title: 'สายงาน',
                     layout: {
@@ -113,94 +116,375 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindow', {
                     ]
                 },
                 {
-                    xtype: 'fieldset',
-                    padding: 5,
-                    layout: 'auto',
-                    title: 'ลูกค้า',
-                    //width: 900,
-                    defaults: {
-                        labelWidth: 200,
-                        labelAlign: 'right'
-                    },
+                    xtype: 'panel',
+                    layout: 'column',
+                    height: 350,
                     items: [
                         {
-                            xtype: 'combobox',
-                            fieldLabel: 'ประเภทลูกค้า',
-                            allowBlank: false,
-                            autoLoadOnValue: true,
-                            displayField: 'Name',
-                            store: 'CommonData.typeCustomers',
-                            valueField: 'Id',
-                            name: 'CustType',
-                            listeners: {
-                                change: 'onComboboxCustTypeChange'
-                            }
-                        },
-                        {
-                            xtype: 'gridpanel',
-                            height: 170,
-                            title: '',
-                            itemId: 'gridCustomer',
-                            //store: 'customers',
-                            bind: '{customers}',
-                            columns: [
-                                {
-                                    xtype: 'rownumberer'
-                                },
-                                {
-                                    xtype: 'gridcolumn',
-                                    text: 'ชื่อลูกค้า',
-                                    dataIndex: 'FullNameTh',
-                                    flex: -1
-                                },
-                                {
-                                    xtype: 'numbercolumn',
-                                    text: 'วงเงิน',
-                                    dataIndex: 'CreditLimit',
-                                    editor: {
-                                        xtype: 'numberfield'
-                                    }
-                                },
-                                {
-                                    xtype: 'gridcolumn',
-                                    text: 'เลขบัตรประจำตัวประชาชน/เลขประจำตัวผู้เสียภาษี',
-                                    dataIndex: 'TaxNo',
-                                    flex: -1
-                                },
-                                {
-                                    xtype: 'booleancolumn',
-                                    text: 'จดทะเบียนภาษีมูลค่าเพิ่ม',
-                                    dataIndex: 'VAT_Registration',
-                                    trueText: 'มี VAT',
-                                    falseText: 'ไม่มี VAT'
-                                }
-                            ],
-                            listeners: {
-                                itemdblclick: 'onGridpanelCustomerItemDblClick'
+                            xtype: 'panel',
+                            //region: 'west',
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch'
                             },
-                            dockedItems: [
+                            items: [
                                 {
-                                    xtype: 'toolbar',
-                                    dock: 'top',
+                                    xtype: 'fieldset',
+                                    padding: 5,
+                                    defaults: {
+                                        labelWidth: 200,
+                                        labelAlign: 'right',
+                                        forceSelection: true,
+                                        editable: false
+                                    },
+                                    title: 'วงเงิน',
+                                    layout: {
+                                        type: 'table',
+                                        columns: 1
+                                    },
                                     items: [
                                         {
-                                            xtype: 'button',
-                                            ui: 'default-small',
-                                            glyph: 'xf067@FontAwesome',
-                                            itemId: 'custAdd',
-                                            text: 'Add',
+                                            xtype: 'combobox',
+                                            fieldLabel: 'ประเภทวงเงิน',
+                                            allowBlank: false,
+                                            autoLoadOnValue: true,
+                                            displayField: 'Name',
+                                            store: 'CommonData.limitTypes',
+                                            valueField: 'Id',
+                                            name: 'TypeCreditLimit',
                                             listeners: {
-                                                click: 'onButtonCustomerAddClick'
+                                                select: 'onComboboxTypeCreditLimitSelect'
                                             }
                                         },
                                         {
-                                            xtype: 'button',
-                                            ui: 'default-small',
-                                            glyph: 'xf014@FontAwesome',
-                                            text: 'Delete',
-                                            listeners: {
-                                                click: 'onButtonDeleteClick'
+                                            xtype: 'combobox',
+                                            fieldLabel: 'กำหนดวงเงินของแต่ละทรัพย์สิน',
+                                            allowBlank: false,
+                                            autoLoadOnValue: true,
+                                            displayField: 'Name',
+                                            store: 'CommonData.limits',
+                                            valueField: 'Id',
+                                            name: 'Limit'
+                                        },
+                                        {
+                                            xtype: 'fieldcontainer',
+                                            fieldLabel: 'วันที่เริ่มใช้วงเงิน',
+                                            layout: {
+                                                type: 'hbox',
+                                                align: 'stretch'
+                                            },
+                                            defaults: {
+                                                labelWidth: 200,
+                                                labelAlign: 'right'
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'datefield',
+                                                    width: 105,
+                                                    name: 'StartLimitDate',
+                                                    format: 'd/m/Y',
+                                                    altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
+                                                    listeners: {
+                                                        select: 'onStartLimitDateSelect'
+                                                    }
+                                                },
+                                                {
+                                                    xtype: 'datefield',
+                                                    width: 120,
+                                                    fieldLabel: '-',
+                                                    labelSeparator: ' ',
+                                                    labelWidth: 15,
+                                                    name: 'EndLimitDate',
+                                                    format: 'd/m/Y',
+                                                    altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
+                                                    listeners: {
+                                                        expand: 'onEndLimitDateExpand',
+                                                        select: 'onEndLimitDateSelect'
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'numberfield',
+                                            fieldLabel: 'วงเงินที่ได้รับอนุมัติในครั้งนี้',
+                                            name: 'CreditLimit',
+                                            allowBlank: false,
+                                            bind: '{CreditLimit}',
+                                            mouseWheelEnabled: false,
+                                            hideTrigger: true,
+                                            width: 300
+                                        },
+                                        {
+                                            xtype: 'displayfield',
+                                            fieldLabel: 'วงเงินที่ได้รับอนุมัติ(ทั้งหมด)',
+                                            name: 'Total',
+                                            renderer: function (value, displayField) {
+
+                                                return Ext.util.Format.number(value, '0,000.00');
                                             }
+                                        },
+                                        {
+                                            xtype: 'displayfield',
+                                            fieldLabel: 'วงเงินคงเหลือที่สามารถเบิกใช้ได้',
+                                            name: 'Balance',
+                                            renderer: function (value, displayField) {
+
+                                                return Ext.util.Format.number(value, '0,000.00');
+                                            },
+                                            bind: {
+                                                value: '{CreditLimit}'
+                                            }
+                                        }
+                                    ]
+                                },
+                                {
+                                    xtype: 'fieldset',
+                                    padding: 5,
+                                    defaults: {
+                                        labelWidth: 120,
+                                        labelAlign: 'right',
+                                        forceSelection: true,
+                                        editable: false
+                                    },
+                                    title: 'สินเชื่อ',
+                                    layout: {
+                                        type: 'table',
+                                        columns: 1
+                                    },
+                                    items: [
+                                        {
+                                            xtype: 'combobox',
+                                            fieldLabel: 'ประเภทสินเชื่อ',
+                                            allowBlank: false,
+                                            autoLoadOnValue: true,
+                                            displayField: 'Name',
+                                            store: 'CommonData.typeLeasings',
+                                            valueField: 'Id',
+                                            name: 'TypeLeasing',
+                                            listeners: {
+                                                change: 'onComboboxTypeLeasingChange'
+                                            }
+                                        },
+                                        {
+                                            xtype: 'fieldcontainer',
+                                            fieldLabel: 'ผลิตภัณฑ์',
+                                            itemId: 'TypeProductHP',
+                                            layout: {
+                                                type: 'hbox',
+                                                align: 'stretch'
+                                            },
+                                            defaults: {
+                                                labelWidth: 200,
+                                                labelAlign: 'right',
+                                                forceSelection: true,
+                                                editable: false
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
+                                                    allowBlank: false,
+                                                    autoLoadOnValue: true,
+                                                    displayField: 'Name',
+                                                    valueField: 'Id',
+                                                    name: 'TypeProductHP',
+                                                    matchFieldWidth: false,
+                                                    width: 300,
+                                                    store: 'CommonData.productHPs'
+                                                    //                                            bind: {
+                                                    //                                                store: '{productHP}'
+                                                    //                                            }
+                                                },
+                                                {
+                                                    xtype: 'numberfield',
+                                                    labelWidth: 60,
+                                                    fieldLabel: 'วงเงิน',
+                                                    name: 'LimitHPAmount',
+                                                    allowBlank: false,
+                                                    mouseWheelEnabled: false,
+                                                    hideTrigger: true,
+                                                    width: 160,
+                                                    bind: {
+                                                        value: '{LimitHPAmount}',
+                                                        maxValue: '{MaxHPLimit}'
+                                                    }
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            xtype: 'fieldcontainer',
+                                            fieldLabel: 'ผลิตภัณฑ์',
+                                            itemId: 'TypeProductLease',
+                                            layout: {
+                                                type: 'hbox',
+                                                align: 'stretch'
+                                            },
+                                            defaults: {
+                                                labelWidth: 200,
+                                                labelAlign: 'right',
+                                                forceSelection: true,
+                                                editable: false
+                                            },
+                                            items: [
+                                                {
+                                                    xtype: 'combobox',
+                                                    allowBlank: false,
+                                                    autoLoadOnValue: true,
+                                                    displayField: 'Name',
+                                                    valueField: 'Id',
+                                                    name: 'TypeProductLease',
+                                                    matchFieldWidth: false,
+                                                    width: 300,
+                                                    store: 'CommonData.productLeases'
+                                                    //                                            bind: {
+                                                    //                                                store: '{productLease}'
+                                                    //                                            }
+                                                },
+                                                {
+                                                    xtype: 'numberfield',
+                                                    labelWidth: 60,
+                                                    fieldLabel: 'วงเงิน',
+                                                    name: 'LimitLeaseAmount',
+                                                    allowBlank: false,
+                                                    mouseWheelEnabled: false,
+                                                    hideTrigger: true,
+                                                    width: 160,
+                                                    bind: {
+                                                        value: '{LimitLeaseAmount}',
+                                                        maxValue: '{MaxLeaseLimit}'
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            xtype: 'panel',
+                            //region: 'west',
+                            layout: {
+                                type: 'vbox',
+                                align: 'stretch'
+                            },
+                            items: [
+                                {
+                                    xtype: 'fieldset',
+                                    margin: '0 0 0 10',
+                                    title: 'ลูกค้า',
+                                    defaults: {
+                                        labelWidth: 200,
+                                        labelAlign: 'right',
+                                        forceSelection: true,
+                                        editable: false
+                                    },
+                                    items: [
+                                        {
+                                            xtype: 'combobox',
+                                            fieldLabel: 'ประเภทลูกค้า',
+                                            allowBlank: false,
+                                            autoLoadOnValue: true,
+                                            displayField: 'Name',
+                                            store: 'CommonData.typeCustomers',
+                                            valueField: 'Id',
+                                            name: 'CustType',
+                                            listeners: {
+                                                change: 'onComboboxCustTypeChange'
+                                            }
+                                        },
+                                        {
+                                            xtype: 'gridpanel',
+                                            width: 600,
+                                            height: 290,
+                                            title: '',
+                                            itemId: 'gridCustomer',
+                                            store: 'creditLimitCustomers',
+                                            //                            bind: '{customers}',
+                                            columns: [
+                                                    {
+                                                        xtype: 'rownumberer'
+                                                    },
+                                                    {
+                                                        xtype: 'gridcolumn',
+                                                        text: 'ชื่อลูกค้า',
+                                                        dataIndex: 'FullNameTh',
+                                                        flex: -1
+                                                    },
+                                                    {
+                                                        xtype: 'numbercolumn',
+                                                        text: 'วงเงิน',
+                                                        dataIndex: 'LimitAmount',
+                                                        itemId: 'LimitAmount',
+                                                        editor: {
+                                                            xtype: 'numberfield',
+                                                            mouseWheelEnabled: false,
+                                                            hideTrigger: true,
+                                                            msgTarget: 'none',
+                                                            id: 'editLimitAmount',
+                                                            listeners: {
+                                                                afterrender: 'onEditorLimitAmountAfterRender'
+                                                            }
+                                                            //                                        bind: {
+                                                            //                                            maxValue: '{MaxLimitAmount}'
+                                                            //                                        }
+                                                        }
+                                                    },
+                                                    {
+                                                        xtype: 'gridcolumn',
+                                                        text: 'เลขบัตรประจำตัวประชาชน/เลขประจำตัวผู้เสียภาษี',
+                                                        dataIndex: 'TaxNo',
+                                                        flex: -1
+                                                    },
+                                                    {
+                                                        xtype: 'booleancolumn',
+                                                        text: 'จดทะเบียนภาษีมูลค่าเพิ่ม',
+                                                        dataIndex: 'VAT_Registration',
+                                                        trueText: 'มี VAT',
+                                                        falseText: 'ไม่มี VAT',
+                                                        editor: {
+                                                            xtype: 'combobox',
+                                                            autoLoadOnValue: true,
+                                                            displayField: 'Name',
+                                                            store: 'CommonData.vatRegistrations',
+                                                            valueField: 'Id',
+                                                            name: 'VAT_Registration'
+                                                        }
+                                                    }
+                                                ],
+                                            listeners: {
+                                                itemdblclick: 'onGridpanelCustomerItemDblClick',
+                                                select: 'onGridpanelCustomerSelect'
+                                            },
+                                            plugins: {
+                                                ptype: 'cellediting',
+                                                clicksToEdit: 1
+                                            },
+                                            dockedItems: [
+                                                {
+                                                    xtype: 'toolbar',
+                                                    dock: 'top',
+                                                    items: [
+                                                        {
+                                                            xtype: 'button',
+                                                            ui: 'default-small',
+                                                            glyph: 'xf067@FontAwesome',
+                                                            itemId: 'custAdd',
+                                                            text: 'Add',
+                                                            listeners: {
+                                                                click: 'onButtonCustomerAddClick'
+                                                            }
+                                                        },
+                                                        {
+                                                            xtype: 'button',
+                                                            ui: 'default-small',
+                                                            glyph: 'xf014@FontAwesome',
+                                                            text: 'Delete',
+                                                            listeners: {
+                                                                click: 'onButtonDeleteCustomerClick'
+                                                            }
+                                                        }
+                                                    ]
+                                                }
+                                            ]
                                         }
                                     ]
                                 }
@@ -208,258 +492,17 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindow', {
                         }
                     ]
                 },
-                {
-                    xtype: 'container',
-                    layout: {
-                        type: 'hbox',
-                        align: 'stretch'
-                    },
-                    items: [
-                        {
-                            xtype: 'fieldset',
-                            padding: 5,
-                            defaults: {
-                                labelWidth: 200,
-                                labelAlign: 'right'
-                            },
-                            title: 'วงเงิน',
-                            layout: {
-                                type: 'table',
-                                columns: 2
-                            },
-                            items: [
-                                {
-                                    xtype: 'combobox',
-                                    fieldLabel: 'ประเภทวงเงิน',
-                                    allowBlank: false,
-                                    autoLoadOnValue: true,
-                                    displayField: 'Name',
-                                    store: 'CommonData.limitTypes',
-                                    valueField: 'Id',
-                                    name: 'TypeCreditLimit'
-                                },
-                                {
-                                    xtype: 'numberfield',
-                                    fieldLabel: 'วงเงินที่ได้รับอนุมัติในครั้งนี้',
-                                    name: 'CreditLimit',
-                                    allowBlank: false,
-                                    bind: '{CreditLimit}',
-                                    mouseWheelEnabled:false,
-                                    hideTrigger: true,
-                                    width: 300
-                                },
-                                {
-                                    xtype: 'combobox',
-                                    fieldLabel: 'กำหนดวงเงินของแต่ละทรัพย์สิน',
-                                    allowBlank: false,
-                                    autoLoadOnValue: true,
-                                    displayField: 'Name',
-                                    store: 'CommonData.limits',
-                                    valueField: 'Id',
-                                    name: 'Limit'
-                                },
-                                {
-                                    xtype: 'displayfield',
-                                    fieldLabel: 'วงเงินที่ได้รับอนุมัติ(ทั้งหมด)',
-                                    name: 'Total',
-                                    renderer: function (value, displayField) {
-
-                                        return Ext.util.Format.number(value, '0,000.00');
-                                    }
-                                },
-                                {
-                                    xtype: 'fieldcontainer',
-                                    fieldLabel: 'วันที่เริ่มใช้วงเงิน',
-                                    layout: {
-                                        type: 'hbox',
-                                        align: 'stretch'
-                                    },
-                                    defaults: {
-                                        labelWidth: 200,
-                                        labelAlign: 'right'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'datefield',
-                                            width: 105,
-                                            name: 'StartLimitDate',
-                                            format: 'd/m/Y',
-                                            altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
-                                        },
-                                        {
-                                            xtype: 'datefield',
-                                            width: 120,
-                                            fieldLabel: '-',
-                                            labelSeparator: ' ',
-                                            labelWidth: 15,
-                                            name: 'EndLimitDate',
-                                            format: 'd/m/Y',
-                                            altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n',
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'displayfield',
-                                    fieldLabel: 'วงเงินคงเหลือที่สามารถเบิกใช้ได้',
-                                    name: 'Balance',
-                                    renderer: function (value, displayField) {
-
-                                        return Ext.util.Format.number(value, '0,000.00');
-                                    },
-                                    bind: {
-                                        value: '{CreditLimit}'
-                                    }
-                                },
-//                                {
-//                                    xtype: 'datefield',
-//                                    fieldLabel: 'วันที่เริ่มใช้วงเงิน',
-//                                    name: 'StartLimitDate',
-//                                    format: 'd/m/Y',
-//                                    altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n'
-//                                },
-//                                {
-//                                    xtype: 'datefield',
-//                                    fieldLabel: 'วันที่สิ้นสุดวงเงิน',
-//                                    name: 'EndLimitDate',
-//                                    format: 'd/m/Y',
-//                                    altFormats: 'd/m/Y|j/n/Y|j/n/y|m/j/y|n/d/y|m/j/Y|n/d/Y|d-m-y|d-m-Y|d/m|d-m|dm|dmy|dmY|d|Y-d-m|n-j|j/n'
-//                                },
-                                
-                                
-                            ]
-                        },
-                        {
-                            xtype: 'fieldset',
-                            padding: 5,
-                            defaults: {
-                                labelWidth: 120,
-                                labelAlign: 'right'
-                            },
-                            title: 'สินเชื่อ',
-                            layout: {
-                                type: 'table',
-                                columns: 1
-                            },
-                            items: [
-                                {
-                                    xtype: 'combobox',
-                                    fieldLabel: 'ประเภทสินเชื่อ',
-                                    allowBlank: false,
-                                    autoLoadOnValue: true,
-                                    displayField: 'Name',
-                                    store: 'CommonData.typeLeasings',
-                                    valueField: 'Id',
-                                    name: 'TypeLeasing',
-                                    listeners: {
-                                        change: 'onComboboxTypeLeasingChange'
-                                    }
-                                },
-                                {
-                                    xtype: 'fieldcontainer',
-                                    fieldLabel: 'ผลิตภัณฑ์',
-                                    itemId: 'TypeProductHP',
-                                    layout: {
-                                        type: 'hbox',
-                                        align: 'stretch'
-                                    },
-                                    defaults: {
-                                        labelWidth: 200,
-                                        labelAlign: 'right'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'combobox',
-                                            allowBlank: false,
-                                            autoLoadOnValue: true,
-                                            displayField: 'Name',
-                                            valueField: 'Id',
-                                            name: 'TypeProductHP',
-                                            matchFieldWidth: false,
-                                            bind: {
-                                                store: '{productHP}'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'numberfield',
-                                            labelWidth: 60,
-                                            fieldLabel: 'วงเงิน',
-                                            name: 'LimitHPAmount',
-                                            allowBlank: false,
-                                            mouseWheelEnabled:false,
-                                            hideTrigger: true,
-                                            width: 160,
-                                            bind: {
-                                                value: '{LimitHPAmount}',
-                                                maxValue: '{MaxHPLimit}'
-                                            }
-                                        }
-                                    ]
-                                },
-                                {
-                                    xtype: 'fieldcontainer',
-                                    fieldLabel: 'ผลิตภัณฑ์',
-                                    itemId: 'TypeProductLease',
-                                    layout: {
-                                        type: 'hbox',
-                                        align: 'stretch'
-                                    },
-                                    defaults: {
-                                        labelWidth: 200,
-                                        labelAlign: 'right'
-                                    },
-                                    items: [
-                                        {
-                                            xtype: 'combobox',
-                                            allowBlank: false,
-                                            autoLoadOnValue: true,
-                                            displayField: 'Name',
-                                            valueField: 'Id',
-                                            name: 'TypeProductLease',
-                                            matchFieldWidth: false,
-                                            bind: {
-                                                store: '{productLease}'
-                                            }
-                                        },
-                                        {
-                                            xtype: 'numberfield',
-                                            labelWidth: 60,
-                                            fieldLabel: 'วงเงิน',
-                                            name: 'LimitLeaseAmount',
-                                            allowBlank: false,
-                                            mouseWheelEnabled:false,
-                                            hideTrigger: true,
-                                            width: 160,
-                                            bind: {
-                                                value: '{LimitLeaseAmount}',
-                                                maxValue: '{MaxLeaseLimit}'
-                                            }
-                                        }
-                                    ]
-                                },
-//                                {
-//                                    xtype: 'combobox',
-//                                    fieldLabel: 'จำนวนประเภททรัพย์สินที่ได้รับอนุมัติ',
-//                                    allowBlank: false,
-//                                    autoLoadOnValue: true,
-//                                    displayField: 'Id',
-//                                    store: 'CommonData.assetAmounts',
-//                                    valueField: 'Id',
-//                                    name: 'AssetAmount'
-//                                },
-                            ]
-                        }
-                    ]
-                }
+                
             ]
         },
         {
             xtype: 'gridpanel',
             region: 'center',
             reference: 'gridDetail',
-            //store: 'creditLimitDetails',
-            bind: {
-                store: '{creditLimitDetails}'
-            },
+            store: 'creditLimitDetails',
+            //            bind: {
+            //                store: '{creditLimitDetails}'
+            //            },
             title: 'ประเภททรัพย์สินพร้อมรายละเอียดการผ่อนชำระ',
             forceFit: true,
             columns: [
@@ -568,10 +611,10 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindow', {
             dockedItems: [
                 {
                     xtype: 'pagingtoolbar',
-                    //store: 'creditLimitDetails',
-                    bind: {
-                        store: '{creditLimitDetails}'
-                    },
+                    store: 'creditLimitDetails',
+                    //                    bind: {
+                    //                        store: '{creditLimitDetails}'
+                    //                    },
                     dock: 'bottom',
                     width: 360,
                     displayInfo: true

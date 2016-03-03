@@ -29,7 +29,8 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
         'Ext.button.Button',
         'Ext.form.field.Number',
         'Ext.form.RadioGroup',
-        'Ext.form.field.Radio'
+        'Ext.form.field.Radio',
+        'Overrides.picker.Date'
     ],
 
     controller: 'customercustomerwindow',
@@ -40,7 +41,7 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
     title: 'Customer',
     modal: true,
     session: true,
-    itemId: 'windowCtrl',
+    //itemId: 'windowCtrl',
 
     items: [
         {
@@ -55,6 +56,7 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                 align: 'stretch'
             },
             trackResetOnLoad: true,
+            
             items: [
                 {
                     xtype: 'hiddenfield',
@@ -67,7 +69,9 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                         labelAlign: 'right',
                         labelWidth: 200,
                         allowBlank: false,
-                        msgTarget: 'none'
+                        msgTarget: 'none',
+                        forceSelection: true,
+                        editable: false
                     },
                     bodyPadding: 20,
                     title: 'รายละเอียดลูกค้า',
@@ -75,6 +79,7 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                         type: 'table',
                         columns: 2
                     },
+                    itemId: 'formCustomer',
                     items: [
                         {
                             xtype: 'displayfield',
@@ -88,7 +93,9 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                             defaults: {
                                 margin: '0 5 0 0',
                                 allowBlank: false,
-                                msgTarget: 'none'
+                                msgTarget: 'none',
+                                forceSelection: true,
+                                editable: false
                             },
                             fieldLabel: 'Thai Name',
                             layout: {
@@ -125,7 +132,9 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                             xtype: 'fieldcontainer',
                             colspan: 2,
                             defaults: {
-                                margin: '0 5 0 0'
+                                margin: '0 5 0 0',
+                                forceSelection: true,
+                                editable: false
                             },
                             fieldLabel: 'English Name',
                             layout: {
@@ -249,53 +258,54 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                         }
                     ]
                 },
-                {
-                    xtype: 'form',
-                    flex: 1,
-                    defaults: {
-                        labelAlign: 'right',
-                        labelWidth: 200,
-                        allowBlank: false,
-                        msgTarget: 'none'
-                    },
-                    bodyPadding: 10,
-                    title: 'วงเงิน',
-                    layout: {
-                        type: 'table',
-                        columns: 2
-                    },
-                    itemId: 'formLimit',
-                    items: [
-                        {
-                            xtype: 'numberfield',
-                            colspan: 2,
-                            fieldLabel: 'วงเงิน',
-                            name: 'CreditLimit',
-                            mouseWheelEnabled:false,
-                            hideTrigger: true
-                        },
-                        {
-                            xtype: 'radiogroup',
-                            width: 400,
-                            fieldLabel: 'จะทะเบียนภาษีมูลค่าเพิ่ม',
-                            itemId: 'VAT_Registration',
-                            items: [
-                                {
-                                    xtype: 'radiofield',
-                                    name: 'VAT_Registration',
-                                    boxLabel: 'มี VAT',
-                                    inputValue: '1'
-                                },
-                                {
-                                    xtype: 'radiofield',
-                                    name: 'VAT_Registration',
-                                    boxLabel: 'ไม่มี VAT',
-                                    inputValue: '0'
-                                }
-                            ]
-                        }
-                    ]
-                }
+//                {
+//                    xtype: 'form',
+//                    flex: 1,
+//                    defaults: {
+//                        labelAlign: 'right',
+//                        labelWidth: 200,
+//                        allowBlank: false,
+//                        msgTarget: 'none'
+//                    },
+//                    bodyPadding: 10,
+//                    title: 'วงเงิน',
+//                    layout: {
+//                        type: 'table',
+//                        columns: 2
+//                    },
+//                    itemId: 'formLimit',
+//                    trackResetOnLoad: true,
+//                    items: [
+//                        {
+//                            xtype: 'numberfield',
+//                            colspan: 2,
+//                            fieldLabel: 'วงเงิน',
+//                            name: 'LimitAmount',
+//                            mouseWheelEnabled:false,
+//                            hideTrigger: true
+//                        },
+//                        {
+//                            xtype: 'radiogroup',
+//                            width: 400,
+//                            fieldLabel: 'จดทะเบียนภาษีมูลค่าเพิ่ม',
+//                            itemId: 'VAT_Registration',
+//                            items: [
+//                                {
+//                                    xtype: 'radiofield',
+//                                    name: 'VAT_Registration',
+//                                    boxLabel: 'มี VAT',
+//                                    inputValue: '1'
+//                                },
+//                                {
+//                                    xtype: 'radiofield',
+//                                    name: 'VAT_Registration',
+//                                    boxLabel: 'ไม่มี VAT',
+//                                    inputValue: '0'
+//                                }
+//                            ]
+//                        }
+//                    ]
+//                }
             ]
         }
     ],
@@ -308,5 +318,8 @@ Ext.define('TabUserInformation.view.Customer.CustomerWindow', {
                 click: 'onButtonSaveClick'
             }
         }
-    ]
+    ],
+    listeners: {
+        beforeclose: 'onBeforeClose'
+    }
 });

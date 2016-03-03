@@ -53,7 +53,7 @@ Ext.define('TabUserInformation.view.Home.LoginWindow', {
             },
             layout: {
                 type: 'vbox',
-                align: 'center',
+                align: 'stretchmax',
                 pack: 'center'
             },
             items: [

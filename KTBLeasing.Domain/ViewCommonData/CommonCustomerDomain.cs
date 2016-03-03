@@ -9,8 +9,13 @@ namespace KTBLeasing.Domain.ViewCommonData
     {
         public virtual long CustomerCode { get; set; }
         public virtual string TitleNameTh { get; set; }
-        public virtual string NameTh { get; set; }
-        public virtual string NameEng { get; set; }
+        public virtual string FirstNameTh { get; set; }
+        public virtual string LastNameTh { get; set; }
+        public virtual string FullNameTh { get; set; }
+        public virtual string FirstNameEng { get; set; }
+        public virtual string LastNameEng { get; set; }
+        public virtual string FullNameEng { get; set; }
+        public virtual string TaxNo { get; set; }
         public virtual long MarketingOfficer { get; set; }
         public virtual long TypeCustomer { get; set; }
         public virtual string AddressTh { get; set; }

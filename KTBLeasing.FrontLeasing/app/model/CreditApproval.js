@@ -41,7 +41,8 @@ Ext.define('TabUserInformation.model.CreditApproval', {
                 changes: true, 
                 critical: true,
                 associated: true
-            }
+            },
+            clientIdProperty: 'client_id'
         },
         api: {
             create: 'api/CreditLimitApproval/Post'
@@ -49,6 +50,8 @@ Ext.define('TabUserInformation.model.CreditApproval', {
     },
 
     idProperty: 'Id',
+
+    clientIdProperty: 'client_id',
 
 //    identifier: {
 //        type: 'negative',
@@ -65,7 +68,8 @@ Ext.define('TabUserInformation.model.CreditApproval', {
         },
         {
             type: 'int',
-            name: 'Branch'
+            name: 'Branch',
+            defaultValue: null
         },
         {
             type: 'date',
@@ -132,26 +136,30 @@ Ext.define('TabUserInformation.model.CreditApproval', {
         },
         {
             type: 'string',
-            name: 'FirstNameTh',
-            mapping: 'Customer[0].FirstNameTh'
-        },
-        {
-            type: 'string',
-            name: 'LastNameTh',
-            mapping: 'Customer[0].LastNameTh'
-        },
-        {
-            type: 'string',
-            name: 'CustFullName',
-            convert: function (v, rec) {
-                return rec.get('FirstNameTh') + ' ' + rec.get('LastNameTh');
-            },
-            depends: ['FirstNameTh', 'LastNameTh']
+            name: 'FullNameTh'
         },
         {
             type: 'boolean',
             name: 'Active',
             defaultValue: true
+        },
+        {
+            type: 'string',
+            name: 'CreateBy'
+        },
+        {
+            type: 'date',
+            name: 'CreateDate',
+            dateWriteFormat: 'c'
+        },
+        {
+            type: 'string',
+            name: 'UpdateBy'
+        },
+        {
+            type: 'date',
+            name: 'UpdateDate',
+            dateWriteFormat: 'c'
         }
     ],
     

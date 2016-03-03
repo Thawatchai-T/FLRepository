@@ -29,7 +29,8 @@ Ext.define('TabUserInformation.view.Guarantor.GuarantorsWindow', {
         'Ext.button.Button',
         'Ext.form.field.Number',
         'Ext.form.RadioGroup',
-        'Ext.form.field.Radio'
+        'Ext.form.field.Radio',
+        'Overrides.picker.Date'
     ],
 
     controller: 'guarantorguarantorswindow',
@@ -67,7 +68,9 @@ Ext.define('TabUserInformation.view.Guarantor.GuarantorsWindow', {
                         labelAlign: 'right',
                         labelWidth: 200,
                         allowBlank: false,
-                        msgTarget: 'none'
+                        msgTarget: 'none',
+                        forceSelection: true,
+                        editable: false
                     },
                     bodyPadding: 20,
                     title: 'รายละเอียดผู้ค้ำประกัน',
@@ -88,7 +91,9 @@ Ext.define('TabUserInformation.view.Guarantor.GuarantorsWindow', {
                             defaults: {
                                 margin: '0 5 0 0',
                                 allowBlank: false,
-                                msgTarget: 'none'
+                                msgTarget: 'none',
+                                forceSelection: true,
+                                editable: false
                             },
                             fieldLabel: 'Thai Name',
                             layout: {

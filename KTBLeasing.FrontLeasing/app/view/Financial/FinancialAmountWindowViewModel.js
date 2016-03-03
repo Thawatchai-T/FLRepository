@@ -72,7 +72,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewModel', {
 
         customers: {
             model: 'TabUserInformation.model.Customer',
-            session: true,
+            //            session: true,
             sorters: [{
                 property: 'Id',
                 direction: 'ASC'
@@ -81,7 +81,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountWindowViewModel', {
 
         creditLimitDetails: {
             model: 'TabUserInformation.model.CreditLimitDetail',
-            session: true,
+            //            session: true,
             sorters: [{
                 property: 'Id',
                 direction: 'ASC'

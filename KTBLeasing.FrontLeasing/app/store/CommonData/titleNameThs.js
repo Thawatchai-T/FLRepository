@@ -27,6 +27,7 @@ Ext.define('TabUserInformation.store.CommonData.titleNameThs', {
         cfg = cfg || {};
         me.callParent([Ext.apply({
             storeId: 'titleNameThs',
+            autoLoad: true,
             model: 'TabUserInformation.model.BaseCommonData',
             proxy: {
                 type: 'rest',

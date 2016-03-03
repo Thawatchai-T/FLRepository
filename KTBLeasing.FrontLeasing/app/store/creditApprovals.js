@@ -40,7 +40,8 @@ Ext.define('TabUserInformation.store.creditApprovals', {
                 },
                 writer: {
                     type: 'json',
-                    writeAllFields: true
+                    writeAllFields: true,
+                    dateFormat: 'MS',
                 },
                 api: {
                     create: 'api/CreditLimitApproval/Post'
@@ -48,6 +49,9 @@ Ext.define('TabUserInformation.store.creditApprovals', {
             },
             sorters: [{
                 property: 'Id',
+                direction: 'DESC'
+            },{
+                property: 'SEQ',
                 direction: 'ASC'
             }]
         }, cfg)]);

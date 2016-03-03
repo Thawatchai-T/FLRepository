@@ -21,7 +21,7 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewModel', {
         creditApprovals: {
             model: 'TabUserInformation.model.CreditApproval',
             autoLoad: true,
-            session: true,
+//            session: true,
             remoteFilter: true,
             sorters: [{
                 property: 'Id',

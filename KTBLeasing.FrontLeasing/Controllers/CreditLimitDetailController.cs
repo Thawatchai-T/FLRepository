@@ -33,7 +33,7 @@ namespace KTBLeasing.FrontLeasing.Controllers
 
             return list;
         }
-        
+
         //// POST api/creditlimit
         //public long Post(CreditLimitDetail value)
         //{
@@ -91,8 +91,18 @@ namespace KTBLeasing.FrontLeasing.Controllers
             {
                 value.UpdateDate = DateTime.Now;
 
-                CreditLimitRepository.Update<CreditLimitDetail>(value);
+                CreditLimitRepository.Delete<CreditLimitDetail>(value);
             }
         }
+
+        //public void Delete(int id, List<CreditLimitDetail> list)
+        //{
+        //    foreach (CreditLimitDetail value in list)
+        //    {
+        //        value.UpdateDate = DateTime.Now;
+
+        //        CreditLimitRepository.Update<CreditLimitDetail>(value);
+        //    }
+        //}
     }
 }

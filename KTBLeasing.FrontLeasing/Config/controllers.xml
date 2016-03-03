@@ -217,6 +217,14 @@
     <property name="CreditLimitRepository" ref="creditLimitRepository"/>
   </object>
 
+  <object type="KTBLeasing.FrontLeasing.Controllers.CreditLimitCustomerController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CreditLimitRepository" ref="creditLimitRepository"/>
+  </object>
+
+  <object type="KTBLeasing.FrontLeasing.Controllers.CreditLimitGuarantorController, KTBLeasing.FrontLeasing" singleton="false" >
+    <property name="CreditLimitRepository" ref="creditLimitRepository"/>
+  </object>
+
   <object type="KTBLeasing.FrontLeasing.Controllers.GuarantorController, KTBLeasing.FrontLeasing" singleton="false" >
     <property name="GuarantorRepository" ref="guarantorRepository"/>
   </object>

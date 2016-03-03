@@ -14,7 +14,8 @@ namespace KTBLeasing.FrontLeasing.Mapping.Orcl {
 			Table("CREDIT_LIMIT_APPROVAL");
 			LazyLoad();
             Id(x => x.Id, "ID").GeneratedBy.Increment();
-            HasMany(x => x.Customer).KeyColumn("CL_ID").Cascade.All().OrderBy("ID");
+            HasMany(x => x.CreditLimitCustomer).KeyColumn("CREDIT_LIMIT_ID").Inverse().Cascade.All().OrderBy("CREDIT_LIMIT_ID");
+            //HasOne(x => x.CreditLimitCustomer).PropertyRef(r => r.Customer).Cascade.All();
             Map(x => x.TypeCreditLimit).Column("TYPE_CREDIT_LIMIT");
             Map(x => x.MarketingGroup).Column("MARKETING_GROUP");
             Map(x => x.Branch).Column("BRANCH");

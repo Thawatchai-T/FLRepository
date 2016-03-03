@@ -17,6 +17,12 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
     extend: 'Ext.app.ViewController',
     alias: 'controller.financialfinancialamounttab',
 
+    onBeforeRender: function (field, eOpts) {
+        var store = this.getView().down('grid').getStore();
+
+        store.load();
+    },
+
     onComboboxMarketingGroupChange: function (field, newValue, oldValue, eOpts) {
         var form = this.getView().down('form').getForm(),
             store = form.findField('Branch').getStore();
@@ -44,9 +50,10 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
             listeners: {
                 afterrender: function (panel, eOpts) {
                     var form = panel.down('form').getForm(),
-                        storeDetail = panel.getViewModel().getStore('creditLimitDetails'),
-                        storeCust = panel.getViewModel().getStore('customers'),
-                        button = panel.down('#custAdd');
+                        storeDetail = Ext.getStore('creditLimitDetails'),
+                        storeCust = Ext.getStore('creditLimitCustomers'),
+                        button = panel.down('#custAdd'),
+                        grid = panel.down('#gridCustomer');
 
                     panel.down('#MasterPage').setValue(me.getView().getId());
 
@@ -54,14 +61,15 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
 
                     storeDetail.getProxy().extraParams.id = record.get('Id');
                     storeDetail.load();
-                    storeDetail.session = false;
 
                     storeCust.getProxy().extraParams.id = record.get('Id');
                     storeCust.load(function (records, operation, success) {
-                        if (form.findField('CustType').valueModels[0].get('Name') === 'บุคคล' && records.length > 1) {
+                        if (form.findField('CustType').valueModels[0].get('Name') === 'บุคคล' && storeCust.getCount() >= 1) {
                             button.disable();
+                            grid.down('#LimitAmount').hide();
                         } else {
                             button.enable();
+                            grid.down('#LimitAmount').show();
                         }
                     });
                 }
@@ -72,13 +80,14 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
 
     onButtonAddClick: function (button, e, eOpts) {
         var me = this,
-            store = me.getView().down('grid').getStore();
+            store = me.getView().down('grid').getStore(),
+            UserId = sessionStorage.getItem('UserId');
 
         Ext.create('widget.financialfinancialamountwindow', {
             listeners: {
                 afterrender: function (panel, eOpts) {
-                    var storeDetail = panel.getViewModel().getStore('creditLimitDetails'),
-                        storeCust = panel.getViewModel().getStore('customers'),
+                    var storeDetail = Ext.getStore('creditLimitDetails'),
+                        storeCust = Ext.getStore('creditLimitCustomers'),
                         record = Ext.create('model.creditapproval'),
                         form = panel.down('form').getForm();
 
@@ -87,16 +96,17 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
                     record.save({
                         callback: function (record, operation) {
                             record.setId(operation.getResponse().responseText);
+                            record.data.CreateBy = UserId;
+                            record.data.CreateDate = new Date();
                             record.phantom = true;
 
                             store.add(record);
-
                             form.loadRecord(record);
-
-                            storeDetail.removeAll(true);
-                            storeCust.removeAll(true);
                         }
                     });
+
+                    storeDetail.removeAll(true);
+                    storeCust.removeAll(true);
                 }
             }
         }).show();
@@ -172,6 +182,15 @@ Ext.define('TabUserInformation.view.Financial.FinancialAmountTabViewController',
             store.load();
         }
 
+    },
+
+    onButtonClearClick: function (button, e, eOpts) {
+        var form = this.getView().down('form').getForm(),
+            store = this.getView().down('grid').getStore();
+
+        form.reset();
+        store.clearFilter(true);
+        store.load();
     }
 
 });
